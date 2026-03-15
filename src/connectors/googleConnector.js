@@ -15,6 +15,13 @@ const DEFAULT_SCOPES = [
   "https://www.googleapis.com/auth/calendar.readonly"
 ];
 
+const WRITE_SCOPES = [
+  "https://www.googleapis.com/auth/gmail.send",
+  "https://www.googleapis.com/auth/calendar",
+  "https://www.googleapis.com/auth/drive.file",
+  "https://www.googleapis.com/auth/documents"
+];
+
 const OAUTH_STATE_TTL_MS = 12 * 60 * 1000;
 const GOOGLE_NETWORK_RETRY_DELAYS_MS = [500, 1200];
 const pendingOauthStates = new Map(); // state -> { createdAtMs, loginHint, scopes }
@@ -1146,9 +1153,9 @@ function manifest() {
     id: "google",
     version: "1.0.0",
     description: "Google OAuth + workspace connector — Gmail, Calendar, Drive, generic API requests",
-    capabilities: ["oauth", "gmail_read", "calendar_read", "drive_search", "doc_read", "generic_api"],
+    capabilities: ["oauth", "gmail_read", "gmail_send", "calendar_read", "calendar_write", "drive_search", "drive_write", "doc_read", "doc_write", "generic_api"],
     readScopes: ["gmail.readonly", "calendar.readonly", "drive.readonly"],
-    writeScopes: [],
+    writeScopes: ["gmail.send", "calendar", "drive.file", "documents"],
     approvalRequired: true,
     healthCheck: true,
     retrySemantics: "token_refresh",
@@ -1160,10 +1167,85 @@ function manifest() {
   };
 }
 
+// ── Phase 4: Write-capable Google functions (approval-gated) ──
+
+async function sendGmail({ account, to, subject, body, cc, bcc } = {}, policy = {}) {
+  if (!policy.enabled) throw new Error("Google integration is disabled by policy.");
+  const token = await ensureAccessToken(account);
+  const message = [
+    `To: ${to}`,
+    cc ? `Cc: ${cc}` : "",
+    bcc ? `Bcc: ${bcc}` : "",
+    `Subject: ${subject || "(no subject)"}`,
+    "Content-Type: text/plain; charset=utf-8",
+    "",
+    body || ""
+  ].filter(Boolean).join("\r\n");
+  const encoded = Buffer.from(message).toString("base64url");
+  const res = await googleApiRequest({
+    url: `${GMAIL_API_BASE}/users/me/messages/send`,
+    method: "POST",
+    body: JSON.stringify({ raw: encoded }),
+    accessToken: token.access_token
+  });
+  return { ok: true, messageId: res?.id, threadId: res?.threadId, labelIds: res?.labelIds };
+}
+
+async function createCalendarEvent({ account, calendarId, summary, description, start, end, timeZone, attendees } = {}, policy = {}) {
+  if (!policy.enabled) throw new Error("Google integration is disabled by policy.");
+  const token = await ensureAccessToken(account);
+  const event = {
+    summary: summary || "Untitled Event",
+    description: description || "",
+    start: { dateTime: start, timeZone: timeZone || "America/Sao_Paulo" },
+    end: { dateTime: end, timeZone: timeZone || "America/Sao_Paulo" },
+    attendees: Array.isArray(attendees) ? attendees.map(e => ({ email: e })) : []
+  };
+  const res = await googleApiRequest({
+    url: `${CALENDAR_API_BASE}/calendars/${encodeURIComponent(calendarId || "primary")}/events`,
+    method: "POST",
+    body: JSON.stringify(event),
+    accessToken: token.access_token
+  });
+  return { ok: true, eventId: res?.id, htmlLink: res?.htmlLink, status: res?.status };
+}
+
+async function createDriveFile({ account, name, mimeType, content, parentFolderId } = {}, policy = {}) {
+  if (!policy.enabled) throw new Error("Google integration is disabled by policy.");
+  const token = await ensureAccessToken(account);
+  const metadata = {
+    name: name || "Untitled",
+    mimeType: mimeType || "text/plain",
+    parents: parentFolderId ? [parentFolderId] : []
+  };
+  // Multipart upload
+  const boundary = "asolaria_upload_" + Date.now();
+  const body = [
+    `--${boundary}`,
+    "Content-Type: application/json; charset=UTF-8",
+    "",
+    JSON.stringify(metadata),
+    `--${boundary}`,
+    `Content-Type: ${mimeType || "text/plain"}`,
+    "",
+    content || "",
+    `--${boundary}--`
+  ].join("\r\n");
+  const res = await googleApiRequest({
+    url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart",
+    method: "POST",
+    body,
+    accessToken: token.access_token,
+    contentType: `multipart/related; boundary=${boundary}`
+  });
+  return { ok: true, fileId: res?.id, name: res?.name, mimeType: res?.mimeType, webViewLink: res?.webViewLink };
+}
+
 module.exports = {
   GOOGLE_OAUTH_SECRET_NAME,
   GOOGLE_ACCOUNTS_SECRET_NAME,
   DEFAULT_SCOPES,
+  WRITE_SCOPES,
   ensureAccessToken,
   getGoogleConfigSummary,
   setGoogleOAuthConfig,
@@ -1176,5 +1258,8 @@ module.exports = {
   getGoogleDocPlainText,
   googleApiRequest,
   getGoogleIntegrationStatus,
+  sendGmail,
+  createCalendarEvent,
+  createDriveFile,
   manifest
 };

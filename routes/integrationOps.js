@@ -149,6 +149,57 @@ function createIntegrationOpsRouter(ctx) {
     });
   }
 
+  // ── Phase 4: Google Write Operations (approval-gated) ──
+
+  if (ctx.sendGmail) {
+    router.post("/google/gmail/send", requirePermission("admin"),
+      guardedAction("Gmail send", "google_gmail_send", "api.integrations.google.gmail.send",
+        async (req) => {
+          const result = await ctx.sendGmail({
+            account: String(req.body?.account || req.body?.email || "").trim(),
+            to: String(req.body?.to || "").trim(),
+            subject: String(req.body?.subject || "").trim(),
+            body: String(req.body?.body || req.body?.text || req.body?.message || "").trim(),
+            cc: String(req.body?.cc || "").trim(),
+            bcc: String(req.body?.bcc || "").trim()
+          }, ctx.googlePolicy);
+          return result;
+        }));
+  }
+
+  if (ctx.createCalendarEvent) {
+    router.post("/google/calendar/events", requirePermission("admin"),
+      guardedAction("Calendar event create", "google_calendar_create", "api.integrations.google.calendar.create",
+        async (req) => {
+          const result = await ctx.createCalendarEvent({
+            account: String(req.body?.account || req.body?.email || "").trim(),
+            calendarId: String(req.body?.calendarId || "primary").trim(),
+            summary: String(req.body?.summary || req.body?.title || "").trim(),
+            description: String(req.body?.description || "").trim(),
+            start: req.body?.start,
+            end: req.body?.end,
+            timeZone: String(req.body?.timeZone || "America/Sao_Paulo").trim(),
+            attendees: req.body?.attendees
+          }, ctx.googlePolicy);
+          return result;
+        }));
+  }
+
+  if (ctx.createDriveFile) {
+    router.post("/google/drive/files", requirePermission("admin"),
+      guardedAction("Drive file create", "google_drive_create", "api.integrations.google.drive.create",
+        async (req) => {
+          const result = await ctx.createDriveFile({
+            account: String(req.body?.account || req.body?.email || "").trim(),
+            name: String(req.body?.name || req.body?.fileName || "").trim(),
+            mimeType: String(req.body?.mimeType || "text/plain").trim(),
+            content: String(req.body?.content || req.body?.body || "").trim(),
+            parentFolderId: String(req.body?.parentFolderId || req.body?.folderId || "").trim()
+          }, ctx.googlePolicy);
+          return result;
+        }));
+  }
+
   return router;
 }
 

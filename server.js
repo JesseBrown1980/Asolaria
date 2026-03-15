@@ -195,7 +195,10 @@ const {
   listCalendars,
   listUpcomingEvents,
   googleApiRequest,
-  getGoogleIntegrationStatus
+  getGoogleIntegrationStatus,
+  sendGmail,
+  createCalendarEvent,
+  createDriveFile
 } = require("./src/connectors/googleConnector");
 const {
   getMicrosoftConfigSummary,
@@ -23393,7 +23396,8 @@ app.use("/api/integrations", requireLoopbackOnly, require("./routes/integrationO
   submitSymphonyWorkItem, startSymphonyService, stopSymphonyService, restartSymphonyService,
   getAbacusWorkPacket,
   enqueueGmailInbox, enqueueGmailSearch, enqueueCalendarList, enqueueCalendarUpcoming, googlePolicy,
-  runGeminiApiEmbedContent, geminiApiPolicy
+  runGeminiApiEmbedContent, geminiApiPolicy,
+  sendGmail, createCalendarEvent, createDriveFile
 }));
 app.use("/api/integrations", requireLoopbackOnly, require("./routes/integrationConfig")({
   setSlackConfig, setGithubConfig, setVertexConfig, vertexPolicy,
