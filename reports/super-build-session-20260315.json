@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-03-15T22:47:21.924Z",
+  "generatedBy": "helm",
+  "session": "2026-03-15",
+  "summary": {
+    "serverJs": {
+      "lines": 23836,
+      "wasLines": 35875,
+      "reduction": "33.6%"
+    },
+    "routeModules": {
+      "files": 35,
+      "lines": 12545,
+      "functions": 74
+    },
+    "srcModules": {
+      "files": 96,
+      "lines": 49931,
+      "functions": 1960
+    },
+    "total": {
+      "files": 1282,
+      "lines": 841723,
+      "complexity": 10
+    }
+  },
+  "topComplexFiles": [
+    {
+      "file": "server-top-probe.js",
+      "complexity": 2690,
+      "lines": 33114,
+      "functions": 659
+    },
+    {
+      "file": "tmp-symphony-workspace-test\\server.js",
+      "complexity": 2284,
+      "lines": 27598,
+      "functions": 534
+    },
+    {
+      "file": "dist\\public-release\\Asolaria-Public-20260313-105820\\public\\app.js",
+      "complexity": 1994,
+      "lines": 14050,
+      "functions": 476
+    },
+    {
+      "file": "public\\app.js",
+      "complexity": 1994,
+      "lines": 14050,
+      "functions": 476
+    },
+    {
+      "file": "server.js",
+      "complexity": 1984,
+      "lines": 23911,
+      "functions": 662
+    },
+    {
+      "file": "tmp-symphony-workspace-test\\public\\app.js",
+      "complexity": 1824,
+      "lines": 12889,
+      "functions": 450
+    },
+    {
+      "file": "dist\\public-release\\Asolaria-Public-20260313-105820\\public\\phone-mode.js",
+      "complexity": 877,
+      "lines": 6003,
+      "functions": 242
+    },
+    {
+      "file": "public\\phone-mode.js",
+      "complexity": 877,
+      "lines": 6003,
+      "functions": 242
+    },
+    {
+      "file": "backups\\safe-mode-20260301-130148\\public\\app.js",
+      "complexity": 836,
+      "lines": 6061,
+      "functions": 216
+    },
+    {
+      "file": "backups\\safe-mode-20260301-130353\\app.js",
+      "complexity": 836,
+      "lines": 6061,
+      "functions": 216
+    }
+  ],
+  "phases": {
+    "0_contract_freeze": "COMPLETE",
+    "1_persistence": "COMPLETE",
+    "2_security": "COMPLETE",
+    "3_decomposition": "99%",
+    "4_google_governance": "COMPLETE",
+    "5_visual_world": "VERIFIED",
+    "6_phone_rebuild": "STARTED",
+    "7_federation": "LIVE",
+    "8_mcp_audit": "DOCUMENTED",
+    "9_program_absorption": "PIPELINE_BUILT",
+    "10_gnn_preconditions": "DOCUMENTED",
+    "11_security_world": "DOCUMENTED"
+  }
+}
