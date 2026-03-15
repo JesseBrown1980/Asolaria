@@ -55,6 +55,38 @@ function attributionMiddleware(options = {}) {
       } catch {}
     }
 
+    // Phase 10: Emit graph event for GNN training dataset collection
+    // Every request is an edge: actor → route → target
+    try {
+      const { appendGraphEvent } = require("../src/graphRuntimeStore");
+      appendGraphEvent({
+        component: "api_gateway",
+        category: "route",
+        action: `${method.toLowerCase()}_${req.attribution.path.replace(/\//g, "_").replace(/^_api_/, "")}`,
+        actor: {
+          type: req.attribution.isLoopback ? "local_client" : "remote_client",
+          id: req.attribution.actor,
+          domain: req.attribution.isLoopback ? "local" : "remote"
+        },
+        target: {
+          type: "api_route",
+          id: req.attribution.path,
+          domain: "local"
+        },
+        context: {
+          method, isMutation,
+          role: req.attribution.role,
+          source: req.attribution.source
+        },
+        policy: {
+          approvalState: "not_required",
+          mode: "request_logging",
+          autonomous: true
+        },
+        status: "completed"
+      });
+    } catch (_) { /* non-critical — don't break requests for graph logging */ }
+
     next();
   };
 }
