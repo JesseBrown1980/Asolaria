@@ -1,0 +1,59 @@
+﻿{
+    "outputDir":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260307-104917",
+    "ok":  true,
+    "generatedAt":  "2026-03-07T13:49:20.9396730+00:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "auth":  {
+                 "required":  false,
+                 "requiredBySetting":  false,
+                 "tokenConfigured":  false,
+                 "configured":  false,
+                 "source":  "disabled",
+                 "mode":  "open",
+                 "acceptedTokenChannels":  [
+                                               "authorization_bearer",
+                                               "x-asolaria-bridge-token",
+                                               "x-asolaria-token",
+                                               "x-asolaria-mobile-token",
+                                               "query.token",
+                                               "query.bridgeToken",
+                                               "body.token",
+                                               "body.bridgeToken"
+                                           ]
+             },
+    "rows":  [
+                 {
+                     "platform":  "Zoom",
+                     "sessionId":  "",
+                     "laneId":  "",
+                     "collected":  false,
+                     "reason":  "missing_session_id",
+                     "pullEntries":  0,
+                     "bridgeChars":  0,
+                     "allChars":  0,
+                     "liveChars":  0
+                 },
+                 {
+                     "platform":  "Google Meet",
+                     "sessionId":  "",
+                     "laneId":  "",
+                     "collected":  false,
+                     "reason":  "missing_session_id",
+                     "pullEntries":  0,
+                     "bridgeChars":  0,
+                     "allChars":  0,
+                     "liveChars":  0
+                 },
+                 {
+                     "platform":  "Microsoft Teams",
+                     "sessionId":  "",
+                     "laneId":  "",
+                     "collected":  false,
+                     "reason":  "missing_session_id",
+                     "pullEntries":  0,
+                     "bridgeChars":  0,
+                     "allChars":  0,
+                     "liveChars":  0
+                 }
+             ]
+}

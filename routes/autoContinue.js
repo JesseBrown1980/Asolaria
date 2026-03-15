@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { spawnSync } = require("child_process");
+const { requirePermission } = require("../middleware/auth");
 
-router.post("/fire", (req, res) => {
+router.post("/fire", requirePermission("admin"), (req, res) => {
   const type = String(req.body?.type || "enter").trim();
   try {
     if (type === "continue") {

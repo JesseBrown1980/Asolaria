@@ -1,0 +1,58 @@
+﻿{
+    "generatedAtLocal":  "2026-03-01 19:42:06 -03:00",
+    "generatedAtUtc":  "2026-03-01T22:42:06.6754666Z",
+    "mode":  "build/system continuation run",
+    "ownerRequest":  "continue",
+    "execution":  {
+                      "endpoint":  "POST http://127.0.0.1:4781/api/integrations/slack/review",
+                      "payload":  {
+                                      "channel":  "#general",
+                                      "limit":  20,
+                                      "analyze":  false,
+                                      "request":  "build/system continuation run"
+                                  },
+                      "jobId":  "job_1772404789888_s0ji6x",
+                      "jobStatus":  "queued",
+                      "jobError":  "",
+                      "jobElapsedMs":  null,
+                      "jobCreatedAt":  "2026-03-01T22:39:49.888Z",
+                      "jobFinishedAt":  "",
+                      "waitTimedOut":  true,
+                      "note":  "Queue saturated by running brain jobs; slack review execution remained queued."
+                  },
+    "queue":  {
+                  "queued":  8,
+                  "running":  2,
+                  "total":  12,
+                  "concurrency":  2
+              },
+    "slackStatus":  {
+                        "ok":  true,
+                        "status":  {
+                                       "enabled":  true,
+                                       "configured":  false,
+                                       "tokenSource":  "none",
+                                       "tokenHint":  "",
+                                       "defaultChannel":  "",
+                                       "updatedAt":  null,
+                                       "policy":  {
+                                                      "allowPrivateChannels":  true,
+                                                      "allowDirectMessages":  false,
+                                                      "allowedChannels":  [
+
+                                                                          ],
+                                                      "maxMessages":  80,
+                                                      "maxDigestChars":  28000,
+                                                      "backendOnly":  true,
+                                                      "noLinkNavigation":  true,
+                                                      "linkRedaction":  true
+                                                  },
+                                       "connection":  {
+                                                          "ok":  false,
+                                                          "error":  "not_configured"
+                                                      },
+                                       "workspace":  null,
+                                       "botUser":  null
+                                   }
+                    }
+}

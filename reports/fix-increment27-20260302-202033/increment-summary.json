@@ -1,0 +1,16 @@
+﻿{
+    "increment":  "27",
+    "timestamp":  "20260302-202033",
+    "action":  "Strip iTop abilities: deny mic/webcam consent, uninstall iTop Screen Recorder, remove tasks, quarantine leftovers",
+    "uninstallExitCode":  0,
+    "beforeProgramCount":  1,
+    "afterProgramCount":  0,
+    "beforeTaskCount":  5,
+    "afterTaskCount":  0,
+    "beforeProcessCount":  0,
+    "afterProcessCount":  0,
+    "consentKeysTouched":  4,
+    "leftoversQuarantined":  0,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

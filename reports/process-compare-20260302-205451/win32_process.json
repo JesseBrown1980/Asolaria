@@ -1,0 +1,1990 @@
+﻿[
+    {
+        "Id":  0,
+        "Name":  "System Idle Process",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403100839)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  4,
+        "Name":  "System",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403100839)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  140,
+        "Name":  "Secure System",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403098535)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  184,
+        "Name":  "Registry",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403098540)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  608,
+        "Name":  "smss.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403100874)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  1008,
+        "Name":  "csrss.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403105364)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  1044,
+        "Name":  "wininit.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403106585)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  1164,
+        "Name":  "services.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403106879)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  1208,
+        "Name":  "LsaIso.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403106938)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  1216,
+        "Name":  "lsass.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403106943)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  1348,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107281)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k DcomLaunch -p"
+    },
+    {
+        "Id":  1388,
+        "Name":  "fontdrvhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\fontdrvhost.exe",
+        "CreationDate":  "\/Date(1772403107302)\/",
+        "CommandLine":  "\"fontdrvhost.exe\""
+    },
+    {
+        "Id":  1480,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107374)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k RPCSS -p"
+    },
+    {
+        "Id":  1536,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107407)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k DcomLaunch -p -s LSM"
+    },
+    {
+        "Id":  1704,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107566)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -s TermService"
+    },
+    {
+        "Id":  1720,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107566)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s HvHost"
+    },
+    {
+        "Id":  1812,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107586)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -s BTAGService"
+    },
+    {
+        "Id":  1820,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107586)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s bthserv"
+    },
+    {
+        "Id":  1836,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107586)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s BthAvctpSvc"
+    },
+    {
+        "Id":  2020,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107615)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s NcbService"
+    },
+    {
+        "Id":  2028,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107615)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -p -s TimeBrokerSvc"
+    },
+    {
+        "Id":  1500,
+        "Name":  "IntelCpHDCPSvc.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iigd_dch.inf_amd64_51f685305808e3a5\\IntelCpHDCPSvc.exe",
+        "CreationDate":  "\/Date(1772403107649)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iigd_dch.inf_amd64_51f685305808e3a5\\IntelCpHDCPSvc.exe"
+    },
+    {
+        "Id":  1592,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107651)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s DisplayEnhancementService"
+    },
+    {
+        "Id":  1972,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107651)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule"
+    },
+    {
+        "Id":  2072,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107664)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k UserProfileService -p -s ProfSvc"
+    },
+    {
+        "Id":  2140,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107675)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s nsi"
+    },
+    {
+        "Id":  2156,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107680)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNoNetwork -p"
+    },
+    {
+        "Id":  2308,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107716)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netprofm -p -s netprofm"
+    },
+    {
+        "Id":  2320,
+        "Name":  "IntelCpHeciSvc.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iigd_dch.inf_amd64_51f685305808e3a5\\IntelCpHeciSvc.exe",
+        "CreationDate":  "\/Date(1772403107720)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iigd_dch.inf_amd64_51f685305808e3a5\\IntelCpHeciSvc.exe"
+    },
+    {
+        "Id":  2392,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107741)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s UserManager"
+    },
+    {
+        "Id":  2728,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107880)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s UmRdpService"
+    },
+    {
+        "Id":  2816,
+        "Name":  "NVDisplay.Container.exe",
+        "ExecutablePath":  "C:\\Program Files\\NVIDIA Corporation\\Display.NvContainer\\NVDisplay.Container.exe",
+        "CreationDate":  "\/Date(1772403107919)\/",
+        "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\Display.NvContainer\\NVDisplay.Container.exe\" -s NVDisplay.ContainerLocalSystem -f \"C:\\ProgramData\\NVIDIA\\NVDisplay.ContainerLocalSystem.log\" -l 3 -d \"C:\\Program Files\\NVIDIA Corporation\\Display.NvContainer\\plugins\\LocalSystem\" -r -p 30000 "
+    },
+    {
+        "Id":  2876,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107945)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s DeviceAssociationService"
+    },
+    {
+        "Id":  2888,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107954)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k NetworkService -p"
+    },
+    {
+        "Id":  2956,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107984)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s PhoneSvc"
+    },
+    {
+        "Id":  2976,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403107990)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -s CertPropSvc"
+    },
+    {
+        "Id":  3020,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108006)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p -s EventLog"
+    },
+    {
+        "Id":  2208,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108045)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s SysMain"
+    },
+    {
+        "Id":  2480,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108046)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceRedirectionGuard -p -s EventSystem"
+    },
+    {
+        "Id":  3000,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108059)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p -s Themes"
+    },
+    {
+        "Id":  3164,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108109)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -p -s Dhcp"
+    },
+    {
+        "Id":  3192,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108116)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p -s LanmanWorkstation"
+    },
+    {
+        "Id":  3288,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108153)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s DispBrokerDesktopSvc"
+    },
+    {
+        "Id":  3308,
+        "Name":  "Memory Compression",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403108157)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  3316,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108158)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcsRedirectionGuard -p -s SENS"
+    },
+    {
+        "Id":  3340,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108161)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k NetSvcs -p -s HNS"
+    },
+    {
+        "Id":  3484,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108201)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p -s SessionEnv"
+    },
+    {
+        "Id":  3492,
+        "Name":  "igfxCUIService.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_38cfab2b652e4701\\igfxCUIService.exe",
+        "CreationDate":  "\/Date(1772403108203)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_38cfab2b652e4701\\igfxCUIService.exe"
+    },
+    {
+        "Id":  3544,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108223)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Winmgmt"
+    },
+    {
+        "Id":  3572,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108237)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceHttp -p"
+    },
+    {
+        "Id":  3652,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108273)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s FontCache"
+    },
+    {
+        "Id":  3760,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108317)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k NetSvcs -s nvagent"
+    },
+    {
+        "Id":  3932,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108444)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNoNetworkFirewall -p"
+    },
+    {
+        "Id":  3956,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108455)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s TextInputManagementService"
+    },
+    {
+        "Id":  4064,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108592)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p -s DusmSvc"
+    },
+    {
+        "Id":  4072,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108593)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k appmodel -p -s StateRepository"
+    },
+    {
+        "Id":  4084,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108605)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -p -s Wcmsvc"
+    },
+    {
+        "Id":  4196,
+        "Name":  "dasHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\dashost.exe",
+        "CreationDate":  "\/Date(1772403108717)\/",
+        "CommandLine":  "dashost.exe {1812e831-fd54-4c14-b795a81f3d831331}"
+    },
+    {
+        "Id":  4360,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108829)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p"
+    },
+    {
+        "Id":  4436,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108866)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p -s ShellHWDetection"
+    },
+    {
+        "Id":  4520,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403108970)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p -s SharedAccess"
+    },
+    {
+        "Id":  4560,
+        "Name":  "spoolsv.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\spoolsv.exe",
+        "CreationDate":  "\/Date(1772403109018)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\spoolsv.exe"
+    },
+    {
+        "Id":  4744,
+        "Name":  "remoting_host.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Google\\Chrome Remote Desktop\\146.0.7680.5\\remoting_host.exe",
+        "CreationDate":  "\/Date(1772403109055)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Google\\Chrome Remote Desktop\\146.0.7680.5\\remoting_host.exe\" --type=daemon --host-config=\"C:\\ProgramData\\Google\\Chrome Remote Desktop\\host.json\""
+    },
+    {
+        "Id":  4752,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109057)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k NetworkService -p"
+    },
+    {
+        "Id":  4760,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109058)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k utcsvc -p"
+    },
+    {
+        "Id":  4768,
+        "Name":  "OneApp.IGCC.WinService.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\igcc_dch.inf_amd64_c2ac023763d5d3ad\\OneApp.IGCC.WinService.exe",
+        "CreationDate":  "\/Date(1772403109061)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\igcc_dch.inf_amd64_c2ac023763d5d3ad\\OneApp.IGCC.WinService.exe"
+    },
+    {
+        "Id":  4776,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109064)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k NetSvcs -p -s iphlpsvc"
+    },
+    {
+        "Id":  4784,
+        "Name":  "WsNativePushService.exe",
+        "ExecutablePath":  "C:\\Users\\acer\\AppData\\Local\\Wondershare\\Wondershare NativePush\\WsNativePushService.exe",
+        "CreationDate":  "\/Date(1772403109065)\/",
+        "CommandLine":  "\"C:\\Users\\acer\\AppData\\Local\\Wondershare\\Wondershare NativePush\\WsNativePushService.exe\""
+    },
+    {
+        "Id":  4792,
+        "Name":  "AnyDesk.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\AnyDesk\\AnyDesk.exe",
+        "CreationDate":  "\/Date(1772403109066)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\AnyDesk\\AnyDesk.exe\" --service"
+    },
+    {
+        "Id":  4800,
+        "Name":  "armsvc.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\armsvc.exe",
+        "CreationDate":  "\/Date(1772403109067)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\armsvc.exe\""
+    },
+    {
+        "Id":  4808,
+        "Name":  "ExpressVPN.SystemService.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.SystemService.exe",
+        "CreationDate":  "\/Date(1772403109068)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.SystemService.exe\""
+    },
+    {
+        "Id":  4820,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109073)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s TrkWks"
+    },
+    {
+        "Id":  4828,
+        "Name":  "ExpressVPN.VpnService.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.VpnService.exe",
+        "CreationDate":  "\/Date(1772403109074)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.VpnService.exe\""
+    },
+    {
+        "Id":  4836,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109074)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k imgsvc"
+    },
+    {
+        "Id":  4844,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109076)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s SstpSvc"
+    },
+    {
+        "Id":  4852,
+        "Name":  "ss_conn_service2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Samsung\\USB Drivers\\28_ssconn2\\conn\\ss_conn_service2.exe",
+        "CreationDate":  "\/Date(1772403109076)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Samsung\\USB Drivers\\28_ssconn2\\conn\\ss_conn_service2.exe\""
+    },
+    {
+        "Id":  4860,
+        "Name":  "Microsoft.Flow.RPA.LogShipper.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Power Automate Desktop\\Microsoft.Flow.RPA.LogShipper.exe",
+        "CreationDate":  "\/Date(1772403109077)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Power Automate Desktop\\Microsoft.Flow.RPA.LogShipper.exe\""
+    },
+    {
+        "Id":  4872,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109078)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s WpnService"
+    },
+    {
+        "Id":  4888,
+        "Name":  "ss_conn_service.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Samsung\\USB Drivers\\27_ssconn\\conn\\ss_conn_service.exe",
+        "CreationDate":  "\/Date(1772403109081)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Samsung\\USB Drivers\\27_ssconn\\conn\\ss_conn_service.exe\""
+    },
+    {
+        "Id":  4896,
+        "Name":  "MpDefenderCoreService.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403109082)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  4928,
+        "Name":  "CptService.exe",
+        "ExecutablePath":  "C:\\Program Files\\Common Files\\Zoom\\Support\\CptService.exe",
+        "CreationDate":  "\/Date(1772403109093)\/",
+        "CommandLine":  "\"C:\\Program Files\\Common Files\\Zoom\\Support\\CptService.exe\" -user_path \"C:\\Users\\acer\\AppData\\Roaming\\Zoom\""
+    },
+    {
+        "Id":  4936,
+        "Name":  "sqlwriter.exe",
+        "ExecutablePath":  "C:\\Program Files\\Microsoft SQL Server\\90\\Shared\\sqlwriter.exe",
+        "CreationDate":  "\/Date(1772403109094)\/",
+        "CommandLine":  "\"C:\\Program Files\\Microsoft SQL Server\\90\\Shared\\sqlwriter.exe\""
+    },
+    {
+        "Id":  4944,
+        "Name":  "RstMwService.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iastorac.inf_amd64_e335ebb186115025\\RstMwService.exe",
+        "CreationDate":  "\/Date(1772403109095)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iastorac.inf_amd64_e335ebb186115025\\RstMwService.exe"
+    },
+    {
+        "Id":  4960,
+        "Name":  "OfficeClickToRun.exe",
+        "ExecutablePath":  "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe",
+        "CreationDate":  "\/Date(1772403109101)\/",
+        "CommandLine":  "\"C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe\" /service"
+    },
+    {
+        "Id":  4972,
+        "Name":  "Microsoft.Flow.RPA.UpdateService.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Power Automate Desktop\\Microsoft.Flow.RPA.UpdateService.exe",
+        "CreationDate":  "\/Date(1772403109103)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Power Automate Desktop\\Microsoft.Flow.RPA.UpdateService.exe\""
+    },
+    {
+        "Id":  4984,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109104)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNoNetwork -p -s DPS"
+    },
+    {
+        "Id":  4992,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109104)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s IKEEXT"
+    },
+    {
+        "Id":  5008,
+        "Name":  "PAD.Java.Sync.Service.Host.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Power Automate Desktop\\dotnet\\PAD.Java.Sync.Service.Host.exe",
+        "CreationDate":  "\/Date(1772403109110)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Power Automate Desktop\\dotnet\\PAD.Java.Sync.Service.Host.exe\""
+    },
+    {
+        "Id":  5016,
+        "Name":  "wslservice.exe",
+        "ExecutablePath":  "C:\\Program Files\\WSL\\wslservice.exe",
+        "CreationDate":  "\/Date(1772403109112)\/",
+        "CommandLine":  "\"C:\\Program Files\\WSL\\wslservice.exe\""
+    },
+    {
+        "Id":  5028,
+        "Name":  "MsMpEng.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403109125)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  5116,
+        "Name":  "mongod.exe",
+        "ExecutablePath":  "C:\\Program Files\\MongoDB\\Server\\8.0\\bin\\mongod.exe",
+        "CreationDate":  "\/Date(1772403109163)\/",
+        "CommandLine":  "\"C:\\Program Files\\MongoDB\\Server\\8.0\\bin\\mongod.exe\" --config \"C:\\Program Files\\MongoDB\\Server\\8.0\\bin\\mongod.cfg\" --service"
+    },
+    {
+        "Id":  5444,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109277)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s LanmanServer"
+    },
+    {
+        "Id":  5508,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109306)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p -s TapiSrv"
+    },
+    {
+        "Id":  5676,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109349)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceAndNoImpersonation -p -s SSDPSRV"
+    },
+    {
+        "Id":  6096,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403109465)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs"
+    },
+    {
+        "Id":  6852,
+        "Name":  "remoting_host.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Google\\Chrome Remote Desktop\\146.0.7680.5\\remoting_host.exe",
+        "CreationDate":  "\/Date(1772403109954)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Google\\Chrome Remote Desktop\\146.0.7680.5\\remoting_host.exe\" --type=network --mojo-pipe-token=12604673450727647602 --crash-server-pipe-handle=1072 --mojo-platform-channel-handle=1080"
+    },
+    {
+        "Id":  5492,
+        "Name":  "ExpressVPN.AppService.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.AppService.exe",
+        "CreationDate":  "\/Date(1772403116072)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.AppService.exe\""
+    },
+    {
+        "Id":  8496,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403117517)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k osprivacy -p -s camsvc"
+    },
+    {
+        "Id":  8576,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403117589)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k WSAIFabricSvcGroup -p -s WSAIFabricSvc"
+    },
+    {
+        "Id":  8844,
+        "Name":  "wlanext.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\WLANExt.exe",
+        "CreationDate":  "\/Date(1772403117796)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\WLANExt.exe 1952095217296"
+    },
+    {
+        "Id":  8964,
+        "Name":  "PresentationFontCache.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\Microsoft.Net\\Framework64\\v3.0\\WPF\\PresentationFontCache.exe",
+        "CreationDate":  "\/Date(1772403117883)\/",
+        "CommandLine":  "C:\\WINDOWS\\Microsoft.Net\\Framework64\\v3.0\\WPF\\PresentationFontCache.exe"
+    },
+    {
+        "Id":  9128,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403118081)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s TokenBroker"
+    },
+    {
+        "Id":  8976,
+        "Name":  "AggregatorHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\AggregatorHost.exe",
+        "CreationDate":  "\/Date(1772403118701)\/",
+        "CommandLine":  "AggregatorHost.exe"
+    },
+    {
+        "Id":  9256,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403118907)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s CDPSvc"
+    },
+    {
+        "Id":  9536,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403119295)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k NetworkServiceNetworkRestricted -p -s PolicyAgent"
+    },
+    {
+        "Id":  9676,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403119456)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Appinfo"
+    },
+    {
+        "Id":  9920,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403119838)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -s RmSvc"
+    },
+    {
+        "Id":  10196,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403120411)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -p -s NgcCtnrSvc"
+    },
+    {
+        "Id":  10344,
+        "Name":  "NgcIso.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403120485)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  10776,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403121327)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p"
+    },
+    {
+        "Id":  11136,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403122322)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s PcaSvc"
+    },
+    {
+        "Id":  13888,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403133898)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcsRedirectionGuard -p -s lfsvc"
+    },
+    {
+        "Id":  14744,
+        "Name":  "NisSrv.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403135930)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  8160,
+        "Name":  "SecurityHealthService.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403144658)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  11708,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403145868)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k WebThreatDefense -p -s webthreatdefsvc"
+    },
+    {
+        "Id":  16340,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403158448)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalService -p -s LicenseManager"
+    },
+    {
+        "Id":  16040,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403186627)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalService -p -s WdiServiceHost"
+    },
+    {
+        "Id":  15240,
+        "Name":  "SearchIndexer.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\SearchIndexer.exe",
+        "CreationDate":  "\/Date(1772403205114)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\SearchIndexer.exe /Embedding"
+    },
+    {
+        "Id":  18192,
+        "Name":  "DolbyDAX2API.exe",
+        "ExecutablePath":  "C:\\Program Files\\Dolby\\Dolby DAX2\\DAX2_API\\DolbyDAX2API.exe",
+        "CreationDate":  "\/Date(1772403237632)\/",
+        "CommandLine":  "\"C:\\Program Files\\Dolby\\Dolby DAX2\\DAX2_API\\DolbyDAX2API.exe\""
+    },
+    {
+        "Id":  18836,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403237789)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  18860,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403242051)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k InvSvcGroup -p -s InventorySvc"
+    },
+    {
+        "Id":  18252,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403242592)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p"
+    },
+    {
+        "Id":  8928,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403242876)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s UsoSvc"
+    },
+    {
+        "Id":  10760,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403243542)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -s W32Time"
+    },
+    {
+        "Id":  4132,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403244078)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k whesvc -p -s whesvc"
+    },
+    {
+        "Id":  10104,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772403244237)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  13452,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772403299536)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s Netman"
+    },
+    {
+        "Id":  18760,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772404795888)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s seclogon"
+    },
+    {
+        "Id":  10352,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772410308888)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s DsSvc"
+    },
+    {
+        "Id":  11524,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772458370022)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceAndNoImpersonation -p -s QWAVE"
+    },
+    {
+        "Id":  3904,
+        "Name":  "csrss.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772478329184)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  9524,
+        "Name":  "winlogon.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\WinLogon.exe",
+        "CreationDate":  "\/Date(1772478329206)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\WinLogon.exe -SpecialSession"
+    },
+    {
+        "Id":  17568,
+        "Name":  "fontdrvhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\fontdrvhost.exe",
+        "CreationDate":  "\/Date(1772478329308)\/",
+        "CommandLine":  "\"fontdrvhost.exe\""
+    },
+    {
+        "Id":  16820,
+        "Name":  "dwm.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\dwm.exe",
+        "CreationDate":  "\/Date(1772478329339)\/",
+        "CommandLine":  "\"dwm.exe\""
+    },
+    {
+        "Id":  4276,
+        "Name":  "NVDisplay.Container.exe",
+        "ExecutablePath":  "C:\\Program Files\\NVIDIA Corporation\\Display.NvContainer\\NVDisplay.Container.exe",
+        "CreationDate":  "\/Date(1772478335622)\/",
+        "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\Display.NvContainer\\NVDisplay.Container.exe\" -f \"C:\\ProgramData\\NVIDIA\\DisplaySessionContainer%d.log\" -d \"C:\\Program Files\\NVIDIA Corporation\\Display.NvContainer\\plugins\\Session\" -r -l 3 -p 30000  -c"
+    },
+    {
+        "Id":  23540,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478357360)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p -s lmhosts"
+    },
+    {
+        "Id":  8136,
+        "Name":  "sihost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\sihost.exe",
+        "CreationDate":  "\/Date(1772478358245)\/",
+        "CommandLine":  "sihost.exe"
+    },
+    {
+        "Id":  14240,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478358280)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k BthAppGroup -p -s BluetoothUserService"
+    },
+    {
+        "Id":  1668,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478358282)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k UnistackSvcGroup -s CDPUserSvc"
+    },
+    {
+        "Id":  11188,
+        "Name":  "igfxEM.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_38cfab2b652e4701\\igfxEM.exe",
+        "CreationDate":  "\/Date(1772478358304)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_38cfab2b652e4701\\igfxEM.exe\""
+    },
+    {
+        "Id":  20284,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478358311)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s webthreatdefusersvc"
+    },
+    {
+        "Id":  23544,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478358343)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k UnistackSvcGroup -s WpnUserService"
+    },
+    {
+        "Id":  22532,
+        "Name":  "taskhostw.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\taskhostw.exe",
+        "CreationDate":  "\/Date(1772478358397)\/",
+        "CommandLine":  "taskhostw.exe {222A245B-E637-4AE9-A93F-A59CA119A75E}"
+    },
+    {
+        "Id":  14568,
+        "Name":  "explorer.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\Explorer.EXE",
+        "CreationDate":  "\/Date(1772478358988)\/",
+        "CommandLine":  "C:\\WINDOWS\\Explorer.EXE"
+    },
+    {
+        "Id":  15148,
+        "Name":  "ShellHost.exe",
+        "ExecutablePath":  "C:\\Windows\\System32\\ShellHost.exe",
+        "CreationDate":  "\/Date(1772478359083)\/",
+        "CommandLine":  "\"C:\\Windows\\System32\\ShellHost.exe\""
+    },
+    {
+        "Id":  11420,
+        "Name":  "CrossDeviceResume.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe",
+        "CreationDate":  "\/Date(1772478359621)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe\" /tileid MicrosoftWindows.Client.CBS_cw5n1h2txyewy!CrossDeviceResumeApp"
+    },
+    {
+        "Id":  16420,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478359813)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s NgcSvc"
+    },
+    {
+        "Id":  22332,
+        "Name":  "CrossDeviceService.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\MicrosoftWindows.CrossDevice_1.26011.30.0_x64__cw5n1h2txyewy\\CrossDeviceService.exe",
+        "CreationDate":  "\/Date(1772478360886)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\MicrosoftWindows.CrossDevice_1.26011.30.0_x64__cw5n1h2txyewy\\CrossDeviceService.exe\" -RegisterProcessAsComServer -Embedding"
+    },
+    {
+        "Id":  9616,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478362675)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k ClipboardSvcGroup -p -s cbdhsvc"
+    },
+    {
+        "Id":  21700,
+        "Name":  "RuntimeBroker.exe",
+        "ExecutablePath":  "C:\\Windows\\System32\\RuntimeBroker.exe",
+        "CreationDate":  "\/Date(1772478362846)\/",
+        "CommandLine":  "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding"
+    },
+    {
+        "Id":  16324,
+        "Name":  "SearchHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe",
+        "CreationDate":  "\/Date(1772478363585)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe\" -ServerName:CortanaUIFullTrustApp.AppXqe55xpfenh3k6gvsbjaqb6bkfgy5pkbf.mca"
+    },
+    {
+        "Id":  11768,
+        "Name":  "StartMenuExperienceHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe",
+        "CreationDate":  "\/Date(1772478363593)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe\" -ServerName:FullTrustApp.AppXykjsye98af63ez2annt9djke8trg8stn.mca"
+    },
+    {
+        "Id":  16200,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478364024)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k UdkSvcGroup -s UdkUserSvc"
+    },
+    {
+        "Id":  18568,
+        "Name":  "Widgets.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\MicrosoftWindows.Client.WebExperience_526.1202.40.0_x64__cw5n1h2txyewy\\Dashboard\\Widgets.exe",
+        "CreationDate":  "\/Date(1772478364097)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\MicrosoftWindows.Client.WebExperience_526.1202.40.0_x64__cw5n1h2txyewy\\Dashboard\\Widgets.exe\" -ServerName:Microsoft.Windows.DashboardServer"
+    },
+    {
+        "Id":  4012,
+        "Name":  "UserOOBEBroker.exe",
+        "ExecutablePath":  "C:\\Windows\\System32\\oobe\\UserOOBEBroker.exe",
+        "CreationDate":  "\/Date(1772478364285)\/",
+        "CommandLine":  "C:\\Windows\\System32\\oobe\\UserOOBEBroker.exe -Embedding"
+    },
+    {
+        "Id":  16108,
+        "Name":  "WidgetService.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\Microsoft.WidgetsPlatformRuntime_1.6.14.0_x64__8wekyb3d8bbwe\\WidgetService\\WidgetService.exe",
+        "CreationDate":  "\/Date(1772478364609)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.WidgetsPlatformRuntime_1.6.14.0_x64__8wekyb3d8bbwe\\WidgetService\\WidgetService.exe\" -RegisterProcessAsComServer -Embedding"
+    },
+    {
+        "Id":  10428,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478365280)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --embedded-browser-webview=1 --webview-exe-name=SearchHost.exe --webview-exe-version=2126.2002.40.0 --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --noerrdialogs --disable-features=msSmartScreenProtection --edge-webview-enable-mojo-ipcz --enable-features=msEdgeFluentOverlayScrollbar --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.7922) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 145.0.3800.82)\" --lang=pt-BR --mojo-named-platform-channel-pipe=16324.7920.5246534396488934629 /pfhostedapp:ae475f198e680efc00a6b3b225adf5b4c8114dcf"
+    },
+    {
+        "Id":  12344,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478365379)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\acer\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView /prefetch:4 /pfhostedapp:ae475f198e680efc00a6b3b225adf5b4c8114dcf --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\acer\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=145.0.7632.117 \"--annotation=exe=C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --annotation=plat=Win64 \"--annotation=prod=Edge WebView2\" --annotation=ver=145.0.3800.82 --initial-client-data=0x184,0x188,0x18c,0x160,0x54,0x7ffa5ecd0f18,0x7ffa5ecd0f24,0x7ffa5ecd0f30"
+    },
+    {
+        "Id":  23036,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478365974)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=gpu-process --noerrdialogs --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.7922) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 145.0.3800.82)\" --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --webview-exe-name=SearchHost.exe --webview-exe-version=2126.2002.40.0 --embedded-browser-webview=1 --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --startup-read-main-dll --metrics-shmem-handle=1632,i,8496505335076478083,3247511907618507372,262144 --field-trial-handle=1844,i,5131572616553661951,6365626927104805221,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=1840 /prefetch:2 /pfhostedapp:ae475f198e680efc00a6b3b225adf5b4c8114dcf"
+    },
+    {
+        "Id":  21332,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478366069)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=pt-BR --service-sandbox-type=none --noerrdialogs --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.7922) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 145.0.3800.82)\" --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --webview-exe-name=SearchHost.exe --webview-exe-version=2126.2002.40.0 --embedded-browser-webview=1 --startup-read-main-dll --metrics-shmem-handle=2080,i,18298614713399136250,9695216813915034167,524288 --field-trial-handle=1844,i,5131572616553661951,6365626927104805221,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2136 /prefetch:11 /pfhostedapp:ae475f198e680efc00a6b3b225adf5b4c8114dcf"
+    },
+    {
+        "Id":  15284,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478366145)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=pt-BR --service-sandbox-type=service --noerrdialogs --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.7922) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 145.0.3800.82)\" --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --webview-exe-name=SearchHost.exe --webview-exe-version=2126.2002.40.0 --embedded-browser-webview=1 --startup-read-main-dll --metrics-shmem-handle=2168,i,697367610293906210,6786781115220585695,524288 --field-trial-handle=1844,i,5131572616553661951,6365626927104805221,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2324 /prefetch:13 /pfhostedapp:ae475f198e680efc00a6b3b225adf5b4c8114dcf"
+    },
+    {
+        "Id":  11916,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478366340)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=renderer --noerrdialogs --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.7922) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 145.0.3800.82)\" --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --webview-exe-name=SearchHost.exe --webview-exe-version=2126.2002.40.0 --embedded-browser-webview=1 --video-capture-use-gpu-memory-buffer --lang=pt-BR --js-flags=--expose-gc --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1772403093457150 --launch-time-ticks=75272874297 --ssd-no-pressure-read-main-dll --metrics-shmem-handle=3796,i,1809969505915541401,11275241108803829362,2097152 --field-trial-handle=1844,i,5131572616553661951,6365626927104805221,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --trace-process-track-uuid=3190708990997080739 --mojo-platform-channel-handle=3748 /pfhostedapp:ae475f198e680efc00a6b3b225adf5b4c8114dcf /prefetch:1"
+    },
+    {
+        "Id":  10024,
+        "Name":  "ShellExperienceHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe",
+        "CreationDate":  "\/Date(1772478366597)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe\" -ServerName:App.AppXtk181tbxbce2qsex02s8tw7hfxa9xb3t.mca"
+    },
+    {
+        "Id":  10328,
+        "Name":  "ctfmon.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\ctfmon.exe",
+        "CreationDate":  "\/Date(1772478367835)\/",
+        "CommandLine":  "/QuitInfo:0000000000000350;000000000000018C; "
+    },
+    {
+        "Id":  8004,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478369144)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s NPSMSvc"
+    },
+    {
+        "Id":  8912,
+        "Name":  "TextInputHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\TextInputHost.exe",
+        "CreationDate":  "\/Date(1772478373497)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\TextInputHost.exe\" -ServerName:InputApp.AppXk0k6mrh4r2q0ct33a9wgbez0x7v9cz5y.mca"
+    },
+    {
+        "Id":  12792,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478376251)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k UnistackSvcGroup"
+    },
+    {
+        "Id":  5384,
+        "Name":  "SecurityHealthSystray.exe",
+        "ExecutablePath":  "C:\\Windows\\System32\\SecurityHealthSystray.exe",
+        "CreationDate":  "\/Date(1772478381401)\/",
+        "CommandLine":  "\"C:\\Windows\\System32\\SecurityHealthSystray.exe\" "
+    },
+    {
+        "Id":  3596,
+        "Name":  "RAVCpl64.exe",
+        "ExecutablePath":  "C:\\Program Files\\Realtek\\Audio\\HDA\\RAVCpl64.exe",
+        "CreationDate":  "\/Date(1772478381971)\/",
+        "CommandLine":  "\"C:\\Program Files\\Realtek\\Audio\\HDA\\RAVCpl64.exe\" -s"
+    },
+    {
+        "Id":  13368,
+        "Name":  "RAVBg64.exe",
+        "ExecutablePath":  "C:\\Program Files\\Realtek\\Audio\\HDA\\RAVBg64.exe",
+        "CreationDate":  "\/Date(1772478382442)\/",
+        "CommandLine":  "\"C:\\Program Files\\Realtek\\Audio\\HDA\\RAVBg64.exe\" /ASC"
+    },
+    {
+        "Id":  12212,
+        "Name":  "RAVBg64.exe",
+        "ExecutablePath":  "C:\\Program Files\\Realtek\\Audio\\HDA\\RAVBg64.exe",
+        "CreationDate":  "\/Date(1772478383790)\/",
+        "CommandLine":  "\"C:\\Program Files\\Realtek\\Audio\\HDA\\RAVBg64.exe\" /FORPCEE4"
+    },
+    {
+        "Id":  13004,
+        "Name":  "WindowsTerminal.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.23.20211.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe",
+        "CreationDate":  "\/Date(1772478384966)\/",
+        "CommandLine":  "wt.exe "
+    },
+    {
+        "Id":  12016,
+        "Name":  "OpenConsole.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.23.20211.0_x64__8wekyb3d8bbwe\\OpenConsole.exe",
+        "CreationDate":  "\/Date(1772478385504)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.23.20211.0_x64__8wekyb3d8bbwe\\OpenConsole.exe\" --headless --textMeasurement graphemes --width 120 --height 30 --signal 0x880 --server 0x874"
+    },
+    {
+        "Id":  14880,
+        "Name":  "powershell.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CreationDate":  "\/Date(1772478385516)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    {
+        "Id":  8716,
+        "Name":  "RuntimeBroker.exe",
+        "ExecutablePath":  "C:\\Windows\\System32\\RuntimeBroker.exe",
+        "CreationDate":  "\/Date(1772478389412)\/",
+        "CommandLine":  "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding"
+    },
+    {
+        "Id":  7376,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772478395645)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\nvm4w\\nodejs/node_modules/@openai/codex/bin/codex.js "
+    },
+    {
+        "Id":  22612,
+        "Name":  "codex.exe",
+        "ExecutablePath":  "C:\\Users\\acer\\AppData\\Local\\nvm\\v22.12.0\\node_modules\\@openai\\codex\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\codex\\codex.exe",
+        "CreationDate":  "\/Date(1772478396357)\/",
+        "CommandLine":  "C:\\Users\\acer\\AppData\\Local\\nvm\\v22.12.0\\node_modules\\@openai\\codex\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\codex\\codex.exe"
+    },
+    {
+        "Id":  23368,
+        "Name":  "ExpressVPN.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\ExpressVPN\\expressvpn-ui\\ExpressVPN.exe",
+        "CreationDate":  "\/Date(1772478398811)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\ExpressVPN\\expressvpn-ui\\ExpressVPN.exe\" "
+    },
+    {
+        "Id":  3900,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772478399148)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\asolaria-web\\server.js"
+    },
+    {
+        "Id":  19980,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772478399159)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\google-wiki\\server.js"
+    },
+    {
+        "Id":  11476,
+        "Name":  "ExpressVPNNotificationService.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\ExpressVPN\\expressvpn-ui\\ExpressVPNNotificationService.exe",
+        "CreationDate":  "\/Date(1772478402405)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\ExpressVPN\\expressvpn-ui\\ExpressVPNNotificationService.exe\" "
+    },
+    {
+        "Id":  3588,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772478413200)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" \"C:\\Users\\acer\\Asolaria\\server.js\" "
+    },
+    {
+        "Id":  21240,
+        "Name":  "conhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "CreationDate":  "\/Date(1772478413212)\/",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "Id":  17192,
+        "Name":  "IGCCTray.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\AppUp.IntelGraphicsExperience_1.100.5688.0_x64__8j3eq9eme6ctt\\GCP.ML.BackgroundSysTray\\IGCCTray.exe",
+        "CreationDate":  "\/Date(1772478435128)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\AppUp.IntelGraphicsExperience_1.100.5688.0_x64__8j3eq9eme6ctt\\GCP.ML.BackgroundSysTray\\IGCCTray.exe\" "
+    },
+    {
+        "Id":  12204,
+        "Name":  "IGCC.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\AppUp.IntelGraphicsExperience_1.100.5688.0_x64__8j3eq9eme6ctt\\IGCC.exe",
+        "CreationDate":  "\/Date(1772478455799)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\AppUp.IntelGraphicsExperience_1.100.5688.0_x64__8j3eq9eme6ctt\\IGCC.exe\" -ServerName:App.AppXxq4ar3drev924dxqnatpa4s48c4zrxd1.mca"
+    },
+    {
+        "Id":  10748,
+        "Name":  "MicrosoftSecurityApp.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\Microsoft.6365217CE6EB4_102.2504.16004.0_x64__8wekyb3d8bbwe\\MicrosoftSecurityApp\\MicrosoftSecurityApp.exe",
+        "CreationDate":  "\/Date(1772478467207)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.6365217CE6EB4_102.2504.16004.0_x64__8wekyb3d8bbwe\\MicrosoftSecurityApp\\MicrosoftSecurityApp.exe\" "
+    },
+    {
+        "Id":  10416,
+        "Name":  "Copilot.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\Microsoft.Copilot_1.25121.84.0_x64__8wekyb3d8bbwe\\Copilot.exe",
+        "CreationDate":  "\/Date(1772478505569)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.Copilot_1.25121.84.0_x64__8wekyb3d8bbwe\\Copilot.exe\" "
+    },
+    {
+        "Id":  1324,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772478506905)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\acer\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-Wy24gH --remote-debugging-pipe --no-startup-window"
+    },
+    {
+        "Id":  8372,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772478506968)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\acer\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-Wy24gH /prefetch:4 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\acer\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-Wy24gH\\Crashpad --metrics-dir=C:\\Users\\acer\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-Wy24gH --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=plat=Win64 --annotation=prod=Chrome --annotation=ver=145.0.7632.117 --initial-client-data=0x140,0x144,0x148,0x114,0x14c,0x7ffa4202d0a8,0x7ffa4202d0b4,0x7ffa4202d0c0"
+    },
+    {
+        "Id":  5356,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772478536979)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=gpu-process --no-sandbox --disable-breakpad --headless --enable-unsafe-swiftshader --noerrdialogs --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-Wy24gH\" --no-pre-read-main-dll --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --field-trial-handle=1780,i,11701467840500603167,14062348151139293828,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=1776 /prefetch:2"
+    },
+    {
+        "Id":  2760,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772478536987)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=pt-BR --service-sandbox-type=none --no-sandbox --mute-audio --noerrdialogs --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-Wy24gH\" --no-pre-read-main-dll --field-trial-handle=1780,i,11701467840500603167,14062348151139293828,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=1956 /prefetch:11"
+    },
+    {
+        "Id":  7496,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772478538652)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=pt-BR --service-sandbox-type=service --no-sandbox --mute-audio --noerrdialogs --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-Wy24gH\" --no-pre-read-main-dll --field-trial-handle=1780,i,11701467840500603167,14062348151139293828,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2060 /prefetch:13"
+    },
+    {
+        "Id":  15088,
+        "Name":  "ChatGPT.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "CreationDate":  "\/Date(1772478544758)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe\" "
+    },
+    {
+        "Id":  19920,
+        "Name":  "ChatGPT.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "CreationDate":  "\/Date(1772478568859)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\acer\\AppData\\Local\\Packages\\OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0\\LocalCache\\Roaming\\ChatGPT /prefetch:4 --no-rate-limit --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\acer\\AppData\\Local\\Packages\\OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0\\LocalCache\\Roaming\\ChatGPT\\Crashpad --url=https://o33249.ingest.us.sentry.io/api/4507771614265344/minidump/?sentry_key=95e16831cb6713fbf64816ec78a777ef --annotation=_productName=ChatGPT --annotation=_version=1.2026.43 --annotation=plat=Win64 --annotation=prod=Electron \"--annotation=sentry___initialScope={\\\"release\\\":\\\"ChatGPT@1.2026.43\\\",\\\"environment\\\":\\\"production\\\",\\\"tags\\\":{\\\"app_session_id\\\":\\\"a506e420-7c8e-4552-bf36-fb9be7143cee\\\",\\\"environment\\\":\\\"production\\\",\\\"arch\\\":\\\"x86_64\\\",\\\"is_quitting\\\":\\\"false\\\"}}\" --annotation=ver=39.2.7 --initial-client-data=0x728,0x734,0x738,0x72c,0x73c,0x7ff76c7f16ec,0x7ff76c7f16f8,0x7ff76c7f1708"
+    },
+    {
+        "Id":  21348,
+        "Name":  "ChatGPT.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "CreationDate":  "\/Date(1772478575366)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe\" --type=gpu-process --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0\\LocalCache\\Roaming\\ChatGPT\" --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --field-trial-handle=2328,i,6280437402089283203,7242521522479463655,262144 --enable-features=EnableTransparentHwndEnlargement,FluentScrollbar,PdfUseShowSaveFilePicker --disable-features=LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2324 /prefetch:2"
+    },
+    {
+        "Id":  17564,
+        "Name":  "WhatsApp.Root.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\5319275A.WhatsAppDesktop_2.2606.102.0_x64__cv1g1gvanyjgm\\WhatsApp.Root.exe",
+        "CreationDate":  "\/Date(1772478575376)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\5319275A.WhatsAppDesktop_2.2606.102.0_x64__cv1g1gvanyjgm\\WhatsApp.Root.exe\" "
+    },
+    {
+        "Id":  16260,
+        "Name":  "ChatGPT.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "CreationDate":  "\/Date(1772478582601)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=pt-BR --service-sandbox-type=none --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0\\LocalCache\\Roaming\\ChatGPT\" --secure-schemes=sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=sentry-ipc --fetch-schemes=sentry-ipc --field-trial-handle=2328,i,6280437402089283203,7242521522479463655,262144 --enable-features=EnableTransparentHwndEnlargement,FluentScrollbar,PdfUseShowSaveFilePicker --disable-features=LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2668 /prefetch:11"
+    },
+    {
+        "Id":  7036,
+        "Name":  "AnyDesk.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\AnyDesk\\AnyDesk.exe",
+        "CreationDate":  "\/Date(1772478616408)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\AnyDesk\\AnyDesk.exe\"  --control"
+    },
+    {
+        "Id":  2720,
+        "Name":  "ChatGPT.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "CreationDate":  "\/Date(1772478616982)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe\" --type=renderer --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0\\LocalCache\\Roaming\\ChatGPT\" --secure-schemes=sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=sentry-ipc --fetch-schemes=sentry-ipc --app-path=\"C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\resources\\app.asar\" --enable-sandbox --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1772403093457152 --launch-time-ticks=75522670828 --field-trial-handle=2328,i,6280437402089283203,7242521522479463655,262144 --enable-features=EnableTransparentHwndEnlargement,FluentScrollbar,PdfUseShowSaveFilePicker --disable-features=LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708990997080739 --mojo-platform-channel-handle=4284 /prefetch:1"
+    },
+    {
+        "Id":  11908,
+        "Name":  "RuntimeBroker.exe",
+        "ExecutablePath":  "C:\\Windows\\System32\\RuntimeBroker.exe",
+        "CreationDate":  "\/Date(1772478693823)\/",
+        "CommandLine":  "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding"
+    },
+    {
+        "Id":  22948,
+        "Name":  "RuntimeBroker.exe",
+        "ExecutablePath":  "C:\\Windows\\System32\\RuntimeBroker.exe",
+        "CreationDate":  "\/Date(1772478695094)\/",
+        "CommandLine":  "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding"
+    },
+    {
+        "Id":  7136,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478725195)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --embedded-browser-webview=1 --webview-exe-name=WhatsApp.Root.exe --webview-exe-version=1.0.0 --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalCache\\EBWebView\" --noerrdialogs --edge-webview-disable-crash-reporting=1 --embedded-browser-webview-enable-extension --disable-gpu --edge-webview-is-background --mojo-named-platform-channel-pipe=17564.4116.4891160696229977140 /pfhostedapp:2f879caa47f44e6e4960f6d02a2f4f164af3738f"
+    },
+    {
+        "Id":  14100,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478726955)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\acer\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalCache\\EBWebView /prefetch:4 /pfhostedapp:2f879caa47f44e6e4960f6d02a2f4f164af3738f --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\acer\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalCache\\EBWebView\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=145.0.7632.117 \"--annotation=exe=C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --annotation=plat=Win64 \"--annotation=prod=Edge WebView2\" --annotation=ver=145.0.3800.82 --initial-client-data=0x184,0x188,0x18c,0x58,0xa0,0x7ffa5ecd0f18,0x7ffa5ecd0f24,0x7ffa5ecd0f30"
+    },
+    {
+        "Id":  10332,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478727796)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=gpu-process --noerrdialogs --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalCache\\EBWebView\" --webview-exe-name=WhatsApp.Root.exe --webview-exe-version=1.0.0 --embedded-browser-webview=1 --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --use-gl=angle --use-angle=d3d11-warp-webgl --startup-read-main-dll --metrics-shmem-handle=1840,i,13832683067401458103,9544413044695291311,262144 --field-trial-handle=2020,i,14713516199156449257,8477697670373570979,262144 --variations-seed-version --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2012 /prefetch:2 /pfhostedapp:2f879caa47f44e6e4960f6d02a2f4f164af3738f"
+    },
+    {
+        "Id":  20112,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478727803)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=pt-BR --service-sandbox-type=none --noerrdialogs --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalCache\\EBWebView\" --webview-exe-name=WhatsApp.Root.exe --webview-exe-version=1.0.0 --embedded-browser-webview=1 --startup-read-main-dll --metrics-shmem-handle=2084,i,10267716632417631558,10066950189948481155,524288 --field-trial-handle=2020,i,14713516199156449257,8477697670373570979,262144 --variations-seed-version --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2104 /prefetch:11 /pfhostedapp:2f879caa47f44e6e4960f6d02a2f4f164af3738f"
+    },
+    {
+        "Id":  17360,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478727873)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=pt-BR --service-sandbox-type=service --noerrdialogs --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalCache\\EBWebView\" --webview-exe-name=WhatsApp.Root.exe --webview-exe-version=1.0.0 --embedded-browser-webview=1 --startup-read-main-dll --metrics-shmem-handle=2372,i,10150939402853760351,617316456392793697,524288 --field-trial-handle=2020,i,14713516199156449257,8477697670373570979,262144 --variations-seed-version --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2408 /prefetch:13 /pfhostedapp:2f879caa47f44e6e4960f6d02a2f4f164af3738f"
+    },
+    {
+        "Id":  12132,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772478753366)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalCache\\EBWebView\" --webview-exe-name=WhatsApp.Root.exe --webview-exe-version=1.0.0 --embedded-browser-webview=1 --disable-gpu-compositing --video-capture-use-gpu-memory-buffer --lang=pt-BR --js-flags=--expose-gc --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=9 --time-ticks-at-unix-epoch=-1772403093457150 --launch-time-ticks=75659902513 --skip-read-main-dll --metrics-shmem-handle=5264,i,13721967553253145201,17686384460832076517,2097152 --field-trial-handle=2020,i,14713516199156449257,8477697670373570979,262144 --variations-seed-version --trace-process-track-uuid=3190708994745248135 --mojo-platform-channel-handle=5764 /pfhostedapp:2f879caa47f44e6e4960f6d02a2f4f164af3738f /prefetch:1"
+    },
+    {
+        "Id":  15400,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478859061)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s AudioEndpointBuilder"
+    },
+    {
+        "Id":  11952,
+        "Name":  "MidiSrv.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\midisrv.exe",
+        "CreationDate":  "\/Date(1772478859118)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\midisrv.exe"
+    },
+    {
+        "Id":  14208,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772478864866)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p"
+    },
+    {
+        "Id":  20808,
+        "Name":  "AppActions.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\AppActions.exe",
+        "CreationDate":  "\/Date(1772478959604)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\AppActions.exe\" -Embedding"
+    },
+    {
+        "Id":  11808,
+        "Name":  "ApplicationFrameHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\ApplicationFrameHost.exe",
+        "CreationDate":  "\/Date(1772479444776)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\ApplicationFrameHost.exe -Embedding"
+    },
+    {
+        "Id":  12924,
+        "Name":  "SystemSettings.exe",
+        "ExecutablePath":  "C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe",
+        "CreationDate":  "\/Date(1772479444776)\/",
+        "CommandLine":  "\"C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe\" -ServerName:microsoft.windows.immersivecontrolpanel"
+    },
+    {
+        "Id":  22584,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772479445941)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k DevicesFlow -s DevicesFlowUserSvc"
+    },
+    {
+        "Id":  10784,
+        "Name":  "dllhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\DllHost.exe",
+        "CreationDate":  "\/Date(1772479446694)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\DllHost.exe /Processid:{AB8902B4-09CA-4BB6-B78D-A8F59079A8D5}"
+    },
+    {
+        "Id":  1864,
+        "Name":  "taskhostw.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\taskhostw.exe",
+        "CreationDate":  "\/Date(1772481012471)\/",
+        "CommandLine":  "taskhostw.exe"
+    },
+    {
+        "Id":  9772,
+        "Name":  "msedgewebview2.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "CreationDate":  "\/Date(1772481013069)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe\" --type=utility --utility-sub-type=audio.mojom.AudioService --lang=pt-BR --service-sandbox-type=audio --noerrdialogs --user-data-dir=\"C:\\Users\\acer\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalCache\\EBWebView\" --webview-exe-name=WhatsApp.Root.exe --webview-exe-version=1.0.0 --embedded-browser-webview=1 --skip-read-main-dll --metrics-shmem-handle=5404,i,706921618272217888,1652306700387028111,524288 --field-trial-handle=2020,i,14713516199156449257,8477697670373570979,262144 --variations-seed-version --trace-process-track-uuid=3190708996619331833 --mojo-platform-channel-handle=3928 /prefetch:12 /pfhostedapp:2f879caa47f44e6e4960f6d02a2f4f164af3738f"
+    },
+    {
+        "Id":  16660,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772481013216)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p -s BITS"
+    },
+    {
+        "Id":  11844,
+        "Name":  "WsToastNotification.exe",
+        "ExecutablePath":  "C:\\Users\\acer\\AppData\\Local\\Wondershare\\Wondershare NativePush\\WsToastNotification.exe",
+        "CreationDate":  "\/Date(1772481947141)\/",
+        "CommandLine":  "\"C:\\Users\\acer\\AppData\\Local\\Wondershare\\Wondershare NativePush\\WsToastNotification.exe\""
+    },
+    {
+        "Id":  1092,
+        "Name":  "conhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "CreationDate":  "\/Date(1772481947156)\/",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "Id":  11676,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772482588112)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\google-wiki\\server.js"
+    },
+    {
+        "Id":  13092,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772482588121)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\asolaria-web\\server.js"
+    },
+    {
+        "Id":  5172,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772482592310)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\google-wiki\\server.js"
+    },
+    {
+        "Id":  6308,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772482592317)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\asolaria-web\\server.js"
+    },
+    {
+        "Id":  13016,
+        "Name":  "PhoneExperienceHost.exe",
+        "ExecutablePath":  "C:\\Program Files\\WindowsApps\\Microsoft.YourPhone_1.26011.42.0_x64__8wekyb3d8bbwe\\PhoneExperienceHost.exe",
+        "CreationDate":  "\/Date(1772483686008)\/",
+        "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.YourPhone_1.26011.42.0_x64__8wekyb3d8bbwe\\PhoneExperienceHost.exe\" -ComServer:Background -Embedding"
+    },
+    {
+        "Id":  22936,
+        "Name":  "backgroundTaskHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\backgroundTaskHost.exe",
+        "CreationDate":  "\/Date(1772484675747)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\system32\\backgroundTaskHost.exe\" -ServerName:App.AppXapskvk16gk8da8kch5g4qxh42vxccved.mca"
+    },
+    {
+        "Id":  1900,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772487411264)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\google-wiki\\server.js"
+    },
+    {
+        "Id":  18272,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772487411269)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\asolaria-web\\server.js"
+    },
+    {
+        "Id":  17796,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772487416212)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\google-wiki\\server.js"
+    },
+    {
+        "Id":  2856,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772487416216)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\asolaria-web\\server.js"
+    },
+    {
+        "Id":  20724,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772487421632)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\asolaria-web\\server.js"
+    },
+    {
+        "Id":  5056,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772487421638)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" C:\\Users\\acer\\mcp-servers\\google-wiki\\server.js"
+    },
+    {
+        "Id":  22872,
+        "Name":  "SearchProtocolHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\SearchProtocolHost.exe",
+        "CreationDate":  "\/Date(1772488820137)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\SearchProtocolHost.exe\" Global\\UsGthrFltPipeMssGthrPipe26_ Global\\UsGthrCtrlFltPipeMssGthrPipe26 1 -2147483646 \"Software\\Microsoft\\Windows Search\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT; MS Search 4.0 Robot)\" \"C:\\ProgramData\\Microsoft\\Search\\Data\\Temp\\usgthrsvc\" \"DownLevelDaemon\" "
+    },
+    {
+        "Id":  17656,
+        "Name":  "SearchFilterHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "CreationDate":  "\/Date(1772488872996)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\SearchFilterHost.exe\" 928 4700 1700 908 {1295340B-BF50-4A88-BB2F-287E0B9B0016}"
+    },
+    {
+        "Id":  22912,
+        "Name":  "SearchFilterHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "CreationDate":  "\/Date(1772488873150)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\SearchFilterHost.exe\" 928 2144 4100 908 {0E5DCEC5-7795-4E38-9621-94DFD9F9A421}"
+    },
+    {
+        "Id":  17440,
+        "Name":  "SearchFilterHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "CreationDate":  "\/Date(1772489013360)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\SearchFilterHost.exe\" 928 3464 4112 908 {5E941D80-BF96-11CD-B579-08002B30BFEB}"
+    },
+    {
+        "Id":  10884,
+        "Name":  "py.exe",
+        "ExecutablePath":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Launcher\\py.exe",
+        "CreationDate":  "\/Date(1772489014147)\/",
+        "CommandLine":  "\"C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Launcher\\py.exe\" -3 pc_server.py "
+    },
+    {
+        "Id":  11244,
+        "Name":  "conhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "CreationDate":  "\/Date(1772489014162)\/",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "Id":  17596,
+        "Name":  "python.exe",
+        "ExecutablePath":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "CreationDate":  "\/Date(1772489014227)\/",
+        "CommandLine":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe pc_server.py "
+    },
+    {
+        "Id":  14724,
+        "Name":  "WmiPrvSE.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\wbem\\wmiprvse.exe",
+        "CreationDate":  "\/Date(1772489061444)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\wbem\\wmiprvse.exe"
+    },
+    {
+        "Id":  15156,
+        "Name":  "SearchFilterHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "CreationDate":  "\/Date(1772489064170)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\SearchFilterHost.exe\" 928 2284 2452 908 {7E9D8D44-6926-426F-AA2B-217A819A5CCE}"
+    },
+    {
+        "Id":  15892,
+        "Name":  "powershell.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CreationDate":  "\/Date(1772489244541)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\acer\\codex-bridge\\watchdog.ps1 "
+    },
+    {
+        "Id":  12992,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772489248254)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" bridge.js serve --port 8788 --host 0.0.0.0 --token 40ecab3963f7cf1e3d3d9c52bae72dfbe7dd53ab8f3b81c00193bb9aaba140ca --dataDir C:\\Users\\acer\\codex-bridge\\data "
+    },
+    {
+        "Id":  12148,
+        "Name":  "cloudflared.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\cloudflared\\cloudflared.exe",
+        "CreationDate":  "\/Date(1772489248910)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\cloudflared\\cloudflared.exe\" tunnel --url http://localhost:8788 --no-autoupdate --metrics 127.0.0.1:20241 "
+    },
+    {
+        "Id":  11416,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772489258147)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" this-codex-bot.js --url http://127.0.0.1:8788 --token 40ecab3963f7cf1e3d3d9c52bae72dfbe7dd53ab8f3b81c00193bb9aaba140ca --room asolaria_bridge --from this-codex --agentName Vector --profileId core-vector-v1 --mentionAliases this-codex,this-codex-bot,vector --supervisorRequiresMention 0 --requireActionablePrefix 0 --cursor C:\\Users\\acer\\codex-bridge\\cursor-this-codex-bot.json --pollMs 1000 --pingEveryMs 300000 --pingTo other-codex --idleReviewMs 0 --reviewAfterResult 0 --handleFrom other-codex --sandbox workspace-write --reasoning medium --execTaskMode 1 "
+    },
+    {
+        "Id":  12844,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772489258383)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" this-codex-bot.js --url http://127.0.0.1:8788 --token 40ecab3963f7cf1e3d3d9c52bae72dfbe7dd53ab8f3b81c00193bb9aaba140ca --room asolaria_bridge --from other-codex --agentName Rook --profileId ops-rook-v1 --mentionAliases rook --supervisorRequiresMention 1 --requireActionablePrefix 1 --cursor C:\\Users\\acer\\codex-bridge\\cursor-other-codex-bot.json --pollMs 1200 --pingEveryMs 300000 --pingTo this-codex --idleReviewMs 600000 --reviewAfterResult 0 --handleFrom this-codex --sandbox workspace-write --reasoning high --execTaskMode 1 "
+    },
+    {
+        "Id":  18264,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772489258613)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" this-codex-bot.js --url http://127.0.0.1:8788 --token 40ecab3963f7cf1e3d3d9c52bae72dfbe7dd53ab8f3b81c00193bb9aaba140ca --room asolaria_bridge --from build-codex --agentName Forge --profileId build-forge-v1 --mentionAliases forge --supervisorRequiresMention 1 --requireActionablePrefix 1 --cursor C:\\Users\\acer\\codex-bridge\\cursor-build-codex-bot.json --pollMs 1300 --pingEveryMs 300000 --pingTo this-codex --idleReviewMs 600000 --reviewAfterResult 0 --handleFrom this-codex --sandbox workspace-write --reasoning high --execTaskMode 1 "
+    },
+    {
+        "Id":  4392,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772489258881)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" this-codex-bot.js --url http://127.0.0.1:8788 --token 40ecab3963f7cf1e3d3d9c52bae72dfbe7dd53ab8f3b81c00193bb9aaba140ca --room asolaria_bridge --from phone-codex --agentName Falcon --profileId mobile-falcon-v1 --mentionAliases falcon --supervisorRequiresMention 1 --requireActionablePrefix 1 --cursor C:\\Users\\acer\\codex-bridge\\cursor-phone-codex-bot.json --pollMs 1400 --pingEveryMs 300000 --pingTo this-codex --idleReviewMs 600000 --reviewAfterResult 0 --handleFrom this-codex --sandbox workspace-write --reasoning high --execTaskMode 1 "
+    },
+    {
+        "Id":  19772,
+        "Name":  "node.exe",
+        "ExecutablePath":  "C:\\nvm4w\\nodejs\\node.exe",
+        "CreationDate":  "\/Date(1772489259893)\/",
+        "CommandLine":  "\"C:\\nvm4w\\nodejs\\node.exe\" notify-bot.js --url http://127.0.0.1:8788 --token 40ecab3963f7cf1e3d3d9c52bae72dfbe7dd53ab8f3b81c00193bb9aaba140ca --room asolaria_bridge --from notify-bot --pollMs 1500 "
+    },
+    {
+        "Id":  12244,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "CreationDate":  "\/Date(1772489285847)\/",
+        "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s WdiSystemHost"
+    },
+    {
+        "Id":  3940,
+        "Name":  "OneDrive.Sync.Service.exe",
+        "ExecutablePath":  "C:\\Program Files\\Microsoft OneDrive\\26.022.0203.0006\\OneDrive.Sync.Service.exe",
+        "CreationDate":  "\/Date(1772489286234)\/",
+        "CommandLine":  "\"C:\\Program Files\\Microsoft OneDrive\\26.022.0203.0006\\OneDrive.Sync.Service.exe\""
+    },
+    {
+        "Id":  8368,
+        "Name":  "SearchFilterHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "CreationDate":  "\/Date(1772491036677)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\SearchFilterHost.exe\" 928 3596 1564 908 {D3B41FA1-01E3-49AF-AA25-1D0D824275AE}"
+    },
+    {
+        "Id":  11860,
+        "Name":  "SearchFilterHost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "CreationDate":  "\/Date(1772491058719)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\SearchFilterHost.exe\" 928 4156 2432 908 {1AA9BF05-9A97-48C1-BA28-D9DCE795E93C}"
+    },
+    {
+        "Id":  15848,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492425844)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" "
+    },
+    {
+        "Id":  22696,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492425885)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=crashpad-handler \"--user-data-dir=C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\" /prefetch:4 --monitor-self-annotation=ptype=crashpad-handler \"--database=C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Crashpad\" \"--metrics-dir=C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\" --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=plat=Win64 --annotation=prod=Chrome --annotation=ver=145.0.7632.117 --initial-client-data=0x11c,0x120,0x124,0xac,0x128,0x7ffa4202d0a8,0x7ffa4202d0b4,0x7ffa4202d0c0"
+    },
+    {
+        "Id":  12548,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492426332)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=gpu-process --no-pre-read-main-dll --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --metrics-shmem-handle=1752,i,8938927339710551974,15787233655636283263,262144 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=1852 /prefetch:2"
+    },
+    {
+        "Id":  16896,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492426342)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=pt-BR --service-sandbox-type=none --no-pre-read-main-dll --metrics-shmem-handle=2264,i,8878693567658314636,7693826449082859759,524288 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2248 /prefetch:11"
+    },
+    {
+        "Id":  1684,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492426409)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=pt-BR --service-sandbox-type=service --no-pre-read-main-dll --metrics-shmem-handle=2364,i,17725983821229449997,12439720837404649487,524288 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2312 /prefetch:13"
+    },
+    {
+        "Id":  18512,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492431603)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --extension-process --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=10 --time-ticks-at-unix-epoch=-1772403093438885 --launch-time-ticks=89338162114 --metrics-shmem-handle=6216,i,15776073610994888125,4447535578317672872,2097152 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190708995682289984 --mojo-platform-channel-handle=6180 /prefetch:9"
+    },
+    {
+        "Id":  18360,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492431614)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --extension-process --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=12 --time-ticks-at-unix-epoch=-1772403093438885 --launch-time-ticks=89338173480 --metrics-shmem-handle=6408,i,5734183899214423700,3040288224748018216,2097152 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190708997556373682 --mojo-platform-channel-handle=6400 /prefetch:9"
+    },
+    {
+        "Id":  11772,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492431620)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --extension-process --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=13 --time-ticks-at-unix-epoch=-1772403093438885 --launch-time-ticks=89338178825 --metrics-shmem-handle=6456,i,16795699233602306873,5133763742970600627,2097152 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190708998493415531 --mojo-platform-channel-handle=6548 /prefetch:9"
+    },
+    {
+        "Id":  9032,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492432141)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --extension-process --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=15 --time-ticks-at-unix-epoch=-1772403093438885 --launch-time-ticks=89338698819 --metrics-shmem-handle=7352,i,6434684134224578807,6440714234259968945,2097152 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190709000367499229 --mojo-platform-channel-handle=7360 /prefetch:9"
+    },
+    {
+        "Id":  12936,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492433172)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=21 --time-ticks-at-unix-epoch=-1772403093438885 --launch-time-ticks=89339731806 --metrics-shmem-handle=8476,i,7834248565491914000,4087993909283698106,2097152 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190709005989750323 --mojo-platform-channel-handle=8392 /prefetch:1"
+    },
+    {
+        "Id":  20728,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492435552)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=23 --time-ticks-at-unix-epoch=-1772403093438885 --launch-time-ticks=89342111673 --metrics-shmem-handle=7528,i,15397330651027877233,8440109494015831701,2097152 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190709007863834021 --mojo-platform-channel-handle=9092 /prefetch:1"
+    },
+    {
+        "Id":  16576,
+        "Name":  "cmd.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\cmd.exe",
+        "CreationDate":  "\/Date(1772492436327)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\cmd.exe /d /s /c \"\"C:\\Program Files (x86)\\Power Automate Desktop\\dotnet\\PAD.BrowserNativeMessageHost.exe\" chrome-extension://ljglajjnnkapghbckkcmodicjhacbfhk/ --parent-window=0\" \u003c \\\\.\\pipe\\chrome.nativeMessaging.in.6cf43c33f7078c44 \u003e \\\\.\\pipe\\chrome.nativeMessaging.out.6cf43c33f7078c44"
+    },
+    {
+        "Id":  21176,
+        "Name":  "conhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "CreationDate":  "\/Date(1772492436461)\/",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "Id":  4344,
+        "Name":  "PAD.BrowserNativeMessageHost.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\Power Automate Desktop\\dotnet\\PAD.BrowserNativeMessageHost.exe",
+        "CreationDate":  "\/Date(1772492436779)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\Power Automate Desktop\\dotnet\\PAD.BrowserNativeMessageHost.exe\"  chrome-extension://ljglajjnnkapghbckkcmodicjhacbfhk/ --parent-window=0 "
+    },
+    {
+        "Id":  17392,
+        "Name":  "cmd.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\cmd.exe",
+        "CreationDate":  "\/Date(1772492442794)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\cmd.exe /d /s /c \"\"C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.BrowserHelper.exe\" chrome-extension://blgcbajigpdfohpgcmbbfnphcgifjopc/ --parent-window=0\" \u003c \\\\.\\pipe\\chrome.nativeMessaging.in.6e5f479a0108391c \u003e \\\\.\\pipe\\chrome.nativeMessaging.out.6e5f479a0108391c"
+    },
+    {
+        "Id":  23064,
+        "Name":  "conhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "CreationDate":  "\/Date(1772492442816)\/",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "Id":  22672,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492442831)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=28 --time-ticks-at-unix-epoch=-1772403093438885 --launch-time-ticks=89349390732 --metrics-shmem-handle=2976,i,9241073187316511105,15778527791920940411,2097152 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190709012549043266 --mojo-platform-channel-handle=2456 /prefetch:1"
+    },
+    {
+        "Id":  20088,
+        "Name":  "ExpressVPN.BrowserHelper.exe",
+        "ExecutablePath":  "C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.BrowserHelper.exe",
+        "CreationDate":  "\/Date(1772492442917)\/",
+        "CommandLine":  "\"C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.BrowserHelper.exe\"  chrome-extension://blgcbajigpdfohpgcmbbfnphcgifjopc/ --parent-window=0 "
+    },
+    {
+        "Id":  11540,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492445449)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=utility --utility-sub-type=media.mojom.SpeechRecognitionService --lang=pt-BR --service-sandbox-type=speech_recognition --video-capture-use-gpu-memory-buffer --no-pre-read-main-dll --metrics-shmem-handle=6092,i,18236483809811939635,897129568343520038,524288 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190709013486085115 --mojo-platform-channel-handle=6988 /prefetch:14"
+    },
+    {
+        "Id":  13056,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492445463)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=utility --utility-sub-type=audio.mojom.AudioService --lang=pt-BR --service-sandbox-type=audio --video-capture-use-gpu-memory-buffer --no-pre-read-main-dll --metrics-shmem-handle=2588,i,8727414766999626476,1046326592280589205,524288 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190709014423126964 --mojo-platform-channel-handle=6292 /prefetch:12"
+    },
+    {
+        "Id":  10804,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772492459564)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=utility --utility-sub-type=video_capture.mojom.VideoCaptureService --lang=pt-BR --service-sandbox-type=none --video-capture-use-gpu-memory-buffer --no-pre-read-main-dll --metrics-shmem-handle=8180,i,3748419237573610728,11568275010921202609,524288 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190709018171294360 --mojo-platform-channel-handle=7948 /prefetch:14"
+    },
+    {
+        "Id":  5156,
+        "Name":  "WUDFHost.exe",
+        "ExecutablePath":  "C:\\Windows\\System32\\WUDFHost.exe",
+        "CreationDate":  "\/Date(1772493233564)\/",
+        "CommandLine":  "\"C:\\Windows\\System32\\WUDFHost.exe\" -HostGUID:{193a1820-d9ac-4997-8c55-be817523f6aa} -IoEventPortName:\\UMDFCommunicationPorts\\WUDF\\HostProcess-6415288c-5ead-4369-a0b9-ea4a1eeddecf -SystemEventPortName:\\UMDFCommunicationPorts\\WUDF\\HostProcess-3a5aec1e-b729-4b54-b529-77f39ada93fd -IoCancelEventPortName:\\UMDFCommunicationPorts\\WUDF\\HostProcess-7edf25a2-9078-474c-a591-402c30f47dff -NonStateChangingEventPortName:\\UMDFCommunicationPorts\\WUDF\\HostProcess-ad55283d-3ea5-4a43-82ce-2a6c49e602d0 -LifetimeId:aa98775c-ae2d-4c21-930e-d12695c71393 -DeviceGroupId:WudfDefaultDevicePool -HostArg:0"
+    },
+    {
+        "Id":  2512,
+        "Name":  "dllhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\DllHost.exe",
+        "CreationDate":  "\/Date(1772493638894)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\system32\\DllHost.exe\" /Processid:{5250E46F-BB09-D602-5891-F476DC89B700}"
+    },
+    {
+        "Id":  1328,
+        "Name":  "dllhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\DllHost.exe",
+        "CreationDate":  "\/Date(1772493639053)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\system32\\DllHost.exe\" /Processid:{CA6CC9F1-867A-481E-951E-A28C5E4F01EA}"
+    },
+    {
+        "Id":  8836,
+        "Name":  "dllhost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\SysWOW64\\DllHost.exe",
+        "CreationDate":  "\/Date(1772493639173)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\SysWOW64\\DllHost.exe\" /Processid:{1C6DF0C0-192A-4451-BE36-6A59A86A692E}"
+    },
+    {
+        "Id":  20500,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772494580989)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=54 --time-ticks-at-unix-epoch=-1772403093438885 --launch-time-ticks=91487553741 --metrics-shmem-handle=5960,i,6744618873931985293,8419505282067429949,2097152 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190709036912131340 --mojo-platform-channel-handle=9568 /prefetch:1"
+    },
+    {
+        "Id":  14632,
+        "Name":  "chrome.exe",
+        "ExecutablePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "CreationDate":  "\/Date(1772494581214)\/",
+        "CommandLine":  "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=pt-BR --device-scale-factor=1.25 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=55 --time-ticks-at-unix-epoch=-1772403093438885 --launch-time-ticks=91487778350 --metrics-shmem-handle=9760,i,585504471706372981,12048067484857499109,2097152 --field-trial-handle=1924,i,13806945536802178032,6774316896034686170,262144 --variations-seed-version=20260302-090049.976000-production --trace-process-track-uuid=3190709037849173189 --mojo-platform-channel-handle=9160 /prefetch:1"
+    },
+    {
+        "Id":  2936,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "CreationDate":  "\/Date(1772495135134)\/",
+        "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k GPSvcGroup"
+    },
+    {
+        "Id":  7044,
+        "Name":  "Taskmgr.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\system32\\Taskmgr.exe",
+        "CreationDate":  "\/Date(1772495534320)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\system32\\Taskmgr.exe\" "
+    },
+    {
+        "Id":  12000,
+        "Name":  "svchost.exe",
+        "ExecutablePath":  null,
+        "CreationDate":  "\/Date(1772495534475)\/",
+        "CommandLine":  null
+    },
+    {
+        "Id":  10276,
+        "Name":  "powershell.exe",
+        "ExecutablePath":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CreationDate":  "\/Date(1772495690665)\/",
+        "CommandLine":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -Command \"[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;\n$ErrorActionPreference=\u0027Stop\u0027;\n$ts=Get-Date -Format \u0027yyyyMMdd-HHmmss\u0027;\n$dir=\\\"C:\\Users\\acer\\Asolaria\\reports\\process-compare-$ts\\\";\nNew-Item -ItemType Directory -Path $dir -Force | Out-Null;\n$gp=Get-Process | Select-Object Id,Name,Path,StartTime;\n$wp=Get-CimInstance Win32_Process | Select-Object @{n=\u0027Id\u0027;e={$_.ProcessId}},Name,ExecutablePath,CreationDate,CommandLine;\n$raw = tasklist /FO CSV /NH;\n$tl = $raw | ConvertFrom-Csv -Header ImageName,PID,SessionName,SessionNum,MemUsage | Where-Object { $_.PID -match \u0027^\\d+$\u0027 } | Select-Object @{n=\u0027Name\u0027;e={$_.ImageName}}, @{n=\u0027Id\u0027;e={[int]$_.PID}};\n$gp | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $dir \u0027getprocess.json\u0027) -Encoding UTF8;\n$wp | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $dir \u0027win32_process.json\u0027) -Encoding UTF8;\n$tl | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $dir \u0027tasklist.json\u0027) -Encoding UTF8;\n$idsGp=@($gp.Id); $idsWp=@($wp.Id); $idsTl=@($tl.Id);\n$wpNotGp=@($idsWp | Where-Object { $idsGp -notcontains $_ });\n$gpNotWp=@($idsGp | Where-Object { $idsWp -notcontains $_ });\n$tlNotGp=@($idsTl | Where-Object { $idsGp -notcontains $_ });\n$gpNotTl=@($idsGp | Where-Object { $idsTl -notcontains $_ });\n$summary=[pscustomobject]@{\n  SnapshotDir=$dir;\n  GetProcessCount=$idsGp.Count;\n  Win32ProcessCount=$idsWp.Count;\n  TasklistCount=$idsTl.Count;\n  Win32NotInGetProcessCount=$wpNotGp.Count;\n  GetProcessNotInWin32Count=$gpNotWp.Count;\n  TasklistNotInGetProcessCount=$tlNotGp.Count;\n  GetProcessNotInTasklistCount=$gpNotTl.Count\n};\n$summary | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $dir \u0027summary.json\u0027) -Encoding UTF8;\nWrite-Output ($summary | ConvertTo-Json -Compress);\nif($wpNotGp.Count -gt 0){ Write-Output \u0027--- Win32 IDs not in Get-Process (top 15) ---\u0027; $wp | Where-Object { $wpNotGp -contains $_.Id } | Select-Object -First 15 Id,Name,ExecutablePath | Format-Table -AutoSize }\nif($tlNotGp.Count -gt 0){ Write-Output \u0027--- Tasklist IDs not in Get-Process (top 15) ---\u0027; $tl | Where-Object { $tlNotGp -contains $_.Id } | Select-Object -First 15 Id,Name | Format-Table -AutoSize }\n\""
+    }
+]

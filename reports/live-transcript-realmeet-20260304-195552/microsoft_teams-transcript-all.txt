@@ -1,0 +1,2 @@
+﻿@{ok=True; sessionId=; running=False; transcript=Teams interviewer: Show me your validation matrix.
+Teams candidate: We verify bridge, live, and merged transcript views.; compat=}

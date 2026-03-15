@@ -1,0 +1,182 @@
+﻿Moved file count: 36
+
+SOURCE: C:\Users\acer\Downloads\page 1 I130.jpeg
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\page 1 I130.jpeg
+KEEP  : C:\Users\acer\OneDrive\Documentos\FAMILY\Family + House\Family\Diva\Visa 2025 USA\Marriage Documents\page 1 I130.jpeg
+BYTES : 193955
+
+SOURCE: C:\Users\acer\Downloads\Page 2 I130.jpeg
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Page 2 I130.jpeg
+KEEP  : C:\Users\acer\OneDrive\Documentos\FAMILY\Family + House\Family\Diva\Visa 2025 USA\Marriage Documents\Page 2 I130.jpeg
+BYTES : 161991
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-10 135253.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-10 135253.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-10 135253.png
+BYTES : 854500
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-11 112702.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-11 112702.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-11 112702.png
+BYTES : 192201
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-11 112815.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-11 112815.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-11 112815.png
+BYTES : 221325
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-13 125952.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-13 125952.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-13 125952.png
+BYTES : 228069
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-13 131915.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-13 131915.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-13 131915.png
+BYTES : 204092
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-13 134848.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-13 134848.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-13 134848.png
+BYTES : 198069
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-14 125717.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-14 125717.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-14 125717.png
+BYTES : 367938
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-14 125827.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-14 125827.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-14 125827.png
+BYTES : 359811
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-14 125926.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-14 125926.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-14 125926.png
+BYTES : 417546
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-14 130017.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-14 130017.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-14 130017.png
+BYTES : 403769
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-14 130209.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-14 130209.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-14 130209.png
+BYTES : 426428
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-14 130458.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-14 130458.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-14 130458.png
+BYTES : 479959
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-14 130600.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-14 130600.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-14 130600.png
+BYTES : 410732
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-14 130650.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-14 130650.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-14 130650.png
+BYTES : 468879
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-14 131402.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-14 131402.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-14 131402.png
+BYTES : 161707
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-15 052907.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-15 052907.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-15 052907.png
+BYTES : 247312
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-15 053029.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-15 053029.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-15 053029.png
+BYTES : 176355
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-16 155649.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-16 155649.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-16 155649.png
+BYTES : 401889
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-20 185157.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-20 185157.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-20 185157.png
+BYTES : 686843
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-22 135335.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-22 135335.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-22 135335.png
+BYTES : 168128
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-22 135841.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-22 135841.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-22 135841.png
+BYTES : 301854
+
+SOURCE: C:\Users\acer\Downloads\Screenshot 2026-02-24 191544.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Downloads\Screenshot 2026-02-24 191544.png
+KEEP  : C:\Users\acer\OneDrive\Pictures\Screenshots\Screenshot 2026-02-24 191544.png
+BYTES : 231769
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\gfh\mobile\mobile\assets\adaptive-icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\gfh\mobile\mobile\assets\adaptive-icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\adaptive-icon.png
+BYTES : 723357
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\gfh\mobile\mobile\assets\icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\gfh\mobile\mobile\assets\icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\icon.png
+BYTES : 831235
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\gfh\mobile\mobile\assets\notification-icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\gfh\mobile\mobile\assets\notification-icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\notification-icon.png
+BYTES : 789332
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\ifb\mobile\mobile\assets\adaptive-icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\ifb\mobile\mobile\assets\adaptive-icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\adaptive-icon.png
+BYTES : 723357
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\ifb\mobile\mobile\assets\icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\ifb\mobile\mobile\assets\icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\icon.png
+BYTES : 831235
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\ifb\mobile\mobile\assets\notification-icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\ifb\mobile\mobile\assets\notification-icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\notification-icon.png
+BYTES : 789332
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\iia\mobile\mobile\assets\adaptive-icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\iia\mobile\mobile\assets\adaptive-icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\adaptive-icon.png
+BYTES : 723357
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\iia\mobile\mobile\assets\icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\iia\mobile\mobile\assets\icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\icon.png
+BYTES : 831235
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\iia\mobile\mobile\assets\notification-icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\iia\mobile\mobile\assets\notification-icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\notification-icon.png
+BYTES : 789332
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\lej\mobile\mobile\assets\adaptive-icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\lej\mobile\mobile\assets\adaptive-icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\adaptive-icon.png
+BYTES : 723357
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\lej\mobile\mobile\assets\icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\lej\mobile\mobile\assets\icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\icon.png
+BYTES : 831235
+
+SOURCE: C:\Users\acer\Desktop\project_stats_backup_1am\lej\mobile\mobile\assets\notification-icon.png
+DEST  : C:\Users\acer\Asolaria\quarantine\batch-20260302-214626\Desktop\project_stats_backup_1am\lej\mobile\mobile\assets\notification-icon.png
+KEEP  : C:\Users\acer\OneDrive\Documentos\Class - Copy\04 Module Four\Plan B\01 Publications and work on AI\AI Healthcare FHIR project\notification-icon.png
+BYTES : 789332
+

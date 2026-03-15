@@ -1,0 +1,103 @@
+﻿{
+    "ok":  true,
+    "generatedAt":  "2026-03-09T11:01:35-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "accounts":  [
+                     {
+                         "account":  "jesse@jbrowndevelopmentllc.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  0,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773064887818_ly8sj7",
+                         "enterpriseStatus":  "failed",
+                         "enterpriseErrorClass":  "enterprise-error",
+                         "enterpriseReason":  "UserStore projects/742368506950/locations/global/userStores/default_user_store has reached license config quota for license config projects/742368506950/locations/global/licenseConfigs/62fc0f5e-8b41-4ca2-99e9-b2b8469e4b49",
+                         "enterpriseJobId":  "job_1773064888817_phjmsq",
+                         "enterpriseNotebookCount":  0,
+                         "enterpriseNotebookTitles":  [
+
+                                                      ],
+                         "finalState":  "enterprise-degraded",
+                         "nextAction":  "Inspect enterprise error details and rerun this script.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     },
+                     {
+                         "account":  "jessebrown.soft1980@gmail.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  0,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773064890308_5phodf",
+                         "enterpriseStatus":  "failed",
+                         "enterpriseErrorClass":  "enterprise-error",
+                         "enterpriseReason":  "UserStore projects/742368506950/locations/global/userStores/default_user_store has reached license config quota for license config projects/742368506950/locations/global/licenseConfigs/62fc0f5e-8b41-4ca2-99e9-b2b8469e4b49",
+                         "enterpriseJobId":  "job_1773064890776_fn4ycd",
+                         "enterpriseNotebookCount":  0,
+                         "enterpriseNotebookTitles":  [
+
+                                                      ],
+                         "finalState":  "enterprise-degraded",
+                         "nextAction":  "Inspect enterprise error details and rerun this script.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     },
+                     {
+                         "account":  "plasmatoid@gmail.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  634,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773064891714_flkgw5",
+                         "enterpriseStatus":  "completed",
+                         "enterpriseErrorClass":  "",
+                         "enterpriseReason":  "",
+                         "enterpriseJobId":  "job_1773064892211_vi239e",
+                         "enterpriseNotebookCount":  1,
+                         "enterpriseNotebookTitles":  [
+                                                          "Asolaria Enterprise Memory"
+                                                      ],
+                         "finalState":  "ready",
+                         "nextAction":  "No action needed.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     },
+                     {
+                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  0,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773064893217_q0ydf0",
+                         "enterpriseStatus":  "failed",
+                         "enterpriseErrorClass":  "enterprise-error",
+                         "enterpriseReason":  "UserStore projects/742368506950/locations/global/userStores/default_user_store has reached license config quota for license config projects/742368506950/locations/global/licenseConfigs/62fc0f5e-8b41-4ca2-99e9-b2b8469e4b49",
+                         "enterpriseJobId":  "job_1773064894162_y939z6",
+                         "enterpriseNotebookCount":  0,
+                         "enterpriseNotebookTitles":  [
+
+                                                      ],
+                         "finalState":  "enterprise-degraded",
+                         "nextAction":  "Inspect enterprise error details and rerun this script.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     }
+                 ],
+    "summary":  {
+                    "totalAccounts":  4,
+                    "ready":  1,
+                    "oauthBlocked":  0,
+                    "iamBlocked":  0,
+                    "infraBlocked":  0,
+                    "enterpriseDegraded":  3
+                }
+}

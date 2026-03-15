@@ -1,0 +1,58 @@
+{
+    "id":  "job_1773313899766_ueujj6",
+    "type":  "external_brain",
+    "status":  "completed",
+    "payload":  {
+                    "provider":  "cursor",
+                    "prompt":  "You are part of a read-only engineering research sweep for Asolaria.\n\nSurface: API/CLI model lane\n\nUse standard mode unless a deeper read-only analysis mode is available automatically.\n\nImportant rules:\n- Read-only analysis only.\n- Do not modify files.\n- Do not suggest destructive resets.\n- Do not assume profile permissions are the root cause unless the evidence supports it.\n- Return the requested sections exactly as named in the packet.\n\n# Asolaria Read-Only Research Packet\n\nDate: 2026-03-12\nScope: diagnose the remaining Asolaria admin-terminal cockpit loading and prompting issues.\nMode: read-only analysis only. Do not suggest executing commands or changing state during analysis. Reason from the evidence below.\n\n## Primary Question\n\nIs this fixable?\n\nMore specifically:\n\n1. Are profile loading or profile permissions the main cause?\n2. Or are transport/runtime issues the main cause?\n3. What is the smallest ranked fix plan to stabilize the system?\n\n## Current State\n\n- The `Admin Terminal Cockpit` exists in the dashboard and can show `Helm` and `Sentinel`.\n- The sidecars are real and already running from:\n  - `C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\helm`\n  - `C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\sentinel`\n- The dashboard requirement is interactive small live terminals, similar to Codex commentary, inside the updated Super Admin dashboard.\n\n## Verified Findings\n\n### Already fixed\n\n- `src/connectors/screenshotConnector.js`\n  - Playwright import was changed from eager to lazy load.\n  - This removed a startup/runtime poison path in this environment.\n\n- `server.js`\n  - Cockpit prompt delivery was changed from `restart_with_prompt` to live inbox delivery.\n  - `Helm` now accepts dashboard prompts without replacing the running sidecar.\n  - `Helm` status now records dashboard-delivered input and updated transcript/screen state.\n\n- `server.js`\n  - Minimal-startup `/api/health` was reduced so the dashboard background polling does not wedge the whole app as easily.\n\n### Verified evidence after the fixes\n\n- `/api/health` and `/api/admin-terminals/cockpit` are now responding again.\n- Browser verification showed:\n  - `Prompt queued for helm.`\n  - Helm card changed to `ACTIVE`\n  - Helm live transcript included a dashboard-sent prompt\n- `runtime/admin-terminals/helm/status.json` showed:\n  - `lastInputSource = \"Asolaria Dashboard\"`\n  - `inboxLinesProcessed = 2`\n\n## Remaining Symptoms\n\n- The dashboard can still temporarily show `No admin terminals registered yet.` until a refresh.\n- The UI has frequent background polling and still produces noisy console errors.\n- Some routes remain unstable or degraded:\n  - gateway authority status\n  - gateway audit status\n- The server can still become slow under load, though it is better than before.\n- The user suspects profile permissions, but current evidence suggests that may not be the primary root cause.\n\n## Known Relevant Files\n\n- `C:\\Users\\acer\\Asolaria\\server.js`\n- `C:\\Users\\acer\\Asolaria\\src\\connectors\\screenshotConnector.js`\n- `C:\\Users\\acer\\Asolaria\\public\\app.js`\n- `C:\\Users\\acer\\Asolaria\\public\\index.html`\n- `C:\\Users\\acer\\codex-bridge\\profiles\\admin-helm-v1.profile.json`\n- `C:\\Users\\acer\\codex-bridge\\profiles\\admin-sentinel-v1.profile.json`\n- `C:\\Users\\acer\\codex-bridge\\profiles\\admin-terminal-identities.json`\n- `C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\helm\\status.json`\n- `C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\sentinel\\status.json`\n\n## Constraints For This Research\n\n- Read-only analysis only.\n- Do not propose destructive resets.\n- Do not assume profile permissions are the cause unless the evidence strongly supports that.\n- Distinguish clearly between:\n  - profile identity/ability metadata\n  - loopback/API authorization gates\n  - PowerShell script bugs\n  - browser automation limits\n  - server/runtime load problems\n  - frontend refresh/rendering issues\n\n## Requested Output Format\n\nReturn these sections:\n\n1. `Executive summary`\n2. `Ranked root causes`\n3. `Why profile permissions are or are not central`\n4. `Read-only validation plan`\n5. `Minimal ranked fix plan`\n6. `Risks and unknowns`\n7. `Confidence`\n\n## Extra Instruction For Deep Modes\n\nIf your surface supports a deeper reasoning mode such as Deep Research or Deep Think, use it.\nIf not, answer in standard mode, but keep the analysis read-only.",
+                    "transport":  "auto",
+                    "model":  "",
+                    "timeoutMs":  600000,
+                    "maxTokens":  1800,
+                    "temperature":  0.1,
+                    "fallbackOnAnyError":  true,
+                    "mcp":  {
+
+                            },
+                    "mcpContextKey":  ""
+                },
+    "createdAt":  "2026-03-12T11:11:39.766Z",
+    "updatedAt":  "2026-03-12T11:11:58.467Z",
+    "startedAt":  "2026-03-12T11:11:40.708Z",
+    "finishedAt":  "2026-03-12T11:11:58.467Z",
+    "elapsedMs":  17759,
+    "result":  {
+                   "provider":  "antigravity",
+                   "transport":  "pass",
+                   "model":  null,
+                   "passed":  true,
+                   "unavailable":  true,
+                   "unavailableReason":  "provider_unavailable_runtime",
+                   "reply":  "antigravity unavailable. Passed without execution (antigravity API 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.).",
+                   "raw":  {
+                               "passed":  true,
+                               "unavailable":  true,
+                               "reason":  "provider_unavailable_runtime",
+                               "detail":  "antigravity API 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+                           },
+                   "failover":  {
+                                    "requestedProvider":  "cursor",
+                                    "selectedProvider":  "antigravity",
+                                    "fallbackProviders":  [
+                                                              "antigravity",
+                                                              "gemini",
+                                                              "anthropic"
+                                                          ],
+                                    "fallbackOnAnyError":  true,
+                                    "attempts":  [
+                                                     {
+                                                         "provider":  "cursor",
+                                                         "reason":  "rate_limit_or_quota",
+                                                         "fallbackEligible":  true,
+                                                         "error":  "Cursor execution failed via cursor-agent (Installed Cursor CLI does not expose terminal agent flags. Install/upgrade the Cursor Agent CLI and run `cursor-agent login`.) and API (cursor API 429: You exceeded your current quota, please check your plan and billing details. For more information on this "
+                                                     }
+                                                 ]
+                                }
+               },
+    "error":  null
+}

@@ -1,0 +1,38 @@
+﻿{
+    "timestamp":  "2026-02-26T17:09:36.1927258-03:00",
+    "requested":  {
+                      "analyze":  false,
+                      "channel":  "#general",
+                      "limit":  20
+                  },
+    "jobId":  "job_1772136576119_lvas7u",
+    "jobStatus":  "failed",
+    "jobError":  "Slack integration is not configured.",
+    "jobResult":  null,
+    "slackStatus":  {
+                        "enabled":  true,
+                        "configured":  false,
+                        "tokenSource":  "none",
+                        "tokenHint":  "",
+                        "defaultChannel":  "",
+                        "updatedAt":  null,
+                        "policy":  {
+                                       "allowPrivateChannels":  true,
+                                       "allowDirectMessages":  false,
+                                       "allowedChannels":  [
+
+                                                           ],
+                                       "maxMessages":  80,
+                                       "maxDigestChars":  28000,
+                                       "backendOnly":  true,
+                                       "noLinkNavigation":  true,
+                                       "linkRedaction":  true
+                                   },
+                        "connection":  {
+                                           "ok":  false,
+                                           "error":  "not_configured"
+                                       },
+                        "workspace":  null,
+                        "botUser":  null
+                    }
+}

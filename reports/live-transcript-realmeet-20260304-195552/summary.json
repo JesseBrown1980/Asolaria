@@ -1,0 +1,59 @@
+﻿{
+    "outputDir":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260304-195552",
+    "ok":  true,
+    "generatedAt":  "2026-03-04T22:55:53.0238096+00:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "auth":  {
+                 "required":  false,
+                 "requiredBySetting":  false,
+                 "tokenConfigured":  false,
+                 "configured":  false,
+                 "source":  "disabled",
+                 "mode":  "open",
+                 "acceptedTokenChannels":  [
+                                               "authorization_bearer",
+                                               "x-asolaria-bridge-token",
+                                               "x-asolaria-token",
+                                               "x-asolaria-mobile-token",
+                                               "query.token",
+                                               "query.bridgeToken",
+                                               "body.token",
+                                               "body.bridgeToken"
+                                           ]
+             },
+    "rows":  [
+                 {
+                     "platform":  "Zoom",
+                     "sessionId":  "matrix_20260304_195545_cd7834",
+                     "laneId":  "zoom_lane",
+                     "collected":  true,
+                     "reason":  "",
+                     "pullEntries":  2,
+                     "bridgeChars":  187,
+                     "allChars":  187,
+                     "liveChars":  50
+                 },
+                 {
+                     "platform":  "Google Meet",
+                     "sessionId":  "matrix_20260304_195545_cd7834",
+                     "laneId":  "meet_lane",
+                     "collected":  true,
+                     "reason":  "",
+                     "pullEntries":  2,
+                     "bridgeChars":  177,
+                     "allChars":  177,
+                     "liveChars":  50
+                 },
+                 {
+                     "platform":  "Microsoft Teams",
+                     "sessionId":  "matrix_20260304_195545_cd7834",
+                     "laneId":  "teams_lane",
+                     "collected":  true,
+                     "reason":  "",
+                     "pullEntries":  2,
+                     "bridgeChars":  179,
+                     "allChars":  179,
+                     "liveChars":  50
+                 }
+             ]
+}

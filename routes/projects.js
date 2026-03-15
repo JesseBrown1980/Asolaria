@@ -4,6 +4,7 @@
 const express = require("express");
 const router = express.Router();
 const { asBool, asInt, respondError } = require("../lib/helpers");
+const { requirePermission } = require("../middleware/auth");
 const {
   listProjects, getProjectById, createProject, updateProject, deleteProject,
   buildProjectScopes, getProjectSummary, PROJECT_GROUPS
@@ -25,7 +26,7 @@ function createProjectsRouter() {
     return res.json({ ok: true, project });
   });
 
-  router.post("/", (req, res) => {
+  router.post("/", requirePermission("write"), (req, res) => {
     try {
       const created = createProject({ id: req.body?.id, label: req.body?.label ?? req.body?.name, marker: req.body?.marker, group: req.body?.group, folders: req.body?.folders });
       const scopes = buildProjectScopes(listProjects({ includeArchived: false, limit: 500 }));
@@ -33,7 +34,7 @@ function createProjectsRouter() {
     } catch (error) { return respondError(res, error, 400); }
   });
 
-  router.put("/:id", (req, res) => {
+  router.put("/:id", requirePermission("write"), (req, res) => {
     try {
       const body = req.body || {};
       const patch = {};
@@ -50,7 +51,7 @@ function createProjectsRouter() {
     }
   });
 
-  router.delete("/:id", (req, res) => {
+  router.delete("/:id", requirePermission("write"), (req, res) => {
     try {
       const hard = asBool(req.query?.hard ?? req.body?.hard, false);
       const removed = deleteProject(req.params.id, { hard });

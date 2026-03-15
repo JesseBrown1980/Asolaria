@@ -1,0 +1,74 @@
+﻿{
+    "ok":  true,
+    "sessionId":  "matrix_20260304_195545_cd7834",
+    "entriesCount":  6,
+    "auth":  {
+                 "required":  false,
+                 "requiredBySetting":  false,
+                 "tokenConfigured":  false,
+                 "configured":  false,
+                 "source":  "disabled",
+                 "mode":  "open",
+                 "acceptedTokenChannels":  [
+                                               "authorization_bearer",
+                                               "x-asolaria-bridge-token",
+                                               "x-asolaria-token",
+                                               "x-asolaria-mobile-token",
+                                               "query.token",
+                                               "query.bridgeToken",
+                                               "body.token",
+                                               "body.bridgeToken"
+                                           ]
+             },
+    "defaultOutgoingEnabled":  true,
+    "lanes":  [
+                  {
+                      "laneId":  "teams_lane",
+                      "source":  "teams_caption",
+                      "count":  2,
+                      "incomingCount":  2,
+                      "outgoingCount":  0,
+                      "systemCount":  0,
+                      "lastId":  6,
+                      "lastAt":  "2026-03-04T22:55:47.390Z",
+                      "lastText":  "Teams candidate: We verify bridge, live, and merged transcript views.",
+                      "lastDirection":  "incoming",
+                      "target":  "transcript",
+                      "outgoingEnabled":  true,
+                      "lastAnalysis":  "",
+                      "lastAnalysisAt":  ""
+                  },
+                  {
+                      "laneId":  "meet_lane",
+                      "source":  "google_meet_caption",
+                      "count":  2,
+                      "incomingCount":  2,
+                      "outgoingCount":  0,
+                      "systemCount":  0,
+                      "lastId":  4,
+                      "lastAt":  "2026-03-04T22:55:46.861Z",
+                      "lastText":  "Meet candidate: We dedupe lines and keep source-aware snapshots.",
+                      "lastDirection":  "incoming",
+                      "target":  "transcript",
+                      "outgoingEnabled":  true,
+                      "lastAnalysis":  "",
+                      "lastAnalysisAt":  ""
+                  },
+                  {
+                      "laneId":  "zoom_lane",
+                      "source":  "zoom_caption",
+                      "count":  2,
+                      "incomingCount":  2,
+                      "outgoingCount":  0,
+                      "systemCount":  0,
+                      "lastId":  2,
+                      "lastAt":  "2026-03-04T22:55:46.297Z",
+                      "lastText":  "Zoom candidate: We split capture and transcript composition by lane.",
+                      "lastDirection":  "incoming",
+                      "target":  "transcript",
+                      "outgoingEnabled":  true,
+                      "lastAnalysis":  "",
+                      "lastAnalysisAt":  ""
+                  }
+              ]
+}

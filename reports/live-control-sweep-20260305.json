@@ -1,0 +1,1578 @@
+{
+  "startedAt": "2026-03-05T22:33:33.170Z",
+  "urls": [
+    "http://127.0.0.1:4781",
+    "http://127.0.0.1:4781/phone-mode.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef",
+    "http://127.0.0.1:4781/mobile-console.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef&viewer=phone-codex"
+  ],
+  "pages": [
+    {
+      "url": "http://127.0.0.1:4781",
+      "controlCount": 38,
+      "tested": 35,
+      "skipped": 3,
+      "failures": [],
+      "apiErrors": [
+        {
+          "control": "button:Push-to-Talk",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/health",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Push-to-Talk",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/gateway/audit/events?limit=15",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Share Audio",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/gateway/authority/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Share Audio",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/health",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Share Audio",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/state?taskLimit=60&eventLimit=24&taskStatus=all&taskPriority=all&includeArchived=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Share Audio",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/gateway/audit/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Share Audio",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/voice/devices",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Share Audio",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/tasks?limit=12&includeArchived=false&status=all",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Reset Checklist",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/voice/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Reset Checklist",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/gateway/audit/events?limit=15",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Self-Test Bridge",
+          "status": 404,
+          "url": "http://127.0.0.1:4781/api/voice/latest?v=1772750052573"
+        },
+        {
+          "control": "button:Bridge Setup Wizard",
+          "status": 404,
+          "url": "http://127.0.0.1:4781/api/voice/latest?v=1772750053710"
+        }
+      ],
+      "consoleErrors": [
+        {
+          "control": "button:Self-Test Bridge",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "control": "button:Bridge Setup Wizard",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "jsErrors": []
+    },
+    {
+      "url": "http://127.0.0.1:4781/phone-mode.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef",
+      "controlCount": 12,
+      "tested": 8,
+      "skipped": 3,
+      "failures": [
+        {
+          "control": "summary:History (1)",
+          "reason": "locator_not_found"
+        }
+      ],
+      "apiErrors": [
+        {
+          "control": "(none)",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Voice Talk out loud",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Text Type messages",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Video Open mirror",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Advanced Control view",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Super Advanced Admin tools",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "summary:History (1)",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Send",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Push-to-Talk",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Start tab audio",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Stop Captions",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Clear",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        },
+        {
+          "control": "button:Copy",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/phone/mirror/capture?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+        }
+      ],
+      "consoleErrors": [
+        {
+          "control": "(none)",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Voice Talk out loud",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Text Type messages",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Video Open mirror",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Advanced Control view",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Super Advanced Admin tools",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "summary:History (1)",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Send",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Push-to-Talk",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Start tab audio",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Stop Captions",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Clear",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Copy",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        }
+      ],
+      "jsErrors": []
+    },
+    {
+      "url": "http://127.0.0.1:4781/mobile-console.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef&viewer=phone-codex",
+      "controlCount": 105,
+      "tested": 95,
+      "skipped": 0,
+      "failures": [
+        {
+          "control": "button:On",
+          "reason": "locator_not_found"
+        },
+        {
+          "control": "button:Off",
+          "reason": "locator_not_found"
+        },
+        {
+          "control": "button:Read",
+          "reason": "locator_not_found"
+        },
+        {
+          "control": "button:Unpin",
+          "reason": "locator_not_found"
+        },
+        {
+          "control": "button:Delete",
+          "reason": "locator_not_found"
+        },
+        {
+          "control": "button:Start",
+          "reason": "locator_not_found"
+        },
+        {
+          "control": "button:Review",
+          "reason": "locator_not_found"
+        },
+        {
+          "control": "button:Block",
+          "reason": "locator_not_found"
+        },
+        {
+          "control": "button:Archive",
+          "reason": "locator_not_found"
+        },
+        {
+          "control": "button:Note",
+          "reason": "locator_not_found"
+        }
+      ],
+      "apiErrors": [
+        {
+          "control": "button:Save Token",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Save Token",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Refresh",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Refresh",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Refresh",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Approval Center",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/phone/developer-options/catalog?includeRisky=0&onlyDefaultSweep=1",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/state?taskLimit=24&eventLimit=10&taskStatus=all&taskPriority=all&includeArchived=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/memory?limit=24&clean=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/push/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/notebook/notes?limit=24",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/power/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/approvals?status=pending&limit=8",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/settings",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Install (Menu)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/policy/work-orgs",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Save Strategy",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Enable Push Alerts",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disable Push",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Test Push",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Home Wi-Fi",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Internet Tunnel",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Public Fallback",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:USB First",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Save URL",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Mark VPN Active",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Stealth OFF",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Stealth OFF",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Capture Now",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Capture Now",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Capture Now",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Live Refresh On",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Displays",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:All Screens Off",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:All Screens Off",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:All Screens Off",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:All Screens Off",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/state?taskLimit=24&eventLimit=10&taskStatus=all&taskPriority=all&includeArchived=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Open Full Screen",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Open Full Screen",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Set",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Arm 2m",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/phone/developer-options/catalog?includeRisky=0&onlyDefaultSweep=1",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/settings",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/notebook/notes?limit=24",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/memory?limit=24&clean=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/policy/work-orgs",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/state?taskLimit=24&eventLimit=10&taskStatus=all&taskPriority=all&includeArchived=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/push/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/power/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Disarm",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/approvals?status=pending&limit=8",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Tap-to-Click Off",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Control Diagnostics",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Scroll Up",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/diagnostics",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Scroll Up",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Scroll Up",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Scroll Up",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/scroll"
+        },
+        {
+          "control": "button:Scroll Down",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Scroll Down",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/scroll"
+        },
+        {
+          "control": "button:Enter",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Enter",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Esc",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Esc",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Backspace",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Backspace",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Backspace",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Backspace",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Page Up",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Page Up",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Page Down",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Page Down",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Ctrl+C",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Ctrl+C",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Ctrl+C",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Ctrl+V",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Ctrl+V",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Ctrl+A",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/notebook/notes?limit=24",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Ctrl+A",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Ctrl+A",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/memory?limit=24&clean=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Ctrl+A",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Ctrl+A",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Ctrl+A",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/state?taskLimit=24&eventLimit=10&taskStatus=all&taskPriority=all&includeArchived=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Ctrl+A",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Prev Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Prev Tab",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/settings",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/notebook/notes?limit=24",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/approvals?status=pending&limit=8",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/memory?limit=24&clean=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/phone/developer-options/catalog?includeRisky=0&onlyDefaultSweep=1",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/power/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/policy/work-orgs",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/push/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/state?taskLimit=24&eventLimit=10&taskStatus=all&taskPriority=all&includeArchived=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Next Tab",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Close Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Close Tab",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Send Text",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Focus",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Alt+Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Alt+Tab",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Alt+Tab",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/control/key"
+        },
+        {
+          "control": "button:Minimize",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Maximize",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Restore",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Close",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Close",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Shutdown",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Shutdown",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/power/shutdown"
+        },
+        {
+          "control": "button:Restart",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Restart",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/power/restart"
+        },
+        {
+          "control": "button:Abort",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Abort",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Abort",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Abort",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/power/abort"
+        },
+        {
+          "control": "button:Wake",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Refresh List",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Refresh Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Open Setup (Desktop)",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/settings",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/policy/work-orgs",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/memory?limit=24&clean=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/push/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/approvals?status=pending&limit=8",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/power/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/chrome/open",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/state?taskLimit=24&eventLimit=10&taskStatus=all&taskPriority=all&includeArchived=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/notebook/notes?limit=24",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/phone/developer-options/catalog?includeRisky=0&onlyDefaultSweep=1",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Channels",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Review",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Auth Start",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Open on Desktop",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Inbox",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Search",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Upcoming",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Calendars",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Calendars",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:API GET",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:API GET",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/state?taskLimit=24&eventLimit=10&taskStatus=all&taskPriority=all&includeArchived=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:API GET",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:API GET",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:API GET",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/notebook/notes?limit=24",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Enabled APIs",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Enabled APIs",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Enable",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Open Termux",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Open F-Droid",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Run",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Run",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Run",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Start sshd",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Start sshd",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Help Recover",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Catalog",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Catalog",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Catalog",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Read Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Read Status",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Read Status",
+          "status": 400,
+          "url": "http://127.0.0.1:4781/api/mobile/phone/developer-options/status?includeRisky=0&onlyDefaultSweep=1&timeoutMs=20000"
+        },
+        {
+          "control": "button:Sweep",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:On",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Off",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Read",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Insert",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Run Command",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Run Command",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Run Command",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Repeat Last",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/notebook/notes?limit=24",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Repeat Last",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Repeat Last",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Repeat Last",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/task-ledger/state?taskLimit=24&eventLimit=10&taskStatus=all&taskPriority=all&includeArchived=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Repeat Last",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Repeat Last",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/memory?limit=24&clean=true",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Clear History",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Save Preset",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Save Preset",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Save Preset",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Remove Preset",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Send",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Send",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Clear",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Clear",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Attach Screen On",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Search",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/windows?limit=14",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Search",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/capture",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Add Note",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Clear",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/control/status",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Unpin",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Delete",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Add Task",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Start",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Block",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Archive",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "control": "button:Note",
+          "status": "failed",
+          "url": "http://127.0.0.1:4781/api/mobile/screen/displays",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "consoleErrors": [
+        {
+          "control": "button:Scroll Up",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Scroll Down",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Enter",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Esc",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Backspace",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Page Up",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Page Down",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Ctrl+C",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Ctrl+V",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Ctrl+A",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Prev Tab",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Next Tab",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Close Tab",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Alt+Tab",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Shutdown",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Restart",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Abort",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        },
+        {
+          "control": "button:Read Status",
+          "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+        }
+      ],
+      "jsErrors": []
+    }
+  ],
+  "finishedAt": "2026-03-05T22:36:49.523Z"
+}

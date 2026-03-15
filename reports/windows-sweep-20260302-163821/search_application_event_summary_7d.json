@@ -1,0 +1,198 @@
+﻿{
+    "collectedAt":  "2026-03-02T16:42:26.1021162-03:00",
+    "totalLast7d":  38,
+    "byIdLevel":  [
+                      {
+                          "id":  10024,
+                          "level":  "Aviso",
+                          "count":  34
+                      },
+                      {
+                          "id":  1003,
+                          "level":  "Informações",
+                          "count":  4
+                      }
+                  ],
+    "latestWarnings":  [
+                           {
+                               "TimeCreated":  "\/Date(1772223702445)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 18632 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772215226623)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 18708 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772145854026)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 16560 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772145194704)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 10372 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772145129328)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 12584 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772145126560)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 15660 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772145030294)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 9908 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772145027454)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 13052 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772144699546)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 25380 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772144698200)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 15460 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772144215616)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 15064 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772139668464)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 12336 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772138719986)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 5768 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772138682532)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 19828 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772138604587)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 1508 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772138601379)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 14256 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772138594692)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 9712 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772138309942)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 16492 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772138293734)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 8204 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1772138293648)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 25804 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771946764455)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 12048 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771946720829)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 18396 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771946705988)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 2664 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771942088172)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 17736 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771942087448)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 14496 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771889464725)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 24196 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771889446705)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 13496 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771885034884)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 22552 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771885014317)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 22428 não respondeu e está sendo automaticamente finalizado. \n"
+                           },
+                           {
+                               "TimeCreated":  "\/Date(1771884919242)\/",
+                               "Id":  10024,
+                               "LevelDisplayName":  "Aviso",
+                               "Message":  "O processo de host do filtro 1392 não respondeu e está sendo automaticamente finalizado. \n"
+                           }
+                       ]
+}

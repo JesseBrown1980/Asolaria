@@ -1,0 +1,26 @@
+﻿[
+    {
+        "account":  "jesse@jbrowndevelopmentllc.com",
+        "ok":  true,
+        "authUrl":  "https://accounts.google.com/o/oauth2/v2/auth?client_id=742368506950-i0a9e90pkv9784rvu9snmshblcdh7kaa.apps.googleusercontent.com\u0026redirect_uri=http%3A%2F%2F127.0.0.1%3A4781%2Fapi%2Fintegrations%2Fgoogle%2Foauth%2Fcallback\u0026response_type=code\u0026scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform\u0026access_type=offline\u0026include_granted_scopes=true\u0026prompt=consent\u0026state=9b2905c0678c2b3552015ad03df1bb2602cf\u0026login_hint=jesse%40jbrowndevelopmentllc.com",
+        "state":  "9b2905c0678c2b3552015ad03df1bb2602cf",
+        "note":  "Open oauth.authUrl on the same PC running Asolaria to complete the loopback callback.",
+        "error":  ""
+    },
+    {
+        "account":  "plasmatoid@jbrowndevelopmentllc.com",
+        "ok":  true,
+        "authUrl":  "https://accounts.google.com/o/oauth2/v2/auth?client_id=742368506950-i0a9e90pkv9784rvu9snmshblcdh7kaa.apps.googleusercontent.com\u0026redirect_uri=http%3A%2F%2F127.0.0.1%3A4781%2Fapi%2Fintegrations%2Fgoogle%2Foauth%2Fcallback\u0026response_type=code\u0026scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform\u0026access_type=offline\u0026include_granted_scopes=true\u0026prompt=consent\u0026state=a68bd7b3d10dbe0e3087f9844792d7c943c2\u0026login_hint=plasmatoid%40jbrowndevelopmentllc.com",
+        "state":  "a68bd7b3d10dbe0e3087f9844792d7c943c2",
+        "note":  "Open oauth.authUrl on the same PC running Asolaria to complete the loopback callback.",
+        "error":  ""
+    },
+    {
+        "account":  "jessebrown.soft1980@gmail.com",
+        "ok":  true,
+        "authUrl":  "https://accounts.google.com/o/oauth2/v2/auth?client_id=742368506950-i0a9e90pkv9784rvu9snmshblcdh7kaa.apps.googleusercontent.com\u0026redirect_uri=http%3A%2F%2F127.0.0.1%3A4781%2Fapi%2Fintegrations%2Fgoogle%2Foauth%2Fcallback\u0026response_type=code\u0026scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform\u0026access_type=offline\u0026include_granted_scopes=true\u0026prompt=consent\u0026state=fd672aaf05efee1d9b26b877a727666ee154\u0026login_hint=jessebrown.soft1980%40gmail.com",
+        "state":  "fd672aaf05efee1d9b26b877a727666ee154",
+        "note":  "Open oauth.authUrl on the same PC running Asolaria to complete the loopback callback.",
+        "error":  ""
+    }
+]

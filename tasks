@@ -1,0 +1,4 @@
+﻿[2026-03-01 19:34:28] start maxHours=3 minKick=15m maxKick=20m port=4781 room=asolaria_bridge thread=asolaria-upgrade-20260301
+[2026-03-01 19:35:11] start maxHours=3 minKick=15m maxKick=20m port=4781 room=asolaria_bridge thread=asolaria-upgrade-20260301
+[2026-03-01 19:35:12] tick=1 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=send_failed:A propriedade 'id' não foi encontrada neste objeto. Verifique se a propriedade existe. chat=sent:mode=queued
+[2026-03-01 19:35:12] sleep_seconds=1029

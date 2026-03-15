@@ -1,0 +1,11 @@
+Attach these files:
+C:\Users\acer\Asolaria\reports\john-cumbers-openai-board-cover-letter-20260309.pdf
+C:\Users\acer\Asolaria\reports\asolaria-openai-board-memo-20260309.pdf
+C:\Users\acer\Asolaria\reports\asolaria-openai-board-system-card-20260309.pdf
+C:\Users\acer\Asolaria\reports\asolaria-openai-board-system-card-cited-20260309.pdf
+C:\Users\acer\Asolaria\reports\asolaria-openai-board-deck-20260309.pdf
+C:\Users\acer\Asolaria\reports\john-cumbers-openai-board-cover-letter-20260309.md
+C:\Users\acer\Asolaria\reports\asolaria-openai-board-memo-20260309.md
+C:\Users\acer\Asolaria\reports\asolaria-openai-board-system-card-20260309.md
+C:\Users\acer\Asolaria\reports\asolaria-openai-board-system-card-cited-20260309.md
+C:\Users\acer\Asolaria\reports\asolaria-openai-board-deck-20260309.html

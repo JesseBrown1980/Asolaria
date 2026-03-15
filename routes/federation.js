@@ -9,7 +9,7 @@
 
 const express = require("express");
 const router = express.Router();
-
+const { requirePermission } = require("../middleware/auth");
 const remoteNodeRegistry = require("../src/remoteNodeRegistry");
 
 // publishMqttMessage is injected via factory to avoid circular dependency with server.js
@@ -39,7 +39,7 @@ function createFederationRouter({ publishMqttMessage, respondError, inferHttpSta
     }
   });
 
-  router.post("/nodes/:nodeId/control", async (req, res) => {
+  router.post("/nodes/:nodeId/control", requirePermission("admin"), async (req, res) => {
     try {
       const nodeId = String(req.params.nodeId || "").trim();
       const node = remoteNodeRegistry.getRemoteNode(nodeId);

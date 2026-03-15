@@ -1,0 +1,103 @@
+﻿{
+    "ok":  true,
+    "generatedAt":  "2026-03-09T00:15:45-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "accounts":  [
+                     {
+                         "account":  "jesse@jbrowndevelopmentllc.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  3465,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773026140759_px69wn",
+                         "enterpriseStatus":  "failed",
+                         "enterpriseErrorClass":  "iam-permission-denied",
+                         "enterpriseReason":  "Permission \u0027discoveryengine.notebooks.list\u0027 denied on resource \u0027//discoveryengine.googleapis.com/projects/winged-complex-390417/locations/global\u0027 (or it may not exist).",
+                         "enterpriseJobId":  "job_1773026141252_9axqhr",
+                         "enterpriseNotebookCount":  0,
+                         "enterpriseNotebookTitles":  [
+
+                                                      ],
+                         "finalState":  "iam-blocked",
+                         "nextAction":  "Grant NotebookLM Enterprise permission for this account in project winged-complex-390417.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     },
+                     {
+                         "account":  "jessebrown.soft1980@gmail.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  0,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773026142216_x2tqrf",
+                         "enterpriseStatus":  "failed",
+                         "enterpriseErrorClass":  "iam-permission-denied",
+                         "enterpriseReason":  "Permission \u0027discoveryengine.notebooks.list\u0027 denied on resource \u0027//discoveryengine.googleapis.com/projects/winged-complex-390417/locations/global\u0027 (or it may not exist).",
+                         "enterpriseJobId":  "job_1773026142684_moulp7",
+                         "enterpriseNotebookCount":  0,
+                         "enterpriseNotebookTitles":  [
+
+                                                      ],
+                         "finalState":  "iam-blocked",
+                         "nextAction":  "Grant NotebookLM Enterprise permission for this account in project winged-complex-390417.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     },
+                     {
+                         "account":  "plasmatoid@gmail.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  0,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773026143148_j7105v",
+                         "enterpriseStatus":  "completed",
+                         "enterpriseErrorClass":  "",
+                         "enterpriseReason":  "",
+                         "enterpriseJobId":  "job_1773026143609_91a80p",
+                         "enterpriseNotebookCount":  1,
+                         "enterpriseNotebookTitles":  [
+                                                          "Asolaria Enterprise Memory"
+                                                      ],
+                         "finalState":  "ready",
+                         "nextAction":  "No action needed.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     },
+                     {
+                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  3564,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773026144577_uf57tf",
+                         "enterpriseStatus":  "failed",
+                         "enterpriseErrorClass":  "iam-permission-denied",
+                         "enterpriseReason":  "Permission \u0027discoveryengine.notebooks.list\u0027 denied on resource \u0027//discoveryengine.googleapis.com/projects/winged-complex-390417/locations/global\u0027 (or it may not exist).",
+                         "enterpriseJobId":  "job_1773026145044_tfivle",
+                         "enterpriseNotebookCount":  0,
+                         "enterpriseNotebookTitles":  [
+
+                                                      ],
+                         "finalState":  "iam-blocked",
+                         "nextAction":  "Grant NotebookLM Enterprise permission for this account in project winged-complex-390417.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     }
+                 ],
+    "summary":  {
+                    "totalAccounts":  4,
+                    "ready":  1,
+                    "oauthBlocked":  0,
+                    "iamBlocked":  3,
+                    "infraBlocked":  0,
+                    "enterpriseDegraded":  0
+                }
+}

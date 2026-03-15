@@ -1,0 +1,148 @@
+﻿{
+    "ok":  true,
+    "sessionId":  "meet_20260303_003442_b6e20c",
+    "entriesCount":  20,
+    "sample":  [
+                   {
+                       "id":  1,
+                       "at":  "2026-03-03T03:35:38.305Z",
+                       "text":  "[bridge-active] meet_20260303_003442_b6e20c",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  2,
+                       "at":  "2026-03-03T03:35:38.308Z",
+                       "text":  "mic_nonearrow_drop_downGrupo de microfones (Realtek High Definition Audio)",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  3,
+                       "at":  "2026-03-03T03:35:38.310Z",
+                       "text":  "arrow_drop_downAlto-falantes (Realtek High Definition Audio)",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  4,
+                       "at":  "2026-03-03T03:35:38.311Z",
+                       "text":  "Test",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  5,
+                       "at":  "2026-03-03T03:35:38.312Z",
+                       "text":  "videocamarrow_drop_downHD User Facing",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  6,
+                       "at":  "2026-03-03T03:35:38.313Z",
+                       "text":  "Language of the meeting",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  7,
+                       "at":  "2026-03-03T03:35:38.313Z",
+                       "text":  "language",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  8,
+                       "at":  "2026-03-03T03:35:38.314Z",
+                       "text":  "English",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  9,
+                       "at":  "2026-03-03T03:35:38.314Z",
+                       "text":  "No captions",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  10,
+                       "at":  "2026-03-03T03:35:38.314Z",
+                       "text":  "Live captions",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  11,
+                       "at":  "2026-03-03T03:35:38.315Z",
+                       "text":  "Shows you captions for speech in the language of the meeting.",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  12,
+                       "at":  "2026-03-03T03:35:38.315Z",
+                       "text":  "CUSTOMISE YOUR CAPTIONS",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  13,
+                       "at":  "2026-03-03T03:35:38.316Z",
+                       "text":  "Choose your preferred settings to set how captions will appear during your calls",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  14,
+                       "at":  "2026-03-03T03:35:38.316Z",
+                       "text":  "Font size",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  15,
+                       "at":  "2026-03-03T03:35:38.317Z",
+                       "text":  "Default",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  16,
+                       "at":  "2026-03-03T03:35:38.317Z",
+                       "text":  "Font",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  17,
+                       "at":  "2026-03-03T03:35:38.319Z",
+                       "text":  "Reset",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  18,
+                       "at":  "2026-03-03T03:35:38.318Z",
+                       "text":  "Font colour",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  19,
+                       "at":  "2026-03-03T03:35:38.318Z",
+                       "text":  "Background colour",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   },
+                   {
+                       "id":  20,
+                       "at":  "2026-03-03T03:35:38.320Z",
+                       "text":  "Don\u0027t announce reactionsDon\u0027t announce reactionsPlay a sound for all reactionsAnnounce all reactionsAnnounce all reactions with senders",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003442_b6e20c"
+                   }
+               ],
+    "screenshot":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\meet-bridge-live-final-20260303-003626.png"
+}

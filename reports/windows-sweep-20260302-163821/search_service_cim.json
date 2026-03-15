@@ -1,0 +1,7 @@
+﻿{
+    "Name":  "WSearch",
+    "State":  "Running",
+    "StartMode":  "Auto",
+    "PathName":  "C:\\WINDOWS\\system32\\SearchIndexer.exe /Embedding",
+    "ProcessId":  15240
+}

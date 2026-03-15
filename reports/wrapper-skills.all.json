@@ -1,0 +1,187 @@
+{
+  "generatedAt": "2026-03-01T17:59:19.370Z",
+  "selectionMode": "all",
+  "riskPolicy": {
+    "version": "local-export",
+    "defaults": {
+      "risk": "low",
+      "approvalRequired": false
+    }
+  },
+  "summary": {
+    "wrappers": 33,
+    "riskBreakdown": {
+      "low": 28,
+      "medium": 4,
+      "high": 1,
+      "critical": 0
+    }
+  },
+  "wrappers": [
+    {
+      "sourceSkill": "gh-fix-ci",
+      "risk": "high",
+      "approvalRequired": true
+    },
+    {
+      "sourceSkill": "gh-address-comments",
+      "risk": "medium",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "playwright",
+      "risk": "medium",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "speech",
+      "risk": "medium",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "spreadsheet",
+      "risk": "medium",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "cloudflare-deploy",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "develop-web-game",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "doc",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "figma",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "figma-implement-design",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "google-code-wiki",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "imagegen",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "jupyter-notebook",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "linear",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "netlify-deploy",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "notion-knowledge-capture",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "notion-meeting-intelligence",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "notion-research-documentation",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "notion-spec-to-implementation",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "openai-docs",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "pdf",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "render-deploy",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "screenshot",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "security-best-practices",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "security-ownership-map",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "security-threat-model",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "sentry",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "sora",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "system.skill-creator",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "system.skill-installer",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "transcribe",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "vercel-deploy",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "yeet",
+      "risk": "low",
+      "approvalRequired": false
+    }
+  ]
+}

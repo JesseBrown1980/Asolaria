@@ -1,0 +1,18 @@
+﻿[
+    {
+        "name":  "java.exe",
+        "count":  2,
+        "paths":  [
+                      "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+                      "C:\\Java\\jdk1.8.0_392\\bin\\java.exe"
+                  ]
+    },
+    {
+        "name":  "javac.exe",
+        "count":  2,
+        "paths":  [
+                      "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\javac.exe",
+                      "C:\\Java\\jdk1.8.0_392\\bin\\javac.exe"
+                  ]
+    }
+]

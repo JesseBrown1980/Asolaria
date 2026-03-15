@@ -1,0 +1,104 @@
+{
+  "ok": true,
+  "notebookTitle": "Asolaria Enterprise Memory",
+  "notebookName": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d",
+  "notebookCreated": false,
+  "account": "plasmatoid@gmail.com",
+  "project": "winged-complex-390417",
+  "location": "global",
+  "totalSourcesDefined": 10,
+  "changedSourceCount": 3,
+  "changedSources": [
+    "Asolaria Runtime Snapshot",
+    "Symphony Workflow",
+    "Asolaria Active Tasks Snapshot"
+  ],
+  "createdCount": 3,
+  "batchJobId": "job_1772997183550_l3ho6c",
+  "statePath": "C:\\Users\\acer\\Asolaria\\data\\notebooklm-core-sync-state.json",
+  "renderedSources": [
+    {
+      "sourceName": "Asolaria Runtime Snapshot",
+      "type": "text",
+      "origin": "live runtime",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\runtime-snapshot.md"
+    },
+    {
+      "sourceName": "Asolaria System Card",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\reports\\asolaria-system-card-20260303.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\system-card.md"
+    },
+    {
+      "sourceName": "Asolaria Startup Contract",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\STARTUP_CONTRACT_V1.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\startup-contract.md"
+    },
+    {
+      "sourceName": "Asolaria Startup Gap Report",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\STARTUP_ARCHITECTURE_GAP_REPORT.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\startup-gap-report.md"
+    },
+    {
+      "sourceName": "Augment Context Sidecar",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\AUGMENT_CONTEXT_SIDECAR.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\augment-context-sidecar.md"
+    },
+    {
+      "sourceName": "Symphony Integration",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\SYMPHONY_INTEGRATION.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\symphony-integration.md"
+    },
+    {
+      "sourceName": "Symphony Workflow",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\config\\symphony\\WORKFLOW.asolaria.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\symphony-workflow.md"
+    },
+    {
+      "sourceName": "Asolaria Active Tasks Snapshot",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\TASKS.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\active-tasks.md"
+    },
+    {
+      "sourceName": "Vertex AI Live API Official Docs",
+      "type": "web",
+      "origin": "https://cloud.google.com/vertex-ai/generative-ai/docs/live-api",
+      "renderedPath": ""
+    },
+    {
+      "sourceName": "NotebookLM Enterprise Reference",
+      "type": "text",
+      "origin": "official docs summary",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\notebooklm-enterprise-reference.md"
+    }
+  ],
+  "batchSources": [
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/4a2c020d-851e-45db-b573-6034a3b14ed2",
+      "sourceId": "[object Object]",
+      "title": "Asolaria Runtime Snapshot",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/28ade05e-195b-4e16-baca-1932f09439b0",
+      "sourceId": "[object Object]",
+      "title": "Symphony Workflow",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/5179548e-eb27-466f-a87e-38febfe2fcd5",
+      "sourceId": "[object Object]",
+      "title": "Asolaria Active Tasks Snapshot",
+      "state": "",
+      "failureReasons": []
+    }
+  ]
+}

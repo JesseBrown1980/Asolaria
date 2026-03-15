@@ -1,0 +1,23 @@
+{
+  "terminalId": "Sentinel",
+  "terminalKey": "sentinel",
+  "state": "running",
+  "sidecarPid": 17516,
+  "childPid": 29112,
+  "startedAt": "2026-03-14T21:47:19.553212-03:00",
+  "updatedAt": "2026-03-14T21:47:30.879866-03:00",
+  "workdir": "C:\\Users\\acer",
+  "commandPath": "C:\\nvm4w\\nodejs\\claude.CMD",
+  "commandArgs": [
+    "--dangerously-skip-permissions"
+  ],
+  "transcriptPath": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\sentinel\\transcript.log",
+  "inboxPath": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\sentinel\\inbox.ndjson",
+  "inboxLinesProcessed": 0,
+  "lastInputAt": "",
+  "lastInputSource": "",
+  "lastOutputAt": "2026-03-14T21:47:30.879866-03:00",
+  "lastOutputStream": "out",
+  "lastOutputText": "\u001b[?2026l",
+  "lastExitCode": 0
+}

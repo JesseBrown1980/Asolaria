@@ -7,13 +7,14 @@ const {
   listPersonas, setActivePersona, upsertPersona, clearActivePersona,
   removePersona, getPersonaStoreSummary
 } = require("../src/personaStore");
+const { requirePermission } = require("../middleware/auth");
 
 function createPersonasRouter({ respondError }) {
   router.get("/", (_req, res) => {
     res.json({ ok: true, ...listPersonas(), store: getPersonaStoreSummary() });
   });
 
-  router.post("/activate", (req, res) => {
+  router.post("/activate", requirePermission("write"), (req, res) => {
     try {
       const id = String(req.body?.id || "").trim();
       if (!id) return respondError(res, "Persona id is required.", 400);
@@ -22,7 +23,7 @@ function createPersonasRouter({ respondError }) {
     } catch (error) { return respondError(res, error, 400); }
   });
 
-  router.post("/upsert", (req, res) => {
+  router.post("/upsert", requirePermission("write"), (req, res) => {
     try {
       const id = String(req.body?.id || req.body?.name || "").trim();
       const instructions = String(req.body?.instructions || req.body?.prompt || "").trim();
@@ -35,12 +36,12 @@ function createPersonasRouter({ respondError }) {
     } catch (error) { return respondError(res, error, 400); }
   });
 
-  router.post("/clear", (_req, res) => {
+  router.post("/clear", requirePermission("write"), (_req, res) => {
     clearActivePersona();
     return res.json({ ok: true, active: null, store: getPersonaStoreSummary() });
   });
 
-  router.delete("/:id", (req, res) => {
+  router.delete("/:id", requirePermission("write"), (req, res) => {
     try {
       const id = String(req.params?.id || "").trim();
       if (!id) return respondError(res, "Persona id is required.", 400);

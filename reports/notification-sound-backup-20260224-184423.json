@@ -1,0 +1,47 @@
+﻿[
+    {
+        "event":  "Notification.Default",
+        "path":  "HKCU:\\AppEvents\\Schemes\\Apps\\.Default\\Notification.Default\\.Current",
+        "previous":  "C:\\Windows\\media\\Windows Notify System Generic.wav"
+    },
+    {
+        "event":  "SystemNotification",
+        "path":  "HKCU:\\AppEvents\\Schemes\\Apps\\.Default\\SystemNotification\\.Current",
+        "previous":  "C:\\Windows\\media\\Windows Background.wav"
+    },
+    {
+        "event":  "MessageNudge",
+        "path":  "HKCU:\\AppEvents\\Schemes\\Apps\\.Default\\MessageNudge\\.Current",
+        "previous":  "C:\\Windows\\media\\Windows Message Nudge.wav"
+    },
+    {
+        "event":  "Notification.IM",
+        "path":  "HKCU:\\AppEvents\\Schemes\\Apps\\.Default\\Notification.IM\\.Current",
+        "previous":  "C:\\Windows\\media\\Windows Notify Messaging.wav"
+    },
+    {
+        "event":  "Notification.Mail",
+        "path":  "HKCU:\\AppEvents\\Schemes\\Apps\\.Default\\Notification.Mail\\.Current",
+        "previous":  "C:\\Windows\\media\\Windows Notify Email.wav"
+    },
+    {
+        "event":  "Notification.Reminder",
+        "path":  "HKCU:\\AppEvents\\Schemes\\Apps\\.Default\\Notification.Reminder\\.Current",
+        "previous":  "C:\\Windows\\media\\Windows Notify Calendar.wav"
+    },
+    {
+        "event":  "Notification.SMS",
+        "path":  "HKCU:\\AppEvents\\Schemes\\Apps\\.Default\\Notification.SMS\\.Current",
+        "previous":  "C:\\Windows\\media\\Windows Notify Messaging.wav"
+    },
+    {
+        "event":  "Notification.Proximity",
+        "path":  "HKCU:\\AppEvents\\Schemes\\Apps\\.Default\\Notification.Proximity\\.Current",
+        "previous":  "C:\\Windows\\media\\Windows Proximity Notification.wav"
+    },
+    {
+        "event":  "PrintComplete",
+        "path":  "HKCU:\\AppEvents\\Schemes\\Apps\\.Default\\PrintComplete\\.Current",
+        "previous":  ""
+    }
+]

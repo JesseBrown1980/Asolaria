@@ -1,0 +1,8 @@
+﻿{
+    "ok":  true,
+    "baseDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment10-20260302-181116",
+    "disabledTask":  "Asolaria Core Boot Startup",
+    "keepTask":  "Asolaria One Button Startup",
+    "keepState":  "Ready",
+    "disabledState":  "Disabled"
+}

@@ -1,0 +1,5338 @@
+﻿[
+    {
+        "taskName":  "\\Asolaria Core Boot Startup",
+        "state":  3,
+        "author":  null,
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "powershell.exe",
+        "arguments":  "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-Asolaria.ps1\" -Port 4781 -RequireInternet -NetworkBootstrapMaxWaitSeconds 180",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  55,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "uses PowerShell encoded/bypass flags",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Asolaria One Button Startup",
+        "state":  3,
+        "author":  null,
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "powershell.exe",
+        "arguments":  "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-Asolaria-OneButton.ps1\" -Port 4781 -StartupMode -SkipAutoStartupInstall -NetworkBootstrapMaxWaitSeconds 180",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  55,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "uses PowerShell encoded/bypass flags",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Asolaria Wake Display 1000 BRT",
+        "state":  3,
+        "author":  null,
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "powershell.exe",
+        "arguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\"",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  45,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "uses PowerShell encoded/bypass flags",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Asolaria NotebookLM Build Loop",
+        "state":  3,
+        "author":  "DESKTOP-J99VCNH\\acer",
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "powershell.exe",
+        "arguments":  "-NoProfile -ExecutionPolicy Bypass -File C:\\Users\\acer\\Asolaria\\tools\\Run-NotebookBuildLoop-Scheduled.ps1",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  45,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "uses PowerShell encoded/bypass flags",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\MicrosoftEdgeUpdateTaskUserS-1-5-21-1469047906-1918517011-520466592-1001Core{DC9900C6-A76E-4471-8152-7D531EE07298}",
+        "state":  3,
+        "author":  null,
+        "userId":  "acer",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe",
+        "arguments":  "/c",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  40,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "executes from user-writable location",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Workplace Join\\Recovery-Check",
+        "state":  1,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%SystemRoot%\\System32\\dsregcmd.exe",
+        "arguments":  "/checkrecovery",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "launches via cmd /c",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\GoogleSystem\\GoogleUpdater\\GoogleUpdaterTaskSystem147.0.7703.0{A89943F5-21A8-48A7-A845-CAA5B81BEE73}",
+        "state":  3,
+        "author":  "NT AUTHORITY\\SYSTEM",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "\"C:\\Program Files (x86)\\Google\\GoogleUpdater\\147.0.7703.0\\updater.exe\"",
+        "arguments":  "--wake --system",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Device Setup\\Driver Recovery on Reboot",
+        "state":  1,
+        "author":  "$(@%SystemRoot%\\system32\\DeviceSetupManagerAPI.dll,-600)",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\MemoryDiagnostic\\AutomaticOfflineMemoryDiagnostic",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WindowsUpdate\\RUXIM\\PLUGScheduler",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "\"%ProgramFiles%\\RUXIM\\PLUGscheduler.exe\"",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskRegistrationTrigger",
+                             "MSFT_TaskTimeTrigger",
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DirectX\\DirectXDatabaseUpdater",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\directxdatabaseupdater.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Plug and Play\\Device Install Reboot Required",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticResolver",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\DFDWiz.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DirectX\\DXGIAdapterCache",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\dxgiadaptercache.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Management\\Provisioning\\MdmDiagnosticsCleanup",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\MdmDiagnosticsTool.exe",
+        "arguments":  "/clean",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  35,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Asolaria-WakeDisplay-2026-02-24-0900",
+        "state":  3,
+        "author":  null,
+        "userId":  "acer",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "powershell.exe",
+        "arguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\" -OpenUrl \"\"",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  30,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "uses PowerShell encoded/bypass flags"
+                        ]
+    },
+    {
+        "taskName":  "\\ZoomUpdateTaskUser-S-1-5-21-1469047906-1918517011-520466592-1001",
+        "state":  3,
+        "author":  "Zoom Communications, Inc.",
+        "userId":  "acer",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "\"C:\\Users\\acer\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe\"",
+        "arguments":  "--action=UpdateSchedule",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  30,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "executes from user-writable location"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\MusUx_LogonUpdateResults",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\MusNotification.exe",
+        "arguments":  "LogonUpdateResults",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  30,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon",
+                            "target path missing"
+                        ]
+    },
+    {
+        "taskName":  "\\Asolaria-OpenAI-Quota-Reminder-20260304",
+        "state":  3,
+        "author":  null,
+        "userId":  "acer",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "powershell.exe",
+        "arguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Reminder-OpenAI-Quota-20260304.ps1\"",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  30,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "uses PowerShell encoded/bypass flags"
+                        ]
+    },
+    {
+        "taskName":  "\\MicrosoftEdgeUpdateTaskUserS-1-5-21-1469047906-1918517011-520466592-1001UA{3DECB737-4B38-441A-B8B3-C0DC9736FE9B}",
+        "state":  3,
+        "author":  null,
+        "userId":  "acer",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe",
+        "arguments":  "/ua /installsource scheduler",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  30,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "executes from user-writable location"
+                        ]
+    },
+    {
+        "taskName":  "\\Asolaria NotebookLM Upgrade Loop",
+        "state":  1,
+        "author":  "DESKTOP-J99VCNH\\acer",
+        "userId":  "acer",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "powershell.exe",
+        "arguments":  "-NoProfile -ExecutionPolicy Bypass -File \" C:\\Users\\acer\\Asolaria\\tools\\Start-NotebookLM-Upgrade-Loop.ps1\\",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  30,
+        "riskLevel":  "medium",
+        "riskReasons":  [
+                            "uses PowerShell encoded/bypass flags"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Diagnosis\\RecommendedTroubleshootingScanner",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Hotpatch\\Monitoring",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\cmd.exe",
+        "arguments":  "/d /c %systemroot%\\system32\\hpatchmonTask.cmd",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger",
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WDI\\ResolutionHost",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Diagnosis\\Scheduled",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Data Integrity Scan\\Data Integrity Check And Scan",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger",
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\iTop JunSale Task (One-Time)",
+        "state":  3,
+        "author":  "acer",
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "\"C:\\Program Files (x86)\\iTop VPN\\Pub\\iTopJunSale2025.exe\"",
+        "arguments":  "/rpop",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Diagnosis\\UnexpectedCodepath",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\UCConfigTask.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Plug and Play\\Device Install Group Policy",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\SpacePort\\SpaceAgentTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\SpaceAgent.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\SpacePort\\SpaceManagerTask",
+        "state":  3,
+        "author":  "$(@%SystemRoot%\\system32\\spaceman.exe,-2)",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\spaceman.exe",
+        "arguments":  "/Work",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\RemoteAssistance\\RemoteAssistanceTask",
+        "state":  3,
+        "author":  "Microsoft",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\RAServer.exe",
+        "arguments":  "/offerraupdate",
+        "triggerKinds":  [
+                             "MSFT_TaskEventTrigger",
+                             "MSFT_TaskRegistrationTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Setup\\PITRTask",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Clip\\ClipESU",
+        "state":  3,
+        "author":  "$(@%SystemRoot%\\system32\\clipesu.exe,-100)",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%SystemRoot%\\system32\\clipesu.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\PushToInstall\\LoginCheck",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\sc.exe",
+        "arguments":  "start pushtoinstall login",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Data Integrity Scan\\Data Integrity Scan for Crash Recovery",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Subscription\\LicenseAcquisition",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%SystemRoot%\\system32\\ClipRenew.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger",
+                             "MSFT_TaskRegistrationTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\RecoveryEnvironment\\VerifyWinRE",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Subscription\\EnableLicenseAcquisition",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%SystemRoot%\\system32\\ClipRenew.exe",
+        "arguments":  "-e",
+        "triggerKinds":  [
+                             "MSFT_TaskEventTrigger",
+                             "MSFT_TaskEventTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Windows Error Reporting\\QueueReporting",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\wermgr.exe",
+        "arguments":  "-upload",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Workplace Join\\Automatic-Device-Join",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%SystemRoot%\\System32\\dsregcmd.exe",
+        "arguments":  "$(Arg0) $(Arg1) $(Arg2)",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Management\\Provisioning\\Cellular",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\ProvTool.exe",
+        "arguments":  "/turn 7 /source CellStateChangeTask",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\License Manager\\TempSignedLicenseExchange",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\iTop Screen Recorder Update",
+        "state":  3,
+        "author":  "acer",
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "\"C:\\Program Files\\iTop Screen Recorder\\AutoUpdate.exe\"",
+        "arguments":  "/auto",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\MemoryDiagnostic\\ProcessMemoryDiagnosticEvents",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskEventTrigger",
+                             "MSFT_TaskEventTrigger",
+                             "MSFT_TaskEventTrigger",
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\iTop Screen Recorder Startup",
+        "state":  4,
+        "author":  "acer",
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "\"C:\\Program Files\\iTop Screen Recorder\\iScrRec.exe\"",
+        "arguments":  "/autorun",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\MemoryDiagnostic\\RunFullMemoryDiagnostic",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Office\\Office Automatic Updates 2.0",
+        "state":  3,
+        "author":  "Microsoft Office",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeC2RClient.exe",
+        "arguments":  "/frequentupdate SCHEDULEDTASK displaylevel=False",
+        "triggerKinds":  [
+                             "MSFT_TaskWeeklyTrigger",
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskIdleTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\InstallService\\SmartRetry",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger",
+                             "MSFT_TaskTimeTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\HelloFace\\FODCleanupTask",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  true,
+        "execute":  "%WinDir%\\System32\\WinBioPlugIns\\FaceFodUninstaller.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskRegistrationTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Management\\Provisioning\\Retry",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\ProvTool.exe",
+        "arguments":  "/turn 5 /source ProvRetryTask",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\MicrosoftEdgeUpdateTaskMachineCore",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe",
+        "arguments":  "/c",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Management\\Provisioning\\Logon",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\ProvTool.exe",
+        "arguments":  "/turn 5 /source LogonIdleTask",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Management\\Provisioning\\RunOnReboot",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\ProvTool.exe",
+        "arguments":  "/turn 5 /source ContinueSessionTask",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Management\\Autopilot\\RemediateHardwareChange",
+        "state":  1,
+        "author":  "$(@%SystemRoot%\\system32\\Autopilot.dll,-600)",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\iTopEN VD2026 Task (One-Time)",
+        "state":  3,
+        "author":  "acer",
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "\"C:\\Program Files\\iTop Screen Recorder\\Pub\\itopenvd26.exe\"",
+        "arguments":  "/rpop",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  25,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTaskLogon",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\AppxDeploymentClient\\Pre-staged app cleanup",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "%windir%\\system32\\AppxDeploymentClient.dll,AppxPreStageCleanupRunTask",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Clip\\License Validation",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "%SystemRoot%\\system32\\ClipUp.exe",
+        "arguments":  "-p -s -o",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\Reboot_Battery",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\MusNotification.exe",
+        "arguments":  "/RunOnBattery ReadyToReboot",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "target path missing"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\MusNotification.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "target path missing"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\AppxDeploymentClient\\UCPD velocity",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\UCPDMgr.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\Reboot_AC",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\MusNotification.exe",
+        "arguments":  "/RunOnAC ReadyToReboot",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "target path missing"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\TextServicesFramework\\MsCtfMonitor",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Location\\Notifications",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\System32\\LocationNotificationWindows.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "target path missing"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterUserDevice",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task",
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Mobile Broadband Accounts\\MNO Metadata Parser",
+        "state":  3,
+        "author":  "$(@%SystemRoot%\\system32\\MbaeParserTask.exe,-1902)",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%SystemRoot%\\System32\\MbaeParserTask.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  20,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "target path missing"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\PerformanceTrace\\RequestTrace",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DiskFootprint\\StorageSense",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DiskCleanup\\SilentCleanup",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\cleanmgr.exe",
+        "arguments":  "/autocleanstoragesense /d %systemdrive%",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Defrag\\ScheduledDefrag",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\defrag.exe",
+        "arguments":  "-c -h -o -$",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Data Integrity Scan\\Data Integrity Scan",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Setup\\SetupRecoveryDataTask",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\PCRPF\\PCR Prediction Framework Firmware Update Task",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "%windir%\\system32\\pcrpf.dll,NotifyFirmwareUpdateStaged",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DiskFootprint\\Diagnostics",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\disksnapshot.exe",
+        "arguments":  "-z",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Servicing\\StartComponentCleanup",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Feedback\\Siuf\\DmClient",
+        "state":  3,
+        "author":  "Microsoft Windows Feedback",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\dmclient.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Feedback\\Siuf\\DmClientOnScenarioDownload",
+        "state":  3,
+        "author":  "Microsoft Windows Feedback",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\dmclient.exe",
+        "arguments":  "utcwnf",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Printing\\PrinterCleanupTask",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Printing\\PrintJobCleanupTask",
+        "state":  1,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\PushToInstall\\Registration",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\sc.exe",
+        "arguments":  "start pushtoinstall registration",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\input\\syncpensettings",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Management\\Autopilot\\DetectHardwareChange",
+        "state":  1,
+        "author":  "$(@%SystemRoot%\\system32\\Autopilot.dll,-600)",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\MUI\\LPRemove",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\lpremove.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\ReFsDedupSvc\\Initialization",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Scheduled Scan",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe",
+        "arguments":  "Scan -ScheduleJob -ScanTrigger 55 -IdleScheduledJob",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Cleanup",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe",
+        "arguments":  "-IdleTask -TaskName WdCleanup",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Verification",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe",
+        "arguments":  "-IdleTask -TaskName WdVerification",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\input\\TouchpadSyncDataAvailable",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Maintenance\\WinSAT",
+        "state":  3,
+        "author":  "Microsoft",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UsageAndQualityInsights\\UsageAndQualityInsights-MaintenanceTask",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\Windows\\System32\\Microsoft.Data.UsageAndQualityInsights.MaintenanceTask.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Time Zone\\SynchronizeTimeZone",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\tzsync.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\input\\RemotePenSyncDataAvailable",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Cache Maintenance",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe",
+        "arguments":  "-IdleTask -TaskName WdCacheMaintenance",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\input\\RemoteTouchpadSyncDataAvailable",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Office\\Office Performance Monitor",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft Office\\root\\VFS\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\operfmon.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\OneDrive Per-Machine Standalone Update Task",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft OneDrive\\OneDriveStandaloneUpdater.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WlanSvc\\MoProfileManagement",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WwanSvc\\OobeDiscovery",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\iTop Screen Recorder SkipUAC (acer)",
+        "state":  3,
+        "author":  "acer",
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "\"C:\\Program Files\\iTop Screen Recorder\\iScrRec.exe\"",
+        "arguments":  "/skipuac",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\MicrosoftEdgeUpdateTaskMachineUA",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe",
+        "arguments":  "/ua /installsource scheduler",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\LanguageComponentsInstaller\\Uninstallation",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Office\\Office ClickToRun Service Monitor",
+        "state":  3,
+        "author":  "Microsoft Office",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeC2RClient.exe",
+        "arguments":  "/WatchService",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WlanSvc\\CDSSync",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\update-S-1-5-21-1469047906-1918517011-520466592-1001",
+        "state":  3,
+        "author":  "DESKTOP-J99VCNH\\acer",
+        "userId":  "acer",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\Program Files (x86)\\Skillbrains\\Updater\\Updater.exe",
+        "arguments":  "-runmode=checkupdate",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\update-sys",
+        "state":  3,
+        "author":  "DESKTOP-J99VCNH\\acer",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "C:\\Program Files (x86)\\Skillbrains\\Updater\\Updater.exe",
+        "arguments":  "-runmode=checkupdate",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Time Synchronization\\SynchronizeTime",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO LOCAL",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\sc.exe",
+        "arguments":  "start w32time task_started",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\SMB\\UninstallSMB1ClientTask",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "arguments":  "-ExecutionPolicy Unrestricted -NonInteractive -NoProfile -WindowStyle Hidden \"\u0026 %windir%\\system32\\WindowsPowerShell\\v1.0\\Modules\\SmbShare\\DisableUnusedSmb1.ps1 -Scenario Client\"",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Shell\\ThemeAssetTask_SyncFODState",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskIdleTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\SMB\\UninstallSMB1ServerTask",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "arguments":  "-ExecutionPolicy Unrestricted -NonInteractive -NoProfile -WindowStyle Hidden \"\u0026 %windir%\\system32\\WindowsPowerShell\\v1.0\\Modules\\SmbShare\\DisableUnusedSmb1.ps1 -Scenario Server\"",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\input\\PenSyncDataAvailable",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\input\\MouseSyncDataAvailable",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\input\\LocalUserSyncDataAvailable",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\SharedPC\\Account Cleanup",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\ConsentUX\\UnifiedConsent\\UnifiedConsentSyncTask",
+        "state":  3,
+        "author":  "$(@%systemRoot%\\system32\\unifiedconsent.dll,-102)",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Shell\\FamilySafetyRefreshTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Shell\\FamilySafetyMonitor",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\System32\\wpcmon.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Storage Tiers Management\\Storage Tiers Management Initialization",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Sysmain\\ResPriStaticDbSync",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Sysmain\\HybridDriveCacheRebalance",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Sysmain\\WsSwapAssessmentTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "sysmain.dll,PfSvWsSwapAssessmentTask",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Time Synchronization\\ForceSynchronizeTime",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO LOCAL",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\input\\RemoteMouseSyncDataAvailable",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Sustainability\\PowerGridForecastTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\BrokerInfrastructure\\BgTaskRegistrationMaintenanceTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Storage Tiers Management\\Storage Tiers Optimization",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\defrag.exe",
+        "arguments":  "-c -h -g -# -m 8 -i 13500",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Sustainability\\SustainabilityTelemetry",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Sysmain\\HybridDriveCachePrepopulate",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  1,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  15,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "runs with highest privileges"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\LanguageComponentsInstaller\\Installation",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\LanguageComponentsInstaller\\ReconcileLanguageResources",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WindowsAI\\Recall\\InitialConfiguration",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger",
+                             "MSFT_TaskRegistrationTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WindowsAI\\Settings\\InitialConfiguration",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskRegistrationTrigger",
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Windows Filtering Platform\\BfeOnServiceStartTypeChange",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "bfe.dll,BfeOnServiceStartTypeChange",
+        "triggerKinds":  [
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\USB\\Usb-Notifications",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WCM\\WiFiTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "%SystemRoot%\\System32\\WiFiTask.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Work Folders\\Work Folders Maintenance Work",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WwanSvc\\NotificationTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "%SystemRoot%\\System32\\WiFiTask.exe",
+        "arguments":  "wwan",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Work Folders\\Work Folders Logon Synchronization",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WindowsColorSystem\\Calibration Loader",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Wininet\\CacheTask",
+        "state":  4,
+        "author":  "Microsoft",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\NlaSvc\\WiFiTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "%SystemRoot%\\System32\\WiFiTask.exe",
+        "arguments":  "nla",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\PI\\Secure-Boot-Update",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Network Connectivity Status Indicator\\NcsiIdentifyUserProxies",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Maps\\MapsToastTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Multimedia\\SystemSoundsService",
+        "state":  4,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTaskNetwork",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO DE REDE",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Task Manager\\Interactive",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO DE REDE",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Registry\\RegIdleBackup",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Shell\\CreateObjectTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\International\\Synchronize Language Settings",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Active Directory Rights Management Services Client\\AD RMS Rights Policy Template Management (Manual)",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Active Directory Rights Management Services Client\\AD RMS Rights Policy Template Management (Automated)",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger",
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceProtectionStateChanged",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceLocationRightsChange",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDevicePeriodic24",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDevicePolicyChange",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319 64 Critical",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskIdleTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticDataCollector",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "dfdts.dll,DfdGetDefaultPolicyAndSMART",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319 64",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceSettingChange",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319 Critical",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskIdleTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceWnsFallback",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\LocateCommandUserSession",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\AppID\\VerifiedPublisherCertStoreCheck",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO LOCAL",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\appidcertstorecheck.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\CertificateServicesClient\\SystemTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskRegistrationTrigger",
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Chkdsk\\SyspartRepair",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "%windir%\\system32\\bcdboot.exe",
+        "arguments":  "%windir% /sysrepair",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\CloudExperienceHost\\CreateObjectTask",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\CertificateServicesClient\\UserTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskRegistrationTrigger",
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\HandleCommand",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\HandleWnsCommand",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\IntegrityCheck",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Device Information\\Device User",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\devicecensus.exe",
+        "arguments":  "UserCxt",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Device Setup\\Metadata Refresh",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\CertificateServicesClient\\KeyPreGenTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Autochk\\Proxy",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "/d acproxy.dll,PerformAutochkOperations",
+        "triggerKinds":  [
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Office\\Office Background Push Maintenance",
+        "state":  3,
+        "author":  "Microsoft Office",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft Office\\root\\vfs\\ProgramFilesCommonx64\\Microsoft Shared\\Office16\\opushutil.exe",
+        "arguments":  "/pushregistration",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger",
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Office\\Office Feature Updates Logon",
+        "state":  3,
+        "author":  "Microsoft Office",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft Office\\root\\Office16\\sdxhelper.exe",
+        "arguments":  "/onlogon",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Adobe Acrobat Update Task",
+        "state":  3,
+        "author":  "Adobe Systems Incorporated",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\AdobeARM.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\OneDrive Startup Task-S-1-5-21-1469047906-1918517011-520466592-1001",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "acer",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft OneDrive\\26.017.0126.0002\\OneDriveLauncher.exe",
+        "arguments":  "/startInstances",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\OneDrive Startup Task-S-1-5-21-1469047906-1918517011-520466592-1002",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "WsiAccount",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft OneDrive\\26.017.0126.0002\\OneDriveLauncher.exe",
+        "arguments":  "/startInstances",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Office\\Office Actions Server",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft Office\\root\\VFS\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\ActionsServer\\ActionsServer.exe",
+        "arguments":  "availabilitycheck",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\OneDrive Startup Task-S-1-5-21-1469047906-1918517011-520466592-1005",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "CodexSandboxOffline",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft OneDrive\\26.017.0126.0002\\OneDriveLauncher.exe",
+        "arguments":  "/startInstances",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\EnterpriseMgmt\\MDMMaintenenceTask",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\MDMAgent.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\ExploitGuard\\ExploitGuard MDM policy Refresh",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskBootTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\VisualStudio\\Updates\\BackgroundDownload",
+        "state":  3,
+        "author":  "Microsoft Visual Studio",
+        "userId":  "acer",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\resources\\app\\ServiceHub\\Services\\Microsoft.VisualStudio.Setup.Service\\BackgroundDownload.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskIdleTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceAccountChange",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Okta Verify Activation Task",
+        "state":  4,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "\"C:\\Program Files\\Okta\\Okta Verify\\OktaVerify.exe\"",
+        "arguments":  "--background",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Office\\Office Startup Maintenance",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft Office\\root\\VFS\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\ActionsServer\\ActionsServer.exe",
+        "arguments":  "wacheck",
+        "triggerKinds":  [
+                             "MSFT_TaskLogonTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "auto-trigger at boot/logon"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  true,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  10,
+        "riskLevel":  "low",
+        "riskReasons":  [
+                            "hidden task"
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\StartOobeAppsScanAfterUpdate",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\usoclient.exe",
+        "arguments":  "StartOobeAppsScanAfterUpdate",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Work",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\usoclient.exe",
+        "arguments":  "StartWork",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\TPM\\Tpm-HASCertRetr",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Application Experience\\StartupAppTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "Startupscan.dll,SusRunTask",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\Start Oobe Expedite Work",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\usoclient.exe",
+        "arguments":  "StartWork",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Application Experience\\PcaPatchDbTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "%windir%\\system32\\PcaSvc.dll,PcaPatchSdbTask",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Application Experience\\SdbinstMergeDbTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\sdbinst.exe",
+        "arguments":  "-mm",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Application Experience\\MareBackup",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\compattelrunner.exe",
+        "arguments":  "-m:aemarebackup.dll -f:BackupMareData",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\usoclient.exe",
+        "arguments":  "StartScan",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Maintenance Work",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\usoclient.exe",
+        "arguments":  "StartMaintenanceWork",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\Report policies",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\usoclient.exe",
+        "arguments":  "ReportPolicies",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Application Experience\\MareBackup",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\compattelrunner.exe",
+        "arguments":  "-m:appraiser.dll -f:DoScheduledTelemetryRun",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\TPM\\Tpm-PreAttestationHealthCheck",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\TPM\\Tpm-Maintenance",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Wake To Work",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\usoclient.exe",
+        "arguments":  "StartWork",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser Exp",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\compattelrunner.exe",
+        "arguments":  "-m:appraiser.dll -f:DoScheduledTelemetryRun express",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan Static Task",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\usoclient.exe",
+        "arguments":  "StartScan",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start",
+        "state":  3,
+        "author":  "Microsoft Corporation.",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\System32\\sc.exe",
+        "arguments":  "start wuauserv",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Office\\Office Feature Updates",
+        "state":  3,
+        "author":  "Microsoft Office",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft Office\\root\\Office16\\sdxhelper.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger",
+                             "MSFT_TaskDailyTrigger",
+                             "MSFT_TaskDailyTrigger",
+                             "MSFT_TaskDailyTrigger",
+                             "MSFT_TaskDailyTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WindowsUpdate\\Refresh Group Policy Cache",
+        "state":  3,
+        "author":  "Microsoft Corporation.",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Windows Media Sharing\\UpdateLibrary",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "\"%ProgramFiles%\\Windows Media Player\\wmpnscfg.exe\"",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WindowsAI\\Recall\\PolicyConfiguration",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WOF\\WIM-Hash-Management",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\OneDrive Reporting Task-S-1-5-21-1469047906-1918517011-520466592-1002",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "WsiAccount",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft OneDrive\\OneDriveStandaloneUpdater.exe",
+        "arguments":  "/reporting",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\OneDrive Reporting Task-S-1-5-21-1469047906-1918517011-520466592-1001",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "acer",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft OneDrive\\OneDriveStandaloneUpdater.exe",
+        "arguments":  "/reporting",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Workplace Join\\Device-Sync",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WOF\\WIM-Hash-Validation",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\OneDrive Reporting Task-S-1-5-21-1469047906-1918517011-520466592-1005",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "CodexSandboxOffline",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "C:\\Program Files\\Microsoft OneDrive\\OneDriveStandaloneUpdater.exe",
+        "arguments":  "/reporting",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\UUS Failover Task",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\System32\\MLEngineStub.exe",
+        "arguments":  "HandleUusFailoverEvaluationSignalFromWnf",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UPnP\\UPnPHostConfig",
+        "state":  3,
+        "author":  "Microsoft",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "sc.exe",
+        "arguments":  "config upnphost start= auto",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Application Experience\\MareBackup",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\compattelrunner.exe",
+        "arguments":  "-m:aeinv.dll -f:UpdateSoftwareInventoryW invsvc",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\StartOobeAppsScan_LicenseAccepted",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\usoclient.exe",
+        "arguments":  "StartOobeAppsScan",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\UIEOrchestrator",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%systemroot%\\system32\\UIEOrchestratorStub.exe",
+        "arguments":  "/SendHeartbeat",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\AppID\\PolicyConverter",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\appidpolicyconverter.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\AppID\\EDP Policy Manager",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO LOCAL",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\AccountHealth\\RecoverabilityToastTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskSessionStateChangeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\XblGameSave\\XblGameSaveTask",
+        "state":  3,
+        "author":  "Microsoft",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\System32\\XblGameSaveTask.exe",
+        "arguments":  "standby",
+        "triggerKinds":  [
+                             "MSFT_TaskIdleTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\User Profile Service\\HiveUploadTask",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\WaaSMedic\\PerformRemediation",
+        "state":  3,
+        "author":  "$(@%systemroot%\\system32\\WaasMedicSvcImpl.dll,-102)",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\ApplicationData\\appuriverifierdaily",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\AppHostRegistrationVerifier.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\FileHistory\\File History (maintenance mode)",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO LOCAL",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\EDP\\StorageCardEncryption Task",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\EDP\\EDP Inaccessible Credentials Task",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\GovernedFeatureUsageProcessing",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Maps\\MapsUpdateTask",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO DE REDE",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\BootstrapUsageDataReporting",
+        "state":  1,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\EDP\\EDP Auth Task",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\PI\\Sqm-Tasks",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Plug and Play\\Sysprep Generalize Drivers",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%SystemRoot%\\System32\\drvinst.exe",
+        "arguments":  "6",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Pluton\\Pluton-Ksp-Provisioning",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\EDP\\EDP App Launch Task",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\DUSM\\dusmtask",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%SystemRoot%\\System32\\dusmtask.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\PerformanceTrace\\WhesvcToast",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\ReconcileConfigs",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\InstallService\\ScanForUpdatesAsUser",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\InstallService\\ScanForUpdates",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\InstallService\\RestoreDevice",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Kernel\\La57Cleanup",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\la57setup.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\InstallService\\WakeUpAndScanForUpdates",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\InstallService\\WakeUpAndContinueUpdates",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Location\\WindowsActionDialog",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\System32\\WindowsActionDialog.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\UsageDataReceiver",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\UsageDataFlushing",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\ReconcileFeatures",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\input\\InputSettingsRestoreDataAvailable",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Flighting\\OneSettings\\RefreshCache",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger",
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\UsageDataReporting",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Power Efficiency Diagnostics\\AnalyzeSystem",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\capabilityaccessmanager\\maintenancetasks",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "%windir%\\system32\\CapabilityAccessManager.dll,CapabilityAccessManagerDoStoreMaintenance",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Bluetooth\\UninstallDeviceTask",
+        "state":  3,
+        "author":  "Microsoft",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "BthUdTask.exe",
+        "arguments":  "$(Arg0)",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\BitLocker\\BitLocker MDM policy Refresh",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Speech\\SpeechModelDownloadTask",
+        "state":  3,
+        "author":  null,
+        "userId":  "SERVIÇO DE REDE",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\speech_onecore\\common\\SpeechModelDownload.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\StateRepository\\MaintenanceTasks",
+        "state":  3,
+        "author":  "$(@%SystemRoot%\\system32\\Windows.StateRepositoryClient.dll,-600)",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "%windir%\\system32\\Windows.StateRepositoryClient.dll,StateRepositoryDoMaintenanceTasks",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\CertificateServicesClient\\AikCertEnrollTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\BitLocker\\BitLocker Encrypt All Drives",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\ApplicationData\\CleanupTemporaryState",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\rundll32.exe",
+        "arguments":  "Windows.Storage.ApplicationData.dll,CleanupTemporaryState",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\SystemRestore\\SR",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\srtasks.exe",
+        "arguments":  "ExecuteScheduledSPPCreation",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\ApplicationData\\appuriverifierinstall",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\AppHostRegistrationVerifier.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\AppListBackup\\BackupNonMaintenance",
+        "state":  3,
+        "author":  "$(@%SystemRoot%\\system32\\AppListBackupLauncher.dll,-600)",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\AppListBackup\\Backup",
+        "state":  3,
+        "author":  "$(@%SystemRoot%\\system32\\AppListBackupLauncher.dll,-600)",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\ApplicationData\\DsSvcCleanup",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\dstokenclean.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\CertificateServicesClient\\CryptoPolicyTask",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Device Information\\Device",
+        "state":  3,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\devicecensus.exe",
+        "arguments":  "SystemCxt",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger",
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%SystemRoot%\\System32\\wsqmcons.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTimeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\CloudRestore\\Restore",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Printing\\EduPrintProv",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\eduprintprov.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Ras\\MobilityManager",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO LOCAL",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskEventTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Servicing\\OOBEFodSetup",
+        "state":  1,
+        "author":  null,
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "%windir%\\system32\\OOBEFodSetup.exe",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\CloudRestore\\Backup",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger",
+                             "MSFT_TaskDailyTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Shell\\UpdateUserPictureTaskContained",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Chkdsk\\ProactiveScan",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SISTEMA",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\CertificateServicesClient\\UserTask-Roam",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskSessionStateChangeTrigger",
+                             "MSFT_TaskSessionStateChangeTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Shell\\IndexerAutomaticMaintenance",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  "SERVIÇO LOCAL",
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Shell\\ThemesSyncedImageDownload",
+        "state":  3,
+        "author":  "Microsoft Corporation",
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             null
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    },
+    {
+        "taskName":  "\\Microsoft\\Windows\\Shell\\UpdateUserPictureTask",
+        "state":  3,
+        "author":  null,
+        "userId":  null,
+        "runLevel":  0,
+        "hidden":  false,
+        "execute":  "",
+        "arguments":  "",
+        "triggerKinds":  [
+                             "MSFT_TaskTrigger"
+                         ],
+        "riskScore":  0,
+        "riskLevel":  "low",
+        "riskReasons":  [
+
+                        ]
+    }
+]

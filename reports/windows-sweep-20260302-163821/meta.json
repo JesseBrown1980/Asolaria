@@ -1,0 +1,12 @@
+﻿{
+    "collectedAt":  "2026-03-02T16:38:21.8271289-03:00",
+    "host":  "DESKTOP-J99VCNH",
+    "user":  "acer",
+    "os":  {
+               "Caption":  "Microsoft Windows 11 Home Single Language",
+               "Version":  "10.0.26200",
+               "BuildNumber":  "26200",
+               "LastBootUpTime":  "\/Date(1772403098500)\/"
+           },
+    "powershell":  "5.1.26100.7920"
+}

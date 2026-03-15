@@ -1,0 +1,27 @@
+﻿# Naming and Workflow Integrity Report
+
+Generated at: 2026-03-08T15:50:37.7505829-03:00
+Summary: pass=4 warn=3 fail=0
+
+## Runtime
+- Health fast: True
+- Health full: True
+- Worker router: True
+- Symphony status: True (configured=True, running=True)
+- Abacus status: True
+
+## Startup Seed
+- Active startup seed: SuperAdminTerminal.ps1" -Target admin -Port 4781 -RunOnce
+- Active seed command-like: True
+- Latest memory candidate at: 2026-03-08T18:21:17.438Z
+- Latest memory candidate: Hello Brain
+- Latest memory candidate command-like: False
+
+## Checks
+- [warn] startup_seed_quality: Startup seed currently looks command-like. - seed="SuperAdminTerminal.ps1" -Target admin -Port 4781 -RunOnce"
+- [pass] memory_seed_candidate: Memory has a usable non-trivial user seed candidate. - text="Hello Brain"
+- [pass] symphony_runtime: Symphony runtime state is coherent with configuration.
+- [pass] worker_router_symphony_alignment: Worker router Symphony status is aligned.
+- [pass] phone_background_services: Phone background services are running.
+- [warn] task_ledger_actor_coverage: Task ledger tasks mostly lack actor attribution. - blankActorTasks=557/557 (100%)
+- [warn] agent_colony_presence: Agent colony lanes are mostly offline. - online=1/6

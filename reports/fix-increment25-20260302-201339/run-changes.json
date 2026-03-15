@@ -1,0 +1,32 @@
+﻿[
+    {
+        "Scope":  "HKCU",
+        "Name":  "Teams",
+        "DisabledName":  "__DISABLED_20260302-201339_Teams",
+        "Value":  "\"C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\MSTeams_8wekyb3d8bbwe\\ms-teams.exe\" msteams:system-initiated"
+    },
+    {
+        "Scope":  "HKCU",
+        "Name":  "Docker Desktop",
+        "DisabledName":  "__DISABLED_20260302-201339_Docker Desktop",
+        "Value":  "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe"
+    },
+    {
+        "Scope":  "HKCU",
+        "Name":  "com.squirrel.slack.slack",
+        "DisabledName":  "__DISABLED_20260302-201339_com.squirrel.slack.slack",
+        "Value":  "\"C:\\Users\\acer\\AppData\\Local\\slack\\slack.exe\" --process-start-args --startup"
+    },
+    {
+        "Scope":  "HKCU",
+        "Name":  "Adobe Acrobat Synchronizer",
+        "DisabledName":  "__DISABLED_20260302-201339_Adobe Acrobat Synchronizer",
+        "Value":  "\"C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\AdobeCollabSync.exe\""
+    },
+    {
+        "Scope":  "HKCU",
+        "Name":  "Microsoft.Lists",
+        "DisabledName":  "__DISABLED_20260302-201339_Microsoft.Lists",
+        "Value":  "C:\\Program Files\\Microsoft OneDrive\\26.022.0203.0006\\OneDrive.Sync.Service.exe"
+    }
+]

@@ -1,0 +1,13 @@
+﻿{
+    "ok":  true,
+    "sessionId":  "meet_20260303_002513_981745",
+    "meetWindowId":  15848,
+    "entriesCount":  0,
+    "sample":  [
+
+               ],
+    "screenshots":  {
+                        "afterJoin":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\meet-bridge-after-join-20260303-002523.png",
+                        "afterInject":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\meet-bridge-after-devtools-20260303-002523.png"
+                    }
+}

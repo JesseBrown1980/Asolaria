@@ -1,0 +1,91 @@
+{
+    "id":  "job_1773303145770_8pq5rv",
+    "type":  "openai_model_locked",
+    "status":  "completed",
+    "payload":  {
+                    "model":  "gpt-5.2",
+                    "prompt":  "You are part of a read-only engineering research sweep for Asolaria.\n\nSurface: API/CLI model lane\n\nUse standard mode unless a deeper read-only analysis mode is available automatically.\n\nImportant rules:\n- Read-only analysis only.\n- Do not modify files.\n- Do not suggest destructive resets.\n- Do not assume profile permissions are the root cause unless the evidence supports it.\n- Return the requested sections exactly as named in the packet.\n\n# Asolaria Read-Only Research Packet\n\nDate: 2026-03-12\nScope: diagnose the remaining Asolaria admin-terminal cockpit loading and prompting issues.\nMode: read-only analysis only. Do not suggest executing commands or changing state during analysis. Reason from the evidence below.\n\n## Primary Question\n\nIs this fixable?\n\nMore specifically:\n\n1. Are profile loading or profile permissions the main cause?\n2. Or are transport/runtime issues the main cause?\n3. What is the smallest ranked fix plan to stabilize the system?\n\n## Current State\n\n- The `Admin Terminal Cockpit` exists in the dashboard and can show `Helm` and `Sentinel`.\n- The sidecars are real and already running from:\n  - `C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\helm`\n  - `C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\sentinel`\n- The dashboard requirement is interactive small live terminals, similar to Codex commentary, inside the updated Super Admin dashboard.\n\n## Verified Findings\n\n### Already fixed\n\n- `src/connectors/screenshotConnector.js`\n  - Playwright import was changed from eager to lazy load.\n  - This removed a startup/runtime poison path in this environment.\n\n- `server.js`\n  - Cockpit prompt delivery was changed from `restart_with_prompt` to live inbox delivery.\n  - `Helm` now accepts dashboard prompts without replacing the running sidecar.\n  - `Helm` status now records dashboard-delivered input and updated transcript/screen state.\n\n- `server.js`\n  - Minimal-startup `/api/health` was reduced so the dashboard background polling does not wedge the whole app as easily.\n\n### Verified evidence after the fixes\n\n- `/api/health` and `/api/admin-terminals/cockpit` are now responding again.\n- Browser verification showed:\n  - `Prompt queued for helm.`\n  - Helm card changed to `ACTIVE`\n  - Helm live transcript included a dashboard-sent prompt\n- `runtime/admin-terminals/helm/status.json` showed:\n  - `lastInputSource = \"Asolaria Dashboard\"`\n  - `inboxLinesProcessed = 2`\n\n## Remaining Symptoms\n\n- The dashboard can still temporarily show `No admin terminals registered yet.` until a refresh.\n- The UI has frequent background polling and still produces noisy console errors.\n- Some routes remain unstable or degraded:\n  - gateway authority status\n  - gateway audit status\n- The server can still become slow under load, though it is better than before.\n- The user suspects profile permissions, but current evidence suggests that may not be the primary root cause.\n\n## Known Relevant Files\n\n- `C:\\Users\\acer\\Asolaria\\server.js`\n- `C:\\Users\\acer\\Asolaria\\src\\connectors\\screenshotConnector.js`\n- `C:\\Users\\acer\\Asolaria\\public\\app.js`\n- `C:\\Users\\acer\\Asolaria\\public\\index.html`\n- `C:\\Users\\acer\\codex-bridge\\profiles\\admin-helm-v1.profile.json`\n- `C:\\Users\\acer\\codex-bridge\\profiles\\admin-sentinel-v1.profile.json`\n- `C:\\Users\\acer\\codex-bridge\\profiles\\admin-terminal-identities.json`\n- `C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\helm\\status.json`\n- `C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\sentinel\\status.json`\n\n## Constraints For This Research\n\n- Read-only analysis only.\n- Do not propose destructive resets.\n- Do not assume profile permissions are the cause unless the evidence strongly supports that.\n- Distinguish clearly between:\n  - profile identity/ability metadata\n  - loopback/API authorization gates\n  - PowerShell script bugs\n  - browser automation limits\n  - server/runtime load problems\n  - frontend refresh/rendering issues\n\n## Requested Output Format\n\nReturn these sections:\n\n1. `Executive summary`\n2. `Ranked root causes`\n3. `Why profile permissions are or are not central`\n4. `Read-only validation plan`\n5. `Minimal ranked fix plan`\n6. `Risks and unknowns`\n7. `Confidence`\n\n## Extra Instruction For Deep Modes\n\nIf your surface supports a deeper reasoning mode such as Deep Research or Deep Think, use it.\nIf not, answer in standard mode, but keep the analysis read-only.",
+                    "timeoutMs":  600000,
+                    "memoryContext":  "",
+                    "modelReasoningEffort":  "high"
+                },
+    "createdAt":  "2026-03-12T08:12:25.770Z",
+    "updatedAt":  "2026-03-12T08:19:14.673Z",
+    "startedAt":  "2026-03-12T08:12:27.085Z",
+    "finishedAt":  "2026-03-12T08:19:14.673Z",
+    "elapsedMs":  407588,
+    "result":  {
+                   "provider":  "openai",
+                   "route":  "openai_model_locked",
+                   "requestedModel":  "gpt-5.2",
+                   "resolvedModel":  "gpt-5.2",
+                   "reasoningEffort":  "high",
+                   "reply":  "1. `Executive summary`\n- Yes, it’s fixable. The remaining instability is dominated by frontend polling/UX behavior and backend dependency/runtime load—not by profile permissions.\n- The “No admin terminals registered yet.” flicker is currently *expected* on startup because `public/app.js` explicitly renders an empty cockpit first, then polls (`renderAdminTerminalCockpit({ terminals: [] ... })` on load; then `setInterval(...refreshAdminTerminalCockpit..., 1500)`).\n- Prompting is already working end-to-end (dashboard → server → sidecar inbox → `status.json` update), which strongly points away from profile permission failures as the primary blocker.\n\n2. `Ranked root causes`\n1) Frontend refresh strategy (high confidence): aggressive background polling + “empty first render” UX + conditional polling (`document.hidden` / `uiExperienceMode`) makes the cockpit look unregistered transiently and amplifies error noise.  \n2) Gateway transport/dependency instability (high confidence): the dashboard polls `/api/gateway/authority/status` and `/api/gateway/audit/status`, which proxy to `callGatewayControlApi(...)`; if the gateway control service is down/unreachable, these will reliably throw 502/403 and spam console/UI.  \n3) Backend cockpit snapshot cost under scale (medium confidence): cockpit snapshot work is small now (2 terminals), but it includes `countPendingInboxMessages()` which reads and splits the entire inbox file each snapshot; combined with `ADMIN_TERMINAL_COCKPIT_TTL_MS = 1500` and UI polling every 1500ms, this can become a measurable load as inbox files grow or tabs multiply.  \n4) Profile loading edge cases (low confidence): profiles/registry are read from disk; intermittent empty lists would require transient JSON read/parse failures or concurrent writes. Nothing in the current evidence suggests this is happening.\n\n3. `Why profile permissions are or are not central`\n- Not central because the critical path that would fail under profile permission problems is already working: the cockpit can list Helm/Sentinel, queue prompts, and Helm’s `runtime/admin-terminals/helm/status.json` records `lastInputSource = \"Asolaria Dashboard\"` and increments `inboxLinesProcessed`.  \n- The cockpit list comes from `admin-terminal-identities.json` + profile JSON reads in `server.js:getAdminTerminalDefs()`. If permissions were the main issue, you’d expect *persistent* inability to enumerate terminals (not a temporary “until refresh” flicker) and/or consistent failure to locate sidecar paths.  \n- Where “permissions” *can* matter is loopback/API gating (`requireLoopbackOnly` / `isLoopbackRequest`) and filesystem reads, but the observed successful loopback responses (`/api/health`, `/api/admin-terminals/cockpit`) argue against those being the primary remaining cause.\n\n4. `Read-only validation plan`\n- Cockpit flicker classification: confirm whether “No admin terminals registered yet.” occurs only before the first successful `/api/admin-terminals/cockpit` response (startup empty render), vs. occurring after successful snapshots (server returning `terminals: []`).  \n- Polling pressure audit: in browser DevTools Network, count concurrent repeating requests (notably `/api/admin-terminals/cockpit`, `/api/health`, gateway status routes) and correlate spikes with UI slowdowns.  \n- Gateway dependency check: observe whether `/api/gateway/authority/status` and `/api/gateway/audit/status` are returning 502 (gateway service unreachable) vs 403 (loopback gate) vs valid payload; this distinguishes “downstream transport” from “auth gate.”  \n- Inbox growth risk check: inspect inbox file sizes over time (helm/sentinel `inbox.ndjson`) and correlate with cockpit latency; if they grow large, `countPendingInboxMessages()` becomes a predictable hotspot.\n\n5. `Minimal ranked fix plan`\n1) Frontend stabilization (smallest, highest leverage)\n   - Replace “empty first render” with a “Loading admin cockpit…” state; only show “No admin terminals registered yet.” after a *confirmed* cockpit snapshot returns `total=0`.\n   - Reduce cockpit polling frequency (e.g., 3–5s) and add backoff/jitter on errors; keep polling strictly “when visible and focused” rather than hard interval.\n2) Gateway panel de-noising (small)\n   - Stop polling gateway status by default; poll only when the gateway panel is expanded/visible, and apply exponential backoff when `callGatewayControlApi`-proxied routes fail.\n3) Backend cockpit snapshot efficiency (small-to-medium)\n   - Increase `ADMIN_TERMINAL_COCKPIT_TTL_MS` above the polling interval (or decouple via a background refresh) so multiple UI polls don’t force rebuilds.\n   - Avoid full-file inbox reads per snapshot; prefer a pending count written by the sidecar into `status.json`, or a bounded tail-based approximation.\n\n6. `Risks and unknowns`\n- If gateway failures are actually 403 from loopback detection (proxy/IP format issues), the fix is different than if they’re 502 from a down gateway service; the current packet says “unstable/degraded” but not the status codes.\n- The “server slow under load” could be dominated by other dashboard pollers beyond cockpit (chat catalog, memory, task ledger); cockpit fixes help but may not eliminate all load-related stalls.\n- If any process rewrites `admin-terminal-identities.json` non-atomically, intermittent empty/parse-failure snapshots could still occur (currently no direct evidence).\n\n7. `Confidence`\n- Overall: high that transport/runtime/polling issues are the main remaining cause; low that profile permissions are the main cause.\n- Specific call: ~0.8 confidence runtime/polling is primary, ~0.2 that profile/permissions are primary (mostly as a secondary/edge contributor).",
+                   "approvals":  [
+                                     {
+                                         "choice":  "n",
+                                         "reason":  "Persistent trusted prefix matched.",
+                                         "command":  "\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"cd C:\\\\Users\\\\acer\\\\Asolaria; (Get-Content public\\\\app.js | Select-Object -Skip 9750 -First 320) -join \\\"\"\u0027`n\"\u0027",
+                                         "approvalId":  "",
+                                         "approvalStatus":  "",
+                                         "at":  "2026-03-12T08:14:13.476Z"
+                                     },
+                                     {
+                                         "choice":  "n",
+                                         "reason":  "Persistent trusted prefix matched.",
+                                         "command":  "\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"cd C:\\\\Users\\\\acer\\\\Asolaria; (Get-Content public\\\\app.js | Select-Object -Skip 12040 -First 260) -join \\\"\"\u0027`n\"\u0027",
+                                         "approvalId":  "",
+                                         "approvalStatus":  "",
+                                         "at":  "2026-03-12T08:15:02.541Z"
+                                     },
+                                     {
+                                         "choice":  "n",
+                                         "reason":  "Persistent trusted prefix matched.",
+                                         "command":  "\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"cd C:\\\\Users\\\\acer\\\\Asolaria; (Get-Content public\\\\app.js | Select-Object -Skip 10040 -First 210) -join \\\"\"\u0027`n\"\u0027",
+                                         "approvalId":  "",
+                                         "approvalStatus":  "",
+                                         "at":  "2026-03-12T08:15:17.097Z"
+                                     },
+                                     {
+                                         "choice":  "n",
+                                         "reason":  "Persistent trusted prefix matched.",
+                                         "command":  "\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"cd C:\\\\Users\\\\acer\\\\Asolaria; (Get-Content server.js | Select-Object -Skip 32830 -First 220) -join \\\"\"\u0027`n\"\u0027",
+                                         "approvalId":  "",
+                                         "approvalStatus":  "",
+                                         "at":  "2026-03-12T08:18:51.298Z"
+                                     },
+                                     {
+                                         "choice":  "n",
+                                         "reason":  "Persistent trusted prefix matched.",
+                                         "command":  "\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"cd C:\\\\Users\\\\acer\\\\Asolaria; (Get-Content server.js | Select-Object -Skip 32830 -First 220) -join \\\"\"\u0027`n\"\u0027",
+                                         "approvalId":  "",
+                                         "approvalStatus":  "",
+                                         "at":  "2026-03-12T08:18:51.298Z"
+                                     },
+                                     {
+                                         "choice":  "n",
+                                         "reason":  "Persistent trusted prefix matched.",
+                                         "command":  "\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"cd C:\\\\Users\\\\acer\\\\Asolaria; (Get-Content server.js | Select-Object -Skip 32830 -First 220) -join \\\"\"\u0027`n\"\u0027",
+                                         "approvalId":  "",
+                                         "approvalStatus":  "",
+                                         "at":  "2026-03-12T08:19:14.585Z"
+                                     },
+                                     {
+                                         "choice":  null,
+                                         "reason":  "Codex approval_write error: write EPIPE",
+                                         "command":  "\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"cd C:\\\\Users\\\\acer\\\\Asolaria; (Get-Content server.js | Select-Object -Skip 32830 -First 220) -join \\\"\"\u0027`n\"\u0027",
+                                         "at":  "2026-03-12T08:19:14.585Z"
+                                     },
+                                     {
+                                         "choice":  null,
+                                         "reason":  "Codex stdin error: write EPIPE",
+                                         "command":  "\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"cd C:\\\\Users\\\\acer\\\\Asolaria; (Get-Content server.js | Select-Object -Skip 32830 -First 220) -join \\\"\"\u0027`n\"\u0027",
+                                         "at":  "2026-03-12T08:19:14.586Z"
+                                     }
+                                 ],
+                   "imagesUsed":  [
+
+                                  ]
+               },
+    "error":  null
+}

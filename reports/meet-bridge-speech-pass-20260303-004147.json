@@ -1,0 +1,15 @@
+﻿{
+    "ok":  true,
+    "sessionId":  "meet_20260303_003957_0f8ddf",
+    "entriesCount":  1,
+    "sample":  [
+                   {
+                       "id":  1,
+                       "at":  "2026-03-03T03:40:46.055Z",
+                       "text":  "[bridge-active] meet_20260303_003957_0f8ddf",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_003957_0f8ddf"
+                   }
+               ],
+    "screenshot":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\meet-bridge-speech-pass-20260303-004143.png"
+}

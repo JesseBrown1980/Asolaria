@@ -1,0 +1,22 @@
+﻿{
+  "name": "systemPaths.invoke",
+  "description": "Generic invocation wrapper for systemPaths. Replace with per-function schemas.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": { "type": "string", "minLength": 1 },
+      "args": { "type": "object" }
+    },
+    "required": ["action"],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ok": { "type": "boolean" },
+      "result": {}
+    },
+    "required": ["ok"],
+    "additionalProperties": true
+  }
+}

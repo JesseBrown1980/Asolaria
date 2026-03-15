@@ -1,0 +1,1162 @@
+﻿{
+    "generatedAt":  "2026-03-10T02:45:40.8125244-03:00",
+    "rootsScanned":  [
+                         "C:\\Users\\acer\\Videos",
+                         "C:\\Users\\acer\\OneDrive",
+                         "C:\\Users\\acer\\Downloads",
+                         "C:\\Users\\acer\\Desktop",
+                         "C:\\Users\\acer\\Documents",
+                         "C:\\Users\\acer\\Asolaria\\captures",
+                         "C:\\Users\\acer\\Asolaria\\reports",
+                         "C:\\Users\\acer\\CrossDevice"
+                     ],
+    "minFileSizeKB":  256,
+    "maxFilesPerRoot":  3000,
+    "totalMediaRows":  6647,
+    "totalMediaBytes":  97489229927,
+    "totalMediaGB":  90.794,
+    "rootStats":  [
+                      {
+                          "root":  "C:\\Users\\acer\\Videos",
+                          "filesScanned":  44,
+                          "truncatedAtLimit":  false,
+                          "totalBytes":  12584125233,
+                          "totalGB":  11.72
+                      },
+                      {
+                          "root":  "C:\\Users\\acer\\OneDrive",
+                          "filesScanned":  3000,
+                          "truncatedAtLimit":  true,
+                          "totalBytes":  66325878887,
+                          "totalGB":  61.771
+                      },
+                      {
+                          "root":  "C:\\Users\\acer\\Downloads",
+                          "filesScanned":  49,
+                          "truncatedAtLimit":  false,
+                          "totalBytes":  6630772587,
+                          "totalGB":  6.175
+                      },
+                      {
+                          "root":  "C:\\Users\\acer\\Desktop",
+                          "filesScanned":  4,
+                          "truncatedAtLimit":  false,
+                          "totalBytes":  3029008,
+                          "totalGB":  0.003
+                      },
+                      {
+                          "root":  "C:\\Users\\acer\\Documents",
+                          "filesScanned":  1,
+                          "truncatedAtLimit":  false,
+                          "totalBytes":  289940,
+                          "totalGB":  0
+                      },
+                      {
+                          "root":  "C:\\Users\\acer\\Asolaria\\captures",
+                          "filesScanned":  1017,
+                          "truncatedAtLimit":  false,
+                          "totalBytes":  1695888212,
+                          "totalGB":  1.579
+                      },
+                      {
+                          "root":  "C:\\Users\\acer\\Asolaria\\reports",
+                          "filesScanned":  1063,
+                          "truncatedAtLimit":  false,
+                          "totalBytes":  2290291548,
+                          "totalGB":  2.133
+                      },
+                      {
+                          "root":  "C:\\Users\\acer\\CrossDevice",
+                          "filesScanned":  1469,
+                          "truncatedAtLimit":  false,
+                          "totalBytes":  7958954512,
+                          "totalGB":  7.412
+                      }
+                  ],
+    "topBuckets":  [
+                       {
+                           "bucket":  "C:\\Users\\acer\\OneDrive",
+                           "fileCount":  3000,
+                           "totalBytes":  66325878887,
+                           "totalGB":  61.771
+                       },
+                       {
+                           "bucket":  "C:\\Users\\acer\\Videos",
+                           "fileCount":  44,
+                           "totalBytes":  12584125233,
+                           "totalGB":  11.72
+                       },
+                       {
+                           "bucket":  "C:\\Users\\acer\\CrossDevice",
+                           "fileCount":  1469,
+                           "totalBytes":  7958954512,
+                           "totalGB":  7.412
+                       },
+                       {
+                           "bucket":  "C:\\Users\\acer\\Downloads",
+                           "fileCount":  49,
+                           "totalBytes":  6630772587,
+                           "totalGB":  6.175
+                       },
+                       {
+                           "bucket":  "C:\\Users\\acer\\Asolaria",
+                           "fileCount":  2080,
+                           "totalBytes":  3986179760,
+                           "totalGB":  3.712
+                       },
+                       {
+                           "bucket":  "C:\\Users\\acer\\Desktop",
+                           "fileCount":  4,
+                           "totalBytes":  3029008,
+                           "totalGB":  0.003
+                       },
+                       {
+                           "bucket":  "C:\\Users\\acer\\Documents",
+                           "fileCount":  1,
+                           "totalBytes":  289940,
+                           "totalGB":  0
+                       }
+                   ],
+    "byExtension":  [
+                        {
+                            "extension":  ".mp4",
+                            "fileCount":  545,
+                            "totalBytes":  84454348320,
+                            "totalGB":  78.654
+                        },
+                        {
+                            "extension":  ".png",
+                            "fileCount":  3772,
+                            "totalBytes":  4456402102,
+                            "totalGB":  4.15
+                        },
+                        {
+                            "extension":  ".jpg",
+                            "fileCount":  1773,
+                            "totalBytes":  2547612477,
+                            "totalGB":  2.373
+                        },
+                        {
+                            "extension":  ".jpeg",
+                            "fileCount":  221,
+                            "totalBytes":  2534916046,
+                            "totalGB":  2.361
+                        },
+                        {
+                            "extension":  ".m4a",
+                            "fileCount":  84,
+                            "totalBytes":  1717086432,
+                            "totalGB":  1.599
+                        },
+                        {
+                            "extension":  ".wav",
+                            "fileCount":  50,
+                            "totalBytes":  894946882,
+                            "totalGB":  0.833
+                        },
+                        {
+                            "extension":  ".mp3",
+                            "fileCount":  109,
+                            "totalBytes":  361890339,
+                            "totalGB":  0.337
+                        },
+                        {
+                            "extension":  ".bmp",
+                            "fileCount":  44,
+                            "totalBytes":  247984020,
+                            "totalGB":  0.231
+                        },
+                        {
+                            "extension":  ".gif",
+                            "fileCount":  16,
+                            "totalBytes":  234516699,
+                            "totalGB":  0.218
+                        },
+                        {
+                            "extension":  ".heic",
+                            "fileCount":  13,
+                            "totalBytes":  19293110,
+                            "totalGB":  0.018
+                        },
+                        {
+                            "extension":  ".mkv",
+                            "fileCount":  12,
+                            "totalBytes":  15251684,
+                            "totalGB":  0.014
+                        },
+                        {
+                            "extension":  ".tiff",
+                            "fileCount":  2,
+                            "totalBytes":  2904156,
+                            "totalGB":  0.003
+                        },
+                        {
+                            "extension":  ".webp",
+                            "fileCount":  6,
+                            "totalBytes":  2077660,
+                            "totalGB":  0.002
+                        }
+                    ],
+    "duplicateGroups":  [
+                            {
+                                "signature":  "dashboard__mobile_portrait__one_finger_swipe.png|608440",
+                                "name":  "dashboard__mobile_portrait__one_finger_swipe.png",
+                                "length":  608440,
+                                "count":  11,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__mobile_portrait__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__mobile_portrait__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190317\\screenshots\\dashboard__mobile_portrait__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__mobile_portrait__one_finger_swipe.png"
+                            },
+                            {
+                                "signature":  "mobile_approvals__mobile_landscape.png|332955",
+                                "name":  "mobile_approvals__mobile_landscape.png",
+                                "length":  332955,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-171724\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-171955\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-172157\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-184919\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185249\\screenshots\\mobile_approvals__mobile_landscape.png"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_portrait__one_finger_reverse.png|553244",
+                                "name":  "dashboard__mobile_portrait__one_finger_reverse.png",
+                                "length":  553244,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__mobile_portrait__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__mobile_portrait__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190317\\screenshots\\dashboard__mobile_portrait__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__mobile_portrait__one_finger_reverse.png"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_portrait__pinch_zoom_in.png|553244",
+                                "name":  "dashboard__mobile_portrait__pinch_zoom_in.png",
+                                "length":  553244,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__mobile_portrait__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__mobile_portrait__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190317\\screenshots\\dashboard__mobile_portrait__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__mobile_portrait__pinch_zoom_in.png"
+                            },
+                            {
+                                "signature":  "gravação de chamadas 08007047099_240625_093950 register of protocal 46905374.m4a|11764354",
+                                "name":  "Gravação de chamadas 08007047099_240625_093950 register of Protocal 46905374.m4a",
+                                "length":  11764354,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Sent to Ouvidoria of Sura seguras\\Gravação de chamadas 08007047099_240625_093950 register of Protocal 46905374.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Fraud Criminal\\Jairo de Lacerda\\Gravação de chamadas 08007047099_240625_093950 register of Protocal 46905374.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas 08007047099_240625_093950 register of Protocal 46905374.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\Gravação de chamadas 08007047099_240625_093950 register of Protocal 46905374.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Sent to Ouvidoria of Sura seguras\\Gravação de chamadas 08007047099_240625_093950 register of Protocal 46905374.m4a"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_portrait__pinch_zoom_out.png|553244",
+                                "name":  "dashboard__mobile_portrait__pinch_zoom_out.png",
+                                "length":  553244,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__mobile_portrait__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__mobile_portrait__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190317\\screenshots\\dashboard__mobile_portrait__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__mobile_portrait__pinch_zoom_out.png"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_landscape__pinch_zoom_out.png|432567",
+                                "name":  "dashboard__mobile_landscape__pinch_zoom_out.png",
+                                "length":  432567,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190317\\screenshots\\dashboard__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__mobile_landscape__pinch_zoom_out.png"
+                            },
+                            {
+                                "signature":  "mobile_approvals__mobile_landscape__pinch_zoom_out.png|332955",
+                                "name":  "mobile_approvals__mobile_landscape__pinch_zoom_out.png",
+                                "length":  332955,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-171724\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-171955\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-172157\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-184919\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185249\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png"
+                            },
+                            {
+                                "signature":  "mobile_approvals__mobile_landscape__pinch_zoom_in.png|332955",
+                                "name":  "mobile_approvals__mobile_landscape__pinch_zoom_in.png",
+                                "length":  332955,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-171724\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-171955\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-172157\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-184919\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185249\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_landscape__one_finger_reverse.png|432567",
+                                "name":  "dashboard__mobile_landscape__one_finger_reverse.png",
+                                "length":  432567,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__mobile_landscape__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__mobile_landscape__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190317\\screenshots\\dashboard__mobile_landscape__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__mobile_landscape__one_finger_reverse.png"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_landscape__pinch_zoom_in.png|432567",
+                                "name":  "dashboard__mobile_landscape__pinch_zoom_in.png",
+                                "length":  432567,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190317\\screenshots\\dashboard__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__mobile_landscape__pinch_zoom_in.png"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_landscape__one_finger_swipe.png|411168",
+                                "name":  "dashboard__mobile_landscape__one_finger_swipe.png",
+                                "length":  411168,
+                                "count":  10,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__mobile_landscape__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__mobile_landscape__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190317\\screenshots\\dashboard__mobile_landscape__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__mobile_landscape__one_finger_swipe.png"
+                            },
+                            {
+                                "signature":  "phone_mode__mobile_landscape__one_finger_swipe.png|310204",
+                                "name":  "phone_mode__mobile_landscape__one_finger_swipe.png",
+                                "length":  310204,
+                                "count":  8,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190317\\screenshots\\phone_mode__mobile_landscape__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\phone_mode__mobile_landscape__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\phone_mode__mobile_landscape__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\phone_mode__mobile_landscape__one_finger_swipe.png"
+                            },
+                            {
+                                "signature":  "phone_mode__mobile_portrait__pinch_zoom_out.png|395935",
+                                "name":  "phone_mode__mobile_portrait__pinch_zoom_out.png",
+                                "length":  395935,
+                                "count":  7,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_out.png"
+                            },
+                            {
+                                "signature":  "phone_mode__mobile_portrait__one_finger_reverse.png|396590",
+                                "name":  "phone_mode__mobile_portrait__one_finger_reverse.png",
+                                "length":  396590,
+                                "count":  7,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_portrait__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\phone_mode__mobile_portrait__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\phone_mode__mobile_portrait__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\phone_mode__mobile_portrait__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\phone_mode__mobile_portrait__one_finger_reverse.png"
+                            },
+                            {
+                                "signature":  "phone_mode__mobile_landscape__pinch_zoom_out.png|313796",
+                                "name":  "phone_mode__mobile_landscape__pinch_zoom_out.png",
+                                "length":  313796,
+                                "count":  7,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_out.png"
+                            },
+                            {
+                                "signature":  "phone_mode__mobile_landscape__one_finger_reverse.png|313796",
+                                "name":  "phone_mode__mobile_landscape__one_finger_reverse.png",
+                                "length":  313796,
+                                "count":  7,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\phone_mode__mobile_landscape__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\phone_mode__mobile_landscape__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\phone_mode__mobile_landscape__one_finger_reverse.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\phone_mode__mobile_landscape__one_finger_reverse.png"
+                            },
+                            {
+                                "signature":  "phone_mode__mobile_landscape__pinch_zoom_in.png|313796",
+                                "name":  "phone_mode__mobile_landscape__pinch_zoom_in.png",
+                                "length":  313796,
+                                "count":  7,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_in.png"
+                            },
+                            {
+                                "signature":  "phone_mode__mobile_portrait__pinch_zoom_in.png|395935",
+                                "name":  "phone_mode__mobile_portrait__pinch_zoom_in.png",
+                                "length":  395935,
+                                "count":  6,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200115\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_in.png"
+                            },
+                            {
+                                "signature":  "mobile_approvals__mobile_landscape__pinch_zoom_out.png|333722",
+                                "name":  "mobile_approvals__mobile_landscape__pinch_zoom_out.png",
+                                "length":  333722,
+                                "count":  6,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200115\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png"
+                            },
+                            {
+                                "signature":  "mobile_approvals__mobile_landscape__pinch_zoom_in.png|333722",
+                                "name":  "mobile_approvals__mobile_landscape__pinch_zoom_in.png",
+                                "length":  333722,
+                                "count":  6,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200115\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png"
+                            },
+                            {
+                                "signature":  "mobile_approvals__mobile_landscape.png|333722",
+                                "name":  "mobile_approvals__mobile_landscape.png",
+                                "length":  333722,
+                                "count":  6,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200115\\screenshots\\mobile_approvals__mobile_landscape.png"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_landscape.png|5598830",
+                                "name":  "dashboard__mobile_landscape.png",
+                                "length":  5598830,
+                                "count":  5,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\dashboard__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200431\\screenshots\\dashboard__mobile_landscape.png"
+                            },
+                            {
+                                "signature":  "simpar ofereta 17000 refuse to offer email.m4a|18459456",
+                                "name":  "Simpar ofereta 17000 Refuse to offer email.m4a",
+                                "length":  18459456,
+                                "count":  5,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Simpar ofereta 17000 Refuse to offer email.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\Simpar ofereta 17000 Refuse to offer email.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Simpar ofereta 17000 Refuse to offer email.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Simpar ofereta 17000 Refuse to offer email.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023 restricted\\Simpar ofereta 17000 Refuse to offer email.m4a"
+                            },
+                            {
+                                "signature":  "phone_mode__mobile_portrait__one_finger_swipe.png|430843",
+                                "name":  "phone_mode__mobile_portrait__one_finger_swipe.png",
+                                "length":  430843,
+                                "count":  5,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\phone_mode__mobile_portrait__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193058\\screenshots\\phone_mode__mobile_portrait__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\phone_mode__mobile_portrait__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200115\\screenshots\\phone_mode__mobile_portrait__one_finger_swipe.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200431\\screenshots\\phone_mode__mobile_portrait__one_finger_swipe.png"
+                            },
+                            {
+                                "signature":  "gravação de chamadas sura 0800_240627_111643 9 minutes and 30 seconds start.m4a|10388226",
+                                "name":  "Gravação de chamadas Sura 0800_240627_111643 9 minutes and 30 seconds start.m4a",
+                                "length":  10388226,
+                                "count":  5,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240627_111643 9 minutes and 30 seconds start.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\Gravação de chamadas Sura 0800_240627_111643 9 minutes and 30 seconds start.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240627_111643 9 minutes and 30 seconds start.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Gravação de chamadas Sura 0800_240627_111643 9 minutes and 30 seconds start.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023 restricted\\Gravação de chamadas Sura 0800_240627_111643 9 minutes and 30 seconds start.m4a"
+                            },
+                            {
+                                "signature":  "aliens and ai cover.png|1326038",
+                                "name":  "Aliens and AI cover.png",
+                                "length":  1326038,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\connor and Jobs\\Folk Heros\\Bound and exposed\\Track 1\\Aliens and AI cover.png || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\connor and Jobs\\Folk Heros\\Bound and exposed\\Track 2\\Aliens and AI cover.png || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\connor and Jobs\\Folk Heros\\Bound and exposed\\Track 3\\Aliens and AI cover.png || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\connor and Jobs\\Folk Heros\\Bound and exposed\\Track 4\\Aliens and AI cover.png"
+                            },
+                            {
+                                "signature":  "icon.png|757252",
+                                "name":  "icon.png",
+                                "length":  757252,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\Desktop",
+                                "samplePaths":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\desktop\\icon.png || C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\desktop\\icon.png || C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\desktop\\icon.png || C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\desktop\\icon.png"
+                            },
+                            {
+                                "signature":  "mobile_approvals__mobile_landscape__pinch_zoom_in.png|346488",
+                                "name":  "mobile_approvals__mobile_landscape__pinch_zoom_in.png",
+                                "length":  346488,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-182250\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-185954\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-222848\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-223157\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png"
+                            },
+                            {
+                                "signature":  "mobile_approvals__mobile_landscape.png|358785",
+                                "name":  "mobile_approvals__mobile_landscape.png",
+                                "length":  358785,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-182250\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-185954\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-222848\\screenshots\\mobile_approvals__mobile_landscape.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-223157\\screenshots\\mobile_approvals__mobile_landscape.png"
+                            },
+                            {
+                                "signature":  "approval of inspection gravação de chamadas sura 0800_240909_123257 (1).m4a|13805014",
+                                "name":  "APPROVAL OF INSPECTION Gravação de chamadas Sura 0800_240909_123257 (1).m4a",
+                                "length":  13805014,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\APPROVAL OF INSPECTION Gravação de chamadas Sura 0800_240909_123257 (1).m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\APPROVAL OF INSPECTION Gravação de chamadas Sura 0800_240909_123257 (1).m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\APPROVAL OF INSPECTION Gravação de chamadas Sura 0800_240909_123257 (1).m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\APPROVAL OF INSPECTION Gravação de chamadas Sura 0800_240909_123257 (1).m4a"
+                            },
+                            {
+                                "signature":  "after lies were revealed continue to lie gravação de chamadas sura 0800_240920_092734.m4a|11735985",
+                                "name":  "After lies were revealed continue to lie Gravação de chamadas Sura 0800_240920_092734.m4a",
+                                "length":  11735985,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\After lies were revealed continue to lie Gravação de chamadas Sura 0800_240920_092734.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\After lies were revealed continue to lie Gravação de chamadas Sura 0800_240920_092734.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\After lies were revealed continue to lie Gravação de chamadas Sura 0800_240920_092734.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\After lies were revealed continue to lie Gravação de chamadas Sura 0800_240920_092734.m4a"
+                            },
+                            {
+                                "signature":  "screen_recording_20230703_075447_kings.mp4|256030401",
+                                "name":  "Screen_Recording_20230703_075447_Kings.mp4",
+                                "length":  256030401,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\Screen_Recording_20230703_075447_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\Screen_Recording_20230703_075447_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\Screen_Recording_20230703_075447_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\Screen_Recording_20230703_075447_Kings.mp4"
+                            },
+                            {
+                                "signature":  "icon.png|284370",
+                                "name":  "icon.png",
+                                "length":  284370,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\Downloads",
+                                "samplePaths":  "C:\\Users\\acer\\Downloads\\verve_222_extract\\app64\\resources\\app_unpacked\\assets\\icon.png || C:\\Users\\acer\\Downloads\\verve_222_extract\\app64\\resources\\assets\\icon.png || C:\\Users\\acer\\Downloads\\verve_225_extract\\app64\\resources\\app_unpacked\\assets\\icon.png || C:\\Users\\acer\\Downloads\\verve_225_extract\\app64\\resources\\assets\\icon.png"
+                            },
+                            {
+                                "signature":  "screen.png|902478",
+                                "name":  "Screen.png",
+                                "length":  902478,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Screen.png || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Screen.png || C:\\Users\\acer\\OneDrive\\Documentos\\Pictures\\Screenshots\\Screen.png || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Screen.png"
+                            },
+                            {
+                                "signature":  "gravação de chamadas sura 0800_240916_134556.m4a|10852377",
+                                "name":  "Gravação de chamadas Sura 0800_240916_134556.m4a",
+                                "length":  10852377,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240916_134556.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\Gravação de chamadas Sura 0800_240916_134556.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240916_134556.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Gravação de chamadas Sura 0800_240916_134556.m4a"
+                            },
+                            {
+                                "signature":  "approval of inspection gravação de chamadas sura sbc_240909_104035 (1).m4a|3236771",
+                                "name":  "APPROVAL OF INSPECTION Gravação de chamadas Sura Sbc_240909_104035 (1).m4a",
+                                "length":  3236771,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\APPROVAL OF INSPECTION Gravação de chamadas Sura Sbc_240909_104035 (1).m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\APPROVAL OF INSPECTION Gravação de chamadas Sura Sbc_240909_104035 (1).m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\APPROVAL OF INSPECTION Gravação de chamadas Sura Sbc_240909_104035 (1).m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\APPROVAL OF INSPECTION Gravação de chamadas Sura Sbc_240909_104035 (1).m4a"
+                            },
+                            {
+                                "signature":  "gravação de chamadas sura 0800_240903_133320 sura nao qr fez vistoria.m4a|9085747",
+                                "name":  "Gravação de chamadas Sura 0800_240903_133320 Sura nao qr fez vistoria.m4a",
+                                "length":  9085747,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240903_133320 Sura nao qr fez vistoria.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\Gravação de chamadas Sura 0800_240903_133320 Sura nao qr fez vistoria.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240903_133320 Sura nao qr fez vistoria.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Gravação de chamadas Sura 0800_240903_133320 Sura nao qr fez vistoria.m4a"
+                            },
+                            {
+                                "signature":  "gravação de chamadas 08007740772_240624_174311 sura sac said to call ouvidoria.m4a|54561929",
+                                "name":  "Gravação de chamadas 08007740772_240624_174311 Sura SAC said to call ouvidoria.m4a",
+                                "length":  54561929,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas 08007740772_240624_174311 Sura SAC said to call ouvidoria.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas 08007740772_240624_174311 Sura SAC said to call ouvidoria.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Gravação de chamadas 08007740772_240624_174311 Sura SAC said to call ouvidoria.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023 restricted\\Gravação de chamadas 08007740772_240624_174311 Sura SAC said to call ouvidoria.m4a"
+                            },
+                            {
+                                "signature":  "gravação de chamadas 08007049399_240620_101620.m4a|30311031",
+                                "name":  "Gravação de chamadas 08007049399_240620_101620.m4a",
+                                "length":  30311031,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas 08007049399_240620_101620.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas 08007049399_240620_101620.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Gravação de chamadas 08007049399_240620_101620.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023 restricted\\Gravação de chamadas 08007049399_240620_101620.m4a"
+                            },
+                            {
+                                "signature":  "refusal of service screen_recording_20230630_190117_kings.mp4|177464163",
+                                "name":  "Refusal of service screen_Recording_20230630_190117_Kings.mp4",
+                                "length":  177464163,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\Refusal of service screen_Recording_20230630_190117_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\Refusal of service screen_Recording_20230630_190117_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\Refusal of service screen_Recording_20230630_190117_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\Refusal of service screen_Recording_20230630_190117_Kings.mp4"
+                            },
+                            {
+                                "signature":  "mobile_approvals__mobile_landscape__pinch_zoom_out.png|346488",
+                                "name":  "mobile_approvals__mobile_landscape__pinch_zoom_out.png",
+                                "length":  346488,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-182250\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-185954\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-222848\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-223157\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png"
+                            },
+                            {
+                                "signature":  "september 23, 2024 sura falo nao offerta assistancia gravação de chamadas sura 0800_240923_095254.m4a|10265181",
+                                "name":  "September 23, 2024 Sura falo nao offerta Assistancia Gravação de chamadas Sura 0800_240923_095254.m4a",
+                                "length":  10265181,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\September 23, 2024 Sura falo nao offerta Assistancia Gravação de chamadas Sura 0800_240923_095254.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\September 23, 2024 Sura falo nao offerta Assistancia Gravação de chamadas Sura 0800_240923_095254.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\September 23, 2024 Sura falo nao offerta Assistancia Gravação de chamadas Sura 0800_240923_095254.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\September 23, 2024 Sura falo nao offerta Assistancia Gravação de chamadas Sura 0800_240923_095254.m4a"
+                            },
+                            {
+                                "signature":  "september 23,2024 sura falo denovo gravação de chamadas sura 0800_240923_123033.m4a|12064487",
+                                "name":  "September 23,2024 Sura falo denovo Gravação de chamadas Sura 0800_240923_123033.m4a",
+                                "length":  12064487,
+                                "count":  4,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\September 23,2024 Sura falo denovo Gravação de chamadas Sura 0800_240923_123033.m4a || C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023 restricted\\September 23,2024 Sura falo denovo Gravação de chamadas Sura 0800_240923_123033.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\September 23,2024 Sura falo denovo Gravação de chamadas Sura 0800_240923_123033.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\September 23,2024 Sura falo denovo Gravação de chamadas Sura 0800_240923_123033.m4a"
+                            },
+                            {
+                                "signature":  "screenshot 2024-03-04 122411 frontal damage.png|617306",
+                                "name":  "Screenshot 2024-03-04 122411 frontal damage.png",
+                                "length":  617306,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Screenshot 2024-03-04 122411 frontal damage.png || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Screenshot 2024-03-04 122411 frontal damage.png || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Screenshot 2024-03-04 122411 frontal damage.png"
+                            },
+                            {
+                                "signature":  "proof of residency.jpg|343945",
+                                "name":  "proof of residency.jpg",
+                                "length":  343945,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\proof of residency.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\proof of residency.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\proof of residency.jpg"
+                            },
+                            {
+                                "signature":  "animal bo.jpg|751312",
+                                "name":  "Animal BO.jpg",
+                                "length":  751312,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Animal BO.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Animal BO.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Animal BO.jpg"
+                            },
+                            {
+                                "signature":  "example of some of the missed opportunities and global conferences 3.bmp|335875",
+                                "name":  "Example of some of the missed opportunities and global conferences 3.bmp",
+                                "length":  335875,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences 3.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences 3.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences 3.bmp"
+                            },
+                            {
+                                "signature":  "shot-01-16x9.png|2033700",
+                                "name":  "shot-01-16x9.png",
+                                "length":  2033700,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\base-16x9-cover\\shot-01-16x9.png || C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\chromebook\\shot-01-16x9.png || C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\tablet-10in\\shot-01-16x9.png"
+                            },
+                            {
+                                "signature":  "example of some of the missed opportunities and global conferences 2.bmp|331381",
+                                "name":  "Example of some of the missed opportunities and global conferences 2.bmp",
+                                "length":  331381,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences 2.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences 2.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences 2.bmp"
+                            },
+                            {
+                                "signature":  "shot-03-16x9.png|356066",
+                                "name":  "shot-03-16x9.png",
+                                "length":  356066,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\base-16x9-cover\\shot-03-16x9.png || C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\chromebook\\shot-03-16x9.png || C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\tablet-10in\\shot-03-16x9.png"
+                            },
+                            {
+                                "signature":  "dashboard__half_hd.png|1813984",
+                                "name":  "dashboard__half_hd.png",
+                                "length":  1813984,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__half_hd.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__half_hd.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192354\\screenshots\\dashboard__half_hd.png"
+                            },
+                            {
+                                "signature":  "screen-0.png|478568",
+                                "name":  "screen-0.png",
+                                "length":  478568,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\captures\\vision\\desktop-dual-capture\\screen-0.png || C:\\Users\\acer\\Asolaria\\captures\\vision\\dual-capture-1771767399212\\screen-0.png || C:\\Users\\acer\\Asolaria\\captures\\vision\\dual-capture-1771767452346\\screen-0.png"
+                            },
+                            {
+                                "signature":  "shot-04-16x9.png|320394",
+                                "name":  "shot-04-16x9.png",
+                                "length":  320394,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\base-16x9-cover\\shot-04-16x9.png || C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\chromebook\\shot-04-16x9.png || C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\tablet-10in\\shot-04-16x9.png"
+                            },
+                            {
+                                "signature":  "shot-02-16x9.png|380423",
+                                "name":  "shot-02-16x9.png",
+                                "length":  380423,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\base-16x9-cover\\shot-02-16x9.png || C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\chromebook\\shot-02-16x9.png || C:\\Users\\acer\\Asolaria\\reports\\release-demo\\assets\\play-generated\\tablet-10in\\shot-02-16x9.png"
+                            },
+                            {
+                                "signature":  "depois accident police tira.png|1316031",
+                                "name":  "Depois accident police tira.png",
+                                "length":  1316031,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Depois accident police tira.png || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Depois accident police tira.png || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Depois accident police tira.png"
+                            },
+                            {
+                                "signature":  "depois accident police tiro 2.png|554753",
+                                "name":  "depois accident police tiro 2.png",
+                                "length":  554753,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\depois accident police tiro 2.png || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\depois accident police tiro 2.png || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\depois accident police tiro 2.png"
+                            },
+                            {
+                                "signature":  "dashboard__laptop.png|2294221",
+                                "name":  "dashboard__laptop.png",
+                                "length":  2294221,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-185631\\screenshots\\dashboard__laptop.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\dashboard__laptop.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200431\\screenshots\\dashboard__laptop.png"
+                            },
+                            {
+                                "signature":  "animal death 01.jpg|5350510",
+                                "name":  "Animal death 01.jpg",
+                                "length":  5350510,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Animal death 01.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Animal death 01.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Animal death 01.jpg"
+                            },
+                            {
+                                "signature":  "lenna.png|473831",
+                                "name":  "lenna.png",
+                                "length":  473831,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\test\\empire-backend\\node_modules\\.ignored\\jimp\\browser\\examples\\lenna.png || C:\\Users\\acer\\OneDrive\\Documentos\\test\\empire-backend\\node_modules\\.pnpm\\gifwrap@0.10.1\\node_modules\\gifwrap\\test\\fixtures\\lenna.png || C:\\Users\\acer\\OneDrive\\Documentos\\test\\empire-backend\\node_modules\\gifwrap\\test\\fixtures\\lenna.png"
+                            },
+                            {
+                                "signature":  "gravação de chamadas sura 0800_240830_095006 reinforce that sura is lying about waiting for approval.m4a|26743592",
+                                "name":  "Gravação de chamadas Sura 0800_240830_095006 reinforce that sura is lying about waiting for approval.m4a",
+                                "length":  26743592,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240830_095006 reinforce that sura is lying about waiting for approval.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240830_095006 reinforce that sura is lying about waiting for approval.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Gravação de chamadas Sura 0800_240830_095006 reinforce that sura is lying about waiting for approval.m4a"
+                            },
+                            {
+                                "signature":  "whatsapp video 2024-06-24 at 12.32.54_bf0aa8ae.mp4|542513",
+                                "name":  "WhatsApp Video 2024-06-24 at 12.32.54_bf0aa8ae.mp4",
+                                "length":  542513,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Situation of house without gas recording\\WhatsApp Video 2024-06-24 at 12.32.54_bf0aa8ae.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Situation of house without gas recording\\WhatsApp Video 2024-06-24 at 12.32.54_bf0aa8ae.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Situation of house without gas recording\\WhatsApp Video 2024-06-24 at 12.32.54_bf0aa8ae.mp4"
+                            },
+                            {
+                                "signature":  "gravação de chamadas sura 0800_240624_115021 says they offer 34411.87 and will not and cannot provide assistance independent of law 30 minutes.m4a|36723245",
+                                "name":  "Gravação de chamadas Sura 0800_240624_115021 says they offer 34411.87 and will not and cannot provide assistance independent of law 30 minutes.m4a",
+                                "length":  36723245,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240624_115021 says they offer 34411.87 and will not and cannot provide assistance independent of law 30 minutes.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Gravação de chamadas Sura 0800_240624_115021 says they offer 34411.87 and will not and cannot provide assistance independent of law 30 minutes.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Gravação de chamadas Sura 0800_240624_115021 says they offer 34411.87 and will not and cannot provide assistance independent of law 30 minutes.m4a"
+                            },
+                            {
+                                "signature":  "4d720476-e08b-4b32-9300-6afd90b57f89_1_1 (1).mp4|42623770",
+                                "name":  "4D720476-E08B-4B32-9300-6AFD90B57F89_1_1 (1).mp4",
+                                "length":  42623770,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\LLM multistacking\\video\\4D720476-E08B-4B32-9300-6AFD90B57F89_1_1 (1).mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\Ai Design\\video\\4D720476-E08B-4B32-9300-6AFD90B57F89_1_1 (1).mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\Shipping\\video\\4D720476-E08B-4B32-9300-6AFD90B57F89_1_1 (1).mp4"
+                            },
+                            {
+                                "signature":  "one arrow.png|299696",
+                                "name":  "one arrow.PNG",
+                                "length":  299696,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\one arrow.PNG || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Diva\\ID Jesse and Diva\\one arrow.PNG || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\ID Jesse and Diva\\one arrow.PNG"
+                            },
+                            {
+                                "signature":  "offer of 34411,87 30 minutes into the recording they say the value.m4a|36723245",
+                                "name":  "Offer of 34411,87 30 minutes into the recording they say the value.m4a",
+                                "length":  36723245,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Offer of 34411,87 30 minutes into the recording they say the value.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Offer of 34411,87 30 minutes into the recording they say the value.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Offer of 34411,87 30 minutes into the recording they say the value.m4a"
+                            },
+                            {
+                                "signature":  "vistoria e pt confirmed lies about the inspection then changes at end gravação de chamadas sura 0800_240919_100227.m4a|54258637",
+                                "name":  "Vistoria e PT confirmed Lies about the inspection then changes at end Gravação de chamadas Sura 0800_240919_100227.m4a",
+                                "length":  54258637,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Vistoria e PT confirmed Lies about the inspection then changes at end Gravação de chamadas Sura 0800_240919_100227.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\Vistoria e PT confirmed Lies about the inspection then changes at end Gravação de chamadas Sura 0800_240919_100227.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\Vistoria e PT confirmed Lies about the inspection then changes at end Gravação de chamadas Sura 0800_240919_100227.m4a"
+                            },
+                            {
+                                "signature":  "jube 24 video without gas whatsapp video 2024-06-24 at 12.32.54_a72d3838.mp4|6380151",
+                                "name":  "Jube 24 video without gas WhatsApp Video 2024-06-24 at 12.32.54_a72d3838.mp4",
+                                "length":  6380151,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Situation of house without gas recording\\Jube 24 video without gas WhatsApp Video 2024-06-24 at 12.32.54_a72d3838.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Situation of house without gas recording\\Jube 24 video without gas WhatsApp Video 2024-06-24 at 12.32.54_a72d3838.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Situation of house without gas recording\\Jube 24 video without gas WhatsApp Video 2024-06-24 at 12.32.54_a72d3838.mp4"
+                            },
+                            {
+                                "signature":  "dashboard__tablet_portrait.png|1667722",
+                                "name":  "dashboard__tablet_portrait.png",
+                                "length":  1667722,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-190010\\screenshots\\dashboard__tablet_portrait.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-193431\\screenshots\\dashboard__tablet_portrait.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200115\\screenshots\\dashboard__tablet_portrait.png"
+                            },
+                            {
+                                "signature":  "screen_recording_20230707_213317_kings.mp4|125994267",
+                                "name":  "Screen_Recording_20230707_213317_Kings.mp4",
+                                "length":  125994267,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\final rejection negligence - bad faith - misrepresentation - breach of duty or contract - fradulent contract - fraudent concealment - unfair business practices\\Screen_Recording_20230707_213317_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\rejection of response\\Screen_Recording_20230707_213317_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\rejection of response\\Screen_Recording_20230707_213317_Kings.mp4"
+                            },
+                            {
+                                "signature":  "august 30 2024 sura negar vistoria e eu fez uma protocol d sac gravação de chamadas sura 0800_240830_095006.m4a|26743592",
+                                "name":  "August 30 2024 Sura negar vistoria e eu fez uma protocol d sac Gravação de chamadas Sura 0800_240830_095006.m4a",
+                                "length":  26743592,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\August 30 2024 Sura negar vistoria e eu fez uma protocol d sac Gravação de chamadas Sura 0800_240830_095006.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Tracking of illegal activities of Sura and Omsbudsman\\Historica\\August 30 2024 Sura negar vistoria e eu fez uma protocol d sac Gravação de chamadas Sura 0800_240830_095006.m4a || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023 restricted\\August 30 2024 Sura negar vistoria e eu fez uma protocol d sac Gravação de chamadas Sura 0800_240830_095006.m4a"
+                            },
+                            {
+                                "signature":  "example of some of the missed opportunities and global conferences 4.bmp|362531",
+                                "name":  "Example of some of the missed opportunities and global conferences 4.bmp",
+                                "length":  362531,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences 4.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences 4.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences 4.bmp"
+                            },
+                            {
+                                "signature":  "example of some of the missed opportunities and global conferences.bmp|265517",
+                                "name":  "Example of some of the missed opportunities and global conferences.bmp",
+                                "length":  265517,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Global conferences and opportunities missed and in jeapordy\\Example of some of the missed opportunities and global conferences.bmp"
+                            },
+                            {
+                                "signature":  "screenshot 2024-06-25 133010 overview of the other messages sent to her.png|270561",
+                                "name":  "Screenshot 2024-06-25 133010 overview of the other messages sent to her.png",
+                                "length":  270561,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Desktop\\Accident 12-13-2023\\Sent to Fernanda at Sura\\Screenshot 2024-06-25 133010 overview of the other messages sent to her.png || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Car\\Accident 12-13-2023\\Sent to Fernanda at Sura\\Screenshot 2024-06-25 133010 overview of the other messages sent to her.png || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Suracase\\Accident 12-13-2023\\Sent to Fernanda at Sura\\Screenshot 2024-06-25 133010 overview of the other messages sent to her.png"
+                            },
+                            {
+                                "signature":  "dashboard__tablet_portrait.png|1667709",
+                                "name":  "dashboard__tablet_portrait.png",
+                                "length":  1667709,
+                                "count":  3,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__tablet_portrait.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192757\\screenshots\\dashboard__tablet_portrait.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-200431\\screenshots\\dashboard__tablet_portrait.png"
+                            },
+                            {
+                                "signature":  "capture.png|533584",
+                                "name":  "Capture.PNG",
+                                "length":  533584,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Capture.PNG || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Capture.PNG"
+                            },
+                            {
+                                "signature":  "background part 2.png|1481780",
+                                "name":  "background part 2.png",
+                                "length":  1481780,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\background part 2.png || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\background part 2.png"
+                            },
+                            {
+                                "signature":  "cambridge.png|532070",
+                                "name":  "Cambridge.PNG",
+                                "length":  532070,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Cambridge.PNG || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Cambridge.PNG"
+                            },
+                            {
+                                "signature":  "tnc-1644570345.png|619132",
+                                "name":  "tnc-1644570345.png",
+                                "length":  619132,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Tiffany\u0027s\\Pictures\\tnc-1644570345.png || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Glaucia\\Pictures\\tnc-1644570345.png"
+                            },
+                            {
+                                "signature":  "2023-lock2.jpg|279091",
+                                "name":  "2023-LOCK2.jpg",
+                                "length":  279091,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Tiffany\u0027s\\Pictures\\2023-LOCK2.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Glaucia\\Pictures\\2023-LOCK2.jpg"
+                            },
+                            {
+                                "signature":  "painting get.bmp|3465494",
+                                "name":  "Painting get.bmp",
+                                "length":  3465494,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Painting get.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Painting get.bmp"
+                            },
+                            {
+                                "signature":  "win_20210709_13_41_39_pro.mp4|15433812",
+                                "name":  "WIN_20210709_13_41_39_Pro.mp4",
+                                "length":  15433812,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Camera Roll\\WIN_20210709_13_41_39_Pro.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Camera Roll\\WIN_20210709_13_41_39_Pro.mp4"
+                            },
+                            {
+                                "signature":  "win_20210709_13_41_02_pro.mp4|30346946",
+                                "name":  "WIN_20210709_13_41_02_Pro.mp4",
+                                "length":  30346946,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Camera Roll\\WIN_20210709_13_41_02_Pro.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Camera Roll\\WIN_20210709_13_41_02_Pro.mp4"
+                            },
+                            {
+                                "signature":  "win_20210709_13_41_57_pro.mp4|19488982",
+                                "name":  "WIN_20210709_13_41_57_Pro.mp4",
+                                "length":  19488982,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Camera Roll\\WIN_20210709_13_41_57_Pro.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Camera Roll\\WIN_20210709_13_41_57_Pro.mp4"
+                            },
+                            {
+                                "signature":  "win_20210709_13_43_10_pro.mp4|42458314",
+                                "name":  "WIN_20210709_13_43_10_Pro.mp4",
+                                "length":  42458314,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Camera Roll\\WIN_20210709_13_43_10_Pro.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Camera Roll\\WIN_20210709_13_43_10_Pro.mp4"
+                            },
+                            {
+                                "signature":  "win_20210709_13_42_18_pro.mp4|49091846",
+                                "name":  "WIN_20210709_13_42_18_Pro.mp4",
+                                "length":  49091846,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Camera Roll\\WIN_20210709_13_42_18_Pro.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Camera Roll\\WIN_20210709_13_42_18_Pro.mp4"
+                            },
+                            {
+                                "signature":  "skewed.jpg|348678",
+                                "name":  "Skewed.jpg",
+                                "length":  348678,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Skewed.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Skewed.jpg"
+                            },
+                            {
+                                "signature":  "painting original.bmp|10909494",
+                                "name":  "PAinting original.bmp",
+                                "length":  10909494,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\PAinting original.bmp || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\PAinting original.bmp"
+                            },
+                            {
+                                "signature":  "win_20210709_13_39_22_pro.mp4|70758247",
+                                "name":  "WIN_20210709_13_39_22_Pro.mp4",
+                                "length":  70758247,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Camera Roll\\WIN_20210709_13_39_22_Pro.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Camera Roll\\WIN_20210709_13_39_22_Pro.mp4"
+                            },
+                            {
+                                "signature":  "win_20210709_13_40_41_pro.mp4|16262345",
+                                "name":  "WIN_20210709_13_40_41_Pro.mp4",
+                                "length":  16262345,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Camera Roll\\WIN_20210709_13_40_41_Pro.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Camera Roll\\WIN_20210709_13_40_41_Pro.mp4"
+                            },
+                            {
+                                "signature":  "win_20210709_13_40_35_pro.mp4|3788911",
+                                "name":  "WIN_20210709_13_40_35_Pro.mp4",
+                                "length":  3788911,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Camera Roll\\WIN_20210709_13_40_35_Pro.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\MEDIA\\Imagens\\Imagens\\Camera Roll\\WIN_20210709_13_40_35_Pro.mp4"
+                            },
+                            {
+                                "signature":  "screenshot 2024-05-20 130106.png|1018881",
+                                "name":  "Screenshot 2024-05-20 130106.png",
+                                "length":  1018881,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Synbiobeta John\\Screenshot 2024-05-20 130106.png || C:\\Users\\acer\\OneDrive\\Documentos\\Pictures\\Screenshots\\Screenshot 2024-05-20 130106.png"
+                            },
+                            {
+                                "signature":  "screen_recording_20230702_021456_kings.mp4|222246883",
+                                "name":  "Screen_Recording_20230702_021456_Kings.mp4",
+                                "length":  222246883,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\Screen_Recording_20230702_021456_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\Screen_Recording_20230702_021456_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230702_014601_kings.mp4|101690539",
+                                "name":  "Screen_Recording_20230702_014601_Kings.mp4",
+                                "length":  101690539,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\Screen_Recording_20230702_014601_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\Screen_Recording_20230702_014601_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230724_130712_kings.mp4|119280766",
+                                "name":  "Screen_Recording_20230724_130712_Kings.mp4",
+                                "length":  119280766,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\refusal of service of privacy information and access to that information  7-24-2023\\Screen_Recording_20230724_130712_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\refusal of service of privacy information and access to that information  7-24-2023\\Screen_Recording_20230724_130712_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230704_053601_kings.mp4|4833887",
+                                "name":  "Screen_Recording_20230704_053601_Kings.mp4",
+                                "length":  4833887,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\rejection of response\\Screen_Recording_20230704_053601_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\rejection of response\\Screen_Recording_20230704_053601_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230724_130828_kings.mp4|61651646",
+                                "name":  "Screen_Recording_20230724_130828_Kings.mp4",
+                                "length":  61651646,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\refusal of service of privacy information and access to that information  7-24-2023\\Screen_Recording_20230724_130828_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\refusal of service of privacy information and access to that information  7-24-2023\\Screen_Recording_20230724_130828_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screenshot_20230702_014411_kings.jpg|400238",
+                                "name":  "Screenshot_20230702_014411_Kings.jpg",
+                                "length":  400238,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\Screenshot_20230702_014411_Kings.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\Screenshot_20230702_014411_Kings.jpg"
+                            },
+                            {
+                                "signature":  "screenshot_20230702_013648_kings.jpg|470773",
+                                "name":  "Screenshot_20230702_013648_Kings.jpg",
+                                "length":  470773,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\Screenshot_20230702_013648_Kings.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\Screenshot_20230702_013648_Kings.jpg"
+                            },
+                            {
+                                "signature":  "screenshot_20230702_014629_kings.jpg|421357",
+                                "name":  "Screenshot_20230702_014629_Kings.jpg",
+                                "length":  421357,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\Screenshot_20230702_014629_Kings.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\Screenshot_20230702_014629_Kings.jpg"
+                            },
+                            {
+                                "signature":  "screen_recording_20230630_202141_kings.mp4|52604998",
+                                "name":  "Screen_Recording_20230630_202141_Kings.mp4",
+                                "length":  52604998,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\Screen_Recording_20230630_202141_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\Screen_Recording_20230630_202141_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screenshot_20230702_020700_gallery.jpg|395000",
+                                "name":  "Screenshot_20230702_020700_Gallery.jpg",
+                                "length":  395000,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\refusal of service videos breach of law  contract\\Screenshot_20230702_020700_Gallery.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\refusal of service videos breach of law  contract\\Screenshot_20230702_020700_Gallery.jpg"
+                            },
+                            {
+                                "signature":  "screen_recording_20230704_165307_kings.mp4|42652730",
+                                "name":  "Screen_Recording_20230704_165307_Kings.mp4",
+                                "length":  42652730,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_165307_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_165307_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230704_095614_kings.mp4|151159767",
+                                "name":  "Screen_Recording_20230704_095614_Kings.mp4",
+                                "length":  151159767,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_095614_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_095614_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230704_175812_kings.mp4|50064343",
+                                "name":  "Screen_Recording_20230704_175812_Kings.mp4",
+                                "length":  50064343,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_175812_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_175812_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screenshot 2024-05-20 130016.png|1064778",
+                                "name":  "Screenshot 2024-05-20 130016.png",
+                                "length":  1064778,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Synbiobeta John\\Screenshot 2024-05-20 130016.png || C:\\Users\\acer\\OneDrive\\Documentos\\Pictures\\Screenshots\\Screenshot 2024-05-20 130016.png"
+                            },
+                            {
+                                "signature":  "screen_recording_20230804_094104_line.mp4|115008901",
+                                "name":  "Screen_Recording_20230804_094104_LINE.mp4",
+                                "length":  115008901,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\ROK service representative refuses service\\Screen_Recording_20230804_094104_LINE.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\ROK service representative refuses service\\Screen_Recording_20230804_094104_LINE.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230705_075825_kings.mp4|15313622",
+                                "name":  "Screen_Recording_20230705_075825_Kings.mp4",
+                                "length":  15313622,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\rejection of response\\Screen_Recording_20230705_075825_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\rejection of response\\Screen_Recording_20230705_075825_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230705_071003_kings 1.mp4|46232984",
+                                "name":  "Screen_Recording_20230705_071003_Kings 1.mp4",
+                                "length":  46232984,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\rejection of response\\Screen_Recording_20230705_071003_Kings 1.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\rejection of response\\Screen_Recording_20230705_071003_Kings 1.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230705_081045_kings.mp4|27798644",
+                                "name":  "Screen_Recording_20230705_081045_Kings.mp4",
+                                "length":  27798644,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\rejection of response\\Screen_Recording_20230705_081045_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\rejection of response\\Screen_Recording_20230705_081045_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230704_094651_kings.mp4|250176282",
+                                "name":  "Screen_Recording_20230704_094651_Kings.mp4",
+                                "length":  250176282,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_094651_Kings.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_094651_Kings.mp4"
+                            },
+                            {
+                                "signature":  "screen_recording_20230704_082818_kings 1.mp4|281528311",
+                                "name":  "Screen_Recording_20230704_082818_Kings 1.mp4",
+                                "length":  281528311,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_082818_Kings 1.mp4 || C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family extended\\onemt jesse\\responses that were never answered and just ignored\\Screen_Recording_20230704_082818_Kings 1.mp4"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_landscape__pinch_zoom_in.png|474478",
+                                "name":  "dashboard__mobile_landscape__pinch_zoom_in.png",
+                                "length":  474478,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-171724\\screenshots\\dashboard__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-175717\\screenshots\\dashboard__mobile_landscape__pinch_zoom_in.png"
+                            },
+                            {
+                                "signature":  "window-focus.png|405707",
+                                "name":  "window-focus.png",
+                                "length":  405707,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\anydesk-direct-14\\window-focus.png || C:\\Users\\acer\\Asolaria\\captures\\desktop\\anydesk-direct-5\\window-focus.png"
+                            },
+                            {
+                                "signature":  "phone_mode__mobile_landscape__pinch_zoom_in.png|508035",
+                                "name":  "phone_mode__mobile_landscape__pinch_zoom_in.png",
+                                "length":  508035,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-182250\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_in.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260305-222848\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_in.png"
+                            },
+                            {
+                                "signature":  "dashboard__tablet_portrait.png|1653557",
+                                "name":  "dashboard__tablet_portrait.png",
+                                "length":  1653557,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-171955\\screenshots\\dashboard__tablet_portrait.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-172157\\screenshots\\dashboard__tablet_portrait.png"
+                            },
+                            {
+                                "signature":  "dashboard__mobile_portrait.png|4275777",
+                                "name":  "dashboard__mobile_portrait.png",
+                                "length":  4275777,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\Asolaria",
+                                "samplePaths":  "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-171955\\screenshots\\dashboard__mobile_portrait.png || C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-172157\\screenshots\\dashboard__mobile_portrait.png"
+                            },
+                            {
+                                "signature":  "weathericons.gif|495317",
+                                "name":  "WeatherIcons.gif",
+                                "length":  495317,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\test\\weatherApp\\node_modules\\weather\\src\\images\\WeatherIcons.gif || C:\\Users\\acer\\OneDrive\\Documentos\\test\\weatherApp\\src\\images\\WeatherIcons.gif"
+                            },
+                            {
+                                "signature":  "city1.jpg|1485166",
+                                "name":  "city1.jpg",
+                                "length":  1485166,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\OneDrive",
+                                "samplePaths":  "C:\\Users\\acer\\OneDrive\\Documentos\\test\\weatherApp\\node_modules\\weather\\src\\images\\city1.jpg || C:\\Users\\acer\\OneDrive\\Documentos\\test\\weatherApp\\src\\images\\city1.jpg"
+                            },
+                            {
+                                "signature":  "icon-alternative-2.png|374919",
+                                "name":  "icon-alternative-2.png",
+                                "length":  374919,
+                                "count":  2,
+                                "buckets":  "C:\\Users\\acer\\Downloads",
+                                "samplePaths":  "C:\\Users\\acer\\Downloads\\verve_222_extract\\app64\\resources\\assets\\icon-alternative-2.png || C:\\Users\\acer\\Downloads\\verve_225_extract\\app64\\resources\\assets\\icon-alternative-2.png"
+                            }
+                        ]
+}

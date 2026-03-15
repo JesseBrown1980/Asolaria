@@ -1,0 +1,11 @@
+﻿{
+    "ok":  true,
+    "baseDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment12c-20260302-181915",
+    "PYTHON313_HOME_User":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313",
+    "ANACONDA_HOME_User":  "C:\\Users\\acer\\anaconda3",
+    "PythonWhere":  [
+                        "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                        "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                        "C:\\Users\\acer\\anaconda3\\python.exe"
+                    ]
+}

@@ -1,0 +1,55 @@
+{
+  "dashboardOpen": {
+    "ok": false,
+    "ms": 60095,
+    "url": "http://127.0.0.1:4781/index.html",
+    "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4781/index.html\", waiting until \"domcontentloaded\"\u001b[22m\n"
+  },
+  "phoneModeOpen": {
+    "ok": true,
+    "ms": 29940,
+    "url": "http://127.0.0.1:4781/phone-mode.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef"
+  },
+  "phoneMode": {
+    "title": "Jesse's Phone Link",
+    "transcriptText": "Interviewer: Can you summarize the blockers from the phone review?\nJesse: The transcript area is readable, but the action controls consume too much vertical space before the lines appear.\nInterviewer: Anything about copy and paste?\nJesse: Copy exists, but the transcript is a single scrolling slab with no dedicated chat mirror for paste-ready cleanup.",
+    "copyDisabled": false,
+    "sendDisabled": false,
+    "cardTop": 1695,
+    "cardHeight": 455,
+    "transcriptTop": 1962,
+    "transcriptHeight": 179,
+    "controlsHeight": [
+      40,
+      88
+    ],
+    "controlsText": [
+      "Start tab audio",
+      "Stop Captions",
+      "Clear",
+      "Copy",
+      "Send to Asolaria"
+    ],
+    "viewport": {
+      "width": 412,
+      "height": 839
+    },
+    "pageHeight": 2175
+  },
+  "mobileConsoleOpen": {
+    "ok": true,
+    "ms": 35723,
+    "url": "http://127.0.0.1:4781/mobile-console.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef&viewer=falcon"
+  },
+  "mobileConsole": {
+    "title": "Asolaria Mobile Console",
+    "bodyText": "Asolaria Mobile Console\n\nPhone control, approvals, and secure desktop snapshots with your private token.\n\nSave Token\nRefresh\nApproval Center\nSignal Open Asolaria\nInstall (Menu)\nP/A/Y Priority\nBalanced\nSave Strategy\nActive: smart/pay_priority\nEnable Push Alerts\nDisable Push\nTest Push\nPush: server-ready | subscriptions=0 | permission=denied | native=off | action=notification blocked\nConnected | pending=0 | guardian=off | approvals=smart/pay_priority | path=usb | push=on | control=off\n22:23:30 | INFO | Mobile console loaded.\nConnection Mode\nHome Wi-Fi\nInternet Tunnel\nPublic Fallback\nUSB First\nSave URL\nMark VPN Active\nStealth: unknown\nStealth state unavailable.\nroute=usb | auto=usb | hint=USB/loopback path | detected=usb | pref=usb > private_internet | allowed=usb > private_internet | remote=https://192.168.1.3:5443\nPhone bridge: checking...\nTunnel smoke: checking...\nScreen View\nCapture Now\n",
+    "hasChatInput": true,
+    "hasJobResult": true,
+    "viewport": {
+      "width": 412,
+      "height": 839
+    },
+    "pageHeight": 6093
+  }
+}

@@ -1,0 +1,59 @@
+**Executive summary**
+- Yes, it’s fixable. The remaining cockpit issues stem primarily from transport/runtime and frontend polling behavior, not from profile loading or profile permissions.
+- Evidence shows: terminals are discovered from a local registry and render correctly after refresh; dashboard prompts reach Helm; loopback/API gates and “public profile” guards exist but are not what’s tripping the cockpit in this run.
+- The biggest sources of instability are: tight polling cadences that align with server cache TTLs, heavy/slow gateway-control routes with multi‑second auto-start and timeouts, and an initial UI placeholder that briefly claims “No admin terminals…” before the first fetch completes.
+
+**Ranked root causes**
+- Polling/TTL thrash on cockpit and health
+  - Cockpit GET is polled every 1.5s in the UI while the server snapshot cache TTL is also 1.5s, creating constant regeneration at the boundary and occasional races/loading flicker. public/app.js:13638, server.js:10030.
+  - Health is polled frequently from many places (multiple setIntervals and ad‑hoc calls), amplifying server load in bursts. public/app.js:13579→13660 and many call sites listed by Select-String.
+- Slow/fragile gateway control paths
+  - Gateway endpoints synchronously ensure/start the control process (wait up to 9s) and then fetch with a 7s timeout; under load or if the control process is cold, UI sees 502/503/504 and logs frequent errors. server.js:4142, server.js:32858, server.js:32975, server.js:32987.
+- First-render UX placeholder
+  - The UI renders “No admin terminals registered yet.” before the first cockpit fetch completes; a background refresh usually corrects it, leading to transient confusion. public/app.js:9914, 13579→13638.
+- Not primary: profile/permissions
+  - Terminal discovery uses a local identities registry + profile JSON; nothing here actively blocks cockpit rendering or prompting in this environment. server.js:12980, 12984; registry and profiles exist and are read.
+- Secondary contributors (lower impact)
+  - Prompt delivery wait is short (2.5s), so under I/O or process lag the UI can report transient prompt failures even though delivery succeeds moments later. server.js:13604 (timeoutMs: 2500).
+
+**Why profile permissions are or are not central**
+- Not central:
+  - Terminals are enumerated from the local registry file and profile metadata is read into the snapshot; it does not gate cockpit visibility. server.js:12980, 12984; C:\Users\acer\codex-bridge\profiles\admin-terminal-identities.json.
+  - Verified runtime shows Helm receiving a dashboard prompt and status counters incrementing (lastInputSource “Asolaria Dashboard”, inboxLinesProcessed=2), which would fail if profile gating blocked actions. C:\Users\acer\Asolaria\runtime\admin-terminals\helm\status.json.
+- Related but not implicated here:
+  - Loopback gate: cockpit endpoints require loopback; if accessed remotely they 403. server.js:11868 and server.js:22007+.
+  - Public-profile guard: in “public” mode, cockpit endpoints are blocked; however, cockpit requests are succeeding now, so this guard doesn’t explain current symptoms. server.js:2718.
+
+**Read-only validation plan**
+- Validate discovery and data path
+  - Confirm identities file exists and lists Helm/Sentinel; note profilePath targets. C:\Users\acer\codex-bridge\profiles\admin-terminal-identities.json.
+  - Confirm server builds cockpit snapshot from that registry and caches with TTL=1500ms. server.js:10030, 13379.
+- Validate UI polling and placeholder behavior
+  - Observe network: GET /api/admin-terminals/cockpit every ~1.5s; initial render shows the “No admin terminals…” element until first response. public/app.js:9914, 13638.
+  - Check that after a dashboard prompt POST, the stack re-renders and the status line shows “Prompt queued for helm.” public/app.js:12028–12042.
+- Validate gateway pressure points
+  - Note loopback-only enforcement and long ensure/start + 7s fetch timeout in callGatewayControlApi; watch for 502/503/504 on /api/gateway/* during cold starts. server.js:4142, 32858, 32975, 32987.
+- Validate environment gates (to rule out permissions)
+  - From health payload, verify profile.mode is not “public” (the code reports mode in health). server.js:21716–21736 (health payload includes profile mode).
+  - Confirm cockpit routes are behind loopback gate, not profile permissions. server.js:11868, 22007+.
+
+**Minimal ranked fix plan**
+- Priority 1: Reduce cockpit/health churn (UI-only, smallest risk)
+  - Cockpit polling: change interval from 1500ms to ~3000–4000ms with ±20% jitter; keep the initial on‑load fetch. public/app.js:13638.
+  - First-render UX: don’t show “No admin terminals…” until the first fetch returns; render a “Loading cockpit…” skeleton instead. public/app.js:9914, 13579.
+  - Health polling: keep a single 7–8s interval; remove or gate the extra 2.5s startup interval once bootstrap is done. public/app.js:13579→13660.
+- Priority 2: Small server-side smoothing (low-risk tweaks)
+  - Increase ADMIN_TERMINAL_COCKPIT_TTL_MS from 1500ms to ~3000ms to match reduced polling and avoid thrash. server.js:10030.
+  - Increase prompt delivery wait to ~4000ms to reduce false negatives under transient I/O lag. server.js:13604 (timeoutMs).
+- Priority 3: Gateway UX hardening (client-first)
+  - Add backoff on /api/gateway/* errors (e.g., 15–30s cooldown after 502/503/504) and surfacing “warming up gateway…” instead of “Audit unavailable” spam. public/app.js:10060–10180.
+
+These changes are small, independent, and do not require destructive resets.
+
+**Risks and unknowns**
+- Gateway control availability: if the control process is frequently restarting or blocked by external dependencies, UI backoff improves noise but underlying flakiness persists until the service stabilizes.
+- Load patterns: multiple dashboard tabs or other polling features may reintroduce thrash even with longer intervals; a per-tab visibility check exists but may not cover all cases. public/app.js:13628–13644.
+- Public mode toggles: if ASOLARIA_PROFILE/ASOLARIA_PUBLIC_MODE flips at runtime, cockpit routes would be blocked regardless of polling changes. server.js:2718.
+
+**Confidence**
+- Medium‑high. Code paths directly explain the observed behavior (polling/TTL alignment, gateway timeouts, initial placeholder), cockpit endpoints and prompt delivery work locally, and profile/permission logic is not the active gate in this run.

@@ -1,0 +1,42 @@
+﻿{
+    "startedAt":  "2026-03-10T02:49:16.6177075-03:00",
+    "deadline":  "2026-03-10T08:30:00.0000000",
+    "chatId":  "overnight-readiness-loop",
+    "threadId":  "overnight-readiness-20260310",
+    "cycles":  5,
+    "lastJobId":  "job_1773121917227_tumb5g",
+    "lastSummary":  "ebacmap_prep: blocked - O servidor remoto retornou um erro: (404) Não Localizado.",
+    "stopRequested":  false,
+    "tasks":  {
+                  "system_readiness":  {
+                                           "status":  "blocked",
+                                           "attempts":  1,
+                                           "summary":  "Impossível conectar-se ao servidor remoto",
+                                           "lastRunAt":  "2026-03-10T02:49:18.5186637-03:00"
+                                       },
+                  "media_defaults":  {
+                                         "status":  "blocked",
+                                         "attempts":  1,
+                                         "summary":  "A propriedade \u0027reply\u0027 não foi encontrada neste objeto. Verifique se a propriedade existe.",
+                                         "lastRunAt":  "2026-03-10T02:50:23.3241242-03:00"
+                                     },
+                  "notebooklm_memory":  {
+                                            "status":  "blocked",
+                                            "attempts":  1,
+                                            "summary":  "A propriedade \u0027reply\u0027 não foi encontrada neste objeto. Verifique se a propriedade existe.",
+                                            "lastRunAt":  "2026-03-10T02:50:54.0316601-03:00"
+                                        },
+                  "swarm_readiness":  {
+                                          "status":  "blocked",
+                                          "attempts":  1,
+                                          "summary":  "A propriedade \u0027reply\u0027 não foi encontrada neste objeto. Verifique se a propriedade existe.",
+                                          "lastRunAt":  "2026-03-10T02:51:26.5606552-03:00"
+                                      },
+                  "ebacmap_prep":  {
+                                       "status":  "blocked",
+                                       "attempts":  1,
+                                       "summary":  "O servidor remoto retornou um erro: (404) Não Localizado.",
+                                       "lastRunAt":  "2026-03-10T02:51:56.9700690-03:00"
+                                   }
+              }
+}

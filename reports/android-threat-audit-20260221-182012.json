@@ -1,0 +1,72 @@
+﻿{
+    "ok":  true,
+    "checkedAt":  "2026-02-21T21:20:12.5101158+00:00",
+    "deviceSerial":  "R9QY300BBRF",
+    "deviceModel":  "SM-A065M",
+    "androidVersion":  "15",
+    "adbPath":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe\\platform-tools\\adb.exe",
+    "defaults":  {
+                     "browserActivity":  "com.android.chrome/com.google.android.apps.chrome.IntentDispatcher",
+                     "homeActivity":  "com.sec.android.app.launcher/.activities.LauncherActivity"
+                 },
+    "signals":  {
+                    "overlayAllowed":  "com.google.android.googlequicksearchbox",
+                    "accessibilityEnabled":  {
+
+                                             },
+                    "notificationListeners":  "com.sec.android.app.launcher",
+                    "activeAdmins":  {
+
+                                     },
+                    "owners":  {
+
+                               }
+                },
+    "suspiciousTop":  [
+                          {
+                              "package":  "com.google.android.googlequicksearchbox",
+                              "score":  40,
+                              "reasons":  [
+                                              "overlay_allowed"
+                                          ],
+                              "isUserApp":  false,
+                              "installer":  "",
+                              "firstInstallTime":  "2021-12-31 21:00:00",
+                              "lastUpdateTime":  "2026-02-17 03:45:17",
+                              "ageDays":  1512
+                          },
+                          {
+                              "package":  "com.sec.android.app.launcher",
+                              "score":  35,
+                              "reasons":  [
+                                              "notification_listener_enabled"
+                                          ],
+                              "isUserApp":  false,
+                              "installer":  "",
+                              "firstInstallTime":  "2021-12-31 21:00:00",
+                              "lastUpdateTime":  "2021-12-31 21:00:00",
+                              "ageDays":  1512
+                          }
+                      ],
+    "quarantine":  {
+                       "requested":  false,
+                       "targets":  [
+
+                                   ],
+                       "uninstallUserApps":  false,
+                       "results":  [
+
+                                   ]
+                   },
+    "counts":  {
+                   "userPackages":  16,
+                   "overlayAllowed":  1,
+                   "accessibilityEnabled":  1,
+                   "notificationListeners":  1,
+                   "activeAdmins":  1,
+                   "owners":  1,
+                   "suspiciousTop":  2
+               },
+    "reportPath":  "C:\\Users\\acer\\Asolaria\\reports\\android-threat-audit-20260221-182012.json",
+    "reportMarkdownPath":  "C:\\Users\\acer\\Asolaria\\reports\\android-threat-audit-20260221-182012.md"
+}

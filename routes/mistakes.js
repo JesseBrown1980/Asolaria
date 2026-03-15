@@ -8,6 +8,7 @@ const {
   buildMistakeAvoidanceHints, getMistakePatternSummary
 } = require("../src/mistakePatternStore");
 const { appendMistakeLedger } = require("../src/mistakeLedgerStore");
+const { requirePermission } = require("../middleware/auth");
 
 function asInt(v, fb, mn, mx) { const n = parseInt(v, 10); if (isNaN(n)) return fb; return Math.max(mn, Math.min(mx, n)); }
 
@@ -30,7 +31,7 @@ function createMistakesRouter({ settings, respondError, inferHttpStatusForError 
     });
   });
 
-  router.post("/patterns/upsert", (req, res) => {
+  router.post("/patterns/upsert", requirePermission("write"), (req, res) => {
     if (!settings.mistakeTaxonomyEnabled) {
       return respondError(res, "Mistake taxonomy is disabled in settings.", 409);
     }
@@ -51,7 +52,7 @@ function createMistakesRouter({ settings, respondError, inferHttpStatusForError 
     }
   });
 
-  router.post("/patterns/prune", (req, res) => {
+  router.post("/patterns/prune", requirePermission("admin"), (req, res) => {
     try {
       const maxIdleDays = asInt(
         req.body?.maxIdleDays ?? req.body?.maxAgeDays,

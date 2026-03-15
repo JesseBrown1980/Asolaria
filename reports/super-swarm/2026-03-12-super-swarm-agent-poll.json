@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-03-12T18:40:30Z",
+  "room": "asolaria_bridge",
+  "pollId": "super-swarm-2026-03-12",
+  "responses": [
+    {
+      "agent": "rook",
+      "role": "ops",
+      "thread": "super-swarm-rook-20260312-152804",
+      "status": "completed",
+      "summary": [
+        "Immediate blocker is local control-plane fragility on the 16 GB machine.",
+        "Safest topology is one brokered hub, not mesh coupling.",
+        "First infrastructure step is a shared attestation payload across Asolaria, SwarmDesk, and Omnispindle."
+      ],
+      "raw": "1. Immediate blocker: the local control plane is not live enough to coordinate this stack. Asolaria at 127.0.0.1:4781 is unreachable, gemini is not on PATH, and the 16GB box is already tight at about 80.7% RAM used with only about 3.1GB free. 2. Safest coordination path: keep one brokered hub, not mesh coupling. Use Asolaria as the only orchestrator, SwarmDesk as the entity/ledger layer, Omnispindle as the external MCP/event bridge, Claude Code as the primary local worker, and Gemini as optional cloud advisory only after the broker is healthy. 3. First concrete infrastructure step: stabilize the local broker before adding any more surfaces. Cut local concurrency to 2-3 workers, restart/fix Asolaria until /api/health/fast answers on 4781, then register one shared attestation payload across SwarmDesk/Omnispindle: entity_id, surface, controller, task_id, action, artifact, ts."
+    },
+    {
+      "agent": "forge",
+      "role": "build",
+      "thread": "super-swarm-forge-20260312-152804",
+      "status": "completed",
+      "summary": [
+        "Use one canonical Entity plus Edge contract.",
+        "Missing surface is typed graph ingestion from existing identity and registry sources.",
+        "First implementation step is a normalizer over agents-registry and identity files."
+      ],
+      "raw": "1. Best data contract: one canonical Entity + Edge schema; Entity has id, kind, display_name, profile_id, identity, capabilities, surfaces, runtime_status, trust_tier, and bridge_mapping. Model Asolaria as orchestrator_agent; model trusted coders as operator/human_coder entities, not just sender ids. 2. Missing integration surface: there is no typed graph ingestion layer from profiles + agents-registry.json + admin-terminal-identities.json into SwarmDesk/GNN. Today identity exists, but trust, control, membership, and human-to-lane relationships are split across files and not emitted as first-class nodes/edges. 3. First concrete step: build a normalizer that reads those existing JSON sources and emits a canonical graph snapshot/API with stable ids and edges like TRUSTS, CONTROLS, CAN_ROUTE_TO, MEMBER_OF, and OBSERVES; seed it first with Asolaria, Forge/Rook/Falcon/Vector, and Helm/Sentinel."
+    },
+    {
+      "agent": "falcon",
+      "role": "mobile",
+      "thread": "super-swarm-falcon-20260312-152804",
+      "status": "completed",
+      "summary": [
+        "Best operator surface is a persistent 3D overview plus a live timeline and detail panel.",
+        "Biggest risk is mixing camera navigation and command input on the same touch surface.",
+        "First verification step is one end-to-end mobile command flow."
+      ],
+      "raw": "Best operator view: a mobile-first command dashboard with one persistent 3D overview pane, a live task/event timeline, and a bottom-sheet detail panel for the selected agent/objective. Biggest UX/control risk: mixing camera navigation and command input on the same touch surface; operators will mis-tap, lose spatial context, and issue commands to the wrong entity under time pressure. First concrete verification step: prototype one critical flow on a phone screen only: select an agent, inspect status, send one command, confirm target/state change; measure mis-taps, time-to-command, and whether users can recover after losing the camera."
+    },
+    {
+      "agent": "asolaria",
+      "role": "core",
+      "thread": "super-swarm-asolaria-20260312-152804",
+      "status": "completed",
+      "summary": [
+        "North star is SwarmDesk as the canonical control-plane ledger.",
+        "Current mismatch is cross-surface trust and provenance not written into one graph.",
+        "First system fix is one shared entity and attestation schema."
+      ],
+      "raw": "1. Architectural north star: model SwarmDesk as the canonical control-plane ledger of entities, roles, lineage, and trust boundaries, with Asolaria represented as a first-class tracked entity that can own tasks, emit events, and attest tool actions across Codex head, Gemini worker, and Claude Code surfaces. 2. Current mismatch: the runtime topology is multi-agent, but trust is still implicit and tool-local; Codex/Gemini/Claude Code appear as separate execution surfaces without a shared entity graph, so identity, delegation, and provenance are coherent inside each lane but not across the swarm. 3. First concrete system fix: add one shared entity/attestation schema now: entity_id, surface_type, controller, trust_level, parent_task_id, delegated_by, tool_action, artifact_uri, timestamp. Make every agent/task/tool event write through that schema into SwarmDesk before and after execution."
+    },
+    {
+      "agent": "vector",
+      "role": "gemini_cloud_worker",
+      "thread": "super-swarm-vector-retry-20260312-153106",
+      "status": "failed",
+      "summary": [
+        "Vector did not produce a useful architecture answer.",
+        "The live failure mode was fetch failed.",
+        "Treat the Google/Gemini lane as degraded until the fetch path is repaired."
+      ],
+      "raw": "- findings: agent execution failed. - files_changed: [] - commands_run: [] - blockers: [\"fetch failed\"]"
+    }
+  ]
+}

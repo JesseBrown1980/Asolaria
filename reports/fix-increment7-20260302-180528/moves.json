@@ -1,0 +1,82 @@
+﻿[
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\20260120165457-1768946097.154-1000-18664647761-Outbound (1).wav",
+        "Kept":  "C:\\Users\\acer\\Downloads\\20260120165457-1768946097.154-1000-18664647761-Outbound.wav",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\20260120165457-1768946097.154-1000-18664647761-Outbound (1).wav",
+        "Hash":  "751140358A0FF5A3A8C59B43425A0081CCC2700A93457C751BF2C09BF6EFCC0D",
+        "SizeBytes":  60277748,
+        "MovedAt":  "2026-03-02T18:05:29.0392553-03:00"
+    },
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\20260120121641-1768929401.124-1000-18009557070-Outbound (1).wav",
+        "Kept":  "C:\\Users\\acer\\Downloads\\20260120121641-1768929401.124-1000-18009557070-Outbound.wav",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\20260120121641-1768929401.124-1000-18009557070-Outbound (1).wav",
+        "Hash":  "571C929C560F979EB68A11058532362D475E01D87AAF22A2BBCA5F3DBD79126B",
+        "SizeBytes":  54464948,
+        "MovedAt":  "2026-03-02T18:05:29.4928772-03:00"
+    },
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\20260120133812-1768934291.132-1000-8009557070-Outbound (1).wav",
+        "Kept":  "C:\\Users\\acer\\Downloads\\20260120133812-1768934291.132-1000-8009557070-Outbound.wav",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\20260120133812-1768934291.132-1000-8009557070-Outbound (1).wav",
+        "Hash":  "CE6520EC7E203D637F0CD21E0A383207921E7EEF2AA510ABF66BF7075BF00AC6",
+        "SizeBytes":  34244468,
+        "MovedAt":  "2026-03-02T18:05:29.7441879-03:00"
+    },
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\20260116095722-1768575442.117-1000-18773834802-Outbound (1).wav",
+        "Kept":  "C:\\Users\\acer\\Downloads\\20260116095722-1768575442.117-1000-18773834802-Outbound.wav",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\20260116095722-1768575442.117-1000-18773834802-Outbound (1).wav",
+        "Hash":  "AE07CF6FD24220FC491CB8F7D33D35F636E84A6F8086B8E80777A0342E4BA2C8",
+        "SizeBytes":  25685108,
+        "MovedAt":  "2026-03-02T18:05:29.9554423-03:00"
+    },
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\20260116093550-1768574149.111-1000-8002274825-Outbound (1).wav",
+        "Kept":  "C:\\Users\\acer\\Downloads\\20260116093550-1768574149.111-1000-8002274825-Outbound.wav",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\20260116093550-1768574149.111-1000-8002274825-Outbound (1).wav",
+        "Hash":  "DE1A0491A511785ECE4E50E1C7428094CE693B8092E6C947B006462D9E8B36B4",
+        "SizeBytes":  20011828,
+        "MovedAt":  "2026-03-02T18:05:30.1076721-03:00"
+    },
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\SWMC_Exhibit_A_Laptop_Instructions_Photos (1).pdf",
+        "Kept":  "C:\\Users\\acer\\Downloads\\SWMC_Exhibit_A_Laptop_Instructions_Photos.pdf",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\SWMC_Exhibit_A_Laptop_Instructions_Photos (1).pdf",
+        "Hash":  "32481A3B93A09B9DF25EDFAFA0CB31C467EAEF3F880023ABDCAF5EA1A9A8AF1F",
+        "SizeBytes":  9651745,
+        "MovedAt":  "2026-03-02T18:05:30.1832682-03:00"
+    },
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\trace-s5e9945-BP2A.250605.031.A3-2026-02-15-15-37-08 (1).perfetto-trace",
+        "Kept":  "C:\\Users\\acer\\Downloads\\trace-s5e9945-BP2A.250605.031.A3-2026-02-15-15-37-08.perfetto-trace",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\trace-s5e9945-BP2A.250605.031.A3-2026-02-15-15-37-08 (1).perfetto-trace",
+        "Hash":  "0523057817409A463989E86D1E1360C21EC8135886B969F2FDA36CDCFDD0C4C5",
+        "SizeBytes":  6203087,
+        "MovedAt":  "2026-03-02T18:05:30.2353136-03:00"
+    },
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\20260115155450-1768510482.105-8447300799-1000-Inbound (1).wav",
+        "Kept":  "C:\\Users\\acer\\Downloads\\20260115155450-1768510482.105-8447300799-1000-Inbound.wav",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\20260115155450-1768510482.105-8447300799-1000-Inbound (1).wav",
+        "Hash":  "D186843D3101C088E992C073279741088D3A19E3E8ADDA802A4DA7492C41EC83",
+        "SizeBytes":  2631348,
+        "MovedAt":  "2026-03-02T18:05:30.2593027-03:00"
+    },
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\CFPB_Submission_Packet_Small_v5 (1).zip",
+        "Kept":  "C:\\Users\\acer\\Downloads\\CFPB_Submission_Packet_Small_v5.zip",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\CFPB_Submission_Packet_Small_v5 (1).zip",
+        "Hash":  "343EB2E68044CF789DA4811B906ACD943EE2E80CE1C65B91ED142FE4677E341D",
+        "SizeBytes":  2394538,
+        "MovedAt":  "2026-03-02T18:05:30.2813567-03:00"
+    },
+    {
+        "MovedFrom":  "C:\\Users\\acer\\Downloads\\20260205_151634 (1).jpg",
+        "Kept":  "C:\\Users\\acer\\Downloads\\20260205_151634.jpg",
+        "MovedTo":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528\\quarantine\\20260205_151634 (1).jpg",
+        "Hash":  "CEE0A4CD9779EC73CDACFACA941AB24E5F4C8B395765CACCA6B8EBFA8BABE515",
+        "SizeBytes":  1494206,
+        "MovedAt":  "2026-03-02T18:05:30.2959118-03:00"
+    }
+]

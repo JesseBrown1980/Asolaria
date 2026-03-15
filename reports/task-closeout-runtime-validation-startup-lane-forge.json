@@ -1,0 +1,8 @@
+﻿{
+    "at":  "2026-02-27T01:16:21.7762521-03:00",
+    "health_ok":  true,
+    "queue_total":  3,
+    "colony_active":  6,
+    "slack_configured":  false,
+    "slack_error":  "not_configured"
+}

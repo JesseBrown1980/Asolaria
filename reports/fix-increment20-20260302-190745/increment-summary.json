@@ -1,0 +1,11 @@
+﻿{
+    "increment":  "20",
+    "timestamp":  "20260302-190745",
+    "action":  "Restarted codex-bridge service stack (oli/asolaria relay path)",
+    "bridgePidLine":  null,
+    "watchdogLine":  null,
+    "localHealthLine":  null,
+    "tunnelHealthLine":  null,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

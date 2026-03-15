@@ -1,0 +1,11 @@
+﻿{
+    "increment":  "18",
+    "timestamp":  "20260302-190332",
+    "action":  "Bridge loopback hardening: restarted pc_server on 127.0.0.1 and set startup script defaults to loopback",
+    "boundToAnyInterface":  false,
+    "boundToLoopback":  true,
+    "statusHostField":  "127.0.0.1",
+    "phoneOnline":  false,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

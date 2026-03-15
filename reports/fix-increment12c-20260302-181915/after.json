@@ -1,0 +1,9 @@
+﻿{
+    "PYTHON313_HOME":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313",
+    "ANACONDA_HOME":  "C:\\Users\\acer\\anaconda3",
+    "PythonWhere":  [
+                        "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                        "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                        "C:\\Users\\acer\\anaconda3\\python.exe"
+                    ]
+}

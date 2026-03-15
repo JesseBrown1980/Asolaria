@@ -1,0 +1,30 @@
+﻿{
+    "generatedAt":  "2026-03-10T02:38:13.2087843-03:00",
+    "endAt":  "2026-03-10T08:30:00.0000000",
+    "threadId":  "overnight-readiness-20260310",
+    "autonomousKick":  "{\"ok\":true,\"pid\":5464,\"tag\":\"overnight\",\"pidPath\":\"C:\\\\Users\\\\acer\\\\Asolaria\\\\logs\\\\asolaria-autonomous-kick-overnight.pid\",\"outLog\":\"C:\\\\Users\\\\acer\\\\Asolaria\\\\logs\\\\asolaria-autonomous-kick-overnight.out.log\",\"errLog\":\"C:\\\\Users\\\\acer\\\\Asolaria\\\\logs\\\\asolaria-autonomous-kick-overnight.err.log\",\"maxHours\":6,\"minKickMinutes\":18,\"maxKickMinutes\":25,\"room\":\"asolaria_bridge\",\"thread\":\"overnight-readiness-20260310\"}",
+    "darkNightWatch":  {
+                           "ok":  true,
+                           "pid":  32296,
+                           "pidPath":  "C:\\Users\\acer\\Asolaria\\logs\\dark-night-watch-overnight.pid",
+                           "outLog":  "C:\\Users\\acer\\Asolaria\\logs\\dark-night-watch-overnight.out.log",
+                           "errLog":  "C:\\Users\\acer\\Asolaria\\logs\\dark-night-watch-overnight.err.log",
+                           "script":  "C:\\Users\\acer\\Asolaria\\tools\\Keep-Asolaria-DarkNightWatch.ps1"
+                       },
+    "readinessLoop":  {
+                          "ok":  true,
+                          "pid":  14136,
+                          "pidPath":  "C:\\Users\\acer\\Asolaria\\logs\\overnight-readiness-loop.pid",
+                          "outLog":  "C:\\Users\\acer\\Asolaria\\logs\\overnight-readiness-loop.out.log",
+                          "errLog":  "C:\\Users\\acer\\Asolaria\\logs\\overnight-readiness-loop.err.log",
+                          "script":  "C:\\Users\\acer\\Asolaria\\tools\\Run-Asolaria-OvernightReadiness.ps1"
+                      },
+    "windowsRepair":  {
+                          "ok":  true,
+                          "pid":  30524,
+                          "pidPath":  "C:\\Users\\acer\\Asolaria\\logs\\windows-repair-overnight.pid",
+                          "outLog":  "C:\\Users\\acer\\Asolaria\\logs\\windows-repair-overnight.out.log",
+                          "errLog":  "C:\\Users\\acer\\Asolaria\\logs\\windows-repair-overnight.err.log",
+                          "script":  "C:\\Users\\acer\\Asolaria\\tools\\Run-Windows-Repair-Overnight.ps1"
+                      }
+}

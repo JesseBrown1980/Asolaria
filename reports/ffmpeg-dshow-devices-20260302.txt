@@ -1,0 +1,5 @@
+[dshow @ 00000223132f5cc0] "HD User Facing" (video)
+[dshow @ 00000223132f5cc0]   Alternative name "@device_pnp_\\?\usb#vid_04f2&pid_b64f&mi_00#6&147b4c&0&0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global"
+[dshow @ 00000223132f5cc0] "Grupo de microfones (Realtek High Definition Audio)" (audio)
+[dshow @ 00000223132f5cc0]   Alternative name "@device_cm_{33D9A762-90C8-11D0-BD43-00A0C911CE86}\wave_{2259D164-1A9B-4A76-871F-B6D288C5EDED}"
+Error opening input file dummy.

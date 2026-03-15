@@ -1,0 +1,94 @@
+﻿{
+    "GeneratedAt":  "2026-03-02T18:04:21.1972625-03:00",
+    "Source":  "C:\\Users\\acer\\Asolaria\\reports\\dup-media-docs-20260302-quick.json",
+    "OneDriveGroupCount":  458,
+    "TierA":  [
+                  {
+                      "Count":  2,
+                      "Name":  "12 L9 Exploration (1).docx",
+                      "Length":  3014452,
+                      "ReclaimMB":  2.87,
+                      "Paths":  [
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Bastian\\Downloads\\12 L9 Exploration (1).docx",
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Bastian\\Downloads\\12 L9 Exploration.docx"
+                                ],
+                      "Reason":  "Same-folder duplicate with copy suffix",
+                      "RecommendedAction":  "TierA_QuarantineCandidate"
+                  },
+                  {
+                      "Count":  2,
+                      "Name":  "Your_Written_Offer_Letter__-_Lineage_Finance (1).pdf",
+                      "Length":  412737,
+                      "ReclaimMB":  0.39,
+                      "Paths":  [
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\connor and Jobs\\Lineage\\Your_Written_Offer_Letter__-_Lineage_Finance (1).pdf",
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\connor and Jobs\\Lineage\\Your_Written_Offer_Letter__-_Lineage_Finance.pdf"
+                                ],
+                      "Reason":  "Same-folder duplicate with copy suffix",
+                      "RecommendedAction":  "TierA_QuarantineCandidate"
+                  },
+                  {
+                      "Count":  2,
+                      "Name":  "12 L20 Hercules (1).docx",
+                      "Length":  319863,
+                      "ReclaimMB":  0.31,
+                      "Paths":  [
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Bastian\\Downloads\\12 L20 Hercules (1).docx",
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Bastian\\Downloads\\12 L20 Hercules.docx"
+                                ],
+                      "Reason":  "Same-folder duplicate with copy suffix",
+                      "RecommendedAction":  "TierA_QuarantineCandidate"
+                  },
+                  {
+                      "Count":  2,
+                      "Name":  "2024-03_130-RecibodePagamento-032024 (1).pdf",
+                      "Length":  102203,
+                      "ReclaimMB":  0.1,
+                      "Paths":  [
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\J\u0026D LTD\\Taxes\\2024-03_130-RecibodePagamento-032024 (1).pdf",
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\J\u0026D LTD\\Taxes\\2024-03_130-RecibodePagamento-032024.pdf"
+                                ],
+                      "Reason":  "Same-folder duplicate with copy suffix",
+                      "RecommendedAction":  "TierA_QuarantineCandidate"
+                  },
+                  {
+                      "Count":  2,
+                      "Name":  "Copy of live chat with linkedin premium help service.docx",
+                      "Length":  94663,
+                      "ReclaimMB":  0.09,
+                      "Paths":  [
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\Linkedin\\Copy of live chat with linkedin premium help service.docx",
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Jesse\\Linkedin\\Linkedin account resctriction removed.docx"
+                                ],
+                      "Reason":  "Same-folder duplicate with copy suffix",
+                      "RecommendedAction":  "TierA_QuarantineCandidate"
+                  },
+                  {
+                      "Count":  2,
+                      "Name":  "Jesse_1 (1).docx",
+                      "Length":  18709,
+                      "ReclaimMB":  0.02,
+                      "Paths":  [
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Bastian\\Jesse_1 (1).docx",
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Bastian\\Jesse_1 (1.1).docx"
+                                ],
+                      "Reason":  "Same-folder duplicate with copy suffix",
+                      "RecommendedAction":  "TierA_QuarantineCandidate"
+                  },
+                  {
+                      "Count":  2,
+                      "Name":  "Jesse_8 (1).docx",
+                      "Length":  14259,
+                      "ReclaimMB":  0.01,
+                      "Paths":  [
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Bastian\\Jesse_8 (1).docx",
+                                    "C:\\Users\\acer\\OneDrive\\Documentos\\Students\\Bastian\\Jesse_8 (2.).docx"
+                                ],
+                      "Reason":  "Same-folder duplicate with copy suffix",
+                      "RecommendedAction":  "TierA_QuarantineCandidate"
+                  }
+              ],
+    "TierB":  [
+
+              ]
+}

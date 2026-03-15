@@ -1,0 +1,10 @@
+﻿{
+    "SnapshotDir":  "C:\\Users\\acer\\Asolaria\\reports\\process-compare-20260302-205451",
+    "GetProcessCount":  284,
+    "Win32ProcessCount":  284,
+    "TasklistCount":  285,
+    "Win32NotInGetProcessCount":  0,
+    "GetProcessNotInWin32Count":  0,
+    "TasklistNotInGetProcessCount":  1,
+    "GetProcessNotInTasklistCount":  0
+}

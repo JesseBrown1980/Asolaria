@@ -1,0 +1,51 @@
+[
+    {
+        "title":  "[ASOLARIA] Dashboard IA: left navigation rail (Hostinger-style)",
+        "status":  "done",
+        "priority":  "high",
+        "scope":  "frontend",
+        "acceptance":  [
+                           "Replace top filter strip with true left rail nav in action panel",
+                           "Keep mobile behavior usable (stacked/horizontal fallback)",
+                           "Maintain existing card grouping logic"
+                       ],
+        "files":  [
+                      "public/index.html",
+                      "public/styles.css",
+                      "public/app.js"
+                  ]
+    },
+    {
+        "title":  "[ASOLARIA] Projects: persisted CRUD API + UI management",
+        "status":  "done",
+        "priority":  "high",
+        "scope":  "fullstack",
+        "acceptance":  [
+                           "Add project store persisted in data",
+                           "Add /api/projects CRUD routes",
+                           "Render project pills/list from API, not hardcoded constants"
+                       ],
+        "files":  [
+                      "src/projectStore.js",
+                      "server.js",
+                      "public/index.html",
+                      "public/app.js"
+                  ]
+    },
+    {
+        "title":  "[ASOLARIA] Task Ledger: server-side project-scope filtering",
+        "status":  "done",
+        "priority":  "high",
+        "scope":  "fullstack",
+        "acceptance":  [
+                           "Support projectScope/projectMarker filtering at API/store layer",
+                           "Use scope filter in /api/task-ledger/state query",
+                           "Remove duplicate client-side filtering fallback after validation"
+                       ],
+        "files":  [
+                      "src/taskLedgerStore.js",
+                      "server.js",
+                      "public/app.js"
+                  ]
+    }
+]

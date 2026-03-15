@@ -1,0 +1,153 @@
+{
+  "ok": true,
+  "notebookTitle": "Asolaria Enterprise Memory",
+  "notebookName": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d",
+  "notebookCreated": false,
+  "account": "plasmatoid@gmail.com",
+  "project": "winged-complex-390417",
+  "location": "global",
+  "totalSourcesDefined": 10,
+  "changedSourceCount": 10,
+  "changedSources": [
+    "Asolaria Runtime Snapshot",
+    "Asolaria System Card",
+    "Asolaria Startup Contract",
+    "Asolaria Startup Gap Report",
+    "Augment Context Sidecar",
+    "Symphony Integration",
+    "Symphony Workflow",
+    "Asolaria Active Tasks Snapshot",
+    "Vertex AI Live API Official Docs",
+    "NotebookLM Enterprise Setup Official Docs"
+  ],
+  "createdCount": 9,
+  "batchJobId": "job_1772911155827_xymgzx",
+  "statePath": "C:\\Users\\acer\\Asolaria\\data\\notebooklm-core-sync-state.json",
+  "renderedSources": [
+    {
+      "sourceName": "Asolaria Runtime Snapshot",
+      "type": "text",
+      "origin": "live runtime",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\runtime-snapshot.md"
+    },
+    {
+      "sourceName": "Asolaria System Card",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\reports\\asolaria-system-card-20260303.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\system-card.md"
+    },
+    {
+      "sourceName": "Asolaria Startup Contract",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\STARTUP_CONTRACT_V1.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\startup-contract.md"
+    },
+    {
+      "sourceName": "Asolaria Startup Gap Report",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\STARTUP_ARCHITECTURE_GAP_REPORT.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\startup-gap-report.md"
+    },
+    {
+      "sourceName": "Augment Context Sidecar",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\AUGMENT_CONTEXT_SIDECAR.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\augment-context-sidecar.md"
+    },
+    {
+      "sourceName": "Symphony Integration",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\SYMPHONY_INTEGRATION.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\symphony-integration.md"
+    },
+    {
+      "sourceName": "Symphony Workflow",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\config\\symphony\\WORKFLOW.asolaria.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\symphony-workflow.md"
+    },
+    {
+      "sourceName": "Asolaria Active Tasks Snapshot",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\TASKS.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\active-tasks.md"
+    },
+    {
+      "sourceName": "Vertex AI Live API Official Docs",
+      "type": "web",
+      "origin": "https://cloud.google.com/vertex-ai/generative-ai/docs/live-api",
+      "renderedPath": ""
+    },
+    {
+      "sourceName": "NotebookLM Enterprise Setup Official Docs",
+      "type": "web",
+      "origin": "https://cloud.google.com/gemini/enterprise/docs/notebooklm-enterprise/set-up-notebooklm-enterprise",
+      "renderedPath": ""
+    }
+  ],
+  "batchSources": [
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/4ad60ae2-5249-477c-bf7c-a996e10e1fcc",
+      "sourceId": "[object Object]",
+      "title": "Asolaria Runtime Snapshot",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/bde61f16-254f-40eb-85af-b5286249ec48",
+      "sourceId": "[object Object]",
+      "title": "Asolaria System Card",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/9119be68-91c9-4ce8-83da-06dc19f530de",
+      "sourceId": "[object Object]",
+      "title": "Asolaria Startup Contract",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/829c8f21-a273-454e-b9db-a764a48607c8",
+      "sourceId": "[object Object]",
+      "title": "Asolaria Startup Gap Report",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/7d055b8b-8c84-4bef-9d6d-d9ad67f320af",
+      "sourceId": "[object Object]",
+      "title": "Augment Context Sidecar",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/2bedf463-6c20-4683-9073-e1f8ec8fac7d",
+      "sourceId": "[object Object]",
+      "title": "Symphony Integration",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/90e9808e-4eb3-43fb-8484-0f6bd3564d29",
+      "sourceId": "[object Object]",
+      "title": "Symphony Workflow",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/f34e1e50-571a-4fbf-91a7-d52f6b67da52",
+      "sourceId": "[object Object]",
+      "title": "Asolaria Active Tasks Snapshot",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/ecb0b909-e779-4457-be54-1bb21cb2eaf2",
+      "sourceId": "[object Object]",
+      "title": "Vertex AI Live API Official Docs",
+      "state": "",
+      "failureReasons": []
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+﻿{
+    "DisplayName":  "iTop Screen Recorder",
+    "DisplayVersion":  "6.2.0.3488",
+    "Publisher":  "iTop Inc.",
+    "InstallDate":  "20251015",
+    "UninstallString":  "\"C:\\Program Files\\iTop Screen Recorder\\unins000.exe\"",
+    "QuietUninstallString":  "\"C:\\Program Files\\iTop Screen Recorder\\unins000.exe\" /SILENT",
+    "PSChildName":  "iTop Screen Recorder_is1",
+    "PSPath":  "Microsoft.PowerShell.Core\\Registry::HKEY_LOCAL_MACHINE\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\iTop Screen Recorder_is1"
+}

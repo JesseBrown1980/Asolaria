@@ -1,0 +1,552 @@
+{
+  "timestamp": "2026-03-10T00:23:39.812Z",
+  "mode": "apply",
+  "options": {
+    "mode": "apply",
+    "maxWatchdogTurns": 40,
+    "keepNotebookOwnerAction": 8,
+    "keepNotebookUpgradeLoop": 8,
+    "keepNotebookModelAudit": 14,
+    "keepJobStatusEventsPerTask": 0
+  },
+  "changes": {
+    "untangle": {
+      "memoryWatchdogTextUpdated": 0,
+      "memoryLegacyTextUpdated": 1
+    },
+    "reassign": {
+      "taskOwnerReassigned": 0,
+      "eventActorReassigned": 0,
+      "notebookTagReassigned": 0,
+      "taskTextRewritten": 5,
+      "eventTextRewritten": 0,
+      "notebookTextRewritten": 0
+    },
+    "prune": {
+      "memory": {
+        "watchdogBefore": 40,
+        "watchdogAfter": 40,
+        "watchdogPruned": 0,
+        "turnsBefore": 128,
+        "turnsAfter": 128,
+        "turnsPruned": 0
+      },
+      "notebook": {
+        "ownerAction": {
+          "matched": 8,
+          "pruned": 0
+        },
+        "upgradeLoop": {
+          "matched": 8,
+          "pruned": 0
+        },
+        "modelAudit": {
+          "matched": 14,
+          "pruned": 0
+        },
+        "totalPruned": 0
+      },
+      "taskLedger": {
+        "eventsBefore": 2095,
+        "eventsAfter": 2095,
+        "eventsPruned": 0
+      }
+    }
+  },
+  "review": {
+    "before": {
+      "memory": {
+        "turns": 128,
+        "userTurns": 39,
+        "assistantTurns": 88,
+        "watchdogIdleCount": 35,
+        "watchdogDigestCount": 5,
+        "topSources": [
+          [
+            "agent_colony_watchdog",
+            40
+          ],
+          [
+            "phone-edge-gemini",
+            38
+          ],
+          [
+            "chat",
+            20
+          ],
+          [
+            "brain",
+            16
+          ],
+          [
+            "runtime-action",
+            9
+          ],
+          [
+            "startup-automation",
+            4
+          ],
+          [
+            "api-memory-compaction",
+            1
+          ]
+        ]
+      },
+      "taskLedger": {
+        "tasks": 561,
+        "events": 2095,
+        "topActors": [
+          [
+            "chat-auto",
+            960
+          ],
+          [
+            "job-monitor",
+            379
+          ],
+          [
+            "brain",
+            285
+          ],
+          [
+            "router",
+            196
+          ],
+          [
+            "codex",
+            60
+          ],
+          [
+            "skills-api",
+            38
+          ],
+          [
+            "mobile-ui",
+            32
+          ],
+          [
+            "vector",
+            25
+          ],
+          [
+            "api",
+            24
+          ],
+          [
+            "codex-cli",
+            16
+          ],
+          [
+            "phone-gemini",
+            15
+          ],
+          [
+            "mobile",
+            14
+          ],
+          [
+            "worker-router",
+            12
+          ],
+          [
+            "guardian-approval-resume",
+            10
+          ],
+          [
+            "codex-test",
+            10
+          ],
+          [
+            "mobile-validation",
+            6
+          ]
+        ],
+        "topEventTypes": [
+          [
+            "task_created",
+            566
+          ],
+          [
+            "chat_received",
+            480
+          ],
+          [
+            "job_completed",
+            354
+          ],
+          [
+            "chat_brain_queued",
+            285
+          ],
+          [
+            "chat_routed_completed",
+            98
+          ],
+          [
+            "chat_routed_queued",
+            98
+          ],
+          [
+            "task_status_changed",
+            56
+          ],
+          [
+            "approval_approved",
+            40
+          ],
+          [
+            "job_failed",
+            24
+          ],
+          [
+            "skill_run_queued",
+            19
+          ],
+          [
+            "task_updated",
+            13
+          ],
+          [
+            "task_archived",
+            10
+          ],
+          [
+            "approval_denied",
+            8
+          ],
+          [
+            "phone_takeover_received",
+            6
+          ],
+          [
+            "worker_routed",
+            6
+          ],
+          [
+            "approval_manual_retry_required",
+            5
+          ]
+        ]
+      },
+      "notebook": {
+        "notes": 244,
+        "topTitles": [
+          [
+            "NotebookLM Enterprise Owner Action Required",
+            8
+          ],
+          [
+            "NotebookLM Enterprise Upgrade Loop Completed",
+            8
+          ],
+          [
+            "NotebookLM: Explain how AI works in a few words",
+            4
+          ],
+          [
+            "Memory clear audit",
+            4
+          ],
+          [
+            "NotebookLM: Explain Asolaria in one sentence.",
+            4
+          ],
+          [
+            "NotebookLM: Give a one-line status check.",
+            3
+          ],
+          [
+            "Model Audit 2026-02-25",
+            3
+          ],
+          [
+            "NotebookLM: what are the latest 3 emails about play console?",
+            3
+          ],
+          [
+            "Phone/Desktop auth + connectivity upgrade (in progress)",
+            2
+          ],
+          [
+            "NotebookLM: Give a one-line health check for Asolaria build status.",
+            2
+          ],
+          [
+            "NotebookLM: one-line runtime health check",
+            2
+          ],
+          [
+            "NotebookLM: summarize current notebook connectivity blockers",
+            2
+          ],
+          [
+            "Model Audit 2026-03-04 - Upgrade Candidate",
+            2
+          ],
+          [
+            "Model Audit 2026-03-05 - Upgrade Candidate",
+            2
+          ],
+          [
+            "phone-log-validation",
+            1
+          ],
+          [
+            "Important: remember we need safe auto memory and must integrate MCP flows without overwriting existing notes.",
+            1
+          ]
+        ]
+      }
+    },
+    "after": {
+      "memory": {
+        "turns": 128,
+        "userTurns": 39,
+        "assistantTurns": 88,
+        "watchdogIdleCount": 35,
+        "watchdogDigestCount": 5,
+        "topSources": [
+          [
+            "agent_colony_watchdog",
+            40
+          ],
+          [
+            "phone-edge-gemini",
+            38
+          ],
+          [
+            "chat",
+            20
+          ],
+          [
+            "brain",
+            16
+          ],
+          [
+            "runtime-action",
+            9
+          ],
+          [
+            "startup-automation",
+            4
+          ],
+          [
+            "api-memory-compaction",
+            1
+          ]
+        ]
+      },
+      "taskLedger": {
+        "tasks": 561,
+        "events": 2095,
+        "topActors": [
+          [
+            "chat-auto",
+            960
+          ],
+          [
+            "job-monitor",
+            379
+          ],
+          [
+            "brain",
+            285
+          ],
+          [
+            "router",
+            196
+          ],
+          [
+            "codex",
+            60
+          ],
+          [
+            "skills-api",
+            38
+          ],
+          [
+            "mobile-ui",
+            32
+          ],
+          [
+            "vector",
+            25
+          ],
+          [
+            "api",
+            24
+          ],
+          [
+            "codex-cli",
+            16
+          ],
+          [
+            "phone-gemini",
+            15
+          ],
+          [
+            "mobile",
+            14
+          ],
+          [
+            "worker-router",
+            12
+          ],
+          [
+            "guardian-approval-resume",
+            10
+          ],
+          [
+            "codex-test",
+            10
+          ],
+          [
+            "mobile-validation",
+            6
+          ]
+        ],
+        "topEventTypes": [
+          [
+            "task_created",
+            566
+          ],
+          [
+            "chat_received",
+            480
+          ],
+          [
+            "job_completed",
+            354
+          ],
+          [
+            "chat_brain_queued",
+            285
+          ],
+          [
+            "chat_routed_completed",
+            98
+          ],
+          [
+            "chat_routed_queued",
+            98
+          ],
+          [
+            "task_status_changed",
+            56
+          ],
+          [
+            "approval_approved",
+            40
+          ],
+          [
+            "job_failed",
+            24
+          ],
+          [
+            "skill_run_queued",
+            19
+          ],
+          [
+            "task_updated",
+            13
+          ],
+          [
+            "task_archived",
+            10
+          ],
+          [
+            "approval_denied",
+            8
+          ],
+          [
+            "phone_takeover_received",
+            6
+          ],
+          [
+            "worker_routed",
+            6
+          ],
+          [
+            "approval_manual_retry_required",
+            5
+          ]
+        ]
+      },
+      "notebook": {
+        "notes": 244,
+        "topTitles": [
+          [
+            "NotebookLM Enterprise Owner Action Required",
+            8
+          ],
+          [
+            "NotebookLM Enterprise Upgrade Loop Completed",
+            8
+          ],
+          [
+            "NotebookLM: Explain how AI works in a few words",
+            4
+          ],
+          [
+            "Memory clear audit",
+            4
+          ],
+          [
+            "NotebookLM: Explain Asolaria in one sentence.",
+            4
+          ],
+          [
+            "NotebookLM: Give a one-line status check.",
+            3
+          ],
+          [
+            "Model Audit 2026-02-25",
+            3
+          ],
+          [
+            "NotebookLM: what are the latest 3 emails about play console?",
+            3
+          ],
+          [
+            "Phone/Desktop auth + connectivity upgrade (in progress)",
+            2
+          ],
+          [
+            "NotebookLM: Give a one-line health check for Asolaria build status.",
+            2
+          ],
+          [
+            "NotebookLM: one-line runtime health check",
+            2
+          ],
+          [
+            "NotebookLM: summarize current notebook connectivity blockers",
+            2
+          ],
+          [
+            "Model Audit 2026-03-04 - Upgrade Candidate",
+            2
+          ],
+          [
+            "Model Audit 2026-03-05 - Upgrade Candidate",
+            2
+          ],
+          [
+            "phone-log-validation",
+            1
+          ],
+          [
+            "Important: remember we need safe auto memory and must integrate MCP flows without overwriting existing notes.",
+            1
+          ]
+        ]
+      }
+    }
+  },
+  "backups": {
+    "memory": "C:\\Users\\acer\\Asolaria\\data\\backups\\agent-state-maintenance\\2026-03-10T00-23-39-812Z\\memory.json",
+    "taskLedger": "C:\\Users\\acer\\Asolaria\\data\\backups\\agent-state-maintenance\\2026-03-10T00-23-39-812Z\\task-ledger.json",
+    "notebook": "C:\\Users\\acer\\Asolaria\\data\\backups\\agent-state-maintenance\\2026-03-10T00-23-39-812Z\\notebook.json"
+  },
+  "outputs": {}
+}

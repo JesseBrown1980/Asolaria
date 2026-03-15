@@ -1,0 +1,21 @@
+﻿{
+    "root":  "C:\\Users\\acer\\OneDrive",
+    "generatedAt":  "2026-03-02T18:04:56.6088442-03:00",
+    "mode":  "report-only",
+    "fileScan":  {
+                     "totalFilesConsidered":  60237,
+                     "candidateGroups":  2098,
+                     "candidatePotentialReclaimBytes":  17285705220
+                 },
+    "hashStage":  {
+                      "hashMinSizeBytes":  1048576,
+                      "hashTargetTotal":  1159,
+                      "hashTargetCap":  4000,
+                      "hashTargetCapped":  false,
+                      "hashTargetsHashed":  246,
+                      "hashErrors":  913,
+                      "verifiedGroups":  63,
+                      "verifiedPotentialReclaimBytes":  836782035
+                  },
+    "recommendedNextAction":  "Review top hash-verified groups and approve quarantine-first move set in small batches only."
+}

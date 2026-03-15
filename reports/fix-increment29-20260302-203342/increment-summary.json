@@ -1,0 +1,19 @@
+﻿{
+    "increment":  "29",
+    "timestamp":  "20260302-203342",
+    "action":  "Asolaria meeting recording pipeline added (device discovery + start/stop + graceful worker)",
+    "scripts":  [
+                    "C:\\Users\\acer\\Asolaria\\tools\\Get-Asolaria-MeetingDevices.ps1",
+                    "C:\\Users\\acer\\Asolaria\\tools\\Start-Asolaria-MeetingRecording.ps1",
+                    "C:\\Users\\acer\\Asolaria\\tools\\Stop-Asolaria-MeetingRecording.ps1",
+                    "C:\\Users\\acer\\Asolaria\\tools\\Run-Asolaria-MeetingRecordingWorker.ps1",
+                    "C:\\Users\\acer\\Asolaria\\tools\\Asolaria-MeetingRecording-Guide.md"
+                ],
+    "smokeOutput":  "C:\\Users\\acer\\Asolaria\\captures\\meetings\\meeting-20260302-203255.mkv",
+    "smokeProbePath":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment29-20260302-203342\\smoketest-ffprobe.json",
+    "encoder":  "h264_qsv",
+    "profile":  "balanced",
+    "audioTest":  true,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

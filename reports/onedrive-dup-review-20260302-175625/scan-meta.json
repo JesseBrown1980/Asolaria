@@ -1,0 +1,37 @@
+﻿{
+    "root":  "C:\\Users\\acer\\OneDrive",
+    "scannedAt":  "2026-03-02T17:59:05.7349030-03:00",
+    "totalFilesConsidered":  60237,
+    "excludedDirNames":  [
+                             "node_modules",
+                             ".git",
+                             ".hg",
+                             ".svn",
+                             "__pycache__",
+                             ".mypy_cache",
+                             ".pytest_cache",
+                             ".ruff_cache",
+                             ".cache",
+                             ".next",
+                             "dist",
+                             "build",
+                             "bin",
+                             "obj",
+                             "venv",
+                             ".venv",
+                             "env",
+                             ".terraform",
+                             ".gradle",
+                             ".nuget",
+                             "packages"
+                         ],
+    "excludedExtensions":  [
+                               ".tmp",
+                               ".temp",
+                               ".part",
+                               ".crdownload",
+                               ".download",
+                               ".log"
+                           ],
+    "stage":  "report-only"
+}

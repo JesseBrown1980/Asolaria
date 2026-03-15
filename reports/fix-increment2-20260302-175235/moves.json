@@ -1,0 +1,26 @@
+﻿[
+    {
+        "OriginalPath":  "C:\\Users\\acer\\Downloads\\Screen_Recording_20260205_165423_Cloud Voice (1).mp4",
+        "KeptPath":  "C:\\Users\\acer\\Downloads\\Screen_Recording_20260205_165423_Cloud Voice.mp4",
+        "QuarantinePath":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment2-20260302-175235\\quarantine\\Screen_Recording_20260205_165423_Cloud Voice (1).mp4",
+        "Hash":  "A9FEA2B533FE73B66749BB85A156C75578AE485029A01BF6333516DC25B03788",
+        "SizeBytes":  456740691,
+        "MovedAt":  "2026-03-02T17:52:39.2925270-03:00"
+    },
+    {
+        "OriginalPath":  "C:\\Users\\acer\\Downloads\\Screen_Recording_20260205_153334_Cloud Voice (1).mp4",
+        "KeptPath":  "C:\\Users\\acer\\Downloads\\Screen_Recording_20260205_153334_Cloud Voice.mp4",
+        "QuarantinePath":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment2-20260302-175235\\quarantine\\Screen_Recording_20260205_153334_Cloud Voice (1).mp4",
+        "Hash":  "D25DE60132B99598558DD2D0A5D35F01F69E250821CFB4995CBEB9467A325816",
+        "SizeBytes":  279107016,
+        "MovedAt":  "2026-03-02T17:52:41.4023449-03:00"
+    },
+    {
+        "OriginalPath":  "C:\\Users\\acer\\Downloads\\Screen_Recording_20260205_153801_Cloud Voice (1).mp4",
+        "KeptPath":  "C:\\Users\\acer\\Downloads\\Screen_Recording_20260205_153801_Cloud Voice.mp4",
+        "QuarantinePath":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment2-20260302-175235\\quarantine\\Screen_Recording_20260205_153801_Cloud Voice (1).mp4",
+        "Hash":  "CDB7FAFE70D1FFCD08C111F3F912AA97CF155FBCE5A64F1840E3BEEBE2822B64",
+        "SizeBytes":  43131239,
+        "MovedAt":  "2026-03-02T17:52:41.7244864-03:00"
+    }
+]

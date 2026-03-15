@@ -1,0 +1,42 @@
+{
+    "generatedAt":  "2026-02-24T20:23:48.9346765-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "slack":  {
+                  "enabled":  true,
+                  "configured":  false,
+                  "tokenSource":  "none",
+                  "connectionOk":  false,
+                  "connectionError":  "not_configured",
+                  "channelsProbe":  {
+                                        "jobId":  "job_1771975428594_5q9o1d",
+                                        "status":  "failed",
+                                        "error":  "Slack integration is not configured.",
+                                        "finishedAt":  "2026-02-24T23:23:48.594Z"
+                                    }
+              },
+    "notebooklm":  {
+                       "watcherRerun":  "See task-closeout-notebooklm-watch-*.log generated this run."
+                   },
+    "phoneCloseoutPrereqs":  {
+                                 "mobilePush":  {
+                                                    "enabled":  true,
+                                                    "reason":  "ready:vault",
+                                                    "vapidPublicKeyConfigured":  true,
+                                                    "subscriptions":  0
+                                                },
+                                 "phoneBridgeKeeper":  {
+                                                           "running":  true,
+                                                           "pid":  8932,
+                                                           "latestLogName":  "phone-link-keeper-20260224-162148.log",
+                                                           "latestLogStaleSeconds":  365,
+                                                           "latestLogTail":  "[2026-02-24 20:17:43] health=True; authorized=1; unauthorized=0; reverse_ok=True; reverse_changed=False; reverse_detail=reverse_present"
+                                                       },
+                                 "phoneTunnelMonitor":  {
+                                                            "running":  false,
+                                                            "latestReportExists":  true,
+                                                            "latestReportPass":  true,
+                                                            "latestReportRemoteBaseUrl":  "https://192.168.1.5:5443",
+                                                            "latestReportStaleSeconds":  16744
+                                                        }
+                             }
+}

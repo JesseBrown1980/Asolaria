@@ -1,0 +1,50 @@
+﻿{
+    "ok":  true,
+    "sessionId":  "matrix_20260304_195545_cd7834",
+    "source":  "teams_caption",
+    "laneId":  "meet_lane",
+    "lastId":  6,
+    "entriesCount":  6,
+    "diagnostics":  {
+                        "requestedSessionId":  "matrix_20260304_195545_cd7834",
+                        "requestedLaneId":  "meet_lane",
+                        "acceptedCount":  32,
+                        "dedupedCount":  0,
+                        "rejectedCount":  0,
+                        "pullCount":  14,
+                        "resetCount":  10,
+                        "lastPushAt":  "2026-03-04T22:55:47.390Z",
+                        "lastPullAt":  "2026-03-04T22:55:52.952Z",
+                        "lastReason":  "",
+                        "lastMonotonicAdjustMs":  0,
+                        "requestedAfterId":  0,
+                        "returnedCount":  2,
+                        "backlogCount":  0,
+                        "windowStartId":  3,
+                        "windowEndId":  4,
+                        "nonMonotonicIdCount":  0,
+                        "duplicateIdCount":  0,
+                        "latestEntryAt":  "2026-03-04T22:55:46.861Z",
+                        "lagMs":  6091
+                    },
+    "entries":  [
+                    {
+                        "id":  3,
+                        "at":  "2026-03-04T22:55:46.718Z",
+                        "text":  "Meet interviewer: How do you handle transcript drift?",
+                        "source":  "google_meet_caption",
+                        "sessionId":  "matrix_20260304_195545_cd7834",
+                        "laneId":  "meet_lane",
+                        "direction":  "incoming"
+                    },
+                    {
+                        "id":  4,
+                        "at":  "2026-03-04T22:55:46.861Z",
+                        "text":  "Meet candidate: We dedupe lines and keep source-aware snapshots.",
+                        "source":  "google_meet_caption",
+                        "sessionId":  "matrix_20260304_195545_cd7834",
+                        "laneId":  "meet_lane",
+                        "direction":  "incoming"
+                    }
+                ]
+}

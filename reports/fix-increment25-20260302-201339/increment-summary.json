@@ -1,0 +1,11 @@
+﻿{
+    "increment":  "25",
+    "timestamp":  "20260302-201339",
+    "action":  "Process control phase 1: disabled selected user autostarts + iTop tasks; stopped related user app processes",
+    "runEntriesDisabled":  5,
+    "runEntriesStillPresent":  0,
+    "iTopTasksHandled":  5,
+    "userProcessesStopped":  9,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

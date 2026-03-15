@@ -1,0 +1,39 @@
+﻿{
+    "timestampUtc":  "2026-02-27T19:05:18.9140845Z",
+    "oauthUrlOpened":  true,
+    "oauthOpenTarget":  "local_ui",
+    "oauthUrlHost":  "accounts.google.com",
+    "account":  "plasmatoid@gmail.com",
+    "project":  "winged-complex-390417",
+    "demos":  [
+                  {
+                      "name":  "cloud",
+                      "jobId":  "job_1772219115111_qg04yv",
+                      "status":  "completed",
+                      "finishedAt":  "2026-02-27T19:05:16.307Z",
+                      "httpStatus":  200,
+                      "url":  "https://cloudresourcemanager.googleapis.com/v1/projects/winged-complex-390417",
+                      "preview":  "{\r\n    \"projectNumber\":  \"742368506950\",\r\n    \"projectId\":  \"winged-complex-390417\",\r\n    \"lifecycleState\":  \"ACTIVE\",\r\n    \"name\":  \"My First Project\",\r\n    \"createTime\":  \"2023-06-20T17:17:16.743607Z\"\r\n}"
+                  },
+                  {
+                      "name":  "bigquery",
+                      "jobId":  "job_1772219116661_xa6yn8",
+                      "status":  "completed",
+                      "finishedAt":  "2026-02-27T19:05:17.079Z",
+                      "httpStatus":  200,
+                      "url":  "https://bigquery.googleapis.com/bigquery/v2/projects/winged-complex-390417/datasets?maxResults=5",
+                      "preview":  "{\r\n    \"kind\":  \"bigquery#datasetList\",\r\n    \"etag\":  \"1B2M2Y8AsgTpgAmY7PhCfg==\"\r\n}"
+                  },
+                  {
+                      "name":  "storage",
+                      "jobId":  "job_1772219117462_fzklyf",
+                      "status":  "completed",
+                      "finishedAt":  "2026-02-27T19:05:18.762Z",
+                      "httpStatus":  200,
+                      "url":  "https://storage.googleapis.com/storage/v1/b?project=winged-complex-390417\u0026maxResults=5",
+                      "preview":  "{\r\n    \"kind\":  \"storage#buckets\",\r\n    \"items\":  [\r\n                  {\r\n                      \"kind\":  \"storage#bucket\",\r\n                      \"selfLink\":  \"[link omitted]\",\r\n                      \"id\":  \"example-bucketplasmatoid\",\r\n                      \"name\":  \"example-bucketplasmatoid\",\r\n                      \"projectNumber\":  \"742368506950\",\r\n                      \"generation\":  \"1687282121774905345\",\r\n                      \"metageneration\":  \"1\",\r\n                      \"location\":  \"ME-WEST1\",\r\n                      \"storageClass\":  \"STANDARD\",\r\n                      \"etag\":  \"CAE=\",\r\n                      \"timeCreated\":  \"2023-06-20T17:28:43.526Z\",\r\n                      \"updated\":  \"2023-06-20T17:28:43.526Z\",\r\n                      \"softDeletePolicy\":  {\r\n                                               \"retentionDurationSeconds\":  \"604800\",\r\n                                               \"effectiveTime\":  \"2024-03-01T08:00:00.000Z\"\r\n                                           },\r\n                      \"iamConfiguration\":  {\r\n                                               \"bucketPolicyOnly\":  {\r\n                                                                        \"enabled\":  true,\r\n                                                                        \"lockedTime\":  \"2023-09-18T17:28:43.526Z\"\r\n                                                                    },\r\n                                               \"uniformBucketLevelAccess\":  {\r\n                                                                                \"enabled\":  true,\r\n                                                                                \"lockedTime\":  \"2023-09-18T17:28:43.526Z\"\r\n                                                                            },\r\n                                               \"publicAccessPrevention\":  \"enforced\"\r\n                                           },\r\n                      \"locationType\":  \"region\",\r\n                      \"satisfiesPZS\":  true,\r\n                      \"satisfiesPZI\":  true,\r\n                      \"autoclass\":  {\r\n                                        \"enabled\":  true,\r\n                                        \"toggleTime\":  \"2023-06-20T17:28:43.526Z\",\r\n                                        \"terminalStorageClass\":  \"ARCHIVE\",\r\n                                        \"terminalStorageClassUpdateTime\":  \"2023-06-20T17:28:43.526Z\"\r\n                                    }\r\n                  }\r\n              ]\r\n}"
+                  }
+              ],
+    "googlePrimaryConnected":  true,
+    "googleDefaultAccount":  "plasmatoid@gmail.com"
+}

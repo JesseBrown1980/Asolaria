@@ -1,0 +1,327 @@
+﻿{
+    "ok":  true,
+    "generatedAt":  "2026-03-02T21:46:26.6979207-03:00",
+    "applied":  true,
+    "oneDriveRoot":  "C:\\Users\\acer\\OneDrive",
+    "sourceRoots":  [
+                        "C:\\Users\\acer\\Downloads",
+                        "C:\\Users\\acer\\Desktop"
+                    ],
+    "quarantineBatchRoot":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626",
+    "maxMoves":  40,
+    "plannedOrMoved":  36,
+    "skipped":  3,
+    "stagedBytes":  17340817,
+    "stagedGB":  0.0161,
+    "actions":  [
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\page 1 I130.jpeg",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\page 1 I130.jpeg",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Diva\\Visa 2025 USA\\Marriage Documents\\page 1 I130.jpeg",
+                        "sizeBytes":  193955
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Page 2 I130.jpeg",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Page 2 I130.jpeg",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\FAMILY\\Family + House\\Family\\Diva\\Visa 2025 USA\\Marriage Documents\\Page 2 I130.jpeg",
+                        "sizeBytes":  161991
+                    },
+                    {
+                        "action":  "skip",
+                        "reason":  "hash_mismatch_or_unavailable",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-09 011526.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-09 011526.png",
+                        "sizeBytes":  334502
+                    },
+                    {
+                        "action":  "skip",
+                        "reason":  "hash_mismatch_or_unavailable",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-09 011816.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-09 011816.png",
+                        "sizeBytes":  593588
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-10 135253.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-10 135253.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-10 135253.png",
+                        "sizeBytes":  854500
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-11 112702.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-11 112702.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-11 112702.png",
+                        "sizeBytes":  192201
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-11 112815.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-11 112815.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-11 112815.png",
+                        "sizeBytes":  221325
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-13 125952.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-13 125952.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-13 125952.png",
+                        "sizeBytes":  228069
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-13 131915.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-13 131915.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-13 131915.png",
+                        "sizeBytes":  204092
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-13 134848.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-13 134848.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-13 134848.png",
+                        "sizeBytes":  198069
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-14 125717.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-14 125717.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-14 125717.png",
+                        "sizeBytes":  367938
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-14 125827.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-14 125827.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-14 125827.png",
+                        "sizeBytes":  359811
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-14 125926.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-14 125926.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-14 125926.png",
+                        "sizeBytes":  417546
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-14 130017.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-14 130017.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-14 130017.png",
+                        "sizeBytes":  403769
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-14 130209.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-14 130209.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-14 130209.png",
+                        "sizeBytes":  426428
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-14 130458.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-14 130458.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-14 130458.png",
+                        "sizeBytes":  479959
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-14 130600.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-14 130600.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-14 130600.png",
+                        "sizeBytes":  410732
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-14 130650.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-14 130650.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-14 130650.png",
+                        "sizeBytes":  468879
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-14 131402.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-14 131402.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-14 131402.png",
+                        "sizeBytes":  161707
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-15 052907.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-15 052907.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-15 052907.png",
+                        "sizeBytes":  247312
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-15 053029.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-15 053029.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-15 053029.png",
+                        "sizeBytes":  176355
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-16 155649.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-16 155649.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-16 155649.png",
+                        "sizeBytes":  401889
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-20 185157.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-20 185157.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-20 185157.png",
+                        "sizeBytes":  686843
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-22 135335.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-22 135335.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-22 135335.png",
+                        "sizeBytes":  168128
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-22 135841.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-22 135841.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-22 135841.png",
+                        "sizeBytes":  301854
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-24 191544.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Downloads\\Screenshot 2026-02-24 191544.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-24 191544.png",
+                        "sizeBytes":  231769
+                    },
+                    {
+                        "action":  "skip",
+                        "reason":  "hash_mismatch_or_unavailable",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-25 103329.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-25 103329.png",
+                        "sizeBytes":  341604
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\mobile\\mobile\\assets\\adaptive-icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\gfh\\mobile\\mobile\\assets\\adaptive-icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\adaptive-icon.png",
+                        "sizeBytes":  723357
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\mobile\\mobile\\assets\\icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\gfh\\mobile\\mobile\\assets\\icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\icon.png",
+                        "sizeBytes":  831235
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\mobile\\mobile\\assets\\notification-icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\gfh\\mobile\\mobile\\assets\\notification-icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\notification-icon.png",
+                        "sizeBytes":  789332
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\mobile\\mobile\\assets\\adaptive-icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\ifb\\mobile\\mobile\\assets\\adaptive-icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\adaptive-icon.png",
+                        "sizeBytes":  723357
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\mobile\\mobile\\assets\\icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\ifb\\mobile\\mobile\\assets\\icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\icon.png",
+                        "sizeBytes":  831235
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\mobile\\mobile\\assets\\notification-icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\ifb\\mobile\\mobile\\assets\\notification-icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\notification-icon.png",
+                        "sizeBytes":  789332
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\mobile\\mobile\\assets\\adaptive-icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\iia\\mobile\\mobile\\assets\\adaptive-icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\adaptive-icon.png",
+                        "sizeBytes":  723357
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\mobile\\mobile\\assets\\icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\iia\\mobile\\mobile\\assets\\icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\icon.png",
+                        "sizeBytes":  831235
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\mobile\\mobile\\assets\\notification-icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\iia\\mobile\\mobile\\assets\\notification-icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\notification-icon.png",
+                        "sizeBytes":  789332
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\mobile\\mobile\\assets\\adaptive-icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\lej\\mobile\\mobile\\assets\\adaptive-icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\adaptive-icon.png",
+                        "sizeBytes":  723357
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\mobile\\mobile\\assets\\icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\lej\\mobile\\mobile\\assets\\icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\icon.png",
+                        "sizeBytes":  831235
+                    },
+                    {
+                        "action":  "moved",
+                        "reason":  "duplicate_hash_match_with_onedrive",
+                        "source":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\mobile\\mobile\\assets\\notification-icon.png",
+                        "destination":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-214626\\Desktop\\project_stats_backup_1am\\lej\\mobile\\mobile\\assets\\notification-icon.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Documentos\\Class - Copy\\04 Module Four\\Plan B\\01 Publications and work on AI\\AI Healthcare FHIR project\\notification-icon.png",
+                        "sizeBytes":  789332
+                    }
+                ]
+}

@@ -1,0 +1,52 @@
+﻿{
+    "timestamp":  "2026-02-26T17:38:47.4021893-03:00",
+    "requested":  {
+                      "channel":  "#general",
+                      "analyze":  false,
+                      "limit":  20
+                  },
+    "jobId":  "job_1772138326441_fg3t2q",
+    "jobStatus":  "failed",
+    "jobError":  "Slack integration is not configured.",
+    "jobResult":  null,
+    "slackStatus":  {
+                        "enabled":  true,
+                        "configured":  false,
+                        "tokenSource":  "none",
+                        "tokenHint":  "",
+                        "defaultChannel":  "",
+                        "updatedAt":  null,
+                        "policy":  {
+                                       "allowPrivateChannels":  true,
+                                       "allowDirectMessages":  false,
+                                       "allowedChannels":  [
+
+                                                           ],
+                                       "maxMessages":  80,
+                                       "maxDigestChars":  28000,
+                                       "backendOnly":  true,
+                                       "noLinkNavigation":  true,
+                                       "linkRedaction":  true
+                                   },
+                        "connection":  {
+                                           "ok":  false,
+                                           "error":  "not_configured"
+                                       },
+                        "workspace":  null,
+                        "botUser":  null
+                    },
+    "healthSummary":  {
+                          "selectedChannel":  {
+                                                  "channel":  "usb",
+                                                  "reason":  "Matched preferred secure channel: usb.",
+                                                  "fallbackUsed":  false
+                                              },
+                          "ok":  true,
+                          "mobilePushSubscriptions":  null
+                      },
+    "oauthConsoleCheck":  {
+                              "url":  "https://console.cloud.google.com/auth/overview?project=winged-complex-390417",
+                              "statusLine":  "HTTP/1.1 302 Found",
+                              "location":  "https://accounts.google.com/ServiceLogin?service=cloudconsole\u0026passive=1209600\u0026osid=1\u0026continue=https://console.cloud.google.com/auth/overview?project%3Dwinged-complex-390417\u0026followup=https://console.cloud.google.com/auth/overview?project%3Dwinged-complex-390417"
+                          }
+}

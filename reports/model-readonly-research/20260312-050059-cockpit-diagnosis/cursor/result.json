@@ -1,0 +1,33 @@
+{
+    "provider":  "antigravity",
+    "transport":  "pass",
+    "model":  null,
+    "passed":  true,
+    "unavailable":  true,
+    "unavailableReason":  "provider_unavailable_runtime",
+    "reply":  "antigravity unavailable. Passed without execution (antigravity API 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.).",
+    "raw":  {
+                "passed":  true,
+                "unavailable":  true,
+                "reason":  "provider_unavailable_runtime",
+                "detail":  "antigravity API 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+            },
+    "failover":  {
+                     "requestedProvider":  "cursor",
+                     "selectedProvider":  "antigravity",
+                     "fallbackProviders":  [
+                                               "antigravity",
+                                               "gemini",
+                                               "anthropic"
+                                           ],
+                     "fallbackOnAnyError":  true,
+                     "attempts":  [
+                                      {
+                                          "provider":  "cursor",
+                                          "reason":  "rate_limit_or_quota",
+                                          "fallbackEligible":  true,
+                                          "error":  "Cursor execution failed via cursor-agent (Installed Cursor CLI does not expose terminal agent flags. Install/upgrade the Cursor Agent CLI and run `cursor-agent login`.) and API (cursor API 429: You exceeded your current quota, please check your plan and billing details. For more information on this "
+                                      }
+                                  ]
+                 }
+}

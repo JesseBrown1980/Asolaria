@@ -1,0 +1,46 @@
+﻿[
+    {
+        "Alias":  "ChaserKeyStore",
+        "Detail":  "Certificate details | ChaserKeyStore | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate"
+    },
+    {
+        "Alias":  "cn=asolaria local ca user:3600138e.0",
+        "Detail":  "Certificate details | cn=asolaria local ca user:3600138e.0 | Installed for VPN and apps | This entry contains: | â€¢ 1 CA certificate"
+    },
+    {
+        "Alias":  "com.samsung.euicc_ds",
+        "Detail":  "Certificate details | com.samsung.euicc_ds | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate | â€¢ 1 CA certificate"
+    },
+    {
+        "Alias":  "esimdiscovery",
+        "Detail":  "Certificate details | esimdiscovery | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate | â€¢ 1 CA certificate"
+    },
+    {
+        "Alias":  "FindMyMobile",
+        "Detail":  "Certificate details | FindMyMobile | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate | â€¢ 1 CA certificate"
+    },
+    {
+        "Alias":  "FMEKeyStore",
+        "Detail":  "Certificate details | FMEKeyStore | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate | â€¢ 1 CA certificate"
+    },
+    {
+        "Alias":  "gak_ec_alias",
+        "Detail":  "Certificate details | gak_ec_alias | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate | â€¢ 1 CA certificate"
+    },
+    {
+        "Alias":  "gak_rsa_alias",
+        "Detail":  "Certificate details | gak_rsa_alias | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate | â€¢ 1 CA certificate"
+    },
+    {
+        "Alias":  "SEMALKEY",
+        "Detail":  "Certificate details | SEMALKEY | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate"
+    },
+    {
+        "Alias":  "SemSsdidManagerService",
+        "Detail":  "Certificate details | SemSsdidManagerService | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate | â€¢ 1 CA certificate"
+    },
+    {
+        "Alias":  "skms_attestation_store",
+        "Detail":  "Certificate details | skms_attestation_store | Installed for VPN and apps | This entry contains: | â€¢ 1 user key | â€¢ 1 user certificate | â€¢ 1 CA certificate"
+    }
+]

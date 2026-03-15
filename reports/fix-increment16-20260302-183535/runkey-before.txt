@@ -1,0 +1,1 @@
+﻿powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\acer\CrossDevice\agent-bridge\Start-AgentBridge-PC.ps1" -WorkDir "C:\Users\acer\CrossDevice\agent-bridge" -BindHost "127.0.0.1" -Port 8765 -SharedToken "gE-Zl3FoyYE9CQwO56drfk5T1Fjk9VxeLnwYP-SqRgg"

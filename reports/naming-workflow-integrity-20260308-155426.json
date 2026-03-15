@@ -1,0 +1,92 @@
+﻿{
+    "generatedAt":  "2026-03-08T15:54:26.6452259-03:00",
+    "summary":  {
+                    "pass":  6,
+                    "warn":  1,
+                    "fail":  0
+                },
+    "runtime":  {
+                    "port":  4781,
+                    "healthFastOk":  true,
+                    "healthOk":  true,
+                    "localOpsOk":  true,
+                    "workerRouterOk":  true,
+                    "symphonyOk":  true,
+                    "abacusOk":  true
+                },
+    "startup":  {
+                    "startupAutomationSeed":  "SuperAdminTerminal.ps1\" -Target admin -Port 4781 -RunOnce",
+                    "startupSeedCommandLike":  true,
+                    "latestCandidateAt":  "2026-03-08T18:21:17.438Z",
+                    "latestCandidateText":  "Hello Brain",
+                    "latestCandidateCommandLike":  false,
+                    "startupHistory":  {
+                                           "seedFingerprint":  "superadminterminal.ps1\" -target admin -port 4781 -runonce",
+                                           "queuedAt":  "2026-03-08T18:26:06.163Z",
+                                           "jobId":  "job_1772994365952_1jyt6f"
+                                       }
+                },
+    "taskLedger":  {
+                       "taskCount":  557,
+                       "eventCount":  2095,
+                       "tasksWithoutOwnerOrSourceCount":  0,
+                       "tasksWithoutOwnerOrSourcePct":  0,
+                       "eventsWithoutActorCount":  0,
+                       "eventsWithoutActorPct":  0
+                   },
+    "integrations":  {
+                         "symphony":  {
+                                          "configured":  true,
+                                          "running":  true
+                                      },
+                         "abacus":  {
+                                        "configured":  true,
+                                        "workerTier":  "desktop_cli_limited",
+                                        "workerConfigured":  false
+                                    }
+                     },
+    "checks":  [
+                   {
+                       "id":  "startup_seed_quality",
+                       "status":  "warn",
+                       "summary":  "Startup seed currently looks command-like.",
+                       "detail":  "seed=\"SuperAdminTerminal.ps1\" -Target admin -Port 4781 -RunOnce\""
+                   },
+                   {
+                       "id":  "memory_seed_candidate",
+                       "status":  "pass",
+                       "summary":  "Memory has a usable non-trivial user seed candidate.",
+                       "detail":  "text=\"Hello Brain\""
+                   },
+                   {
+                       "id":  "symphony_runtime",
+                       "status":  "pass",
+                       "summary":  "Symphony runtime state is coherent with configuration.",
+                       "detail":  ""
+                   },
+                   {
+                       "id":  "worker_router_symphony_alignment",
+                       "status":  "pass",
+                       "summary":  "Worker router Symphony status is aligned.",
+                       "detail":  ""
+                   },
+                   {
+                       "id":  "phone_background_services",
+                       "status":  "pass",
+                       "summary":  "Phone background services are running.",
+                       "detail":  ""
+                   },
+                   {
+                       "id":  "task_ledger_attribution_coverage",
+                       "status":  "pass",
+                       "summary":  "Task ledger attribution coverage is within expected range.",
+                       "detail":  "tasksWithoutOwnerOrSource=0/557 (0%); eventsWithoutActor=0/2095 (0%)"
+                   },
+                   {
+                       "id":  "agent_colony_presence",
+                       "status":  "pass",
+                       "summary":  "Agent colony online count is acceptable.",
+                       "detail":  "online=6/6"
+                   }
+               ]
+}

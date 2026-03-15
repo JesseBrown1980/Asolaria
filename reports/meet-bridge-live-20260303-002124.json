@@ -1,0 +1,16 @@
+﻿{
+    "ok":  true,
+    "sessionId":  "meet_20260303_002121_9f7188",
+    "meetWindowId":  15848,
+    "meetTitle":  "Meet – gvu-xhdg-hxh - Google Chrome",
+    "capturedAt":  "2026-03-03T00:22:49.6590995-03:00",
+    "screenshots":  {
+                        "before":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\meet-bridge-before-20260303-002124.png",
+                        "afterPoll":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\meet-bridge-after-poll-20260303-002124.png",
+                        "afterInject":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\meet-bridge-after-inject-20260303-002124.png"
+                    },
+    "entriesCount":  0,
+    "sample":  [
+
+               ]
+}

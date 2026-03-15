@@ -1,0 +1,128 @@
+{
+  "ok": true,
+  "notebookTitle": "Asolaria Enterprise Memory",
+  "notebookName": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d",
+  "notebookCreated": false,
+  "account": "plasmatoid@gmail.com",
+  "project": "winged-complex-390417",
+  "location": "global",
+  "totalSourcesDefined": 14,
+  "changedSourceCount": 3,
+  "changedSources": [
+    "Asolaria Active Tasks Snapshot",
+    "QDD Monorepo EZ Protect Checkpoint",
+    "QDD Codex Restart Packet"
+  ],
+  "createdCount": 3,
+  "batchJobId": "job_1773267151317_cfxz35",
+  "statePath": "C:\\Users\\acer\\Asolaria\\data\\notebooklm-core-sync-state.json",
+  "renderedSources": [
+    {
+      "sourceName": "Asolaria Runtime Snapshot",
+      "type": "text",
+      "origin": "live runtime",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\runtime-snapshot.md"
+    },
+    {
+      "sourceName": "Asolaria System Card",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\reports\\asolaria-system-card-20260303.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\system-card.md"
+    },
+    {
+      "sourceName": "Asolaria Startup Contract",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\STARTUP_CONTRACT_V1.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\startup-contract.md"
+    },
+    {
+      "sourceName": "Asolaria Startup Gap Report",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\STARTUP_ARCHITECTURE_GAP_REPORT.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\startup-gap-report.md"
+    },
+    {
+      "sourceName": "Augment Context Sidecar",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\AUGMENT_CONTEXT_SIDECAR.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\augment-context-sidecar.md"
+    },
+    {
+      "sourceName": "Symphony Integration",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\docs\\SYMPHONY_INTEGRATION.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\symphony-integration.md"
+    },
+    {
+      "sourceName": "Symphony Workflow",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\config\\symphony\\WORKFLOW.asolaria.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\symphony-workflow.md"
+    },
+    {
+      "sourceName": "Asolaria Active Tasks Snapshot",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\TASKS.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\active-tasks.md"
+    },
+    {
+      "sourceName": "Skills Tools Mistakes Index",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\reports\\skills-tools-mistakes-index-latest.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\skills-tools-mistakes-index.md"
+    },
+    {
+      "sourceName": "Queue-Server SFTP Troubleshooting 2026-03-11",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\reports\\queue-server-sftp-troubleshooting-20260311.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\queue-server-sftp-troubleshooting.md"
+    },
+    {
+      "sourceName": "QDD Monorepo EZ Protect Checkpoint",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\reports\\qdd-monorepo-ez-protect-checkpoint-latest.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\qdd-monorepo-ez-protect-checkpoint.md"
+    },
+    {
+      "sourceName": "QDD Codex Restart Packet",
+      "type": "text",
+      "origin": "C:\\Users\\acer\\Asolaria\\reports\\qdd-codex-restart-packet-latest.md",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\qdd-codex-restart-packet.md"
+    },
+    {
+      "sourceName": "Vertex AI Live API Official Docs",
+      "type": "web",
+      "origin": "https://cloud.google.com/vertex-ai/generative-ai/docs/live-api",
+      "renderedPath": ""
+    },
+    {
+      "sourceName": "NotebookLM Enterprise Reference",
+      "type": "text",
+      "origin": "official docs summary",
+      "renderedPath": "C:\\Users\\acer\\Asolaria\\reports\\notebooklm-core\\notebooklm-enterprise-reference.md"
+    }
+  ],
+  "batchSources": [
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/5fdaf39d-3937-43bd-a1b4-6f47da53186e",
+      "sourceId": "[object Object]",
+      "title": "Asolaria Active Tasks Snapshot",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/e4d6a3e9-489c-42a2-8cc4-6f04de0fcece",
+      "sourceId": "[object Object]",
+      "title": "QDD Monorepo EZ Protect Checkpoint",
+      "state": "",
+      "failureReasons": []
+    },
+    {
+      "name": "projects/742368506950/locations/global/notebooks/f53f9deb-a62c-49b3-8e57-c856668ae79d/sources/f61aacbd-99b6-4f90-b7e8-c165000cd981",
+      "sourceId": "[object Object]",
+      "title": "QDD Codex Restart Packet",
+      "state": "",
+      "failureReasons": []
+    }
+  ]
+}

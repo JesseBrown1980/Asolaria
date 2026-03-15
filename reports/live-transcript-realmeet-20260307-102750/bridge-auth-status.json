@@ -1,0 +1,21 @@
+﻿{
+    "ok":  true,
+    "auth":  {
+                 "required":  false,
+                 "requiredBySetting":  false,
+                 "tokenConfigured":  false,
+                 "configured":  false,
+                 "source":  "disabled",
+                 "mode":  "open",
+                 "acceptedTokenChannels":  [
+                                               "authorization_bearer",
+                                               "x-asolaria-bridge-token",
+                                               "x-asolaria-token",
+                                               "x-asolaria-mobile-token",
+                                               "query.token",
+                                               "query.bridgeToken",
+                                               "body.token",
+                                               "body.bridgeToken"
+                                           ]
+             }
+}

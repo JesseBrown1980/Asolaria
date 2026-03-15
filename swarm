@@ -1,0 +1,186 @@
+﻿[2026-03-05 01:43:39] start maxHours=10 minKick=5m maxKick=8m port=4781 room=asolaria_bridge thread=super-swarm-20260305-0142
+[2026-03-05 01:43:39] tick=1 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 01:43:39] sleep_seconds=306
+[2026-03-05 01:48:46] tick=2 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 01:48:46] sleep_seconds=405
+[2026-03-05 01:55:31] tick=3 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 01:55:31] sleep_seconds=410
+[2026-03-05 02:02:22] tick=4 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:02:22] sleep_seconds=342
+[2026-03-05 02:08:04] tick=5 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:08:04] sleep_seconds=377
+[2026-03-05 02:14:22] tick=6 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:14:22] sleep_seconds=323
+[2026-03-05 02:19:45] tick=7 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:19:45] sleep_seconds=467
+[2026-03-05 02:27:33] tick=8 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:27:33] sleep_seconds=316
+[2026-03-05 02:32:49] tick=9 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:32:49] sleep_seconds=334
+[2026-03-05 02:38:24] tick=10 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:38:24] sleep_seconds=325
+[2026-03-05 02:43:49] tick=11 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:43:49] sleep_seconds=314
+[2026-03-05 02:49:04] tick=12 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:49:04] sleep_seconds=308
+[2026-03-05 02:54:13] tick=13 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 02:54:13] sleep_seconds=478
+[2026-03-05 03:02:18] tick=14 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 03:02:18] sleep_seconds=394
+[2026-03-05 03:08:52] tick=15 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 03:08:52] sleep_seconds=374
+[2026-03-05 03:15:07] tick=16 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 03:15:07] sleep_seconds=415
+[2026-03-05 03:22:02] tick=17 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 03:22:02] sleep_seconds=430
+[2026-03-05 03:29:13] tick=18 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 03:29:13] sleep_seconds=389
+[2026-03-05 03:35:42] tick=19 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 03:35:42] sleep_seconds=449
+[2026-03-05 03:43:12] tick=20 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 03:43:12] sleep_seconds=392
+[2026-03-05 03:49:44] tick=21 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 03:49:44] sleep_seconds=406
+[2026-03-05 03:56:30] tick=22 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 03:56:30] sleep_seconds=422
+[2026-03-05 04:03:33] tick=23 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 04:03:33] sleep_seconds=370
+[2026-03-05 04:09:43] tick=24 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 04:09:43] sleep_seconds=423
+[2026-03-05 04:16:47] tick=25 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 04:16:47] sleep_seconds=313
+[2026-03-05 04:22:00] tick=26 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 04:22:00] sleep_seconds=396
+[2026-03-05 04:28:37] tick=27 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 04:28:37] sleep_seconds=348
+[2026-03-05 04:34:25] tick=28 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 04:34:25] sleep_seconds=342
+[2026-03-05 04:40:08] tick=29 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 04:40:08] sleep_seconds=442
+[2026-03-05 04:47:30] tick=30 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 04:47:30] sleep_seconds=476
+[2026-03-05 04:55:26] tick=31 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 04:55:26] sleep_seconds=389
+[2026-03-05 05:01:56] tick=32 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 05:01:56] sleep_seconds=474
+[2026-03-05 05:09:50] tick=33 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 05:09:50] sleep_seconds=461
+[2026-03-05 05:17:32] tick=34 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 05:17:32] sleep_seconds=448
+[2026-03-05 05:25:00] tick=35 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 05:25:00] sleep_seconds=376
+[2026-03-05 05:31:17] tick=36 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 05:31:17] sleep_seconds=369
+[2026-03-05 05:37:26] tick=37 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 05:37:26] sleep_seconds=436
+[2026-03-05 05:44:42] tick=38 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 05:44:42] sleep_seconds=459
+[2026-03-05 05:52:22] tick=39 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 05:52:22] sleep_seconds=395
+[2026-03-05 05:58:57] tick=40 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 05:58:57] sleep_seconds=435
+[2026-03-05 06:06:13] tick=41 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:06:13] sleep_seconds=308
+[2026-03-05 06:11:21] tick=42 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:11:21] sleep_seconds=410
+[2026-03-05 06:18:12] tick=43 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:18:12] sleep_seconds=326
+[2026-03-05 06:23:38] tick=44 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:23:38] sleep_seconds=320
+[2026-03-05 06:28:59] tick=45 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:28:59] sleep_seconds=330
+[2026-03-05 06:34:30] tick=46 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:34:30] sleep_seconds=421
+[2026-03-05 06:41:31] tick=47 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:41:31] sleep_seconds=411
+[2026-03-05 06:48:23] tick=48 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:48:23] sleep_seconds=313
+[2026-03-05 06:53:37] tick=49 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:53:37] sleep_seconds=359
+[2026-03-05 06:59:36] tick=50 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 06:59:36] sleep_seconds=453
+[2026-03-05 07:07:09] tick=51 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 07:07:09] sleep_seconds=425
+[2026-03-05 07:14:15] tick=52 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 07:14:15] sleep_seconds=451
+[2026-03-05 07:21:46] tick=53 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 07:21:46] sleep_seconds=477
+[2026-03-05 07:29:44] tick=54 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 07:29:44] sleep_seconds=325
+[2026-03-05 07:35:09] tick=55 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 07:35:09] sleep_seconds=447
+[2026-03-05 07:42:37] tick=56 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 07:42:37] sleep_seconds=413
+[2026-03-05 07:49:30] tick=57 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 07:49:30] sleep_seconds=375
+[2026-03-05 07:55:46] tick=58 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 07:55:46] sleep_seconds=352
+[2026-03-05 08:01:38] tick=59 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 08:01:38] sleep_seconds=403
+[2026-03-05 08:08:21] tick=60 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 08:08:21] sleep_seconds=478
+[2026-03-05 08:16:20] tick=61 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 08:16:20] sleep_seconds=467
+[2026-03-05 08:24:07] tick=62 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 08:24:07] sleep_seconds=410
+[2026-03-05 08:30:58] tick=63 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 08:30:58] sleep_seconds=328
+[2026-03-05 08:36:26] tick=64 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 08:36:26] sleep_seconds=404
+[2026-03-05 08:43:11] tick=65 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 08:43:11] sleep_seconds=305
+[2026-03-05 08:48:16] tick=66 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 08:48:16] sleep_seconds=454
+[2026-03-05 08:55:51] tick=67 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 08:55:51] sleep_seconds=344
+[2026-03-05 09:01:35] tick=68 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 09:01:35] sleep_seconds=346
+[2026-03-05 09:07:22] tick=69 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 09:07:22] sleep_seconds=468
+[2026-03-05 09:15:10] tick=70 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 09:15:10] sleep_seconds=454
+[2026-03-05 09:22:44] tick=71 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 09:22:44] sleep_seconds=426
+[2026-03-05 09:29:51] tick=72 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 09:29:51] sleep_seconds=322
+[2026-03-05 09:35:14] tick=73 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 09:35:14] sleep_seconds=397
+[2026-03-05 09:41:52] tick=74 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 09:41:52] sleep_seconds=452
+[2026-03-05 09:49:24] tick=75 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 09:49:24] sleep_seconds=457
+[2026-03-05 09:57:02] tick=76 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 09:57:02] sleep_seconds=352
+[2026-03-05 10:02:55] tick=77 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 10:02:55] sleep_seconds=467
+[2026-03-05 10:10:43] tick=78 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 10:10:43] sleep_seconds=334
+[2026-03-05 10:16:17] tick=79 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 10:16:17] sleep_seconds=342
+[2026-03-05 10:22:00] tick=80 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 10:22:00] sleep_seconds=466
+[2026-03-05 10:29:47] tick=81 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 10:29:47] sleep_seconds=380
+[2026-03-05 10:36:07] tick=82 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 10:36:07] sleep_seconds=428
+[2026-03-05 10:43:16] tick=83 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 10:43:16] sleep_seconds=342
+[2026-03-05 10:48:59] tick=84 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 10:48:59] sleep_seconds=402
+[2026-03-05 10:55:41] tick=85 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 10:55:41] sleep_seconds=420
+[2026-03-05 11:02:42] tick=86 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 11:02:42] sleep_seconds=413
+[2026-03-05 11:09:36] tick=87 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 11:09:36] sleep_seconds=354
+[2026-03-05 11:15:30] tick=88 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 11:15:30] sleep_seconds=422
+[2026-03-05 11:22:33] tick=89 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 11:22:33] sleep_seconds=433
+[2026-03-05 11:29:47] tick=90 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 11:29:47] sleep_seconds=359
+[2026-03-05 11:35:47] tick=91 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 11:35:47] sleep_seconds=400
+[2026-03-05 11:42:28] tick=92 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=sent chat=sent:mode=queued
+[2026-03-05 11:42:28] sleep_seconds=349
+[2026-03-05 11:48:17] stop reason=deadline_reached

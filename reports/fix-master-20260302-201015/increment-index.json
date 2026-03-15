@@ -1,0 +1,337 @@
+﻿[
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment10-20260302-181116",
+        "incrementName":  "fix-increment10-20260302-181116",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment11-20260302-181330",
+        "incrementName":  "fix-increment11-20260302-181330",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment1-20260302-171650",
+        "incrementName":  "fix-increment1-20260302-171650",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment12-20260302-181402",
+        "incrementName":  "fix-increment12-20260302-181402",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment12b-20260302-181900",
+        "incrementName":  "fix-increment12b-20260302-181900",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment12c-20260302-181915",
+        "incrementName":  "fix-increment12c-20260302-181915",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment13-20260302-182046",
+        "incrementName":  "fix-increment13-20260302-182046",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment13-20260302-182053",
+        "incrementName":  "fix-increment13-20260302-182053",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment14-20260302-182737",
+        "incrementName":  "fix-increment14-20260302-182737",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment15-20260302-182813",
+        "incrementName":  "fix-increment15-20260302-182813",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment16-20260302-183535",
+        "incrementName":  "fix-increment16-20260302-183535",
+        "summary":  {
+                        "increment":  "16",
+                        "timestamp":  "20260302-183535",
+                        "action":  "Removed inline -SharedToken argument from HKCU Run AgentBridgePC; retained env token usage",
+                        "beforeHasSharedToken":  true,
+                        "afterHasSharedToken":  false,
+                        "beforeLength":  263,
+                        "afterLength":  204,
+                        "storeTouched":  false,
+                        "windowsAppsTouched":  false
+                    },
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment17-20260302-183608",
+        "incrementName":  "fix-increment17-20260302-183608",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment17-20260302-183624",
+        "incrementName":  "fix-increment17-20260302-183624",
+        "summary":  null,
+        "rollbackScripts":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment17-20260302-183624\\rollback-enable-stale-tasks.ps1"
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment18-20260302-190332",
+        "incrementName":  "fix-increment18-20260302-190332",
+        "summary":  {
+                        "increment":  "18",
+                        "timestamp":  "20260302-190332",
+                        "action":  "Bridge loopback hardening: restarted pc_server on 127.0.0.1 and set startup script defaults to loopback",
+                        "boundToAnyInterface":  false,
+                        "boundToLoopback":  true,
+                        "statusHostField":  "127.0.0.1",
+                        "phoneOnline":  false,
+                        "storeTouched":  false,
+                        "windowsAppsTouched":  false
+                    },
+        "rollbackScripts":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment18-20260302-190332\\rollback-rebind-any.ps1"
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment19-20260302-190420",
+        "incrementName":  "fix-increment19-20260302-190420",
+        "summary":  {
+                        "increment":  "19",
+                        "timestamp":  "20260302-190420",
+                        "taskName":  "Asolaria NotebookLM Upgrade Loop",
+                        "afterState":  "Disabled",
+                        "actionExecute":  "powershell.exe",
+                        "actionArguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-NotebookLM-Upgrade-Loop.ps1\"",
+                        "lastTaskResult":  4294770688,
+                        "localeTaskLine":  "Tarefa a ser executada:                                  powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-NotebookLM-Upgrade-Loop.ps1\"",
+                        "storeTouched":  false,
+                        "windowsAppsTouched":  false
+                    },
+        "rollbackScripts":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment19-20260302-190420\\rollback-restore-task.ps1"
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment20-20260302-190556",
+        "incrementName":  "fix-increment20-20260302-190556",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment20-20260302-190621",
+        "incrementName":  "fix-increment20-20260302-190621",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment20-20260302-190745",
+        "incrementName":  "fix-increment20-20260302-190745",
+        "summary":  {
+                        "increment":  "20",
+                        "timestamp":  "20260302-190745",
+                        "action":  "Restarted codex-bridge service stack (oli/asolaria relay path)",
+                        "bridgePidLine":  null,
+                        "watchdogLine":  null,
+                        "localHealthLine":  null,
+                        "tunnelHealthLine":  null,
+                        "storeTouched":  false,
+                        "windowsAppsTouched":  false
+                    },
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment21-20260302-193745",
+        "incrementName":  "fix-increment21-20260302-193745",
+        "summary":  {
+                        "increment":  "21",
+                        "timestamp":  "20260302-193745",
+                        "action":  "Quarantined top 10 hash-verified copy-marker duplicates (no delete)",
+                        "movedCount":  10,
+                        "reclaimMB":  306.97,
+                        "candidateSource":  "C:\\Users\\acer\\Asolaria\\reports\\dup-copymarker-bounded-20260302-193717.csv",
+                        "quarantineRoot":  "C:\\Users\\acer\\Asolaria\\quarantine\\increment21-20260302-193745",
+                        "storeTouched":  false,
+                        "windowsAppsTouched":  false
+                    },
+        "rollbackScripts":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment21-20260302-193745\\rollback-restore-quarantined.ps1"
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment2-20260302-175235",
+        "incrementName":  "fix-increment2-20260302-175235",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment22-20260302-193855",
+        "incrementName":  "fix-increment22-20260302-193855",
+        "summary":  {
+                        "increment":  "22",
+                        "timestamp":  "20260302-193855",
+                        "action":  "Quarantined remaining hash-verified copy-marker duplicates from bounded list",
+                        "movedCount":  14,
+                        "reclaimMB":  14.98,
+                        "candidateSource":  "C:\\Users\\acer\\Asolaria\\reports\\dup-copymarker-bounded-20260302-193717.csv",
+                        "quarantineRoot":  "C:\\Users\\acer\\Asolaria\\quarantine\\increment22-20260302-193855",
+                        "storeTouched":  false,
+                        "windowsAppsTouched":  false
+                    },
+        "rollbackScripts":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment22-20260302-193855\\rollback-restore-quarantined.ps1"
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment23-20260302-195958",
+        "incrementName":  "fix-increment23-20260302-195958",
+        "summary":  {
+                        "increment":  "23",
+                        "timestamp":  "20260302-195958",
+                        "action":  "Removed Okta Verify (program + startup task cleanup)",
+                        "msiProductCode":  "{7056CBA2-CBAA-4454-BE88-BFE1E5E03F6E}",
+                        "msiExitCode":  0,
+                        "beforeProgramCount":  2,
+                        "afterProgramCount":  0,
+                        "beforeTaskCount":  1,
+                        "afterTaskCount":  0,
+                        "beforeServiceCount":  1,
+                        "afterServiceCount":  0,
+                        "beforeProcessCount":  1,
+                        "afterProcessCount":  0,
+                        "storeTouched":  false,
+                        "windowsAppsTouched":  false
+                    },
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment24-20260302-200610",
+        "incrementName":  "fix-increment24-20260302-200610",
+        "summary":  {
+                        "increment":  "24",
+                        "timestamp":  "20260302-200610",
+                        "action":  "Memory consolidation: terminated stale high-RAM powershell runner processes only",
+                        "candidateCount":  2,
+                        "killedCount":  2,
+                        "killedWSApproxGB":  1.88,
+                        "freeBeforeGB":  3.39,
+                        "freeAfterGB":  5.9,
+                        "freeDeltaGB":  2.51,
+                        "storeTouched":  false,
+                        "windowsAppsTouched":  false
+                    },
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment3-20260302-175404",
+        "incrementName":  "fix-increment3-20260302-175404",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment3-20260302-175514",
+        "incrementName":  "fix-increment3-20260302-175514",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment3-20260302-175542",
+        "incrementName":  "fix-increment3-20260302-175542",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment4-20260302-180346",
+        "incrementName":  "fix-increment4-20260302-180346",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment5-20260302-180421",
+        "incrementName":  "fix-increment5-20260302-180421",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment6-20260302-180448",
+        "incrementName":  "fix-increment6-20260302-180448",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528",
+        "incrementName":  "fix-increment7-20260302-180528",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment8-20260302-180641",
+        "incrementName":  "fix-increment8-20260302-180641",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    },
+    {
+        "incrementDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment9-20260302-180827",
+        "incrementName":  "fix-increment9-20260302-180827",
+        "summary":  null,
+        "rollbackScripts":  {
+
+                            }
+    }
+]

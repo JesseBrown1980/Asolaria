@@ -9,6 +9,7 @@ const {
   markCaptureImportant, pruneImportantCaptures, pruneTrashCaptures,
   captureDesktopState
 } = require("../src/connectors/capturesConnector");
+const { requirePermission } = require("../middleware/auth");
 
 function asBool(v, fb) { const s = String(v ?? "").trim().toLowerCase(); if (!s) return fb; return s === "1" || s === "true" || s === "yes"; }
 
@@ -22,7 +23,7 @@ function createCapturesRouter({ respondError, capturesDir }) {
     } catch (error) { return respondError(res, error, 500); }
   });
 
-  router.post("/prune", (req, res) => {
+  router.post("/prune", requirePermission("admin"), (req, res) => {
     try {
       const body = req.body || {};
       const job = enqueueCapturesPrune({
@@ -35,7 +36,7 @@ function createCapturesRouter({ respondError, capturesDir }) {
     } catch (error) { return respondError(res, error, 400); }
   });
 
-  router.post("/important", (req, res) => {
+  router.post("/important", requirePermission("write"), (req, res) => {
     try {
       const body = req.body || {};
       const capturePath = String(body.capturePath || body.path || body.filePath || "").trim();

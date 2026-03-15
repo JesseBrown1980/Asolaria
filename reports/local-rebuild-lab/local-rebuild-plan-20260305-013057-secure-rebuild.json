@@ -1,0 +1,132 @@
+{
+  "ok": true,
+  "generatedAt": "2026-03-05T04:30:57.624Z",
+  "startedAt": "2026-03-05T04:30:57.622Z",
+  "appName": "Gemini local rebuild",
+  "objective": "secure local stack",
+  "evidence": {
+    "loadedCount": 0,
+    "skippedCount": 0,
+    "totalChars": 0,
+    "loaded": [],
+    "skipped": [],
+    "topSignals": []
+  },
+  "capabilities": [
+    {
+      "id": "baseline_capture",
+      "title": "Baseline capture and analysis",
+      "category": "baseline",
+      "confidence": 0.3,
+      "matchCount": 0,
+      "topSignals": [],
+      "effortHours": 6,
+      "localComponents": [
+        "evidence-collector",
+        "capability-mapper",
+        "policy-guard"
+      ],
+      "controls": [
+        "Treat all external app behavior as untrusted until verified.",
+        "Keep implementation local-first and approval-gated."
+      ],
+      "tests": [
+        "Evidence parser smoke test",
+        "Policy gate deny/allow test"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "policy-guardian",
+      "role": "Enforce allowlists, risk scoring, and approval gates before execution.",
+      "source": "baseline"
+    },
+    {
+      "id": "evidence-ledger",
+      "role": "Store reconstruction evidence and test outcomes with immutable timestamps.",
+      "source": "baseline"
+    },
+    {
+      "id": "evidence-collector",
+      "role": "Implement baseline capture and analysis capability locally.",
+      "source": "baseline_capture"
+    },
+    {
+      "id": "capability-mapper",
+      "role": "Implement baseline capture and analysis capability locally.",
+      "source": "baseline_capture"
+    },
+    {
+      "id": "policy-guard",
+      "role": "Implement baseline capture and analysis capability locally.",
+      "source": "baseline_capture"
+    }
+  ],
+  "phases": [
+    {
+      "id": "phase-1-observe",
+      "title": "Observe and classify",
+      "deliverables": [
+        "Evidence bundle normalized (screenshots OCR, logs, endpoint traces)",
+        "Capability map with confidence scores",
+        "Threat and trust-boundary register"
+      ],
+      "estimatedHours": 4,
+      "focusCapabilities": [
+        "baseline_capture"
+      ]
+    },
+    {
+      "id": "phase-2-build",
+      "title": "Build local equivalents",
+      "deliverables": [
+        "Local connector/service implementations for top capabilities",
+        "Policy-guardian integration for each action path",
+        "Replayable scripts for critical operator workflows"
+      ],
+      "estimatedHours": 8,
+      "focusCapabilities": [
+        "baseline_capture"
+      ]
+    },
+    {
+      "id": "phase-3-harden",
+      "title": "Harden and verify",
+      "deliverables": [
+        "Security controls enforced (allowlists, secret handling, audit logs)",
+        "Regression + abuse-case test matrix passing",
+        "Operational runbook and rollback steps"
+      ],
+      "estimatedHours": 6,
+      "focusCapabilities": [
+        "baseline_capture"
+      ]
+    }
+  ],
+  "securityGates": [
+    "No proprietary binary/code extraction; rely on observed behavior and public docs only.",
+    "Pin dependency versions and generate SBOM for every local replacement service.",
+    "Run secrets scan on generated artifacts before commits.",
+    "Enforce egress allowlist for all connector calls.",
+    "Treat all external app behavior as untrusted until verified.",
+    "Keep implementation local-first and approval-gated."
+  ],
+  "testMatrix": [
+    "Unit tests for capability parsers and policy evaluators",
+    "Contract tests for each enabled connector",
+    "Red-team prompt test for unsafe automation denial paths",
+    "Evidence parser smoke test",
+    "Policy gate deny/allow test"
+  ],
+  "timeline": {
+    "hours": 16,
+    "daysAt6h": 2.7,
+    "daysAt8h": 2
+  },
+  "constraints": {
+    "localFirst": true,
+    "legalBoundary": "behavioral reconstruction only",
+    "reverseEngineeringProprietaryBinaries": false
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "ok": true,
+  "startedAt": "2026-03-08T15:10:16.568Z",
+  "profileDirectory": "Profile 3",
+  "createUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding",
+  "workspacesUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces",
+  "developUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/develop",
+  "editorUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/develop/editor",
+  "tempRoot": "C:\\Users\\acer\\AppData\\Local\\Temp\\asolaria-singlestore-Profile_3",
+  "workspaceName": "",
+  "actions": [
+    {
+      "action": "create_workspace_click",
+      "clicked": ""
+    },
+    {
+      "action": "workspace_monitor",
+      "ready": true,
+      "reason": "workspace_ready",
+      "tickCount": 1
+    },
+    {
+      "action": "open_sql_editor",
+      "ok": true,
+      "reason": "loaded",
+      "attempts": 1
+    },
+    {
+      "action": "select_connection",
+      "attempted": false,
+      "selected": false,
+      "clicked": ""
+    }
+  ],
+  "states": [
+    {
+      "at": "2026-03-08T15:10:25.898Z",
+      "stage": "create_open",
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding",
+      "workspaceName": "",
+      "authRequired": false,
+      "provisioning": false
+    },
+    {
+      "at": "2026-03-08T15:10:30.027Z",
+      "stage": "create_after_click",
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding",
+      "workspaceName": "",
+      "provisioning": false
+    },
+    {
+      "at": "2026-03-08T15:10:35.862Z",
+      "stage": "workspace_monitor_done",
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe",
+      "reason": "workspace_ready"
+    },
+    {
+      "at": "2026-03-08T15:10:43.407Z",
+      "stage": "connection_after_select",
+      "noConnection": false,
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/develop"
+    },
+    {
+      "at": "2026-03-08T15:11:01.448Z",
+      "stage": "sql_done",
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/develop",
+      "hasAsolariaDbLabel": true
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T15-10-11-053Z-create-open.png",
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T15-10-11-053Z-create-after-click.png",
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T15-10-11-053Z-workspace-status.png",
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T15-10-11-053Z-editor-open.png",
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T15-10-11-053Z-connection-selected.png",
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T15-10-11-053Z-sql-done.png"
+  ],
+  "sql": {
+    "attempted": true,
+    "bootstrap": {
+      "focusedSelector": "textarea",
+      "typedChars": 697
+    },
+    "verify": {
+      "focusedSelector": "textarea",
+      "typedChars": 39
+    }
+  },
+  "workspaceMonitor": {
+    "ready": true,
+    "reason": "workspace_ready",
+    "ticks": [
+      {
+        "at": "2026-03-08T15:10:35.862Z",
+        "hasWorkspace": true,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      }
+    ],
+    "text": "Search\n\nCtrl + k\nAsk SQrL\nHome\nDeployments\nIngestion\nEditor\nAI\nContainer Services\nMonitoring\nConfiguration\nJB\nGroup e6875989\nUS WEST 2 (OREGON)\nFREE TRIAL\nContact Us\nLoad Data\nOverview\nWorkspaces\nDatabases\nUser Management\nStage\nAccess\nFirewall\nSecurity\nUpdates\n\nLoading Databases...\n\nWorkspaces\nCreate Workspace\n\nworkspace-88d54d84\n\nS-00\nPROD\nConnect\nSQrL Assistant\nAsk SQrL – your help assistant\n\nNeed help with database setup, SQL, Python, or debugging? We’ve got you.\n\nTry asking\n\nHow do I connect to my database?\nHow do I load data?\nHow do I move Postgres data into SingleStore?\nUsage policy"
+  },
+  "sqlEditor": {
+    "ok": true,
+    "reason": "loaded",
+    "attempts": [
+      {
+        "attempt": 1,
+        "at": "2026-03-08T15:10:40.717Z",
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/develop",
+        "spinnerOnly": false,
+        "hasSqlEditor": true,
+        "hasOpenButton": true
+      }
+    ],
+    "text": "Search\n\nCtrl + k\nAsk SQrL\nHome\nDeployments\nIngestion\nEditor\nAI\nContainer Services\nMonitoring\nConfiguration\nJB\nMy Files\ngetting-started-2026-03-08T14:37:02.950Z.sql\nEditor\nOpen SQL Editor\nOpen Kai Shell\nNew\nRecent\nPersonal\nShared\nGallery\nFirewall\nSecrets\nCheck all files\nName\nType\nLocation\nLast Modified\nSize\nActions\nCheck file getting-started-2026-03-08T14:37:02.950Z.sql\ngetting-started-2026-03-08T14:37:02.950Z.sql\nSQL file\nPersonal\nMar 8, 2026 - 11:37:07 AM\n504 B\nCheck file getting-started-2026-03-08T14:57:08.530Z.sql\ngetting-started-2026-03-08T14:57:08.530Z.sql\nSQL file\nPersonal\nMar 8, 2026 - 11:57:10 AM\n504 B\nSQrL Assistant\nAsk SQrL – your help assistant\n\nNeed help with database setup, SQL, Python, or debugging? We’ve got you.\n\nTry asking\n\nHow do I connect to my database?\nHow do I load data?\nHow do I move Postgres data into SingleStore?\nUsage policy"
+  },
+  "finalUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/develop",
+  "finalTitle": "SingleStore Customer Portal",
+  "finalText": "Search\n\nCtrl + k\nAsk SQrL\nHome\nDeployments\nIngestion\nEditor\nAI\nContainer Services\nMonitoring\nConfiguration\nJB\nMy Files\ngetting-started-2026-03-08T14:37:02.950Z.sql\nEditor\nOpen SQL Editor\nOpen Kai Shell\nNew\nRecent\nPersonal\nShared\nGallery\nFirewall\nSecrets\nCheck all files\nName\nType\nLocation\nLast Modified\nSize\nActions\nCheck file getting-started-2026-03-08T14:37:02.950Z.sql\ngetting-started-2026-03-08T14:37:02.950Z.sql\nSQL file\nPersonal\nMar 8, 2026 - 11:37:07 AM\n504 B\nCheck file getting-started-2026-03-08T14:57:08.530Z.sql\ngetting-started-2026-03-08T14:57:08.530Z.sql\nSQL file\nPersonal\nMar 8, 2026 - 11:57:10 AM\n504 B\nSQrL Assistant\n\nCREATE DATABASE IF NOT EXISTS asolaria_control;\n\nI can help you understand this SQL statement for SingleStore.\n\nThis command creates a new database named asolaria_control if it doesn't already exist. The IF NOT EXISTS clause prevents an error if a database with that name is already present.\n\nTo execute this in SingleStore, you can:\n\nConnect to your SingleStore workspace using a MySQL-compatible client\nRun the command directly:\nCREATE DATABASE IF NOT EXISTS asolaria_control;\n\nAfter creation, you can switch to this database with:\n\nUSE asolaria_control;\n\nThis is a standard SQL command that works in both SingleStore Helios and SingleStore Self-Managed. Once created, you can start defining tables, loading data, and running queries within this database.\n\nIs there anything specific you'd like to\n\nClear chat\nUsage policy",
+  "finishedAt": "2026-03-08T15:11:08.861Z"
+}

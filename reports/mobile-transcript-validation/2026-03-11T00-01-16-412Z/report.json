@@ -1,0 +1,179 @@
+{
+  "stamp": "2026-03-11T00-01-16-412Z",
+  "sampleTranscript": "Interviewer: Walk me through the incident timeline from first alert to mitigation.\nJesse: We saw elevated error rates at 09:14, isolated the bad deploy by 09:21, and restored service by 09:29.\nInterviewer: What would you change to make the rollback faster next time?\nJesse: I would pre-stage the previous artifact and tighten the canary threshold so the bad release trips automatically.\nInterviewer: Capture the follow-up action items and owners before we close.\nJesse: Action item one is deployment guardrails with Priya, action item two is alert tuning with Marco, and action item three is a rollback drill this Friday.",
+  "dashboard": {
+    "cardHeight": 1131,
+    "cardBottom": 1131,
+    "viewportHeight": 844,
+    "actionRowCount": 3,
+    "toolRowCount": 1,
+    "actionRects": [
+      {
+        "text": "Open Paste Helper",
+        "top": 718,
+        "left": 49,
+        "width": 143,
+        "height": 34
+      },
+      {
+        "text": "Start",
+        "top": 769,
+        "left": 40,
+        "width": 57,
+        "height": 34
+      },
+      {
+        "text": "Stop",
+        "top": 769,
+        "left": 105,
+        "width": 56,
+        "height": 34
+      },
+      {
+        "text": "Clear",
+        "top": 769,
+        "left": 169,
+        "width": 60,
+        "height": 34
+      },
+      {
+        "text": "Copy",
+        "top": 769,
+        "left": 237,
+        "width": 59,
+        "height": 34
+      },
+      {
+        "text": "Copy Meet Bridge Script",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Ask Copilot",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Use Last Line",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Clear Question",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      }
+    ],
+    "toolRects": [
+      {
+        "text": "Auto-copy incoming lines",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Mirror lines into chat box",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Copy Last Line",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Instant Ask Last Line",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      }
+    ],
+    "transcript": {
+      "clientHeight": 178,
+      "scrollHeight": 455,
+      "textLength": 681
+    },
+    "mirror": {
+      "clientHeight": 87,
+      "scrollHeight": 298,
+      "textLength": 621,
+      "value": "Interviewer: Walk me through the incident timeline from first alert to mitigation.\nJesse: We saw elevated error rates at 09:14, isolated the bad deploy by 09:21, and restored service by 09:29.\nInterviewer: What would you change to make the rollback faster next time?\nJesse: I would pre-stage the previous artifact and tighten the canary threshold so the bad release trips automatically.\nInterviewer: Capture the follow-up action items and owners before we close.\nJesse: Action item one is deployment guardrails with Priya, action item two is alert tuning with Marco, and action item three is a rollback drill this Friday."
+    },
+    "copyStatus": "Transcript copied as chat text.",
+    "copied": "Interviewer: Walk me through the incident timeline from first alert to mitigation.\r\nJesse: We saw elevated error rates at 09:14, isolated the bad deploy by 09:21, and restored service by 09:29.\r\nInterviewer: What would you change to make the rollback faster next time?\r\nJesse: I would pre-stage the previous artifact and tighten the canary threshold so the bad release trips automatically.\r\nInterviewer: Capture the follow-up action items and owners before we close.\r\nJesse: Action item one is deployment guardrails with Priya, action item two is alert tuning with Marco, and action item three is a rollback drill this Friday.",
+    "copyMatchesMirror": false,
+    "horizontalOverflow": false
+  },
+  "phone": {
+    "cardHeight": 459,
+    "cardBottom": 887,
+    "viewportHeight": 844,
+    "buttonRowCount": 2,
+    "buttonRects": [
+      {
+        "text": "Start tab audio",
+        "top": 594,
+        "left": 34,
+        "width": 133,
+        "height": 40
+      },
+      {
+        "text": "Stop Captions",
+        "top": 594,
+        "left": 175,
+        "width": 130,
+        "height": 40
+      },
+      {
+        "text": "Clear",
+        "top": 642,
+        "left": 34,
+        "width": 63,
+        "height": 40
+      },
+      {
+        "text": "Copy",
+        "top": 642,
+        "left": 105,
+        "width": 63,
+        "height": 40
+      },
+      {
+        "text": "Send to Asolaria",
+        "top": 642,
+        "left": 175,
+        "width": 144,
+        "height": 40
+      }
+    ],
+    "sourceRow": {
+      "top": 538,
+      "height": 40
+    },
+    "transcript": {
+      "clientHeight": 178,
+      "scrollHeight": 303,
+      "textLength": 621,
+      "text": "Interviewer: Walk me through the incident timeline from first alert to mitigation.\nJesse: We saw elevated error rates at 09:14, isolated the bad deploy by 09:21, and restored service by 09:29.\nInterviewer: What would you change to make the rollback faster next time?\nJesse: I would pre-stage the previous artifact and tighten the canary threshold so the bad release trips automatically.\nInterviewer: Capture the follow-up action items and owners before we close.\nJesse: Action item one is deployment guardrails with Priya, action item two is alert tuning with Marco, and action item three is a rollback drill this Friday."
+    },
+    "copyStatus": "Transcript copied.",
+    "copied": "Interviewer: Walk me through the incident timeline from first alert to mitigation.\r\nJesse: We saw elevated error rates at 09:14, isolated the bad deploy by 09:21, and restored service by 09:29.\r\nInterviewer: What would you change to make the rollback faster next time?\r\nJesse: I would pre-stage the previous artifact and tighten the canary threshold so the bad release trips automatically.\r\nInterviewer: Capture the follow-up action items and owners before we close.\r\nJesse: Action item one is deployment guardrails with Priya, action item two is alert tuning with Marco, and action item three is a rollback drill this Friday.",
+    "copyMatchesTranscript": false,
+    "horizontalOverflow": false
+  },
+  "outDir": "C:\\Users\\acer\\Asolaria\\reports\\mobile-transcript-validation\\2026-03-11T00-01-16-412Z"
+}

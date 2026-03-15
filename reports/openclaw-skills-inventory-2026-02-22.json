@@ -1,0 +1,704 @@
+{
+  "generatedAt": "2026-02-22T13:36:03.483Z",
+  "total": 49,
+  "skills": [
+    {
+      "name": "1password",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "op"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "apple-notes",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "memo"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": [
+          "darwin"
+        ]
+      }
+    },
+    {
+      "name": "apple-reminders",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "remindctl"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": [
+          "darwin"
+        ]
+      }
+    },
+    {
+      "name": "bear-notes",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "grizzly"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": [
+          "darwin"
+        ]
+      }
+    },
+    {
+      "name": "blogwatcher",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "blogwatcher"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "blucli",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "blu"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "bluebubbles",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [
+          "channels.bluebubbles"
+        ],
+        "os": []
+      }
+    },
+    {
+      "name": "camsnap",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "camsnap"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "clawhub",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "clawhub"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "coding-agent",
+      "eligible": true,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "discord",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [
+          "channels.discord.token"
+        ],
+        "os": []
+      }
+    },
+    {
+      "name": "eightctl",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "eightctl"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "gemini",
+      "eligible": true,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "gifgrep",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "gifgrep"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "github",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "gh"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "gog",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "gog"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "goplaces",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "goplaces"
+        ],
+        "anyBins": [],
+        "env": [
+          "GOOGLE_PLACES_API_KEY"
+        ],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "healthcheck",
+      "eligible": true,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "himalaya",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "himalaya"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "imsg",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "imsg"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": [
+          "darwin"
+        ]
+      }
+    },
+    {
+      "name": "mcporter",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "mcporter"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "model-usage",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "codexbar"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": [
+          "darwin"
+        ]
+      }
+    },
+    {
+      "name": "nano-banana-pro",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "uv"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "nano-pdf",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "nano-pdf"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "notion",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [
+          "NOTION_API_KEY"
+        ],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "obsidian",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "obsidian-cli"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "openai-image-gen",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [
+          "OPENAI_API_KEY"
+        ],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "openai-whisper",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "whisper"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "openai-whisper-api",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [
+          "OPENAI_API_KEY"
+        ],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "openhue",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "openhue"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "oracle",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "oracle"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "ordercli",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "ordercli"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "peekaboo",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "peekaboo"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": [
+          "darwin"
+        ]
+      }
+    },
+    {
+      "name": "sag",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "sag"
+        ],
+        "anyBins": [],
+        "env": [
+          "ELEVENLABS_API_KEY"
+        ],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "session-logs",
+      "eligible": true,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "sherpa-onnx-tts",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [
+          "SHERPA_ONNX_RUNTIME_DIR",
+          "SHERPA_ONNX_MODEL_DIR"
+        ],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "skill-creator",
+      "eligible": true,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "slack",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [
+          "channels.slack"
+        ],
+        "os": []
+      }
+    },
+    {
+      "name": "songsee",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "songsee"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "sonoscli",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "sonos"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "spotify-player",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [
+          "spogo",
+          "spotify_player"
+        ],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "summarize",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "summarize"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "things-mac",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "things"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": [
+          "darwin"
+        ]
+      }
+    },
+    {
+      "name": "tmux",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "tmux"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": [
+          "darwin",
+          "linux"
+        ]
+      }
+    },
+    {
+      "name": "trello",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [
+          "TRELLO_API_KEY",
+          "TRELLO_TOKEN"
+        ],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "video-frames",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "ffmpeg"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "voice-call",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [
+          "plugins.entries.voice-call.enabled"
+        ],
+        "os": []
+      }
+    },
+    {
+      "name": "wacli",
+      "eligible": false,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [
+          "wacli"
+        ],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    },
+    {
+      "name": "weather",
+      "eligible": true,
+      "source": "openclaw-bundled",
+      "missing": {
+        "bins": [],
+        "anyBins": [],
+        "env": [],
+        "config": [],
+        "os": []
+      }
+    }
+  ]
+}

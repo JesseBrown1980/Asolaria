@@ -1,0 +1,404 @@
+﻿{
+    "generatedAt":  "2026-03-04T20:07:42.8178265-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "project":  "winged-complex-390417",
+    "notebook":  {
+                     "account":  "plasmatoid@gmail.com",
+                     "location":  "global",
+                     "jobId":  "job_1772665656297_zdffy2",
+                     "status":  "completed",
+                     "enterpriseReady":  false,
+                     "access":  "False",
+                     "requiredSubscriptionTier":  "SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT",
+                     "blockers":  "NotebookLM Enterprise license is required for this principal. Required subscription tier: SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT.",
+                     "error":  ""
+                 },
+    "runtime":  {
+                    "healthOk":  true,
+                    "healthError":  "",
+                    "jobs":  [
+                                 {
+                                     "id":  "job_1772665598942_mhnwc9",
+                                     "type":  "notebooklm_enterprise_status",
+                                     "status":  "completed",
+                                     "payload":  {
+                                                     "account":  "plasmatoid@gmail.com",
+                                                     "project":  "winged-complex-390417",
+                                                     "projectNumber":  "",
+                                                     "location":  "global"
+                                                 },
+                                     "createdAt":  "2026-03-04T23:06:38.942Z",
+                                     "updatedAt":  "2026-03-04T23:06:40.692Z",
+                                     "startedAt":  "2026-03-04T23:06:38.942Z",
+                                     "finishedAt":  "2026-03-04T23:06:40.692Z",
+                                     "elapsedMs":  1750,
+                                     "result":  {
+                                                    "enabled":  true,
+                                                    "configured":  true,
+                                                    "account":  "plasmatoid@gmail.com",
+                                                    "project":  "winged-complex-390417",
+                                                    "location":  "global",
+                                                    "apiEnabled":  true,
+                                                    "access":  false,
+                                                    "enterpriseReady":  false,
+                                                    "requiredSubscriptionTier":  "SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT",
+                                                    "blockers":  [
+                                                                     "NotebookLM Enterprise license is required for this principal. Required subscription tier: SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT."
+                                                                 ],
+                                                    "recentNotebookCount":  0,
+                                                    "gcp":  {
+                                                                "enabled":  true,
+                                                                "configured":  true,
+                                                                "configSource":  "vault",
+                                                                "clientEmail":  "asolaria-automation-service-ac@winged-complex-390417.iam.gserviceaccount.com",
+                                                                "projectId":  "winged-complex-390417",
+                                                                "projectNumber":  "742368506950",
+                                                                "privateKeyIdHint":  "a37f********************************c421",
+                                                                "defaultProject":  "winged-complex-390417",
+                                                                "allowedProjects":  [
+                                                                                        "gen-lang-client-0950407967",
+                                                                                        "rpg-game-24107",
+                                                                                        "gen-lang-client-0586203433",
+                                                                                        "winged-complex-390417"
+                                                                                    ],
+                                                                "defaultScopes":  [
+                                                                                      "https://www.googleapis.com/auth/cloud-platform"
+                                                                                  ],
+                                                                "allowedAdminServices":  [
+                                                                                             "serviceusage.googleapis.com",
+                                                                                             "cloudresourcemanager.googleapis.com",
+                                                                                             "iam.googleapis.com",
+                                                                                             "aiplatform.googleapis.com",
+                                                                                             "discoveryengine.googleapis.com",
+                                                                                             "generativelanguage.googleapis.com",
+                                                                                             "drive.googleapis.com",
+                                                                                             "docs.googleapis.com",
+                                                                                             "gmail.googleapis.com",
+                                                                                             "calendar-json.googleapis.com"
+                                                                                         ],
+                                                                "updatedAt":  "2026-02-26T19:25:00.381Z"
+                                                            }
+                                                },
+                                     "error":  null
+                                 },
+                                 {
+                                     "id":  "job_1772665574468_xxolrh",
+                                     "type":  "notebooklm_enterprise_status",
+                                     "status":  "completed",
+                                     "payload":  {
+                                                     "account":  "plasmatoid@gmail.com",
+                                                     "project":  "winged-complex-390417",
+                                                     "projectNumber":  "",
+                                                     "location":  "global"
+                                                 },
+                                     "createdAt":  "2026-03-04T23:06:14.468Z",
+                                     "updatedAt":  "2026-03-04T23:06:16.258Z",
+                                     "startedAt":  "2026-03-04T23:06:14.468Z",
+                                     "finishedAt":  "2026-03-04T23:06:16.258Z",
+                                     "elapsedMs":  1790,
+                                     "result":  {
+                                                    "enabled":  true,
+                                                    "configured":  true,
+                                                    "account":  "plasmatoid@gmail.com",
+                                                    "project":  "winged-complex-390417",
+                                                    "location":  "global",
+                                                    "apiEnabled":  true,
+                                                    "access":  false,
+                                                    "enterpriseReady":  false,
+                                                    "requiredSubscriptionTier":  "SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT",
+                                                    "blockers":  [
+                                                                     "NotebookLM Enterprise license is required for this principal. Required subscription tier: SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT."
+                                                                 ],
+                                                    "recentNotebookCount":  0,
+                                                    "gcp":  {
+                                                                "enabled":  true,
+                                                                "configured":  true,
+                                                                "configSource":  "vault",
+                                                                "clientEmail":  "asolaria-automation-service-ac@winged-complex-390417.iam.gserviceaccount.com",
+                                                                "projectId":  "winged-complex-390417",
+                                                                "projectNumber":  "742368506950",
+                                                                "privateKeyIdHint":  "a37f********************************c421",
+                                                                "defaultProject":  "winged-complex-390417",
+                                                                "allowedProjects":  [
+                                                                                        "gen-lang-client-0950407967",
+                                                                                        "rpg-game-24107",
+                                                                                        "gen-lang-client-0586203433",
+                                                                                        "winged-complex-390417"
+                                                                                    ],
+                                                                "defaultScopes":  [
+                                                                                      "https://www.googleapis.com/auth/cloud-platform"
+                                                                                  ],
+                                                                "allowedAdminServices":  [
+                                                                                             "serviceusage.googleapis.com",
+                                                                                             "cloudresourcemanager.googleapis.com",
+                                                                                             "iam.googleapis.com",
+                                                                                             "aiplatform.googleapis.com",
+                                                                                             "discoveryengine.googleapis.com",
+                                                                                             "generativelanguage.googleapis.com",
+                                                                                             "drive.googleapis.com",
+                                                                                             "docs.googleapis.com",
+                                                                                             "gmail.googleapis.com",
+                                                                                             "calendar-json.googleapis.com"
+                                                                                         ],
+                                                                "updatedAt":  "2026-02-26T19:25:00.381Z"
+                                                            }
+                                                },
+                                     "error":  null
+                                 },
+                                 {
+                                     "id":  "job_1772665345274_zkuqj0",
+                                     "type":  "notebooklm_enterprise_status",
+                                     "status":  "completed",
+                                     "payload":  {
+                                                     "account":  "",
+                                                     "project":  "",
+                                                     "projectNumber":  "",
+                                                     "location":  ""
+                                                 },
+                                     "createdAt":  "2026-03-04T23:02:25.274Z",
+                                     "updatedAt":  "2026-03-04T23:02:27.590Z",
+                                     "startedAt":  "2026-03-04T23:02:25.274Z",
+                                     "finishedAt":  "2026-03-04T23:02:27.590Z",
+                                     "elapsedMs":  2316,
+                                     "result":  {
+                                                    "enabled":  true,
+                                                    "configured":  true,
+                                                    "account":  "",
+                                                    "project":  "winged-complex-390417",
+                                                    "location":  "global",
+                                                    "apiEnabled":  true,
+                                                    "access":  false,
+                                                    "enterpriseReady":  false,
+                                                    "requiredSubscriptionTier":  "SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT",
+                                                    "blockers":  [
+                                                                     "NotebookLM Enterprise license is required for this principal. Required subscription tier: SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT."
+                                                                 ],
+                                                    "recentNotebookCount":  0,
+                                                    "gcp":  {
+                                                                "enabled":  true,
+                                                                "configured":  true,
+                                                                "configSource":  "vault",
+                                                                "clientEmail":  "asolaria-automation-service-ac@winged-complex-390417.iam.gserviceaccount.com",
+                                                                "projectId":  "winged-complex-390417",
+                                                                "projectNumber":  "742368506950",
+                                                                "privateKeyIdHint":  "a37f********************************c421",
+                                                                "defaultProject":  "winged-complex-390417",
+                                                                "allowedProjects":  [
+                                                                                        "gen-lang-client-0950407967",
+                                                                                        "rpg-game-24107",
+                                                                                        "gen-lang-client-0586203433",
+                                                                                        "winged-complex-390417"
+                                                                                    ],
+                                                                "defaultScopes":  [
+                                                                                      "https://www.googleapis.com/auth/cloud-platform"
+                                                                                  ],
+                                                                "allowedAdminServices":  [
+                                                                                             "serviceusage.googleapis.com",
+                                                                                             "cloudresourcemanager.googleapis.com",
+                                                                                             "iam.googleapis.com",
+                                                                                             "aiplatform.googleapis.com",
+                                                                                             "discoveryengine.googleapis.com",
+                                                                                             "generativelanguage.googleapis.com",
+                                                                                             "drive.googleapis.com",
+                                                                                             "docs.googleapis.com",
+                                                                                             "gmail.googleapis.com",
+                                                                                             "calendar-json.googleapis.com"
+                                                                                         ],
+                                                                "updatedAt":  "2026-02-26T19:25:00.381Z"
+                                                            }
+                                                },
+                                     "error":  null
+                                 },
+                                 {
+                                     "id":  "job_1772665107940_vfh54t",
+                                     "type":  "brain",
+                                     "status":  "completed",
+                                     "payload":  {
+                                                     "message":  "Yeah you can talk to Jesse I\u0027m Jesse I am Jesse",
+                                                     "images":  [
+
+                                                                ],
+                                                     "files":  [
+
+                                                               ],
+                                                     "codexOptions":  {
+
+                                                                      },
+                                                     "chatId":  "main"
+                                                 },
+                                     "createdAt":  "2026-03-04T22:58:27.940Z",
+                                     "updatedAt":  "2026-03-04T22:58:30.782Z",
+                                     "startedAt":  "2026-03-04T22:58:27.941Z",
+                                     "finishedAt":  "2026-03-04T22:58:30.782Z",
+                                     "elapsedMs":  2841,
+                                     "result":  {
+                                                    "provider":  "gemini-api",
+                                                    "providersTried":  [
+                                                                           "gemini-api"
+                                                                       ],
+                                                    "reply":  "Okay, Jesse. I understand your Asolaria app on your phone can\u0027t see Asolaria. I will focus on troubleshooting steps that don\u0027t involve external systems or AI exposure.\n\nHere\u0027s a plan:\n\n1.  **Verify Basic Connectivity:** Check if your phone is connected to the internet (Wi-Fi or cellular data).\n2.  **Check Local Network:** If Asolaria is on your local network, ensure your phone is on the same network.\n3.  **Restart App:** Force close and restart the Asolaria app.\n4.  **Clear App Cache:** Clear the app\u0027s cache (Settings -\u003e Apps -\u003e Asolaria -\u003e Storage -\u003e Clear Cache).\n5.  **Check Asolaria Server Status:** If you have access to the Asolaria server, check if it\u0027s running and accessible.\n6.  **Firewall:** Check if any firewall on your network might be blocking the connection.\n7.  **App Permissions:** Verify the Asolaria app has necessary permissions (network access, etc.).\n\nLet me know the results of these checks, and we can proceed from there. I will keep the troubleshooting focused on your local environment.",
+                                                    "approvals":  [
+
+                                                                  ],
+                                                    "imagesUsed":  [
+
+                                                                   ],
+                                                    "raw":  {
+                                                                "candidates":  [
+                                                                                   {
+                                                                                       "content":  {
+                                                                                                       "parts":  [
+                                                                                                                     {
+                                                                                                                         "text":  "Okay, Jesse. I understand your Asolaria app on your phone can\u0027t see Asolaria. I will focus on troubleshooting steps that don\u0027t involve external systems or AI exposure.\n\nHere\u0027s a plan:\n\n1.  **Verify Basic Connectivity:** Check if your phone is connected to the internet (Wi-Fi or cellular data).\n2.  **Check Local Network:** If Asolaria is on your local network, ensure your phone is on the same network.\n3.  **Restart App:** Force close and restart the Asolaria app.\n4.  **Clear App Cache:** Clear the app\u0027s cache (Settings -\u003e Apps -\u003e Asolaria -\u003e Storage -\u003e Clear Cache).\n5.  **Check Asolaria Server Status:** If you have access to the Asolaria server, check if it\u0027s running and accessible.\n6.  **Firewall:** Check if any firewall on your network might be blocking the connection.\n7.  **App Permissions:** Verify the Asolaria app has necessary permissions (network access, etc.).\n\nLet me know the results of these checks, and we can proceed from there. I will keep the troubleshooting focused on your local environment.\n"
+                                                                                                                     }
+                                                                                                                 ],
+                                                                                                       "role":  "model"
+                                                                                                   },
+                                                                                       "finishReason":  "STOP",
+                                                                                       "avgLogprobs":  -0.18249932546464223
+                                                                                   }
+                                                                               ],
+                                                                "usageMetadata":  {
+                                                                                      "promptTokenCount":  561,
+                                                                                      "candidatesTokenCount":  252,
+                                                                                      "totalTokenCount":  813,
+                                                                                      "promptTokensDetails":  [
+                                                                                                                  {
+                                                                                                                      "modality":  "TEXT",
+                                                                                                                      "tokenCount":  561
+                                                                                                                  }
+                                                                                                              ],
+                                                                                      "candidatesTokensDetails":  [
+                                                                                                                      {
+                                                                                                                          "modality":  "TEXT",
+                                                                                                                          "tokenCount":  252
+                                                                                                                      }
+                                                                                                                  ]
+                                                                                  },
+                                                                "modelVersion":  "gemini-2.0-flash",
+                                                                "responseId":  "FLmoaf7sEKOGqtsPurzksAc"
+                                                            }
+                                                },
+                                     "error":  null
+                                 }
+                             ],
+                    "jobsError":  ""
+                },
+    "slack":  {
+                  "enabled":  true,
+                  "configured":  false,
+                  "tokenSource":  "none",
+                  "connectionError":  "not_configured",
+                  "policyAllowedWorkspaces":  [
+                                                  "jesse team"
+                                              ],
+                  "statusError":  "",
+                  "reviewJobId":  "",
+                  "reviewStatus":  "",
+                  "reviewError":  ""
+              },
+    "google":  {
+                   "enabled":  true,
+                   "configured":  true,
+                   "allowlistedMissing":  [
+
+                                          ],
+                   "connectedAccountsCount":  4,
+                   "statusError":  "",
+                   "consoleGate":  {
+                                       "statusLine":  "HTTP/1.1 302 Found",
+                                       "location":  "https://accounts.google.com/ServiceLogin?service=cloudconsole\u0026passive=1209600\u0026osid=1\u0026continue=https://console.cloud.google.com/auth/overview?project%3Dwinged-complex-390417\u0026followup=https://console.cloud.google.com/auth/overview?project%3Dwinged-complex-390417",
+                                       "error":  ""
+                                   }
+               },
+    "phone":  {
+                  "bootstrapOk":  true,
+                  "bootstrapError":  "",
+                  "pushStatusOk":  true,
+                  "pushStatusError":  "",
+                  "pushSubscriptions":  0,
+                  "phoneTunnelSmoke":  {
+                                           "ok":  true,
+                                           "checkedAt":  "2026-03-04T23:07:42.6735658+00:00",
+                                           "baseUrl":  "http://127.0.0.1:4781",
+                                           "localPort":  4781,
+                                           "tokenHint":  "********************************************8bef",
+                                           "local":  {
+                                                         "healthOk":  true,
+                                                         "healthError":  "",
+                                                         "bootstrapOk":  true,
+                                                         "bootstrapError":  ""
+                                                     },
+                                           "remote":  {
+                                                          "baseUrl":  "https://rat-deposit-translation-container.trycloudflare.com",
+                                                          "requestedChannel":  "auto",
+                                                          "effectiveChannel":  "public_internet",
+                                                          "healthOk":  true,
+                                                          "healthError":  "",
+                                                          "consoleStatusCode":  200,
+                                                          "sessionOk":  true,
+                                                          "sessionError":  "",
+                                                          "sessionChannel":  "usb",
+                                                          "controlOk":  true,
+                                                          "controlError":  "",
+                                                          "controlPlaneHealthy":  true,
+                                                          "keeperRunning":  true,
+                                                          "keeperPid":  17156,
+                                                          "keeperStaleSeconds":  3
+                                                      },
+                                           "adb":  {
+                                                       "skipped":  false,
+                                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe\\platform-tools\\adb.exe",
+                                                       "authorizedCount":  0,
+                                                       "usbAuthorizedCount":  0,
+                                                       "authorizedDevices":  [
+
+                                                                             ],
+                                                       "usbAuthorizedDevices":  [
+
+                                                                                ],
+                                                       "selectedDevice":  "",
+                                                       "reversePresent":  false
+                                                   },
+                                           "phonePing":  {
+                                                             "attempted":  false,
+                                                             "ok":  false,
+                                                             "host":  "",
+                                                             "error":  ""
+                                                         },
+                                           "rawProbe":  {
+                                                            "attempted":  false,
+                                                            "statusCode":  0,
+                                                            "statusLine":  "",
+                                                            "error":  ""
+                                                        },
+                                           "notes":  [
+                                                         "ADB found but no authorized devices connected.",
+                                                         "Desktop remote probes used relaxed TLS validation for this smoke run."
+                                                     ],
+                                           "reportPath":  "C:\\Users\\acer\\Asolaria\\reports\\phone-tunnel-smoke-20260304-200742.md"
+                                       },
+                  "phoneTunnelSmokeError":  ""
+              },
+    "ppo005":  {
+                   "johnCutoverScriptPath":  "/Users/john/dev/oli/scripts/phone_provider_cutover.sh",
+                   "johnCutoverTasksPath":  "/Users/john/dev/oli/ops/projects/oli-upgrade/subprojects/phone-provider-onboarding/tasks.json",
+                   "scriptExists":  false,
+                   "tasksExists":  false
+               },
+    "liveTranscript":  {
+                           "latestRealMeetingSummary":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260304-195552\\REALMEET_SUMMARY.md",
+                           "latestRealMeetingDir":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260304-195552",
+                           "latestChecklist":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-real-meeting-checklist-20260304-1947.md",
+                           "latestPacket":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-real-meeting-packet-20260304-1949.md"
+                       },
+    "blockers":  [
+                     "Slack integration is unconfigured (token missing).",
+                     "Google Console auth overview still redirects to sign-in (owner login required).",
+                     "NotebookLM Enterprise not ready; required tier SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT.",
+                     "Phone push subscription count is 0; manual tap-through still pending.",
+                     "PPO-005 John runtime dependencies are not present on this machine.",
+                     "Security follow-up pending: rotate previously exposed password from historical logs/chat context.",
+                     "Real meeting transcript matrix remains manual: Zoom/Meet/Teams live-call validation still needed."
+                 ]
+}

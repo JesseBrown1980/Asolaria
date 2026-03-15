@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-03-05T22:11:22.413Z",
+  "baseUrl": "http://127.0.0.1:4781",
+  "mode": "dynamic_scan_click_stabilized",
+  "pages": [
+    {
+      "id": "dashboard",
+      "url": "http://127.0.0.1:4781/",
+      "discoveredButtons": 37,
+      "clicked": 33,
+      "skippedDangerous": 0,
+      "skippedDisabled": 4,
+      "skippedDynamic": 0,
+      "failedClicks": 0,
+      "sampleFailures": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\button-sweep\\dashboard-dynamic-2026-03-05T22-11-02-742Z.png"
+    },
+    {
+      "id": "phone_mode",
+      "url": "http://127.0.0.1:4781/phone-mode.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef&channel=usb",
+      "discoveredButtons": 11,
+      "clicked": 8,
+      "skippedDangerous": 0,
+      "skippedDisabled": 3,
+      "skippedDynamic": 0,
+      "failedClicks": 0,
+      "sampleFailures": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+      ],
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\button-sweep\\phone_mode-dynamic-2026-03-05T22-11-06-147Z.png"
+    },
+    {
+      "id": "mobile_console",
+      "url": "http://127.0.0.1:4781/mobile-console.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef&channel=usb",
+      "discoveredButtons": 105,
+      "clicked": 9,
+      "skippedDangerous": 5,
+      "skippedDisabled": 0,
+      "skippedDynamic": 91,
+      "failedClicks": 0,
+      "sampleFailures": [],
+      "consoleErrors": [],
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\button-sweep\\mobile_console-dynamic-2026-03-05T22-11-20-353Z.png"
+    },
+    {
+      "id": "mobile_approvals",
+      "url": "http://127.0.0.1:4781/mobile-approvals.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef&channel=usb",
+      "discoveredButtons": 4,
+      "clicked": 4,
+      "skippedDangerous": 0,
+      "skippedDisabled": 0,
+      "skippedDynamic": 0,
+      "failedClicks": 0,
+      "sampleFailures": [],
+      "consoleErrors": [],
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\button-sweep\\mobile_approvals-dynamic-2026-03-05T22-11-22-102Z.png"
+    }
+  ],
+  "summary": {
+    "pages": 4,
+    "discoveredButtons": 157,
+    "clicked": 54,
+    "skippedDangerous": 5,
+    "skippedDisabled": 7,
+    "skippedDynamic": 91,
+    "failedClicks": 0
+  }
+}

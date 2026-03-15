@@ -1,0 +1,42 @@
+﻿[
+    {
+        "normalized":  "c:\\windows\\system32",
+        "count":  2,
+        "entries":  [
+                        "C:\\WINDOWS\\system32",
+                        "C:\\WINDOWS\\system32"
+                    ]
+    },
+    {
+        "normalized":  "c:\\windows",
+        "count":  2,
+        "entries":  [
+                        "C:\\WINDOWS",
+                        "C:\\WINDOWS"
+                    ]
+    },
+    {
+        "normalized":  "c:\\windows\\system32\\wbem",
+        "count":  2,
+        "entries":  [
+                        "C:\\WINDOWS\\System32\\Wbem",
+                        "C:\\WINDOWS\\System32\\Wbem"
+                    ]
+    },
+    {
+        "normalized":  "c:\\windows\\system32\\windowspowershell\\v1.0",
+        "count":  2,
+        "entries":  [
+                        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\",
+                        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+                    ]
+    },
+    {
+        "normalized":  "c:\\windows\\system32\\openssh",
+        "count":  2,
+        "entries":  [
+                        "C:\\WINDOWS\\System32\\OpenSSH\\",
+                        "C:\\WINDOWS\\System32\\OpenSSH\\"
+                    ]
+    }
+]

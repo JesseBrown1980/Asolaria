@@ -1,0 +1,9 @@
+Date: 2026-02-27
+Owner account: plasmatoid@gmail.com
+Planned Play Console track: Internal testing
+Release artifact candidate: dist/public-release/Asolaria-Public-20260227-verify1.zip
+Release SHA256: F5FB7C3620A2F6858178E3A4753E4AC91D4130EA594A563356F752F967039552
+Demo video (unlisted): https://youtu.be/hI6L_MvYSJw
+Reviewer access notes:
+- Use the same owner Google account already reauthorized in this session.
+- Proceed in Play Console to create/update the internal testing release with this artifact and keep reviewer notes aligned with submission-packet.md.

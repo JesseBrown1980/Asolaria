@@ -4,6 +4,7 @@
 const express = require("express");
 const router = express.Router();
 const { asInt, respondError, inferHttpStatusForError } = require("../lib/helpers");
+const { requirePermission } = require("../middleware/auth");
 const {
   getWorkerRouterStatus, listWorkerDispatches, getWorkerDispatch,
   recommendWorker, dispatchWorkerTask
@@ -30,13 +31,13 @@ router.get("/dispatches/:id", (req, res) => {
   } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 404)); }
 });
 
-router.post("/recommend", (req, res) => {
+router.post("/recommend", requirePermission("write"), (req, res) => {
   try {
     return res.json({ ok: true, recommendation: recommendWorker(req.body || {}) });
   } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 400)); }
 });
 
-router.post("/dispatch", async (req, res) => {
+router.post("/dispatch", requirePermission("write"), async (req, res) => {
   try {
     const dispatch = await dispatchWorkerTask(req.body || {});
     return res.json({ ok: true, dispatch });

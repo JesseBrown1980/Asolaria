@@ -1,0 +1,17 @@
+﻿{
+    "increment":  "23",
+    "timestamp":  "20260302-195958",
+    "action":  "Removed Okta Verify (program + startup task cleanup)",
+    "msiProductCode":  "{7056CBA2-CBAA-4454-BE88-BFE1E5E03F6E}",
+    "msiExitCode":  0,
+    "beforeProgramCount":  2,
+    "afterProgramCount":  0,
+    "beforeTaskCount":  1,
+    "afterTaskCount":  0,
+    "beforeServiceCount":  1,
+    "afterServiceCount":  0,
+    "beforeProcessCount":  1,
+    "afterProcessCount":  0,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

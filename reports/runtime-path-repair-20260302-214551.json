@@ -1,0 +1,43 @@
+﻿{
+    "ok":  true,
+    "generatedAt":  "2026-03-02T21:45:51.9934819-03:00",
+    "applied":  false,
+    "rollbackFile":  "C:\\Users\\acer\\Asolaria\\reports\\runtime-path-repair-20260302-214551-rollback.json",
+    "changed":  {
+                    "machinePathChanged":  true,
+                    "userPathChanged":  false,
+                    "javaHomeUserChanged":  true
+                },
+    "machinePath":  {
+                        "oldCount":  26,
+                        "newCount":  26,
+                        "containsWindowsApps":  true
+                    },
+    "userPath":  {
+                     "oldCount":  22,
+                     "newCount":  22
+                 },
+    "javaHomes":  {
+                      "machine":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\",
+                      "user":  "C:\\Java\\jdk1.8.0_392",
+                      "java8User":  "C:\\Java\\jdk1.8.0_392",
+                      "java21User":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot"
+                  },
+    "resolution":  {
+                       "wherePython":  [
+                                           "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                                           "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                                           "C:\\Users\\acer\\anaconda3\\python.exe"
+                                       ],
+                       "pythonVersion":  "Python 3.13.12",
+                       "whereJava":  [
+                                         "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+                                         "C:\\Java\\jdk1.8.0_392\\bin\\java.exe"
+                                     ],
+                       "javaVersionLine":  "openjdk version \"21.0.10\" 2026-01-20 LTS"
+                   },
+    "notes":  [
+                  "Microsoft WindowsApps PATH entry was preserved.",
+                  "Rollback file captured original PATH/JAVA_HOME values."
+              ]
+}

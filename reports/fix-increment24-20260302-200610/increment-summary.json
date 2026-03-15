@@ -1,0 +1,13 @@
+﻿{
+    "increment":  "24",
+    "timestamp":  "20260302-200610",
+    "action":  "Memory consolidation: terminated stale high-RAM powershell runner processes only",
+    "candidateCount":  2,
+    "killedCount":  2,
+    "killedWSApproxGB":  1.88,
+    "freeBeforeGB":  3.39,
+    "freeAfterGB":  5.9,
+    "freeDeltaGB":  2.51,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

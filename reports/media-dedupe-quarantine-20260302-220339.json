@@ -1,0 +1,39 @@
+﻿{
+    "ok":  true,
+    "generatedAt":  "2026-03-02T22:03:39.8500640-03:00",
+    "applied":  true,
+    "oneDriveRoot":  "C:\\Users\\acer\\OneDrive",
+    "sourceRoots":  [
+                        "C:\\Users\\acer\\Downloads",
+                        "C:\\Users\\acer\\Desktop"
+                    ],
+    "quarantineBatchRoot":  "C:\\Users\\acer\\Asolaria\\quarantine\\batch-20260302-220339",
+    "maxMoves":  50000,
+    "plannedOrMoved":  0,
+    "skipped":  3,
+    "stagedBytes":  0,
+    "stagedGB":  0,
+    "actions":  [
+                    {
+                        "action":  "skip",
+                        "reason":  "hash_mismatch_or_unavailable",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-09 011526.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-09 011526.png",
+                        "sizeBytes":  334502
+                    },
+                    {
+                        "action":  "skip",
+                        "reason":  "hash_mismatch_or_unavailable",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-09 011816.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-09 011816.png",
+                        "sizeBytes":  593588
+                    },
+                    {
+                        "action":  "skip",
+                        "reason":  "hash_mismatch_or_unavailable",
+                        "source":  "C:\\Users\\acer\\Downloads\\Screenshot 2026-02-25 103329.png",
+                        "keep":  "C:\\Users\\acer\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-25 103329.png",
+                        "sizeBytes":  341604
+                    }
+                ]
+}

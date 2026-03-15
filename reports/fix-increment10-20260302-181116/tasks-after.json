@@ -1,0 +1,12 @@
+﻿[
+    {
+        "TaskName":  "Asolaria Core Boot Startup",
+        "TaskPath":  "\\",
+        "State":  1
+    },
+    {
+        "TaskName":  "Asolaria One Button Startup",
+        "TaskPath":  "\\",
+        "State":  3
+    }
+]

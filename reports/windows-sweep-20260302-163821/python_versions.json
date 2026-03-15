@@ -1,0 +1,22 @@
+﻿[
+    {
+        "executable":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+        "version":  "Python 3.13.12"
+    },
+    {
+        "executable":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "version":  "Python 3.13.2"
+    },
+    {
+        "executable":  "C:\\Users\\acer\\anaconda3\\python.exe",
+        "version":  "Python 3.12.7"
+    },
+    {
+        "executable":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe",
+        "version":  "Python 3.13.12"
+    },
+    {
+        "executable":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Launcher\\py.exe",
+        "version":  "Python 3.13.2"
+    }
+]

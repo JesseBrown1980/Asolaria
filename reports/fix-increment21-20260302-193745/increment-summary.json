@@ -1,0 +1,11 @@
+﻿{
+    "increment":  "21",
+    "timestamp":  "20260302-193745",
+    "action":  "Quarantined top 10 hash-verified copy-marker duplicates (no delete)",
+    "movedCount":  10,
+    "reclaimMB":  306.97,
+    "candidateSource":  "C:\\Users\\acer\\Asolaria\\reports\\dup-copymarker-bounded-20260302-193717.csv",
+    "quarantineRoot":  "C:\\Users\\acer\\Asolaria\\quarantine\\increment21-20260302-193745",
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

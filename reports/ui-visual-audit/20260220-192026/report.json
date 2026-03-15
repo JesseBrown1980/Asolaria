@@ -1,0 +1,2283 @@
+{
+  "ok": false,
+  "generatedAt": "2026-02-20T22:22:59.241Z",
+  "baseUrl": "http://127.0.0.1:4781",
+  "checks": 28,
+  "issues": 4,
+  "pages": 4,
+  "viewports": 7,
+  "webChecks": 28,
+  "webIssues": 2,
+  "localWindowIssueCount": 0,
+  "cleanupIssueCount": 2,
+  "pinchZoomEnabled": true,
+  "localWindowEnabled": true,
+  "cleanupBeforeRun": true,
+  "cleanupAfterRun": true,
+  "cleanupGraceMs": 220,
+  "mobileBootstrap": {
+    "tokenAvailable": true,
+    "bootstrapError": ""
+  },
+  "preCleanup": {
+    "attempted": true,
+    "status": "issue",
+    "reason": "cleanup_failed",
+    "profileKilled": 0,
+    "trackedClosed": 0,
+    "error": "This operation was aborted"
+  },
+  "postCleanup": {
+    "attempted": true,
+    "status": "issue",
+    "reason": "cleanup_failed",
+    "profileKilled": 0,
+    "trackedClosed": 0,
+    "error": "This operation was aborted"
+  },
+  "localWindowAudit": {
+    "attempted": true,
+    "ok": true,
+    "status": "ok",
+    "reason": "",
+    "totalWindows": 9,
+    "matchCount": 1,
+    "openedTargets": [
+      {
+        "target": "local_ui",
+        "ok": true,
+        "opened": "http://127.0.0.1:4781/"
+      },
+      {
+        "target": "phone_mode",
+        "ok": true,
+        "opened": "http://127.0.0.1:4781/phone-mode.html"
+      }
+    ],
+    "checks": [
+      {
+        "windowId": 13908,
+        "title": "Asolaria",
+        "processName": "chrome",
+        "status": "ok",
+        "actions": [
+          {
+            "action": "window_focus",
+            "ok": true
+          },
+          {
+            "action": "window_restore",
+            "ok": true
+          },
+          {
+            "action": "window_maximize",
+            "ok": true
+          },
+          {
+            "action": "window_restore",
+            "ok": true
+          }
+        ],
+        "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\local_window__asolaria__13908.png",
+        "error": ""
+      }
+    ],
+    "previousActiveWindow": {
+      "id": 16824,
+      "title": "Administrador: Windows PowerShell",
+      "processName": "WindowsTerminal",
+      "raw": {
+        "id": 16824,
+        "process": "WindowsTerminal",
+        "title": "Administrador: Windows PowerShell",
+        "handle": 393448
+      }
+    },
+    "errors": []
+  },
+  "results": [
+    {
+      "page": "dashboard",
+      "pageLabel": "Asolaria Dashboard",
+      "viewport": {
+        "id": "full_hd",
+        "label": "Full HD",
+        "width": 1920,
+        "height": 1080,
+        "class": "full"
+      },
+      "viewportLabel": "Full HD",
+      "class": "full",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__full_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__full_hd.png",
+      "metrics": {
+        "viewportWidth": 1920,
+        "viewportHeight": 1080,
+        "scrollWidth": 1920,
+        "scrollHeight": 5398,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 3,
+        "overlapCount": 0,
+        "smallControlCount": 15,
+        "overflowElements": [
+          {
+            "tag": "select",
+            "id": "skillsSelect",
+            "className": "",
+            "left": 1330,
+            "right": 2013,
+            "top": 1656,
+            "bottom": 1699
+          },
+          {
+            "tag": "input",
+            "id": "skillsInput",
+            "className": "",
+            "left": 1330,
+            "right": 2013,
+            "top": 1707,
+            "bottom": 1748
+          },
+          {
+            "tag": "button",
+            "id": "",
+            "className": "",
+            "left": 1330,
+            "right": 2013,
+            "top": 1756,
+            "bottom": 1795
+          }
+        ],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#stealthToggle",
+            "width": 15,
+            "height": 15
+          },
+          {
+            "selector": "select#approvalMode",
+            "width": 86,
+            "height": 28
+          },
+          {
+            "selector": "select#costMode",
+            "width": 99,
+            "height": 28
+          },
+          {
+            "selector": "select#codexWebSearch",
+            "width": 74,
+            "height": 28
+          },
+          {
+            "selector": "select#openclawMode",
+            "width": 103,
+            "height": 28
+          },
+          {
+            "selector": "button#projectRefreshBtn",
+            "width": 116,
+            "height": 28
+          },
+          {
+            "selector": "button#projectCreateBtn",
+            "width": 92,
+            "height": 28
+          },
+          {
+            "selector": "button#projectUpdateBtn",
+            "width": 97,
+            "height": 28
+          },
+          {
+            "selector": "button#projectDeleteBtn",
+            "width": 113,
+            "height": 28
+          },
+          {
+            "selector": "input#externalObservedAutoPruneEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#allowExternalPosting",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAlertsEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAutoBlockCritical",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#padDisableShots",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "dashboard",
+      "pageLabel": "Asolaria Dashboard",
+      "viewport": {
+        "id": "half_hd",
+        "label": "Half HD",
+        "width": 960,
+        "height": 1080,
+        "class": "half"
+      },
+      "viewportLabel": "Half HD",
+      "class": "half",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__half_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__half_hd.png",
+      "metrics": {
+        "viewportWidth": 960,
+        "viewportHeight": 1080,
+        "scrollWidth": 960,
+        "scrollHeight": 4951,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 15,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#stealthToggle",
+            "width": 15,
+            "height": 15
+          },
+          {
+            "selector": "select#approvalMode",
+            "width": 86,
+            "height": 28
+          },
+          {
+            "selector": "select#costMode",
+            "width": 99,
+            "height": 28
+          },
+          {
+            "selector": "select#codexWebSearch",
+            "width": 74,
+            "height": 28
+          },
+          {
+            "selector": "select#openclawMode",
+            "width": 103,
+            "height": 28
+          },
+          {
+            "selector": "button#projectRefreshBtn",
+            "width": 116,
+            "height": 28
+          },
+          {
+            "selector": "button#projectCreateBtn",
+            "width": 92,
+            "height": 28
+          },
+          {
+            "selector": "button#projectUpdateBtn",
+            "width": 97,
+            "height": 28
+          },
+          {
+            "selector": "button#projectDeleteBtn",
+            "width": 113,
+            "height": 28
+          },
+          {
+            "selector": "input#externalObservedAutoPruneEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#allowExternalPosting",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAlertsEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAutoBlockCritical",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#padDisableShots",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "dashboard",
+      "pageLabel": "Asolaria Dashboard",
+      "viewport": {
+        "id": "quarter_hd",
+        "label": "Quarter HD",
+        "width": 960,
+        "height": 540,
+        "class": "quarter"
+      },
+      "viewportLabel": "Quarter HD",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__quarter_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__quarter_hd.png",
+      "metrics": {
+        "viewportWidth": 960,
+        "viewportHeight": 540,
+        "scrollWidth": 960,
+        "scrollHeight": 4951,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 15,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#stealthToggle",
+            "width": 15,
+            "height": 15
+          },
+          {
+            "selector": "select#approvalMode",
+            "width": 86,
+            "height": 28
+          },
+          {
+            "selector": "select#costMode",
+            "width": 99,
+            "height": 28
+          },
+          {
+            "selector": "select#codexWebSearch",
+            "width": 74,
+            "height": 28
+          },
+          {
+            "selector": "select#openclawMode",
+            "width": 103,
+            "height": 28
+          },
+          {
+            "selector": "button#projectRefreshBtn",
+            "width": 116,
+            "height": 28
+          },
+          {
+            "selector": "button#projectCreateBtn",
+            "width": 92,
+            "height": 28
+          },
+          {
+            "selector": "button#projectUpdateBtn",
+            "width": 97,
+            "height": 28
+          },
+          {
+            "selector": "button#projectDeleteBtn",
+            "width": 113,
+            "height": 28
+          },
+          {
+            "selector": "input#externalObservedAutoPruneEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#allowExternalPosting",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAlertsEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAutoBlockCritical",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#padDisableShots",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "dashboard",
+      "pageLabel": "Asolaria Dashboard",
+      "viewport": {
+        "id": "laptop",
+        "label": "Laptop",
+        "width": 1366,
+        "height": 768,
+        "class": "full"
+      },
+      "viewportLabel": "Laptop",
+      "class": "full",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__laptop.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__laptop.png",
+      "metrics": {
+        "viewportWidth": 1366,
+        "viewportHeight": 768,
+        "scrollWidth": 1366,
+        "scrollHeight": 5655,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 4,
+        "overlapCount": 0,
+        "smallControlCount": 15,
+        "overflowElements": [
+          {
+            "tag": "select",
+            "id": "skillsSelect",
+            "className": "",
+            "left": 1043,
+            "right": 1726,
+            "top": 1797,
+            "bottom": 1840
+          },
+          {
+            "tag": "input",
+            "id": "skillsInput",
+            "className": "",
+            "left": 1043,
+            "right": 1726,
+            "top": 1848,
+            "bottom": 1889
+          },
+          {
+            "tag": "button",
+            "id": "",
+            "className": "",
+            "left": 1043,
+            "right": 1726,
+            "top": 1897,
+            "bottom": 1936
+          },
+          {
+            "tag": "select",
+            "id": "taskLedgerPriorityFilter",
+            "className": "",
+            "left": 1240,
+            "right": 1379,
+            "top": 5351,
+            "bottom": 5394
+          }
+        ],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#stealthToggle",
+            "width": 15,
+            "height": 15
+          },
+          {
+            "selector": "select#approvalMode",
+            "width": 86,
+            "height": 28
+          },
+          {
+            "selector": "select#costMode",
+            "width": 99,
+            "height": 28
+          },
+          {
+            "selector": "select#codexWebSearch",
+            "width": 74,
+            "height": 28
+          },
+          {
+            "selector": "select#openclawMode",
+            "width": 103,
+            "height": 28
+          },
+          {
+            "selector": "button#projectRefreshBtn",
+            "width": 116,
+            "height": 28
+          },
+          {
+            "selector": "button#projectCreateBtn",
+            "width": 92,
+            "height": 28
+          },
+          {
+            "selector": "button#projectUpdateBtn",
+            "width": 97,
+            "height": 28
+          },
+          {
+            "selector": "button#projectDeleteBtn",
+            "width": 113,
+            "height": 28
+          },
+          {
+            "selector": "input#externalObservedAutoPruneEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#allowExternalPosting",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAlertsEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAutoBlockCritical",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#padDisableShots",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "dashboard",
+      "pageLabel": "Asolaria Dashboard",
+      "viewport": {
+        "id": "tablet_portrait",
+        "label": "Tablet Portrait",
+        "width": 768,
+        "height": 1024,
+        "class": "half"
+      },
+      "viewportLabel": "Tablet Portrait",
+      "class": "half",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__tablet_portrait.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__tablet_portrait.png",
+      "metrics": {
+        "viewportWidth": 768,
+        "viewportHeight": 1024,
+        "scrollWidth": 768,
+        "scrollHeight": 5079,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 15,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#stealthToggle",
+            "width": 15,
+            "height": 15
+          },
+          {
+            "selector": "select#approvalMode",
+            "width": 86,
+            "height": 28
+          },
+          {
+            "selector": "select#costMode",
+            "width": 99,
+            "height": 28
+          },
+          {
+            "selector": "select#codexWebSearch",
+            "width": 74,
+            "height": 28
+          },
+          {
+            "selector": "select#openclawMode",
+            "width": 103,
+            "height": 28
+          },
+          {
+            "selector": "button#projectRefreshBtn",
+            "width": 116,
+            "height": 28
+          },
+          {
+            "selector": "button#projectCreateBtn",
+            "width": 92,
+            "height": 28
+          },
+          {
+            "selector": "button#projectUpdateBtn",
+            "width": 97,
+            "height": 28
+          },
+          {
+            "selector": "button#projectDeleteBtn",
+            "width": 113,
+            "height": 28
+          },
+          {
+            "selector": "input#externalObservedAutoPruneEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#allowExternalPosting",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAlertsEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAutoBlockCritical",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#padDisableShots",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "dashboard",
+      "pageLabel": "Asolaria Dashboard",
+      "viewport": {
+        "id": "mobile_portrait",
+        "label": "Mobile Portrait",
+        "width": 390,
+        "height": 844,
+        "class": "quarter"
+      },
+      "viewportLabel": "Mobile Portrait",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait.png",
+      "metrics": {
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 6171,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 3,
+        "overlapCount": 0,
+        "smallControlCount": 15,
+        "overflowElements": [
+          {
+            "tag": "select",
+            "id": "skillsSelect",
+            "className": "",
+            "left": 37,
+            "right": 720,
+            "top": 2488,
+            "bottom": 2531
+          },
+          {
+            "tag": "input",
+            "id": "skillsInput",
+            "className": "",
+            "left": 37,
+            "right": 720,
+            "top": 2539,
+            "bottom": 2580
+          },
+          {
+            "tag": "button",
+            "id": "",
+            "className": "",
+            "left": 37,
+            "right": 720,
+            "top": 2588,
+            "bottom": 2627
+          }
+        ],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#stealthToggle",
+            "width": 15,
+            "height": 15
+          },
+          {
+            "selector": "select#approvalMode",
+            "width": 86,
+            "height": 28
+          },
+          {
+            "selector": "select#costMode",
+            "width": 99,
+            "height": 28
+          },
+          {
+            "selector": "select#codexWebSearch",
+            "width": 74,
+            "height": 28
+          },
+          {
+            "selector": "select#openclawMode",
+            "width": 103,
+            "height": 28
+          },
+          {
+            "selector": "button#projectRefreshBtn",
+            "width": 116,
+            "height": 28
+          },
+          {
+            "selector": "button#projectCreateBtn",
+            "width": 92,
+            "height": 28
+          },
+          {
+            "selector": "button#projectUpdateBtn",
+            "width": 97,
+            "height": 28
+          },
+          {
+            "selector": "button#projectDeleteBtn",
+            "width": 113,
+            "height": 28
+          },
+          {
+            "selector": "input#externalObservedAutoPruneEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#allowExternalPosting",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAlertsEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAutoBlockCritical",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#padDisableShots",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": true,
+        "status": "ok",
+        "note": "one_finger_scroll_up_down_ok",
+        "beforeY": 0,
+        "afterSwipeY": 356,
+        "afterReverseY": 193,
+        "movedOnSwipe": true,
+        "movedOnReverse": true,
+        "restoredTowardBaseline": true,
+        "swipeScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait__one_finger_swipe.png",
+        "reverseScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait__one_finger_reverse.png",
+        "error": ""
+      },
+      "zoom": {
+        "attempted": true,
+        "status": "unsupported",
+        "note": "pinch_zoom_not_observable_in_current_runtime",
+        "beforeScale": 1,
+        "afterZoomInScale": 1,
+        "afterZoomOutScale": 1,
+        "zoomInChanged": false,
+        "zoomOutChanged": false,
+        "restoredNearBaseline": true,
+        "zoomInScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait__pinch_zoom_in.png",
+        "zoomOutScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_portrait__pinch_zoom_out.png",
+        "error": ""
+      }
+    },
+    {
+      "page": "dashboard",
+      "pageLabel": "Asolaria Dashboard",
+      "viewport": {
+        "id": "mobile_landscape",
+        "label": "Mobile Landscape",
+        "width": 844,
+        "height": 390,
+        "class": "quarter"
+      },
+      "viewportLabel": "Mobile Landscape",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape.png",
+      "metrics": {
+        "viewportWidth": 844,
+        "viewportHeight": 390,
+        "scrollWidth": 844,
+        "scrollHeight": 5033,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 15,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#stealthToggle",
+            "width": 15,
+            "height": 15
+          },
+          {
+            "selector": "select#approvalMode",
+            "width": 86,
+            "height": 28
+          },
+          {
+            "selector": "select#costMode",
+            "width": 99,
+            "height": 28
+          },
+          {
+            "selector": "select#codexWebSearch",
+            "width": 74,
+            "height": 28
+          },
+          {
+            "selector": "select#openclawMode",
+            "width": 103,
+            "height": 28
+          },
+          {
+            "selector": "button#projectRefreshBtn",
+            "width": 116,
+            "height": 28
+          },
+          {
+            "selector": "button#projectCreateBtn",
+            "width": 92,
+            "height": 28
+          },
+          {
+            "selector": "button#projectUpdateBtn",
+            "width": 97,
+            "height": 28
+          },
+          {
+            "selector": "button#projectDeleteBtn",
+            "width": 113,
+            "height": 28
+          },
+          {
+            "selector": "input#externalObservedAutoPruneEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#allowExternalPosting",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAlertsEnabled",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#guardianAutoBlockCritical",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#padDisableShots",
+            "width": 13,
+            "height": 13
+          },
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": true,
+        "status": "ok",
+        "note": "one_finger_scroll_up_down_ok",
+        "beforeY": 0,
+        "afterSwipeY": 157,
+        "afterReverseY": 94,
+        "movedOnSwipe": true,
+        "movedOnReverse": true,
+        "restoredTowardBaseline": true,
+        "swipeScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape__one_finger_swipe.png",
+        "reverseScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape__one_finger_reverse.png",
+        "error": ""
+      },
+      "zoom": {
+        "attempted": true,
+        "status": "unsupported",
+        "note": "pinch_zoom_not_observable_in_current_runtime",
+        "beforeScale": 1,
+        "afterZoomInScale": 1,
+        "afterZoomOutScale": 1,
+        "zoomInChanged": false,
+        "zoomOutChanged": false,
+        "restoredNearBaseline": true,
+        "zoomInScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape__pinch_zoom_in.png",
+        "zoomOutScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\dashboard__mobile_landscape__pinch_zoom_out.png",
+        "error": ""
+      }
+    },
+    {
+      "page": "phone_mode",
+      "pageLabel": "Asolaria Phone Mode",
+      "viewport": {
+        "id": "full_hd",
+        "label": "Full HD",
+        "width": 1920,
+        "height": 1080,
+        "class": "full"
+      },
+      "viewportLabel": "Full HD",
+      "class": "full",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/phone-mode.html",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__full_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__full_hd.png",
+      "metrics": {
+        "viewportWidth": 1920,
+        "viewportHeight": 1080,
+        "scrollWidth": 1920,
+        "scrollHeight": 1958,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 5,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#observerFollowToggle",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorAlwaysOnTop",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorNoAudio",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waEnabled",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waIncludeVoice",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "phone_mode",
+      "pageLabel": "Asolaria Phone Mode",
+      "viewport": {
+        "id": "half_hd",
+        "label": "Half HD",
+        "width": 960,
+        "height": 1080,
+        "class": "half"
+      },
+      "viewportLabel": "Half HD",
+      "class": "half",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/phone-mode.html",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__half_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__half_hd.png",
+      "metrics": {
+        "viewportWidth": 960,
+        "viewportHeight": 1080,
+        "scrollWidth": 960,
+        "scrollHeight": 4324,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 5,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#observerFollowToggle",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorAlwaysOnTop",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorNoAudio",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waEnabled",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waIncludeVoice",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "phone_mode",
+      "pageLabel": "Asolaria Phone Mode",
+      "viewport": {
+        "id": "quarter_hd",
+        "label": "Quarter HD",
+        "width": 960,
+        "height": 540,
+        "class": "quarter"
+      },
+      "viewportLabel": "Quarter HD",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/phone-mode.html",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__quarter_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__quarter_hd.png",
+      "metrics": {
+        "viewportWidth": 960,
+        "viewportHeight": 540,
+        "scrollWidth": 960,
+        "scrollHeight": 4324,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 5,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#observerFollowToggle",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorAlwaysOnTop",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorNoAudio",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waEnabled",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waIncludeVoice",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "phone_mode",
+      "pageLabel": "Asolaria Phone Mode",
+      "viewport": {
+        "id": "laptop",
+        "label": "Laptop",
+        "width": 1366,
+        "height": 768,
+        "class": "full"
+      },
+      "viewportLabel": "Laptop",
+      "class": "full",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/phone-mode.html",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__laptop.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__laptop.png",
+      "metrics": {
+        "viewportWidth": 1366,
+        "viewportHeight": 768,
+        "scrollWidth": 1366,
+        "scrollHeight": 1958,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 5,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#observerFollowToggle",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorAlwaysOnTop",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorNoAudio",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waEnabled",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waIncludeVoice",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "phone_mode",
+      "pageLabel": "Asolaria Phone Mode",
+      "viewport": {
+        "id": "tablet_portrait",
+        "label": "Tablet Portrait",
+        "width": 768,
+        "height": 1024,
+        "class": "half"
+      },
+      "viewportLabel": "Tablet Portrait",
+      "class": "half",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/phone-mode.html",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__tablet_portrait.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__tablet_portrait.png",
+      "metrics": {
+        "viewportWidth": 768,
+        "viewportHeight": 1024,
+        "scrollWidth": 768,
+        "scrollHeight": 4318,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 5,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#observerFollowToggle",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorAlwaysOnTop",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorNoAudio",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waEnabled",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waIncludeVoice",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "phone_mode",
+      "pageLabel": "Asolaria Phone Mode",
+      "viewport": {
+        "id": "mobile_portrait",
+        "label": "Mobile Portrait",
+        "width": 390,
+        "height": 844,
+        "class": "quarter"
+      },
+      "viewportLabel": "Mobile Portrait",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/phone-mode.html",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_portrait.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_portrait.png",
+      "metrics": {
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 4230,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 5,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#observerFollowToggle",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorAlwaysOnTop",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorNoAudio",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waEnabled",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waIncludeVoice",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": true,
+        "status": "ok",
+        "note": "one_finger_scroll_up_down_ok",
+        "beforeY": 0,
+        "afterSwipeY": 356,
+        "afterReverseY": 193,
+        "movedOnSwipe": true,
+        "movedOnReverse": true,
+        "restoredTowardBaseline": true,
+        "swipeScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_portrait__one_finger_swipe.png",
+        "reverseScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_portrait__one_finger_reverse.png",
+        "error": ""
+      },
+      "zoom": {
+        "attempted": true,
+        "status": "unsupported",
+        "note": "pinch_zoom_not_observable_in_current_runtime",
+        "beforeScale": 1,
+        "afterZoomInScale": 1,
+        "afterZoomOutScale": 1,
+        "zoomInChanged": false,
+        "zoomOutChanged": false,
+        "restoredNearBaseline": true,
+        "zoomInScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_in.png",
+        "zoomOutScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_portrait__pinch_zoom_out.png",
+        "error": ""
+      }
+    },
+    {
+      "page": "phone_mode",
+      "pageLabel": "Asolaria Phone Mode",
+      "viewport": {
+        "id": "mobile_landscape",
+        "label": "Mobile Landscape",
+        "width": 844,
+        "height": 390,
+        "class": "quarter"
+      },
+      "viewportLabel": "Mobile Landscape",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/phone-mode.html",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape.png",
+      "metrics": {
+        "viewportWidth": 844,
+        "viewportHeight": 390,
+        "scrollWidth": 844,
+        "scrollHeight": 4321,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 5,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#observerFollowToggle",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorAlwaysOnTop",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#proMirrorNoAudio",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waEnabled",
+            "width": 16,
+            "height": 16
+          },
+          {
+            "selector": "input#waIncludeVoice",
+            "width": 16,
+            "height": 16
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": true,
+        "status": "ok",
+        "note": "one_finger_scroll_up_down_ok",
+        "beforeY": 0,
+        "afterSwipeY": 157,
+        "afterReverseY": 94,
+        "movedOnSwipe": true,
+        "movedOnReverse": true,
+        "restoredTowardBaseline": true,
+        "swipeScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape__one_finger_swipe.png",
+        "reverseScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape__one_finger_reverse.png",
+        "error": ""
+      },
+      "zoom": {
+        "attempted": true,
+        "status": "unsupported",
+        "note": "pinch_zoom_not_observable_in_current_runtime",
+        "beforeScale": 1,
+        "afterZoomInScale": 1,
+        "afterZoomOutScale": 1,
+        "zoomInChanged": false,
+        "zoomOutChanged": false,
+        "restoredNearBaseline": true,
+        "zoomInScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_in.png",
+        "zoomOutScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\phone_mode__mobile_landscape__pinch_zoom_out.png",
+        "error": ""
+      }
+    },
+    {
+      "page": "mobile_console",
+      "pageLabel": "Mobile Console",
+      "viewport": {
+        "id": "full_hd",
+        "label": "Full HD",
+        "width": 1920,
+        "height": 1080,
+        "class": "full"
+      },
+      "viewportLabel": "Full HD",
+      "class": "full",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-console.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__full_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__full_hd.png",
+      "metrics": {
+        "viewportWidth": 1920,
+        "viewportHeight": 1080,
+        "scrollWidth": 1920,
+        "scrollHeight": 16382,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_console",
+      "pageLabel": "Mobile Console",
+      "viewport": {
+        "id": "half_hd",
+        "label": "Half HD",
+        "width": 960,
+        "height": 1080,
+        "class": "half"
+      },
+      "viewportLabel": "Half HD",
+      "class": "half",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-console.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__half_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__half_hd.png",
+      "metrics": {
+        "viewportWidth": 960,
+        "viewportHeight": 1080,
+        "scrollWidth": 960,
+        "scrollHeight": 16919,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_console",
+      "pageLabel": "Mobile Console",
+      "viewport": {
+        "id": "quarter_hd",
+        "label": "Quarter HD",
+        "width": 960,
+        "height": 540,
+        "class": "quarter"
+      },
+      "viewportLabel": "Quarter HD",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-console.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__quarter_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__quarter_hd.png",
+      "metrics": {
+        "viewportWidth": 960,
+        "viewportHeight": 540,
+        "scrollWidth": 960,
+        "scrollHeight": 17207,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_console",
+      "pageLabel": "Mobile Console",
+      "viewport": {
+        "id": "laptop",
+        "label": "Laptop",
+        "width": 1366,
+        "height": 768,
+        "class": "full"
+      },
+      "viewportLabel": "Laptop",
+      "class": "full",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-console.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__laptop.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__laptop.png",
+      "metrics": {
+        "viewportWidth": 1366,
+        "viewportHeight": 768,
+        "scrollWidth": 1366,
+        "scrollHeight": 16404,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_console",
+      "pageLabel": "Mobile Console",
+      "viewport": {
+        "id": "tablet_portrait",
+        "label": "Tablet Portrait",
+        "width": 768,
+        "height": 1024,
+        "class": "half"
+      },
+      "viewportLabel": "Tablet Portrait",
+      "class": "half",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-console.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__tablet_portrait.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__tablet_portrait.png",
+      "metrics": {
+        "viewportWidth": 768,
+        "viewportHeight": 1024,
+        "scrollWidth": 768,
+        "scrollHeight": 17318,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_console",
+      "pageLabel": "Mobile Console",
+      "viewport": {
+        "id": "mobile_portrait",
+        "label": "Mobile Portrait",
+        "width": 390,
+        "height": 844,
+        "class": "quarter"
+      },
+      "viewportLabel": "Mobile Portrait",
+      "class": "quarter",
+      "status": "issue",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-console.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_portrait.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_portrait.png",
+      "metrics": {
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 21549,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": true,
+        "status": "issue",
+        "note": "one_finger_scroll_no_observed_movement",
+        "beforeY": 0,
+        "afterSwipeY": 0,
+        "afterReverseY": 0,
+        "movedOnSwipe": false,
+        "movedOnReverse": false,
+        "restoredTowardBaseline": false,
+        "swipeScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_portrait__one_finger_swipe.png",
+        "reverseScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_portrait__one_finger_reverse.png",
+        "error": ""
+      },
+      "zoom": {
+        "attempted": true,
+        "status": "unsupported",
+        "note": "pinch_zoom_not_observable_in_current_runtime",
+        "beforeScale": 1,
+        "afterZoomInScale": 1,
+        "afterZoomOutScale": 1,
+        "zoomInChanged": false,
+        "zoomOutChanged": false,
+        "restoredNearBaseline": true,
+        "zoomInScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_portrait__pinch_zoom_in.png",
+        "zoomOutScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_portrait__pinch_zoom_out.png",
+        "error": ""
+      }
+    },
+    {
+      "page": "mobile_console",
+      "pageLabel": "Mobile Console",
+      "viewport": {
+        "id": "mobile_landscape",
+        "label": "Mobile Landscape",
+        "width": 844,
+        "height": 390,
+        "class": "quarter"
+      },
+      "viewportLabel": "Mobile Landscape",
+      "class": "quarter",
+      "status": "issue",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-console.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_landscape.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_landscape.png",
+      "metrics": {
+        "viewportWidth": 844,
+        "viewportHeight": 390,
+        "scrollWidth": 844,
+        "scrollHeight": 16919,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#taskLedgerIncludeArchived",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": true,
+        "status": "issue",
+        "note": "one_finger_scroll_no_observed_movement",
+        "beforeY": 0,
+        "afterSwipeY": 0,
+        "afterReverseY": 0,
+        "movedOnSwipe": false,
+        "movedOnReverse": false,
+        "restoredTowardBaseline": false,
+        "swipeScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_landscape__one_finger_swipe.png",
+        "reverseScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_landscape__one_finger_reverse.png",
+        "error": ""
+      },
+      "zoom": {
+        "attempted": true,
+        "status": "unsupported",
+        "note": "pinch_zoom_not_observable_in_current_runtime",
+        "beforeScale": 1,
+        "afterZoomInScale": 1,
+        "afterZoomOutScale": 1,
+        "zoomInChanged": false,
+        "zoomOutChanged": false,
+        "restoredNearBaseline": true,
+        "zoomInScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_landscape__pinch_zoom_in.png",
+        "zoomOutScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_console__mobile_landscape__pinch_zoom_out.png",
+        "error": ""
+      }
+    },
+    {
+      "page": "mobile_approvals",
+      "pageLabel": "Mobile Approvals",
+      "viewport": {
+        "id": "full_hd",
+        "label": "Full HD",
+        "width": 1920,
+        "height": 1080,
+        "class": "full"
+      },
+      "viewportLabel": "Full HD",
+      "class": "full",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-approvals.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__full_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__full_hd.png",
+      "metrics": {
+        "viewportWidth": 1920,
+        "viewportHeight": 1080,
+        "scrollWidth": 1920,
+        "scrollHeight": 1080,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#criticalOnly",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_approvals",
+      "pageLabel": "Mobile Approvals",
+      "viewport": {
+        "id": "half_hd",
+        "label": "Half HD",
+        "width": 960,
+        "height": 1080,
+        "class": "half"
+      },
+      "viewportLabel": "Half HD",
+      "class": "half",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-approvals.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__half_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__half_hd.png",
+      "metrics": {
+        "viewportWidth": 960,
+        "viewportHeight": 1080,
+        "scrollWidth": 960,
+        "scrollHeight": 1080,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#criticalOnly",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_approvals",
+      "pageLabel": "Mobile Approvals",
+      "viewport": {
+        "id": "quarter_hd",
+        "label": "Quarter HD",
+        "width": 960,
+        "height": 540,
+        "class": "quarter"
+      },
+      "viewportLabel": "Quarter HD",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-approvals.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__quarter_hd.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__quarter_hd.png",
+      "metrics": {
+        "viewportWidth": 960,
+        "viewportHeight": 540,
+        "scrollWidth": 960,
+        "scrollHeight": 540,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#criticalOnly",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_approvals",
+      "pageLabel": "Mobile Approvals",
+      "viewport": {
+        "id": "laptop",
+        "label": "Laptop",
+        "width": 1366,
+        "height": 768,
+        "class": "full"
+      },
+      "viewportLabel": "Laptop",
+      "class": "full",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-approvals.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__laptop.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__laptop.png",
+      "metrics": {
+        "viewportWidth": 1366,
+        "viewportHeight": 768,
+        "scrollWidth": 1366,
+        "scrollHeight": 768,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#criticalOnly",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_approvals",
+      "pageLabel": "Mobile Approvals",
+      "viewport": {
+        "id": "tablet_portrait",
+        "label": "Tablet Portrait",
+        "width": 768,
+        "height": 1024,
+        "class": "half"
+      },
+      "viewportLabel": "Tablet Portrait",
+      "class": "half",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-approvals.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__tablet_portrait.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__tablet_portrait.png",
+      "metrics": {
+        "viewportWidth": 768,
+        "viewportHeight": 1024,
+        "scrollWidth": 768,
+        "scrollHeight": 1024,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#criticalOnly",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      },
+      "zoom": {
+        "attempted": false,
+        "status": "skipped",
+        "note": "non_mobile_viewport"
+      }
+    },
+    {
+      "page": "mobile_approvals",
+      "pageLabel": "Mobile Approvals",
+      "viewport": {
+        "id": "mobile_portrait",
+        "label": "Mobile Portrait",
+        "width": 390,
+        "height": 844,
+        "class": "quarter"
+      },
+      "viewportLabel": "Mobile Portrait",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-approvals.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__mobile_portrait.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__mobile_portrait.png",
+      "metrics": {
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 844,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#criticalOnly",
+            "width": 295,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": true,
+        "status": "skipped",
+        "note": "page_not_scrollable",
+        "beforeY": 0,
+        "afterSwipeY": 0,
+        "afterReverseY": 0,
+        "movedOnSwipe": false,
+        "movedOnReverse": false,
+        "restoredTowardBaseline": false,
+        "swipeScreenshotRel": "",
+        "reverseScreenshotRel": "",
+        "error": ""
+      },
+      "zoom": {
+        "attempted": true,
+        "status": "unsupported",
+        "note": "pinch_zoom_not_observable_in_current_runtime",
+        "beforeScale": 1,
+        "afterZoomInScale": 1,
+        "afterZoomOutScale": 1,
+        "zoomInChanged": false,
+        "zoomOutChanged": false,
+        "restoredNearBaseline": true,
+        "zoomInScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__mobile_portrait__pinch_zoom_in.png",
+        "zoomOutScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__mobile_portrait__pinch_zoom_out.png",
+        "error": ""
+      }
+    },
+    {
+      "page": "mobile_approvals",
+      "pageLabel": "Mobile Approvals",
+      "viewport": {
+        "id": "mobile_landscape",
+        "label": "Mobile Landscape",
+        "width": 844,
+        "height": 390,
+        "class": "quarter"
+      },
+      "viewportLabel": "Mobile Landscape",
+      "class": "quarter",
+      "status": "ok",
+      "error": "",
+      "urlWithoutToken": "http://127.0.0.1:4781/mobile-approvals.html?channel=usb",
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__mobile_landscape.png",
+      "screenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__mobile_landscape.png",
+      "metrics": {
+        "viewportWidth": 844,
+        "viewportHeight": 390,
+        "scrollWidth": 844,
+        "scrollHeight": 390,
+        "horizontalOverflowPx": 0,
+        "overflowElementCount": 0,
+        "overlapCount": 0,
+        "smallControlCount": 1,
+        "overflowElements": [],
+        "overlapPairs": [],
+        "smallControls": [
+          {
+            "selector": "input#criticalOnly",
+            "width": 13,
+            "height": 13
+          }
+        ]
+      },
+      "oneFinger": {
+        "attempted": true,
+        "status": "skipped",
+        "note": "page_not_scrollable",
+        "beforeY": 0,
+        "afterSwipeY": 0,
+        "afterReverseY": 0,
+        "movedOnSwipe": false,
+        "movedOnReverse": false,
+        "restoredTowardBaseline": false,
+        "swipeScreenshotRel": "",
+        "reverseScreenshotRel": "",
+        "error": ""
+      },
+      "zoom": {
+        "attempted": true,
+        "status": "unsupported",
+        "note": "pinch_zoom_not_observable_in_current_runtime",
+        "beforeScale": 1,
+        "afterZoomInScale": 1,
+        "afterZoomOutScale": 1,
+        "zoomInChanged": false,
+        "zoomOutChanged": false,
+        "restoredNearBaseline": true,
+        "zoomInScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_in.png",
+        "zoomOutScreenshotRel": "reports\\ui-visual-audit\\20260220-192026\\screenshots\\mobile_approvals__mobile_landscape__pinch_zoom_out.png",
+        "error": ""
+      }
+    }
+  ]
+}

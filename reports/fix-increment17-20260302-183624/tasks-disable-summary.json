@@ -1,0 +1,22 @@
+﻿[
+    {
+        "TaskName":  "Asolaria Wake Display 1000 BRT",
+        "Found":  true,
+        "BeforeState":  "Ready",
+        "AfterState":  "Disabled",
+        "Disabled":  true,
+        "LastRunTime":  "\/Date(1771678800000)\/",
+        "NextRunTime":  null,
+        "LastTaskResult":  0
+    },
+    {
+        "TaskName":  "Asolaria-WakeDisplay-2026-02-24-0900",
+        "Found":  true,
+        "BeforeState":  "Ready",
+        "AfterState":  "Disabled",
+        "Disabled":  true,
+        "LastRunTime":  "\/Date(1771939249000)\/",
+        "NextRunTime":  null,
+        "LastTaskResult":  2147946720
+    }
+]

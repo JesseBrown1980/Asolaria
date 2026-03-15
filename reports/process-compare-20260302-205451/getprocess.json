@@ -1,0 +1,1706 @@
+﻿[
+    {
+        "Id":  8976,
+        "Name":  "AggregatorHost",
+        "Path":  "C:\\WINDOWS\\System32\\AggregatorHost.exe",
+        "StartTime":  "\/Date(1772403118701)\/"
+    },
+    {
+        "Id":  4792,
+        "Name":  "AnyDesk",
+        "Path":  "C:\\Program Files (x86)\\AnyDesk\\AnyDesk.exe",
+        "StartTime":  "\/Date(1772403109066)\/"
+    },
+    {
+        "Id":  7036,
+        "Name":  "AnyDesk",
+        "Path":  "C:\\Program Files (x86)\\AnyDesk\\AnyDesk.exe",
+        "StartTime":  "\/Date(1772478616408)\/"
+    },
+    {
+        "Id":  20808,
+        "Name":  "AppActions",
+        "Path":  "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\AppActions.exe",
+        "StartTime":  "\/Date(1772478959604)\/"
+    },
+    {
+        "Id":  11808,
+        "Name":  "ApplicationFrameHost",
+        "Path":  "C:\\WINDOWS\\system32\\ApplicationFrameHost.exe",
+        "StartTime":  "\/Date(1772479444776)\/"
+    },
+    {
+        "Id":  4800,
+        "Name":  "armsvc",
+        "Path":  "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\armsvc.exe",
+        "StartTime":  "\/Date(1772403109067)\/"
+    },
+    {
+        "Id":  22936,
+        "Name":  "backgroundTaskHost",
+        "Path":  "C:\\WINDOWS\\system32\\backgroundTaskHost.exe",
+        "StartTime":  "\/Date(1772484675747)\/"
+    },
+    {
+        "Id":  2720,
+        "Name":  "ChatGPT",
+        "Path":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "StartTime":  "\/Date(1772478616982)\/"
+    },
+    {
+        "Id":  15088,
+        "Name":  "ChatGPT",
+        "Path":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "StartTime":  "\/Date(1772478544758)\/"
+    },
+    {
+        "Id":  16260,
+        "Name":  "ChatGPT",
+        "Path":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "StartTime":  "\/Date(1772478582601)\/"
+    },
+    {
+        "Id":  19920,
+        "Name":  "ChatGPT",
+        "Path":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "StartTime":  "\/Date(1772478568859)\/"
+    },
+    {
+        "Id":  21348,
+        "Name":  "ChatGPT",
+        "Path":  "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+        "StartTime":  "\/Date(1772478575366)\/"
+    },
+    {
+        "Id":  1324,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772478506905)\/"
+    },
+    {
+        "Id":  1684,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492426409)\/"
+    },
+    {
+        "Id":  2760,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772478536987)\/"
+    },
+    {
+        "Id":  5356,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772478536979)\/"
+    },
+    {
+        "Id":  7496,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772478538652)\/"
+    },
+    {
+        "Id":  8372,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772478506968)\/"
+    },
+    {
+        "Id":  9032,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492432141)\/"
+    },
+    {
+        "Id":  10804,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492459564)\/"
+    },
+    {
+        "Id":  11540,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492445449)\/"
+    },
+    {
+        "Id":  11772,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492431620)\/"
+    },
+    {
+        "Id":  12548,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492426332)\/"
+    },
+    {
+        "Id":  12936,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492433172)\/"
+    },
+    {
+        "Id":  13056,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492445463)\/"
+    },
+    {
+        "Id":  14632,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772494581214)\/"
+    },
+    {
+        "Id":  15848,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492425844)\/"
+    },
+    {
+        "Id":  16896,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492426342)\/"
+    },
+    {
+        "Id":  18360,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492431614)\/"
+    },
+    {
+        "Id":  18512,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492431603)\/"
+    },
+    {
+        "Id":  20500,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772494580989)\/"
+    },
+    {
+        "Id":  20728,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492435552)\/"
+    },
+    {
+        "Id":  22672,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492442831)\/"
+    },
+    {
+        "Id":  22696,
+        "Name":  "chrome",
+        "Path":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "StartTime":  "\/Date(1772492425885)\/"
+    },
+    {
+        "Id":  12148,
+        "Name":  "cloudflared",
+        "Path":  "C:\\Program Files (x86)\\cloudflared\\cloudflared.exe",
+        "StartTime":  "\/Date(1772489248910)\/"
+    },
+    {
+        "Id":  16576,
+        "Name":  "cmd",
+        "Path":  "C:\\WINDOWS\\system32\\cmd.exe",
+        "StartTime":  "\/Date(1772492436327)\/"
+    },
+    {
+        "Id":  17392,
+        "Name":  "cmd",
+        "Path":  "C:\\WINDOWS\\system32\\cmd.exe",
+        "StartTime":  "\/Date(1772492442794)\/"
+    },
+    {
+        "Id":  22612,
+        "Name":  "codex",
+        "Path":  "C:\\Users\\acer\\AppData\\Local\\nvm\\v22.12.0\\node_modules\\@openai\\codex\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\codex\\codex.exe",
+        "StartTime":  "\/Date(1772478396357)\/"
+    },
+    {
+        "Id":  1092,
+        "Name":  "conhost",
+        "Path":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "StartTime":  "\/Date(1772481947156)\/"
+    },
+    {
+        "Id":  11244,
+        "Name":  "conhost",
+        "Path":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "StartTime":  "\/Date(1772489014162)\/"
+    },
+    {
+        "Id":  21176,
+        "Name":  "conhost",
+        "Path":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "StartTime":  "\/Date(1772492436461)\/"
+    },
+    {
+        "Id":  21240,
+        "Name":  "conhost",
+        "Path":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "StartTime":  "\/Date(1772478413212)\/"
+    },
+    {
+        "Id":  23064,
+        "Name":  "conhost",
+        "Path":  "C:\\WINDOWS\\system32\\conhost.exe",
+        "StartTime":  "\/Date(1772492442816)\/"
+    },
+    {
+        "Id":  10416,
+        "Name":  "Copilot",
+        "Path":  "C:\\Program Files\\WindowsApps\\Microsoft.Copilot_1.25121.84.0_x64__8wekyb3d8bbwe\\Copilot.exe",
+        "StartTime":  "\/Date(1772478505569)\/"
+    },
+    {
+        "Id":  4928,
+        "Name":  "CptService",
+        "Path":  "C:\\Program Files\\Common Files\\Zoom\\Support\\CptService.exe",
+        "StartTime":  "\/Date(1772403109093)\/"
+    },
+    {
+        "Id":  11420,
+        "Name":  "CrossDeviceResume",
+        "Path":  "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe",
+        "StartTime":  "\/Date(1772478359621)\/"
+    },
+    {
+        "Id":  22332,
+        "Name":  "CrossDeviceService",
+        "Path":  "C:\\Program Files\\WindowsApps\\MicrosoftWindows.CrossDevice_1.26011.30.0_x64__cw5n1h2txyewy\\CrossDeviceService.exe",
+        "StartTime":  "\/Date(1772478360886)\/"
+    },
+    {
+        "Id":  1008,
+        "Name":  "csrss",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403105364)\/"
+    },
+    {
+        "Id":  3904,
+        "Name":  "csrss",
+        "Path":  null,
+        "StartTime":  "\/Date(1772478329184)\/"
+    },
+    {
+        "Id":  10328,
+        "Name":  "ctfmon",
+        "Path":  "C:\\WINDOWS\\system32\\ctfmon.exe",
+        "StartTime":  "\/Date(1772478367835)\/"
+    },
+    {
+        "Id":  4196,
+        "Name":  "dasHost",
+        "Path":  "C:\\WINDOWS\\system32\\dashost.exe",
+        "StartTime":  "\/Date(1772403108717)\/"
+    },
+    {
+        "Id":  1328,
+        "Name":  "dllhost",
+        "Path":  "C:\\WINDOWS\\system32\\DllHost.exe",
+        "StartTime":  "\/Date(1772493639053)\/"
+    },
+    {
+        "Id":  2512,
+        "Name":  "dllhost",
+        "Path":  "C:\\WINDOWS\\system32\\DllHost.exe",
+        "StartTime":  "\/Date(1772493638894)\/"
+    },
+    {
+        "Id":  8836,
+        "Name":  "dllhost",
+        "Path":  "C:\\WINDOWS\\SysWOW64\\DllHost.exe",
+        "StartTime":  "\/Date(1772493639173)\/"
+    },
+    {
+        "Id":  10784,
+        "Name":  "dllhost",
+        "Path":  "C:\\WINDOWS\\system32\\DllHost.exe",
+        "StartTime":  "\/Date(1772479446694)\/"
+    },
+    {
+        "Id":  18192,
+        "Name":  "DolbyDAX2API",
+        "Path":  "C:\\Program Files\\Dolby\\Dolby DAX2\\DAX2_API\\DolbyDAX2API.exe",
+        "StartTime":  "\/Date(1772403237632)\/"
+    },
+    {
+        "Id":  16820,
+        "Name":  "dwm",
+        "Path":  "C:\\WINDOWS\\System32\\dwm.exe",
+        "StartTime":  "\/Date(1772478329339)\/"
+    },
+    {
+        "Id":  14568,
+        "Name":  "explorer",
+        "Path":  "C:\\WINDOWS\\Explorer.EXE",
+        "StartTime":  "\/Date(1772478358988)\/"
+    },
+    {
+        "Id":  23368,
+        "Name":  "ExpressVPN",
+        "Path":  "C:\\Program Files (x86)\\ExpressVPN\\expressvpn-ui\\ExpressVPN.exe",
+        "StartTime":  "\/Date(1772478398811)\/"
+    },
+    {
+        "Id":  5492,
+        "Name":  "ExpressVPN.AppService",
+        "Path":  "C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.AppService.exe",
+        "StartTime":  "\/Date(1772403116072)\/"
+    },
+    {
+        "Id":  20088,
+        "Name":  "ExpressVPN.BrowserHelper",
+        "Path":  "C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.BrowserHelper.exe",
+        "StartTime":  "\/Date(1772492442917)\/"
+    },
+    {
+        "Id":  4808,
+        "Name":  "ExpressVPN.SystemService",
+        "Path":  "C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.SystemService.exe",
+        "StartTime":  "\/Date(1772403109068)\/"
+    },
+    {
+        "Id":  4828,
+        "Name":  "ExpressVPN.VpnService",
+        "Path":  "C:\\Program Files (x86)\\ExpressVPN\\services\\ExpressVPN.VpnService.exe",
+        "StartTime":  "\/Date(1772403109074)\/"
+    },
+    {
+        "Id":  11476,
+        "Name":  "ExpressVPNNotificationService",
+        "Path":  "C:\\Program Files (x86)\\ExpressVPN\\expressvpn-ui\\ExpressVPNNotificationService.exe",
+        "StartTime":  "\/Date(1772478402405)\/"
+    },
+    {
+        "Id":  1388,
+        "Name":  "fontdrvhost",
+        "Path":  "C:\\WINDOWS\\system32\\fontdrvhost.exe",
+        "StartTime":  "\/Date(1772403107302)\/"
+    },
+    {
+        "Id":  17568,
+        "Name":  "fontdrvhost",
+        "Path":  "C:\\WINDOWS\\System32\\fontdrvhost.exe",
+        "StartTime":  "\/Date(1772478329308)\/"
+    },
+    {
+        "Id":  0,
+        "Name":  "Idle",
+        "Path":  null,
+        "StartTime":  null
+    },
+    {
+        "Id":  12204,
+        "Name":  "IGCC",
+        "Path":  "C:\\Program Files\\WindowsApps\\AppUp.IntelGraphicsExperience_1.100.5688.0_x64__8j3eq9eme6ctt\\IGCC.exe",
+        "StartTime":  "\/Date(1772478455799)\/"
+    },
+    {
+        "Id":  17192,
+        "Name":  "IGCCTray",
+        "Path":  "C:\\Program Files\\WindowsApps\\AppUp.IntelGraphicsExperience_1.100.5688.0_x64__8j3eq9eme6ctt\\GCP.ML.BackgroundSysTray\\IGCCTray.exe",
+        "StartTime":  "\/Date(1772478435128)\/"
+    },
+    {
+        "Id":  3492,
+        "Name":  "igfxCUIService",
+        "Path":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_38cfab2b652e4701\\igfxCUIService.exe",
+        "StartTime":  "\/Date(1772403108203)\/"
+    },
+    {
+        "Id":  11188,
+        "Name":  "igfxEM",
+        "Path":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_38cfab2b652e4701\\igfxEM.exe",
+        "StartTime":  "\/Date(1772478358304)\/"
+    },
+    {
+        "Id":  1500,
+        "Name":  "IntelCpHDCPSvc",
+        "Path":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iigd_dch.inf_amd64_51f685305808e3a5\\IntelCpHDCPSvc.exe",
+        "StartTime":  "\/Date(1772403107649)\/"
+    },
+    {
+        "Id":  2320,
+        "Name":  "IntelCpHeciSvc",
+        "Path":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iigd_dch.inf_amd64_51f685305808e3a5\\IntelCpHeciSvc.exe",
+        "StartTime":  "\/Date(1772403107720)\/"
+    },
+    {
+        "Id":  1208,
+        "Name":  "LsaIso",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403106938)\/"
+    },
+    {
+        "Id":  1216,
+        "Name":  "lsass",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403106943)\/"
+    },
+    {
+        "Id":  3308,
+        "Name":  "Memory Compression",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403108157)\/"
+    },
+    {
+        "Id":  4860,
+        "Name":  "Microsoft.Flow.RPA.LogShipper",
+        "Path":  "C:\\Program Files (x86)\\Power Automate Desktop\\Microsoft.Flow.RPA.LogShipper.exe",
+        "StartTime":  "\/Date(1772403109077)\/"
+    },
+    {
+        "Id":  4972,
+        "Name":  "Microsoft.Flow.RPA.UpdateService",
+        "Path":  "C:\\Program Files (x86)\\Power Automate Desktop\\Microsoft.Flow.RPA.UpdateService.exe",
+        "StartTime":  "\/Date(1772403109103)\/"
+    },
+    {
+        "Id":  10748,
+        "Name":  "MicrosoftSecurityApp",
+        "Path":  "C:\\Program Files\\WindowsApps\\Microsoft.6365217CE6EB4_102.2504.16004.0_x64__8wekyb3d8bbwe\\MicrosoftSecurityApp\\MicrosoftSecurityApp.exe",
+        "StartTime":  "\/Date(1772478467207)\/"
+    },
+    {
+        "Id":  11952,
+        "Name":  "MidiSrv",
+        "Path":  "C:\\WINDOWS\\system32\\midisrv.exe",
+        "StartTime":  "\/Date(1772478859118)\/"
+    },
+    {
+        "Id":  5116,
+        "Name":  "mongod",
+        "Path":  "C:\\Program Files\\MongoDB\\Server\\8.0\\bin\\mongod.exe",
+        "StartTime":  "\/Date(1772403109163)\/"
+    },
+    {
+        "Id":  4896,
+        "Name":  "MpDefenderCoreService",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403109082)\/"
+    },
+    {
+        "Id":  7136,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478725195)\/"
+    },
+    {
+        "Id":  9772,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772481013069)\/"
+    },
+    {
+        "Id":  10332,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478727796)\/"
+    },
+    {
+        "Id":  10428,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478365280)\/"
+    },
+    {
+        "Id":  11916,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478366340)\/"
+    },
+    {
+        "Id":  12132,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478753366)\/"
+    },
+    {
+        "Id":  12344,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478365379)\/"
+    },
+    {
+        "Id":  14100,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478726955)\/"
+    },
+    {
+        "Id":  15284,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478366145)\/"
+    },
+    {
+        "Id":  17360,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478727873)\/"
+    },
+    {
+        "Id":  20112,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478727803)\/"
+    },
+    {
+        "Id":  21332,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478366069)\/"
+    },
+    {
+        "Id":  23036,
+        "Name":  "msedgewebview2",
+        "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.3800.82\\msedgewebview2.exe",
+        "StartTime":  "\/Date(1772478365974)\/"
+    },
+    {
+        "Id":  5028,
+        "Name":  "MsMpEng",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403109125)\/"
+    },
+    {
+        "Id":  10344,
+        "Name":  "NgcIso",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403120485)\/"
+    },
+    {
+        "Id":  14744,
+        "Name":  "NisSrv",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403135930)\/"
+    },
+    {
+        "Id":  1900,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772487411264)\/"
+    },
+    {
+        "Id":  2856,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772487416216)\/"
+    },
+    {
+        "Id":  3588,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772478413200)\/"
+    },
+    {
+        "Id":  3900,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772478399148)\/"
+    },
+    {
+        "Id":  4392,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772489258881)\/"
+    },
+    {
+        "Id":  5056,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772487421638)\/"
+    },
+    {
+        "Id":  5172,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772482592310)\/"
+    },
+    {
+        "Id":  6308,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772482592317)\/"
+    },
+    {
+        "Id":  7376,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772478395645)\/"
+    },
+    {
+        "Id":  11416,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772489258147)\/"
+    },
+    {
+        "Id":  11676,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772482588112)\/"
+    },
+    {
+        "Id":  12844,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772489258383)\/"
+    },
+    {
+        "Id":  12992,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772489248254)\/"
+    },
+    {
+        "Id":  13092,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772482588121)\/"
+    },
+    {
+        "Id":  17796,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772487416212)\/"
+    },
+    {
+        "Id":  18264,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772489258613)\/"
+    },
+    {
+        "Id":  18272,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772487411269)\/"
+    },
+    {
+        "Id":  19772,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772489259893)\/"
+    },
+    {
+        "Id":  19980,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772478399159)\/"
+    },
+    {
+        "Id":  20724,
+        "Name":  "node",
+        "Path":  "C:\\nvm4w\\nodejs\\node.exe",
+        "StartTime":  "\/Date(1772487421632)\/"
+    },
+    {
+        "Id":  2816,
+        "Name":  "NVDisplay.Container",
+        "Path":  "C:\\Program Files\\NVIDIA Corporation\\Display.NvContainer\\NVDisplay.Container.exe",
+        "StartTime":  "\/Date(1772403107919)\/"
+    },
+    {
+        "Id":  4276,
+        "Name":  "NVDisplay.Container",
+        "Path":  "C:\\Program Files\\NVIDIA Corporation\\Display.NvContainer\\NVDisplay.Container.exe",
+        "StartTime":  "\/Date(1772478335622)\/"
+    },
+    {
+        "Id":  4960,
+        "Name":  "OfficeClickToRun",
+        "Path":  "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe",
+        "StartTime":  "\/Date(1772403109101)\/"
+    },
+    {
+        "Id":  4768,
+        "Name":  "OneApp.IGCC.WinService",
+        "Path":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\igcc_dch.inf_amd64_c2ac023763d5d3ad\\OneApp.IGCC.WinService.exe",
+        "StartTime":  "\/Date(1772403109061)\/"
+    },
+    {
+        "Id":  3940,
+        "Name":  "OneDrive.Sync.Service",
+        "Path":  "C:\\Program Files\\Microsoft OneDrive\\26.022.0203.0006\\OneDrive.Sync.Service.exe",
+        "StartTime":  "\/Date(1772489286234)\/"
+    },
+    {
+        "Id":  12016,
+        "Name":  "OpenConsole",
+        "Path":  "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.23.20211.0_x64__8wekyb3d8bbwe\\OpenConsole.exe",
+        "StartTime":  "\/Date(1772478385504)\/"
+    },
+    {
+        "Id":  4344,
+        "Name":  "PAD.BrowserNativeMessageHost",
+        "Path":  "C:\\Program Files (x86)\\Power Automate Desktop\\dotnet\\PAD.BrowserNativeMessageHost.exe",
+        "StartTime":  "\/Date(1772492436779)\/"
+    },
+    {
+        "Id":  5008,
+        "Name":  "PAD.Java.Sync.Service.Host",
+        "Path":  "C:\\Program Files (x86)\\Power Automate Desktop\\dotnet\\PAD.Java.Sync.Service.Host.exe",
+        "StartTime":  "\/Date(1772403109110)\/"
+    },
+    {
+        "Id":  13016,
+        "Name":  "PhoneExperienceHost",
+        "Path":  "C:\\Program Files\\WindowsApps\\Microsoft.YourPhone_1.26011.42.0_x64__8wekyb3d8bbwe\\PhoneExperienceHost.exe",
+        "StartTime":  "\/Date(1772483686008)\/"
+    },
+    {
+        "Id":  10276,
+        "Name":  "powershell",
+        "Path":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "StartTime":  "\/Date(1772495690665)\/"
+    },
+    {
+        "Id":  14880,
+        "Name":  "powershell",
+        "Path":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "StartTime":  "\/Date(1772478385516)\/"
+    },
+    {
+        "Id":  15892,
+        "Name":  "powershell",
+        "Path":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "StartTime":  "\/Date(1772489244541)\/"
+    },
+    {
+        "Id":  8964,
+        "Name":  "PresentationFontCache",
+        "Path":  "C:\\WINDOWS\\Microsoft.Net\\Framework64\\v3.0\\WPF\\PresentationFontCache.exe",
+        "StartTime":  "\/Date(1772403117883)\/"
+    },
+    {
+        "Id":  10884,
+        "Name":  "py",
+        "Path":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Launcher\\py.exe",
+        "StartTime":  "\/Date(1772489014147)\/"
+    },
+    {
+        "Id":  17596,
+        "Name":  "python",
+        "Path":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "StartTime":  "\/Date(1772489014227)\/"
+    },
+    {
+        "Id":  12212,
+        "Name":  "RAVBg64",
+        "Path":  "C:\\Program Files\\Realtek\\Audio\\HDA\\RAVBg64.exe",
+        "StartTime":  "\/Date(1772478383790)\/"
+    },
+    {
+        "Id":  13368,
+        "Name":  "RAVBg64",
+        "Path":  "C:\\Program Files\\Realtek\\Audio\\HDA\\RAVBg64.exe",
+        "StartTime":  "\/Date(1772478382442)\/"
+    },
+    {
+        "Id":  3596,
+        "Name":  "RAVCpl64",
+        "Path":  "C:\\Program Files\\Realtek\\Audio\\HDA\\RAVCpl64.exe",
+        "StartTime":  "\/Date(1772478381971)\/"
+    },
+    {
+        "Id":  184,
+        "Name":  "Registry",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403098540)\/"
+    },
+    {
+        "Id":  4744,
+        "Name":  "remoting_host",
+        "Path":  "C:\\Program Files (x86)\\Google\\Chrome Remote Desktop\\146.0.7680.5\\remoting_host.exe",
+        "StartTime":  "\/Date(1772403109055)\/"
+    },
+    {
+        "Id":  6852,
+        "Name":  "remoting_host",
+        "Path":  "C:\\Program Files (x86)\\Google\\Chrome Remote Desktop\\146.0.7680.5\\remoting_host.exe",
+        "StartTime":  "\/Date(1772403109954)\/"
+    },
+    {
+        "Id":  4944,
+        "Name":  "RstMwService",
+        "Path":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iastorac.inf_amd64_e335ebb186115025\\RstMwService.exe",
+        "StartTime":  "\/Date(1772403109095)\/"
+    },
+    {
+        "Id":  8716,
+        "Name":  "RuntimeBroker",
+        "Path":  "C:\\Windows\\System32\\RuntimeBroker.exe",
+        "StartTime":  "\/Date(1772478389412)\/"
+    },
+    {
+        "Id":  11908,
+        "Name":  "RuntimeBroker",
+        "Path":  "C:\\Windows\\System32\\RuntimeBroker.exe",
+        "StartTime":  "\/Date(1772478693823)\/"
+    },
+    {
+        "Id":  21700,
+        "Name":  "RuntimeBroker",
+        "Path":  "C:\\Windows\\System32\\RuntimeBroker.exe",
+        "StartTime":  "\/Date(1772478362846)\/"
+    },
+    {
+        "Id":  22948,
+        "Name":  "RuntimeBroker",
+        "Path":  "C:\\Windows\\System32\\RuntimeBroker.exe",
+        "StartTime":  "\/Date(1772478695094)\/"
+    },
+    {
+        "Id":  8368,
+        "Name":  "SearchFilterHost",
+        "Path":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "StartTime":  "\/Date(1772491036677)\/"
+    },
+    {
+        "Id":  11860,
+        "Name":  "SearchFilterHost",
+        "Path":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "StartTime":  "\/Date(1772491058719)\/"
+    },
+    {
+        "Id":  15156,
+        "Name":  "SearchFilterHost",
+        "Path":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "StartTime":  "\/Date(1772489064170)\/"
+    },
+    {
+        "Id":  17440,
+        "Name":  "SearchFilterHost",
+        "Path":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "StartTime":  "\/Date(1772489013360)\/"
+    },
+    {
+        "Id":  17656,
+        "Name":  "SearchFilterHost",
+        "Path":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "StartTime":  "\/Date(1772488872996)\/"
+    },
+    {
+        "Id":  22912,
+        "Name":  "SearchFilterHost",
+        "Path":  "C:\\WINDOWS\\System32\\SearchFilterHost.exe",
+        "StartTime":  "\/Date(1772488873150)\/"
+    },
+    {
+        "Id":  16324,
+        "Name":  "SearchHost",
+        "Path":  "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe",
+        "StartTime":  "\/Date(1772478363585)\/"
+    },
+    {
+        "Id":  15240,
+        "Name":  "SearchIndexer",
+        "Path":  "C:\\WINDOWS\\system32\\SearchIndexer.exe",
+        "StartTime":  "\/Date(1772403205114)\/"
+    },
+    {
+        "Id":  22872,
+        "Name":  "SearchProtocolHost",
+        "Path":  "C:\\WINDOWS\\System32\\SearchProtocolHost.exe",
+        "StartTime":  "\/Date(1772488820137)\/"
+    },
+    {
+        "Id":  140,
+        "Name":  "Secure System",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403098535)\/"
+    },
+    {
+        "Id":  8160,
+        "Name":  "SecurityHealthService",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403144658)\/"
+    },
+    {
+        "Id":  5384,
+        "Name":  "SecurityHealthSystray",
+        "Path":  "C:\\Windows\\System32\\SecurityHealthSystray.exe",
+        "StartTime":  "\/Date(1772478381401)\/"
+    },
+    {
+        "Id":  1164,
+        "Name":  "services",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403106879)\/"
+    },
+    {
+        "Id":  10024,
+        "Name":  "ShellExperienceHost",
+        "Path":  "C:\\WINDOWS\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe",
+        "StartTime":  "\/Date(1772478366597)\/"
+    },
+    {
+        "Id":  15148,
+        "Name":  "ShellHost",
+        "Path":  "C:\\Windows\\System32\\ShellHost.exe",
+        "StartTime":  "\/Date(1772478359083)\/"
+    },
+    {
+        "Id":  8136,
+        "Name":  "sihost",
+        "Path":  "C:\\WINDOWS\\system32\\sihost.exe",
+        "StartTime":  "\/Date(1772478358245)\/"
+    },
+    {
+        "Id":  608,
+        "Name":  "smss",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403100874)\/"
+    },
+    {
+        "Id":  4560,
+        "Name":  "spoolsv",
+        "Path":  "C:\\WINDOWS\\System32\\spoolsv.exe",
+        "StartTime":  "\/Date(1772403109018)\/"
+    },
+    {
+        "Id":  4936,
+        "Name":  "sqlwriter",
+        "Path":  "C:\\Program Files\\Microsoft SQL Server\\90\\Shared\\sqlwriter.exe",
+        "StartTime":  "\/Date(1772403109094)\/"
+    },
+    {
+        "Id":  4888,
+        "Name":  "ss_conn_service",
+        "Path":  "C:\\Program Files (x86)\\Samsung\\USB Drivers\\27_ssconn\\conn\\ss_conn_service.exe",
+        "StartTime":  "\/Date(1772403109081)\/"
+    },
+    {
+        "Id":  4852,
+        "Name":  "ss_conn_service2",
+        "Path":  "C:\\Program Files (x86)\\Samsung\\USB Drivers\\28_ssconn2\\conn\\ss_conn_service2.exe",
+        "StartTime":  "\/Date(1772403109076)\/"
+    },
+    {
+        "Id":  11768,
+        "Name":  "StartMenuExperienceHost",
+        "Path":  "C:\\WINDOWS\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe",
+        "StartTime":  "\/Date(1772478363593)\/"
+    },
+    {
+        "Id":  1348,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107281)\/"
+    },
+    {
+        "Id":  1480,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107374)\/"
+    },
+    {
+        "Id":  1536,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107407)\/"
+    },
+    {
+        "Id":  1592,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107651)\/"
+    },
+    {
+        "Id":  1668,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772478358282)\/"
+    },
+    {
+        "Id":  1704,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107566)\/"
+    },
+    {
+        "Id":  1720,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107566)\/"
+    },
+    {
+        "Id":  1812,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107586)\/"
+    },
+    {
+        "Id":  1820,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107586)\/"
+    },
+    {
+        "Id":  1836,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107586)\/"
+    },
+    {
+        "Id":  1972,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107651)\/"
+    },
+    {
+        "Id":  2020,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107615)\/"
+    },
+    {
+        "Id":  2028,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107615)\/"
+    },
+    {
+        "Id":  2072,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107664)\/"
+    },
+    {
+        "Id":  2140,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107675)\/"
+    },
+    {
+        "Id":  2156,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107680)\/"
+    },
+    {
+        "Id":  2208,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108045)\/"
+    },
+    {
+        "Id":  2308,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107716)\/"
+    },
+    {
+        "Id":  2392,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107741)\/"
+    },
+    {
+        "Id":  2480,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108046)\/"
+    },
+    {
+        "Id":  2728,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107880)\/"
+    },
+    {
+        "Id":  2876,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107945)\/"
+    },
+    {
+        "Id":  2888,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107954)\/"
+    },
+    {
+        "Id":  2936,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772495135134)\/"
+    },
+    {
+        "Id":  2956,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107984)\/"
+    },
+    {
+        "Id":  2976,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403107990)\/"
+    },
+    {
+        "Id":  3000,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108059)\/"
+    },
+    {
+        "Id":  3020,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108006)\/"
+    },
+    {
+        "Id":  3164,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108109)\/"
+    },
+    {
+        "Id":  3192,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108116)\/"
+    },
+    {
+        "Id":  3288,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108153)\/"
+    },
+    {
+        "Id":  3316,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108158)\/"
+    },
+    {
+        "Id":  3340,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108161)\/"
+    },
+    {
+        "Id":  3484,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108201)\/"
+    },
+    {
+        "Id":  3544,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108223)\/"
+    },
+    {
+        "Id":  3572,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108237)\/"
+    },
+    {
+        "Id":  3652,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108273)\/"
+    },
+    {
+        "Id":  3760,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108317)\/"
+    },
+    {
+        "Id":  3932,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108444)\/"
+    },
+    {
+        "Id":  3956,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108455)\/"
+    },
+    {
+        "Id":  4064,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108592)\/"
+    },
+    {
+        "Id":  4072,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108593)\/"
+    },
+    {
+        "Id":  4084,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108605)\/"
+    },
+    {
+        "Id":  4132,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403244078)\/"
+    },
+    {
+        "Id":  4360,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108829)\/"
+    },
+    {
+        "Id":  4436,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108866)\/"
+    },
+    {
+        "Id":  4520,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403108970)\/"
+    },
+    {
+        "Id":  4752,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109057)\/"
+    },
+    {
+        "Id":  4760,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109058)\/"
+    },
+    {
+        "Id":  4776,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109064)\/"
+    },
+    {
+        "Id":  4820,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109073)\/"
+    },
+    {
+        "Id":  4836,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109074)\/"
+    },
+    {
+        "Id":  4844,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109076)\/"
+    },
+    {
+        "Id":  4872,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109078)\/"
+    },
+    {
+        "Id":  4984,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109104)\/"
+    },
+    {
+        "Id":  4992,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109104)\/"
+    },
+    {
+        "Id":  5444,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109277)\/"
+    },
+    {
+        "Id":  5508,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109306)\/"
+    },
+    {
+        "Id":  5676,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109349)\/"
+    },
+    {
+        "Id":  6096,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403109465)\/"
+    },
+    {
+        "Id":  8004,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772478369144)\/"
+    },
+    {
+        "Id":  8496,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403117517)\/"
+    },
+    {
+        "Id":  8576,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403117589)\/"
+    },
+    {
+        "Id":  8928,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403242876)\/"
+    },
+    {
+        "Id":  9128,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403118081)\/"
+    },
+    {
+        "Id":  9256,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403118907)\/"
+    },
+    {
+        "Id":  9536,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403119295)\/"
+    },
+    {
+        "Id":  9616,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772478362675)\/"
+    },
+    {
+        "Id":  9676,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403119456)\/"
+    },
+    {
+        "Id":  9920,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403119838)\/"
+    },
+    {
+        "Id":  10104,
+        "Name":  "svchost",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403244237)\/"
+    },
+    {
+        "Id":  10196,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403120411)\/"
+    },
+    {
+        "Id":  10352,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772410308888)\/"
+    },
+    {
+        "Id":  10760,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403243542)\/"
+    },
+    {
+        "Id":  10776,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403121327)\/"
+    },
+    {
+        "Id":  11136,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403122322)\/"
+    },
+    {
+        "Id":  11524,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772458370022)\/"
+    },
+    {
+        "Id":  11708,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403145868)\/"
+    },
+    {
+        "Id":  12000,
+        "Name":  "svchost",
+        "Path":  null,
+        "StartTime":  "\/Date(1772495534475)\/"
+    },
+    {
+        "Id":  12244,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772489285847)\/"
+    },
+    {
+        "Id":  12792,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772478376251)\/"
+    },
+    {
+        "Id":  13452,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403299536)\/"
+    },
+    {
+        "Id":  13888,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403133898)\/"
+    },
+    {
+        "Id":  14208,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772478864866)\/"
+    },
+    {
+        "Id":  14240,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772478358280)\/"
+    },
+    {
+        "Id":  15400,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772478859061)\/"
+    },
+    {
+        "Id":  16040,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403186627)\/"
+    },
+    {
+        "Id":  16200,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772478364024)\/"
+    },
+    {
+        "Id":  16340,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403158448)\/"
+    },
+    {
+        "Id":  16420,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772478359813)\/"
+    },
+    {
+        "Id":  16660,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772481013216)\/"
+    },
+    {
+        "Id":  18252,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772403242592)\/"
+    },
+    {
+        "Id":  18760,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772404795888)\/"
+    },
+    {
+        "Id":  18836,
+        "Name":  "svchost",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403237789)\/"
+    },
+    {
+        "Id":  18860,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772403242051)\/"
+    },
+    {
+        "Id":  20284,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772478358311)\/"
+    },
+    {
+        "Id":  22584,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772479445941)\/"
+    },
+    {
+        "Id":  23540,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\System32\\svchost.exe",
+        "StartTime":  "\/Date(1772478357360)\/"
+    },
+    {
+        "Id":  23544,
+        "Name":  "svchost",
+        "Path":  "C:\\WINDOWS\\system32\\svchost.exe",
+        "StartTime":  "\/Date(1772478358343)\/"
+    },
+    {
+        "Id":  4,
+        "Name":  "System",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403100839)\/"
+    },
+    {
+        "Id":  12924,
+        "Name":  "SystemSettings",
+        "Path":  "C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe",
+        "StartTime":  "\/Date(1772479444776)\/"
+    },
+    {
+        "Id":  1864,
+        "Name":  "taskhostw",
+        "Path":  "C:\\WINDOWS\\system32\\taskhostw.exe",
+        "StartTime":  "\/Date(1772481012471)\/"
+    },
+    {
+        "Id":  22532,
+        "Name":  "taskhostw",
+        "Path":  "C:\\WINDOWS\\system32\\taskhostw.exe",
+        "StartTime":  "\/Date(1772478358397)\/"
+    },
+    {
+        "Id":  7044,
+        "Name":  "Taskmgr",
+        "Path":  "C:\\WINDOWS\\system32\\Taskmgr.exe",
+        "StartTime":  "\/Date(1772495534320)\/"
+    },
+    {
+        "Id":  8912,
+        "Name":  "TextInputHost",
+        "Path":  "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\TextInputHost.exe",
+        "StartTime":  "\/Date(1772478373497)\/"
+    },
+    {
+        "Id":  4012,
+        "Name":  "UserOOBEBroker",
+        "Path":  "C:\\Windows\\System32\\oobe\\UserOOBEBroker.exe",
+        "StartTime":  "\/Date(1772478364285)\/"
+    },
+    {
+        "Id":  17564,
+        "Name":  "WhatsApp.Root",
+        "Path":  "C:\\Program Files\\WindowsApps\\5319275A.WhatsAppDesktop_2.2606.102.0_x64__cv1g1gvanyjgm\\WhatsApp.Root.exe",
+        "StartTime":  "\/Date(1772478575376)\/"
+    },
+    {
+        "Id":  18568,
+        "Name":  "Widgets",
+        "Path":  "C:\\Program Files\\WindowsApps\\MicrosoftWindows.Client.WebExperience_526.1202.40.0_x64__cw5n1h2txyewy\\Dashboard\\Widgets.exe",
+        "StartTime":  "\/Date(1772478364097)\/"
+    },
+    {
+        "Id":  16108,
+        "Name":  "WidgetService",
+        "Path":  "C:\\Program Files\\WindowsApps\\Microsoft.WidgetsPlatformRuntime_1.6.14.0_x64__8wekyb3d8bbwe\\WidgetService\\WidgetService.exe",
+        "StartTime":  "\/Date(1772478364609)\/"
+    },
+    {
+        "Id":  13004,
+        "Name":  "WindowsTerminal",
+        "Path":  "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.23.20211.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe",
+        "StartTime":  "\/Date(1772478384966)\/"
+    },
+    {
+        "Id":  1044,
+        "Name":  "wininit",
+        "Path":  null,
+        "StartTime":  "\/Date(1772403106585)\/"
+    },
+    {
+        "Id":  9524,
+        "Name":  "winlogon",
+        "Path":  "C:\\WINDOWS\\System32\\WinLogon.exe",
+        "StartTime":  "\/Date(1772478329206)\/"
+    },
+    {
+        "Id":  8844,
+        "Name":  "wlanext",
+        "Path":  "C:\\WINDOWS\\system32\\WLANExt.exe",
+        "StartTime":  "\/Date(1772403117796)\/"
+    },
+    {
+        "Id":  14724,
+        "Name":  "WmiPrvSE",
+        "Path":  "C:\\WINDOWS\\system32\\wbem\\wmiprvse.exe",
+        "StartTime":  "\/Date(1772489061444)\/"
+    },
+    {
+        "Id":  5016,
+        "Name":  "wslservice",
+        "Path":  "C:\\Program Files\\WSL\\wslservice.exe",
+        "StartTime":  "\/Date(1772403109112)\/"
+    },
+    {
+        "Id":  4784,
+        "Name":  "WsNativePushService",
+        "Path":  "C:\\Users\\acer\\AppData\\Local\\Wondershare\\Wondershare NativePush\\WsNativePushService.exe",
+        "StartTime":  "\/Date(1772403109065)\/"
+    },
+    {
+        "Id":  11844,
+        "Name":  "WsToastNotification",
+        "Path":  "C:\\Users\\acer\\AppData\\Local\\Wondershare\\Wondershare NativePush\\WsToastNotification.exe",
+        "StartTime":  "\/Date(1772481947141)\/"
+    },
+    {
+        "Id":  5156,
+        "Name":  "WUDFHost",
+        "Path":  "C:\\Windows\\System32\\WUDFHost.exe",
+        "StartTime":  "\/Date(1772493233564)\/"
+    }
+]

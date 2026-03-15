@@ -4396,6 +4396,30 @@ app.use((req, _res, next) => {
 app.use(express.json({ limit: "60mb" }));
 app.use(express.urlencoded({ extended: false, limit: "10mb" }));
 
+// ── Auth middleware (Phase 2) — sets req.authRole for RBAC, non-blocking ──
+const { gatewayAuth, validateToken, getRole } = require("./middleware/auth");
+const { isLoopbackRequest: isLoopbackReq } = require("./lib/network");
+app.use("/api", (req, _res, next) => {
+  if (isLoopbackReq(req)) {
+    req.authSource = "loopback";
+    req.authRole = "admin";
+    req.authPermissions = getRole("admin");
+  } else {
+    const bearer = (req.headers.authorization || "").startsWith("Bearer ") ? req.headers.authorization.slice(7).trim() : "";
+    const bridge = req.headers["x-asolaria-token"] || req.headers["x-asolaria-bridge-token"] || "";
+    const token = bearer || bridge;
+    if (token) {
+      const entry = validateToken(token);
+      if (entry) {
+        req.authSource = bearer ? "bearer_token" : "bridge_token";
+        req.authRole = entry.role;
+        req.authPermissions = getRole(entry.role);
+      }
+    }
+    // If no auth found, leave req.authRole undefined — per-route middleware handles it
+  }
+  next();
+});
 // ── Attribution middleware (Phase 2) — logs mutations to audit trail ──
 app.use("/api", attributionMiddleware({ logMutationsOnly: true }));
 const noCacheMobileAssets = new Set([

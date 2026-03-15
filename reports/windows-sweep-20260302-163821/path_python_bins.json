@@ -1,0 +1,52 @@
+﻿[
+    {
+        "Name":  "python.exe",
+        "FullName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+        "DirectoryName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps"
+    },
+    {
+        "Name":  "python3.13.exe",
+        "FullName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python3.13.exe",
+        "DirectoryName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps"
+    },
+    {
+        "Name":  "python3.exe",
+        "FullName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe",
+        "DirectoryName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps"
+    },
+    {
+        "Name":  "pythonw.exe",
+        "FullName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\pythonw.exe",
+        "DirectoryName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps"
+    },
+    {
+        "Name":  "pythonw3.13.exe",
+        "FullName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\pythonw3.13.exe",
+        "DirectoryName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps"
+    },
+    {
+        "Name":  "pythonw3.exe",
+        "FullName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\pythonw3.exe",
+        "DirectoryName":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps"
+    },
+    {
+        "Name":  "python.exe",
+        "FullName":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "DirectoryName":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313"
+    },
+    {
+        "Name":  "pythonw.exe",
+        "FullName":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\pythonw.exe",
+        "DirectoryName":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313"
+    },
+    {
+        "Name":  "python.exe",
+        "FullName":  "C:\\Users\\acer\\anaconda3\\python.exe",
+        "DirectoryName":  "C:\\Users\\acer\\anaconda3"
+    },
+    {
+        "Name":  "pythonw.exe",
+        "FullName":  "C:\\Users\\acer\\anaconda3\\pythonw.exe",
+        "DirectoryName":  "C:\\Users\\acer\\anaconda3"
+    }
+]

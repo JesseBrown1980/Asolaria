@@ -1,0 +1,27 @@
+﻿[
+    {
+        "Name":  "java.exe",
+        "FullName":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+        "DirectoryName":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin"
+    },
+    {
+        "Name":  "javac.exe",
+        "FullName":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\javac.exe",
+        "DirectoryName":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin"
+    },
+    {
+        "Name":  "jshell.exe",
+        "FullName":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\jshell.exe",
+        "DirectoryName":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin"
+    },
+    {
+        "Name":  "java.exe",
+        "FullName":  "C:\\Java\\jdk1.8.0_392\\bin\\java.exe",
+        "DirectoryName":  "C:\\Java\\jdk1.8.0_392\\bin"
+    },
+    {
+        "Name":  "javac.exe",
+        "FullName":  "C:\\Java\\jdk1.8.0_392\\bin\\javac.exe",
+        "DirectoryName":  "C:\\Java\\jdk1.8.0_392\\bin"
+    }
+]

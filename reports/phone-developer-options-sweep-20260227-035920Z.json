@@ -1,0 +1,1163 @@
+{
+  "ok": true,
+  "runId": "20260227-035920Z",
+  "startedAt": "2026-02-27T03:59:20.561Z",
+  "finishedAt": "2026-02-27T04:00:48.879Z",
+  "durationMs": 88318,
+  "deviceId": "R5CXA4MGQXV",
+  "includeRisky": true,
+  "onlyDefaultSweep": true,
+  "captureEnabled": true,
+  "captureIntervalMs": 1200,
+  "restoreOriginal": true,
+  "totals": {
+    "selected": 18,
+    "passed": 18,
+    "failed": 0,
+    "mistakes": 0
+  },
+  "steps": [
+    {
+      "id": "animator_duration_scale",
+      "label": "Animator Duration Scale",
+      "category": "drawing",
+      "key": "animator_duration_scale",
+      "risky": false,
+      "beforeValue": "10.0",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "10.0",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-01-animator_duration_scale-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-01-animator_duration_scale-on.png",
+        "capturedAt": "2026-02-27T03:59:22.845Z",
+        "capturedAtMs": 1772164762845,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677677,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-01-animator_duration_scale-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-01-animator_duration_scale-off.png",
+        "capturedAt": "2026-02-27T03:59:24.964Z",
+        "capturedAtMs": 1772164764964,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677609,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "show_hw_layers_updates",
+      "label": "Show HW Layers Updates",
+      "category": "drawing",
+      "key": "show_hw_layers_updates",
+      "risky": false,
+      "beforeValue": "0",
+      "beforeNamespace": "system",
+      "afterOnValue": "1",
+      "afterOnNamespace": "system",
+      "afterOffValue": "0",
+      "afterOffNamespace": "system",
+      "restoredValue": "0",
+      "restoredNamespace": "system",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "system",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "system",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-02-show_hw_layers_updates-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-02-show_hw_layers_updates-on.png",
+        "capturedAt": "2026-02-27T03:59:27.873Z",
+        "capturedAtMs": 1772164767873,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677695,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-02-show_hw_layers_updates-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-02-show_hw_layers_updates-off.png",
+        "capturedAt": "2026-02-27T03:59:30.422Z",
+        "capturedAtMs": 1772164770422,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677625,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "show_hw_screen_updates",
+      "label": "Show HW Screen Updates",
+      "category": "drawing",
+      "key": "show_hw_screen_updates",
+      "risky": false,
+      "beforeValue": "0",
+      "beforeNamespace": "system",
+      "afterOnValue": "1",
+      "afterOnNamespace": "system",
+      "afterOffValue": "0",
+      "afterOffNamespace": "system",
+      "restoredValue": "0",
+      "restoredNamespace": "system",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "system",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "system",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-03-show_hw_screen_updates-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-03-show_hw_screen_updates-on.png",
+        "capturedAt": "2026-02-27T03:59:33.430Z",
+        "capturedAtMs": 1772164773430,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677625,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-03-show_hw_screen_updates-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-03-show_hw_screen_updates-off.png",
+        "capturedAt": "2026-02-27T03:59:35.533Z",
+        "capturedAtMs": 1772164775533,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677695,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "debug_layout",
+      "label": "Show Layout Bounds",
+      "category": "drawing",
+      "key": "debug_layout",
+      "risky": false,
+      "beforeValue": "0",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "0",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-04-debug_layout-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-04-debug_layout-on.png",
+        "capturedAt": "2026-02-27T03:59:38.670Z",
+        "capturedAtMs": 1772164778670,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677695,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-04-debug_layout-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-04-debug_layout-off.png",
+        "capturedAt": "2026-02-27T03:59:41.006Z",
+        "capturedAtMs": 1772164781006,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677609,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "transition_animation_scale",
+      "label": "Transition Animation Scale",
+      "category": "drawing",
+      "key": "transition_animation_scale",
+      "risky": false,
+      "beforeValue": "1.0",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "1.0",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-05-transition_animation_scale-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-05-transition_animation_scale-on.png",
+        "capturedAt": "2026-02-27T03:59:43.595Z",
+        "capturedAtMs": 1772164783595,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677677,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-05-transition_animation_scale-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-05-transition_animation_scale-off.png",
+        "capturedAt": "2026-02-27T03:59:45.676Z",
+        "capturedAtMs": 1772164785676,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677695,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "window_animation_scale",
+      "label": "Window Animation Scale",
+      "category": "drawing",
+      "key": "window_animation_scale",
+      "risky": false,
+      "beforeValue": "10.0",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "10.0",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-06-window_animation_scale-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-06-window_animation_scale-on.png",
+        "capturedAt": "2026-02-27T03:59:48.205Z",
+        "capturedAtMs": 1772164788205,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677625,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-06-window_animation_scale-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-06-window_animation_scale-off.png",
+        "capturedAt": "2026-02-27T03:59:50.379Z",
+        "capturedAtMs": 1772164790379,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677625,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "debug_hw_overdraw",
+      "label": "Debug HW Overdraw",
+      "category": "hardware",
+      "key": "debug.hwui.overdraw",
+      "risky": false,
+      "beforeValue": "off",
+      "beforeNamespace": "global",
+      "afterOnValue": "show",
+      "afterOnNamespace": "global",
+      "afterOffValue": "off",
+      "afterOffNamespace": "global",
+      "restoredValue": "off",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-07-debug_hw_overdraw-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-07-debug_hw_overdraw-on.png",
+        "capturedAt": "2026-02-27T03:59:53.214Z",
+        "capturedAtMs": 1772164793214,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677625,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-07-debug_hw_overdraw-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-07-debug_hw_overdraw-off.png",
+        "capturedAt": "2026-02-27T03:59:55.548Z",
+        "capturedAtMs": 1772164795548,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677625,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "debug_egl_force_msaa",
+      "label": "Force 4x MSAA",
+      "category": "hardware",
+      "key": "debug.egl.force_msaa",
+      "risky": false,
+      "beforeValue": "0",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "0",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-08-debug_egl_force_msaa-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-08-debug_egl_force_msaa-on.png",
+        "capturedAt": "2026-02-27T03:59:58.295Z",
+        "capturedAtMs": 1772164798295,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 677625,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-08-debug_egl_force_msaa-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-08-debug_egl_force_msaa-off.png",
+        "capturedAt": "2026-02-27T04:00:00.647Z",
+        "capturedAtMs": 1772164800647,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676862,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "debug_hwui_profile",
+      "label": "Profile GPU Rendering",
+      "category": "hardware",
+      "key": "debug.hwui.profile",
+      "risky": false,
+      "beforeValue": "false",
+      "beforeNamespace": "global",
+      "afterOnValue": "visual_bars",
+      "afterOnNamespace": "global",
+      "afterOffValue": "false",
+      "afterOffNamespace": "global",
+      "restoredValue": "false",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-09-debug_hwui_profile-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-09-debug_hwui_profile-on.png",
+        "capturedAt": "2026-02-27T04:00:03.562Z",
+        "capturedAtMs": 1772164803562,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676862,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-09-debug_hwui_profile-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-09-debug_hwui_profile-off.png",
+        "capturedAt": "2026-02-27T04:00:05.938Z",
+        "capturedAtMs": 1772164805938,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676862,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "debug_hwui_show_dirty_regions",
+      "label": "Show Dirty Regions",
+      "category": "hardware",
+      "key": "debug.hwui.show_dirty_regions",
+      "risky": false,
+      "beforeValue": "false",
+      "beforeNamespace": "global",
+      "afterOnValue": "true",
+      "afterOnNamespace": "global",
+      "afterOffValue": "false",
+      "afterOffNamespace": "global",
+      "restoredValue": "false",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-10-debug_hwui_show_dirty_regions-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-10-debug_hwui_show_dirty_regions-on.png",
+        "capturedAt": "2026-02-27T04:00:08.910Z",
+        "capturedAtMs": 1772164808910,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676862,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-10-debug_hwui_show_dirty_regions-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-10-debug_hwui_show_dirty_regions-off.png",
+        "capturedAt": "2026-02-27T04:00:11.295Z",
+        "capturedAtMs": 1772164811295,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676733,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "pointer_location",
+      "label": "Pointer Location",
+      "category": "input",
+      "key": "pointer_location",
+      "risky": false,
+      "beforeValue": "1",
+      "beforeNamespace": "system",
+      "afterOnValue": "1",
+      "afterOnNamespace": "system",
+      "afterOffValue": "0",
+      "afterOffNamespace": "system",
+      "restoredValue": "1",
+      "restoredNamespace": "system",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "system",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "system",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-11-pointer_location-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-11-pointer_location-on.png",
+        "capturedAt": "2026-02-27T04:00:14.314Z",
+        "capturedAtMs": 1772164814314,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676733,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-11-pointer_location-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-11-pointer_location-off.png",
+        "capturedAt": "2026-02-27T04:00:16.655Z",
+        "capturedAtMs": 1772164816655,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 668937,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "show_touches",
+      "label": "Show Touches",
+      "category": "input",
+      "key": "show_touches",
+      "risky": false,
+      "beforeValue": "1",
+      "beforeNamespace": "system",
+      "afterOnValue": "1",
+      "afterOnNamespace": "system",
+      "afterOffValue": "0",
+      "afterOffNamespace": "system",
+      "restoredValue": "1",
+      "restoredNamespace": "system",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "system",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "system",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-12-show_touches-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-12-show_touches-on.png",
+        "capturedAt": "2026-02-27T04:00:19.545Z",
+        "capturedAtMs": 1772164819545,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676733,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-12-show_touches-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-12-show_touches-off.png",
+        "capturedAt": "2026-02-27T04:00:21.789Z",
+        "capturedAtMs": 1772164821789,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676833,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "bluetooth_disable_absolute_volume",
+      "label": "Disable Absolute Volume",
+      "category": "media",
+      "key": "bluetooth_disable_absolute_volume",
+      "risky": false,
+      "beforeValue": "0",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "0",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-13-bluetooth_disable_absolute_volume-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-13-bluetooth_disable_absolute_volume-on.png",
+        "capturedAt": "2026-02-27T04:00:24.200Z",
+        "capturedAtMs": 1772164824200,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676733,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-13-bluetooth_disable_absolute_volume-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-13-bluetooth_disable_absolute_volume-off.png",
+        "capturedAt": "2026-02-27T04:00:26.298Z",
+        "capturedAtMs": 1772164826298,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676733,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "disable_usb_audio_routing",
+      "label": "Disable USB Audio Routing",
+      "category": "media",
+      "key": "disable_usb_audio_routing",
+      "risky": false,
+      "beforeValue": "0",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "0",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-14-disable_usb_audio_routing-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-14-disable_usb_audio_routing-on.png",
+        "capturedAt": "2026-02-27T04:00:28.666Z",
+        "capturedAtMs": 1772164828666,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676862,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-14-disable_usb_audio_routing-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-14-disable_usb_audio_routing-off.png",
+        "capturedAt": "2026-02-27T04:00:30.690Z",
+        "capturedAtMs": 1772164830690,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676862,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "show_notification_channel_warnings",
+      "label": "Notification Channel Warnings",
+      "category": "media",
+      "key": "show_notification_channel_warnings",
+      "risky": false,
+      "beforeValue": "1",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "1",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-15-show_notification_channel_warnings-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-15-show_notification_channel_warnings-on.png",
+        "capturedAt": "2026-02-27T04:00:33.021Z",
+        "capturedAtMs": 1772164833021,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676862,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-15-show_notification_channel_warnings-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-15-show_notification_channel_warnings-off.png",
+        "capturedAt": "2026-02-27T04:00:35.163Z",
+        "capturedAtMs": 1772164835163,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676733,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "tether_offload_disabled",
+      "label": "Disable Tether Hardware Offload",
+      "category": "system",
+      "key": "tether_offload_disabled",
+      "risky": false,
+      "beforeValue": "0",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "0",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-16-tether_offload_disabled-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-16-tether_offload_disabled-on.png",
+        "capturedAt": "2026-02-27T04:00:37.553Z",
+        "capturedAtMs": 1772164837553,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676733,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-16-tether_offload_disabled-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-16-tether_offload_disabled-off.png",
+        "capturedAt": "2026-02-27T04:00:39.633Z",
+        "capturedAtMs": 1772164839633,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676733,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "mobile_data_always_on",
+      "label": "Mobile Data Always Active",
+      "category": "system",
+      "key": "mobile_data_always_on",
+      "risky": false,
+      "beforeValue": "1",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "1",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-17-mobile_data_always_on-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-17-mobile_data_always_on-on.png",
+        "capturedAt": "2026-02-27T04:00:42.027Z",
+        "capturedAtMs": 1772164842027,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676862,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-17-mobile_data_always_on-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-17-mobile_data_always_on-off.png",
+        "capturedAt": "2026-02-27T04:00:44.093Z",
+        "capturedAtMs": 1772164844093,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676862,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    },
+    {
+      "id": "wifi_verbose_logging_enabled",
+      "label": "Wi-Fi Verbose Logging",
+      "category": "system",
+      "key": "wifi_verbose_logging_enabled",
+      "risky": false,
+      "beforeValue": "0",
+      "beforeNamespace": "global",
+      "afterOnValue": "1",
+      "afterOnNamespace": "global",
+      "afterOffValue": "0",
+      "afterOffNamespace": "global",
+      "restoredValue": "0",
+      "restoredNamespace": "global",
+      "onVerified": true,
+      "offVerified": true,
+      "writeOnOk": true,
+      "writeOffOk": true,
+      "writeOnAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "writeOffAttempts": [
+        {
+          "namespace": "global",
+          "ok": true,
+          "exitCode": 0,
+          "stderr": "",
+          "stdout": ""
+        }
+      ],
+      "captureOn": {
+        "fileName": "phone-devopt-18-wifi_verbose_logging_enabled-on.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-18-wifi_verbose_logging_enabled-on.png",
+        "capturedAt": "2026-02-27T04:00:46.514Z",
+        "capturedAtMs": 1772164846514,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676733,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "captureOff": {
+        "fileName": "phone-devopt-18-wifi_verbose_logging_enabled-off.png",
+        "outputPath": "C:\\Users\\acer\\Asolaria\\captures\\phone\\phone-devopt-18-wifi_verbose_logging_enabled-off.png",
+        "capturedAt": "2026-02-27T04:00:48.627Z",
+        "capturedAtMs": 1772164848627,
+        "width": 1080,
+        "height": 2340,
+        "orientation": "portrait",
+        "sizeBytes": 676714,
+        "deviceId": "R5CXA4MGQXV"
+      },
+      "restoreApplied": true,
+      "restoreError": "",
+      "mistakes": [],
+      "ok": true
+    }
+  ],
+  "mistakes": [],
+  "paths": {
+    "json": "C:\\Users\\acer\\Asolaria\\reports\\phone-developer-options-sweep-20260227-035920Z.json",
+    "markdown": "C:\\Users\\acer\\Asolaria\\reports\\phone-developer-options-sweep-20260227-035920Z.md",
+    "jsonLatest": "C:\\Users\\acer\\Asolaria\\reports\\phone-developer-options-sweep-latest.json",
+    "markdownLatest": "C:\\Users\\acer\\Asolaria\\reports\\phone-developer-options-sweep-latest.md",
+    "mistakeLog": "C:\\Users\\acer\\Asolaria\\data\\phone-developer-options-mistakes.json"
+  }
+}

@@ -1,0 +1,135 @@
+﻿{
+    "ok":  true,
+    "partial":  true,
+    "runId":  "upgrade-wave-20260223-134609",
+    "startedAt":  "2026-02-23T13:46:09.3698483+00:00",
+    "finishedAt":  "2026-02-23T13:48:45.5498714+00:00",
+    "durationSeconds":  156.18,
+    "baseUrl":  "http://127.0.0.1:4781",
+    "provider":  "cursor",
+    "externalModel":  "gpt-5.2-codex",
+    "apiKeyResolved":  false,
+    "enableMcp":  false,
+    "paths":  {
+                  "asolariaRoot":  "C:\\Users\\acer\\Asolaria",
+                  "dotnetRepo":  "C:\\Users\\acer\\source\\repos\\Test",
+                  "jsonReport":  "C:\\Users\\acer\\Asolaria\\reports\\upgrade-wave-20260223-134609.json",
+                  "markdownReport":  "C:\\Users\\acer\\Asolaria\\reports\\upgrade-wave-20260223-134609.md"
+              },
+    "steps":  [
+                  {
+                      "name":  "baseline_status",
+                      "status":  "ok",
+                      "summary":  "Captured Asolaria and external integration status.",
+                      "error":  "",
+                      "at":  "2026-02-23T13:46:09.5771386+00:00",
+                      "data":  {
+                                   "asolariaOk":  true,
+                                   "uptimeSeconds":  1581,
+                                   "asolariaPid":  20064,
+                                   "externalProviders":  2,
+                                   "mcpCacheProviders":  0,
+                                   "mcpCacheContexts":  0
+                               }
+                  },
+                  {
+                      "name":  "bridge_restart",
+                      "status":  "ok",
+                      "summary":  "Bridge stack restarted and status captured.",
+                      "error":  "",
+                      "at":  "2026-02-23T13:46:20.6321150+00:00",
+                      "data":  {
+                                   "restarted":  true,
+                                   "statusTail":  [
+
+                                                  ]
+                               }
+                  },
+                  {
+                      "name":  "external_provider_config",
+                      "status":  "warning",
+                      "summary":  "No API key found; executed dry-run only.",
+                      "error":  "",
+                      "at":  "2026-02-23T13:46:20.7126487+00:00",
+                      "data":  {
+                                   "apiKeyResolved":  false,
+                                   "dryRun":  true,
+                                   "output":  {
+                                                  "ok":  true,
+                                                  "dryRun":  true,
+                                                  "baseUrl":  "http://127.0.0.1:4781",
+                                                  "provider":  "cursor",
+                                                  "apiKeyResolved":  false,
+                                                  "payload":  {
+                                                                  "provider":  "cursor",
+                                                                  "enabled":  true,
+                                                                  "apiStyle":  "openai_responses",
+                                                                  "apiBaseUrl":  "https://api.openai.com",
+                                                                  "apiPath":  "/v1/responses",
+                                                                  "model":  "gpt-5.2-codex",
+                                                                  "requireOfficialApi":  true,
+                                                                  "mcpEnabled":  false
+                                                              }
+                                              }
+                               }
+                  },
+                  {
+                      "name":  "mcp_smoke_test",
+                      "status":  "ok",
+                      "summary":  "MCP integration smoke test passed.",
+                      "error":  "",
+                      "at":  "2026-02-23T13:46:20.7607891+00:00",
+                      "data":  {
+                                   "ok":  true,
+                                   "baseUrl":  "http://127.0.0.1:4781",
+                                   "provider":  "cursor",
+                                   "statusMcpEnabled":  false,
+                                   "statusMcpConfigured":  false,
+                                   "statusMcpPreset":  "",
+                                   "cacheProviderCatalogCount":  0,
+                                   "cacheScopedContextCount":  0,
+                                   "clearProbeRun":  true,
+                                   "testedAt":  "2026-02-23T13:46:20.7597874+00:00"
+                               }
+                  },
+                  {
+                      "name":  "model_audit_trigger",
+                      "status":  "ok",
+                      "summary":  "Model audit executed.",
+                      "error":  "",
+                      "at":  "2026-02-23T13:48:42.4953198+00:00",
+                      "data":  {
+                                   "ok":  true,
+                                   "resultOk":  true,
+                                   "candidate":  "",
+                                   "switched":  false,
+                                   "nextRunAt":  "2026-02-24T09:00:00.000Z"
+                               }
+                  },
+                  {
+                      "name":  "dotnet_build",
+                      "status":  "ok",
+                      "summary":  ".NET solution build succeeded (net8.0 + net9.0).",
+                      "error":  "",
+                      "at":  "2026-02-23T13:48:45.5498714+00:00",
+                      "data":  {
+                                   "repo":  "C:\\Users\\acer\\source\\repos\\Test",
+                                   "exitCode":  0,
+                                   "warnings":  0,
+                                   "errors":  0,
+                                   "tail":  [
+                                                "  Determinando os projetos a serem restaurados...",
+                                                "  Todos os projetos estão atualizados para restauração.",
+                                                "  Test -\u003e C:\\Users\\acer\\source\\repos\\Test\\Test\\bin\\Release\\net9.0\\Test.dll",
+                                                "  Test -\u003e C:\\Users\\acer\\source\\repos\\Test\\Test\\bin\\Release\\net8.0\\Test.dll",
+                                                "",
+                                                "Compilação com êxito.",
+                                                "    0 Aviso(s)",
+                                                "    0 Erro(s)",
+                                                "",
+                                                "Tempo Decorrido 00:00:02.45"
+                                            ]
+                               }
+                  }
+              ]
+}

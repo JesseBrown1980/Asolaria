@@ -1,0 +1,33 @@
+{
+    "provider":  "antigravity",
+    "transport":  "pass",
+    "model":  null,
+    "passed":  true,
+    "unavailable":  true,
+    "unavailableReason":  "provider_unavailable_runtime",
+    "reply":  "antigravity unavailable. Passed without execution (antigravity API 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.).",
+    "raw":  {
+                "passed":  true,
+                "unavailable":  true,
+                "reason":  "provider_unavailable_runtime",
+                "detail":  "antigravity API 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+            },
+    "failover":  {
+                     "requestedProvider":  "anthropic",
+                     "selectedProvider":  "antigravity",
+                     "fallbackProviders":  [
+                                               "antigravity",
+                                               "gemini",
+                                               "cursor"
+                                           ],
+                     "fallbackOnAnyError":  false,
+                     "attempts":  [
+                                      {
+                                          "provider":  "anthropic",
+                                          "reason":  "rate_limit_or_quota",
+                                          "fallbackEligible":  true,
+                                          "error":  "Anthropic CLI exited with code 1. Credit balance is too low"
+                                      }
+                                  ]
+                 }
+}

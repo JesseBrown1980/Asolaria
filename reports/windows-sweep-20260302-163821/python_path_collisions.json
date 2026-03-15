@@ -1,0 +1,20 @@
+﻿[
+    {
+        "name":  "python.exe",
+        "count":  3,
+        "paths":  [
+                      "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                      "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                      "C:\\Users\\acer\\anaconda3\\python.exe"
+                  ]
+    },
+    {
+        "name":  "pythonw.exe",
+        "count":  3,
+        "paths":  [
+                      "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\pythonw.exe",
+                      "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\pythonw.exe",
+                      "C:\\Users\\acer\\anaconda3\\pythonw.exe"
+                  ]
+    }
+]

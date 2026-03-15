@@ -1,0 +1,80 @@
+﻿[
+    {
+        "command":  "python",
+        "resolved":  [
+                         "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                         "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                         "C:\\Users\\acer\\anaconda3\\python.exe"
+                     ],
+        "count":  3
+    },
+    {
+        "command":  "python3",
+        "resolved":  [
+                         "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe"
+                     ],
+        "count":  1
+    },
+    {
+        "command":  "py",
+        "resolved":  [
+                         "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Launcher\\py.exe"
+                     ],
+        "count":  1
+    },
+    {
+        "command":  "pip",
+        "resolved":  [
+                         "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\pip.exe",
+                         "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe",
+                         "C:\\Users\\acer\\anaconda3\\Scripts\\pip.exe"
+                     ],
+        "count":  3
+    },
+    {
+        "command":  "pip3",
+        "resolved":  [
+                         "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\pip3.exe",
+                         "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip3.exe",
+                         "C:\\Users\\acer\\anaconda3\\Scripts\\pip3.exe"
+                     ],
+        "count":  3
+    },
+    {
+        "command":  "java",
+        "resolved":  [
+                         "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+                         "C:\\Java\\jdk1.8.0_392\\bin\\java.exe"
+                     ],
+        "count":  2
+    },
+    {
+        "command":  "javac",
+        "resolved":  [
+                         "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\javac.exe",
+                         "C:\\Java\\jdk1.8.0_392\\bin\\javac.exe"
+                     ],
+        "count":  2
+    },
+    {
+        "command":  "jshell",
+        "resolved":  [
+                         "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\jshell.exe"
+                     ],
+        "count":  1
+    },
+    {
+        "command":  "mvn",
+        "resolved":  [
+
+                     ],
+        "count":  0
+    },
+    {
+        "command":  "gradle",
+        "resolved":  [
+
+                     ],
+        "count":  0
+    }
+]

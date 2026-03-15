@@ -1,0 +1,159 @@
+﻿{
+    "ok":  false,
+    "startedAt":  "2026-03-08T19:50:59-03:00",
+    "finishedAt":  "2026-03-08T19:51:59-03:00",
+    "durationSeconds":  60,
+    "baseUrl":  "http://127.0.0.1:4781",
+    "accounts":  [
+                     "jesse@jbrowndevelopmentllc.com"
+                 ],
+    "samples":  [
+                    {
+                        "at":  "2026-03-08 19:50:59",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010259439_bpstjt"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:05",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010264934_yl0qhk"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:10",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010270420_qh5wvz"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:16",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010275906_6cqo19"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:21",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010281396_izpgm0"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:27",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010286881_k1mvv3"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:32",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010292360_p5uy2f"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:38",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010297845_0t815t"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:43",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010303328_lt4zw6"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:49",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010308840_b28egz"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:51:54",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "unhealthy",
+                                         "reason":  "Google API request url is not valid.",
+                                         "jobId":  "job_1773010314301_vnbtfg"
+                                     }
+                                 ]
+                    }
+                ],
+    "latestRows":  [
+                       {
+                           "account":  "jesse@jbrowndevelopmentllc.com",
+                           "ok":  false,
+                           "status":  "unhealthy",
+                           "reason":  "Google API request url is not valid.",
+                           "jobId":  "job_1773010314301_vnbtfg"
+                       }
+                   ],
+    "summary":  {
+                    "sampleCount":  11,
+                    "healthy":  0,
+                    "unhealthy":  1,
+                    "reauthNeeded":  0
+                }
+}

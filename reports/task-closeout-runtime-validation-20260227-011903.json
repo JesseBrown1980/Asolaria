@@ -1,0 +1,171 @@
+﻿{
+    "ok":  true,
+    "checkedAt":  "2026-02-27T01:19:04.4262418-03:00",
+    "sources":  {
+                    "health":  "http://127.0.0.1:4781/api/health",
+                    "slackStatus":  "http://127.0.0.1:4781/api/integrations/slack/status",
+                    "notebookEnterpriseJob":  "job_1772165831731_wi8gng",
+                    "slackReviewJob":  "job_1772165831870_jykpgz",
+                    "oauthProbe":  "https://console.cloud.google.com/auth/overview?project=winged-complex-390417"
+                },
+    "health":  {
+                   "ok":  true,
+                   "queue":  {
+                                 "queued":  0,
+                                 "running":  1,
+                                 "total":  8,
+                                 "concurrency":  2
+                             },
+                   "agentColony":  {
+                                       "counts":  {
+                                                      "total":  6,
+                                                      "online":  6,
+                                                      "active":  5
+                                                  },
+                                       "room":  "asolaria_bridge",
+                                       "relayRunning":  true,
+                                       "tunnelRunning":  true
+                                   },
+                   "startupAutomation":  {
+                                             "status":  "queued",
+                                             "seed":  "Start the tasks",
+                                             "queuedJobId":  "job_1772165568986_e5pk1o",
+                                             "queuedAt":  "2026-02-27T04:12:49.036Z",
+                                             "lastError":  ""
+                                         }
+               },
+    "blockers":  {
+                     "slack":  {
+                                   "configured":  false,
+                                   "connection":  {
+                                                      "ok":  false,
+                                                      "error":  "not_configured"
+                                                  },
+                                   "latestReviewJob":  {
+                                                           "id":  "job_1772165831870_jykpgz",
+                                                           "type":  "slack_review",
+                                                           "status":  "failed",
+                                                           "payload":  {
+                                                                           "channel":  "#general",
+                                                                           "limit":  20,
+                                                                           "request":  "slack review #general last 20"
+                                                                       },
+                                                           "createdAt":  "2026-02-27T04:17:11.870Z",
+                                                           "updatedAt":  "2026-02-27T04:17:13.230Z",
+                                                           "startedAt":  "2026-02-27T04:17:13.230Z",
+                                                           "finishedAt":  "2026-02-27T04:17:13.230Z",
+                                                           "elapsedMs":  0,
+                                                           "result":  null,
+                                                           "error":  "Slack integration is not configured."
+                                                       }
+                               },
+                     "notebooklmEnterprise":  {
+                                                  "latestStatusJob":  {
+                                                                          "id":  "job_1772165831731_wi8gng",
+                                                                          "type":  "notebooklm_enterprise_status",
+                                                                          "status":  "completed",
+                                                                          "payload":  {
+                                                                                          "account":  "plasmatoid@gmail.com",
+                                                                                          "project":  "",
+                                                                                          "projectNumber":  "",
+                                                                                          "location":  ""
+                                                                                      },
+                                                                          "createdAt":  "2026-02-27T04:17:11.731Z",
+                                                                          "updatedAt":  "2026-02-27T04:17:13.230Z",
+                                                                          "startedAt":  "2026-02-27T04:17:11.731Z",
+                                                                          "finishedAt":  "2026-02-27T04:17:13.230Z",
+                                                                          "elapsedMs":  1499,
+                                                                          "result":  {
+                                                                                         "enabled":  true,
+                                                                                         "configured":  true,
+                                                                                         "account":  "plasmatoid@gmail.com",
+                                                                                         "project":  "winged-complex-390417",
+                                                                                         "location":  "global",
+                                                                                         "apiEnabled":  true,
+                                                                                         "access":  false,
+                                                                                         "enterpriseReady":  false,
+                                                                                         "requiredSubscriptionTier":  "SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT",
+                                                                                         "blockers":  [
+                                                                                                          "NotebookLM Enterprise license is required for this principal. Required subscription tier: SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT."
+                                                                                                      ],
+                                                                                         "recentNotebookCount":  0,
+                                                                                         "gcp":  {
+                                                                                                     "enabled":  true,
+                                                                                                     "configured":  true,
+                                                                                                     "configSource":  "vault",
+                                                                                                     "clientEmail":  "asolaria-automation-service-ac@winged-complex-390417.iam.gserviceaccount.com",
+                                                                                                     "projectId":  "winged-complex-390417",
+                                                                                                     "projectNumber":  "742368506950",
+                                                                                                     "privateKeyIdHint":  "a37f********************************c421",
+                                                                                                     "defaultProject":  "winged-complex-390417",
+                                                                                                     "allowedProjects":  [
+                                                                                                                             "gen-lang-client-0950407967",
+                                                                                                                             "rpg-game-24107",
+                                                                                                                             "gen-lang-client-0586203433",
+                                                                                                                             "winged-complex-390417"
+                                                                                                                         ],
+                                                                                                     "defaultScopes":  [
+                                                                                                                           "https://www.googleapis.com/auth/cloud-platform"
+                                                                                                                       ],
+                                                                                                     "allowedAdminServices":  [
+                                                                                                                                  "serviceusage.googleapis.com",
+                                                                                                                                  "cloudresourcemanager.googleapis.com",
+                                                                                                                                  "iam.googleapis.com",
+                                                                                                                                  "aiplatform.googleapis.com",
+                                                                                                                                  "discoveryengine.googleapis.com",
+                                                                                                                                  "generativelanguage.googleapis.com",
+                                                                                                                                  "drive.googleapis.com",
+                                                                                                                                  "docs.googleapis.com",
+                                                                                                                                  "gmail.googleapis.com",
+                                                                                                                                  "calendar-json.googleapis.com"
+                                                                                                                              ],
+                                                                                                     "updatedAt":  "2026-02-26T19:25:00.381Z"
+                                                                                                 }
+                                                                                     },
+                                                                          "error":  null
+                                                                      },
+                                                  "enterpriseReady":  false,
+                                                  "access":  false,
+                                                  "requiredSubscriptionTier":  "SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT",
+                                                  "blockers":  [
+                                                                   "NotebookLM Enterprise license is required for this principal. Required subscription tier: SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT."
+                                                               ]
+                                              },
+                     "oauthConsole":  {
+                                          "statusLine":  "HTTP/1.1 302 Found",
+                                          "location":  "Location: https://accounts.google.com/ServiceLogin?service=cloudconsole\u0026passive=1209600\u0026osid=1\u0026continue=https://console.cloud.google.com/auth/overview?project%3Dwinged-complex-390417\u0026followup=https://console.cloud.google.com/auth/overview?project%3Dwinged-complex-390417"
+                                      },
+                     "ppo005":  {
+                                    "dependencyChecks":  [
+                                                             {
+                                                                 "path":  "/Users/john/dev/oli/scripts/phone_provider_cutover.sh",
+                                                                 "exists":  false
+                                                             },
+                                                             {
+                                                                 "path":  "/Users/john/dev/oli/ops/projects/oli-upgrade/subprojects/phone-provider-onboarding/tasks.json",
+                                                                 "exists":  false
+                                                             }
+                                                         ],
+                                    "allLocalPathsPresent":  false
+                                },
+                     "phoneActivation":  {
+                                             "subscriptions":  0,
+                                             "subscriptionFile":  "data/mobile-push-subscriptions.json",
+                                             "localPhoneTunnelReport":  "reports/task-closeout-phone-tunnel-20260227-011711.md",
+                                             "lanePhoneTunnelReport":  "reports/task-closeout-phone-tunnel-startup-lane-falcon.md"
+                                         }
+                 },
+    "relayDispatch":  {
+                          "room":  "asolaria_bridge",
+                          "threads":  {
+                                          "rook":  "startup-auto-rook-20260227-011524",
+                                          "forge":  "startup-auto-forge-20260227-011524",
+                                          "falcon":  "startup-auto-falcon-20260227-011524"
+                                      },
+                          "resultMessageIds":  [
+                                                   16575,
+                                                   16576,
+                                                   16579
+                                               ]
+                      }
+}

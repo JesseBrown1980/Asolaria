@@ -1,0 +1,34 @@
+# Phone Tunnel Smoke Test - 2026-03-11T01:57:18.1192537+00:00
+
+## Summary
+- pass: False
+- baseUrl: http://127.0.0.1:4781
+- remoteBaseUrl: https://192.168.1.3:5443
+- tokenHint: ********************************************8bef
+
+## Remote Checks
+- /api/health: False
+- mobile-console.html status: 200
+- /api/mobile/session: True (route=usb)
+- /api/mobile/control/status: True
+- control plane healthy: True
+- keeper running: True pid=16888 staleSeconds=192
+
+## ADB Checks
+- adb path: C:\Users\acer\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe
+- authorized devices: 1
+- selected device: R5CXA4MGQXV
+- reverse tcp:4781 present: True
+
+## Phone Network
+- ping attempted: True
+- ping ok: True
+- raw probe attempted: False
+- raw probe status: 0
+- raw probe line: 
+
+## Notes
+- Local /api/health probe failed: O tempo limite da opera??o foi atingido.
+- Remote /api/health (auth) probe failed: HTTP status 0
+- Desktop remote probes used relaxed TLS validation for this smoke run.
+

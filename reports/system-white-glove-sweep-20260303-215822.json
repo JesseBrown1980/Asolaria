@@ -1,0 +1,2042 @@
+﻿{
+    "generatedAt":  "2026-03-03T21:58:22.1057285-03:00",
+    "host":  {
+                 "computerName":  "DESKTOP-J99VCNH",
+                 "user":  "DESKTOP-J99VCNH\\acer",
+                 "isElevated":  false
+             },
+    "system":  {
+                   "productName":  "Windows 10 Home Single Language",
+                   "editionId":  "CoreSingleLanguage",
+                   "displayVersion":  "25H2",
+                   "currentBuild":  "26200",
+                   "ubr":  "7922",
+                   "osCaption":  "Microsoft Windows 11 Home Single Language",
+                   "osArchitecture":  "64 bits",
+                   "installDate":  "01/19/2026 23:23:15",
+                   "manufacturer":  "Acer",
+                   "model":  "Nitro AN515-52",
+                   "totalPhysicalMemoryGB":  15.85,
+                   "cpu":  "Intel(R) Core(TM) i5-8300H CPU @ 2.30GHz",
+                   "logicalProcessors":  8
+               },
+    "resources":  {
+                      "memory":  {
+                                     "totalGB":  15.85,
+                                     "usedGB":  14.92,
+                                     "freeGB":  0.93,
+                                     "usedPercent":  94.1
+                                 },
+                      "cpu":  {
+                                  "instantLoadPercent":  0
+                              },
+                      "topCpuProcesses":  [
+
+                                          ],
+                      "topWorkingSetProcesses":  [
+                                                     {
+                                                         "processName":  "nbcode64",
+                                                         "id":  25328,
+                                                         "cpu":  1736.21875,
+                                                         "pmMB":  1004.1,
+                                                         "wsMB":  1008.6,
+                                                         "startTime":  "03/03/2026 20:55:59"
+                                                     },
+                                                     {
+                                                         "processName":  "java",
+                                                         "id":  32552,
+                                                         "cpu":  198.0625,
+                                                         "pmMB":  834,
+                                                         "wsMB":  756.3,
+                                                         "startTime":  "03/03/2026 21:39:42"
+                                                     },
+                                                     {
+                                                         "processName":  "language_server_windows_x64",
+                                                         "id":  2580,
+                                                         "cpu":  172.890625,
+                                                         "pmMB":  640.4,
+                                                         "wsMB":  587.3,
+                                                         "startTime":  "03/03/2026 20:39:34"
+                                                     },
+                                                     {
+                                                         "processName":  "Antigravity",
+                                                         "id":  31652,
+                                                         "cpu":  73.4375,
+                                                         "pmMB":  171.6,
+                                                         "wsMB":  484.3,
+                                                         "startTime":  "03/03/2026 20:38:19"
+                                                     },
+                                                     {
+                                                         "processName":  "java",
+                                                         "id":  15196,
+                                                         "cpu":  55.640625,
+                                                         "pmMB":  501,
+                                                         "wsMB":  407,
+                                                         "startTime":  "03/03/2026 21:39:06"
+                                                     },
+                                                     {
+                                                         "processName":  "MsMpEng",
+                                                         "id":  5028,
+                                                         "cpu":  0,
+                                                         "pmMB":  429.2,
+                                                         "wsMB":  404.4,
+                                                         "startTime":  ""
+                                                     },
+                                                     {
+                                                         "processName":  "Antigravity",
+                                                         "id":  15336,
+                                                         "cpu":  48.046875,
+                                                         "pmMB":  432.8,
+                                                         "wsMB":  370.5,
+                                                         "startTime":  "03/03/2026 20:55:33"
+                                                     },
+                                                     {
+                                                         "processName":  "vmmemWSL",
+                                                         "id":  17212,
+                                                         "cpu":  0,
+                                                         "pmMB":  1324.8,
+                                                         "wsMB":  336.5,
+                                                         "startTime":  ""
+                                                     },
+                                                     {
+                                                         "processName":  "Memory Compression",
+                                                         "id":  3308,
+                                                         "cpu":  0,
+                                                         "pmMB":  5.2,
+                                                         "wsMB":  335.3,
+                                                         "startTime":  ""
+                                                     },
+                                                     {
+                                                         "processName":  "slack",
+                                                         "id":  17700,
+                                                         "cpu":  1458.6875,
+                                                         "pmMB":  470.3,
+                                                         "wsMB":  333.3,
+                                                         "startTime":  "03/03/2026 07:21:02"
+                                                     },
+                                                     {
+                                                         "processName":  "Antigravity",
+                                                         "id":  32920,
+                                                         "cpu":  124.8125,
+                                                         "pmMB":  260.6,
+                                                         "wsMB":  255.6,
+                                                         "startTime":  "03/03/2026 20:38:43"
+                                                     },
+                                                     {
+                                                         "processName":  "explorer",
+                                                         "id":  13232,
+                                                         "cpu":  1323.578125,
+                                                         "pmMB":  366.5,
+                                                         "wsMB":  253.6,
+                                                         "startTime":  "03/03/2026 07:19:54"
+                                                     },
+                                                     {
+                                                         "processName":  "chrome",
+                                                         "id":  10924,
+                                                         "cpu":  991.15625,
+                                                         "pmMB":  315,
+                                                         "wsMB":  238.6,
+                                                         "startTime":  "03/03/2026 15:20:40"
+                                                     },
+                                                     {
+                                                         "processName":  "Antigravity",
+                                                         "id":  23256,
+                                                         "cpu":  157.4375,
+                                                         "pmMB":  276.7,
+                                                         "wsMB":  236.7,
+                                                         "startTime":  "03/03/2026 20:38:25"
+                                                     },
+                                                     {
+                                                         "processName":  "msedgewebview2",
+                                                         "id":  11036,
+                                                         "cpu":  485.75,
+                                                         "pmMB":  301.1,
+                                                         "wsMB":  221.3,
+                                                         "startTime":  "03/03/2026 07:21:32"
+                                                     },
+                                                     {
+                                                         "processName":  "java",
+                                                         "id":  12996,
+                                                         "cpu":  29.375,
+                                                         "pmMB":  243.7,
+                                                         "wsMB":  202,
+                                                         "startTime":  "03/03/2026 21:41:35"
+                                                     },
+                                                     {
+                                                         "processName":  "Antigravity",
+                                                         "id":  28648,
+                                                         "cpu":  49.78125,
+                                                         "pmMB":  259.3,
+                                                         "wsMB":  190.6,
+                                                         "startTime":  "03/03/2026 20:38:42"
+                                                     },
+                                                     {
+                                                         "processName":  "Antigravity",
+                                                         "id":  9196,
+                                                         "cpu":  86.875,
+                                                         "pmMB":  240.7,
+                                                         "wsMB":  189.8,
+                                                         "startTime":  "03/03/2026 20:38:47"
+                                                     },
+                                                     {
+                                                         "processName":  "Antigravity",
+                                                         "id":  37236,
+                                                         "cpu":  297.265625,
+                                                         "pmMB":  170.5,
+                                                         "wsMB":  189,
+                                                         "startTime":  "03/03/2026 20:38:41"
+                                                     },
+                                                     {
+                                                         "processName":  "chrome",
+                                                         "id":  14456,
+                                                         "cpu":  63.90625,
+                                                         "pmMB":  185.2,
+                                                         "wsMB":  173,
+                                                         "startTime":  "03/03/2026 16:20:25"
+                                                     },
+                                                     {
+                                                         "processName":  "chrome",
+                                                         "id":  26068,
+                                                         "cpu":  418.15625,
+                                                         "pmMB":  247.4,
+                                                         "wsMB":  166.4,
+                                                         "startTime":  "03/03/2026 20:11:38"
+                                                     },
+                                                     {
+                                                         "processName":  "Antigravity",
+                                                         "id":  24620,
+                                                         "cpu":  6.578125,
+                                                         "pmMB":  221.9,
+                                                         "wsMB":  166.1,
+                                                         "startTime":  "03/03/2026 20:38:27"
+                                                     },
+                                                     {
+                                                         "processName":  "language_server_windows_x64",
+                                                         "id":  25948,
+                                                         "cpu":  98.59375,
+                                                         "pmMB":  235.1,
+                                                         "wsMB":  165.4,
+                                                         "startTime":  "03/03/2026 20:39:34"
+                                                     },
+                                                     {
+                                                         "processName":  "Copilot",
+                                                         "id":  15264,
+                                                         "cpu":  2191.71875,
+                                                         "pmMB":  111.7,
+                                                         "wsMB":  161.9,
+                                                         "startTime":  "03/03/2026 07:21:13"
+                                                     },
+                                                     {
+                                                         "processName":  "node",
+                                                         "id":  34888,
+                                                         "cpu":  4.703125,
+                                                         "pmMB":  176.5,
+                                                         "wsMB":  156.4,
+                                                         "startTime":  "03/03/2026 21:55:11"
+                                                     }
+                                                 ]
+                  },
+    "language":  {
+                     "userLanguageList":  [
+                                              "en-US",
+                                              "en-GB",
+                                              "pt-BR"
+                                          ],
+                     "installedUiCulture":  "pt-BR",
+                     "currentUiCulture":  "pt-BR"
+                 },
+    "storage":  {
+                    "volumes":  [
+                                    {
+                                        "DriveLetter":  "C",
+                                        "FileSystem":  "NTFS",
+                                        "HealthStatus":  "Healthy",
+                                        "Size":  511043022848,
+                                        "SizeRemaining":  105773273088
+                                    },
+                                    {
+                                        "DriveLetter":  null,
+                                        "FileSystem":  "NTFS",
+                                        "HealthStatus":  "Healthy",
+                                        "Size":  940568576,
+                                        "SizeRemaining":  236568576
+                                    },
+                                    {
+                                        "DriveLetter":  "D",
+                                        "FileSystem":  "NTFS",
+                                        "HealthStatus":  "Healthy",
+                                        "Size":  1000203087872,
+                                        "SizeRemaining":  847227998208
+                                    }
+                                ],
+                    "logicalDisks":  [
+                                         {
+                                             "DeviceID":  "C:",
+                                             "DriveType":  3,
+                                             "FileSystem":  "NTFS",
+                                             "VolumeName":  "",
+                                             "Size":  511043022848,
+                                             "FreeSpace":  105773273088
+                                         },
+                                         {
+                                             "DeviceID":  "D:",
+                                             "DriveType":  3,
+                                             "FileSystem":  "NTFS",
+                                             "VolumeName":  "Data",
+                                             "Size":  1000203087872,
+                                             "FreeSpace":  847227998208
+                                         }
+                                     ]
+                },
+    "indexing":  {
+                     "service":  {
+                                     "name":  "WSearch",
+                                     "status":  "Running",
+                                     "startType":  "Automatic"
+                                 },
+                     "dataPath":  "C:\\ProgramData\\Microsoft\\Search\\Data",
+                     "dataPathReadable":  false,
+                     "dataPathAccessError":  "O acesso ao caminho \u0027C:\\ProgramData\\Microsoft\\Search\\Data\u0027 foi negado."
+                 },
+    "runtimes":  {
+                     "pythonWhere":  [
+                                         "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                                         "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                                         "C:\\Users\\acer\\anaconda3\\python.exe"
+                                     ],
+                     "javaWhere":  [
+                                       "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+                                       "C:\\Java\\jdk1.8.0_392\\bin\\java.exe"
+                                   ],
+                     "javaHomeMachine":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\",
+                     "javaHomeUser":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\",
+                     "windowsAppsPath":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps",
+                     "windowsAppsInPath":  true,
+                     "pythonShimPath":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                     "pythonShimExists":  true,
+                     "windowsStorePresent":  true
+                 },
+    "programs":  {
+                     "installedCount":  0,
+                     "installedProgramDuplicates":  [
+
+                                                    ]
+                 },
+    "browser":  {
+                    "cookieStores":  [
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Guest Profile",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Guest Profile\\Network\\Cookies",
+                                             "sizeBytes":  20480,
+                                             "sizeMB":  0.02,
+                                             "lastWriteTime":  "09/21/2025 23:04:21"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 10",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 10\\Network\\Cookies",
+                                             "sizeBytes":  28672,
+                                             "sizeMB":  0.03,
+                                             "lastWriteTime":  "02/27/2026 18:06:20"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 11",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 11\\Network\\Cookies",
+                                             "sizeBytes":  94208,
+                                             "sizeMB":  0.09,
+                                             "lastWriteTime":  "02/22/2026 12:35:45"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 13",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 13\\Network\\Cookies",
+                                             "sizeBytes":  139264,
+                                             "sizeMB":  0.13,
+                                             "lastWriteTime":  "02/22/2026 12:34:54"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 16",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 16\\Network\\Cookies",
+                                             "sizeBytes":  458752,
+                                             "sizeMB":  0.44,
+                                             "lastWriteTime":  "02/22/2026 12:35:42"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 20",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 20\\Network\\Cookies",
+                                             "sizeBytes":  139264,
+                                             "sizeMB":  0.13,
+                                             "lastWriteTime":  "02/22/2026 12:33:59"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 21",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 21\\Network\\Cookies",
+                                             "sizeBytes":  229376,
+                                             "sizeMB":  0.22,
+                                             "lastWriteTime":  "02/24/2026 13:33:02"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 23",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 23\\Network\\Cookies",
+                                             "sizeBytes":  229376,
+                                             "sizeMB":  0.22,
+                                             "lastWriteTime":  "02/22/2026 12:34:02"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 25",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 25\\Network\\Cookies",
+                                             "sizeBytes":  69632,
+                                             "sizeMB":  0.07,
+                                             "lastWriteTime":  "02/22/2026 12:34:10"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 26",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 26\\Network\\Cookies",
+                                             "sizeBytes":  40960,
+                                             "sizeMB":  0.04,
+                                             "lastWriteTime":  "02/22/2026 12:34:13"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 3",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 3\\Network\\Cookies",
+                                             "sizeBytes":  393216,
+                                             "sizeMB":  0.38,
+                                             "lastWriteTime":  "03/03/2026 20:51:47"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 31",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 31\\Network\\Cookies",
+                                             "sizeBytes":  61440,
+                                             "sizeMB":  0.06,
+                                             "lastWriteTime":  "02/22/2026 12:34:19"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 4",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 4\\Network\\Cookies",
+                                             "sizeBytes":  110592,
+                                             "sizeMB":  0.11,
+                                             "lastWriteTime":  "03/03/2026 12:20:15"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 6",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 6\\Network\\Cookies",
+                                             "sizeBytes":  61440,
+                                             "sizeMB":  0.06,
+                                             "lastWriteTime":  "02/27/2026 00:30:05"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 7",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 7\\Network\\Cookies",
+                                             "sizeBytes":  61440,
+                                             "sizeMB":  0.06,
+                                             "lastWriteTime":  "03/01/2026 08:50:50"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile 9",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 9\\Network\\Cookies",
+                                             "sizeBytes":  49152,
+                                             "sizeMB":  0.05,
+                                             "lastWriteTime":  "02/27/2026 18:06:10"
+                                         },
+                                         {
+                                             "provider":  "Chrome",
+                                             "profile":  "Profile",
+                                             "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile\\Network\\Cookies",
+                                             "sizeBytes":  90112,
+                                             "sizeMB":  0.09,
+                                             "lastWriteTime":  "03/03/2026 20:29:11"
+                                         },
+                                         {
+                                             "provider":  "Firefox",
+                                             "profile":  "9cu3gjmk.default-release",
+                                             "path":  "C:\\Users\\acer\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\9cu3gjmk.default-release\\cookies.sqlite",
+                                             "sizeBytes":  524288,
+                                             "sizeMB":  0.5,
+                                             "lastWriteTime":  "03/27/2025 15:52:11"
+                                         }
+                                     ],
+                    "cookieStoreCount":  18,
+                    "cookieStoreTotalSizeMB":  2.7
+                },
+    "securityFootprint":  {
+                              "okta":  {
+                                           "installedPrograms":  [
+
+                                                                 ],
+                                           "processes":  [
+
+                                                         ],
+                                           "services":  [
+
+                                                        ],
+                                           "tasks":  [
+
+                                                     ],
+                                           "startup":  [
+
+                                                       ]
+                                       },
+                              "itop":  {
+                                           "installedPrograms":  [
+
+                                                                 ]
+                                       },
+                              "remoteAccess":  {
+                                                   "programs":  [
+
+                                                                ],
+                                                   "runningProcesses":  [
+                                                                            {
+                                                                                "ProcessName":  "AnyDesk",
+                                                                                "Id":  920,
+                                                                                "CPU":  188.0625,
+                                                                                "PM":  33513472,
+                                                                                "WS":  8892416,
+                                                                                "StartTime":  "\/Date(1772498508572)\/"
+                                                                            },
+                                                                            {
+                                                                                "ProcessName":  "AnyDesk",
+                                                                                "Id":  12132,
+                                                                                "CPU":  3.875,
+                                                                                "PM":  32296960,
+                                                                                "WS":  8491008,
+                                                                                "StartTime":  "\/Date(1772533294115)\/"
+                                                                            },
+                                                                            {
+                                                                                "ProcessName":  "remoting_host",
+                                                                                "Id":  2416,
+                                                                                "CPU":  null,
+                                                                                "PM":  9334784,
+                                                                                "WS":  4161536,
+                                                                                "StartTime":  null
+                                                                            },
+                                                                            {
+                                                                                "ProcessName":  "remoting_host",
+                                                                                "Id":  11896,
+                                                                                "CPU":  1814.5625,
+                                                                                "PM":  12849152,
+                                                                                "WS":  15962112,
+                                                                                "StartTime":  "\/Date(1772498509449)\/"
+                                                                            }
+                                                                        ],
+                                                   "startupEntries":  [
+                                                                          {
+                                                                              "Name":  "AnyDesk",
+                                                                              "Location":  "Common Startup",
+                                                                              "User":  "Public",
+                                                                              "Command":  "C:\\PROGRA~2\\AnyDesk\\AnyDesk.exe  --control"
+                                                                          }
+                                                                      ]
+                                               }
+                          },
+    "startup":  {
+                    "startupBypass":  [
+                                          {
+                                              "Name":  "AgentBridgePC",
+                                              "Location":  "HKU\\S-1-5-21-1469047906-1918517011-520466592-1001\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                              "User":  "DESKTOP-J99VCNH\\acer",
+                                              "Command":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\CrossDevice\\agent-bridge\\Start-AgentBridge-PC.ps1\" -WorkDir \"C:\\Users\\acer\\CrossDevice\\agent-bridge\" -BindHost \"127.0.0.1\" -Port 8765"
+                                          }
+                                      ],
+                    "scheduledBypass":  [
+                                            {
+                                                "TaskName":  "Asolaria NotebookLM Build Loop",
+                                                "TaskPath":  "\\",
+                                                "State":  "Ready",
+                                                "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\acer\\Asolaria\\tools\\Run-NotebookBuildLoop-Scheduled.ps1"
+                                            },
+                                            {
+                                                "TaskName":  "Asolaria NotebookLM Upgrade Loop",
+                                                "TaskPath":  "\\",
+                                                "State":  "Disabled",
+                                                "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-NotebookLM-Upgrade-Loop.ps1\""
+                                            },
+                                            {
+                                                "TaskName":  "Asolaria One Button Startup",
+                                                "TaskPath":  "\\",
+                                                "State":  "Running",
+                                                "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-Asolaria-OneButton.ps1\" -Port 4781 -StartupMode -SkipAutoStartupInstall -NetworkBootstrapMaxWaitSeconds 180"
+                                            },
+                                            {
+                                                "TaskName":  "Asolaria Wake Display 1000 BRT",
+                                                "TaskPath":  "\\",
+                                                "State":  "Disabled",
+                                                "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\""
+                                            },
+                                            {
+                                                "TaskName":  "Asolaria-OpenAI-Quota-Reminder-20260304",
+                                                "TaskPath":  "\\",
+                                                "State":  "Ready",
+                                                "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Reminder-OpenAI-Quota-20260304.ps1\""
+                                            },
+                                            {
+                                                "TaskName":  "Asolaria-WakeDisplay-2026-02-24-0900",
+                                                "TaskPath":  "\\",
+                                                "State":  "Disabled",
+                                                "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\" -OpenUrl \"\""
+                                            }
+                                        ]
+                },
+    "duplicates":  {
+                       "rootDuplicates":  [
+                                              {
+                                                  "name":  "System Volume Information",
+                                                  "count":  2,
+                                                  "paths":  [
+                                                                "C:\\System Volume Information",
+                                                                "D:\\System Volume Information"
+                                                            ]
+                                              },
+                                              {
+                                                  "name":  "Recovery",
+                                                  "count":  2,
+                                                  "paths":  [
+                                                                "C:\\Recovery",
+                                                                "D:\\Recovery"
+                                                            ]
+                                              },
+                                              {
+                                                  "name":  "$Recycle.Bin",
+                                                  "count":  2,
+                                                  "paths":  [
+                                                                "C:\\$Recycle.Bin",
+                                                                "D:\\$RECYCLE.BIN"
+                                                            ]
+                                              }
+                                          ],
+                       "programDuplicates":  [
+                                                 {
+                                                     "name":  "Realtek",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Realtek",
+                                                                   "C:\\Program Files (x86)\\Realtek"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Reference Assemblies",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Reference Assemblies",
+                                                                   "C:\\Program Files (x86)\\Reference Assemblies"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Phase Five Systems",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Phase Five Systems",
+                                                                   "C:\\Program Files (x86)\\Phase Five Systems"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "MSBuild",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\MSBuild",
+                                                                   "C:\\Program Files (x86)\\MSBuild"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "NVIDIA Corporation",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\NVIDIA Corporation",
+                                                                   "C:\\Program Files (x86)\\NVIDIA Corporation"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Windows Defender",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Windows Defender",
+                                                                   "C:\\Program Files (x86)\\Windows Defender"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Windows Photo Viewer",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Windows Photo Viewer",
+                                                                   "C:\\Program Files (x86)\\Windows Photo Viewer"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "WindowsPowerShell",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\WindowsPowerShell",
+                                                                   "C:\\Program Files (x86)\\WindowsPowerShell"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Windows NT",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Windows NT",
+                                                                   "C:\\Program Files (x86)\\Windows NT"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Windows Mail",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Windows Mail",
+                                                                   "C:\\Program Files (x86)\\Windows Mail"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Windows Media Player",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Windows Media Player",
+                                                                   "C:\\Program Files (x86)\\Windows Media Player"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Microsoft Visual Studio",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Microsoft Visual Studio",
+                                                                   "C:\\Program Files (x86)\\Microsoft Visual Studio"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "dotnet",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\dotnet",
+                                                                   "C:\\Program Files (x86)\\dotnet"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Google",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Google",
+                                                                   "C:\\Program Files (x86)\\Google"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Common Files",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Common Files",
+                                                                   "C:\\Program Files (x86)\\Common Files"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Android",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Android",
+                                                                   "C:\\Program Files (x86)\\Android"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Application Verifier",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Application Verifier",
+                                                                   "C:\\Program Files (x86)\\Application Verifier"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "IIS",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\IIS",
+                                                                   "C:\\Program Files (x86)\\IIS"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Microsoft SDKs",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Microsoft SDKs",
+                                                                   "C:\\Program Files (x86)\\Microsoft SDKs"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Microsoft SQL Server",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Microsoft SQL Server",
+                                                                   "C:\\Program Files (x86)\\Microsoft SQL Server"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Microsoft",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Microsoft",
+                                                                   "C:\\Program Files (x86)\\Microsoft"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "IIS Express",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\IIS Express",
+                                                                   "C:\\Program Files (x86)\\IIS Express"
+                                                               ]
+                                                 },
+                                                 {
+                                                     "name":  "Internet Explorer",
+                                                     "count":  2,
+                                                     "paths":  [
+                                                                   "C:\\Program Files\\Internet Explorer",
+                                                                   "C:\\Program Files (x86)\\Internet Explorer"
+                                                               ]
+                                                 }
+                                             ],
+                       "duplicateFileScanRoots":  [
+                                                      {
+                                                          "root":  "C:\\Users\\acer\\Desktop",
+                                                          "filesScanned":  1352,
+                                                          "truncatedAtLimit":  false
+                                                      },
+                                                      {
+                                                          "root":  "C:\\Users\\acer\\Documents",
+                                                          "filesScanned":  8,
+                                                          "truncatedAtLimit":  false
+                                                      },
+                                                      {
+                                                          "root":  "C:\\Users\\acer\\Downloads",
+                                                          "filesScanned":  576,
+                                                          "truncatedAtLimit":  false
+                                                      },
+                                                      {
+                                                          "root":  "D:\\projects",
+                                                          "filesScanned":  20000,
+                                                          "truncatedAtLimit":  true
+                                                      },
+                                                      {
+                                                          "root":  "D:\\interview",
+                                                          "filesScanned":  1,
+                                                          "truncatedAtLimit":  false
+                                                      },
+                                                      {
+                                                          "root":  "D:\\interview - resume",
+                                                          "filesScanned":  8,
+                                                          "truncatedAtLimit":  false
+                                                      }
+                                                  ],
+                       "crossDriveFileDuplicates":  [
+                                                        {
+                                                            "signature":  "index.ts|158",
+                                                            "name":  "index.ts",
+                                                            "length":  158,
+                                                            "count":  8,
+                                                            "drives":  [
+                                                                           "C",
+                                                                           "D"
+                                                                       ],
+                                                            "paths":  [
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\react_frontend\\src\\i18n\\index.ts",
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\react_frontend\\src\\i18n\\index.ts",
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\react_frontend\\src\\i18n\\index.ts",
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\react_frontend\\src\\i18n\\index.ts",
+                                                                          "D:\\projects\\QDD\\ebacmap\\modules\\correctivenotes\\use-cases\\GetCorrectiveNote\\index.ts",
+                                                                          "D:\\projects\\QDD\\ebacmap\\modules\\surfacetypes\\use-cases\\CreateSurfaceType\\index.ts",
+                                                                          "D:\\projects\\QDD\\ebacmap\\modules\\surfacetypes\\use-cases\\DeleteSurfaceType\\index.ts",
+                                                                          "D:\\projects\\QDD\\ebacmap\\modules\\surfacetypes\\use-cases\\UpdateSurfaceType\\index.ts"
+                                                                      ]
+                                                        },
+                                                        {
+                                                            "signature":  "vite.svg|1497",
+                                                            "name":  "vite.svg",
+                                                            "length":  1497,
+                                                            "count":  5,
+                                                            "drives":  [
+                                                                           "C",
+                                                                           "D"
+                                                                       ],
+                                                            "paths":  [
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\react_frontend\\public\\vite.svg",
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\react_frontend\\public\\vite.svg",
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\react_frontend\\public\\vite.svg",
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\react_frontend\\public\\vite.svg",
+                                                                          "D:\\projects\\cisco\\ldm-clc-react-ui\\ldm-clc-react-ui\\public\\vite.svg"
+                                                                      ]
+                                                        },
+                                                        {
+                                                            "signature":  "react.svg|4126",
+                                                            "name":  "react.svg",
+                                                            "length":  4126,
+                                                            "count":  5,
+                                                            "drives":  [
+                                                                           "C",
+                                                                           "D"
+                                                                       ],
+                                                            "paths":  [
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\react_frontend\\src\\assets\\react.svg",
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\react_frontend\\src\\assets\\react.svg",
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\react_frontend\\src\\assets\\react.svg",
+                                                                          "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\react_frontend\\src\\assets\\react.svg",
+                                                                          "D:\\projects\\cisco\\ldm-clc-react-ui\\ldm-clc-react-ui\\src\\assets\\react.svg"
+                                                                      ]
+                                                        }
+                                                    ],
+                       "reparsePoints":  [
+
+                                         ]
+                   },
+    "envPath":  {
+                    "machineEntries":  [
+                                           "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin",
+                                           "c:\\Users\\acer\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin",
+                                           "C:\\WINDOWS\\system32",
+                                           "C:\\WINDOWS",
+                                           "C:\\WINDOWS\\System32\\Wbem",
+                                           "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\",
+                                           "C:\\WINDOWS\\System32\\OpenSSH\\",
+                                           "C:\\Program Files\\dotnet\\",
+                                           "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\",
+                                           "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\",
+                                           "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\",
+                                           "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313",
+                                           "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\Scripts",
+                                           "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps",
+                                           "C:\\Users\\acer\\AppData\\Local\\Programs\\Windsurf\\bin",
+                                           "C:\\Users\\acer\\AppData\\Roaming\\npm",
+                                           "C:\\Users\\acer\\.dotnet\\tools",
+                                           "C:\\Program Files\\Git\\cmd",
+                                           "C:\\Users\\acer\\AppData\\Local\\nvm",
+                                           "C:\\nvm4w\\nodejs",
+                                           "C:\\Program Files\\Go\\bin",
+                                           "C:\\Program Files\\cursor\\resources\\app\\bin",
+                                           "C:\\Program Files\\Amazon\\AWSCLIV2\\",
+                                           "C:\\Program Files (x86)\\cloudflared\\",
+                                           "C:\\Program Files\\Tailscale\\",
+                                           "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+                                       ],
+                    "userEntries":  [
+                                        "C:\\Users\\acer\\anaconda3",
+                                        "C:\\Users\\acer\\anaconda3\\Library\\mingw-w64\\bin",
+                                        "C:\\Users\\acer\\anaconda3\\Library\\usr\\bin",
+                                        "C:\\Users\\acer\\anaconda3\\Library\\bin",
+                                        "C:\\Users\\acer\\anaconda3\\Scripts",
+                                        "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Launcher\\",
+                                        "C:\\Microsoft VS Code\\bin",
+                                        "C:\\Users\\acer\\AppData\\Local\\Programs\\Antigravity\\bin",
+                                        "C:\\Java\\jdk1.8.0_392\\bin",
+                                        "C:\\Users\\acer\\go\\bin",
+                                        "C:\\Users\\acer\\.local\\bin",
+                                        "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe\\platform-tools",
+                                        "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Genymobile.scrcpy_Microsoft.Winget.Source_8wekyb3d8bbwe\\scrcpy-win64-v3.3.4",
+                                        "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin",
+                                        "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BtbN.FFmpeg.GPL_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-N-123073-g743df5ded9-win64-gpl\\bin"
+                                    ],
+                    "duplicateEntries":  [
+
+                                         ]
+                },
+    "identity":  {
+                     "whoamiGroups":  [
+                                          "",
+                                          "INFORMAÇOES DE GRUPO",
+                                          "---------------------",
+                                          "",
+                                          "Nome do grupo                                                  Tipo                     SID                                                                                                        Atributos                                           ",
+                                          "============================================================== ======================== ========================================================================================================== ====================================================",
+                                          "Rótulo Obrigatório\\Nível Obrigatório Médio                     Rótulo                   S-1-16-8192                                                                                                                                                    ",
+                                          "Todos                                                          Grupo bastante conhecido S-1-1-0                                                                                                    Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "AUTORIDADE NT\\Conta local e membro do grupo de Administradores Grupo bastante conhecido S-1-5-114                                                                                                  Grupo usado apenas para negar                       ",
+                                          "DESKTOP-J99VCNH\\docker-users                                   Alias                    S-1-5-21-1469047906-1918517011-520466592-1003                                                              Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "BUILTIN\\Administradores                                        Alias                    S-1-5-32-544                                                                                               Grupo usado apenas para negar                       ",
+                                          "BUILTIN\\Usuários de log de desempenho                          Alias                    S-1-5-32-559                                                                                               Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "BUILTIN\\Usuários                                               Alias                    S-1-5-32-545                                                                                               Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "AUTORIDADE NT\\INTERATIVO                                       Grupo bastante conhecido S-1-5-4                                                                                                    Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "LOGON de CONSOLE                                               Grupo bastante conhecido S-1-2-1                                                                                                    Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "AUTORIDADE NT\\Usuários autenticados                            Grupo bastante conhecido S-1-5-11                                                                                                   Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "AUTORIDADE NT\\Esta organizaçao                                 Grupo bastante conhecido S-1-5-15                                                                                                   Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "MicrosoftAccount\\plasmatoid@gmail.com                          Usuário                  S-1-11-96-3623454863-58364-18864-2661722203-1597581903-3336142659-4054349089-737414959-748038367-232638251 Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "AUTORIDADE NT\\Conta local                                      Grupo bastante conhecido S-1-5-113                                                                                                  Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "LOCAL                                                          Grupo bastante conhecido S-1-2-0                                                                                                    Grupo obrigatório, Ativado por padrao, Grupo ativado",
+                                          "AUTORIDADE NT\\Cloud Account Authentication                     Grupo bastante conhecido S-1-5-64-36                                                                                                Grupo obrigatório, Ativado por padrao, Grupo ativado"
+                                      ]
+                 },
+    "tests":  [
+                  {
+                      "name":  "session_elevation",
+                      "status":  "warn",
+                      "severity":  "high",
+                      "summary":  "Session is not elevated; SFC/DISM/BCD/CHKDSK diagnostics remain incomplete in this pass.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "edition_build_mismatch",
+                      "status":  "warn",
+                      "severity":  "medium",
+                      "summary":  "Edition metadata says Windows 10 Home Single Language while build number is Windows 11-class.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "search_service",
+                      "status":  "pass",
+                      "severity":  "low",
+                      "summary":  "Windows Search service is running.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "search_index_access",
+                      "status":  "warn",
+                      "severity":  "medium",
+                      "summary":  "Search index path could not be read from current token.",
+                      "data":  "O acesso ao caminho \u0027C:\\ProgramData\\Microsoft\\Search\\Data\u0027 foi negado."
+                  },
+                  {
+                      "name":  "python_resolution_collision",
+                      "status":  "warn",
+                      "severity":  "high",
+                      "summary":  "Multiple Python executables detected, with Microsoft Store shim taking precedence.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "microsoft_store_presence",
+                      "status":  "pass",
+                      "severity":  "low",
+                      "summary":  "Microsoft Store package is present for this user.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "windowsapps_shim_integrity",
+                      "status":  "pass",
+                      "severity":  "low",
+                      "summary":  "WindowsApps path and python shim are present.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "java_home_collision",
+                      "status":  "pass",
+                      "severity":  "low",
+                      "summary":  "JAVA_HOME values are aligned or singular.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "memory_pressure",
+                      "status":  "warn",
+                      "severity":  "high",
+                      "summary":  "Physical memory usage is high (94.1%).",
+                      "data":  null
+                  },
+                  {
+                      "name":  "cpu_pressure",
+                      "status":  "pass",
+                      "severity":  "low",
+                      "summary":  "Instant CPU load is normal (0%).",
+                      "data":  null
+                  },
+                  {
+                      "name":  "startup_bypass_usage",
+                      "status":  "warn",
+                      "severity":  "high",
+                      "summary":  "Startup entries use PowerShell ExecutionPolicy Bypass.",
+                      "data":  {
+                                   "Name":  "AgentBridgePC",
+                                   "Location":  "HKU\\S-1-5-21-1469047906-1918517011-520466592-1001\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                   "User":  "DESKTOP-J99VCNH\\acer",
+                                   "Command":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\CrossDevice\\agent-bridge\\Start-AgentBridge-PC.ps1\" -WorkDir \"C:\\Users\\acer\\CrossDevice\\agent-bridge\" -BindHost \"127.0.0.1\" -Port 8765"
+                               }
+                  },
+                  {
+                      "name":  "scheduled_task_bypass_usage",
+                      "status":  "warn",
+                      "severity":  "medium",
+                      "summary":  "Scheduled tasks include ExecutionPolicy Bypass actions.",
+                      "data":  [
+                                   {
+                                       "TaskName":  "Asolaria NotebookLM Build Loop",
+                                       "TaskPath":  "\\",
+                                       "State":  "Ready",
+                                       "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\acer\\Asolaria\\tools\\Run-NotebookBuildLoop-Scheduled.ps1"
+                                   },
+                                   {
+                                       "TaskName":  "Asolaria NotebookLM Upgrade Loop",
+                                       "TaskPath":  "\\",
+                                       "State":  "Disabled",
+                                       "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-NotebookLM-Upgrade-Loop.ps1\""
+                                   },
+                                   {
+                                       "TaskName":  "Asolaria One Button Startup",
+                                       "TaskPath":  "\\",
+                                       "State":  "Running",
+                                       "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-Asolaria-OneButton.ps1\" -Port 4781 -StartupMode -SkipAutoStartupInstall -NetworkBootstrapMaxWaitSeconds 180"
+                                   },
+                                   {
+                                       "TaskName":  "Asolaria Wake Display 1000 BRT",
+                                       "TaskPath":  "\\",
+                                       "State":  "Disabled",
+                                       "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\""
+                                   },
+                                   {
+                                       "TaskName":  "Asolaria-OpenAI-Quota-Reminder-20260304",
+                                       "TaskPath":  "\\",
+                                       "State":  "Ready",
+                                       "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Reminder-OpenAI-Quota-20260304.ps1\""
+                                   },
+                                   {
+                                       "TaskName":  "Asolaria-WakeDisplay-2026-02-24-0900",
+                                       "TaskPath":  "\\",
+                                       "State":  "Disabled",
+                                       "Action":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\" -OpenUrl \"\""
+                                   }
+                               ]
+                  },
+                  {
+                      "name":  "installed_program_duplicates",
+                      "status":  "pass",
+                      "severity":  "low",
+                      "summary":  "Installed program display names do not contain duplicates.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "okta_artifacts",
+                      "status":  "pass",
+                      "severity":  "low",
+                      "summary":  "No Okta-related program/process/service/task/startup artifacts were found.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "itop_artifacts",
+                      "status":  "pass",
+                      "severity":  "low",
+                      "summary":  "No iTop installed program artifacts were found.",
+                      "data":  null
+                  },
+                  {
+                      "name":  "cookie_store_sprawl",
+                      "status":  "warn",
+                      "severity":  "medium",
+                      "summary":  "Cookie stores are spread across many profiles or large in aggregate (stores=18, totalMB=2.7).",
+                      "data":  [
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Guest Profile",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Guest Profile\\Network\\Cookies",
+                                       "sizeBytes":  20480,
+                                       "sizeMB":  0.02,
+                                       "lastWriteTime":  "09/21/2025 23:04:21"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 10",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 10\\Network\\Cookies",
+                                       "sizeBytes":  28672,
+                                       "sizeMB":  0.03,
+                                       "lastWriteTime":  "02/27/2026 18:06:20"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 11",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 11\\Network\\Cookies",
+                                       "sizeBytes":  94208,
+                                       "sizeMB":  0.09,
+                                       "lastWriteTime":  "02/22/2026 12:35:45"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 13",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 13\\Network\\Cookies",
+                                       "sizeBytes":  139264,
+                                       "sizeMB":  0.13,
+                                       "lastWriteTime":  "02/22/2026 12:34:54"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 16",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 16\\Network\\Cookies",
+                                       "sizeBytes":  458752,
+                                       "sizeMB":  0.44,
+                                       "lastWriteTime":  "02/22/2026 12:35:42"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 20",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 20\\Network\\Cookies",
+                                       "sizeBytes":  139264,
+                                       "sizeMB":  0.13,
+                                       "lastWriteTime":  "02/22/2026 12:33:59"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 21",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 21\\Network\\Cookies",
+                                       "sizeBytes":  229376,
+                                       "sizeMB":  0.22,
+                                       "lastWriteTime":  "02/24/2026 13:33:02"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 23",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 23\\Network\\Cookies",
+                                       "sizeBytes":  229376,
+                                       "sizeMB":  0.22,
+                                       "lastWriteTime":  "02/22/2026 12:34:02"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 25",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 25\\Network\\Cookies",
+                                       "sizeBytes":  69632,
+                                       "sizeMB":  0.07,
+                                       "lastWriteTime":  "02/22/2026 12:34:10"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 26",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 26\\Network\\Cookies",
+                                       "sizeBytes":  40960,
+                                       "sizeMB":  0.04,
+                                       "lastWriteTime":  "02/22/2026 12:34:13"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 3",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 3\\Network\\Cookies",
+                                       "sizeBytes":  393216,
+                                       "sizeMB":  0.38,
+                                       "lastWriteTime":  "03/03/2026 20:51:47"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 31",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 31\\Network\\Cookies",
+                                       "sizeBytes":  61440,
+                                       "sizeMB":  0.06,
+                                       "lastWriteTime":  "02/22/2026 12:34:19"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 4",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 4\\Network\\Cookies",
+                                       "sizeBytes":  110592,
+                                       "sizeMB":  0.11,
+                                       "lastWriteTime":  "03/03/2026 12:20:15"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 6",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 6\\Network\\Cookies",
+                                       "sizeBytes":  61440,
+                                       "sizeMB":  0.06,
+                                       "lastWriteTime":  "02/27/2026 00:30:05"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 7",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 7\\Network\\Cookies",
+                                       "sizeBytes":  61440,
+                                       "sizeMB":  0.06,
+                                       "lastWriteTime":  "03/01/2026 08:50:50"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile 9",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 9\\Network\\Cookies",
+                                       "sizeBytes":  49152,
+                                       "sizeMB":  0.05,
+                                       "lastWriteTime":  "02/27/2026 18:06:10"
+                                   },
+                                   {
+                                       "provider":  "Chrome",
+                                       "profile":  "Profile",
+                                       "path":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\\Profile\\Network\\Cookies",
+                                       "sizeBytes":  90112,
+                                       "sizeMB":  0.09,
+                                       "lastWriteTime":  "03/03/2026 20:29:11"
+                                   },
+                                   {
+                                       "provider":  "Firefox",
+                                       "profile":  "9cu3gjmk.default-release",
+                                       "path":  "C:\\Users\\acer\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\9cu3gjmk.default-release\\cookies.sqlite",
+                                       "sizeBytes":  524288,
+                                       "sizeMB":  0.5,
+                                       "lastWriteTime":  "03/27/2025 15:52:11"
+                                   }
+                               ]
+                  },
+                  {
+                      "name":  "remote_access_surface",
+                      "status":  "warn",
+                      "severity":  "medium",
+                      "summary":  "Remote access/control software footprint is present.",
+                      "data":  {
+                                   "programs":  [
+
+                                                ],
+                                   "runningProcesses":  [
+                                                            {
+                                                                "ProcessName":  "AnyDesk",
+                                                                "Id":  920,
+                                                                "CPU":  188.0625,
+                                                                "PM":  33513472,
+                                                                "WS":  8892416,
+                                                                "StartTime":  "\/Date(1772498508572)\/"
+                                                            },
+                                                            {
+                                                                "ProcessName":  "AnyDesk",
+                                                                "Id":  12132,
+                                                                "CPU":  3.875,
+                                                                "PM":  32296960,
+                                                                "WS":  8491008,
+                                                                "StartTime":  "\/Date(1772533294115)\/"
+                                                            },
+                                                            {
+                                                                "ProcessName":  "remoting_host",
+                                                                "Id":  2416,
+                                                                "CPU":  null,
+                                                                "PM":  9334784,
+                                                                "WS":  4161536,
+                                                                "StartTime":  null
+                                                            },
+                                                            {
+                                                                "ProcessName":  "remoting_host",
+                                                                "Id":  11896,
+                                                                "CPU":  1814.5625,
+                                                                "PM":  12849152,
+                                                                "WS":  15962112,
+                                                                "StartTime":  "\/Date(1772498509449)\/"
+                                                            }
+                                                        ],
+                                   "startupEntries":  [
+                                                          {
+                                                              "Name":  "AnyDesk",
+                                                              "Location":  "Common Startup",
+                                                              "User":  "Public",
+                                                              "Command":  "C:\\PROGRA~2\\AnyDesk\\AnyDesk.exe  --control"
+                                                          }
+                                                      ]
+                               }
+                  },
+                  {
+                      "name":  "cross_drive_root_duplicates",
+                      "status":  "warn",
+                      "severity":  "medium",
+                      "summary":  "Matching top-level directory names exist on both C: and D:.",
+                      "data":  [
+                                   {
+                                       "Values":  [
+                                                      "System Volume Information"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Drive":  "C",
+                                                         "Name":  "System Volume Information",
+                                                         "FullName":  "C:\\System Volume Information"
+                                                     },
+                                                     {
+                                                         "Drive":  "D",
+                                                         "Name":  "System Volume Information",
+                                                         "FullName":  "D:\\System Volume Information"
+                                                     }
+                                                 ],
+                                       "Name":  "System Volume Information"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Recovery"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Drive":  "C",
+                                                         "Name":  "Recovery",
+                                                         "FullName":  "C:\\Recovery"
+                                                     },
+                                                     {
+                                                         "Drive":  "D",
+                                                         "Name":  "Recovery",
+                                                         "FullName":  "D:\\Recovery"
+                                                     }
+                                                 ],
+                                       "Name":  "Recovery"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "$Recycle.Bin"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Drive":  "C",
+                                                         "Name":  "$Recycle.Bin",
+                                                         "FullName":  "C:\\$Recycle.Bin"
+                                                     },
+                                                     {
+                                                         "Drive":  "D",
+                                                         "Name":  "$RECYCLE.BIN",
+                                                         "FullName":  "D:\\$RECYCLE.BIN"
+                                                     }
+                                                 ],
+                                       "Name":  "$Recycle.Bin"
+                                   }
+                               ]
+                  },
+                  {
+                      "name":  "program_folder_duplicates",
+                      "status":  "warn",
+                      "severity":  "medium",
+                      "summary":  "Program folder names are duplicated across program roots.",
+                      "data":  [
+                                   {
+                                       "Values":  [
+                                                      "Realtek"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Realtek",
+                                                         "FullName":  "C:\\Program Files\\Realtek"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Realtek",
+                                                         "FullName":  "C:\\Program Files (x86)\\Realtek"
+                                                     }
+                                                 ],
+                                       "Name":  "Realtek"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Reference Assemblies"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Reference Assemblies",
+                                                         "FullName":  "C:\\Program Files\\Reference Assemblies"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Reference Assemblies",
+                                                         "FullName":  "C:\\Program Files (x86)\\Reference Assemblies"
+                                                     }
+                                                 ],
+                                       "Name":  "Reference Assemblies"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Phase Five Systems"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Phase Five Systems",
+                                                         "FullName":  "C:\\Program Files\\Phase Five Systems"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Phase Five Systems",
+                                                         "FullName":  "C:\\Program Files (x86)\\Phase Five Systems"
+                                                     }
+                                                 ],
+                                       "Name":  "Phase Five Systems"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "MSBuild"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "MSBuild",
+                                                         "FullName":  "C:\\Program Files\\MSBuild"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "MSBuild",
+                                                         "FullName":  "C:\\Program Files (x86)\\MSBuild"
+                                                     }
+                                                 ],
+                                       "Name":  "MSBuild"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "NVIDIA Corporation"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "NVIDIA Corporation",
+                                                         "FullName":  "C:\\Program Files\\NVIDIA Corporation"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "NVIDIA Corporation",
+                                                         "FullName":  "C:\\Program Files (x86)\\NVIDIA Corporation"
+                                                     }
+                                                 ],
+                                       "Name":  "NVIDIA Corporation"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Windows Defender"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Windows Defender",
+                                                         "FullName":  "C:\\Program Files\\Windows Defender"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Windows Defender",
+                                                         "FullName":  "C:\\Program Files (x86)\\Windows Defender"
+                                                     }
+                                                 ],
+                                       "Name":  "Windows Defender"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Windows Photo Viewer"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Windows Photo Viewer",
+                                                         "FullName":  "C:\\Program Files\\Windows Photo Viewer"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Windows Photo Viewer",
+                                                         "FullName":  "C:\\Program Files (x86)\\Windows Photo Viewer"
+                                                     }
+                                                 ],
+                                       "Name":  "Windows Photo Viewer"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "WindowsPowerShell"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "WindowsPowerShell",
+                                                         "FullName":  "C:\\Program Files\\WindowsPowerShell"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "WindowsPowerShell",
+                                                         "FullName":  "C:\\Program Files (x86)\\WindowsPowerShell"
+                                                     }
+                                                 ],
+                                       "Name":  "WindowsPowerShell"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Windows NT"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Windows NT",
+                                                         "FullName":  "C:\\Program Files\\Windows NT"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Windows NT",
+                                                         "FullName":  "C:\\Program Files (x86)\\Windows NT"
+                                                     }
+                                                 ],
+                                       "Name":  "Windows NT"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Windows Mail"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Windows Mail",
+                                                         "FullName":  "C:\\Program Files\\Windows Mail"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Windows Mail",
+                                                         "FullName":  "C:\\Program Files (x86)\\Windows Mail"
+                                                     }
+                                                 ],
+                                       "Name":  "Windows Mail"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Windows Media Player"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Windows Media Player",
+                                                         "FullName":  "C:\\Program Files\\Windows Media Player"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Windows Media Player",
+                                                         "FullName":  "C:\\Program Files (x86)\\Windows Media Player"
+                                                     }
+                                                 ],
+                                       "Name":  "Windows Media Player"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Microsoft Visual Studio"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Microsoft Visual Studio",
+                                                         "FullName":  "C:\\Program Files\\Microsoft Visual Studio"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Microsoft Visual Studio",
+                                                         "FullName":  "C:\\Program Files (x86)\\Microsoft Visual Studio"
+                                                     }
+                                                 ],
+                                       "Name":  "Microsoft Visual Studio"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "dotnet"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "dotnet",
+                                                         "FullName":  "C:\\Program Files\\dotnet"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "dotnet",
+                                                         "FullName":  "C:\\Program Files (x86)\\dotnet"
+                                                     }
+                                                 ],
+                                       "Name":  "dotnet"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Google"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Google",
+                                                         "FullName":  "C:\\Program Files\\Google"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Google",
+                                                         "FullName":  "C:\\Program Files (x86)\\Google"
+                                                     }
+                                                 ],
+                                       "Name":  "Google"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Common Files"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Common Files",
+                                                         "FullName":  "C:\\Program Files\\Common Files"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Common Files",
+                                                         "FullName":  "C:\\Program Files (x86)\\Common Files"
+                                                     }
+                                                 ],
+                                       "Name":  "Common Files"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Android"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Android",
+                                                         "FullName":  "C:\\Program Files\\Android"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Android",
+                                                         "FullName":  "C:\\Program Files (x86)\\Android"
+                                                     }
+                                                 ],
+                                       "Name":  "Android"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Application Verifier"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Application Verifier",
+                                                         "FullName":  "C:\\Program Files\\Application Verifier"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Application Verifier",
+                                                         "FullName":  "C:\\Program Files (x86)\\Application Verifier"
+                                                     }
+                                                 ],
+                                       "Name":  "Application Verifier"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "IIS"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "IIS",
+                                                         "FullName":  "C:\\Program Files\\IIS"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "IIS",
+                                                         "FullName":  "C:\\Program Files (x86)\\IIS"
+                                                     }
+                                                 ],
+                                       "Name":  "IIS"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Microsoft SDKs"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Microsoft SDKs",
+                                                         "FullName":  "C:\\Program Files\\Microsoft SDKs"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Microsoft SDKs",
+                                                         "FullName":  "C:\\Program Files (x86)\\Microsoft SDKs"
+                                                     }
+                                                 ],
+                                       "Name":  "Microsoft SDKs"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Microsoft SQL Server"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Microsoft SQL Server",
+                                                         "FullName":  "C:\\Program Files\\Microsoft SQL Server"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Microsoft SQL Server",
+                                                         "FullName":  "C:\\Program Files (x86)\\Microsoft SQL Server"
+                                                     }
+                                                 ],
+                                       "Name":  "Microsoft SQL Server"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Microsoft"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Microsoft",
+                                                         "FullName":  "C:\\Program Files\\Microsoft"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Microsoft",
+                                                         "FullName":  "C:\\Program Files (x86)\\Microsoft"
+                                                     }
+                                                 ],
+                                       "Name":  "Microsoft"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "IIS Express"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "IIS Express",
+                                                         "FullName":  "C:\\Program Files\\IIS Express"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "IIS Express",
+                                                         "FullName":  "C:\\Program Files (x86)\\IIS Express"
+                                                     }
+                                                 ],
+                                       "Name":  "IIS Express"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "Internet Explorer"
+                                                  ],
+                                       "Count":  2,
+                                       "Group":  [
+                                                     {
+                                                         "Root":  "C:\\Program Files",
+                                                         "Name":  "Internet Explorer",
+                                                         "FullName":  "C:\\Program Files\\Internet Explorer"
+                                                     },
+                                                     {
+                                                         "Root":  "C:\\Program Files (x86)",
+                                                         "Name":  "Internet Explorer",
+                                                         "FullName":  "C:\\Program Files (x86)\\Internet Explorer"
+                                                     }
+                                                 ],
+                                       "Name":  "Internet Explorer"
+                                   }
+                               ]
+                  },
+                  {
+                      "name":  "cross_drive_file_duplicates",
+                      "status":  "warn",
+                      "severity":  "medium",
+                      "summary":  "Potential duplicate files (same name and size) detected across C: and D: scanned work roots.",
+                      "data":  [
+                                   {
+                                       "Values":  [
+                                                      "index.ts|158"
+                                                  ],
+                                       "Count":  8,
+                                       "Group":  [
+                                                     {
+                                                         "signature":  "index.ts|158",
+                                                         "name":  "index.ts",
+                                                         "length":  158,
+                                                         "extension":  ".ts",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\react_frontend\\src\\i18n\\index.ts"
+                                                     },
+                                                     {
+                                                         "signature":  "index.ts|158",
+                                                         "name":  "index.ts",
+                                                         "length":  158,
+                                                         "extension":  ".ts",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\react_frontend\\src\\i18n\\index.ts"
+                                                     },
+                                                     {
+                                                         "signature":  "index.ts|158",
+                                                         "name":  "index.ts",
+                                                         "length":  158,
+                                                         "extension":  ".ts",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\react_frontend\\src\\i18n\\index.ts"
+                                                     },
+                                                     {
+                                                         "signature":  "index.ts|158",
+                                                         "name":  "index.ts",
+                                                         "length":  158,
+                                                         "extension":  ".ts",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\react_frontend\\src\\i18n\\index.ts"
+                                                     },
+                                                     {
+                                                         "signature":  "index.ts|158",
+                                                         "name":  "index.ts",
+                                                         "length":  158,
+                                                         "extension":  ".ts",
+                                                         "drive":  "D",
+                                                         "root":  "D:\\projects",
+                                                         "path":  "D:\\projects\\QDD\\ebacmap\\modules\\correctivenotes\\use-cases\\GetCorrectiveNote\\index.ts"
+                                                     },
+                                                     {
+                                                         "signature":  "index.ts|158",
+                                                         "name":  "index.ts",
+                                                         "length":  158,
+                                                         "extension":  ".ts",
+                                                         "drive":  "D",
+                                                         "root":  "D:\\projects",
+                                                         "path":  "D:\\projects\\QDD\\ebacmap\\modules\\surfacetypes\\use-cases\\CreateSurfaceType\\index.ts"
+                                                     },
+                                                     {
+                                                         "signature":  "index.ts|158",
+                                                         "name":  "index.ts",
+                                                         "length":  158,
+                                                         "extension":  ".ts",
+                                                         "drive":  "D",
+                                                         "root":  "D:\\projects",
+                                                         "path":  "D:\\projects\\QDD\\ebacmap\\modules\\surfacetypes\\use-cases\\DeleteSurfaceType\\index.ts"
+                                                     },
+                                                     {
+                                                         "signature":  "index.ts|158",
+                                                         "name":  "index.ts",
+                                                         "length":  158,
+                                                         "extension":  ".ts",
+                                                         "drive":  "D",
+                                                         "root":  "D:\\projects",
+                                                         "path":  "D:\\projects\\QDD\\ebacmap\\modules\\surfacetypes\\use-cases\\UpdateSurfaceType\\index.ts"
+                                                     }
+                                                 ],
+                                       "Name":  "index.ts|158"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "vite.svg|1497"
+                                                  ],
+                                       "Count":  5,
+                                       "Group":  [
+                                                     {
+                                                         "signature":  "vite.svg|1497",
+                                                         "name":  "vite.svg",
+                                                         "length":  1497,
+                                                         "extension":  ".svg",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\react_frontend\\public\\vite.svg"
+                                                     },
+                                                     {
+                                                         "signature":  "vite.svg|1497",
+                                                         "name":  "vite.svg",
+                                                         "length":  1497,
+                                                         "extension":  ".svg",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\react_frontend\\public\\vite.svg"
+                                                     },
+                                                     {
+                                                         "signature":  "vite.svg|1497",
+                                                         "name":  "vite.svg",
+                                                         "length":  1497,
+                                                         "extension":  ".svg",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\react_frontend\\public\\vite.svg"
+                                                     },
+                                                     {
+                                                         "signature":  "vite.svg|1497",
+                                                         "name":  "vite.svg",
+                                                         "length":  1497,
+                                                         "extension":  ".svg",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\react_frontend\\public\\vite.svg"
+                                                     },
+                                                     {
+                                                         "signature":  "vite.svg|1497",
+                                                         "name":  "vite.svg",
+                                                         "length":  1497,
+                                                         "extension":  ".svg",
+                                                         "drive":  "D",
+                                                         "root":  "D:\\projects",
+                                                         "path":  "D:\\projects\\cisco\\ldm-clc-react-ui\\ldm-clc-react-ui\\public\\vite.svg"
+                                                     }
+                                                 ],
+                                       "Name":  "vite.svg|1497"
+                                   },
+                                   {
+                                       "Values":  [
+                                                      "react.svg|4126"
+                                                  ],
+                                       "Count":  5,
+                                       "Group":  [
+                                                     {
+                                                         "signature":  "react.svg|4126",
+                                                         "name":  "react.svg",
+                                                         "length":  4126,
+                                                         "extension":  ".svg",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\gfh\\react_frontend\\src\\assets\\react.svg"
+                                                     },
+                                                     {
+                                                         "signature":  "react.svg|4126",
+                                                         "name":  "react.svg",
+                                                         "length":  4126,
+                                                         "extension":  ".svg",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\ifb\\react_frontend\\src\\assets\\react.svg"
+                                                     },
+                                                     {
+                                                         "signature":  "react.svg|4126",
+                                                         "name":  "react.svg",
+                                                         "length":  4126,
+                                                         "extension":  ".svg",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\iia\\react_frontend\\src\\assets\\react.svg"
+                                                     },
+                                                     {
+                                                         "signature":  "react.svg|4126",
+                                                         "name":  "react.svg",
+                                                         "length":  4126,
+                                                         "extension":  ".svg",
+                                                         "drive":  "C",
+                                                         "root":  "C:\\Users\\acer\\Desktop",
+                                                         "path":  "C:\\Users\\acer\\Desktop\\project_stats_backup_1am\\lej\\react_frontend\\src\\assets\\react.svg"
+                                                     },
+                                                     {
+                                                         "signature":  "react.svg|4126",
+                                                         "name":  "react.svg",
+                                                         "length":  4126,
+                                                         "extension":  ".svg",
+                                                         "drive":  "D",
+                                                         "root":  "D:\\projects",
+                                                         "path":  "D:\\projects\\cisco\\ldm-clc-react-ui\\ldm-clc-react-ui\\src\\assets\\react.svg"
+                                                     }
+                                                 ],
+                                       "Name":  "react.svg|4126"
+                                   }
+                               ]
+                  },
+                  {
+                      "name":  "path_duplicate_entries",
+                      "status":  "pass",
+                      "severity":  "low",
+                      "summary":  "PATH entry list has no duplicates.",
+                      "data":  null
+                  }
+              ]
+}

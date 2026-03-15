@@ -1,0 +1,67 @@
+﻿{
+    "generatedAt":  "2026-03-08T10:48:03.1190949-03:00",
+    "startup":  {
+                    "startupFolder":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup",
+                    "linkExists":  true,
+                    "disabledLinkExists":  true
+                },
+    "tasks":  [
+                  {
+                      "TaskName":  "Asolaria NotebookLM Build Loop",
+                      "TaskPath":  "\\",
+                      "State":  3
+                  },
+                  {
+                      "TaskName":  "Asolaria NotebookLM Upgrade Loop",
+                      "TaskPath":  "\\",
+                      "State":  1
+                  },
+                  {
+                      "TaskName":  "Asolaria One Button Startup",
+                      "TaskPath":  "\\",
+                      "State":  3
+                  },
+                  {
+                      "TaskName":  "Asolaria System Supervisor",
+                      "TaskPath":  "\\",
+                      "State":  3
+                  },
+                  {
+                      "TaskName":  "Asolaria Wake Display 1000 BRT",
+                      "TaskPath":  "\\",
+                      "State":  1
+                  },
+                  {
+                      "TaskName":  "Asolaria-OpenAI-Quota-Reminder-20260304",
+                      "TaskPath":  "\\",
+                      "State":  3
+                  },
+                  {
+                      "TaskName":  "Asolaria-WakeDisplay-2026-02-24-0900",
+                      "TaskPath":  "\\",
+                      "State":  1
+                  }
+              ],
+    "bridge":  {
+                   "statusEndpointOk":  true,
+                   "statusServerTime":  "2026-03-08T13:48:04.838417+00:00",
+                   "newTokenLength":  64,
+                   "oldTokenLength":  9,
+                   "newTokenAccepted":  true,
+                   "oldTokenAccepted":  true
+               },
+    "runtime":  {
+                    "pythonWhere":  [
+                                        "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                                        "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                                        "C:\\Users\\acer\\anaconda3\\python.exe"
+                                    ],
+                    "pythonVersion":  "Python 3.13.2",
+                    "javaWhere":  [
+                                      "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+                                      "C:\\Java\\jdk1.8.0_392\\bin\\java.exe"
+                                  ],
+                    "storePresent":  true,
+                    "windowsAppsShimExists":  true
+                }
+}

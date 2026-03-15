@@ -1,0 +1,98 @@
+﻿{
+    "generatedAt":  "2026-03-04T20:15:46.5281932-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "project":  "winged-complex-390417",
+    "notebook":  {
+                     "account":  "p*********@gmail.com",
+                     "location":  "global",
+                     "jobId":  "job_1772666140394_1hpbfp",
+                     "status":  "completed",
+                     "enterpriseReady":  false,
+                     "access":  "False",
+                     "requiredSubscriptionTier":  "SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT",
+                     "blockers":  [
+                                      "NotebookLM Enterprise license is required for this principal. Required subscription tier: SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT."
+                                  ],
+                     "error":  ""
+                 },
+    "runtime":  {
+                    "healthOk":  true,
+                    "healthError":  "",
+                    "queue":  {
+                                  "queued":  0,
+                                  "running":  0,
+                                  "total":  8,
+                                  "concurrency":  2
+                              },
+                    "jobsListed":  8,
+                    "jobsError":  ""
+                },
+    "slack":  {
+                  "enabled":  true,
+                  "configured":  false,
+                  "tokenSource":  "none",
+                  "connectionError":  "not_configured",
+                  "policyAllowedWorkspaces":  [
+                                                  "jesse team"
+                                              ],
+                  "statusError":  "",
+                  "reviewJobId":  "",
+                  "reviewStatus":  "",
+                  "reviewError":  ""
+              },
+    "google":  {
+                   "enabled":  true,
+                   "configured":  true,
+                   "allowlistedMissing":  [
+
+                                          ],
+                   "connectedAccountsCount":  4,
+                   "statusError":  "",
+                   "consoleGate":  {
+                                       "statusLine":  "HTTP/1.1 302 Found",
+                                       "location":  "https://accounts.google.com/ServiceLogin",
+                                       "error":  ""
+                                   }
+               },
+    "phone":  {
+                  "bootstrapOk":  true,
+                  "bootstrapError":  "",
+                  "pushStatusOk":  true,
+                  "pushStatusError":  "",
+                  "pushSubscriptions":  0,
+                  "phoneTunnelSmoke":  {
+                                           "ok":  true,
+                                           "checkedAt":  "2026-03-04T23:15:46.3285428+00:00",
+                                           "reportPath":  "C:\\Users\\acer\\Asolaria\\reports\\phone-tunnel-smoke-20260304-201546.md",
+                                           "controlPlaneHealthy":  true,
+                                           "keeperRunning":  true,
+                                           "adbAuthorizedCount":  0,
+                                           "notes":  [
+                                                         "ADB found but no authorized devices connected.",
+                                                         "Desktop remote probes used relaxed TLS validation for this smoke run."
+                                                     ]
+                                       },
+                  "phoneTunnelSmokeError":  ""
+              },
+    "ppo005":  {
+                   "johnCutoverScriptPath":  "/Users/john/dev/oli/scripts/phone_provider_cutover.sh",
+                   "johnCutoverTasksPath":  "/Users/john/dev/oli/ops/projects/oli-upgrade/subprojects/phone-provider-onboarding/tasks.json",
+                   "scriptExists":  false,
+                   "tasksExists":  false
+               },
+    "liveTranscript":  {
+                           "latestRealMeetingSummary":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260304-195552\\REALMEET_SUMMARY.md",
+                           "latestRealMeetingDir":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260304-195552",
+                           "latestChecklist":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-real-meeting-checklist-20260304-1947.md",
+                           "latestPacket":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-real-meeting-packet-20260304-1949.md"
+                       },
+    "blockers":  [
+                     "Slack integration is unconfigured (token missing).",
+                     "Google Console auth overview still redirects to sign-in (owner login required).",
+                     "NotebookLM Enterprise not ready; required tier SUBSCRIPTION_TIER_NOTEBOOK_LM_INTERACT.",
+                     "Phone push subscription count is 0; manual tap-through still pending.",
+                     "PPO-005 John runtime dependencies are not present on this machine.",
+                     "Security follow-up pending: rotate previously exposed password from historical logs/chat context.",
+                     "Real meeting transcript matrix remains manual: Zoom/Meet/Teams live-call validation still needed."
+                 ]
+}

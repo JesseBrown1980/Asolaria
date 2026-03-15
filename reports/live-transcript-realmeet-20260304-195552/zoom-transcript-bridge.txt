@@ -1,0 +1,2 @@
+﻿@{ok=True; sessionId=; running=False; transcript=Zoom interviewer: Please walk me through your architecture.
+Zoom candidate: We split capture and transcript composition by lane.; compat=}

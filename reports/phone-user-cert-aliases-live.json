@@ -1,0 +1,62 @@
+﻿[
+    {
+        "Alias":  "ChaserKeyStore",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  0
+    },
+    {
+        "Alias":  "cn=asolaria local ca user:3600138e.0",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  0
+    },
+    {
+        "Alias":  "com.samsung.euicc_ds",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  0
+    },
+    {
+        "Alias":  "esimdiscovery",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  0
+    },
+    {
+        "Alias":  "FindMyMobile",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  0
+    },
+    {
+        "Alias":  "FMEKeyStore",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  0
+    },
+    {
+        "Alias":  "gak_ec_alias",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  1
+    },
+    {
+        "Alias":  "gak_rsa_alias",
+        "Purpose":  "",
+        "Page":  0
+    },
+    {
+        "Alias":  "gak_rsa_alias",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  1
+    },
+    {
+        "Alias":  "SEMALKEY",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  0
+    },
+    {
+        "Alias":  "SemSsdidManagerService",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  1
+    },
+    {
+        "Alias":  "skms_attestation_store",
+        "Purpose":  "Installed for VPN and apps",
+        "Page":  1
+    }
+]

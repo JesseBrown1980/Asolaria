@@ -1,0 +1,2 @@
+﻿@{ok=True; sessionId=; running=False; transcript=Meet interviewer: How do you handle transcript drift?
+Meet candidate: We dedupe lines and keep source-aware snapshots.; compat=}

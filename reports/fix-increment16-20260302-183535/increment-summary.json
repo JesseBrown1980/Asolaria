@@ -1,0 +1,11 @@
+﻿{
+    "increment":  "16",
+    "timestamp":  "20260302-183535",
+    "action":  "Removed inline -SharedToken argument from HKCU Run AgentBridgePC; retained env token usage",
+    "beforeHasSharedToken":  true,
+    "afterHasSharedToken":  false,
+    "beforeLength":  263,
+    "afterLength":  204,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

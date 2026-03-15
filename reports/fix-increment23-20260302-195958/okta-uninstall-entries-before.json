@@ -1,0 +1,20 @@
+﻿[
+    {
+        "DisplayName":  "OktaVerify-x64-6.4.0.0",
+        "DisplayVersion":  "6.4.0.0",
+        "Publisher":  "Okta, Inc.",
+        "InstallDate":  "20260102",
+        "UninstallString":  "MsiExec.exe /I{7056CBA2-CBAA-4454-BE88-BFE1E5E03F6E}",
+        "PSChildName":  "{7056CBA2-CBAA-4454-BE88-BFE1E5E03F6E}",
+        "PSPath":  "Microsoft.PowerShell.Core\\Registry::HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{7056CBA2-CBAA-4454-BE88-BFE1E5E03F6E}"
+    },
+    {
+        "DisplayName":  "Okta Verify",
+        "DisplayVersion":  "6.4.0.0",
+        "Publisher":  "Okta, Inc.",
+        "InstallDate":  null,
+        "UninstallString":  "\"C:\\ProgramData\\Package Cache\\{b92c2216-fc9a-40f0-a437-1c4b2facbe09}\\OktaVerifySetup.exe\"  /uninstall",
+        "PSChildName":  "{b92c2216-fc9a-40f0-a437-1c4b2facbe09}",
+        "PSPath":  "Microsoft.PowerShell.Core\\Registry::HKEY_LOCAL_MACHINE\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{b92c2216-fc9a-40f0-a437-1c4b2facbe09}"
+    }
+]

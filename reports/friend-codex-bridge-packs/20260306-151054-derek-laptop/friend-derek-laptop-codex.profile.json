@@ -1,0 +1,38 @@
+﻿{
+    "version":  1,
+    "profileName":  "friend-derek-laptop-codex",
+    "description":  "Friend machine Codex bridge profile for Derek-Laptop.",
+    "relay":  {
+                  "urlEnv":  "CODEX_BRIDGE_URL",
+                  "tokenEnv":  "CODEX_BRIDGE_TOKEN",
+                  "room":  "asolaria_friend_derek-laptop",
+                  "from":  "friend-derek-laptop-codex"
+              },
+    "security":  {
+                     "allowSenders":  [
+                                          "this-codex"
+                                      ],
+                     "senderTokenEnv":  "CODEX_BRIDGE_SENDER_TOKEN_FRIEND_DEREK_LAPTOP_CODEX",
+                     "requireRoomPolicy":  true
+                 },
+    "runtime":  {
+                    "cursorFile":  "cursor-friend-derek-laptop-codex.json",
+                    "pollIntervalMs":  1000,
+                    "maxBatch":  50,
+                    "maxMessageChars":  6000
+                },
+    "routing":  {
+                    "taskPrefixes":  [
+                                         "TASK:",
+                                         "QUESTION:",
+                                         "NOTE:"
+                                     ],
+                    "requireThreadTag":  true,
+                    "requireMention":  true
+                },
+    "ops":  {
+                "logPrefix":  "friend-derek-laptop-codex",
+                "workdir":  ".",
+                "startMode":  "manual"
+            }
+}

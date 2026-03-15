@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asolaria for OpenAI Board Review</title>
+  <style>
+    :root {
+      --paper: #f6f0e7;
+      --ink: #13110f;
+      --muted: #5e554d;
+      --rust: #a54725;
+      --amber: #c98f26;
+      --forest: #21514b;
+      --night: #162330;
+      --line: rgba(19, 17, 15, 0.12);
+      --white: #fffdf9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(201, 143, 38, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(33, 81, 75, 0.16), transparent 28%),
+        linear-gradient(135deg, #efe6d9 0%, #f8f4ee 100%);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .deck {
+      padding: 18px 0 28px;
+    }
+
+    .slide {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto 24px;
+      background: var(--paper);
+      border: 1px solid rgba(19, 17, 15, 0.08);
+      box-shadow: 0 24px 60px rgba(22, 35, 48, 0.18);
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 22%),
+        radial-gradient(circle at 12% 12%, rgba(201, 143, 38, 0.14), transparent 18%),
+        radial-gradient(circle at 88% 82%, rgba(33, 81, 75, 0.12), transparent 24%);
+      pointer-events: none;
+    }
+
+    .slide.dark {
+      background:
+        radial-gradient(circle at top left, rgba(201, 143, 38, 0.16), transparent 26%),
+        linear-gradient(135deg, #101a24 0%, #162330 56%, #203548 100%);
+      color: var(--white);
+    }
+
+    .slide.dark .eyebrow,
+    .slide.dark .meta,
+    .slide.dark .caption,
+    .slide.dark .source {
+      color: rgba(255, 253, 249, 0.78);
+    }
+
+    .pad {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      padding: 54px 66px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .eyebrow {
+      font-family: "Segoe UI", Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      color: var(--rust);
+      margin-bottom: 16px;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 60px;
+      line-height: 1;
+      max-width: 920px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 40px;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      max-width: 900px;
+    }
+
+    h3 {
+      font-size: 22px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .lead {
+      font-size: 22px;
+      line-height: 1.45;
+      max-width: 1000px;
+      color: var(--muted);
+    }
+
+    .dark .lead {
+      color: rgba(255, 253, 249, 0.86);
+    }
+
+    .meta {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      margin-top: 10px;
+      flex: 1;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 18px;
+      flex: 1;
+    }
+
+    .cards-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    .card {
+      background: rgba(255, 253, 249, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px 24px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .dark .card {
+      background: rgba(255, 253, 249, 0.08);
+      border-color: rgba(255, 253, 249, 0.12);
+      box-shadow: none;
+    }
+
+    .card.big-number {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 170px;
+    }
+
+    .number {
+      font-size: 62px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--rust);
+      margin-bottom: 8px;
+    }
+
+    .dark .label {
+      color: #f3ba63;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 94px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 15px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .step:first-child {
+      border-top: none;
+    }
+
+    .step-num {
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--amber);
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding-top: 4px;
+    }
+
+    .caption {
+      margin-top: 12px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .source {
+      margin-top: auto;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .quote {
+      font-size: 32px;
+      line-height: 1.2;
+      max-width: 940px;
+    }
+
+    .split-stat {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 16px;
+    }
+
+    .band {
+      position: absolute;
+      right: -120px;
+      top: 40px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(201, 143, 38, 0.18), rgba(165, 71, 37, 0.08));
+      filter: blur(2px);
+    }
+
+    .dark .band {
+      background: linear-gradient(135deg, rgba(201, 143, 38, 0.2), rgba(255, 253, 249, 0.04));
+    }
+
+    @page {
+      size: 13.33in 7.5in;
+      margin: 0.22in;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .deck {
+        padding: 0;
+      }
+
+      .slide {
+        margin: 0 0 0.18in 0;
+        box-shadow: none;
+        break-after: page;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <section class="slide dark">
+      <div class="band"></div>
+      <div class="pad">
+        <div class="eyebrow">OpenAI Board Review / March 9, 2026</div>
+        <h1>Asolaria is what a frontier-model operating substrate already looks like in the wild.</h1>
+        <p class="lead">Not a chatbot shell. Not a single agent. A governed local-first control plane with Codex, Symphony, remote MCP, graph telemetry, memory, mistakes, desktop action, phone action, and relay-backed multi-machine coordination.</p>
+        <div class="meta">
+          <div>Prepared from local code, runbooks, and runtime reports</div>
+          <div>Sanitized external narrative</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="pad">
+        <div class="eyebrow">The Core Claim</div>
+        <h2>The interesting artifact is not the interface. It is the operating spine.</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>What is already integrated</h3>
+            <ul>
+              <li>Codex in the primary provider chain</li>
+              <li>Symphony as a managed long-running sidecar</li>
+              <li>Remote MCP used as compact integration fabric</li>
+              <li>Desktop, browser, voice, and phone lanes</li>
+              <li>Persistent project, memory, and mistake stores</li>
+              <li>Graph runtime with typed events and action manifests</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Why it matters to OpenAI</h3>
+            <p class="lead" style="font-size: 20px;">This is close to the real environment advanced users want around Codex and Symphony: governed execution, durable workflow lanes, recovery paths, and telemetry that can support future model-assisted control.</p>
+            <p class="caption">OpenAI relevance: local execution, managed workflows, multimodal use, remote tools, and auditable authority.</p>
+          </div>
+        </div>
+        <div class="source">Sources: brain orchestration, worker routing, Symphony integration, gateway authority, graph runtime, and bridge docs in the local Asolaria tree.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="pad">
+        <div class="eyebrow">Live Surface Area</div>
+        <h2>This is already a substantial operational system.</h2>
+        <div class="grid-3">
+          <div class="card big-number">
+            <div>
+              <div class="label">Connector Modules</div>
+              <div class="number">40</div>
+            </div>
+            <div class="caption">Local control, Google and GCP, GitHub, Slack, Telegram, Symphony, Augment, phone, voice, browser, and routing.</div>
+          </div>
+          <div class="card big-number">
+            <div>
+              <div class="label">Indexed Skills</div>
+              <div class="number">53</div>
+            </div>
+            <div class="caption">Operational, browser, mobile, visual audit, mistake avoidance, and Codex skill reference surfaces.</div>
+          </div>
+          <div class="card big-number">
+            <div>
+              <div class="label">Tool Actions</div>
+              <div class="number">32</div>
+            </div>
+            <div class="caption">Status, rebuild, Google and Vertex checks, capture flows, browser flows, and WebMCP inspection/task surfaces.</div>
+          </div>
+        </div>
+        <div class="cards-2">
+          <div class="card">
+            <h3>Persistent stores</h3>
+            <ul>
+              <li>Projects</li>
+              <li>Memory turns and snapshots</li>
+              <li>Mistake ledger and taxonomy</li>
+              <li>Task ledger</li>
+              <li>Graph runtime logs</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Execution lanes</h3>
+            <ul>
+              <li>`local_codex` for highest-trust local work</li>
+              <li>`abacus` for bounded external packets</li>
+              <li>`symphony` for workflow-backed issue execution</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark">
+      <div class="pad">
+        <div class="eyebrow">Governance</div>
+        <h2>The system treats tool use as governed infrastructure, not invisible model side effects.</h2>
+        <div class="grid-2">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">Mode 01</div>
+              <div>
+                <h3>Authority is explicit</h3>
+                <p class="lead" style="font-size: 20px;">`operator_primary`, `shared_control`, and `asolaria_primary` are first-class modes with request, confirm, and rollback flows.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">Mode 02</div>
+              <div>
+                <h3>Approvals are bindable</h3>
+                <p class="lead" style="font-size: 20px;">Approval records are one-time, tied to tool id plus input hash, and expire by TTL.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">Mode 03</div>
+              <div>
+                <h3>Audit can lock writes</h3>
+                <p class="lead" style="font-size: 20px;">If audit verification fails, control-write actions can be blocked until integrity is restored.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Why this matters</h3>
+            <p class="quote">If frontier models are going to run real tools, this is the pattern: explicit authority, approval gates, readiness drills, and verifiable audit.</p>
+          </div>
+        </div>
+        <div class="source">Sources: `docs/GATEWAY_TOOL_AUTHORITY.md`, `docs/AUTHORITY_MODES.md`.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="pad">
+        <div class="eyebrow">OpenAI-Native Lanes</div>
+        <h2>Codex, Symphony, and voice are already part of the operating substrate.</h2>
+        <div class="cards-2">
+          <div class="card">
+            <h3>Codex</h3>
+            <ul>
+              <li>Starts the provider chain</li>
+              <li>Owns the highest-trust local engineering lane</li>
+              <li>Runs inside the worker-router model, not beside it</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Symphony</h3>
+            <ul>
+              <li>Managed sidecar with config, status, start, stop, restart</li>
+              <li>Repo-aware workflow path and Linear project slug binding</li>
+              <li>Windows-aware launch path through `mise` and built `escript`</li>
+            </ul>
+          </div>
+        </div>
+        <div class="split-stat">
+          <div class="card">
+            <h3>Linear</h3>
+            <p class="lead" style="font-size: 20px;">Not just an integration checkbox. It participates in issue pickup, project routing, and long-running work handoff.</p>
+          </div>
+          <div class="card">
+            <h3>Voice</h3>
+            <p class="lead" style="font-size: 20px;">Cloud transcription defaults to `gpt-4o-mini-transcribe`, with adjacent live-audio and fallback paths.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="pad">
+        <div class="eyebrow">Cloud and Context</div>
+        <h2>GCP, Vertex, NotebookLM, and Augment are integrated with restraint.</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>GCP and Vertex</h3>
+            <ul>
+              <li>Service-account backed</li>
+              <li>Allowed-project enforcement</li>
+              <li>Read-only default cloud scope posture</li>
+              <li>Allowlisted admin service enabling</li>
+              <li>Daily request and token budgets for Vertex</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Augment / Auggie</h3>
+            <ul>
+              <li>Read-only context sidecar, not a second brain</li>
+              <li>`local_cli` for same-machine retrieval</li>
+              <li>`remote_mcp` for narrow cross-runtime bridge</li>
+              <li>Allowed tools limited to `codebase-retrieval`</li>
+            </ul>
+          </div>
+        </div>
+        <p class="caption">The design choice is the point: external systems strengthen local reasoning without bypassing governance.</p>
+        <div class="source">Sources: GCP connector, Vertex connector, NotebookLM connector, and Augment Context Sidecar docs.</div>
+      </div>
+    </section>
+
+    <section class="slide dark">
+      <div class="pad">
+        <div class="eyebrow">Actuation</div>
+        <h2>This system already reaches beyond software-only agency.</h2>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Desktop</h3>
+            <ul>
+              <li>Capture</li>
+              <li>Control</li>
+              <li>Display</li>
+              <li>Screenshot</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Browser</h3>
+            <ul>
+              <li>Chrome routes</li>
+              <li>URL open and profile flows</li>
+              <li>Visual audit surfaces</li>
+              <li>WebMCP task paths</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Phone</h3>
+            <ul>
+              <li>Mirror and pro mirror</li>
+              <li>Browser history inspection</li>
+              <li>Developer options checks</li>
+              <li>ADB-backed recovery logic</li>
+            </ul>
+          </div>
+        </div>
+        <p class="caption">The phone lane is not decorative. Startup contracts require path establishment before the mobile worker is trusted.</p>
+        <div class="source">Sources: startup contract, phone runbooks, phone connectors, and AnyDesk monitoring utilities.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="pad">
+        <div class="eyebrow">Graph Layer</div>
+        <h2>The graph runtime is live now, and the GNN posture is unusually mature because it is honest.</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>What is live</h3>
+            <ul>
+              <li>Typed graph events</li>
+              <li>Typed action manifests</li>
+              <li>Edge-risk scoring at event-build time</li>
+              <li>Training dataset export over graph-runtime windows</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>What is not claimed</h3>
+            <ul>
+              <li>No evidence of GNN inference in the hot path</li>
+              <li>Policy and approvals remain the root of trust</li>
+              <li>Graph learning is positioned as a sidecar for ranking and anomaly support</li>
+            </ul>
+          </div>
+        </div>
+        <p class="quote" style="font-size: 28px; margin-top: 22px;">The state-of-the-art move is not "we shoved a GNN into the critical path." The state-of-the-art move is to instrument the control plane first.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="pad">
+        <div class="eyebrow">Multi-Machine Fabric</div>
+        <h2>The system scales outward through relay, watchdog, and bootstrap patterns.</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Relay colony</h3>
+            <ul>
+              <li>Room-based message relay with bearer auth</li>
+              <li>Allowlists and per-sender token enforcement</li>
+              <li>Cloudflare tunnel support</li>
+              <li>Watchdog restart behavior and identity checks</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Cross-host bootstrap</h3>
+            <ul>
+              <li>Host discovery before install</li>
+              <li>Machine-specific toolchain inventory</li>
+              <li>Path and runtime adaptation per OS</li>
+              <li>Repeatable path for another workstation or Mac build-out</li>
+            </ul>
+          </div>
+        </div>
+        <p class="caption">The key proof is not one giant script. It is the operational doctrine for cloning the control-plane logic onto another host without losing identity, governance, or recovery behavior.</p>
+        <div class="source">Sources: `bridge.js`, `AIRLOCK_BOTS.md`, `ASOLARIA_COLONY_STARTUP.md`, and friend-bootstrap task materials.</div>
+      </div>
+    </section>
+
+    <section class="slide dark">
+      <div class="pad">
+        <div class="eyebrow">Board Takeaway</div>
+        <h2>Asolaria shows what comes after the chatbot shell.</h2>
+        <div class="cards-2">
+          <div class="card">
+            <h3>What OpenAI should see</h3>
+            <ul>
+              <li>Codex as a first-class local execution lane</li>
+              <li>Symphony as the durable workflow layer</li>
+              <li>Remote MCP as the integration fabric</li>
+              <li>Governance and audit as mandatory primitives</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>What OpenAI should do</h3>
+            <ul>
+              <li>Study systems like this directly</li>
+              <li>Strengthen local-first Codex workflows</li>
+              <li>Make governed tool execution easier to adopt</li>
+              <li>Treat graph-native telemetry as a serious future lane</li>
+            </ul>
+          </div>
+        </div>
+        <p class="quote" style="margin-top: 24px;">The next important layer is not a better prompt box. It is the governed operating system around frontier models.</p>
+        <div class="meta">
+          <div>Asolaria / Board Narrative Deck</div>
+          <div>March 9, 2026</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

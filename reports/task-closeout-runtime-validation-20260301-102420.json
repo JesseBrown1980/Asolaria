@@ -1,0 +1,50 @@
+﻿{
+    "generatedAtLocal":  "2026-03-01 10:25:20 -03:00",
+    "generatedAtUtc":  "2026-03-01T13:25:20.2177719Z",
+    "mode":  "build/system continuation run",
+    "ownerRequest":  "slack review #general last 20",
+    "execution":  {
+                      "endpoint":  "POST http://127.0.0.1:4781/api/integrations/slack/review",
+                      "payload":  {
+                                      "channel":  "#general",
+                                      "limit":  20,
+                                      "analyze":  false,
+                                      "request":  "build/system continuation run"
+                                  },
+                      "jobId":  "job_1772371460122_jn5dii",
+                      "jobStatus":  "failed",
+                      "jobError":  "Slack integration is not configured.",
+                      "jobElapsedMs":  0,
+                      "jobCreatedAt":  "2026-03-01T13:24:20.122Z",
+                      "jobFinishedAt":  "2026-03-01T13:26:06.088Z"
+                  },
+    "slackStatus":  {
+                        "ok":  true,
+                        "status":  {
+                                       "enabled":  true,
+                                       "configured":  false,
+                                       "tokenSource":  "none",
+                                       "tokenHint":  "",
+                                       "defaultChannel":  "",
+                                       "updatedAt":  null,
+                                       "policy":  {
+                                                      "allowPrivateChannels":  true,
+                                                      "allowDirectMessages":  false,
+                                                      "allowedChannels":  [
+
+                                                                          ],
+                                                      "maxMessages":  80,
+                                                      "maxDigestChars":  28000,
+                                                      "backendOnly":  true,
+                                                      "noLinkNavigation":  true,
+                                                      "linkRedaction":  true
+                                                  },
+                                       "connection":  {
+                                                          "ok":  false,
+                                                          "error":  "not_configured"
+                                                      },
+                                       "workspace":  null,
+                                       "botUser":  null
+                                   }
+                    }
+}

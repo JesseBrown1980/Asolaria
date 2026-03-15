@@ -1,0 +1,16 @@
+To: John Cumbers
+Subject: Asolaria package for your OpenAI board presentation
+
+John,
+
+I wanted to send over a tighter board-facing package on Asolaria for your OpenAI board presentation.
+
+I attached a short cover letter along with the board memo, system card package, and deck.
+
+The short version is that Asolaria is not a chat wrapper and not a single-agent shell. It has become a local-first control plane around frontier models: governed tool execution, Codex as a primary execution lane, Symphony as a managed workflow sidecar, compact remote MCP integration, graph-native runtime telemetry, persistent memory and mistake capture, and desktop plus phone actuation inside one operator-facing system.
+
+What I think is most strategically relevant is the runtime shape itself: explicit authority modes, approval-gated tool invocation, audit verification, worker routing, relay-backed multi-machine coordination, and a live graph runtime with training-data export for future edge-risk and anomaly work. The GNN path is integrated in the right way: the graph substrate is live, but there is no claim that GNN inference is in the hot path yet.
+
+I wrote the package to support that exact frame for the board: not "look at my app," but "look at the operating substrate serious users are already building around frontier models."
+
+Jesse

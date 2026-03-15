@@ -1,0 +1,225 @@
+﻿{
+    "ok":  false,
+    "startedAt":  "2026-03-08T19:52:35-03:00",
+    "finishedAt":  "2026-03-08T19:53:35-03:00",
+    "durationSeconds":  60,
+    "baseUrl":  "http://127.0.0.1:4781",
+    "accounts":  [
+                     "jesse@jbrowndevelopmentllc.com",
+                     "plasmatoid@jbrowndevelopmentllc.com"
+                 ],
+    "samples":  [
+                    {
+                        "at":  "2026-03-08 19:52:36",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010355102_06dyvg"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010355594_g4pdy4"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:52:42",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010361069_cvmi4i"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010361544_jji728"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:52:47",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010367014_ido9gb"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010367476_3alnl5"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:52:53",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010372956_ba0m1h"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010373426_cei8hu"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:52:59",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010378904_5j1yee"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010379392_8l34c7"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:53:06",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010385389_nhgdwf"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010385851_v0y4j2"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:53:12",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010391323_ii20zj"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010391792_qm0sce"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:53:18",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010397269_xdtqb3"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010397740_yaifg5"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:53:24",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010403214_m48qld"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010403671_sdddaq"
+                                     }
+                                 ]
+                    },
+                    {
+                        "at":  "2026-03-08 19:53:30",
+                        "rows":  [
+                                     {
+                                         "account":  "jesse@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: Token has been expired or revoked.",
+                                         "jobId":  "job_1773010409142_e5br4u"
+                                     },
+                                     {
+                                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                         "ok":  false,
+                                         "status":  "reauth-needed",
+                                         "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                         "jobId":  "job_1773010409609_3h7rz2"
+                                     }
+                                 ]
+                    }
+                ],
+    "latestRows":  [
+                       {
+                           "account":  "jesse@jbrowndevelopmentllc.com",
+                           "ok":  false,
+                           "status":  "reauth-needed",
+                           "reason":  "Google token request failed: Token has been expired or revoked.",
+                           "jobId":  "job_1773010409142_e5br4u"
+                       },
+                       {
+                           "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                           "ok":  false,
+                           "status":  "reauth-needed",
+                           "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                           "jobId":  "job_1773010409609_3h7rz2"
+                       }
+                   ],
+    "summary":  {
+                    "sampleCount":  10,
+                    "healthy":  0,
+                    "unhealthy":  2,
+                    "reauthNeeded":  2
+                }
+}

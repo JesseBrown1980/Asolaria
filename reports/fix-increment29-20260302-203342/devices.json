@@ -1,0 +1,9 @@
+﻿{
+    "ffmpeg":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffmpeg.exe",
+    "videoDevices":  [
+                         "HD User Facing"
+                     ],
+    "audioDevices":  [
+                         "Grupo de microfones (Realtek High Definition Audio)"
+                     ]
+}

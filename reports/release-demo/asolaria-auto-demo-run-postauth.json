@@ -1,0 +1,32 @@
+﻿{
+    "timestampUtc":  "2026-02-27T19:20:09.9152540Z",
+    "account":  "plasmatoid@gmail.com",
+    "expiresAt":  "2026-02-27T20:19:30.070Z",
+    "expiresInSec":  3560,
+    "demos":  [
+                  {
+                      "name":  "cloud",
+                      "jobId":  "job_1772220006155_k8wamf",
+                      "status":  "completed",
+                      "finishedAt":  "2026-02-27T19:20:07.011Z",
+                      "httpStatus":  200,
+                      "url":  "https://cloudresourcemanager.googleapis.com/v1/projects/winged-complex-390417"
+                  },
+                  {
+                      "name":  "bigquery",
+                      "jobId":  "job_1772220007449_9qkamp",
+                      "status":  "completed",
+                      "finishedAt":  "2026-02-27T19:20:07.813Z",
+                      "httpStatus":  200,
+                      "url":  "https://bigquery.googleapis.com/bigquery/v2/projects/winged-complex-390417/datasets?maxResults=5"
+                  },
+                  {
+                      "name":  "storage",
+                      "jobId":  "job_1772220008065_qve4yg",
+                      "status":  "completed",
+                      "finishedAt":  "2026-02-27T19:20:09.398Z",
+                      "httpStatus":  200,
+                      "url":  "https://storage.googleapis.com/storage/v1/b?project=winged-complex-390417\u0026maxResults=5"
+                  }
+              ]
+}

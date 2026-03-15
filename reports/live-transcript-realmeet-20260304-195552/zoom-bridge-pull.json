@@ -1,0 +1,50 @@
+﻿{
+    "ok":  true,
+    "sessionId":  "matrix_20260304_195545_cd7834",
+    "source":  "teams_caption",
+    "laneId":  "zoom_lane",
+    "lastId":  6,
+    "entriesCount":  6,
+    "diagnostics":  {
+                        "requestedSessionId":  "matrix_20260304_195545_cd7834",
+                        "requestedLaneId":  "zoom_lane",
+                        "acceptedCount":  32,
+                        "dedupedCount":  0,
+                        "rejectedCount":  0,
+                        "pullCount":  13,
+                        "resetCount":  10,
+                        "lastPushAt":  "2026-03-04T22:55:47.390Z",
+                        "lastPullAt":  "2026-03-04T22:55:52.918Z",
+                        "lastReason":  "",
+                        "lastMonotonicAdjustMs":  0,
+                        "requestedAfterId":  0,
+                        "returnedCount":  2,
+                        "backlogCount":  0,
+                        "windowStartId":  1,
+                        "windowEndId":  2,
+                        "nonMonotonicIdCount":  0,
+                        "duplicateIdCount":  0,
+                        "latestEntryAt":  "2026-03-04T22:55:46.297Z",
+                        "lagMs":  6621
+                    },
+    "entries":  [
+                    {
+                        "id":  1,
+                        "at":  "2026-03-04T22:55:46.128Z",
+                        "text":  "Zoom interviewer: Please walk me through your architecture.",
+                        "source":  "zoom_caption",
+                        "sessionId":  "matrix_20260304_195545_cd7834",
+                        "laneId":  "zoom_lane",
+                        "direction":  "incoming"
+                    },
+                    {
+                        "id":  2,
+                        "at":  "2026-03-04T22:55:46.297Z",
+                        "text":  "Zoom candidate: We split capture and transcript composition by lane.",
+                        "source":  "zoom_caption",
+                        "sessionId":  "matrix_20260304_195545_cd7834",
+                        "laneId":  "zoom_lane",
+                        "direction":  "incoming"
+                    }
+                ]
+}

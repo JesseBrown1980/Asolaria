@@ -1,0 +1,43 @@
+﻿{
+    "serverTime":  "2026-03-02T21:20:46.932522+00:00",
+    "phone":  {
+                  "online":  false,
+                  "deviceId":  "",
+                  "connectedAt":  "",
+                  "lastSeenAt":  "",
+                  "staleSeconds":  0.0,
+                  "connectId":  "",
+                  "connectors":  {
+
+                                 }
+              },
+    "metrics":  {
+                    "sentToPhoneCount":  0,
+                    "receivedFromPhoneCount":  0,
+                    "eventsCount":  1,
+                    "requestsCount":  0
+                },
+    "requests":  [
+
+                 ],
+    "events":  [
+                   {
+                       "at":  "2026-03-02T21:14:04.570468+00:00",
+                       "level":  "info",
+                       "message":  "PC server started",
+                       "detail":  {
+                                      "host":  "0.0.0.0",
+                                      "port":  8765
+                                  }
+                   }
+               ],
+    "pcConnectors":  {
+                         "pc_status":  true,
+                         "local_ai":  false,
+                         "pc_shell_enabled":  false,
+                         "pc_shell_allowlist":  [
+
+                                                ],
+                         "phone_bridge":  true
+                     }
+}

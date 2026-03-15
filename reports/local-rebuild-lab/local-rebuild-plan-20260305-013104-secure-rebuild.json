@@ -1,0 +1,444 @@
+{
+  "ok": true,
+  "generatedAt": "2026-03-05T04:31:04.369Z",
+  "startedAt": "2026-03-05T04:31:04.303Z",
+  "appName": "Gemini + transcription ecosystem",
+  "objective": "local secure rebuild from current evidence",
+  "evidence": {
+    "loadedCount": 4,
+    "skippedCount": 1,
+    "totalChars": 26403,
+    "loaded": [
+      {
+        "path": "C:\\Users\\acer\\Asolaria\\reports\\upgrade-blocker-checkpoint-latest.md",
+        "totalBytes": 2183,
+        "loadedChars": 2181
+      },
+      {
+        "path": "C:\\Users\\acer\\Asolaria\\reports\\task-closeout-runtime-validation-latest.json",
+        "totalBytes": 3073,
+        "loadedChars": 3071
+      },
+      {
+        "path": "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-validation-matrix-20260305-012822.md",
+        "totalBytes": 811,
+        "loadedChars": 809
+      },
+      {
+        "path": "C:\\Users\\acer\\tmp_phone_recent_screens_usb\\ocr_usb_filtered_20260305.json",
+        "totalBytes": 20336,
+        "loadedChars": 20336
+      }
+    ],
+    "skipped": [
+      {
+        "path": "C:\\Users\\acer\\Asolaria\\reports\\bridge-caption-auth-smoke-latest.md",
+        "reason": "not_found"
+      }
+    ],
+    "topSignals": [
+      {
+        "signal": "connector",
+        "count": 23
+      },
+      {
+        "signal": "gemini",
+        "count": 22
+      },
+      {
+        "signal": "mcp",
+        "count": 12
+      },
+      {
+        "signal": "transcript",
+        "count": 7
+      },
+      {
+        "signal": "bridge",
+        "count": 6
+      },
+      {
+        "signal": "slack",
+        "count": 5
+      },
+      {
+        "signal": "notebooklm",
+        "count": 3
+      },
+      {
+        "signal": "queue",
+        "count": 2
+      },
+      {
+        "signal": "teams",
+        "count": 2
+      },
+      {
+        "signal": "token",
+        "count": 2
+      },
+      {
+        "signal": "oauth",
+        "count": 1
+      }
+    ]
+  },
+  "capabilities": [
+    {
+      "id": "tool_orchestration",
+      "title": "Connector and tool orchestration",
+      "category": "orchestration",
+      "confidence": 0.97,
+      "matchCount": 51,
+      "topSignals": [
+        "mcp",
+        "connector",
+        "tool(s)?",
+        "json-rpc",
+        "policy"
+      ],
+      "effortHours": 9,
+      "localComponents": [
+        "tool-policy-engine",
+        "connector-health-snapshot",
+        "scoped-allowlist-runtime",
+        "mistake-taxonomy-feedback-loop"
+      ],
+      "controls": [
+        "Default-deny tool execution with explicit allowlist.",
+        "Run tool actions through risk scoring and approval gates.",
+        "Log tool payload summaries without leaking secrets."
+      ],
+      "tests": [
+        "Tool allowlist deny/allow matrix",
+        "Policy preset integrity test",
+        "Approval hook bypass prevention test"
+      ]
+    },
+    {
+      "id": "integrations_collab",
+      "title": "Messaging and collaboration integrations",
+      "category": "integrations",
+      "confidence": 0.97,
+      "matchCount": 9,
+      "topSignals": [
+        "slack",
+        "teams",
+        "channel",
+        "workspace"
+      ],
+      "effortHours": 7,
+      "localComponents": [
+        "integration-status-checker",
+        "workspace-allowlist-guard",
+        "message-review-queue"
+      ],
+      "controls": [
+        "Enforce workspace/domain allowlists before any send action.",
+        "Separate read-only review from posting capabilities.",
+        "Block mass-send operations without explicit approval."
+      ],
+      "tests": [
+        "Integration configured/not-configured path test",
+        "Workspace allowlist deny test",
+        "Outbound posting approval-gate test"
+      ]
+    },
+    {
+      "id": "live_transcription",
+      "title": "Live transcription pipeline",
+      "category": "speech",
+      "confidence": 0.97,
+      "matchCount": 9,
+      "topSignals": [
+        "live transcript",
+        "transcript"
+      ],
+      "effortHours": 12,
+      "localComponents": [
+        "audio-capture-ingest",
+        "streaming-asr-worker",
+        "transcript-buffer-store",
+        "chat-mirror-renderer"
+      ],
+      "controls": [
+        "Keep raw audio local by default; require opt-in for cloud ASR.",
+        "Mask secrets/PII before transcript persistence.",
+        "Use append-only transcript audit logs with retention limits."
+      ],
+      "tests": [
+        "Mic-only and loopback transcription accuracy regression test",
+        "Transcript drop-resilience test under queue pressure",
+        "Copy-paste chat formatting validation test"
+      ]
+    },
+    {
+      "id": "identity_oauth",
+      "title": "OAuth and identity workflows",
+      "category": "identity",
+      "confidence": 0.75,
+      "matchCount": 5,
+      "topSignals": [
+        "oauth",
+        "login",
+        "auth",
+        "token"
+      ],
+      "effortHours": 8,
+      "localComponents": [
+        "oauth-health-prober",
+        "token-source-registry",
+        "account-allowlist-guard",
+        "auth-error-classifier"
+      ],
+      "controls": [
+        "Never persist refresh/access tokens in plaintext artifacts.",
+        "Mask account identifiers in reports by default.",
+        "Fail closed on redirect/auth anomalies."
+      ],
+      "tests": [
+        "Per-account OAuth viability smoke test",
+        "Masked-report verification test",
+        "Auth error taxonomy regression test"
+      ]
+    },
+    {
+      "id": "mobile_bridge",
+      "title": "Phone bridge and device control",
+      "category": "device",
+      "confidence": 0.59,
+      "matchCount": 3,
+      "topSignals": [
+        "phone"
+      ],
+      "effortHours": 10,
+      "localComponents": [
+        "device-target-resolver",
+        "adb-command-wrapper",
+        "phone-evidence-capture",
+        "bridge-health-monitor"
+      ],
+      "controls": [
+        "Require explicit device allowlist and serial pinning.",
+        "Block privileged shell paths unless owner-approved.",
+        "Store captures in local evidence folders with checksum metadata."
+      ],
+      "tests": [
+        "Multi-device targeting fallback test",
+        "USB/LAN route consistency check",
+        "Phone capture artifact integrity check"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "policy-guardian",
+      "role": "Enforce allowlists, risk scoring, and approval gates before execution.",
+      "source": "baseline"
+    },
+    {
+      "id": "evidence-ledger",
+      "role": "Store reconstruction evidence and test outcomes with immutable timestamps.",
+      "source": "baseline"
+    },
+    {
+      "id": "tool-policy-engine",
+      "role": "Implement connector and tool orchestration capability locally.",
+      "source": "tool_orchestration"
+    },
+    {
+      "id": "connector-health-snapshot",
+      "role": "Implement connector and tool orchestration capability locally.",
+      "source": "tool_orchestration"
+    },
+    {
+      "id": "scoped-allowlist-runtime",
+      "role": "Implement connector and tool orchestration capability locally.",
+      "source": "tool_orchestration"
+    },
+    {
+      "id": "mistake-taxonomy-feedback-loop",
+      "role": "Implement connector and tool orchestration capability locally.",
+      "source": "tool_orchestration"
+    },
+    {
+      "id": "integration-status-checker",
+      "role": "Implement messaging and collaboration integrations capability locally.",
+      "source": "integrations_collab"
+    },
+    {
+      "id": "workspace-allowlist-guard",
+      "role": "Implement messaging and collaboration integrations capability locally.",
+      "source": "integrations_collab"
+    },
+    {
+      "id": "message-review-queue",
+      "role": "Implement messaging and collaboration integrations capability locally.",
+      "source": "integrations_collab"
+    },
+    {
+      "id": "audio-capture-ingest",
+      "role": "Implement live transcription pipeline capability locally.",
+      "source": "live_transcription"
+    },
+    {
+      "id": "streaming-asr-worker",
+      "role": "Implement live transcription pipeline capability locally.",
+      "source": "live_transcription"
+    },
+    {
+      "id": "transcript-buffer-store",
+      "role": "Implement live transcription pipeline capability locally.",
+      "source": "live_transcription"
+    },
+    {
+      "id": "chat-mirror-renderer",
+      "role": "Implement live transcription pipeline capability locally.",
+      "source": "live_transcription"
+    },
+    {
+      "id": "oauth-health-prober",
+      "role": "Implement oauth and identity workflows capability locally.",
+      "source": "identity_oauth"
+    },
+    {
+      "id": "token-source-registry",
+      "role": "Implement oauth and identity workflows capability locally.",
+      "source": "identity_oauth"
+    },
+    {
+      "id": "account-allowlist-guard",
+      "role": "Implement oauth and identity workflows capability locally.",
+      "source": "identity_oauth"
+    },
+    {
+      "id": "auth-error-classifier",
+      "role": "Implement oauth and identity workflows capability locally.",
+      "source": "identity_oauth"
+    },
+    {
+      "id": "device-target-resolver",
+      "role": "Implement phone bridge and device control capability locally.",
+      "source": "mobile_bridge"
+    },
+    {
+      "id": "adb-command-wrapper",
+      "role": "Implement phone bridge and device control capability locally.",
+      "source": "mobile_bridge"
+    },
+    {
+      "id": "phone-evidence-capture",
+      "role": "Implement phone bridge and device control capability locally.",
+      "source": "mobile_bridge"
+    },
+    {
+      "id": "bridge-health-monitor",
+      "role": "Implement phone bridge and device control capability locally.",
+      "source": "mobile_bridge"
+    }
+  ],
+  "phases": [
+    {
+      "id": "phase-1-observe",
+      "title": "Observe and classify",
+      "deliverables": [
+        "Evidence bundle normalized (screenshots OCR, logs, endpoint traces)",
+        "Capability map with confidence scores",
+        "Threat and trust-boundary register"
+      ],
+      "estimatedHours": 11,
+      "focusCapabilities": [
+        "tool_orchestration",
+        "integrations_collab",
+        "live_transcription",
+        "identity_oauth",
+        "mobile_bridge"
+      ]
+    },
+    {
+      "id": "phase-2-build",
+      "title": "Build local equivalents",
+      "deliverables": [
+        "Local connector/service implementations for top capabilities",
+        "Policy-guardian integration for each action path",
+        "Replayable scripts for critical operator workflows"
+      ],
+      "estimatedHours": 25,
+      "focusCapabilities": [
+        "tool_orchestration",
+        "integrations_collab",
+        "live_transcription",
+        "identity_oauth",
+        "mobile_bridge"
+      ]
+    },
+    {
+      "id": "phase-3-harden",
+      "title": "Harden and verify",
+      "deliverables": [
+        "Security controls enforced (allowlists, secret handling, audit logs)",
+        "Regression + abuse-case test matrix passing",
+        "Operational runbook and rollback steps"
+      ],
+      "estimatedHours": 20,
+      "focusCapabilities": [
+        "tool_orchestration",
+        "integrations_collab",
+        "live_transcription",
+        "identity_oauth",
+        "mobile_bridge"
+      ]
+    }
+  ],
+  "securityGates": [
+    "No proprietary binary/code extraction; rely on observed behavior and public docs only.",
+    "Pin dependency versions and generate SBOM for every local replacement service.",
+    "Run secrets scan on generated artifacts before commits.",
+    "Enforce egress allowlist for all connector calls.",
+    "Default-deny tool execution with explicit allowlist.",
+    "Run tool actions through risk scoring and approval gates.",
+    "Log tool payload summaries without leaking secrets.",
+    "Enforce workspace/domain allowlists before any send action.",
+    "Separate read-only review from posting capabilities.",
+    "Block mass-send operations without explicit approval.",
+    "Keep raw audio local by default; require opt-in for cloud ASR.",
+    "Mask secrets/PII before transcript persistence.",
+    "Use append-only transcript audit logs with retention limits.",
+    "Never persist refresh/access tokens in plaintext artifacts.",
+    "Mask account identifiers in reports by default.",
+    "Fail closed on redirect/auth anomalies.",
+    "Require explicit device allowlist and serial pinning.",
+    "Block privileged shell paths unless owner-approved.",
+    "Store captures in local evidence folders with checksum metadata."
+  ],
+  "testMatrix": [
+    "Unit tests for capability parsers and policy evaluators",
+    "Contract tests for each enabled connector",
+    "Red-team prompt test for unsafe automation denial paths",
+    "Tool allowlist deny/allow matrix",
+    "Policy preset integrity test",
+    "Approval hook bypass prevention test",
+    "Integration configured/not-configured path test",
+    "Workspace allowlist deny test",
+    "Outbound posting approval-gate test",
+    "Mic-only and loopback transcription accuracy regression test",
+    "Transcript drop-resilience test under queue pressure",
+    "Copy-paste chat formatting validation test",
+    "Per-account OAuth viability smoke test",
+    "Masked-report verification test",
+    "Auth error taxonomy regression test",
+    "Multi-device targeting fallback test",
+    "USB/LAN route consistency check",
+    "Phone capture artifact integrity check"
+  ],
+  "timeline": {
+    "hours": 56,
+    "daysAt6h": 9.3,
+    "daysAt8h": 7
+  },
+  "constraints": {
+    "localFirst": true,
+    "legalBoundary": "behavioral reconstruction only",
+    "reverseEngineeringProprietaryBinaries": false
+  }
+}

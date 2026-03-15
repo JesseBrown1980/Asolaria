@@ -1,0 +1,160 @@
+﻿{
+    "ok":  true,
+    "partial":  true,
+    "runId":  "upgrade-wave-20260223-221124",
+    "startedAt":  "2026-02-23T22:11:24.2650137+00:00",
+    "finishedAt":  "2026-02-23T22:14:39.4996813+00:00",
+    "durationSeconds":  195.23,
+    "baseUrl":  "http://127.0.0.1:4781",
+    "provider":  "cursor",
+    "externalModel":  "gpt-5.2-codex",
+    "apiKeyResolved":  false,
+    "enableMcp":  false,
+    "paths":  {
+                  "asolariaRoot":  "C:\\Users\\acer\\Asolaria",
+                  "dotnetRepo":  "C:\\Users\\acer\\source\\repos\\Test",
+                  "jsonReport":  "C:\\Users\\acer\\Asolaria\\reports\\upgrade-wave-20260223-221124.json",
+                  "markdownReport":  "C:\\Users\\acer\\Asolaria\\reports\\upgrade-wave-20260223-221124.md"
+              },
+    "steps":  [
+                  {
+                      "name":  "baseline_status",
+                      "status":  "ok",
+                      "summary":  "Captured Asolaria and external integration status.",
+                      "error":  "",
+                      "at":  "2026-02-23T22:11:24.5402668+00:00",
+                      "data":  {
+                                   "asolariaOk":  true,
+                                   "uptimeSeconds":  11599,
+                                   "asolariaPid":  13288,
+                                   "externalProviders":  2,
+                                   "mcpCacheProviders":  0,
+                                   "mcpCacheContexts":  0
+                               }
+                  },
+                  {
+                      "name":  "bridge_restart",
+                      "status":  "skipped",
+                      "summary":  "Bridge restart not requested.",
+                      "error":  "",
+                      "at":  "2026-02-23T22:11:24.5432869+00:00",
+                      "data":  null
+                  },
+                  {
+                      "name":  "external_provider_config",
+                      "status":  "warning",
+                      "summary":  "No API key found; staged disabled external config for fast activation.",
+                      "error":  "",
+                      "at":  "2026-02-23T22:11:24.6066360+00:00",
+                      "data":  {
+                                   "apiKeyResolved":  false,
+                                   "stagedDisabledConfig":  true,
+                                   "output":  {
+                                                  "ok":  true,
+                                                  "config":  {
+                                                                 "id":  "cursor",
+                                                                 "configured":  true,
+                                                                 "enabled":  false,
+                                                                 "model":  "gpt-5.2-codex",
+                                                                 "baseUrl":  "https://api.openai.com",
+                                                                 "apiPath":  "/v1/responses",
+                                                                 "organization":  null,
+                                                                 "apiStyle":  "openai_responses",
+                                                                 "officialApi":  true,
+                                                                 "requireOfficialApi":  true,
+                                                                 "source":  "vault",
+                                                                 "updatedAt":  "2026-02-23T22:11:24.601Z",
+                                                                 "configError":  null,
+                                                                 "mcpEnabled":  false,
+                                                                 "mcpConfigured":  false,
+                                                                 "mcpConfigError":  null,
+                                                                 "mcpServerLabel":  null,
+                                                                 "mcpServerUrl":  null,
+                                                                 "mcpConnectorId":  null,
+                                                                 "mcpAllowedToolsCount":  0,
+                                                                 "mcpPreset":  null,
+                                                                 "mcpApprovalMode":  "auto",
+                                                                 "mcpDynamicAllowlistMax":  5,
+                                                                 "mcpContextTtlSeconds":  1800,
+                                                                 "warning":  null
+                                                             },
+                                                  "guardian":  {
+                                                                   "triggered":  false,
+                                                                   "blocked":  false,
+                                                                   "risk":  {
+                                                                                "level":  "medium",
+                                                                                "score":  4,
+                                                                                "reasons":  [
+                                                                                                "Action risk baseline for \"external_provider_config\""
+                                                                                            ],
+                                                                                "crazy":  false,
+                                                                                "securityIncident":  false,
+                                                                                "action":  "external_provider_config",
+                                                                                "preview":  "External provider (cursor) config update request model=gpt-5.2-codex baseUrl=https://api.openai.com"
+                                                                            },
+                                                                   "decision":  null,
+                                                                   "alert":  null
+                                                               }
+                                              }
+                               }
+                  },
+                  {
+                      "name":  "mcp_smoke_test",
+                      "status":  "ok",
+                      "summary":  "MCP integration smoke test passed.",
+                      "error":  "",
+                      "at":  "2026-02-23T22:11:24.8093285+00:00",
+                      "data":  {
+                                   "ok":  true,
+                                   "baseUrl":  "http://127.0.0.1:4781",
+                                   "provider":  "cursor",
+                                   "statusMcpEnabled":  false,
+                                   "statusMcpConfigured":  false,
+                                   "statusMcpPreset":  "",
+                                   "cacheProviderCatalogCount":  0,
+                                   "cacheScopedContextCount":  0,
+                                   "clearProbeRun":  true,
+                                   "testedAt":  "2026-02-23T22:11:24.7643727+00:00"
+                               }
+                  },
+                  {
+                      "name":  "model_audit_trigger",
+                      "status":  "ok",
+                      "summary":  "Model audit executed.",
+                      "error":  "",
+                      "at":  "2026-02-23T22:14:37.1569352+00:00",
+                      "data":  {
+                                   "ok":  true,
+                                   "resultOk":  true,
+                                   "candidate":  "",
+                                   "switched":  false,
+                                   "nextRunAt":  "2026-02-24T09:00:00.000Z"
+                               }
+                  },
+                  {
+                      "name":  "dotnet_build",
+                      "status":  "ok",
+                      "summary":  ".NET solution build succeeded (net8.0 + net9.0).",
+                      "error":  "",
+                      "at":  "2026-02-23T22:14:39.4996813+00:00",
+                      "data":  {
+                                   "repo":  "C:\\Users\\acer\\source\\repos\\Test",
+                                   "exitCode":  0,
+                                   "warnings":  0,
+                                   "errors":  0,
+                                   "tail":  [
+                                                "  Determinando os projetos a serem restaurados...",
+                                                "  Todos os projetos est├úo atualizados para restaura├º├úo.",
+                                                "  Test -\u003e C:\\Users\\acer\\source\\repos\\Test\\Test\\bin\\Release\\net9.0\\Test.dll",
+                                                "  Test -\u003e C:\\Users\\acer\\source\\repos\\Test\\Test\\bin\\Release\\net8.0\\Test.dll",
+                                                "",
+                                                "Compila├º├úo com ├¬xito.",
+                                                "    0 Aviso(s)",
+                                                "    0 Erro(s)",
+                                                "",
+                                                "Tempo Decorrido 00:00:02.01"
+                                            ]
+                               }
+                  }
+              ]
+}

@@ -1,0 +1,12 @@
+﻿{
+    "increment":  "19",
+    "timestamp":  "20260302-190420",
+    "taskName":  "Asolaria NotebookLM Upgrade Loop",
+    "afterState":  "Disabled",
+    "actionExecute":  "powershell.exe",
+    "actionArguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-NotebookLM-Upgrade-Loop.ps1\"",
+    "lastTaskResult":  4294770688,
+    "localeTaskLine":  "Tarefa a ser executada:                                  powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-NotebookLM-Upgrade-Loop.ps1\"",
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

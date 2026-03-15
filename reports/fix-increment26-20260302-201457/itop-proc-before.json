@@ -1,0 +1,14 @@
+﻿[
+    {
+        "ProcessId":  2204,
+        "Name":  "iScrRec.exe",
+        "ExecutablePath":  "C:\\Program Files\\iTop Screen Recorder\\iScrRec.exe",
+        "CommandLine":  "\"C:\\Program Files\\iTop Screen Recorder\\iScrRec.exe\" /autorun"
+    },
+    {
+        "ProcessId":  17556,
+        "Name":  "iScrRecExt.exe",
+        "ExecutablePath":  "C:\\Program Files\\iTop Screen Recorder\\iScrRecExt.exe",
+        "CommandLine":  "\"C:\\Program Files\\iTop Screen Recorder\\iScrRecExt.exe\" /hwnd 67006"
+    }
+]

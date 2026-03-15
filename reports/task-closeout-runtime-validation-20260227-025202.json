@@ -1,0 +1,47 @@
+﻿{
+    "generatedAtLocal":  "2026-02-27 02:52:02 -03:00",
+    "generatedAtUtc":  "2026-02-27T05:52:02.296Z",
+    "mode":  "startup autonomous resume",
+    "ownerRequest":  "slack review #general last 20",
+    "execution":  {
+                      "endpoint":  "POST http://127.0.0.1:4781/api/integrations/slack/review",
+                      "payload":  {
+                                      "channel":  "#general",
+                                      "limit":  20,
+                                      "analyze":  false,
+                                      "request":  "startup autonomous resume"
+                                  },
+                      "jobId":  "job_1772171466745_w3ce8n",
+                      "jobStatus":  "failed",
+                      "jobError":  "Slack integration is not configured.",
+                      "jobElapsedMs":  1,
+                      "jobCreatedAt":  "2026-02-27T05:51:06.745Z",
+                      "jobFinishedAt":  "2026-02-27T05:51:06.746Z"
+                  },
+    "slackStatus":  {
+                        "enabled":  true,
+                        "configured":  false,
+                        "tokenSource":  "none",
+                        "tokenHint":  "",
+                        "defaultChannel":  "",
+                        "updatedAt":  null,
+                        "policy":  {
+                                       "allowPrivateChannels":  true,
+                                       "allowDirectMessages":  false,
+                                       "allowedChannels":  [
+
+                                                           ],
+                                       "maxMessages":  80,
+                                       "maxDigestChars":  28000,
+                                       "backendOnly":  true,
+                                       "noLinkNavigation":  true,
+                                       "linkRedaction":  true
+                                   },
+                        "connection":  {
+                                           "ok":  false,
+                                           "error":  "not_configured"
+                                       },
+                        "workspace":  null,
+                        "botUser":  null
+                    }
+}

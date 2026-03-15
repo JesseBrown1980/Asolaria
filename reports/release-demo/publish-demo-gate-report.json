@@ -1,0 +1,83 @@
+﻿{
+    "checkedAt":  "2026-02-27T23:28:28.4327073-03:00",
+    "repoRoot":  "C:\\Users\\acer\\Asolaria",
+    "stageRoot":  ".\\Asolaria\\dist\\public-release\\Asolaria-Public-20260227-verify1",
+    "evidenceRoot":  "C:\\Users\\acer\\Asolaria\\reports\\release-demo",
+    "checklistPath":  "C:\\Users\\acer\\Asolaria\\reports\\release-demo\\PUBLISH_DEMO_CHECKLIST.md",
+    "pass":  true,
+    "failedCount":  0,
+    "gates":  [
+                  {
+                      "id":  "release_stage_present",
+                      "ok":  true,
+                      "detail":  "Using stage root: .\\Asolaria\\dist\\public-release\\Asolaria-Public-20260227-verify1",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "checklist_exists",
+                      "ok":  true,
+                      "detail":  "Checklist found: C:\\Users\\acer\\Asolaria\\reports\\release-demo\\PUBLISH_DEMO_CHECKLIST.md",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "leak_report_exists",
+                      "ok":  true,
+                      "detail":  "Leak report found: .\\Asolaria\\dist\\public-release\\Asolaria-Public-20260227-verify1\\LEAK_SCAN_REPORT.json",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "leak_report_clean",
+                      "ok":  true,
+                      "detail":  "Leak report has zero findings.",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "release_notes_present",
+                      "ok":  true,
+                      "detail":  "Release notes found: .\\Asolaria\\dist\\public-release\\Asolaria-Public-20260227-verify1\\PUBLIC_RELEASE_NOTES.md",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "release_zip_present",
+                      "ok":  true,
+                      "detail":  "Zip present: .\\Asolaria\\dist\\public-release\\Asolaria-Public-20260227-verify1.zip (sha256=F5FB7C3620A2F6858178E3A4753E4AC91D4130EA594A563356F752F967039552)",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "demo_video_url_present",
+                      "ok":  true,
+                      "detail":  "Demo URL recorded in C:\\Users\\acer\\Asolaria\\reports\\release-demo\\demo-video-url.txt",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "test_evidence_present",
+                      "ok":  true,
+                      "detail":  "Test evidence recorded in C:\\Users\\acer\\Asolaria\\reports\\release-demo\\test-evidence.md",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "play_track_proof_present",
+                      "ok":  true,
+                      "detail":  "Play testing track proof recorded in C:\\Users\\acer\\Asolaria\\reports\\release-demo\\play-track-proof.txt",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "submission_packet_present",
+                      "ok":  true,
+                      "detail":  "Submission packet notes recorded in C:\\Users\\acer\\Asolaria\\reports\\release-demo\\submission-packet.md",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "checklist_gates_parsed",
+                      "ok":  true,
+                      "detail":  "Parsed 9 checklist gate(s).",
+                      "fix":  ""
+                  },
+                  {
+                      "id":  "checklist_all_checked",
+                      "ok":  true,
+                      "detail":  "All checklist GATE items are checked.",
+                      "fix":  ""
+                  }
+              ]
+}

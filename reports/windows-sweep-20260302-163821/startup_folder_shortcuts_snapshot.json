@@ -1,0 +1,20 @@
+﻿[
+    {
+        "Link":  "Asolaria One Button Startup.lnk",
+        "TargetPath":  "C:\\Users\\acer\\Asolaria\\Start-Asolaria-OneButton.cmd",
+        "Arguments":  "-StartupMode -SkipAutoStartupInstall -NetworkBootstrapMaxWaitSeconds 180",
+        "WorkingDirectory":  "C:\\Users\\acer\\Asolaria"
+    },
+    {
+        "Link":  "Enviar para o OneNote.lnk",
+        "TargetPath":  "C:\\Program Files\\Microsoft Office\\root\\Office16\\ONENOTEM.EXE",
+        "Arguments":  "/tsr",
+        "WorkingDirectory":  ""
+    },
+    {
+        "Link":  "Open Codex CLI.lnk",
+        "TargetPath":  "C:\\Windows\\System32\\cmd.exe",
+        "Arguments":  "/k cd /d C:\\Users\\acer \u0026\u0026 codex",
+        "WorkingDirectory":  "C:\\Users\\acer"
+    }
+]

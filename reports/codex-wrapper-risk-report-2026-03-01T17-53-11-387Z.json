@@ -1,0 +1,530 @@
+{
+  "generatedAt": "2026-03-01T17:53:11.387Z",
+  "wrapperTotal": 33,
+  "riskCounts": {
+    "low": 25,
+    "medium": 7,
+    "high": 1,
+    "critical": 0
+  },
+  "top": [
+    {
+      "id": "codex.ref.security-threat-model",
+      "title": "Codex Wrapper: security-threat-model",
+      "risk": "high",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:high"
+      ]
+    },
+    {
+      "id": "codex.ref.cloudflare-deploy",
+      "title": "Codex Wrapper: cloudflare-deploy",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.gh-fix-ci",
+      "title": "Codex Wrapper: gh-fix-ci",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.netlify-deploy",
+      "title": "Codex Wrapper: netlify-deploy",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.render-deploy",
+      "title": "Codex Wrapper: render-deploy",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.security-best-practices",
+      "title": "Codex Wrapper: security-best-practices",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.security-ownership-map",
+      "title": "Codex Wrapper: security-ownership-map",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.vercel-deploy",
+      "title": "Codex Wrapper: vercel-deploy",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.develop-web-game",
+      "title": "Codex Wrapper: develop-web-game",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.doc",
+      "title": "Codex Wrapper: doc",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "codex.ref.security-threat-model",
+      "title": "Codex Wrapper: security-threat-model",
+      "risk": "high",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:high"
+      ]
+    },
+    {
+      "id": "codex.ref.cloudflare-deploy",
+      "title": "Codex Wrapper: cloudflare-deploy",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.gh-fix-ci",
+      "title": "Codex Wrapper: gh-fix-ci",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.netlify-deploy",
+      "title": "Codex Wrapper: netlify-deploy",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.render-deploy",
+      "title": "Codex Wrapper: render-deploy",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.security-best-practices",
+      "title": "Codex Wrapper: security-best-practices",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.security-ownership-map",
+      "title": "Codex Wrapper: security-ownership-map",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.vercel-deploy",
+      "title": "Codex Wrapper: vercel-deploy",
+      "risk": "medium",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:medium"
+      ]
+    },
+    {
+      "id": "codex.ref.develop-web-game",
+      "title": "Codex Wrapper: develop-web-game",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.doc",
+      "title": "Codex Wrapper: doc",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.figma",
+      "title": "Codex Wrapper: figma",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.figma-implement-design",
+      "title": "Codex Wrapper: figma-implement-design",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.gh-address-comments",
+      "title": "Codex Wrapper: gh-address-comments",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.google-code-wiki",
+      "title": "Codex Wrapper: google-code-wiki",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.imagegen",
+      "title": "Codex Wrapper: imagegen",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.jupyter-notebook",
+      "title": "Codex Wrapper: jupyter-notebook",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.linear",
+      "title": "Codex Wrapper: linear",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.notion-knowledge-capture",
+      "title": "Codex Wrapper: notion-knowledge-capture",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.notion-meeting-intelligence",
+      "title": "Codex Wrapper: notion-meeting-intelligence",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.notion-research-documentation",
+      "title": "Codex Wrapper: notion-research-documentation",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.notion-spec-to-implementation",
+      "title": "Codex Wrapper: notion-spec-to-implementation",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.openai-docs",
+      "title": "Codex Wrapper: openai-docs",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.pdf",
+      "title": "Codex Wrapper: pdf",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.playwright",
+      "title": "Codex Wrapper: playwright",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.screenshot",
+      "title": "Codex Wrapper: screenshot",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.sentry",
+      "title": "Codex Wrapper: sentry",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.sora",
+      "title": "Codex Wrapper: sora",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.speech",
+      "title": "Codex Wrapper: speech",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.spreadsheet",
+      "title": "Codex Wrapper: spreadsheet",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.system.skill-creator",
+      "title": "Codex Wrapper: skill-creator",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:system",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.system.skill-installer",
+      "title": "Codex Wrapper: skill-installer",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:system",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.transcribe",
+      "title": "Codex Wrapper: transcribe",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    },
+    {
+      "id": "codex.ref.yeet",
+      "title": "Codex Wrapper: yeet",
+      "risk": "low",
+      "tags": [
+        "codex",
+        "wrapper",
+        "reference",
+        "scope:custom",
+        "risk:low"
+      ]
+    }
+  ]
+}

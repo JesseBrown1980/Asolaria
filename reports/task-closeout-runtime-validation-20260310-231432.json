@@ -1,0 +1,86 @@
+﻿{
+    "generatedAt":  "2026-03-10T23:15:23.9797684-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "project":  "winged-complex-390417",
+    "notebook":  {
+                     "account":  "p*********@gmail.com",
+                     "location":  "global",
+                     "jobId":  "job_1773195315006_ny205o",
+                     "status":  "completed",
+                     "enterpriseReady":  true,
+                     "access":  "True",
+                     "requiredSubscriptionTier":  "",
+                     "blockers":  [
+
+                                  ],
+                     "error":  ""
+                 },
+    "runtime":  {
+                    "healthOk":  false,
+                    "healthError":  "O tempo limite da operação foi atingido.",
+                    "queue":  {
+                                  "queued":  0,
+                                  "running":  0,
+                                  "total":  27,
+                                  "concurrency":  2
+                              },
+                    "jobsListed":  27,
+                    "jobsError":  ""
+                },
+    "slack":  {
+                  "enabled":  true,
+                  "configured":  true,
+                  "tokenSource":  "env",
+                  "connectionError":  "",
+                  "policyAllowedWorkspaces":  [
+
+                                              ],
+                  "statusError":  "",
+                  "reviewJobId":  "",
+                  "reviewStatus":  "",
+                  "reviewError":  ""
+              },
+    "google":  {
+                   "enabled":  true,
+                   "configured":  true,
+                   "allowlistedMissing":  [
+
+                                          ],
+                   "connectedAccountsCount":  4,
+                   "statusError":  "",
+                   "consoleGate":  {
+                                       "statusLine":  "HTTP/1.1 302 Found",
+                                       "location":  "https://accounts.google.com/ServiceLogin",
+                                       "error":  ""
+                                   }
+               },
+    "phone":  {
+                  "bootstrapOk":  true,
+                  "bootstrapError":  "",
+                  "pushStatusOk":  true,
+                  "pushStatusError":  "",
+                  "pushSubscriptions":  0,
+                  "phoneTunnelSmoke":  null,
+                  "phoneTunnelSmokeError":  ""
+              },
+    "ppo005":  {
+                   "johnCutoverScriptPath":  "/Users/john/dev/oli/scripts/phone_provider_cutover.sh",
+                   "johnCutoverTasksPath":  "/Users/john/dev/oli/ops/projects/oli-upgrade/subprojects/phone-provider-onboarding/tasks.json",
+                   "scriptExists":  false,
+                   "tasksExists":  false
+               },
+    "liveTranscript":  {
+                           "latestRealMeetingSummary":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260307-104917\\REALMEET_SUMMARY.md",
+                           "latestRealMeetingDir":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260307-104917",
+                           "latestChecklist":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-real-meeting-checklist-20260307-1027.md",
+                           "latestPacket":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-real-meeting-packet-20260307-1027.md"
+                       },
+    "blockers":  [
+                     "Runtime health not confirmed at http://127.0.0.1:4781/api/health.",
+                     "Google Console auth overview still redirects to sign-in (owner login required).",
+                     "Phone push subscription count is 0; manual tap-through still pending.",
+                     "PPO-005 John runtime dependencies are not present on this machine.",
+                     "Security follow-up pending: rotate previously exposed password from historical logs/chat context.",
+                     "Real meeting transcript matrix remains manual: Zoom/Meet/Teams live-call validation still needed."
+                 ]
+}

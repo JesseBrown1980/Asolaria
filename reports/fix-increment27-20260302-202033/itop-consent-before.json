@@ -1,0 +1,30 @@
+﻿[
+    {
+        "Root":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone\\NonPackaged",
+        "Key":  "C:#Program Files#iTop Screen Recorder#iScrGPURecording.exe",
+        "Value":  "",
+        "LastUsedTimeStart":  "134166996478539844",
+        "LastUsedTimeStop":  "134167026246405156"
+    },
+    {
+        "Root":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone\\NonPackaged",
+        "Key":  "C:#Program Files#iTop Screen Recorder#iScrRec.exe",
+        "Value":  "",
+        "LastUsedTimeStart":  "134166996428394925",
+        "LastUsedTimeStop":  "134166996428485499"
+    },
+    {
+        "Root":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone\\NonPackaged",
+        "Key":  "C:#Program Files#iTop Screen Recorder#iScrRecording.exe",
+        "Value":  "",
+        "LastUsedTimeStart":  "134043229763528848",
+        "LastUsedTimeStop":  "134043229795158035"
+    },
+    {
+        "Root":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone\\NonPackaged",
+        "Key":  "C:#Program Files#iTop Screen Recorder#iScrVoiceCapture.exe",
+        "Value":  "",
+        "LastUsedTimeStart":  "134167026259434904",
+        "LastUsedTimeStop":  "134167026292325917"
+    }
+]

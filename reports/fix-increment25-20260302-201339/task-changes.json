@@ -1,0 +1,32 @@
+﻿[
+    {
+        "TaskName":  "iTop JunSale Task (One-Time)",
+        "BeforeState":  "Ready",
+        "AfterState":  "Disabled",
+        "XmlBackup":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment25-20260302-201339\\task_iTop_JunSale_Task__One-Time_.xml"
+    },
+    {
+        "TaskName":  "iTop Screen Recorder SkipUAC (acer)",
+        "BeforeState":  "Ready",
+        "AfterState":  "Disabled",
+        "XmlBackup":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment25-20260302-201339\\task_iTop_Screen_Recorder_SkipUAC__acer_.xml"
+    },
+    {
+        "TaskName":  "iTop Screen Recorder Startup",
+        "BeforeState":  "Running",
+        "AfterState":  "Running",
+        "XmlBackup":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment25-20260302-201339\\task_iTop_Screen_Recorder_Startup.xml"
+    },
+    {
+        "TaskName":  "iTop Screen Recorder Update",
+        "BeforeState":  "Ready",
+        "AfterState":  "Disabled",
+        "XmlBackup":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment25-20260302-201339\\task_iTop_Screen_Recorder_Update.xml"
+    },
+    {
+        "TaskName":  "iTopEN VD2026 Task (One-Time)",
+        "BeforeState":  "Ready",
+        "AfterState":  "Disabled",
+        "XmlBackup":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment25-20260302-201339\\task_iTopEN_VD2026_Task__One-Time_.xml"
+    }
+]

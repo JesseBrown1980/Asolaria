@@ -1,0 +1,11 @@
+﻿{
+    "increment":  "28b",
+    "timestamp":  "20260302-202159",
+    "action":  "Fixed Asolaria capture wrapper argument binding and passed desktop smoketest",
+    "wrapperPath":  "C:\\Users\\acer\\Asolaria\\tools\\Invoke-Asolaria-Capture.ps1",
+    "smokeCapturePath":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\asolaria-desktop-smoketest-20260302-202159.png",
+    "smokeCaptureExists":  false,
+    "smokeCaptureBytes":  0,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

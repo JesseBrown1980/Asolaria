@@ -1,0 +1,23 @@
+﻿{
+    "AppliedAt":  "2026-03-02T17:17:13.5188881-03:00",
+    "MachineBeforeCount":  31,
+    "MachineAfterCount":  26,
+    "MachineRemoved":  5,
+    "UserBeforeCount":  24,
+    "UserAfterCount":  22,
+    "UserRemoved":  2,
+    "WindowsAppsPresentAfter":  true,
+    "RemovedEntries":  {
+                           "Machine":  [
+                                           "C:\\WINDOWS\\system32",
+                                           "C:\\WINDOWS",
+                                           "C:\\WINDOWS\\System32\\Wbem",
+                                           "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\",
+                                           "C:\\WINDOWS\\System32\\OpenSSH\\"
+                                       ],
+                           "User":  [
+                                        "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps",
+                                        "C:\\Users\\acer\\.dotnet\\tools"
+                                    ]
+                       }
+}

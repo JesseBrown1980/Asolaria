@@ -1,0 +1,43 @@
+﻿{
+    "startedAt":  "2026-03-10T10:43:21.8092333-03:00",
+    "deadline":  "2026-03-10T10:48:21.0000000",
+    "chatId":  "readiness-smoke-20260310",
+    "threadId":  "readiness-smoke-20260310",
+    "cycles":  2,
+    "lastJobId":  "job_1773150338002_u4r1yh",
+    "lastSummary":  "media_defaults: blocked - Timed out waiting for job job_1773150338002_u4r1yh after 2 minutes.",
+    "stopRequested":  false,
+    "tasks":  {
+                  "system_readiness":  {
+                                           "status":  "blocked",
+                                           "attempts":  1,
+                                           "summary":  "Timed out waiting for job job_1773150205205_osx9wy after 2 minutes.",
+                                           "lastRunAt":  "2026-03-10T10:43:24.8341460-03:00"
+                                       },
+                  "media_defaults":  {
+                                         "status":  "blocked",
+                                         "attempts":  1,
+                                         "summary":  "Timed out waiting for job job_1773150338002_u4r1yh after 2 minutes.",
+                                         "lastRunAt":  "2026-03-10T10:45:37.7688695-03:00"
+                                     },
+                  "notebooklm_memory":  {
+                                            "status":  "pending",
+                                            "attempts":  0,
+                                            "summary":  "",
+                                            "lastRunAt":  ""
+                                        },
+                  "swarm_readiness":  {
+                                          "status":  "pending",
+                                          "attempts":  0,
+                                          "summary":  "",
+                                          "lastRunAt":  ""
+                                      },
+                  "ebacmap_prep":  {
+                                       "status":  "pending",
+                                       "attempts":  0,
+                                       "summary":  "",
+                                       "lastRunAt":  ""
+                                   }
+              },
+    "completedAt":  "2026-03-10T10:47:49.1976876-03:00"
+}

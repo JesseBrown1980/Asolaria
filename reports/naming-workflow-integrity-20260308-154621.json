@@ -1,0 +1,84 @@
+﻿{
+    "generatedAt":  "2026-03-08T15:46:21.5055866-03:00",
+    "summary":  {
+                    "pass":  4,
+                    "warn":  2,
+                    "fail":  0
+                },
+    "runtime":  {
+                    "port":  4781,
+                    "healthFastOk":  true,
+                    "healthOk":  false,
+                    "localOpsOk":  true,
+                    "workerRouterOk":  true,
+                    "symphonyOk":  true,
+                    "abacusOk":  true
+                },
+    "startup":  {
+                    "startupAutomationSeed":  "",
+                    "startupSeedCommandLike":  false,
+                    "latestCandidateAt":  "2026-03-08T18:21:17.438Z",
+                    "latestCandidateText":  "Hello Brain",
+                    "latestCandidateCommandLike":  false,
+                    "startupHistory":  {
+                                           "seedFingerprint":  "superadminterminal.ps1\" -target admin -port 4781 -runonce",
+                                           "queuedAt":  "2026-03-08T18:26:06.163Z",
+                                           "jobId":  "job_1772994365952_1jyt6f"
+                                       }
+                },
+    "taskLedger":  {
+                       "taskCount":  557,
+                       "eventCount":  2095,
+                       "blankActorTaskCount":  557,
+                       "blankActorTaskPct":  100
+                   },
+    "integrations":  {
+                         "symphony":  {
+                                          "configured":  true,
+                                          "running":  true
+                                      },
+                         "abacus":  {
+                                        "configured":  true,
+                                        "workerTier":  "desktop_cli_limited",
+                                        "workerConfigured":  false
+                                    }
+                     },
+    "checks":  [
+                   {
+                       "id":  "startup_seed_quality",
+                       "status":  "pass",
+                       "summary":  "Startup seed is not command-like.",
+                       "detail":  ""
+                   },
+                   {
+                       "id":  "memory_seed_candidate",
+                       "status":  "pass",
+                       "summary":  "Memory has a usable non-trivial user seed candidate.",
+                       "detail":  "text=\"Hello Brain\""
+                   },
+                   {
+                       "id":  "symphony_runtime",
+                       "status":  "pass",
+                       "summary":  "Symphony runtime state is coherent with configuration.",
+                       "detail":  ""
+                   },
+                   {
+                       "id":  "worker_router_symphony_alignment",
+                       "status":  "pass",
+                       "summary":  "Worker router Symphony status is aligned.",
+                       "detail":  ""
+                   },
+                   {
+                       "id":  "phone_background_services",
+                       "status":  "warn",
+                       "summary":  "One or more phone background services are not running.",
+                       "detail":  "phoneBridgeKeeper=False; phoneTunnelMonitor=False"
+                   },
+                   {
+                       "id":  "task_ledger_actor_coverage",
+                       "status":  "warn",
+                       "summary":  "Task ledger tasks mostly lack actor attribution.",
+                       "detail":  "blankActorTasks=557/557 (100%)"
+                   }
+               ]
+}

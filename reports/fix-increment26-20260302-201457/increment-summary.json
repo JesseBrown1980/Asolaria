@@ -1,0 +1,12 @@
+﻿{
+    "increment":  "26",
+    "timestamp":  "20260302-201457",
+    "action":  "Stopped residual iTop startup task execution and terminated iTop recorder processes",
+    "taskStateBefore":  "Running",
+    "taskStateAfter":  "Disabled",
+    "iTopProcBefore":  2,
+    "iTopProcKilled":  0,
+    "iTopProcAfter":  0,
+    "storeTouched":  false,
+    "windowsAppsTouched":  false
+}

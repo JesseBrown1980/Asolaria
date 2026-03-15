@@ -1,0 +1,13 @@
+﻿{
+    "ok":  true,
+    "friendLabel":  "Derek-Laptop",
+    "friendHandle":  "friend-derek-laptop-codex",
+    "room":  "asolaria_friend_derek-laptop",
+    "bridgeUrl":  "https://florist-added-configure-excluded.trycloudflare.com",
+    "packDir":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260306-150634-derek-laptop",
+    "profilePath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260306-150634-derek-laptop\\friend-derek-laptop-codex.profile.json",
+    "envPath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260306-150634-derek-laptop\\friend-derek-laptop-codex.env.example",
+    "startScriptPath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260306-150634-derek-laptop\\Start-Friend-Codex-Bridge.ps1",
+    "policyPath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260306-150634-derek-laptop\\relay-policy.example.json",
+    "readmePath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260306-150634-derek-laptop\\README.md"
+}

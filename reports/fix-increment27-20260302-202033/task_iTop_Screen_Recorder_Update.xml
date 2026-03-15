@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-16"?>
+<Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Author>acer</Author>
+    <URI>\iTop Screen Recorder Update</URI>
+  </RegistrationInfo>
+  <Principals>
+    <Principal id="Author">
+      <UserId>S-1-5-21-1469047906-1918517011-520466592-1001</UserId>
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>HighestAvailable</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <AllowHardTerminate>false</AllowHardTerminate>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <Enabled>false</Enabled>
+    <ExecutionTimeLimit>PT0S</ExecutionTimeLimit>
+    <MultipleInstancesPolicy>Parallel</MultipleInstancesPolicy>
+    <Priority>5</Priority>
+    <IdleSettings>
+      <StopOnIdleEnd>false</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+  </Settings>
+  <Triggers>
+    <LogonTrigger id="Trigger1">
+      <Delay>PT5M</Delay>
+    </LogonTrigger>
+    <CalendarTrigger id="Trigger2">
+      <StartBoundary>2026-03-02T10:30:00-03:00</StartBoundary>
+      <ScheduleByDay>
+        <DaysInterval>1</DaysInterval>
+      </ScheduleByDay>
+    </CalendarTrigger>
+  </Triggers>
+  <Actions Context="Author">
+    <Exec>
+      <Command>"C:\Program Files\iTop Screen Recorder\AutoUpdate.exe"</Command>
+      <Arguments>/auto</Arguments>
+      <WorkingDirectory>C:\Program Files\iTop Screen Recorder\</WorkingDirectory>
+    </Exec>
+  </Actions>
+</Task>

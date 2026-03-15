@@ -1,0 +1,9 @@
+﻿[2026-03-10 02:37:41] start maxHours=30 minKick=18m maxKick=25m port=4781 room=asolaria_bridge thread=overnight-readiness-20260310
+[2026-03-10 02:37:54] tick=1 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=send_failed:O servidor remoto retornou um erro: (403) Proibido. chat=sent:mode=queued
+[2026-03-10 02:37:56] sleep_seconds=1177
+[2026-03-10 02:38:11] start maxHours=6 minKick=18m maxKick=25m port=4781 room=asolaria_bridge thread=overnight-readiness-20260310
+[2026-03-10 02:38:20] tick=1 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=send_failed:O servidor remoto retornou um erro: (403) Proibido. chat=sent:mode=queued
+[2026-03-10 02:38:20] sleep_seconds=1204
+[2026-03-10 02:38:40] start maxHours=6 minKick=18m maxKick=25m port=4781 room=asolaria_bridge thread=overnight-readiness-20260310
+[2026-03-10 02:38:53] tick=1 asolaria=healthy watchdog=watchdog_start_ok bridge=http://127.0.0.1:8788 relay=send_failed:O servidor remoto retornou um erro: (403) Proibido. chat=sent:mode=queued
+[2026-03-10 02:38:53] sleep_seconds=1160

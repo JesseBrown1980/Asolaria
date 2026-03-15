@@ -1,0 +1,37 @@
+﻿[
+    {
+        "TaskName":  "Asolaria Core Boot Startup",
+        "TaskPath":  "\\",
+        "State":  3
+    },
+    {
+        "TaskName":  "Asolaria NotebookLM Build Loop",
+        "TaskPath":  "\\",
+        "State":  3
+    },
+    {
+        "TaskName":  "Asolaria NotebookLM Upgrade Loop",
+        "TaskPath":  "\\",
+        "State":  1
+    },
+    {
+        "TaskName":  "Asolaria One Button Startup",
+        "TaskPath":  "\\",
+        "State":  3
+    },
+    {
+        "TaskName":  "Asolaria Wake Display 1000 BRT",
+        "TaskPath":  "\\",
+        "State":  3
+    },
+    {
+        "TaskName":  "Asolaria-OpenAI-Quota-Reminder-20260304",
+        "TaskPath":  "\\",
+        "State":  3
+    },
+    {
+        "TaskName":  "Asolaria-WakeDisplay-2026-02-24-0900",
+        "TaskPath":  "\\",
+        "State":  3
+    }
+]

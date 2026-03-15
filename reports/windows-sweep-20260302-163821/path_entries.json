@@ -1,0 +1,242 @@
+﻿[
+    {
+        "entry":  "C:\\Users\\acer\\.codex\\tmp\\arg0\\codex-arg0OG69Uv",
+        "normalized":  "c:\\users\\acer\\.codex\\tmp\\arg0\\codex-arg0og69uv",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\nvm\\v22.12.0\\node_modules\\@openai\\codex\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\path",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\nvm\\v22.12.0\\node_modules\\@openai\\codex\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\path",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin",
+        "normalized":  "c:\\program files\\microsoft\\jdk-21.0.10.7-hotspot\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "c:\\Users\\acer\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\programs\\cursor\\resources\\app\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS\\system32",
+        "normalized":  "c:\\windows\\system32",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS",
+        "normalized":  "c:\\windows",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS\\System32\\Wbem",
+        "normalized":  "c:\\windows\\system32\\wbem",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\",
+        "normalized":  "c:\\windows\\system32\\windowspowershell\\v1.0",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS\\System32\\OpenSSH\\",
+        "normalized":  "c:\\windows\\system32\\openssh",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files\\dotnet\\",
+        "normalized":  "c:\\program files\\dotnet",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\",
+        "normalized":  "c:\\program files\\microsoft sql server\\150\\tools\\binn",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\",
+        "normalized":  "c:\\program files\\microsoft sql server\\client sdk\\odbc\\170\\tools\\binn",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\",
+        "normalized":  "c:\\program files (x86)\\windows kits\\10\\windows performance toolkit",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\microsoft\\windowsapps",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Windsurf\\bin",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\programs\\windsurf\\bin",
+        "exists":  false
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Roaming\\npm",
+        "normalized":  "c:\\users\\acer\\appdata\\roaming\\npm",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\.dotnet\\tools",
+        "normalized":  "c:\\users\\acer\\.dotnet\\tools",
+        "exists":  false
+    },
+    {
+        "entry":  "C:\\Program Files\\Git\\cmd",
+        "normalized":  "c:\\program files\\git\\cmd",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\nvm",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\nvm",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\nvm4w\\nodejs",
+        "normalized":  "c:\\nvm4w\\nodejs",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files\\Go\\bin",
+        "normalized":  "c:\\program files\\go\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files\\cursor\\resources\\app\\bin",
+        "normalized":  "c:\\program files\\cursor\\resources\\app\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\programs\\python\\python313",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\Scripts",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\programs\\python\\python313\\scripts",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files\\Amazon\\AWSCLIV2\\",
+        "normalized":  "c:\\program files\\amazon\\awscliv2",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files\\Docker\\Docker\\resources\\bin",
+        "normalized":  "c:\\program files\\docker\\docker\\resources\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS\\system32",
+        "normalized":  "c:\\windows\\system32",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS",
+        "normalized":  "c:\\windows",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS\\System32\\Wbem",
+        "normalized":  "c:\\windows\\system32\\wbem",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\",
+        "normalized":  "c:\\windows\\system32\\windowspowershell\\v1.0",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\WINDOWS\\System32\\OpenSSH\\",
+        "normalized":  "c:\\windows\\system32\\openssh",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files (x86)\\cloudflared\\",
+        "normalized":  "c:\\program files (x86)\\cloudflared",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Program Files\\Tailscale\\",
+        "normalized":  "c:\\program files\\tailscale",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\anaconda3",
+        "normalized":  "c:\\users\\acer\\anaconda3",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\anaconda3\\Library\\mingw-w64\\bin",
+        "normalized":  "c:\\users\\acer\\anaconda3\\library\\mingw-w64\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\anaconda3\\Library\\usr\\bin",
+        "normalized":  "c:\\users\\acer\\anaconda3\\library\\usr\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\anaconda3\\Library\\bin",
+        "normalized":  "c:\\users\\acer\\anaconda3\\library\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\anaconda3\\Scripts",
+        "normalized":  "c:\\users\\acer\\anaconda3\\scripts",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Launcher\\",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\programs\\python\\launcher",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Microsoft VS Code\\bin",
+        "normalized":  "c:\\microsoft vs code\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Antigravity\\bin",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\programs\\antigravity\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Java\\jdk1.8.0_392\\bin",
+        "normalized":  "c:\\java\\jdk1.8.0_392\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\go\\bin",
+        "normalized":  "c:\\users\\acer\\go\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\.local\\bin",
+        "normalized":  "c:\\users\\acer\\.local\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe\\platform-tools",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\microsoft\\winget\\packages\\google.platformtools_microsoft.winget.source_8wekyb3d8bbwe\\platform-tools",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Genymobile.scrcpy_Microsoft.Winget.Source_8wekyb3d8bbwe\\scrcpy-win64-v3.3.4",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\microsoft\\winget\\packages\\genymobile.scrcpy_microsoft.winget.source_8wekyb3d8bbwe\\scrcpy-win64-v3.3.4",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\microsoft\\winget\\packages\\gyan.ffmpeg_microsoft.winget.source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin",
+        "exists":  true
+    },
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BtbN.FFmpeg.GPL_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-N-123073-g743df5ded9-win64-gpl\\bin",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\microsoft\\winget\\packages\\btbn.ffmpeg.gpl_microsoft.winget.source_8wekyb3d8bbwe\\ffmpeg-n-123073-g743df5ded9-win64-gpl\\bin",
+        "exists":  true
+    }
+]

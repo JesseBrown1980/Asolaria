@@ -1,0 +1,1 @@
+﻿@{ok=True; sessionId=; running=False; transcript=}

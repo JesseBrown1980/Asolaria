@@ -1,0 +1,66 @@
+﻿{
+    "ok":  true,
+    "generatedAt":  "2026-03-08T19:50:22-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "accountsConsidered":  [
+                               "jesse@jbrowndevelopmentllc.com",
+                               "jessebrown.soft1980@gmail.com",
+                               "plasmatoid@gmail.com",
+                               "plasmatoid@jbrowndevelopmentllc.com"
+                           ],
+    "allAllowlisted":  false,
+    "preflightHealth":  [
+                            {
+                                "account":  "jesse@jbrowndevelopmentllc.com",
+                                "status":  "reauth-needed",
+                                "reason":  "Google token request failed: Token has been expired or revoked.",
+                                "jobId":  "job_1773010218624_ea0okh"
+                            },
+                            {
+                                "account":  "jessebrown.soft1980@gmail.com",
+                                "status":  "healthy",
+                                "reason":  "",
+                                "jobId":  "job_1773010219126_xuo89z"
+                            },
+                            {
+                                "account":  "plasmatoid@gmail.com",
+                                "status":  "healthy",
+                                "reason":  "",
+                                "jobId":  "job_1773010221656_1mq2k9"
+                            },
+                            {
+                                "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                "status":  "reauth-needed",
+                                "reason":  "Google token request failed: reauth related error (invalid_rapt)",
+                                "jobId":  "job_1773010222124_olq1jy"
+                            }
+                        ],
+    "links":  [
+                  {
+                      "account":  "jesse@jbrowndevelopmentllc.com",
+                      "healthBefore":  "reauth-needed",
+                      "reasonBefore":  "Google token request failed: Token has been expired or revoked.",
+                      "ok":  true,
+                      "authUrl":  "https://accounts.google.com/o/oauth2/v2/auth?client_id=742368506950-i0a9e90pkv9784rvu9snmshblcdh7kaa.apps.googleusercontent.com\u0026redirect_uri=http%3A%2F%2F127.0.0.1%3A4781%2Fapi%2Fintegrations%2Fgoogle%2Foauth%2Fcallback\u0026response_type=code\u0026scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform\u0026access_type=offline\u0026include_granted_scopes=true\u0026prompt=consent\u0026state=da4412492d61b9440ca6c40c53801cc1afc7\u0026login_hint=jesse%40jbrowndevelopmentllc.com",
+                      "state":  "da4412492d61b9440ca6c40c53801cc1afc7",
+                      "note":  "Open oauth.authUrl on the same PC running Asolaria to complete the loopback callback.",
+                      "error":  ""
+                  },
+                  {
+                      "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                      "healthBefore":  "reauth-needed",
+                      "reasonBefore":  "Google token request failed: reauth related error (invalid_rapt)",
+                      "ok":  true,
+                      "authUrl":  "https://accounts.google.com/o/oauth2/v2/auth?client_id=742368506950-i0a9e90pkv9784rvu9snmshblcdh7kaa.apps.googleusercontent.com\u0026redirect_uri=http%3A%2F%2F127.0.0.1%3A4781%2Fapi%2Fintegrations%2Fgoogle%2Foauth%2Fcallback\u0026response_type=code\u0026scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform\u0026access_type=offline\u0026include_granted_scopes=true\u0026prompt=consent\u0026state=b3134d24428fd008847494bbf053b739c3b6\u0026login_hint=plasmatoid%40jbrowndevelopmentllc.com",
+                      "state":  "b3134d24428fd008847494bbf053b739c3b6",
+                      "note":  "Open oauth.authUrl on the same PC running Asolaria to complete the loopback callback.",
+                      "error":  ""
+                  }
+              ],
+    "summary":  {
+                    "considered":  4,
+                    "unhealthyBefore":  2,
+                    "linksGenerated":  2,
+                    "linksFailed":  0
+                }
+}

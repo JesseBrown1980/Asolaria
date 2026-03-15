@@ -1,0 +1,58 @@
+﻿[
+    {
+        "TaskPath":  "\\",
+        "TaskName":  "Asolaria Core Boot Startup",
+        "State":  3,
+        "Execute":  "powershell.exe",
+        "Arguments":  "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-Asolaria.ps1\" -Port 4781 -RequireInternet -NetworkBootstrapMaxWaitSeconds 180",
+        "Triggers":  "MSFT_TaskLogonTrigger"
+    },
+    {
+        "TaskPath":  "\\",
+        "TaskName":  "Asolaria NotebookLM Build Loop",
+        "State":  3,
+        "Execute":  "powershell.exe",
+        "Arguments":  "-NoProfile -ExecutionPolicy Bypass -File C:\\Users\\acer\\Asolaria\\tools\\Run-NotebookBuildLoop-Scheduled.ps1",
+        "Triggers":  "MSFT_TaskTimeTrigger"
+    },
+    {
+        "TaskPath":  "\\",
+        "TaskName":  "Asolaria NotebookLM Upgrade Loop",
+        "State":  1,
+        "Execute":  "powershell.exe",
+        "Arguments":  "-NoProfile -ExecutionPolicy Bypass -File \" C:\\Users\\acer\\Asolaria\\tools\\Start-NotebookLM-Upgrade-Loop.ps1\\",
+        "Triggers":  "MSFT_TaskTimeTrigger"
+    },
+    {
+        "TaskPath":  "\\",
+        "TaskName":  "Asolaria One Button Startup",
+        "State":  3,
+        "Execute":  "powershell.exe",
+        "Arguments":  "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-Asolaria-OneButton.ps1\" -Port 4781 -StartupMode -SkipAutoStartupInstall -NetworkBootstrapMaxWaitSeconds 180",
+        "Triggers":  "MSFT_TaskLogonTrigger"
+    },
+    {
+        "TaskPath":  "\\",
+        "TaskName":  "Asolaria Wake Display 1000 BRT",
+        "State":  3,
+        "Execute":  "powershell.exe",
+        "Arguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\"",
+        "Triggers":  "MSFT_TaskTimeTrigger"
+    },
+    {
+        "TaskPath":  "\\",
+        "TaskName":  "Asolaria-OpenAI-Quota-Reminder-20260304",
+        "State":  3,
+        "Execute":  "powershell.exe",
+        "Arguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Reminder-OpenAI-Quota-20260304.ps1\"",
+        "Triggers":  "MSFT_TaskTimeTrigger"
+    },
+    {
+        "TaskPath":  "\\",
+        "TaskName":  "Asolaria-WakeDisplay-2026-02-24-0900",
+        "State":  3,
+        "Execute":  "powershell.exe",
+        "Arguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\" -OpenUrl \"\"",
+        "Triggers":  "MSFT_TaskTimeTrigger"
+    }
+]

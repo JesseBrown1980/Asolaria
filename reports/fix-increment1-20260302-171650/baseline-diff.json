@@ -1,0 +1,42 @@
+﻿{
+    "Before":  {
+                   "CapturedAt":  "2026-03-02T17:16:52.0158217-03:00",
+                   "PythonWhere":  [
+                                       "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                                       "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                                       "C:\\Users\\acer\\anaconda3\\python.exe"
+                                   ],
+                   "JavaWhere":  [
+                                     "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+                                     "C:\\Java\\jdk1.8.0_392\\bin\\java.exe"
+                                 ],
+                   "JavaCWhere":  [
+                                      "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\javac.exe",
+                                      "C:\\Java\\jdk1.8.0_392\\bin\\javac.exe"
+                                  ],
+                   "WindowsStorePresent":  true,
+                   "WindowsAppsPath":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps",
+                   "UserProfile":  "C:\\Users\\acer"
+               },
+    "After":  {
+                  "CapturedAt":  "2026-03-02T17:17:21.7175935-03:00",
+                  "PythonWhere":  [
+                                      "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                                      "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                                      "C:\\Users\\acer\\anaconda3\\python.exe"
+                                  ],
+                  "JavaWhere":  [
+                                    "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+                                    "C:\\Java\\jdk1.8.0_392\\bin\\java.exe"
+                                ],
+                  "JavaCWhere":  [
+                                     "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\javac.exe",
+                                     "C:\\Java\\jdk1.8.0_392\\bin\\javac.exe"
+                                 ],
+                  "PythonVersion":  "Python 3.13.12",
+                  "PyLauncherVersion":  "Python 3.13.2",
+                  "WindowsStorePresent":  true,
+                  "WindowsAppsShimExists":  true,
+                  "UserProfile":  "C:\\Users\\acer"
+              }
+}

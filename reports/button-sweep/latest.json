@@ -1,0 +1,1164 @@
+{
+  "generatedAt": "2026-03-05T21:29:38.717Z",
+  "baseUrl": "http://127.0.0.1:4781",
+  "pages": [
+    {
+      "id": "dashboard",
+      "url": "http://127.0.0.1:4781/",
+      "totalVisibleButtons": 37,
+      "clicked": 31,
+      "skippedDangerous": 3,
+      "skippedDisabled": 3,
+      "failed": 0,
+      "failures": [],
+      "consoleErrors": [
+        "console:Failed to load resource: the server responded with a status of 502 (Bad Gateway)",
+        "console:Failed to load resource: the server responded with a status of 502 (Bad Gateway)",
+        "console:Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "console:Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\button-sweep\\dashboard-2026-03-05T21-29-53-489Z.png"
+    },
+    {
+      "id": "phone_mode",
+      "url": "http://127.0.0.1:4781/phone-mode.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef&channel=usb",
+      "totalVisibleButtons": 11,
+      "clicked": 8,
+      "skippedDangerous": 0,
+      "skippedDisabled": 3,
+      "failed": 0,
+      "failures": [],
+      "consoleErrors": [],
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\button-sweep\\phone_mode-2026-03-05T21-30-01-342Z.png"
+    },
+    {
+      "id": "mobile_console",
+      "url": "http://127.0.0.1:4781/mobile-console.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef&channel=usb",
+      "totalVisibleButtons": 300,
+      "clicked": 3,
+      "skippedDangerous": 23,
+      "skippedDisabled": 0,
+      "failed": 274,
+      "failures": [
+        {
+          "label": "Signal Open Asolaria",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Install (Menu)",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Save Strategy",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Enable Push Alerts",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Disable Push",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Test Push",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Home Wi-Fi",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Internet Tunnel",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Public Fallback",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "USB First",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Save URL",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Mark VPN Active",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Stealth OFF",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Capture Now",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Live Refresh On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Displays",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "All Screens Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Open Full Screen",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Set",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Refresh",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Arm 2m",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Disarm",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Tap-to-Click Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Control Diagnostics",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Scroll Up",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Scroll Down",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Enter",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Esc",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Backspace",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Page Up",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Page Down",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Ctrl+C",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Ctrl+V",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Ctrl+A",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Prev Tab",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Next Tab",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Close Tab",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Send Text",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Focus",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Refresh",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Alt+Tab",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Minimize",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Maximize",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Restore",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Close",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Focus",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Min",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Max",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Focus",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Min",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Max",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Focus",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Min",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Max",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Focus",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Min",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Max",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Focus",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Min",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Max",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Wake",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Refresh List",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Refresh Status",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Open Setup (Desktop)",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Status",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Channels",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Status",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Auth Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Open on Desktop",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Inbox",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Search",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Upcoming",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Calendars",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "API GET",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Status",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Enabled APIs",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Enable",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "API GET",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Status",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Open Termux",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Open F-Droid",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Run",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start sshd",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Help Recover",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Catalog",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read Status",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Sweep",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Off",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Read",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Insert",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Run Command",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Repeat Last",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Clear History",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Send",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Clear",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Attach Screen On",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Clear",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Search",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Refresh",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Add Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Clear",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Unpin",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Add Task",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Refresh",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Start",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Review",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Block",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Archive",
+          "reason": "element_disappeared"
+        },
+        {
+          "label": "Note",
+          "reason": "element_disappeared"
+        }
+      ],
+      "consoleErrors": [],
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\button-sweep\\mobile_console-2026-03-05T21-30-06-980Z.png"
+    },
+    {
+      "id": "mobile_approvals",
+      "url": "http://127.0.0.1:4781/mobile-approvals.html?token=fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef&channel=usb",
+      "totalVisibleButtons": 4,
+      "clicked": 4,
+      "skippedDangerous": 0,
+      "skippedDisabled": 0,
+      "failed": 0,
+      "failures": [],
+      "consoleErrors": [],
+      "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\button-sweep\\mobile_approvals-2026-03-05T21-30-10-348Z.png"
+    }
+  ],
+  "summary": {
+    "pages": 4,
+    "totalVisibleButtons": 352,
+    "clicked": 46,
+    "skippedDangerous": 26,
+    "skippedDisabled": 6,
+    "failed": 274
+  }
+}

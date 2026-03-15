@@ -1,0 +1,156 @@
+﻿[
+    {
+        "Increment":  "fix-increment10-20260302-181116",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment10-20260302-181116",
+        "HasSummary":  true,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  false,
+        "HasRestoreTask":  true,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment11-20260302-181330",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment11-20260302-181330",
+        "HasSummary":  true,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  true,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment1-20260302-171650",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment1-20260302-171650",
+        "HasSummary":  false,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  false,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment12-20260302-181402",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment12-20260302-181402",
+        "HasSummary":  false,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  false,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment2-20260302-175235",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment2-20260302-175235",
+        "HasSummary":  true,
+        "MovedCount":  3,
+        "ReclaimedMB":  742.89,
+        "HasRestoreMoves":  true,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment3-20260302-175404",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment3-20260302-175404",
+        "HasSummary":  true,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  false,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment3-20260302-175514",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment3-20260302-175514",
+        "HasSummary":  true,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  false,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment3-20260302-175542",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment3-20260302-175542",
+        "HasSummary":  true,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  false,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment4-20260302-180346",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment4-20260302-180346",
+        "HasSummary":  true,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  false,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  true,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment5-20260302-180421",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment5-20260302-180421",
+        "HasSummary":  false,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  false,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment6-20260302-180448",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment6-20260302-180448",
+        "HasSummary":  true,
+        "MovedCount":  7,
+        "ReclaimedMB":  3.79,
+        "HasRestoreMoves":  true,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment7-20260302-180528",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment7-20260302-180528",
+        "HasSummary":  true,
+        "MovedCount":  10,
+        "ReclaimedMB":  207,
+        "HasRestoreMoves":  true,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment8-20260302-180641",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment8-20260302-180641",
+        "HasSummary":  true,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  true,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  false
+    },
+    {
+        "Increment":  "fix-increment9-20260302-180827",
+        "Path":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment9-20260302-180827",
+        "HasSummary":  true,
+        "MovedCount":  0,
+        "ReclaimedMB":  0,
+        "HasRestoreMoves":  false,
+        "HasRestoreTask":  false,
+        "HasRestoreStartup":  false,
+        "HasRestoreEnv":  true
+    }
+]

@@ -1,0 +1,12 @@
+﻿{
+    "checkedAt":  "2026-02-26T21:33:18.5784579-03:00",
+    "mobilePushSubscriptions":  0,
+    "slackConfigured":  false,
+    "slackConnectionError":  "not_configured",
+    "routeSelected":  "none",
+    "routeReason":  "No channels detected as available.",
+    "remoteBaseUrl":  "https://192.168.1.2:5443",
+    "keeperRunning":  true,
+    "tunnelMonitorRunning":  true,
+    "tunnelReportPass":  true
+}

@@ -1,0 +1,301 @@
+﻿{
+    "ok":  true,
+    "generatedAt":  "2026-03-08T17:52:41.7878214-03:00",
+    "summary":  {
+                    "runtime":  {
+                                    "selectedChannel":  "usb",
+                                    "selectedReason":  "Matched preferred secure channel: usb.",
+                                    "remoteBaseUrl":  "https://exec-twiki-somerset-talking.trycloudflare.com"
+                                },
+                    "tasks":  {
+                                  "total":  557,
+                                  "activeExcludingArchived":  533,
+                                  "openByInboxRules":  53,
+                                  "openInTop240Window":  39,
+                                  "openOmittedBy240Window":  14,
+                                  "statusCounts":  {
+                                                       "archived":  24,
+                                                       "ready":  1,
+                                                       "review":  1,
+                                                       "done":  470,
+                                                       "canceled":  10,
+                                                       "planned":  11,
+                                                       "in_progress":  34,
+                                                       "blocked":  6
+                                                   }
+                              },
+                    "mobileInbox":  {
+                                        "defaultSummary":  {
+                                                               "pendingApprovals":  0,
+                                                               "visibleApprovals":  0,
+                                                               "hiddenApprovals":  0,
+                                                               "activeTasks":  36,
+                                                               "visibleTasks":  6,
+                                                               "hiddenTaskDuplicates":  3,
+                                                               "visibleTaskDuplicates":  2,
+                                                               "visibleNotes":  4,
+                                                               "hiddenNoteDuplicates":  0
+                                                           },
+                                        "maxSummary":  {
+                                                           "pendingApprovals":  0,
+                                                           "visibleApprovals":  0,
+                                                           "hiddenApprovals":  0,
+                                                           "activeTasks":  36,
+                                                           "visibleTasks":  20,
+                                                           "hiddenTaskDuplicates":  3,
+                                                           "visibleTaskDuplicates":  2,
+                                                           "visibleNotes":  10,
+                                                           "hiddenNoteDuplicates":  0
+                                                       }
+                                    },
+                    "notebook":  {
+                                     "totalNotes":  330,
+                                     "mirrorAccounts":  [
+                                                            "plasmatoid@gmail.com"
+                                                        ]
+                                 },
+                    "notebooklmEnterprise":  {
+                                                 "statusReady":  true,
+                                                 "statusProject":  "winged-complex-390417",
+                                                 "statusLocation":  "global",
+                                                 "defaultNotebooks":  [
+                                                                          "Asolaria Seat Validation 172902",
+                                                                          "Asolaria Ops Knowledge Hub"
+                                                                      ],
+                                                 "byAccount":  [
+                                                                   {
+                                                                       "account":  "jesse@jbrowndevelopmentllc.com",
+                                                                       "status":  "failed",
+                                                                       "error":  "Google token request failed: Token has been expired or revoked.",
+                                                                       "notebookCount":  0,
+                                                                       "notebookTitles":  [
+
+                                                                                          ]
+                                                                   },
+                                                                   {
+                                                                       "account":  "jessebrown.soft1980@gmail.com",
+                                                                       "status":  "failed",
+                                                                       "error":  "Permission \u0027discoveryengine.notebooks.list\u0027 denied on resource \u0027//discoveryengine.googleapis.com/projects/winged-complex-390417/locations/global\u0027 (or it may not exist).",
+                                                                       "notebookCount":  0,
+                                                                       "notebookTitles":  [
+
+                                                                                          ]
+                                                                   },
+                                                                   {
+                                                                       "account":  "plasmatoid@gmail.com",
+                                                                       "status":  "completed",
+                                                                       "error":  "",
+                                                                       "notebookCount":  1,
+                                                                       "notebookTitles":  [
+                                                                                              "Asolaria Enterprise Memory"
+                                                                                          ]
+                                                                   },
+                                                                   {
+                                                                       "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                                                                       "status":  "failed",
+                                                                       "error":  "Google token request failed: reauth related error (invalid_rapt)",
+                                                                       "notebookCount":  0,
+                                                                       "notebookTitles":  [
+
+                                                                                          ]
+                                                                   }
+                                                               ]
+                                             }
+                },
+    "details":  {
+                    "mobileSettings":  {
+                                           "voiceEnabled":  true,
+                                           "voiceOutputMode":  "gemini_live_audio",
+                                           "voiceAutoSpeakReplies":  true,
+                                           "voiceWakeWord":  "asolaria",
+                                           "connectionRemoteBaseUrl":  "https://exec-twiki-somerset-talking.trycloudflare.com",
+                                           "connectionResolvedRemoteBaseUrl":  "https://exec-twiki-somerset-talking.trycloudflare.com"
+                                       },
+                    "openOmittedBy240Window":  [
+                                                   {
+                                                       "id":  "task_1772403278806_0c2zqi",
+                                                       "status":  "planned",
+                                                       "priority":  "normal",
+                                                       "source":  "chat-auto",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-03-01T22:14:38.843Z",
+                                                       "title":  "phone_whatsapp_status: phone whatsapp status"
+                                                   },
+                                                   {
+                                                       "id":  "task_1772401986876_iylw09",
+                                                       "status":  "planned",
+                                                       "priority":  "normal",
+                                                       "source":  "chat-auto",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-03-01T21:53:06.901Z",
+                                                       "title":  "phone_whatsapp_open: open whatsapp on phone"
+                                                   },
+                                                   {
+                                                       "id":  "task_1772401978848_n87y6h",
+                                                       "status":  "planned",
+                                                       "priority":  "normal",
+                                                       "source":  "chat-auto",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-03-01T21:52:58.876Z",
+                                                       "title":  "phone_whatsapp_open: open whatsapp on phone"
+                                                   },
+                                                   {
+                                                       "id":  "task_1772401503495_p5kit7",
+                                                       "status":  "in_progress",
+                                                       "priority":  "normal",
+                                                       "source":  "chat-auto",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-03-01T21:45:04.019Z",
+                                                       "title":  "Hello ass hilaria how are you doingAlright, let;s get it working on the phone too"
+                                                   },
+                                                   {
+                                                       "id":  "task_1772401051451_wm95d4",
+                                                       "status":  "in_progress",
+                                                       "priority":  "normal",
+                                                       "source":  "chat-auto",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-03-01T21:37:31.991Z",
+                                                       "title":  "[Gemini Live Relay Transcript] Gemini said: test relay from phone. Please respond in two phases: 1) fast immediate guidance 2) deeper ana..."
+                                                   },
+                                                   {
+                                                       "id":  "task_1772401040795_op0yxm",
+                                                       "status":  "in_progress",
+                                                       "priority":  "normal",
+                                                       "source":  "chat-auto",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-03-01T21:37:21.316Z",
+                                                       "title":  "connectivity debug request"
+                                                   },
+                                                   {
+                                                       "id":  "task_1772378506246_fb593r",
+                                                       "status":  "in_progress",
+                                                       "priority":  "normal",
+                                                       "source":  "chat-auto",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-03-01T15:21:46.841Z",
+                                                       "title":  "Open the bridge between you and Oli and John\u0027s computer and help her with the updates to the system. She needs to have a UI for John to u..."
+                                                   },
+                                                   {
+                                                       "id":  "task_1772124087662_1ie96y",
+                                                       "status":  "planned",
+                                                       "priority":  "normal",
+                                                       "source":  "owner-directive",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-02-26T16:41:27.662Z",
+                                                       "title":  "Competitive analysis: Perplexity Computer launch and implications for Asolaria roadmap"
+                                                   },
+                                                   {
+                                                       "id":  "task_1772124087596_sb6b4s",
+                                                       "status":  "planned",
+                                                       "priority":  "high",
+                                                       "source":  "owner-directive",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-02-26T16:41:27.596Z",
+                                                       "title":  "Gemini API migration: move Gemini 3 Pro Preview workloads to gemini-3.1-pro-preview before March 9, 2026"
+                                                   },
+                                                   {
+                                                       "id":  "task_1771427044362_xsfuaw",
+                                                       "status":  "in_progress",
+                                                       "priority":  "normal",
+                                                       "source":  "nextgen-exec",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-02-18T17:20:20.296Z",
+                                                       "title":  "NextGen: Rules Engine"
+                                                   },
+                                                   {
+                                                       "id":  "task_1771435075948_5w07mx",
+                                                       "status":  "planned",
+                                                       "priority":  "high",
+                                                       "source":  "nextgen-exec",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-02-18T17:17:55.948Z",
+                                                       "title":  "Telegram: Configure + E2E Test"
+                                                   },
+                                                   {
+                                                       "id":  "task_1771427044369_1rrt9g",
+                                                       "status":  "planned",
+                                                       "priority":  "normal",
+                                                       "source":  "bootstrap",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-02-18T15:04:04.369Z",
+                                                       "title":  "NextGen: Audit + Packaging"
+                                                   },
+                                                   {
+                                                       "id":  "task_1771427044355_23fxv8",
+                                                       "status":  "planned",
+                                                       "priority":  "high",
+                                                       "source":  "bootstrap",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-02-18T15:04:04.355Z",
+                                                       "title":  "NextGen: Computer Control Layer"
+                                                   },
+                                                   {
+                                                       "id":  "task_1771427044350_ur54wu",
+                                                       "status":  "planned",
+                                                       "priority":  "high",
+                                                       "source":  "bootstrap",
+                                                       "projectScope":  "",
+                                                       "updatedAt":  "2026-02-18T15:04:04.350Z",
+                                                       "title":  "NextGen: Brain Provider Fallback"
+                                                   }
+                                               ],
+                    "mobileInboxDefaultIds":  {
+                                                  "tasks":  [
+                                                                "task_1772891226069_lvp9fb",
+                                                                "task_1772891032465_2186ke",
+                                                                "task_1772897166783_fa7ufz",
+                                                                "task_1772897961310_xs4jit",
+                                                                "task_1772896090607_zipzr7",
+                                                                "task_1772684841610_vnafld"
+                                                            ],
+                                                  "approvals":  [
+
+                                                                ],
+                                                  "notes":  [
+                                                                "note_1772734207871_d2ux23",
+                                                                "note_1772987229298_dwg88p",
+                                                                "note_1772987020036_qqbepg",
+                                                                "note_1772986948968_uc4y5c"
+                                                            ]
+                                              },
+                    "mobileInboxMaxIds":  {
+                                              "tasks":  [
+                                                            "task_1772891226069_lvp9fb",
+                                                            "task_1772891032465_2186ke",
+                                                            "task_1772897166783_fa7ufz",
+                                                            "task_1772897961310_xs4jit",
+                                                            "task_1772896090607_zipzr7",
+                                                            "task_1772684841610_vnafld",
+                                                            "task_1771864003818_fprzsy",
+                                                            "task_1772713429419_25ty1g",
+                                                            "task_1772941902598_6nssqd",
+                                                            "task_1772509680267_1m4yv8",
+                                                            "task_1772509674923_9a7j0a",
+                                                            "task_1772509674726_3bfeis",
+                                                            "task_1772509674553_di1dzu",
+                                                            "task_1771960623796_wb154o",
+                                                            "task_1771960624824_wuv1yh",
+                                                            "task_1772509683683_truv5c",
+                                                            "task_1772509680950_eu7ywc",
+                                                            "task_1772509675988_or9uut",
+                                                            "task_1771435034596_799xnr",
+                                                            "task_1771719795790_33jigk"
+                                                        ],
+                                              "approvals":  [
+
+                                                            ],
+                                              "notes":  [
+                                                            "note_1772734207871_d2ux23",
+                                                            "note_1772987229298_dwg88p",
+                                                            "note_1772987020036_qqbepg",
+                                                            "note_1772986948968_uc4y5c",
+                                                            "note_1772734014104_fdu1yk",
+                                                            "note_1772733218289_z48sij",
+                                                            "note_1772593719997_pggs8w",
+                                                            "note_1772592401765_vko4af",
+                                                            "note_1772481608985_y4ttuq",
+                                                            "note_1772479924745_ugw35c"
+                                                        ]
+                                          }
+                }
+}

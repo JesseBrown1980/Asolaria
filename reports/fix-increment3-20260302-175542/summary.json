@@ -1,0 +1,24 @@
+﻿{
+    "date":  "2026-03-02",
+    "mode":  "startup token hardening without restart",
+    "runKey":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+    "entryName":  "AgentBridgePC",
+    "changed":  true,
+    "checks":  {
+                   "bindHostLoopback":  true,
+                   "sharedTokenPresent":  true,
+                   "sharedTokenPlaceholderRemoved":  true
+               },
+    "token":  {
+                  "length":  43,
+                  "sha256":  "1db0b46021643401cae2b479cce2b6135e40c91e54974314ae9550e535fe6686"
+              },
+    "runningAgentBridgeProcessCount":  0,
+    "runningAgentBridgeProcesses":  [
+
+                                    ],
+    "rollback":  {
+                     "runKeyBackup":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment3-20260302-175542\\hkcu-run-before.reg",
+                     "restoreScript":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment3-20260302-175542\\restore-run-agentbridgepc.ps1"
+                 }
+}

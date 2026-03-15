@@ -1,0 +1,139 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)", "Bash(find:*)", "Bash(grep:*)", "Bash(npm:*)",
+      "Bash(node:*)", "Bash(ls:*)", "Bash(git:*)", "Write", "Edit"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_guard.py --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type PostToolUse --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type PostToolUseFailure --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type UserPromptSubmit --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type Notification --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type Stop --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type SubagentStart --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type SubagentStop --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type PreCompact --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type SessionStart --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type SessionEnd --source-app asolaria"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python $CLAUDE_PROJECT_DIR/.claude/hooks/asolaria_hook.py --event-type PermissionRequest --source-app asolaria"
+          }
+        ]
+      }
+    ]
+  }
+}

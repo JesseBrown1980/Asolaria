@@ -1,0 +1,104 @@
+﻿{
+    "timestamp":  "2026-02-27T01:57:38.6316230-03:00",
+    "action":  "startup_autonomous_resume_slack_review_general_last_20",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "request":  {
+                    "analyze":  false,
+                    "channel":  "#general",
+                    "limit":  20
+                },
+    "slackStatus":  {
+                        "ok":  true,
+                        "status":  {
+                                       "enabled":  true,
+                                       "configured":  false,
+                                       "tokenSource":  "none",
+                                       "tokenHint":  "",
+                                       "defaultChannel":  "",
+                                       "updatedAt":  null,
+                                       "policy":  {
+                                                      "allowPrivateChannels":  true,
+                                                      "allowDirectMessages":  false,
+                                                      "allowedChannels":  [
+
+                                                                          ],
+                                                      "maxMessages":  80,
+                                                      "maxDigestChars":  28000,
+                                                      "backendOnly":  true,
+                                                      "noLinkNavigation":  true,
+                                                      "linkRedaction":  true
+                                                  },
+                                       "connection":  {
+                                                          "ok":  false,
+                                                          "error":  "not_configured"
+                                                      },
+                                       "workspace":  null,
+                                       "botUser":  null
+                                   }
+                    },
+    "reviewResponse":  {
+                           "ok":  true,
+                           "mode":  "queued",
+                           "reply":  "Queued Slack review job job_1772168253322_n454jd.",
+                           "job":  {
+                                       "id":  "job_1772168253322_n454jd",
+                                       "type":  "slack_review",
+                                       "status":  "running",
+                                       "payload":  {
+                                                       "channel":  "#general",
+                                                       "limit":  20,
+                                                       "analyze":  false,
+                                                       "request":  ""
+                                                   },
+                                       "createdAt":  "2026-02-27T04:57:33.322Z",
+                                       "updatedAt":  "2026-02-27T04:57:33.322Z",
+                                       "startedAt":  "2026-02-27T04:57:33.322Z",
+                                       "finishedAt":  null,
+                                       "elapsedMs":  null,
+                                       "result":  null,
+                                       "error":  null
+                                   },
+                           "guardian":  {
+                                            "triggered":  false,
+                                            "blocked":  false,
+                                            "risk":  {
+                                                         "level":  "medium",
+                                                         "score":  3,
+                                                         "reasons":  [
+                                                                         "Action risk baseline for \"slack_review\""
+                                                                     ],
+                                                         "crazy":  false,
+                                                         "securityIncident":  false,
+                                                         "action":  "slack_review",
+                                                         "preview":  "Slack review #general last 20 raw"
+                                                     },
+                                            "decision":  null,
+                                            "alert":  null
+                                        }
+                       },
+    "jobId":  "job_1772168253322_n454jd",
+    "jobState":  {
+                     "ok":  true,
+                     "job":  {
+                                 "id":  "job_1772168253322_n454jd",
+                                 "type":  "slack_review",
+                                 "status":  "failed",
+                                 "payload":  {
+                                                 "channel":  "#general",
+                                                 "limit":  20,
+                                                 "analyze":  false,
+                                                 "request":  ""
+                                             },
+                                 "createdAt":  "2026-02-27T04:57:33.322Z",
+                                 "updatedAt":  "2026-02-27T04:57:33.323Z",
+                                 "startedAt":  "2026-02-27T04:57:33.322Z",
+                                 "finishedAt":  "2026-02-27T04:57:33.323Z",
+                                 "elapsedMs":  1,
+                                 "result":  null,
+                                 "error":  "Slack integration is not configured."
+                             }
+                 },
+    "errors":  [
+
+               ]
+}

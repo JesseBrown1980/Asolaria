@@ -1,0 +1,8 @@
+﻿{
+    "ok":  true,
+    "baseDir":  "C:\\Users\\acer\\Asolaria\\reports\\fix-increment3-20260302-175404",
+    "tokenLength":  9,
+    "runContainsSharedTokenSwitch":  false,
+    "runBefore":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\CrossDevice\\agent-bridge\\Start-AgentBridge-PC.ps1\" -WorkDir \"C:\\Users\\acer\\CrossDevice\\agent-bridge\" -BindHost \"0.0.0.0\" -Port 8765 -SharedToken \"change_me\"",
+    "runAfter":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\CrossDevice\\agent-bridge\\Start-AgentBridge-PC.ps1\" -WorkDir \"C:\\Users\\acer\\CrossDevice\\agent-bridge\" -BindHost \"0.0.0.0\" -Port 8765"
+}

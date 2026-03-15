@@ -1,0 +1,124 @@
+﻿{
+    "ok":  false,
+    "mode":  "wrappers",
+    "timestamp":  "2026-03-14T20:25:43.4883855-03:00",
+    "paths":  {
+                  "repoRoot":  "C:\\Users\\acer\\Asolaria",
+                  "codexSkillsRoot":  "C:\\Users\\acer\\.codex\\skills",
+                  "wrapperSkillsRoot":  "C:\\Users\\acer\\Asolaria\\skills",
+                  "expectedSkillsPath":  ""
+              },
+    "counts":  {
+                   "codexSkills":  33,
+                   "wrapperSkills":  35,
+                   "expectedSkills":  0
+               },
+    "missing":  {
+                    "wrappersForCodex":  [
+
+                                         ],
+                    "codexForWrappers":  [
+                                             "system-slides",
+                                             "system-spreadsheets"
+                                         ],
+                    "expectedInCodex":  [
+
+                                        ],
+                    "codexNotInExpected":  [
+
+                                           ]
+                },
+    "compare":  {
+                    "missingOnLocal":  [
+                                           "system-slides",
+                                           "system-spreadsheets"
+                                       ],
+                    "missingOnOther":  [
+
+                                       ],
+                    "shared":  [
+                                   "cloudflare-deploy",
+                                   "develop-web-game",
+                                   "doc",
+                                   "figma",
+                                   "figma-implement-design",
+                                   "gh-address-comments",
+                                   "gh-fix-ci",
+                                   "google-code-wiki",
+                                   "imagegen",
+                                   "jupyter-notebook",
+                                   "linear",
+                                   "netlify-deploy",
+                                   "notion-knowledge-capture",
+                                   "notion-meeting-intelligence",
+                                   "notion-research-documentation",
+                                   "notion-spec-to-implementation",
+                                   "openai-docs",
+                                   "pdf",
+                                   "playwright",
+                                   "render-deploy",
+                                   "screenshot",
+                                   "security-best-practices",
+                                   "security-ownership-map",
+                                   "security-threat-model",
+                                   "sentry",
+                                   "sora",
+                                   "speech",
+                                   "spreadsheet",
+                                   "system-skill-creator",
+                                   "system-skill-installer",
+                                   "transcribe",
+                                   "vercel-deploy",
+                                   "yeet"
+                               ]
+                },
+    "samples":  {
+                    "codexSkills":  [
+                                        "cloudflare-deploy",
+                                        "develop-web-game",
+                                        "doc",
+                                        "figma",
+                                        "figma-implement-design",
+                                        "gh-address-comments",
+                                        "gh-fix-ci",
+                                        "google-code-wiki",
+                                        "imagegen",
+                                        "jupyter-notebook",
+                                        "linear",
+                                        "netlify-deploy",
+                                        "notion-knowledge-capture",
+                                        "notion-meeting-intelligence",
+                                        "notion-research-documentation",
+                                        "notion-spec-to-implementation",
+                                        "openai-docs",
+                                        "pdf",
+                                        "playwright",
+                                        "render-deploy"
+                                    ],
+                    "wrapperSkills":  [
+                                          "cloudflare-deploy",
+                                          "develop-web-game",
+                                          "doc",
+                                          "figma",
+                                          "figma-implement-design",
+                                          "gh-address-comments",
+                                          "gh-fix-ci",
+                                          "google-code-wiki",
+                                          "imagegen",
+                                          "jupyter-notebook",
+                                          "linear",
+                                          "netlify-deploy",
+                                          "notion-knowledge-capture",
+                                          "notion-meeting-intelligence",
+                                          "notion-research-documentation",
+                                          "notion-spec-to-implementation",
+                                          "openai-docs",
+                                          "pdf",
+                                          "playwright",
+                                          "render-deploy"
+                                      ],
+                    "expectedSkills":  [
+
+                                       ]
+                }
+}

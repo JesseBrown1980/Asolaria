@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-03-01T18:01:10.670Z",
+  "selectionMode": "top10_only",
+  "riskPolicy": {
+    "version": "local-export",
+    "defaults": {
+      "risk": "low",
+      "approvalRequired": false
+    }
+  },
+  "summary": {
+    "wrappers": 10,
+    "riskBreakdown": {
+      "low": 5,
+      "medium": 4,
+      "high": 1,
+      "critical": 0
+    }
+  },
+  "wrappers": [
+    {
+      "sourceSkill": "openai-docs",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "playwright",
+      "risk": "medium",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "screenshot",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "pdf",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "doc",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "spreadsheet",
+      "risk": "medium",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "transcribe",
+      "risk": "low",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "speech",
+      "risk": "medium",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "gh-address-comments",
+      "risk": "medium",
+      "approvalRequired": false
+    },
+    {
+      "sourceSkill": "gh-fix-ci",
+      "risk": "high",
+      "approvalRequired": true
+    }
+  ]
+}

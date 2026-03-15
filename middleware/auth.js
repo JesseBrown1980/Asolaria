@@ -19,8 +19,10 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const { hardenSecret, retrieveSecret } = require("../src/secretHardening");
 
 const TOKEN_PATH = path.join(__dirname, "..", "data", "gateway-auth-tokens.json");
+const DPAPI_TOKEN_KEY = "gateway_auth_tokens";
 
 // ---------- RBAC Definitions ----------
 
@@ -51,6 +53,13 @@ function hasPermission(roleName, permission) {
 // ---------- Token Store ----------
 
 function loadTokens() {
+  // 1. Try DPAPI-hardened store first
+  try {
+    const hardened = retrieveSecret(DPAPI_TOKEN_KEY);
+    if (hardened) return JSON.parse(hardened);
+  } catch { /* fall through to plaintext */ }
+
+  // 2. Fallback to plaintext file (migration path)
   try {
     if (!fs.existsSync(TOKEN_PATH)) return {};
     return JSON.parse(fs.readFileSync(TOKEN_PATH, "utf8"));
@@ -60,6 +69,14 @@ function loadTokens() {
 }
 
 function saveTokens(tokens) {
+  // Save to DPAPI-hardened store
+  try {
+    hardenSecret(DPAPI_TOKEN_KEY, JSON.stringify(tokens));
+  } catch (err) {
+    console.warn("[auth] DPAPI hardening failed, falling back to file:", err.message);
+  }
+
+  // Also write plaintext file for backward compat (will be removed in Phase 2 final)
   const tmp = TOKEN_PATH + ".tmp";
   fs.writeFileSync(tmp, JSON.stringify(tokens, null, 2), "utf8");
   fs.renameSync(tmp, TOKEN_PATH);

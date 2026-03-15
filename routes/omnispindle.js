@@ -15,6 +15,7 @@ const express = require("express");
 const router = express.Router();
 
 const { getOmnispindle, LANE_DEFINITIONS } = require("../src/omnispindle");
+const { requirePermission } = require("../middleware/auth");
 
 const VALID_LANE_IDS = Object.keys(LANE_DEFINITIONS);
 
@@ -32,7 +33,7 @@ function createOmnispindleRouter({ resolveToolPaths, respondError, serverDir }) 
     }
   });
 
-  router.post("/start", (req, res) => {
+  router.post("/start", requirePermission("admin"), (req, res) => {
     try {
       const lanes = req.body?.lanes || null;
       const model = String(req.body?.model || "").trim();
@@ -55,7 +56,7 @@ function createOmnispindleRouter({ resolveToolPaths, respondError, serverDir }) 
     }
   });
 
-  router.post("/stop", (_req, res) => {
+  router.post("/stop", requirePermission("admin"), (_req, res) => {
     try {
       const omnispindle = getOmnispindle();
       const result = omnispindle.stopAll();
@@ -65,7 +66,7 @@ function createOmnispindleRouter({ resolveToolPaths, respondError, serverDir }) 
     }
   });
 
-  router.post("/agent/:laneId/start", (req, res) => {
+  router.post("/agent/:laneId/start", requirePermission("admin"), (req, res) => {
     try {
       const laneId = String(req.params.laneId || "").trim().toLowerCase();
       if (!VALID_LANE_IDS.includes(laneId)) {
@@ -82,7 +83,7 @@ function createOmnispindleRouter({ resolveToolPaths, respondError, serverDir }) 
     }
   });
 
-  router.post("/agent/:laneId/stop", (req, res) => {
+  router.post("/agent/:laneId/stop", requirePermission("admin"), (req, res) => {
     try {
       const laneId = String(req.params.laneId || "").trim().toLowerCase();
       const omnispindle = getOmnispindle();
@@ -93,7 +94,7 @@ function createOmnispindleRouter({ resolveToolPaths, respondError, serverDir }) 
     }
   });
 
-  router.post("/agent/:laneId/prompt", (req, res) => {
+  router.post("/agent/:laneId/prompt", requirePermission("admin"), (req, res) => {
     try {
       const laneId = String(req.params.laneId || "").trim().toLowerCase();
       const text = String(req.body?.text || req.body?.prompt || "").trim();
@@ -108,7 +109,7 @@ function createOmnispindleRouter({ resolveToolPaths, respondError, serverDir }) 
     }
   });
 
-  router.post("/broadcast", (req, res) => {
+  router.post("/broadcast", requirePermission("admin"), (req, res) => {
     try {
       const text = String(req.body?.text || req.body?.prompt || "").trim();
       if (!text) {

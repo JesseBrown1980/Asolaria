@@ -1,0 +1,266 @@
+﻿{
+    "ok":  true,
+    "checkedAt":  "2026-02-21T22:41:39.6640394+00:00",
+    "deviceSerial":  "R5CXA4MGQXV",
+    "deviceModel":  "SM-S721U1",
+    "androidVersion":  "16",
+    "adbPath":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe\\platform-tools\\adb.exe",
+    "defaults":  {
+                     "browserActivity":  "com.android.chrome/com.google.android.apps.chrome.IntentDispatcher",
+                     "homeActivity":  "com.sec.android.app.launcher/.activities.LauncherActivity"
+                 },
+    "signals":  {
+                    "overlayAllowed":  [
+                                           "cloud.izt.voice",
+                                           "com.azure.authenticator",
+                                           "com.google.android.googlequicksearchbox",
+                                           "com.google.android.youtube",
+                                           "com.sec.android.app.samsungapps",
+                                           "com.termux",
+                                           "com.termux.api"
+                                       ],
+                    "accessibilityEnabled":  {
+
+                                             },
+                    "notificationListeners":  [
+                                                  "com.google.android.projection.gearhead",
+                                                  "com.microsoft.appmanager",
+                                                  "com.samsung.android.smartmirroring",
+                                                  "com.sec.android.app.launcher"
+                                              ],
+                    "activeAdmins":  {
+
+                                     },
+                    "owners":  {
+
+                               }
+                },
+    "suspiciousTop":  [
+                          {
+                              "package":  "com.termux",
+                              "score":  55,
+                              "reasons":  [
+                                              "overlay_allowed",
+                                              "third_party_app",
+                                              "installed_within_30_days"
+                                          ],
+                              "isUserApp":  true,
+                              "installer":  "null",
+                              "firstInstallTime":  "2026-02-14 11:49:35",
+                              "lastUpdateTime":  "2026-02-14 11:49:35",
+                              "ageDays":  7
+                          },
+                          {
+                              "package":  "com.termux.api",
+                              "score":  55,
+                              "reasons":  [
+                                              "overlay_allowed",
+                                              "third_party_app",
+                                              "installed_within_30_days"
+                                          ],
+                              "isUserApp":  true,
+                              "installer":  "null",
+                              "firstInstallTime":  "2026-02-19 16:52:11",
+                              "lastUpdateTime":  "2026-02-19 16:52:11",
+                              "ageDays":  2
+                          },
+                          {
+                              "package":  "cloud.izt.voice",
+                              "score":  45,
+                              "reasons":  [
+                                              "overlay_allowed",
+                                              "third_party_app"
+                                          ],
+                              "isUserApp":  true,
+                              "installer":  "com.android.vending",
+                              "firstInstallTime":  "2025-04-11 09:53:37",
+                              "lastUpdateTime":  "2025-04-11 09:53:37",
+                              "ageDays":  316
+                          },
+                          {
+                              "package":  "com.azure.authenticator",
+                              "score":  45,
+                              "reasons":  [
+                                              "overlay_allowed",
+                                              "third_party_app"
+                                          ],
+                              "isUserApp":  true,
+                              "installer":  "com.android.vending",
+                              "firstInstallTime":  "2025-01-06 14:04:10",
+                              "lastUpdateTime":  "2026-02-20 13:11:07",
+                              "ageDays":  411
+                          },
+                          {
+                              "package":  "com.google.android.projection.gearhead",
+                              "score":  43,
+                              "reasons":  [
+                                              "notification_listener_enabled",
+                                              "name_keyword_match"
+                                          ],
+                              "isUserApp":  false,
+                              "installer":  "",
+                              "firstInstallTime":  "2021-12-31 21:00:00",
+                              "lastUpdateTime":  "2026-02-11 01:09:30",
+                              "ageDays":  1512
+                          },
+                          {
+                              "package":  "com.google.android.googlequicksearchbox",
+                              "score":  40,
+                              "reasons":  [
+                                              "overlay_allowed"
+                                          ],
+                              "isUserApp":  false,
+                              "installer":  "",
+                              "firstInstallTime":  "2021-12-31 21:00:00",
+                              "lastUpdateTime":  "2026-02-21 02:28:25",
+                              "ageDays":  1512
+                          },
+                          {
+                              "package":  "com.google.android.youtube",
+                              "score":  40,
+                              "reasons":  [
+                                              "overlay_allowed"
+                                          ],
+                              "isUserApp":  false,
+                              "installer":  "",
+                              "firstInstallTime":  "2021-12-31 21:00:00",
+                              "lastUpdateTime":  "2026-02-20 13:11:24",
+                              "ageDays":  1512
+                          },
+                          {
+                              "package":  "com.sec.android.app.samsungapps",
+                              "score":  40,
+                              "reasons":  [
+                                              "overlay_allowed"
+                                          ],
+                              "isUserApp":  false,
+                              "installer":  "",
+                              "firstInstallTime":  "2021-12-31 21:00:00",
+                              "lastUpdateTime":  "2026-02-17 03:29:25",
+                              "ageDays":  1512
+                          },
+                          {
+                              "package":  "com.microsoft.appmanager",
+                              "score":  35,
+                              "reasons":  [
+                                              "notification_listener_enabled"
+                                          ],
+                              "isUserApp":  false,
+                              "installer":  "",
+                              "firstInstallTime":  "2021-12-31 21:00:00",
+                              "lastUpdateTime":  "2026-02-04 02:01:45",
+                              "ageDays":  1512
+                          },
+                          {
+                              "package":  "com.samsung.android.smartmirroring",
+                              "score":  35,
+                              "reasons":  [
+                                              "notification_listener_enabled"
+                                          ],
+                              "isUserApp":  false,
+                              "installer":  "",
+                              "firstInstallTime":  "2021-12-31 21:00:00",
+                              "lastUpdateTime":  "2021-12-31 21:00:00",
+                              "ageDays":  1512
+                          },
+                          {
+                              "package":  "com.sec.android.app.launcher",
+                              "score":  35,
+                              "reasons":  [
+                                              "notification_listener_enabled"
+                                          ],
+                              "isUserApp":  false,
+                              "installer":  "",
+                              "firstInstallTime":  "2021-12-31 21:00:00",
+                              "lastUpdateTime":  "2025-11-02 09:51:42",
+                              "ageDays":  1512
+                          },
+                          {
+                              "package":  "com.root.tendadrive.Activities",
+                              "score":  23,
+                              "reasons":  [
+                                              "name_keyword_match",
+                                              "third_party_app",
+                                              "installed_within_30_days"
+                                          ],
+                              "isUserApp":  true,
+                              "installer":  "com.android.vending",
+                              "firstInstallTime":  "2026-02-16 19:16:09",
+                              "lastUpdateTime":  "2026-02-16 19:16:09",
+                              "ageDays":  5
+                          },
+                          {
+                              "package":  "com.expressvpn.vpn",
+                              "score":  13,
+                              "reasons":  [
+                                              "name_keyword_match",
+                                              "third_party_app"
+                                          ],
+                              "isUserApp":  true,
+                              "installer":  "com.android.vending",
+                              "firstInstallTime":  "2025-06-27 10:16:51",
+                              "lastUpdateTime":  "2026-02-14 01:13:10",
+                              "ageDays":  239
+                          },
+                          {
+                              "package":  "com.mercadolibre",
+                              "score":  13,
+                              "reasons":  [
+                                              "name_keyword_match",
+                                              "third_party_app"
+                                          ],
+                              "isUserApp":  true,
+                              "installer":  "com.android.vending",
+                              "firstInstallTime":  "2025-08-09 15:53:07",
+                              "lastUpdateTime":  "2026-02-21 02:24:11",
+                              "ageDays":  196
+                          },
+                          {
+                              "package":  "com.netshort.abroad",
+                              "score":  13,
+                              "reasons":  [
+                                              "name_keyword_match",
+                                              "third_party_app"
+                                          ],
+                              "isUserApp":  true,
+                              "installer":  "com.android.vending",
+                              "firstInstallTime":  "2025-09-17 08:59:28",
+                              "lastUpdateTime":  "2025-09-23 02:10:11",
+                              "ageDays":  157
+                          },
+                          {
+                              "package":  "com.tsheets.android.hammerhead",
+                              "score":  13,
+                              "reasons":  [
+                                              "name_keyword_match",
+                                              "third_party_app"
+                                          ],
+                              "isUserApp":  true,
+                              "installer":  "com.android.vending",
+                              "firstInstallTime":  "2026-01-01 19:12:12",
+                              "lastUpdateTime":  "2026-01-23 23:30:43",
+                              "ageDays":  51
+                          }
+                      ],
+    "quarantine":  {
+                       "requested":  false,
+                       "targets":  [
+
+                                   ],
+                       "uninstallUserApps":  false,
+                       "results":  [
+
+                                   ]
+                   },
+    "counts":  {
+                   "userPackages":  130,
+                   "overlayAllowed":  7,
+                   "accessibilityEnabled":  1,
+                   "notificationListeners":  4,
+                   "activeAdmins":  1,
+                   "owners":  1,
+                   "suspiciousTop":  16
+               },
+    "reportPath":  "C:\\Users\\acer\\Asolaria\\reports\\android-threat-audit-20260221-194139.json",
+    "reportMarkdownPath":  "C:\\Users\\acer\\Asolaria\\reports\\android-threat-audit-20260221-194139.md"
+}

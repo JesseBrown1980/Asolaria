@@ -1,0 +1,6 @@
+﻿{
+    "RunValue":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\CrossDevice\\agent-bridge\\Start-AgentBridge-PC.ps1\" -WorkDir \"C:\\Users\\acer\\CrossDevice\\agent-bridge\" -BindHost \"0.0.0.0\" -Port 8765",
+    "TokenLength":  9,
+    "BridgeHealthOk":  true,
+    "BridgeServerTime":  "2026-03-02T20:54:29.079429+00:00"
+}

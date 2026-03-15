@@ -1,0 +1,280 @@
+﻿{
+    "generatedAt":  "2026-03-05T01:55:06.9027833-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "indexPath":  "C:\\Users\\acer\\Asolaria\\data\\skills-tools-index.json",
+    "skills":  {
+                   "total":  53,
+                   "errors":  0,
+                   "ids":  [
+                               "avatar.npc.business.v1",
+                               "captures.prune.desktop_auto",
+                               "captures.prune.desktop_auto.dry_run",
+                               "captures.stats",
+                               "chrome.profiles_list",
+                               "codebase.review_composite_tools_baseline",
+                               "codebase.review_external_mcp_cache",
+                               "codebase.review_kickoff",
+                               "codebase.review_token_efficiency_snapshot",
+                               "codex.ref.cloudflare-deploy",
+                               "codex.ref.develop-web-game",
+                               "codex.ref.doc",
+                               "codex.ref.figma",
+                               "codex.ref.figma-implement-design",
+                               "codex.ref.gh-address-comments",
+                               "codex.ref.gh-fix-ci",
+                               "codex.ref.google-code-wiki",
+                               "codex.ref.imagegen",
+                               "codex.ref.jupyter-notebook",
+                               "codex.ref.linear",
+                               "codex.ref.netlify-deploy",
+                               "codex.ref.notion-knowledge-capture",
+                               "codex.ref.notion-meeting-intelligence",
+                               "codex.ref.notion-research-documentation",
+                               "codex.ref.notion-spec-to-implementation",
+                               "codex.ref.openai-docs",
+                               "codex.ref.pdf",
+                               "codex.ref.playwright",
+                               "codex.ref.render-deploy",
+                               "codex.ref.screenshot",
+                               "codex.ref.security-best-practices",
+                               "codex.ref.security-ownership-map",
+                               "codex.ref.security-threat-model",
+                               "codex.ref.sentry",
+                               "codex.ref.sora",
+                               "codex.ref.speech",
+                               "codex.ref.spreadsheet",
+                               "codex.ref.system.skill-creator",
+                               "codex.ref.system.skill-installer",
+                               "codex.ref.transcribe",
+                               "codex.ref.vercel-deploy",
+                               "codex.ref.yeet",
+                               "desktop.capture",
+                               "desktop.diagnostics",
+                               "desktop.dual_capture",
+                               "gemini.enterprise_business_backend_probe",
+                               "gemini.enterprise_business_open",
+                               "integrations.snapshot",
+                               "local.secure_rebuild.lab",
+                               "mistake.avoidance.hints",
+                               "phone.browser_history_check",
+                               "swarm.mode.status",
+                               "ui.visual_audit"
+                           ]
+               },
+    "tools":  {
+                  "totalActions":  32,
+                  "actionIds":  [
+                                    "tools_status",
+                                    "swarm_mode_status",
+                                    "mistake_avoidance_hints",
+                                    "local_rebuild_plan",
+                                    "codex_skill_reference",
+                                    "google_status",
+                                    "gcp_status",
+                                    "gcp_services_enabled",
+                                    "vertex_status",
+                                    "vertex_budget_status",
+                                    "gemini_api_status",
+                                    "avatar_npc_generate",
+                                    "captures_stats",
+                                    "captures_prune",
+                                    "captures_mark_important",
+                                    "desktop_window_list",
+                                    "desktop_window_active",
+                                    "desktop_window_focus",
+                                    "desktop_click",
+                                    "desktop_double_click",
+                                    "desktop_scroll",
+                                    "desktop_type",
+                                    "desktop_key",
+                                    "desktop_move",
+                                    "desktop_capture",
+                                    "desktop_dual_capture",
+                                    "ui_visual_audit",
+                                    "phone_browser_history_check",
+                                    "chrome_profiles_list",
+                                    "chrome_open_url",
+                                    "web_mcp_inspect",
+                                    "web_mcp_task"
+                                ]
+              },
+    "mistakes":  {
+                     "summary":  {
+                                     "updatedAt":  "2026-03-05T00:55:21.789Z",
+                                     "counts":  {
+                                                    "total":  17,
+                                                    "active":  17,
+                                                    "archived":  0,
+                                                    "obsolete":  0
+                                                }
+                                 },
+                     "activePatternCount":  17,
+                     "topHints":  [
+                                      {
+                                          "id":  "m.1_2_2.c8bd3f23b5",
+                                          "code":  "1.2.2",
+                                          "severity":  "medium",
+                                          "uses":  15
+                                      },
+                                      {
+                                          "id":  "m.1_1_0.dfbeb34e86",
+                                          "code":  "1.1.0",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.1_2_1.137a5f89f7",
+                                          "code":  "1.2.1",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_1_1.d9f2fa5688",
+                                          "code":  "2.1.1",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_1_2.feca60309b",
+                                          "code":  "2.1.2",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_2_1.5f517a76ce",
+                                          "code":  "2.2.1",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_2_2.a2f63ea57e",
+                                          "code":  "2.2.2",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_2_3.b061f07255",
+                                          "code":  "2.2.3",
+                                          "severity":  "medium",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_2_4.dcb60ac837",
+                                          "code":  "2.2.4",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_2_5.bcd5d56aee",
+                                          "code":  "2.2.5",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_3_1.bf0abf7f3e",
+                                          "code":  "2.3.1",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_3_2.e2f806efa6",
+                                          "code":  "2.3.2",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_4_1.91310cf145",
+                                          "code":  "2.4.1",
+                                          "severity":  "medium",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_4_2.ead9e2146b",
+                                          "code":  "2.4.2",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.2_4_2.4fdadd99c8",
+                                          "code":  "2.4.2",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.3_1_1.89ecaa7aea",
+                                          "code":  "3.1.1",
+                                          "severity":  "low",
+                                          "uses":  1
+                                      },
+                                      {
+                                          "id":  "m.1_3_2.04785f4656",
+                                          "code":  "1.3.2",
+                                          "severity":  "medium",
+                                          "uses":  0
+                                      }
+                                  ],
+                     "links":  {
+                                   "bySkill":  {
+                                                   "swarm.mode.status":  1
+                                               },
+                                   "byTool":  {
+                                                  "send_input":  1,
+                                                  "shell_command":  7
+                                              },
+                                   "byActivity":  {
+                                                      "agent_dispatch":  1,
+                                                      "workspace_probe":  1,
+                                                      "smoke_test":  1,
+                                                      "reauth_link_probe":  1,
+                                                      "powershell_parse_check":  1,
+                                                      "adb_intent_launch":  1,
+                                                      "pattern_scan":  1,
+                                                      "powershell_parsing":  1,
+                                                      "monitor_status":  1,
+                                                      "ocr_probe":  1,
+                                                      "restart":  1,
+                                                      "ui_dump_parse":  1,
+                                                      "cdp_probe":  1,
+                                                      "reporting":  1,
+                                                      "swarm_mode":  1,
+                                                      "automation":  1
+                                                  }
+                               }
+                 },
+    "codexSkills":  {
+                        "total":  33,
+                        "wrapperTotal":  33,
+                        "nativeMatchTotal":  0,
+                        "riskCounts":  {
+                                           "low":  28,
+                                           "medium":  4,
+                                           "high":  1,
+                                           "critical":  0,
+                                           "unknown":  0
+                                       }
+                    },
+    "mcp":  {
+                "providers":  [
+                                  {
+                                      "id":  "cursor",
+                                      "enabled":  true,
+                                      "configured":  true,
+                                      "apiStyle":  "openai_responses",
+                                      "mcpEnabled":  true,
+                                      "mcpConfigured":  true,
+                                      "mcpConfigError":  null,
+                                      "mcpServerLabel":  "openaiDeveloperDocs",
+                                      "mcpServerUrl":  "https://developers.openai.com/mcp",
+                                      "mcpConnectorId":  null,
+                                      "mcpPreset":  "balanced",
+                                      "mcpApprovalMode":  "auto",
+                                      "mcpAllowedToolsCount":  0
+                                  }
+                              ],
+                "cache":  {
+                              "providerCatalogCount":  0,
+                              "scopedContextCount":  0,
+                              "updatedAt":  ""
+                          }
+            }
+}

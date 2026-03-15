@@ -1,0 +1,26 @@
+{
+  "stamp": "2026-02-21T19-06-23-873Z",
+  "prompt": "Explain how to check disk usage on Windows in a practical way.",
+  "initialCount": 1,
+  "result": {
+    "totalMessages": 3,
+    "newMessages": [
+      {
+        "cls": "message user",
+        "meta": "You",
+        "text": "Explain how to check disk usage on Windows in a practical way."
+      },
+      {
+        "cls": "message brain",
+        "meta": "Asolaria Brain (job_1771700785207_tvqa4r, 18072ms)",
+        "text": "Use this 3-step workflow on Windows:\n\n1. Check how full each drive is  \n`File Explorer` -> `This PC`  \nYou’ll see each drive’s used/free bar immediately.\n\n2. See what is taking space  \n`Settings` -> `System` -> `Storage` -> click your drive (usually `C:`)  \nThis gives a category breakdown (`Apps`, `Temporary files`, `Documents`, etc.) and is the most practical built-in view.\n\n3. Get exact numbers in PowerShell  \n```powershell\nGet-PSDrive -PSProvider FileSystem |\nSelect-Object Name,\n@{N='Used(GB)';E={[math]::Round($_.Used/1GB,2)}},\n@{N='Free(GB)';E={[math]::Round($_.Free/1GB,2)}}\n```\n\nIf you want, I can also give you a safe command to list the top 20 largest files on `C:`.\n\nProvider: codex"
+      }
+    ],
+    "lastBrain": {
+      "cls": "message brain",
+      "meta": "Asolaria Brain (job_1771700785207_tvqa4r, 18072ms)",
+      "text": "Use this 3-step workflow on Windows:\n\n1. Check how full each drive is  \n`File Explorer` -> `This PC`  \nYou’ll see each drive’s used/free bar immediately.\n\n2. See what is taking space  \n`Settings` -> `System` -> `Storage` -> click your drive (usually `C:`)  \nThis gives a category breakdown (`Apps`, `Temporary files`, `Documents`, etc.) and is the most practical built-in view.\n\n3. Get exact numbers in PowerShell  \n```powershell\nGet-PSDrive -PSProvider FileSystem |\nSelect-Object Name,\n@{N='Used(GB)';E={[math]::Round($_.Used/1GB,2)}},\n@{N='Free(GB)';E={[math]::Round($_.Free/1GB,2)}}\n```\n\nIf you want, I can also give you a safe command to list the top 20 largest files on `C:`.\n\nProvider: codex"
+    }
+  },
+  "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-chat-test\\desktop-chat-fixed-2026-02-21T19-06-23-873Z.png"
+}

@@ -1,0 +1,12 @@
+{
+    "pid":  7292,
+    "startedAt":  "2026-03-02T20:31:06.8432651-03:00",
+    "output":  "C:\\Users\\acer\\Asolaria\\captures\\meetings\\meeting-20260302-203106.mkv",
+    "logStdout":  "C:\\Users\\acer\\Asolaria\\logs\\meeting-recorder-20260302-203106.stdout.log",
+    "logStderr":  "C:\\Users\\acer\\Asolaria\\logs\\meeting-recorder-20260302-203106.stderr.log",
+    "profile":  "balanced",
+    "encoder":  "h264_qsv",
+    "frameRate":  30,
+    "audioEnabled":  false,
+    "audioDevice":  ""
+}

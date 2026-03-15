@@ -1,0 +1,319 @@
+﻿{
+    "serverTime":  "2026-03-02T22:03:32.731633+00:00",
+    "phone":  {
+                  "online":  false,
+                  "deviceId":  "snapshot-old",
+                  "connectedAt":  "2026-03-02T21:27:23.573423+00:00",
+                  "lastSeenAt":  "2026-03-02T21:27:23.573423+00:00",
+                  "staleSeconds":  2169.16,
+                  "connectId":  "",
+                  "connectors":  {
+
+                                 }
+              },
+    "metrics":  {
+                    "sentToPhoneCount":  17,
+                    "receivedFromPhoneCount":  4,
+                    "eventsCount":  30,
+                    "requestsCount":  0
+                },
+    "requests":  [
+
+                 ],
+    "events":  [
+                   {
+                       "at":  "2026-03-02T21:21:05.131158+00:00",
+                       "level":  "info",
+                       "message":  "PC server started",
+                       "detail":  {
+                                      "host":  "0.0.0.0",
+                                      "port":  8765
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:24:31.395488+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-test",
+                                      "connectId":  "06bbaf587cef"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:24:31.426306+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-test",
+                                      "connectId":  "06bbaf587cef"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:24:31.437407+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-test",
+                                      "connectId":  "fa1e18f1f84e"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:24:31.438634+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "send_failed:",
+                                      "deviceId":  "codex-test",
+                                      "connectId":  "fa1e18f1f84e"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:24:31.438653+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-test",
+                                      "connectId":  ""
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:24:42.825658+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-test",
+                                      "connectId":  "6f6b971a3b9a"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:24:42.844281+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-test",
+                                      "connectId":  "6f6b971a3b9a"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:24:42.849880+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-test",
+                                      "connectId":  "3936d0358d47"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:24:42.851407+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-test",
+                                      "connectId":  "3936d0358d47"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:05.528261+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-debug",
+                                      "connectId":  "474a86eee06c"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:05.924026+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-debug",
+                                      "connectId":  "474a86eee06c"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:16.196876+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-debug-old",
+                                      "connectId":  "7914aeedebaa"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:16.482882+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-debug-old",
+                                      "connectId":  "7914aeedebaa"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:33.922447+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-new-check",
+                                      "connectId":  "36ffc9641c48"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:34.149364+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-new-check",
+                                      "connectId":  "36ffc9641c48"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:34.155785+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-old-check",
+                                      "connectId":  "a81460b68670"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:34.360101+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-old-check",
+                                      "connectId":  "a81460b68670"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:59.236035+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-new-check",
+                                      "connectId":  "8abb11edf449"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:59.461603+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-new-check",
+                                      "connectId":  "8abb11edf449"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:59.467870+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "codex-old-check",
+                                      "connectId":  "a3cce49b8901"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:25:59.673917+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "codex-old-check",
+                                      "connectId":  "a3cce49b8901"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:27:02.030376+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "snapshot-new",
+                                      "connectId":  "2178cfa83cdf"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:27:02.252686+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "snapshot-new",
+                                      "connectId":  "2178cfa83cdf"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:27:02.258515+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "snapshot-old",
+                                      "connectId":  "2a70d2f45c6b"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:27:02.463456+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "snapshot-old",
+                                      "connectId":  "2a70d2f45c6b"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:27:23.326016+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "snapshot-new",
+                                      "connectId":  "a23156947bae"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:27:23.565025+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "snapshot-new",
+                                      "connectId":  "a23156947bae"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:27:23.573423+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "snapshot-old",
+                                      "connectId":  "7e5757b3abd8"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T21:27:23.777266+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "snapshot-old",
+                                      "connectId":  "7e5757b3abd8"
+                                  }
+                   }
+               ],
+    "pcConnectors":  {
+                         "pc_status":  true,
+                         "local_ai":  false,
+                         "pc_shell_enabled":  false,
+                         "pc_shell_allowlist":  [
+
+                                                ],
+                         "phone_bridge":  true
+                     }
+}

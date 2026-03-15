@@ -1,0 +1,41 @@
+﻿# Duplicate Sweep (Hash-Based, Non-Destructive)
+
+- Generated: 2026-03-02 17:44:07Z
+- Roots: C:\Users\acer\Desktop, C:\Users\acer\Documents, C:\Users\acer\Downloads, D:\projects, D:\interview, D:\interview - resume
+- Files considered: 31781
+- Hashed: 28538
+- Duplicate hash groups: 3791
+- Cross-drive duplicate groups: 3
+- Estimated reclaim (if deduped): 0.32 GB
+
+## Top Groups
+- 489x abort.js (11 bytes, reclaim 0.01 MB, drives D)
+- 484x abort.js (77 bytes, reclaim 0.04 MB, drives D)
+- 162x LICENSE (1106 bytes, reclaim 0.17 MB, drives D)
+- 91x __init__.py (0 bytes, reclaim 0 MB, drives C,D)
+- 26x index.d.ts (65 bytes, reclaim 0 MB, drives D)
+- 26x LICENSE (11357 bytes, reclaim 0.27 MB, drives D)
+- 21x index.js (172 bytes, reclaim 0 MB, drives D)
+- 20x license (1109 bytes, reclaim 0.02 MB, drives D)
+- 20x tslib.html (32 bytes, reclaim 0 MB, drives D)
+- 20x package.json (26 bytes, reclaim 0 MB, drives D)
+- 20x version.d.ts (78 bytes, reclaim 0 MB, drives D)
+- 20x LICENSE.txt (655 bytes, reclaim 0.01 MB, drives D)
+- 20x tslib.es6.html (36 bytes, reclaim 0 MB, drives D)
+- 19x LICENSE (11357 bytes, reclaim 0.19 MB, drives D)
+- 19x globalThis.d.ts (158 bytes, reclaim 0 MB, drives D)
+- 19x globalThis.d.ts (401 bytes, reclaim 0.01 MB, drives D)
+- 18x index.js (669 bytes, reclaim 0.01 MB, drives D)
+- 18x index.js (837 bytes, reclaim 0.01 MB, drives D)
+- 16x index.d.ts (60 bytes, reclaim 0 MB, drives D)
+- 16x coverage.component.scss (269 bytes, reclaim 0 MB, drives D)
+- 16x index.d.ts (59 bytes, reclaim 0 MB, drives D)
+- 16x version.d.ts (78 bytes, reclaim 0 MB, drives D)
+- 15x types.js (14 bytes, reclaim 0 MB, drives D)
+- 15x LICENSE (1088 bytes, reclaim 0.01 MB, drives D)
+- 14x checksum.d.ts (63 bytes, reclaim 0 MB, drives D)
+- 14x command.d.ts (41 bytes, reclaim 0 MB, drives D)
+- 14x types.js (650 bytes, reclaim 0.01 MB, drives D)
+- 14x waiter.d.ts (53 bytes, reclaim 0 MB, drives D)
+- 14x NoopLogger.d.ts (267 bytes, reclaim 0 MB, drives D)
+- 14x global-utils.d.ts (1319 bytes, reclaim 0.02 MB, drives D)

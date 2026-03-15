@@ -1,0 +1,654 @@
+﻿{
+    "collectionTime":  "2026-03-02T16:39:15.3268736-03:00",
+    "outputDirectory":  "C:\\Users\\acer\\Asolaria\\reports\\windows-sweep-20260302-163821",
+    "drives":  [
+                   {
+                       "Name":  "C",
+                       "Root":  "C:\\",
+                       "Used":  389098045440,
+                       "Free":  121944977408
+                   },
+                   {
+                       "Name":  "D",
+                       "Root":  "D:\\",
+                       "Used":  152975007744,
+                       "Free":  847228080128
+                   }
+               ],
+    "path":  {
+                 "totalEntries":  48,
+                 "duplicateEntries":  5,
+                 "missingEntries":  2
+             },
+    "python":  {
+                   "resolvedCommands":  [
+                                            {
+                                                "command":  "python",
+                                                "resolved":  [
+                                                                 "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+                                                                 "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                                                                 "C:\\Users\\acer\\anaconda3\\python.exe"
+                                                             ],
+                                                "count":  3
+                                            },
+                                            {
+                                                "command":  "python3",
+                                                "resolved":  [
+                                                                 "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe"
+                                                             ],
+                                                "count":  1
+                                            },
+                                            {
+                                                "command":  "py",
+                                                "resolved":  [
+                                                                 "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Launcher\\py.exe"
+                                                             ],
+                                                "count":  1
+                                            },
+                                            {
+                                                "command":  "pip",
+                                                "resolved":  [
+                                                                 "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\pip.exe",
+                                                                 "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe",
+                                                                 "C:\\Users\\acer\\anaconda3\\Scripts\\pip.exe"
+                                                             ],
+                                                "count":  3
+                                            },
+                                            {
+                                                "command":  "pip3",
+                                                "resolved":  [
+                                                                 "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\pip3.exe",
+                                                                 "C:\\Users\\acer\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip3.exe",
+                                                                 "C:\\Users\\acer\\anaconda3\\Scripts\\pip3.exe"
+                                                             ],
+                                                "count":  3
+                                            }
+                                        ],
+                   "pathCollisionCount":  2
+               },
+    "java":  {
+                 "resolvedCommands":  [
+                                          {
+                                              "command":  "java",
+                                              "resolved":  [
+                                                               "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+                                                               "C:\\Java\\jdk1.8.0_392\\bin\\java.exe"
+                                                           ],
+                                              "count":  2
+                                          },
+                                          {
+                                              "command":  "javac",
+                                              "resolved":  [
+                                                               "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\javac.exe",
+                                                               "C:\\Java\\jdk1.8.0_392\\bin\\javac.exe"
+                                                           ],
+                                              "count":  2
+                                          },
+                                          {
+                                              "command":  "jshell",
+                                              "resolved":  [
+                                                               "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\jshell.exe"
+                                                           ],
+                                              "count":  1
+                                          },
+                                          {
+                                              "command":  "mvn",
+                                              "resolved":  [
+
+                                                           ],
+                                              "count":  0
+                                          },
+                                          {
+                                              "command":  "gradle",
+                                              "resolved":  [
+
+                                                           ],
+                                              "count":  0
+                                          }
+                                      ],
+                 "pathCollisionCount":  2
+             },
+    "duplicates":  {
+                       "installedProgramsBothDrives":  0,
+                       "programPathNameDuplicates":  0,
+                       "duplicateFileCandidateGroups":  0,
+                       "duplicateFilesHashVerified":  0
+                   },
+    "indexing":  {
+                     "serviceStatus":  4,
+                     "serviceStartType":  2,
+                     "eventsLast7d":  0,
+                     "errorsLast7d":  0,
+                     "warningsLast7d":  0,
+                     "windowsEdbExists":  false,
+                     "windowsEdbSizeBytes":  null
+                 },
+    "risk":  {
+                 "startupHigh":  0,
+                 "startupMedium":  11,
+                 "tasksHigh":  0,
+                 "tasksMedium":  21,
+                 "topStartup":  [
+                                    {
+                                        "source":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                        "name":  "AgentBridgePC",
+                                        "command":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\CrossDevice\\agent-bridge\\Start-AgentBridge-PC.ps1\" -WorkDir \"C:\\Users\\acer\\CrossDevice\\agent-bridge\" -BindHost \"0.0.0.0\" -Port 8765 -SharedToken \"change_me\"",
+                                        "extractedPath":  "powershell.exe",
+                                        "riskScore":  40,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "uses PowerShell encoded/bypass flags",
+                                                            "auto-trigger at boot/logon"
+                                                        ]
+                                    },
+                                    {
+                                        "source":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                        "name":  "com.squirrel.slack.slack",
+                                        "command":  "\"C:\\Users\\acer\\AppData\\Local\\slack\\slack.exe\" --process-start-args --startup",
+                                        "extractedPath":  "C:\\Users\\acer\\AppData\\Local\\slack\\slack.exe",
+                                        "riskScore":  40,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "executes from user-writable location",
+                                                            "auto-trigger at boot/logon"
+                                                        ]
+                                    },
+                                    {
+                                        "source":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                        "name":  "Teams",
+                                        "command":  "\"C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\MSTeams_8wekyb3d8bbwe\\ms-teams.exe\" msteams:system-initiated",
+                                        "extractedPath":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\WindowsApps\\MSTeams_8wekyb3d8bbwe\\ms-teams.exe",
+                                        "riskScore":  40,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "executes from user-writable location",
+                                                            "auto-trigger at boot/logon"
+                                                        ]
+                                    },
+                                    {
+                                        "source":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                        "name":  "Microsoft Edge Update",
+                                        "command":  "\"C:\\Users\\acer\\AppData\\Local\\Microsoft\\EdgeUpdate\\1.3.223.11\\MicrosoftEdgeUpdateCore.exe\"",
+                                        "extractedPath":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\EdgeUpdate\\1.3.223.11\\MicrosoftEdgeUpdateCore.exe",
+                                        "riskScore":  40,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "executes from user-writable location",
+                                                            "auto-trigger at boot/logon"
+                                                        ]
+                                    },
+                                    {
+                                        "source":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup",
+                                        "name":  "Enviar para o OneNote.lnk",
+                                        "command":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Enviar para o OneNote.lnk",
+                                        "extractedPath":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Enviar para o OneNote.lnk",
+                                        "riskScore":  40,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "executes from user-writable location",
+                                                            "auto-trigger at boot/logon"
+                                                        ]
+                                    },
+                                    {
+                                        "source":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup",
+                                        "name":  "Asolaria One Button Startup.lnk",
+                                        "command":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Asolaria One Button Startup.lnk",
+                                        "extractedPath":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Asolaria One Button Startup.lnk",
+                                        "riskScore":  40,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "executes from user-writable location",
+                                                            "auto-trigger at boot/logon"
+                                                        ]
+                                    },
+                                    {
+                                        "source":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup",
+                                        "name":  "Open Codex CLI.lnk",
+                                        "command":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Open Codex CLI.lnk",
+                                        "extractedPath":  "C:\\Users\\acer\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Open Codex CLI.lnk",
+                                        "riskScore":  40,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "executes from user-writable location",
+                                                            "auto-trigger at boot/logon"
+                                                        ]
+                                    },
+                                    {
+                                        "source":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                        "name":  "ExpressVPN",
+                                        "command":  "C:\\Program Files (x86)\\ExpressVPN\\expressvpn-ui\\ExpressVPN.exe",
+                                        "extractedPath":  "C:\\Program",
+                                        "riskScore":  30,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "auto-trigger at boot/logon",
+                                                            "target path missing"
+                                                        ]
+                                    },
+                                    {
+                                        "source":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                        "name":  "Docker Desktop",
+                                        "command":  "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe",
+                                        "extractedPath":  "C:\\Program",
+                                        "riskScore":  30,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "auto-trigger at boot/logon",
+                                                            "target path missing"
+                                                        ]
+                                    },
+                                    {
+                                        "source":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                        "name":  "Microsoft.Lists",
+                                        "command":  "C:\\Program Files\\Microsoft OneDrive\\26.017.0126.0002\\OneDrive.Sync.Service.exe",
+                                        "extractedPath":  "C:\\Program",
+                                        "riskScore":  30,
+                                        "riskLevel":  "medium",
+                                        "riskReasons":  [
+                                                            "auto-trigger at boot/logon",
+                                                            "target path missing"
+                                                        ]
+                                    }
+                                ],
+                 "topTasks":  [
+                                  {
+                                      "taskName":  "\\Asolaria Core Boot Startup",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "acer",
+                                      "runLevel":  1,
+                                      "hidden":  false,
+                                      "execute":  "powershell.exe",
+                                      "arguments":  "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-Asolaria.ps1\" -Port 4781 -RequireInternet -NetworkBootstrapMaxWaitSeconds 180",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskLogonTrigger"
+                                                       ],
+                                      "riskScore":  55,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "uses PowerShell encoded/bypass flags",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Asolaria One Button Startup",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "acer",
+                                      "runLevel":  1,
+                                      "hidden":  false,
+                                      "execute":  "powershell.exe",
+                                      "arguments":  "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Users\\acer\\Asolaria\\tools\\Start-Asolaria-OneButton.ps1\" -Port 4781 -StartupMode -SkipAutoStartupInstall -NetworkBootstrapMaxWaitSeconds 180",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskLogonTrigger"
+                                                       ],
+                                      "riskScore":  55,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "uses PowerShell encoded/bypass flags",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Asolaria Wake Display 1000 BRT",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "acer",
+                                      "runLevel":  1,
+                                      "hidden":  false,
+                                      "execute":  "powershell.exe",
+                                      "arguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\"",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskTimeTrigger"
+                                                       ],
+                                      "riskScore":  45,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "uses PowerShell encoded/bypass flags",
+                                                          "runs with highest privileges"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Asolaria NotebookLM Build Loop",
+                                      "state":  3,
+                                      "author":  "DESKTOP-J99VCNH\\acer",
+                                      "userId":  "acer",
+                                      "runLevel":  1,
+                                      "hidden":  false,
+                                      "execute":  "powershell.exe",
+                                      "arguments":  "-NoProfile -ExecutionPolicy Bypass -File C:\\Users\\acer\\Asolaria\\tools\\Run-NotebookBuildLoop-Scheduled.ps1",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskTimeTrigger"
+                                                       ],
+                                      "riskScore":  45,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "uses PowerShell encoded/bypass flags",
+                                                          "runs with highest privileges"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\MicrosoftEdgeUpdateTaskUserS-1-5-21-1469047906-1918517011-520466592-1001Core{DC9900C6-A76E-4471-8152-7D531EE07298}",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "acer",
+                                      "runLevel":  0,
+                                      "hidden":  false,
+                                      "execute":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe",
+                                      "arguments":  "/c",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskLogonTrigger",
+                                                           "MSFT_TaskDailyTrigger"
+                                                       ],
+                                      "riskScore":  40,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "executes from user-writable location",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\Workplace Join\\Recovery-Check",
+                                      "state":  1,
+                                      "author":  null,
+                                      "userId":  null,
+                                      "runLevel":  1,
+                                      "hidden":  false,
+                                      "execute":  "%SystemRoot%\\System32\\dsregcmd.exe",
+                                      "arguments":  "/checkrecovery",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskLogonTrigger",
+                                                           "MSFT_TaskSessionStateChangeTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "launches via cmd /c",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\GoogleSystem\\GoogleUpdater\\GoogleUpdaterTaskSystem147.0.7703.0{A89943F5-21A8-48A7-A845-CAA5B81BEE73}",
+                                      "state":  3,
+                                      "author":  "NT AUTHORITY\\SYSTEM",
+                                      "userId":  "SISTEMA",
+                                      "runLevel":  1,
+                                      "hidden":  true,
+                                      "execute":  "\"C:\\Program Files (x86)\\Google\\GoogleUpdater\\147.0.7703.0\\updater.exe\"",
+                                      "arguments":  "--wake --system",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskLogonTrigger",
+                                                           "MSFT_TaskDailyTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "hidden task",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\Device Setup\\Driver Recovery on Reboot",
+                                      "state":  1,
+                                      "author":  "$(@%SystemRoot%\\system32\\DeviceSetupManagerAPI.dll,-600)",
+                                      "userId":  "SISTEMA",
+                                      "runLevel":  1,
+                                      "hidden":  true,
+                                      "execute":  "",
+                                      "arguments":  "",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskBootTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "hidden task",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\MemoryDiagnostic\\AutomaticOfflineMemoryDiagnostic",
+                                      "state":  3,
+                                      "author":  "Microsoft Corporation",
+                                      "userId":  null,
+                                      "runLevel":  1,
+                                      "hidden":  true,
+                                      "execute":  "",
+                                      "arguments":  "",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskLogonTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "hidden task",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\WindowsUpdate\\RUXIM\\PLUGScheduler",
+                                      "state":  3,
+                                      "author":  "Microsoft Corporation",
+                                      "userId":  "SISTEMA",
+                                      "runLevel":  1,
+                                      "hidden":  true,
+                                      "execute":  "\"%ProgramFiles%\\RUXIM\\PLUGscheduler.exe\"",
+                                      "arguments":  "",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskRegistrationTrigger",
+                                                           "MSFT_TaskTimeTrigger",
+                                                           "MSFT_TaskLogonTrigger",
+                                                           "MSFT_TaskDailyTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "hidden task",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\DirectX\\DirectXDatabaseUpdater",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "SISTEMA",
+                                      "runLevel":  1,
+                                      "hidden":  true,
+                                      "execute":  "%windir%\\system32\\directxdatabaseupdater.exe",
+                                      "arguments":  "",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskLogonTrigger",
+                                                           "MSFT_TaskTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "hidden task",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\Plug and Play\\Device Install Reboot Required",
+                                      "state":  3,
+                                      "author":  "Microsoft Corporation",
+                                      "userId":  null,
+                                      "runLevel":  1,
+                                      "hidden":  true,
+                                      "execute":  "",
+                                      "arguments":  "",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskTrigger",
+                                                           "MSFT_TaskLogonTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "hidden task",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticResolver",
+                                      "state":  1,
+                                      "author":  "Microsoft Corporation",
+                                      "userId":  null,
+                                      "runLevel":  1,
+                                      "hidden":  true,
+                                      "execute":  "%windir%\\system32\\DFDWiz.exe",
+                                      "arguments":  "",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskLogonTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "hidden task",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\DirectX\\DXGIAdapterCache",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "SISTEMA",
+                                      "runLevel":  1,
+                                      "hidden":  true,
+                                      "execute":  "%windir%\\system32\\dxgiadaptercache.exe",
+                                      "arguments":  "",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskBootTrigger",
+                                                           "MSFT_TaskTrigger",
+                                                           "MSFT_TaskTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "hidden task",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\Management\\Provisioning\\MdmDiagnosticsCleanup",
+                                      "state":  1,
+                                      "author":  null,
+                                      "userId":  "SISTEMA",
+                                      "runLevel":  1,
+                                      "hidden":  true,
+                                      "execute":  "%windir%\\system32\\MdmDiagnosticsTool.exe",
+                                      "arguments":  "/clean",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskBootTrigger"
+                                                       ],
+                                      "riskScore":  35,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "hidden task",
+                                                          "runs with highest privileges",
+                                                          "auto-trigger at boot/logon"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Asolaria-WakeDisplay-2026-02-24-0900",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "acer",
+                                      "runLevel":  0,
+                                      "hidden":  false,
+                                      "execute":  "powershell.exe",
+                                      "arguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Wake-Display-And-Resume.ps1\" -OpenUrl \"\"",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskTimeTrigger"
+                                                       ],
+                                      "riskScore":  30,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "uses PowerShell encoded/bypass flags"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\ZoomUpdateTaskUser-S-1-5-21-1469047906-1918517011-520466592-1001",
+                                      "state":  3,
+                                      "author":  "Zoom Communications, Inc.",
+                                      "userId":  "acer",
+                                      "runLevel":  0,
+                                      "hidden":  false,
+                                      "execute":  "\"C:\\Users\\acer\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe\"",
+                                      "arguments":  "--action=UpdateSchedule",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskDailyTrigger"
+                                                       ],
+                                      "riskScore":  30,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "executes from user-writable location"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Microsoft\\Windows\\UpdateOrchestrator\\MusUx_LogonUpdateResults",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "SISTEMA",
+                                      "runLevel":  0,
+                                      "hidden":  false,
+                                      "execute":  "%systemroot%\\system32\\MusNotification.exe",
+                                      "arguments":  "LogonUpdateResults",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskLogonTrigger"
+                                                       ],
+                                      "riskScore":  30,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "auto-trigger at boot/logon",
+                                                          "target path missing"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\Asolaria-OpenAI-Quota-Reminder-20260304",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "acer",
+                                      "runLevel":  0,
+                                      "hidden":  false,
+                                      "execute":  "powershell.exe",
+                                      "arguments":  "-NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\acer\\Asolaria\\tools\\Reminder-OpenAI-Quota-20260304.ps1\"",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskTimeTrigger"
+                                                       ],
+                                      "riskScore":  30,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "uses PowerShell encoded/bypass flags"
+                                                      ]
+                                  },
+                                  {
+                                      "taskName":  "\\MicrosoftEdgeUpdateTaskUserS-1-5-21-1469047906-1918517011-520466592-1001UA{3DECB737-4B38-441A-B8B3-C0DC9736FE9B}",
+                                      "state":  3,
+                                      "author":  null,
+                                      "userId":  "acer",
+                                      "runLevel":  0,
+                                      "hidden":  false,
+                                      "execute":  "C:\\Users\\acer\\AppData\\Local\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe",
+                                      "arguments":  "/ua /installsource scheduler",
+                                      "triggerKinds":  [
+                                                           "MSFT_TaskDailyTrigger"
+                                                       ],
+                                      "riskScore":  30,
+                                      "riskLevel":  "medium",
+                                      "riskReasons":  [
+                                                          "executes from user-writable location"
+                                                      ]
+                                  }
+                              ]
+             }
+}

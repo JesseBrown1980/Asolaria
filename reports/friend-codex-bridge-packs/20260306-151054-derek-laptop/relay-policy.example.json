@@ -1,0 +1,16 @@
+﻿{
+    "defaultRequireSenderToken":  false,
+    "senderTokens":  {
+                         "this-codex":  "CHANGE_ME_THIS_CODEX_SENDER_TOKEN",
+                         "friend-derek-laptop-codex":  "CHANGE_ME_FRIEND_SENDER_TOKEN"
+                     },
+    "rooms":  {
+                  "asolaria_friend_derek-laptop":  {
+                                                       "allowPostFrom":  [
+                                                                             "this-codex",
+                                                                             "friend-derek-laptop-codex"
+                                                                         ],
+                                                       "requireSenderToken":  true
+                                                   }
+              }
+}

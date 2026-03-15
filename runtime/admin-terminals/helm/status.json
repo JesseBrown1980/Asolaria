@@ -1,0 +1,23 @@
+{
+  "terminalId": "Helm",
+  "terminalKey": "helm",
+  "state": "running",
+  "sidecarPid": 17800,
+  "childPid": 25140,
+  "startedAt": "2026-03-14T21:47:11.853955-03:00",
+  "updatedAt": "2026-03-14T21:47:23.621802-03:00",
+  "workdir": "C:\\Users\\acer",
+  "commandPath": "C:\\nvm4w\\nodejs\\claude.CMD",
+  "commandArgs": [
+    "--dangerously-skip-permissions"
+  ],
+  "transcriptPath": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\helm\\transcript.log",
+  "inboxPath": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\helm\\inbox.ndjson",
+  "inboxLinesProcessed": 0,
+  "lastInputAt": "",
+  "lastInputSource": "",
+  "lastOutputAt": "2026-03-14T21:47:23.621802-03:00",
+  "lastOutputStream": "out",
+  "lastOutputText": "\u001b[?2026l",
+  "lastExitCode": 0
+}

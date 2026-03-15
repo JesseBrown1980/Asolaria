@@ -1,0 +1,910 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e6]:
+      - heading "Asolaria" [level=1] [ref=e7]
+      - paragraph [ref=e8]: One interface. Multiple engines.
+    - generic [ref=e9]:
+      - button "Natural20 Daily" [ref=e10] [cursor=pointer]:
+        - generic [ref=e11]: Natural20 Daily
+      - link "Graph Runtime" [ref=e12] [cursor=pointer]:
+        - /url: /graph-runtime.html
+        - generic [ref=e13]: Graph Runtime
+      - link "Abacus Worker" [ref=e14] [cursor=pointer]:
+        - /url: /abacus-worker.html
+        - generic [ref=e15]: Abacus Worker
+      - link "Worker Runtime" [ref=e16] [cursor=pointer]:
+        - /url: /worker-runtime.html
+        - generic [ref=e17]: Worker Runtime
+      - link "Worker Router" [ref=e18] [cursor=pointer]:
+        - /url: /worker-router.html
+        - generic [ref=e19]: Worker Router
+      - generic [ref=e20] [cursor=pointer]:
+        - checkbox "Stealth OFF" [ref=e21]
+        - generic [ref=e22]: Stealth OFF
+      - generic [ref=e23]:
+        - generic [ref=e24]: Approvals
+        - combobox "Approvals" [ref=e25]:
+          - option "smart" [selected]
+          - option "manual"
+          - option "deny"
+      - generic [ref=e26]:
+        - generic [ref=e27]: Cost
+        - combobox "Cost" [ref=e28]:
+          - option "low" [selected]
+          - option "balanced"
+          - option "quality"
+      - generic [ref=e29]:
+        - generic [ref=e30]: Web
+        - combobox "Web" [ref=e31]:
+          - option "off" [selected]
+          - option "on"
+      - generic [ref=e32]:
+        - generic [ref=e33]: OpenClaw (legacy)
+        - combobox "OpenClaw (legacy)" [ref=e34]:
+          - option "read_only" [selected]
+          - option "governed"
+          - option "disabled"
+      - generic [ref=e35]:
+        - generic [ref=e36]: UI
+        - combobox "UI" [ref=e37]:
+          - option "simple"
+          - option "admin"
+          - option "super admin" [selected]
+      - generic [ref=e38]:
+        - generic [ref=e39]: Voice Out
+        - combobox "Voice Out" [ref=e40]:
+          - option "browser" [selected]
+          - option "server"
+          - option "kitty_tts"
+      - generic [ref=e41]:
+        - generic [ref=e42]: Auto Speak
+        - combobox "Auto Speak" [ref=e43]:
+          - option "off" [selected]
+          - option "on"
+      - generic [ref=e44]: "Phone Runtime: checking..."
+      - generic [ref=e45]: Checking system...
+  - generic [ref=e56]:
+    - heading "Asolaria Startup Monitor" [level=2] [ref=e57]
+    - paragraph [ref=e58]: Hello, I am Asolaria. Right now, we are loading the main brain...
+    - paragraph [ref=e59]: Preparing provider probes...
+    - generic [ref=e60]:
+      - generic [ref=e61]: "Attempt: 0"
+      - generic [ref=e62]: "Timeout: 30s per provider"
+      - generic [ref=e63]: "Loop: booting"
+    - list
+  - region "Asolaria quick interface" [ref=e64]:
+    - generic [ref=e74]:
+      - heading "Asolaria Live Interface" [level=2] [ref=e75]
+      - paragraph [ref=e76]: Avatar idle. Voice is ready when you are.
+      - generic [ref=e77]:
+        - generic [ref=e78]: "Avatar: orb | Voice: browser"
+        - generic [ref=e79]: "Agent Colony: checking..."
+        - generic [ref=e80]: "Phone Lane: checking..."
+    - generic [ref=e81]:
+      - button "Start Voice" [ref=e82] [cursor=pointer]
+      - button "Push-to-Talk" [ref=e83] [cursor=pointer]
+      - button "Test Voice Out" [ref=e84] [cursor=pointer]
+      - button "Avatar Stage" [ref=e85] [cursor=pointer]
+      - button "Phone View" [ref=e86] [cursor=pointer]
+      - button "Open Super Admin" [ref=e87] [cursor=pointer]
+    - region "Dashboard launcher" [ref=e88]:
+      - generic [ref=e89]:
+        - heading "Dashboards" [level=3] [ref=e90]
+        - paragraph [ref=e91]: Start from one tile, then open the exact workspace you want.
+      - generic [ref=e92]:
+        - button "Chat Open the brain console and continue the current task." [ref=e93] [cursor=pointer]:
+          - generic [ref=e94]: C
+          - generic [ref=e95]:
+            - strong [ref=e96]: Chat
+            - generic [ref=e97]: Open the brain console and continue the current task.
+        - button "Runtime Core start, phone connect, control plane, and health actions." [ref=e98] [cursor=pointer]:
+          - generic [ref=e99]: R
+          - generic [ref=e100]:
+            - strong [ref=e101]: Runtime
+            - generic [ref=e102]: Core start, phone connect, control plane, and health actions.
+        - button "Transcript Live capture, bridge lanes, and interview copilot tools." [ref=e103] [cursor=pointer]:
+          - generic [ref=e104]: T
+          - generic [ref=e105]:
+            - strong [ref=e106]: Transcript
+            - generic [ref=e107]: Live capture, bridge lanes, and interview copilot tools.
+        - button "Phone Open the mobile view and companion phone controls." [ref=e108] [cursor=pointer]:
+          - generic [ref=e109]: P
+          - generic [ref=e110]:
+            - strong [ref=e111]: Phone
+            - generic [ref=e112]: Open the mobile view and companion phone controls.
+        - button "Natural20 Open Wes Roth's daily model tracker and AI brief." [ref=e113] [cursor=pointer]:
+          - generic [ref=e114]: N20
+          - generic [ref=e115]:
+            - strong [ref=e116]: Natural20
+            - generic [ref=e117]: Open Wes Roth's daily model tracker and AI brief.
+        - button "Super Admin Reveal the brain lane, admin lane, and live terminal surfaces." [ref=e118] [cursor=pointer]:
+          - generic [ref=e119]: SA
+          - generic [ref=e120]:
+            - strong [ref=e121]: Super Admin
+            - generic [ref=e122]: Reveal the brain lane, admin lane, and live terminal surfaces.
+    - region "Runtime controls" [ref=e123]:
+      - heading "Runtime Controls" [level=3] [ref=e124]
+      - generic [ref=e125]:
+        - button "Start Core" [ref=e126] [cursor=pointer]
+        - button "Phone Connect" [ref=e127] [cursor=pointer]
+        - button "Control Plane" [ref=e128] [cursor=pointer]
+        - button "Control+Sandbox" [ref=e129] [cursor=pointer]
+        - button "ADB Health" [ref=e130] [cursor=pointer]
+        - button "Stop Core" [ref=e131] [cursor=pointer]
+        - button "Stop Control Plane" [ref=e132] [cursor=pointer]
+    - paragraph [ref=e133]: Runtime controls are ready. Ask Asolaria or use the quick buttons.
+    - paragraph [ref=e134]: Voice is off. Web Speech runs now; Kitty.TTS can be swapped in as the output voice engine.
+    - region "Realtime transcription" [ref=e135]:
+      - generic [ref=e136]:
+        - heading "Realtime Transcript" [level=3] [ref=e137]
+        - generic [ref=e138]: Idle. Ready for tab audio.
+      - paragraph [ref=e139]: Pick a capture source first. For clean meeting transcript lines, use tab/window capture so other app audio is excluded.
+      - generic [ref=e140]:
+        - generic [ref=e141]: Capture Source
+        - combobox "Capture Source" [ref=e142]:
+          - option "Meeting Tab Audio (Recommended)" [selected]
+          - option "App Window Audio"
+          - option "Entire Screen/System Audio"
+          - option "Microphone Only"
+          - option "System Audio (Server Loopback, Copyable)"
+          - option "Google Meet Captions (Instant, Copyable)"
+          - option "Custom Caption Bridge (Script, Copyable)"
+      - generic [ref=e143]:
+        - generic [ref=e144]: Transcript Source
+        - combobox "Transcript Source" [ref=e145]:
+          - option "Live Engine" [selected]
+          - option "Bridge Captions"
+          - option "Live + Bridge"
+      - generic [ref=e146]:
+        - generic [ref=e147]: Bridge Push Token (Optional)
+        - textbox "Bridge Push Token (Optional)" [ref=e148]:
+          - /placeholder: Used when copying bridge scripts to token-protected ingest
+      - generic [ref=e149]:
+        - button "Start tab audio" [ref=e150] [cursor=pointer]
+        - button "Stop" [disabled] [ref=e151] [cursor=pointer]
+        - button "Clear" [disabled] [ref=e152] [cursor=pointer]
+        - button "Copy" [disabled] [ref=e153] [cursor=pointer]
+      - generic [ref=e154]:
+        - generic [ref=e155]:
+          - checkbox "Auto-copy incoming lines" [checked] [ref=e156]
+          - generic [ref=e157]: Auto-copy incoming lines
+        - generic [ref=e158]:
+          - checkbox "Mirror lines into chat box" [checked] [ref=e159]
+          - generic [ref=e160]: Mirror lines into chat box
+        - button "Copy Last Line" [disabled] [ref=e161] [cursor=pointer]
+        - button "Instant Ask Last Line" [disabled] [ref=e162] [cursor=pointer]
+      - paragraph [ref=e163]: "Hotkeys: Ctrl+Shift+M = start/stop live capture, Ctrl+Shift+K = instant ask on latest line."
+      - generic [ref=e164]: Transcript will appear here while capture is active.
+      - generic [ref=e165]: Live Transcript Chat Box (Copy/Paste Ready)
+      - textbox "Live Transcript Chat Box (Copy/Paste Ready)" [ref=e166]:
+        - /placeholder: Live transcript lines will stream here in chat-ready format.
+      - generic "Flow monitor controls" [ref=e167]:
+        - button "Flow Monitor On" [pressed] [ref=e168] [cursor=pointer]
+        - button "AI Analysis Off" [ref=e169] [cursor=pointer]
+        - button "Refresh Board" [ref=e170] [cursor=pointer]
+        - textbox "Probe text..." [ref=e171]
+        - textbox "Lane id (optional)" [ref=e172]
+        - button "Probe Lane" [ref=e173] [cursor=pointer]
+      - generic [ref=e174]: No lanes detected yet. Start capture or bridge captions to discover flows.
+      - region "AI interview copilot" [ref=e175]:
+        - generic [ref=e176]:
+          - heading "AI Interview Copilot" [level=3] [ref=e177]
+          - generic [ref=e178]: 0/200 words
+        - textbox "Ask a question from the live transcript..." [ref=e179]
+        - paragraph [ref=e180]: Type or paste your question. Use quick actions to inject the latest live line.
+        - generic [ref=e181]:
+          - button "Ask Copilot" [disabled] [ref=e182] [cursor=pointer]
+          - button "Use Last Line" [disabled] [ref=e183] [cursor=pointer]
+          - button "Clear Question" [disabled] [ref=e184] [cursor=pointer]
+    - region "Super admin terminals" [ref=e185]:
+      - generic [ref=e186]:
+        - generic [ref=e187]:
+          - heading "Super Admin Terminals" [level=3] [ref=e188]
+          - paragraph [ref=e189]: See the active brain lane and the admin lane before you trust a reply.
+        - generic [ref=e190]: Syncing terminal feeds...
+      - generic [ref=e191]:
+        - article [ref=e192]:
+          - generic [ref=e193]:
+            - generic [ref=e194]:
+              - heading "Main Brain" [level=4] [ref=e195]
+              - paragraph [ref=e196]: Provider and model information will appear here.
+            - button "Open Brain PowerShell" [ref=e197] [cursor=pointer]
+          - generic [ref=e198]: Waiting for the main brain terminal feed...
+        - article [ref=e199]:
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - heading "Super Admin" [level=4] [ref=e202]
+              - paragraph [ref=e203]: Runtime control, startup, and watchdog status will appear here.
+            - button "Open Admin PowerShell" [ref=e204] [cursor=pointer]
+          - generic [ref=e205]: Waiting for the admin terminal feed...
+        - article [ref=e206]:
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - heading "Direct Codex Window" [level=4] [ref=e209]
+              - paragraph [ref=e210]: Internal-only lane. RouteLLM, routed shortcuts, and external fallback stay off here.
+            - button "Open Full Thread" [ref=e211] [cursor=pointer]
+          - generic [ref=e212]:
+            - generic [ref=e213]: Direct Codex lane ready.
+            - generic [ref=e214]: Internal only
+          - generic [ref=e215]:
+            - generic [ref=e216]:
+              - generic [ref=e217]: Owner · 12:08:26
+              - generic [ref=e218]: Asolaria, activate all agents And open phone, it is bugged and will not connect (on usb now)
+            - generic [ref=e219]:
+              - generic [ref=e220]: Owner · 12:10:30
+              - generic [ref=e221]: Talk witht he admin terminal. We have a task to do
+            - generic [ref=e222]:
+              - generic [ref=e223]: Direct Codex · 12:11:42
+              - generic [ref=e224]: Internal admin lane is active. I logged the session and I’m staying on the local Codex path only. State the task plainly and I’ll execute it here.
+            - generic [ref=e225]:
+              - generic [ref=e226]: Owner · 09:02:40
+              - generic [ref=e227]: Start asolaria brain and asolaria (if you are brain, then start asolaria, if you are the brain and asolarai, tell me now, if you are the brain, and asolaria is also awake, tell me. If you are asolaria, and the brain is awake, tell me.)
+            - generic [ref=e228]:
+              - generic [ref=e229]: Direct Codex · 09:05:34
+              - generic [ref=e230]: "I’m on the brain/internal Codex lane, and Asolaria is also awake. No restart was needed: the main Asolaria runtime is already live on PID `18500` from `server.js` with listeners on `4781/5443`, the gateway helper is live on PID `11992` from `src/gateway/server.js` on `4791`, and `/api/health/fast` reports `ok=true` with brain leader `codex` on `gpt-5.4` in `loopStatus=ready`. I logged the check in [TASKS.md](C:\\Users\\acer\\Asolaria\\TASKS.md)."
+            - generic [ref=e231]:
+              - generic [ref=e232]: Owner · 09:23:42
+              - generic [ref=e233]: Ok, I need you to load an external admin terminal in Admin to help me with the QDD project. Because any time a new codex is loaded, it does not understand our system, I'll need you to load it with te information it needs to understand you / asolaria / the system / the project / notebooklm / and for it to understand what we are working on. I need to talk to it to help guide you. The main point is for it to understand that YOU are the brain, and that you/vector(?) organize all the agents, and it helps. But it needs to know that there is no "this codex" and "that codex", every agent n this system should be under that control of asolaria and you. External codex can do lots of work to help, but should never change your or asolaria's profile card and the naming structue of our system. O(otherwise, our system will break). There are a lot of plumbing problems right now. Actually, I never see any other agents running on the dash board here in these screenshots. That makes it very hard for me to understand WHAT the system is. And where are the rules of the system? (agent MD? ) Is there a way for a new codex to scan Asolaria and let me talk to her from the external Codex (or to talk to you via the external codex that I start when I press Windows key + x). Basiccally, while we are building Asolaria and this system, we need something that I can talk to in real time. Becaue... I cannot see your windows admin (or whatever level it is) in an actual working CLI. Is that good? Or should YOU (vector) just open up with the terminal so I can type diretly to you when start up of asolaria heppens? let me know the colonies thoughts on all of this. Get votes and let me know.
+            - generic [ref=e234]:
+              - generic [ref=e235]: Direct Codex · 09:35:13
+              - generic [ref=e236]: "I set up the local bootstrap path for this. The new external-helper system card is [External-Codex-QDD-SystemCard.prompt.md](C:/Users/acer/Asolaria/tools/External-Codex-QDD-SystemCard.prompt.md#L1), the live handoff generator is [Write-QDD-ExternalAdmin-Handoff.ps1](C:/Users/acer/Asolaria/tools/Write-QDD-ExternalAdmin-Handoff.ps1#L1), the owner launcher is [Open-QDD-OwnerConsole.ps1](C:/Users/acer/Asolaria/tools/Open-QDD-OwnerConsole.ps1#L1), and the current packet is [qdd-external-admin-handoff-latest.md](C:/Users/acer/Asolaria/reports/qdd-external-admin-handoff-latest.md#L1). The governing rules are in [AGENTS.md](C:/Users/acer/Asolaria/AGENTS.md#L1), [CANONICAL_SOURCE.md](C:/Users/acer/Asolaria/docs/CANONICAL_SOURCE.md#L1), [AUTHORITY_MODES.md](C:/Users/acer/Asolaria/docs/AUTHORITY_MODES.md#L1), and [GATEWAY_TOOL_AUTHORITY.md](C:/Users/acer/Asolaria/docs/GATEWAY_TOOL_AUTHORITY.md#L1). Colony view: - Primary answer: yes, the thing you should type into in real time is the direct Asolaria terminal, not the super-admin monitor. That is now encoded in [External-Codex-QDD-SystemCard.prompt.md](C:/Users/acer/Asolaria/tools/External-Codex-QDD-SystemCard.prompt.md#L75). - Identity vote: Asolaria stays the control plane, Vector stays the main brain lane, and any external Codex is a helper only. It must not rename or rewrite the colony canon or profile-card structure. - Dashboard vote: your screenshots are reflecting real runtime state, not a naming bug. The colony is hard-defined in [server.js](C:/Users/acer/Asolaria/server.js#L12621), and the UI just renders those fixed lanes plus their live counts in [public/app.js](C:/Users/acer/Asolaria/public/app.js#L9669). Live health currently shows `online=1/6` and `active=1/6`, so only `Asolaria` is actually up from the bridge’s perspective right now. Use this: - Run `powershell -ExecutionPolicy Bypass -File C:\\Users\\acer\\Asolaria\\tools\\Open-QDD-OwnerConsole.ps1` - That will generate the fresh QDD handoff, copy it to clipboard for the external helper terminal, and open the two local terminals you actually need: direct chat to Asolaria and the admin status monitor. - If you only want the packet, run `powershell -ExecutionPolicy Bypass -File C:\\Users\\acer\\Asolaria\\tools\\Write-QDD-ExternalAdmin-Handoff.ps1 -CopyToClipboard` Verification: I ran the handoff generator successfully and validated the owner launcher in no-window mode. If you want next, I can patch the dashboard copy so it explicitly says “fixed colony inventory, live lanes degraded” instead of making you infer that from offline cards."
+          - generic [ref=e237]:
+            - textbox "Talk directly to internal Codex..." [ref=e238]
+            - generic [ref=e239]:
+              - button "Clear" [ref=e240] [cursor=pointer]
+              - button "Send Direct" [ref=e241] [cursor=pointer]
+  - region "Interview Copilot" [ref=e242]:
+    - generic [ref=e243]:
+      - generic [ref=e244]:
+        - heading "Interview Copilot" [level=2] [ref=e245]
+        - paragraph [ref=e246]: Asolaria-native workflow on top of local routing, transcript, and voice controls.
+        - paragraph [ref=e247]: "Asolaria-native runtime: no third-party copilot billing or session metering."
+      - generic [ref=e248]:
+        - generic [ref=e249]: "Flow: setup pending"
+        - button "Start Interview Copilot" [ref=e250] [cursor=pointer]
+        - button "Share Audio" [ref=e251] [cursor=pointer]
+        - button "Stop Audio" [ref=e252] [cursor=pointer]
+        - button "Preferences" [ref=e253] [cursor=pointer]
+        - button "Keyboard Shortcuts" [ref=e254] [cursor=pointer]
+    - generic "Interview flow status" [ref=e255]:
+      - article [ref=e256]:
+        - paragraph [ref=e257]: 1. Setup
+        - paragraph [ref=e258]: Preset + profile
+        - paragraph [ref=e259]: Complete setup checklist (0/3)
+      - article [ref=e260]:
+        - paragraph [ref=e261]: 2. Capture
+        - paragraph [ref=e262]: Share interview audio
+        - paragraph [ref=e263]: Capture not started
+      - article [ref=e264]:
+        - paragraph [ref=e265]: 3. Ask
+        - paragraph [ref=e266]: Draft your question
+        - paragraph [ref=e267]: Use transcript line or type your question
+      - article [ref=e268]:
+        - paragraph [ref=e269]: 4. Answer
+        - paragraph [ref=e270]: Get interview guidance
+        - paragraph [ref=e271]: No response yet
+    - generic "Interview runtime state" [ref=e272]:
+      - generic [ref=e273]: "Transcript: idle"
+      - generic [ref=e274]: "Source: Meeting Tab Audio (Recommended) | Preset: Manual"
+    - generic [ref=e275]:
+      - generic [ref=e276]:
+        - heading "Review and confirm" [level=3] [ref=e277]
+        - generic [ref=e278]:
+          - generic [ref=e279]: Role
+          - textbox "Role" [ref=e280]:
+            - /placeholder: Software Engineer @ Company
+            - text: Software engineer @ Capital RX
+        - generic [ref=e281]:
+          - generic [ref=e282]: Time Limit (minutes)
+          - spinbutton "Time Limit (minutes)" [ref=e283]: "15"
+        - generic [ref=e284]:
+          - generic [ref=e285]: Parallel Audio Lanes
+          - spinbutton "Parallel Audio Lanes" [ref=e286]: "2"
+        - generic [ref=e287]:
+          - generic [ref=e288]: Language
+          - combobox "Language" [ref=e289]:
+            - option "English" [selected]
+            - option "Spanish"
+            - option "Portuguese"
+            - option "French"
+            - option "German"
+        - generic [ref=e290]:
+          - checkbox "Stealth Mode" [ref=e291]
+          - text: Stealth Mode
+        - generic [ref=e292]:
+          - generic [ref=e293]: Capture Source
+          - combobox "Capture Source" [ref=e294]:
+            - option "Meeting Tab Audio (Recommended)" [selected]
+            - option "App Window Audio"
+            - option "Entire Screen/System Audio"
+            - option "Microphone Only"
+            - option "System Audio (Server Loopback)"
+            - option "Google Meet Captions"
+            - option "Custom Caption Bridge"
+        - region "Capture source onboarding" [ref=e295]:
+          - paragraph [ref=e296]: Capture Source Onboarding
+          - paragraph [ref=e297]: Pick your meeting app. Asolaria will apply a source preset and checklist for Meet, Zoom, or Teams.
+          - group "Meeting app preset" [ref=e298]:
+            - button "Google Meet Use Meet tab audio for native capture" [ref=e299] [cursor=pointer]:
+              - generic [ref=e300]: Google Meet
+              - generic [ref=e301]: Use Meet tab audio for native capture
+            - button "Zoom Capture the Zoom app window audio" [ref=e302] [cursor=pointer]:
+              - generic [ref=e303]: Zoom
+              - generic [ref=e304]: Capture the Zoom app window audio
+            - button "Microsoft Teams Capture Teams window with steady output" [ref=e305] [cursor=pointer]:
+              - generic [ref=e306]: Microsoft Teams
+              - generic [ref=e307]: Capture Teams window with steady output
+            - button "Manual Choose source and routing yourself" [ref=e308] [cursor=pointer]:
+              - generic [ref=e309]: Manual
+              - generic [ref=e310]: Choose source and routing yourself
+          - generic [ref=e311]:
+            - generic [ref=e312]: "Preset: Manual | Custom routing"
+            - generic [ref=e313]: "Recommended source: Use selected Capture Source"
+          - paragraph [ref=e314]: "Tip: Pick the source with the least background noise, then confirm transcript movement before asking."
+          - group "Capture readiness checklist" [ref=e315]:
+            - generic [ref=e316]:
+              - checkbox "Select the right source for your meeting app." [ref=e317]
+              - generic [ref=e318]: Select the right source for your meeting app.
+            - generic [ref=e319]:
+              - checkbox "Start capture and watch for first transcript lines." [ref=e320]
+              - generic [ref=e321]: Start capture and watch for first transcript lines.
+            - generic [ref=e322]:
+              - checkbox "Validate bridge routing only if voice injection is required." [ref=e323]
+              - generic [ref=e324]: Validate bridge routing only if voice injection is required.
+          - generic [ref=e325]:
+            - button "Apply Preset Source" [ref=e326] [cursor=pointer]
+            - button "Start Capture with Preset" [ref=e327] [cursor=pointer]
+            - button "Reset Checklist" [ref=e328] [cursor=pointer]
+          - paragraph [ref=e329]: "Checklist: 0/3 complete. Finish onboarding before interview starts."
+          - paragraph [ref=e330]: "Next: choose a preset, complete checklist, then start capture."
+          - paragraph [ref=e331]: "Preset: Manual. Active source: Meeting Tab Audio (Recommended). Capture state: idle."
+          - list [ref=e332]:
+            - listitem [ref=e333]: Pick a capture source that matches your interview app.
+            - listitem [ref=e334]: Start capture and confirm transcript mirror is updating.
+            - listitem [ref=e335]: Run bridge wizard if you need injected voice replies.
+        - paragraph [ref=e336]: Interview Copilot ready. Start when you are.
+      - generic [ref=e337]:
+        - heading "Model" [level=3] [ref=e338]
+        - combobox [ref=e339]:
+          - option "GPT-5-Mini" [selected]
+          - option "GPT-5.2 Instant (Pro Plan Only)"
+          - option "GPT-5.2 (Pro Plan Only)"
+          - option "GPT-5.1 (Pro Plan Only)"
+          - option "GPT-5 (Pro Plan Only)"
+          - option "GPT-OSS-120B"
+          - option "Kimi K2"
+          - option "Kimi K2.5"
+          - option "Kimi K2 Thinking (Pro Plan Only)"
+          - option "DeepSeek V3.1"
+          - option "Gemini 3 Pro (Pro Plan Only)"
+          - option "Gemini 3 Flash"
+          - option "Gemini 2.5 Flash"
+          - option "Gemini 2.5 Pro (Pro Plan Only)"
+          - option "Grok 4 (Pro Plan Only)"
+          - option "Grok 4 Reasoning (Pro Plan Only)"
+          - option "Grok Code Fast"
+          - option "Claude 4 Sonnet (Pro Plan Only)"
+          - option "Claude 4.5 Sonnet (Pro Plan Only)"
+          - option "Qwen-2.5-235B (Pro Plan Only)"
+          - option "MiniMax M2.5"
+          - option "GLM-5"
+        - paragraph [ref=e340]: "OpenAI (Recommended) | Locked route: /api/providers/openai/run"
+        - generic [ref=e341]:
+          - generic [ref=e342]: Response Length
+          - combobox "Response Length" [ref=e343]:
+            - option "Concise"
+            - option "Balanced" [selected]
+            - option "Detailed"
+        - generic [ref=e344]:
+          - generic [ref=e345]: Session Sharing
+          - generic [ref=e346]:
+            - textbox "Session Sharing" [ref=e347]: http://127.0.0.1:4781/?session=9wep4mlwmmmv1vec&view=interview
+            - button "Copy" [ref=e348] [cursor=pointer]
+        - paragraph [ref=e349]: Open this link on another device to view the same interview context.
+    - generic [ref=e350]:
+      - generic [ref=e351]:
+        - heading "Ask a question..." [level=3] [ref=e352]
+        - textbox "Ask for exact answer, concise guidance, or follow-up strategy." [ref=e353]
+        - generic [ref=e354]:
+          - button "Ask Copilot" [ref=e355] [cursor=pointer]
+          - button "Use Last Transcript Line" [ref=e356] [cursor=pointer]
+          - button "Clear" [ref=e357] [cursor=pointer]
+        - paragraph [ref=e358]: "Shortcut: Ctrl+K focuses input. Ctrl+Shift+Y sends."
+        - paragraph [ref=e359]: "Route: idle"
+        - generic [ref=e360]: Copilot responses will appear here.
+      - generic [ref=e361]:
+        - heading "Live transcript mirror" [level=3] [ref=e362]
+        - paragraph [ref=e363]: Idle. Ready for tab audio.
+        - generic [ref=e364]: Transcript will appear here while capture is active.
+    - generic [ref=e366]:
+      - heading "Voice Injection Bridge" [level=3] [ref=e367]
+      - paragraph [ref=e368]: Set this output to a virtual cable endpoint, and set your meeting microphone to the same cable for injected speech.
+      - generic [ref=e369]:
+        - generic [ref=e370]: Injection Output Device
+        - combobox "Injection Output Device" [ref=e371]:
+          - option "System default" [selected]
+          - option "Audio Output 1"
+      - textbox "Type what Asolaria should inject into the meeting audio path..." [ref=e372]
+      - generic [ref=e373]:
+        - button "Inject Voice" [ref=e374] [cursor=pointer]
+        - button "Self-Test Bridge" [ref=e375] [cursor=pointer]
+        - button "Bridge Setup Wizard" [ref=e376] [cursor=pointer]
+        - button "Refresh Devices" [ref=e377] [cursor=pointer]
+      - paragraph [ref=e378]: Loaded 1 output device(s).
+  - generic [ref=e379]:
+    - generic [ref=e380]:
+      - generic [ref=e381]:
+        - heading "Brain Console" [level=2] [ref=e382]
+        - paragraph [ref=e383]: Codex-backed reasoning stream
+      - generic [ref=e384]:
+        - complementary [ref=e385]:
+          - generic [ref=e386]:
+            - button "Tools" [ref=e387] [cursor=pointer]
+            - button "Work" [ref=e388] [cursor=pointer]
+            - button "Conversations" [ref=e389] [cursor=pointer]
+          - generic [ref=e390]:
+            - textbox "Search conversations..." [ref=e391]
+            - generic [ref=e392]:
+              - 'generic "Today (2026-03-11): active=0, blocked=0, done today=0" [ref=e393]': 0 Active | 0 Blocked | 0 Done Today
+              - 'generic "Today (2026-03-11): NBA CTR 0/1 (0%), Reopen ratio 0/0 (0%)" [ref=e394]': NBA 0/1 | Reopen 0/0
+              - button "Reset Metrics" [ref=e395] [cursor=pointer]
+            - generic [ref=e396]:
+              - heading "Recently Active" [level=4] [ref=e397]
+              - generic [ref=e398]:
+                - generic [ref=e399]:
+                  - generic [ref=e400]:
+                    - button "Main Chat" [ref=e401] [cursor=pointer]
+                    - button "Add to Focus" [ref=e402] [cursor=pointer]
+                  - generic [ref=e403]: No messages yet.
+                  - generic [ref=e404]: "Turns: 0 • Updated: 23:40:32"
+                - generic [ref=e405]:
+                  - generic [ref=e406]:
+                    - button "Super Admin Direct" [ref=e407] [cursor=pointer]
+                    - button "Add to Focus" [ref=e408] [cursor=pointer]
+                  - generic [ref=e409]: I set up the local bootstrap path for this. The new external-helper system card is [External-Codex-QDD-SystemCard.prompt
+                  - generic [ref=e410]: "Using: codex"
+                  - generic [ref=e411]: "Turns: 7 • Updated: 09:35:13"
+            - generic [ref=e412]:
+              - generic [ref=e413]:
+                - heading "Focus" [level=4] [ref=e414]
+                - 'generic "Today''s focus turnover (2026-03-11): adds=0, removes=0, replacements=0, clears=0" [ref=e415]': A0 | R0 | X0 | C0
+                - button "Clear Focus" [ref=e416] [cursor=pointer]
+              - generic [ref=e417]:
+                - generic [ref=e418]: "Suggested Focus: Super Admin Direct - Recent tool use: codex"
+                - button "Add Suggested" [ref=e419] [cursor=pointer]
+              - generic [ref=e421]: Your current priorities. Limited to 3.
+            - generic [ref=e422]:
+              - heading "Recent" [level=4] [ref=e423]
+              - generic [ref=e424]:
+                - generic [ref=e425]:
+                  - generic [ref=e426]:
+                    - button "Main Chat" [ref=e427] [cursor=pointer]
+                    - button "Add to Focus" [ref=e428] [cursor=pointer]
+                  - generic [ref=e429]: No messages yet.
+                  - generic [ref=e430]: "Turns: 0 • Updated: 23:40:32"
+                - generic [ref=e431]:
+                  - generic [ref=e432]:
+                    - button "Super Admin Direct" [ref=e433] [cursor=pointer]
+                    - button "Add to Focus" [ref=e434] [cursor=pointer]
+                  - generic [ref=e435]: I set up the local bootstrap path for this. The new external-helper system card is [External-Codex-QDD-SystemCard.prompt
+                  - generic [ref=e436]: "Using: codex"
+                  - generic [ref=e437]: "Turns: 7 • Updated: 09:35:13"
+        - generic [ref=e438]:
+          - generic "We surface what seems most relevant based on your recent activity." [ref=e439]:
+            - generic [ref=e440]:
+              - generic [ref=e441]: Pick up where you left off
+              - generic [ref=e442]: Start something new
+              - generic [ref=e443]: No active task yet
+            - generic [ref=e444]:
+              - button "Start new" [ref=e445] [cursor=pointer]
+              - button "Start new" [ref=e446] [cursor=pointer]
+          - generic [ref=e447]:
+            - generic [ref=e448]: Resolve and archive this or continue working?
+            - generic [ref=e449]:
+              - button "Resolve & Archive" [ref=e450] [cursor=pointer]
+              - button "Resume" [ref=e451] [cursor=pointer]
+          - generic [ref=e452]:
+            - generic [ref=e453]: Resolved and archived. You can reopen anytime.
+            - button "Reopen" [ref=e454] [cursor=pointer]
+          - generic [ref=e456]:
+            - generic [ref=e457]: System
+            - generic [ref=e458]: New chat ready. Ask me anything about your Asolaria task.
+          - generic [ref=e459]:
+            - textbox "Give Asolaria a task..." [ref=e460]
+            - button "Send" [ref=e461] [cursor=pointer]
+            - generic [ref=e462]:
+              - generic [ref=e463] [cursor=pointer]:
+                - generic [ref=e464]: Attach image(s)
+                - button "Attach image(s)" [ref=e465]
+              - generic [ref=e466]: No images selected.
+              - generic [ref=e467] [cursor=pointer]:
+                - generic [ref=e468]: Attach file(s)
+                - button "Attach file(s)" [ref=e469]
+              - generic [ref=e470]: No files selected.
+    - complementary [ref=e471]:
+      - generic [ref=e472]:
+        - heading "Connectors" [level=2] [ref=e473]
+        - paragraph [ref=e474]: Backend controls for tools
+      - generic [ref=e475]:
+        - generic [ref=e476]:
+          - button "Home" [ref=e477] [cursor=pointer]
+          - button "Projects" [ref=e478] [cursor=pointer]
+          - button "Tasks" [ref=e479] [cursor=pointer]
+          - button "Skills" [ref=e480] [cursor=pointer]
+          - button "Runtime" [ref=e481] [cursor=pointer]
+        - generic [ref=e482]:
+          - generic [ref=e483]:
+            - heading "Workspace Projects" [level=3] [ref=e484]
+            - paragraph [ref=e485]: Active project scope controls task grouping and quick focus.
+            - textbox "Filter project folders..." [ref=e486]
+            - button "All Projects" [ref=e488] [cursor=pointer]
+            - generic [ref=e489]:
+              - button "Refresh Projects" [ref=e490] [cursor=pointer]
+              - button "New Project" [ref=e491] [cursor=pointer]
+              - button "Edit Selected" [ref=e492] [cursor=pointer]
+              - button "Delete Selected" [ref=e493] [cursor=pointer]
+            - paragraph [ref=e494]: Projects are persisted in local data storage.
+            - generic [ref=e495]:
+              - generic [ref=e496]: All Projects folders (0/0)
+              - generic [ref=e497]: No folders match this filter.
+          - generic [ref=e498]:
+            - heading "Live Agent Colony" [level=3] [ref=e499]
+            - paragraph [ref=e500]: Waiting for live runtime status...
+            - paragraph [ref=e501]: "Updated: n/a"
+          - generic [ref=e502]:
+            - generic [ref=e503]:
+              - generic [ref=e504]:
+                - heading "Admin Terminal Cockpit" [level=3] [ref=e505]
+                - paragraph [ref=e506]: Stacked cockpit ready. Active 1/2 | Online 2/2 | Auto-launch on
+              - generic [ref=e507]: Admin cockpit ensured (2 terminals).
+            - generic [ref=e508]:
+              - button "Launch Helm + Sentinel" [ref=e509] [cursor=pointer]
+              - button "Refresh" [ref=e510] [cursor=pointer]
+              - button "Re-brief Both" [ref=e511] [cursor=pointer]
+              - generic [ref=e512]:
+                - checkbox "Auto-launch in Super Admin" [checked] [ref=e513]
+                - text: Auto-launch in Super Admin
+            - generic [ref=e514]:
+              - article [ref=e515]:
+                - generic [ref=e516]:
+                  - generic [ref=e517]:
+                    - heading "Helm" [level=4] [ref=e518]
+                    - paragraph [ref=e519]: controller admin terminal | Control QDD and the admin swarm lane
+                  - generic [ref=e520]: ACTIVE
+                - generic [ref=e521]:
+                  - generic [ref=e522]: Seen 0s
+                  - generic [ref=e523]: "Packet: qdd-codex-restart-packet-latest.md"
+                  - generic [ref=e524]: Briefing pending
+                - paragraph [ref=e525]: Continue the QDD monorepo controller lane, keep the restart packets honest, and route bounded side work through the live swarm surfaces.
+                - generic [ref=e526]:
+                  - button "Ensure Running" [ref=e527] [cursor=pointer]
+                  - button "Stop" [ref=e528] [cursor=pointer]
+                  - button "Re-brief" [ref=e529] [cursor=pointer]
+                - generic [ref=e530]: "m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;54H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;53He\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;54H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;54H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;54H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;55H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;54H_\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;55H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;55H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;55H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;57H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;55Hco\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;57H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;58H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;57Hn\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;58H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;61H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;58Htro\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;61H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;63H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;61Hl,\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;63H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;69H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;64Huse_p\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;69H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;70H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;69Hl\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;70H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;71H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;70Ha\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;71H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;72H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;71Hy\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;72H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;73H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;72Hw\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;73H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;74H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;73Hr\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;74H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;78H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;74Hight\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;78H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;78H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;78H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;35H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;29H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;53H\x1b[0m\x1b[49m\x1b[K\x1b[8;75H\x1b[0m\x1b[49m\x1b[K\x1b[9;72H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;69H\x1b[0m\x1b[49m\x1b[K\x1b[12;70H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;57H\x1b[0m\x1b[49m\x1b[K\x1b[17;75H\x1b[0m\x1b[49m\x1b[K\x1b[18;77H\x1b[0m\x1b[49m\x1b[K\x1b[19;12H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;76H\x1b[0m\x1b[49m\x1b[K\x1b[22;80H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;78H_c\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;80H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;29H\x1b[0m\x1b[49m\x1b[K\x1b[5;2H\x1b[0m\x1b[49m\x1b[K\x1b[6;53H\x1b[0m\x1b[49m\x1b[K\x1b[7;75H\x1b[0m\x1b[49m\x1b[K\x1b[8;72H\x1b[0m\x1b[49m\x1b[K\x1b[9;65H\x1b[0m\x1b[49m\x1b[K\x1b[10;69H\x1b[0m\x1b[49m\x1b[K\x1b[11;70H\x1b[0m\x1b[49m\x1b[K\x1b[12;72H\x1b[0m\x1b[49m\x1b[K\x1b[13;2H\x1b[0m\x1b[49m\x1b[K\x1b[14;57H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;77H\x1b[0m\x1b[49m\x1b[K\x1b[18;12H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;76H\x1b[0m\x1b[49m\x1b[K\x1b[21;63H\x1b[0m\x1b[49m\x1b[K\x1b[22;51H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[4;3HProfile\x1b[4;11Hid:\x1b[4;15Hadmin-helm-v1.\x1b[6;3HRead\x1b[6;8Hthese\x1b[6;14Hfiles\x1b[6;20Hin\x1b[6;23Horder\x1b[6;29Hbefore\x1b[6;36Htaking\x1b[6;43Hany\x1b[6;47Haction\x1b[7;3H:1. C:\\U\x1b[7;13Hrs\\acer\\As\x1b[7;24Hlaria\\reports\\admin-terminal-helm-profile-latest.md\x1b[8;3H2. C:\\Users\\acer\\Asolaria\\reports\\admin-terminal-id\x1b[8;55Hntities-\x1b[8;64Hates\x1b[8;69H.md\x1b[9;3H3\x1b[9;37Hcodex\x1b[9;43Hstate-freez\x1b[9;55H-la\x1b[9;59Hest.md\x1b[10;3H4\x1b[10;37Hhelm-controller-packe\x1b[10;59H-latest.md\x1b[11;3H5\x1b[11;37Hqdd-super-swarm\x1b[11;53Hcontract-latest.m\x1b[12;3Hd6. C:\\Users\\acer\\Asolaria\\reports\\q\x1b[12;40Hd-codex-restart-packet-latest.md\x1b[14;3HCurrent\x1b[14;11Hmission:\x1b[14;20HControl\x1b[14;28HQDD\x1b[14;32Hand\x1b[14;36Hthe\x1b[14;40Hadmin\x1b[14;46Hswarm\x1b[14;52Hlane.\x1b[15;4Hanonical rep\x1b[15;17H targe\x1b[15;24H: D:\\projects\\QDD\\ebacmap-\x1b[15;51Haster\x1b[16;3HImmed\x1b[16;9Hate\x1b[16;13Hn\x1b[16;15Hxt\x1b[16;18Hmove: Continue the QD\x1b[16;40H monorepo con\x1b[16;54Hroller\x1b[16;61Hlane,\x1b[16;67Hkeep\x1b[16;72Hthe\x1b[17;3Hrestart packe\x1b[17;17Hs honest, and rout\x1b[17;37Hbounded side\x1b[17;50Hw\x1b[17;52Hrk through the\x1b[17;67Hlive\x1b[17;72Hswarm\x1b[18;3Hsurf\x1b[18;8Hces.\x1b[20;3HAsolaria\x1b[20;12Hsurfaces\x1b[20;21Hyou\x1b[20;25Hcan\x1b[20;29Huse:\x1b[20;34Hcontrol_asolaria_runtime,\x1b[20;60Hrelay_to_vector,\x1b[21;3Hrelay_to_rook, operate_brow\x1b[21;32Hr_task, operate_mobile_control,\x1b[22;3Huse_playw\x1b[22;13Hight_cli, use_proj\x1b[22;32Hct_store, use_mista\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;51H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;29H\x1b[0m\x1b[49m\x1b[K\x1b[5;2H\x1b[0m\x1b[49m\x1b[K\x1b[6;53H\x1b[0m\x1b[49m\x1b[K\x1b[7;75H\x1b[0m\x1b[49m\x1b[K\x1b[8;72H\x1b[0m\x1b[49m\x1b[K\x1b[9;65H\x1b[0m\x1b[49m\x1b[K\x1b[10;69H\x1b[0m\x1b[49m\x1b[K\x1b[11;70H\x1b[0m\x1b[49m\x1b[K\x1b[12;72H\x1b[0m\x1b[49m\x1b[K\x1b[13;2H\x1b[0m\x1b[49m\x1b[K\x1b[14;57H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;77H\x1b[0m\x1b[49m\x1b[K\x1b[18;12H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;76H\x1b[0m\x1b[49m\x1b[K\x1b[21;63H\x1b[0m\x1b[49m\x1b[K\x1b[22;52H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;51Hk\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;52H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;29H\x1b[0m\x1b[49m\x1b[K\x1b[5;2H\x1b[0m\x1b[49m\x1b[K\x1b[6;53H\x1b[0m\x1b[49m\x1b[K\x1b[7;75H\x1b[0m\x1b[49m\x1b[K\x1b[8;72H\x1b[0m\x1b[49m\x1b[K\x1b[9;65H\x1b[0m\x1b[49m\x1b[K\x1b[10;69H\x1b[0m\x1b[49m\x1b[K\x1b[11;70H\x1b[0m\x1b[49m\x1b[K\x1b[12;72H\x1b[0m\x1b[49m\x1b[K\x1b[13;2H\x1b[0m\x1b[49m\x1b[K\x1b[14;57H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;77H\x1b[0m\x1b[49m\x1b[K\x1b[18;12H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;76H\x1b[0m\x1b[49m\x1b[K\x1b[21;63H\x1b[0m\x1b[49m\x1b[K\x1b[22;53H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;52He\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;53H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;29H\x1b[0m\x1b[49m\x1b[K\x1b[5;2H\x1b[0m\x1b[49m\x1b[K\x1b[6;53H\x1b[0m\x1b[49m\x1b[K\x1b[7;75H\x1b[0m\x1b[49m\x1b[K\x1b[8;72H\x1b[0m\x1b[49m\x1b[K\x1b[9;65H\x1b[0m\x1b[49m\x1b[K\x1b[10;69H\x1b[0m\x1b[49m\x1b[K\x1b[11;70H\x1b[0m\x1b[49m\x1b[K\x1b[12;72H\x1b[0m\x1b[49m\x1b[K\x1b[13;2H\x1b[0m\x1b[49m\x1b[K\x1b[14;57H\x1b[0m\x1b[49m\x1b[K\x1b[15;57H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;77H\x1b[0m\x1b[49m\x1b[K\x1b[18;12H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;76H\x1b[0m\x1b[49m\x1b[K\x1b[21;63H\x1b[0m\x1b[49m\x1b[K\x1b[22;53H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;53H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;29H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;53H\x1b[0m\x1b[49m\x1b[K\x1b[6;75H\x1b[0m\x1b[49m\x1b[K\x1b[7;72H\x1b[0m\x1b[49m\x1b[K\x1b[8;65H\x1b[0m\x1b[49m\x1b[K\x1b[9;69H\x1b[0m\x1b[49m\x1b[K\x1b[10;70H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;57H\x1b[0m\x1b[49m\x1b[K\x1b[15;75H\x1b[0m\x1b[49m\x1b[K\x1b[16;77H\x1b[0m\x1b[49m\x1b[K\x1b[17;12H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;76H\x1b[0m\x1b[49m\x1b[K\x1b[20;63H\x1b[0m\x1b[49m\x1b[K\x1b[21;61H\x1b[0m\x1b[49m\x1b[K\x1b[22;23H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[3;3HProfile\x1b[3;11Hid:\x1b[3;15Hadmin-helm-v1.\x1b[5;3HRead\x1b[5;8Hthese\x1b[5;14Hfiles\x1b[5;20Hin\x1b[5;23Horder\x1b[5;29Hbefore\x1b[5;36Htaking\x1b[5;43Hany\x1b[5;47Haction\x1b[6;3H:1. C:\\U\x1b[6;13Hrs\\acer\\As\x1b[6;24Hlaria\\reports\\admin-terminal-helm-profile-latest.md\x1b[7;3H2. C:\\Users\\acer\\Asolaria\\reports\\admin-terminal-id\x1b[7;55Hntities-\x1b[7;64Hates\x1b[7;69H.md\x1b[8;3H3\x1b[8;37Hcodex\x1b[8;43Hstate-freez\x1b[8;55H-la\x1b[8;59Hest.md\x1b[9;3H4\x1b[9;37Hhelm-controller-packe\x1b[9;59H-latest.md\x1b[10;3H5\x1b[10;37Hqdd-super-swarm\x1b[10;53Hcontract-latest.m\x1b[11;3Hd6. C:\\Users\\acer\\Asolaria\\reports\\q\x1b[11;40Hd-codex-restart-packet-latest.md\x1b[13;3HCurrent\x1b[13;11Hmission:\x1b[13;20HControl\x1b[13;28HQDD\x1b[13;32Hand\x1b[13;36Hthe\x1b[13;40Hadmin\x1b[13;46Hswarm\x1b[13;52Hlane.\x1b[14;4Hanonical rep\x1b[14;17H targe\x1b[14;24H: D:\\projects\\QDD\\ebacmap-\x1b[14;51Haster\x1b[15;3HImmed\x1b[15;9Hate\x1b[15;13Hn\x1b[15;15Hxt\x1b[15;18Hmove: Continue the QD\x1b[15;40H monorepo con\x1b[15;54Hroller\x1b[15;61Hlane,\x1b[15;67Hkeep\x1b[15;72Hthe\x1b[16;3Hrestart packe\x1b[16;17Hs honest, and rout\x1b[16;37Hbounded side\x1b[16;50Hw\x1b[16;52Hrk through the\x1b[16;67Hlive\x1b[16;72Hswarm\x1b[17;3Hsurf\x1b[17;8Hces.\x1b[19;3HAsolaria\x1b[19;12Hsurfaces\x1b[19;21Hyou\x1b[19;25Hcan\x1b[19;29Huse:\x1b[19;34Hcontrol_asolaria_runtime,\x1b[19;60Hrelay_to_vector,\x1b[20;3Hrelay_to_rook, operate_brow\x1b[20;32Hr_task, operate_mobile_control,\x1b[21;3Huse_playw\x1b[21;13Hight_cli, use_proj\x1b[21;32Hct_store, use_mistake_memory,\x1b[22;7Haugment_sidecar,\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;24H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;29H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;53H\x1b[0m\x1b[49m\x1b[K\x1b[6;75H\x1b[0m\x1b[49m\x1b[K\x1b[7;72H\x1b[0m\x1b[49m\x1b[K\x1b[8;65H\x1b[0m\x1b[49m\x1b[K\x1b[9;69H\x1b[0m\x1b[49m\x1b[K\x1b[10;70H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;57H\x1b[0m\x1b[49m\x1b[K\x1b[15;75H\x1b[0m\x1b[49m\x1b[K\x1b[16;77H\x1b[0m\x1b[49m\x1b[K\x1b[17;12H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;76H\x1b[0m\x1b[49m\x1b[K\x1b[20;63H\x1b[0m\x1b[49m\x1b[K\x1b[21;61H\x1b[0m\x1b[49m\x1b[K\x1b[22;27H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;24Huse\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;27H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;29H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;53H\x1b[0m\x1b[49m\x1b[K\x1b[6;75H\x1b[0m\x1b[49m\x1b[K\x1b[7;72H\x1b[0m\x1b[49m\x1b[K\x1b[8;65H\x1b[0m\x1b[49m\x1b[K\x1b[9;69H\x1b[0m\x1b[49m\x1b[K\x1b[10;70H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;57H\x1b[0m\x1b[49m\x1b[K\x1b[15;75H\x1b[0m\x1b[49m\x1b[K\x1b[16;77H\x1b[0m\x1b[49m\x1b[K\x1b[17;12H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;76H\x1b[0m\x1b[49m\x1b[K\x1b[20;63H\x1b[0m\x1b[49m\x1b[K\x1b[21;61H\x1b[0m\x1b[49m\x1b[K\x1b[22;28H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;27H_\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;28H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;29H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;53H\x1b[0m\x1b[49m\x1b[K\x1b[6;75H\x1b[0m\x1b[49m\x1b[K\x1b[7;72H\x1b[0m\x1b[49m\x1b[K\x1b[8;65H\x1b[0m\x1b[49m\x1b[K\x1b[9;69H\x1b[0m\x1b[49m\x1b[K\x1b[10;70H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;57H\x1b[0m\x1b[49m\x1b[K\x1b[15;75H\x1b[0m\x1b[49m\x1b[K\x1b[16;77H\x1b[0m\x1b[49m\x1b[K\x1b[17;12H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;76H\x1b[0m\x1b[49m\x1b[K\x1b[20;63H\x1b[0m\x1b[49m\x1b[K\x1b[21;61H\x1b[0m\x1b[49m\x1b[K\x1b[22;28H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;28H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;53H\x1b[0m\x1b[49m\x1b[K\x1b[5;75H\x1b[0m\x1b[49m\x1b[K\x1b[6;72H\x1b[0m\x1b[49m\x1b[K\x1b[7;65H\x1b[0m\x1b[49m\x1b[K\x1b[8;69H\x1b[0m\x1b[49m\x1b[K\x1b[9;70H\x1b[0m\x1b[49m\x1b[K\x1b[10;72H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;57H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;75H\x1b[0m\x1b[49m\x1b[K\x1b[15;77H\x1b[0m\x1b[49m\x1b[K\x1b[16;12H\x1b[0m\x1b[49m\x1b[K\x1b[17;2H\x1b[0m\x1b[49m\x1b[K\x1b[18;76H\x1b[0m\x1b[49m\x1b[K\x1b[19;63H\x1b[0m\x1b[49m\x1b[K\x1b[20;61H\x1b[0m\x1b[49m\x1b[K\x1b[21;58H\x1b[0m\x1b[49m\x1b[K\x1b[22;8H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[4;3HRead\x1b[4;8Hthese\x1b[4;14Hfiles\x1b[4;20Hin\x1b[4;23Horder\x1b[4;29Hbefore\x1b[4;36Htaking\x1b[4;43Hany\x1b[4;47Haction\x1b[5;3H:1. C:\\U\x1b[5;13Hrs\\acer\\As\x1b[5;24Hlaria\\reports\\admin-terminal-helm-profile-latest.md\x1b[6;3H2. C:\\Users\\acer\\Asolaria\\reports\\admin-terminal-id\x1b[6;55Hntities-\x1b[6;64Hates\x1b[6;69H.md\x1b[7;3H3\x1b[7;37Hcodex\x1b[7;43Hstate-freez\x1b[7;55H-la\x1b[7;59Hest.md\x1b[8;3H4\x1b[8;37Hhelm-controller-packe\x1b[8;59H-latest.md\x1b[9;3H5\x1b[9;37Hqdd-super-swarm\x1b[9;53Hcontract-latest.m\x1b[10;3Hd6. C:\\Users\\acer\\Asolaria\\reports\\q\x1b[10;40Hd-codex-restart-packet-latest.md\x1b[12;3HCurrent\x1b[12;11Hmission:\x1b[12;20HControl\x1b[12;28HQDD\x1b[12;32Hand\x1b[12;36Hthe\x1b[12;40Hadmin\x1b[12;46Hswarm\x1b[12;52Hlane.\x1b[13;4Hanonical rep\x1b[13;17H targe\x1b[13;24H: D:\\projects\\QDD\\ebacmap-\x1b[13;51Haster\x1b[14;3HImmed\x1b[14;9Hate\x1b[14;13Hn\x1b[14;15Hxt\x1b[14;18Hmove: Continue the QD\x1b[14;40H monorepo con\x1b[14;54Hroller\x1b[14;61Hlane,\x1b[14;67Hkeep\x1b[14;72Hthe\x1b[15;3Hrestart packe\x1b[15;17Hs honest, and rout\x1b[15;37Hbounded side\x1b[15;50Hw\x1b[15;52Hrk through the\x1b[15;67Hlive\x1b[15;72Hswarm\x1b[16;3Hsurf\x1b[16;8Hces.\x1b[18;3HAsolaria\x1b[18;12Hsurfaces\x1b[18;21Hyou\x1b[18;25Hcan\x1b[18;29Huse:\x1b[18;34Hcontrol_asolaria_runtime,\x1b[18;60Hrelay_to_vector,\x1b[19;3Hrelay_to_rook, operate_brow\x1b[19;32Hr_task, operate_mobile_control,\x1b[20;3Huse_playw\x1b[20;13Hight_cli, use_proj\x1b[20;32Hct_store, use_mistake_memory,\x1b[21;7Haugment_sidecar, use_symphony_lane, use_gemini\x1b[21;54Hlane\x1b[22;3HSuper\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;9H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;53H\x1b[0m\x1b[49m\x1b[K\x1b[5;75H\x1b[0m\x1b[49m\x1b[K\x1b[6;72H\x1b[0m\x1b[49m\x1b[K\x1b[7;65H\x1b[0m\x1b[49m\x1b[K\x1b[8;69H\x1b[0m\x1b[49m\x1b[K\x1b[9;70H\x1b[0m\x1b[49m\x1b[K\x1b[10;72H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;57H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;75H\x1b[0m\x1b[49m\x1b[K\x1b[15;77H\x1b[0m\x1b[49m\x1b[K\x1b[16;12H\x1b[0m\x1b[49m\x1b[K\x1b[17;2H\x1b[0m\x1b[49m\x1b[K\x1b[18;76H\x1b[0m\x1b[49m\x1b[K\x1b[19;63H\x1b[0m\x1b[49m\x1b[K\x1b[20;61H\x1b[0m\x1b[49m\x1b[K\x1b[21;58H\x1b[0m\x1b[49m\x1b[K\x1b[22;10H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;9Hs\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;10H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;53H\x1b[0m\x1b[49m\x1b[K\x1b[5;75H\x1b[0m\x1b[49m\x1b[K\x1b[6;72H\x1b[0m\x1b[49m\x1b[K\x1b[7;65H\x1b[0m\x1b[49m\x1b[K\x1b[8;69H\x1b[0m\x1b[49m\x1b[K\x1b[9;70H\x1b[0m\x1b[49m\x1b[K\x1b[10;72H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;57H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;75H\x1b[0m\x1b[49m\x1b[K\x1b[15;77H\x1b[0m\x1b[49m\x1b[K\x1b[16;12H\x1b[0m\x1b[49m\x1b[K\x1b[17;2H\x1b[0m\x1b[49m\x1b[K\x1b[18;76H\x1b[0m\x1b[49m\x1b[K\x1b[19;63H\x1b[0m\x1b[49m\x1b[K\x1b[20;61H\x1b[0m\x1b[49m\x1b[K\x1b[21;58H\x1b[0m\x1b[49m\x1b[K\x1b[22;11H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;10Hw\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;11H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;53H\x1b[0m\x1b[49m\x1b[K\x1b[5;75H\x1b[0m\x1b[49m\x1b[K\x1b[6;72H\x1b[0m\x1b[49m\x1b[K\x1b[7;65H\x1b[0m\x1b[49m\x1b[K\x1b[8;69H\x1b[0m\x1b[49m\x1b[K\x1b[9;70H\x1b[0m\x1b[49m\x1b[K\x1b[10;72H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;57H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;75H\x1b[0m\x1b[49m\x1b[K\x1b[15;77H\x1b[0m\x1b[49m\x1b[K\x1b[16;12H\x1b[0m\x1b[49m\x1b[K\x1b[17;2H\x1b[0m\x1b[49m\x1b[K\x1b[18;76H\x1b[0m\x1b[49m\x1b[K\x1b[19;63H\x1b[0m\x1b[49m\x1b[K\x1b[20;61H\x1b[0m\x1b[49m\x1b[K\x1b[21;58H\x1b[0m\x1b[49m\x1b[K\x1b[22;12H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;11Ha\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;12H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;53H\x1b[0m\x1b[49m\x1b[K\x1b[5;75H\x1b[0m\x1b[49m\x1b[K\x1b[6;72H\x1b[0m\x1b[49m\x1b[K\x1b[7;65H\x1b[0m\x1b[49m\x1b[K\x1b[8;69H\x1b[0m\x1b[49m\x1b[K\x1b[9;70H\x1b[0m\x1b[49m\x1b[K\x1b[10;72H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;57H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;75H\x1b[0m\x1b[49m\x1b[K\x1b[15;77H\x1b[0m\x1b[49m\x1b[K\x1b[16;12H\x1b[0m\x1b[49m\x1b[K\x1b[17;2H\x1b[0m\x1b[49m\x1b[K\x1b[18;76H\x1b[0m\x1b[49m\x1b[K\x1b[19;63H\x1b[0m\x1b[49m\x1b[K\x1b[20;61H\x1b[0m\x1b[49m\x1b[K\x1b[21;58H\x1b[0m\x1b[49m\x1b[K\x1b[22;13H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;12Hr\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;13H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;53H\x1b[0m\x1b[49m\x1b[K\x1b[5;75H\x1b[0m\x1b[49m\x1b[K\x1b[6;72H\x1b[0m\x1b[49m\x1b[K\x1b[7;65H\x1b[0m\x1b[49m\x1b[K\x1b[8;69H\x1b[0m\x1b[49m\x1b[K\x1b[9;70H\x1b[0m\x1b[49m\x1b[K\x1b[10;72H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;57H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;75H\x1b[0m\x1b[49m\x1b[K\x1b[15;77H\x1b[0m\x1b[49m\x1b[K\x1b[16;12H\x1b[0m\x1b[49m\x1b[K\x1b[17;2H\x1b[0m\x1b[49m\x1b[K\x1b[18;76H\x1b[0m\x1b[49m\x1b[K\x1b[19;63H\x1b[0m\x1b[49m\x1b[K\x1b[20;61H\x1b[0m\x1b[49m\x1b[K\x1b[21;58H\x1b[0m\x1b[49m\x1b[K\x1b[22;35H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;13Hm\x1b[22;15Hparticipants:\x1b[22;29Hlocal_\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;35H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;53H\x1b[0m\x1b[49m\x1b[K\x1b[5;75H\x1b[0m\x1b[49m\x1b[K\x1b[6;72H\x1b[0m\x1b[49m\x1b[K\x1b[7;65H\x1b[0m\x1b[49m\x1b[K\x1b[8;69H\x1b[0m\x1b[49m\x1b[K\x1b[9;70H\x1b[0m\x1b[49m\x1b[K\x1b[10;72H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;57H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;75H\x1b[0m\x1b[49m\x1b[K\x1b[15;77H\x1b[0m\x1b[49m\x1b[K\x1b[16;12H\x1b[0m\x1b[49m\x1b[K\x1b[17;2H\x1b[0m\x1b[49m\x1b[K\x1b[18;76H\x1b[0m\x1b[49m\x1b[K\x1b[19;63H\x1b[0m\x1b[49m\x1b[K\x1b[20;61H\x1b[0m\x1b[49m\x1b[K\x1b[21;58H\x1b[0m\x1b[49m\x1b[K\x1b[22;36H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;35Hc\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;36H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;53H\x1b[0m\x1b[49m\x1b[K\x1b[5;75H\x1b[0m\x1b[49m\x1b[K\x1b[6;72H\x1b[0m\x1b[49m\x1b[K\x1b[7;65H\x1b[0m\x1b[49m\x1b[K\x1b[8;69H\x1b[0m\x1b[49m\x1b[K\x1b[9;70H\x1b[0m\x1b[49m\x1b[K\x1b[10;72H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;57H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;75H\x1b[0m\x1b[49m\x1b[K\x1b[15;77H\x1b[0m\x1b[49m\x1b[K\x1b[16;12H\x1b[0m\x1b[49m\x1b[K\x1b[17;2H\x1b[0m\x1b[49m\x1b[K\x1b[18;76H\x1b[0m\x1b[49m\x1b[K\x1b[19;63H\x1b[0m\x1b[49m\x1b[K\x1b[20;61H\x1b[0m\x1b[49m\x1b[K\x1b[21;58H\x1b[0m\x1b[49m\x1b[K\x1b[22;37H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;36Ho\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;37H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;72H\x1b[0m\x1b[49m\x1b[K\x1b[4;65H\x1b[0m\x1b[49m\x1b[K\x1b[5;69H\x1b[0m\x1b[49m\x1b[K\x1b[6;70H\x1b[0m\x1b[49m\x1b[K\x1b[7;72H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;57H\x1b[0m\x1b[49m\x1b[K\x1b[10;57H\x1b[0m\x1b[49m\x1b[K\x1b[11;75H\x1b[0m\x1b[49m\x1b[K\x1b[12;77H\x1b[0m\x1b[49m\x1b[K\x1b[13;12H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;76H\x1b[0m\x1b[49m\x1b[K\x1b[16;63H\x1b[0m\x1b[49m\x1b[K\x1b[17;61H\x1b[0m\x1b[49m\x1b[K\x1b[18;58H\x1b[0m\x1b[49m\x1b[K\x1b[19;71H\x1b[0m\x1b[49m\x1b[K\x1b[20;17H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;2H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[3;3H2.\x1b[3;6HC:\\Users\\acer\\Asolaria\\reports\\admin-terminal-identities-latest.md\x1b[4;3H3. C:\\Users\\ac\x1b[4;18Hr\\Asolaria\\r\x1b[4;31Hp\x1b[4;34Hts\\codex-state-freeze-latest.md\x1b[5;3H4. C:\\Users\\acer\\Asolaria\\reports\\hel\x1b[5;41H-cont\x1b[5;47Holler\x1b[5;53Hpacket-latest.md\x1b[6;3H5\x1b[6;37Hq\x1b[6;39Hd-sup\x1b[6;46H-sw\x1b[6;50Hrm-co\x1b[6;57Hract-latest.m\x1b[7;3Hd6. C:\\Users\\acer\\Asolaria\\reports\\q\x1b[7;40Hd-codex-restart\x1b[7;56Hp\x1b[7;58Hcke\x1b[7;62H-latest.md\x1b[9;3HCurrent mi\x1b[9;14Hsion: Control QDD and the admin swarm lane.\x1b[10;3HCanonical \x1b[10;14Hepo target: D:\\p\x1b[10;31Hojec\x1b[10;38HQDD\\ebacmap-master.\x1b[11;3HImmediate\x1b[11;13Hnext\x1b[11;18Hmove:\x1b[11;24HContinue\x1b[11;33Hthe\x1b[11;37HQDD\x1b[11;41Hmonorepo\x1b[11;50Hcontroller\x1b[11;61Hlane,\x1b[11;67Hkeep\x1b[11;72Hthe\x1b[12;3Hrestar\x1b[12;11Hpackets honest, and route boun\x1b[12;42Hed side work through\x1b[12;63Hthe\x1b[12;67Hlive\x1b[12;72Hswarm\x1b[13;3Hsurfaces.\x1b[15;3HAsol\x1b[15;9Hia surfaces you can use: control_asolaria_runtime, relay_to_\x1b[15;71Hctor,\x1b[16;3Hrelay_to_rook,\x1b[16;18Hoperate_browser_task,\x1b[16;40Hoperate_mobile_control,\x1b[17;3Huse_playwright_cli,\x1b[17;23Huse_project_store,\x1b[17;42Huse_mistake_memory,\x1b[18;3Hu\x1b[18;5He_\x1b[18;8Hugment_sid\x1b[18;19Hcar, use_symphony_lane, use_gemini_lan\x1b[19;3HSuper swa\x1b[19;13Hm participants: local_codex, ab\x1b[19;45Hcus, symphony, gemini_api,\x1b[20;3Haugment_contex\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;3H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;72H\x1b[0m\x1b[49m\x1b[K\x1b[4;65H\x1b[0m\x1b[49m\x1b[K\x1b[5;69H\x1b[0m\x1b[49m\x1b[K\x1b[6;70H\x1b[0m\x1b[49m\x1b[K\x1b[7;72H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;57H\x1b[0m\x1b[49m\x1b[K\x1b[10;57H\x1b[0m\x1b[49m\x1b[K\x1b[11;75H\x1b[0m\x1b[49m\x1b[K\x1b[12;77H\x1b[0m\x1b[49m\x1b[K\x1b[13;12H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;76H\x1b[0m\x1b[49m\x1b[K\x1b[16;63H\x1b[0m\x1b[49m\x1b[K\x1b[17;61H\x1b[0m\x1b[49m\x1b[K\x1b[18;58H\x1b[0m\x1b[49m\x1b[K\x1b[19;71H\x1b[0m\x1b[49m\x1b[K\x1b[20;17H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;4H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;3HW\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;4H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;72H\x1b[0m\x1b[49m\x1b[K\x1b[4;65H\x1b[0m\x1b[49m\x1b[K\x1b[5;69H\x1b[0m\x1b[49m\x1b[K\x1b[6;70H\x1b[0m\x1b[49m\x1b[K\x1b[7;72H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;57H\x1b[0m\x1b[49m\x1b[K\x1b[10;57H\x1b[0m\x1b[49m\x1b[K\x1b[11;75H\x1b[0m\x1b[49m\x1b[K\x1b[12;77H\x1b[0m\x1b[49m\x1b[K\x1b[13;12H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;76H\x1b[0m\x1b[49m\x1b[K\x1b[16;63H\x1b[0m\x1b[49m\x1b[K\x1b[17;61H\x1b[0m\x1b[49m\x1b[K\x1b[18;58H\x1b[0m\x1b[49m\x1b[K\x1b[19;71H\x1b[0m\x1b[49m\x1b[K\x1b[20;17H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;4H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;4H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;57H\x1b[0m\x1b[49m\x1b[K\x1b[4;75H\x1b[0m\x1b[49m\x1b[K\x1b[5;77H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;2H\x1b[0m\x1b[49m\x1b[K\x1b[8;76H\x1b[0m\x1b[49m\x1b[K\x1b[9;63H\x1b[0m\x1b[49m\x1b[K\x1b[10;61H\x1b[0m\x1b[49m\x1b[K\x1b[11;58H\x1b[0m\x1b[49m\x1b[K\x1b[12;71H\x1b[0m\x1b[49m\x1b[K\x1b[13;17H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;80H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;15H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;79H\x1b[0m\x1b[49m\x1b[K\x1b[20;60H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;2H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[3;3HCanonical repo target: D:\x1b[3;29Hprojects\\QDD\\ebac\x1b[3;47Hap-mast\x1b[3;55Hr.\x1b[4;3HImmediat\x1b[4;12H next move: Continue the QDD monorepo contro\x1b[4;57Hler lane,\x1b[4;67Hkeep\x1b[4;72Hthe\x1b[5;3Hrestart packets honest, \x1b[5;28Hnd r\x1b[5;33Hu\x1b[5;35He bounded side work through the live\x1b[5;72Hswarm\x1b[6;3Hsurface\x1b[6;11H.\x1b[8;3HAsolaria\x1b[8;12Hsurfaces\x1b[8;21Hyou\x1b[8;25Hcan\x1b[8;29Huse:\x1b[8;34Hcontrol_asolaria_runtime,\x1b[8;60Hrelay_to_vector,\x1b[9;3Hrelay_\x1b[9;10Ho_rook, opera\x1b[9;24He_browser_task,\x1b[9;40Hoperate_mobi\x1b[9;53He_control,\x1b[10;3Huse_playwright_cli, use_project_store, use_\x1b[10;47Histake_memory,\x1b[11;3Huse_augm\x1b[11;12Hnt_sidecar,\x1b[11;24Huse_symphony_lane, use_gemini_lane\x1b[12;3HSuper swarm participants: local_codex, abacus,\x1b[12;50Hsymphony, \x1b[12;61Hemini_api,\x1b[13;3Ha\x1b[13;5Hgment_contex\x1b[15;3HWorking rule: own\x1b[15;21Hc\x1b[15;23Hntroller de\x1b[15;35Hisions, keep QDD point\x1b[15;58Hd\x1b[15;60Hat the monorepo\x1b[15;77Hand\x1b[16;3Huse the super swarm surface\x1b[16;31H for bounded delegat\x1b[16;52Hon ins\x1b[16;59Head of\x1b[16;66Hreopening\x1b[17;3Hstale lanes.\x1b[19;3HRe\x1b[19;6Hly\x1b[19;9Hwith a short checkpoint on\x1b[19;36He your profile is l\x1b[19;56Haded, the act\x1b[19;70Hve\x1b[19;73Hpacket\x1b[20;3His understood,\x1b[20;18Hand\x1b[20;22Hthe\x1b[20;26Hfirst\x1b[20;32Hbounded\x1b[20;40Hnext\x1b[20;45Hmove\x1b[20;50His\x1b[20;53Hchosen.\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;3H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;57H\x1b[0m\x1b[49m\x1b[K\x1b[4;75H\x1b[0m\x1b[49m\x1b[K\x1b[5;77H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;2H\x1b[0m\x1b[49m\x1b[K\x1b[8;76H\x1b[0m\x1b[49m\x1b[K\x1b[9;63H\x1b[0m\x1b[49m\x1b[K\x1b[10;61H\x1b[0m\x1b[49m\x1b[K\x1b[11;58H\x1b[0m\x1b[49m\x1b[K\x1b[12;71H\x1b[0m\x1b[49m\x1b[K\x1b[13;17H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;80H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;15H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;79H\x1b[0m\x1b[49m\x1b[K\x1b[20;60H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;4H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;3HY\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;4H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;57H\x1b[0m\x1b[49m\x1b[K\x1b[4;75H\x1b[0m\x1b[49m\x1b[K\x1b[5;77H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;2H\x1b[0m\x1b[49m\x1b[K\x1b[8;76H\x1b[0m\x1b[49m\x1b[K\x1b[9;63H\x1b[0m\x1b[49m\x1b[K\x1b[10;61H\x1b[0m\x1b[49m\x1b[K\x1b[11;58H\x1b[0m\x1b[49m\x1b[K\x1b[12;71H\x1b[0m\x1b[49m\x1b[K\x1b[13;17H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;80H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;15H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;79H\x1b[0m\x1b[49m\x1b[K\x1b[20;60H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;9H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;4Hou\x1b[22;7Har\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;9H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;57H\x1b[0m\x1b[49m\x1b[K\x1b[4;75H\x1b[0m\x1b[49m\x1b[K\x1b[5;77H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;2H\x1b[0m\x1b[49m\x1b[K\x1b[8;76H\x1b[0m\x1b[49m\x1b[K\x1b[9;63H\x1b[0m\x1b[49m\x1b[K\x1b[10;61H\x1b[0m\x1b[49m\x1b[K\x1b[11;58H\x1b[0m\x1b[49m\x1b[K\x1b[12;71H\x1b[0m\x1b[49m\x1b[K\x1b[13;17H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;80H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;15H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;79H\x1b[0m\x1b[49m\x1b[K\x1b[20;60H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;14H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;9He\x1b[22;11HHel\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;14H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;57H\x1b[0m\x1b[49m\x1b[K\x1b[4;75H\x1b[0m\x1b[49m\x1b[K\x1b[5;77H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;2H\x1b[0m\x1b[49m\x1b[K\x1b[8;76H\x1b[0m\x1b[49m\x1b[K\x1b[9;63H\x1b[0m\x1b[49m\x1b[K\x1b[10;61H\x1b[0m\x1b[49m\x1b[K\x1b[11;58H\x1b[0m\x1b[49m\x1b[K\x1b[12;71H\x1b[0m\x1b[49m\x1b[K\x1b[13;17H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;80H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;15H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;79H\x1b[0m\x1b[49m\x1b[K\x1b[20;60H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;16H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;14Hm.\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;16H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;57H\x1b[0m\x1b[49m\x1b[K\x1b[4;75H\x1b[0m\x1b[49m\x1b[K\x1b[5;77H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;2H\x1b[0m\x1b[49m\x1b[K\x1b[8;76H\x1b[0m\x1b[49m\x1b[K\x1b[9;63H\x1b[0m\x1b[49m\x1b[K\x1b[10;61H\x1b[0m\x1b[49m\x1b[K\x1b[11;58H\x1b[0m\x1b[49m\x1b[K\x1b[12;71H\x1b[0m\x1b[49m\x1b[K\x1b[13;17H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;80H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;15H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;79H\x1b[0m\x1b[49m\x1b[K\x1b[20;60H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;16H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;16H\x1b[?2026l"
+                - generic [ref=e531]:
+                  - textbox "Ask Helm to choose the next move, route work, or reconcile controller state." [ref=e532]
+                  - generic [ref=e533]:
+                    - generic [ref=e534]: Inbox 0
+                    - button "Prompt Helm" [ref=e535] [cursor=pointer]
+              - article [ref=e536]:
+                - generic [ref=e537]:
+                  - generic [ref=e538]:
+                    - heading "Sentinel" [level=4] [ref=e539]
+                    - paragraph [ref=e540]: helper/watch admin terminal | Watch runtime drift and controller mismatches
+                  - generic [ref=e541]: IDLE
+                - generic [ref=e542]:
+                  - generic [ref=e543]: Seen 3m
+                  - generic [ref=e544]: "Packet: sector-drift-watch-latest.md"
+                  - generic [ref=e545]: Briefed 11/03/2026, 23:40:53
+                - paragraph [ref=e546]: Refresh sector-drift-watch-latest.md, compare restart anchors, and notify Helm only on meaningful checkpoint changes.
+                - generic [ref=e547]:
+                  - button "Ensure Running" [ref=e548] [cursor=pointer]
+                  - button "Stop" [ref=e549] [cursor=pointer]
+                  - button "Re-brief" [ref=e550] [cursor=pointer]
+                - generic [ref=e551]: "[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;24H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;20Hrget\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;24H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;24H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;24H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;45H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;24H:\x1b[22;26HD:\\projects\\QDD\\eba\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;45H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;46H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;45Hc\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;46H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;47H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;46Hm\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;47H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;49H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;47Hap\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;49H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;50H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;49H-\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;50H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;51H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;50Hm\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;51H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;54H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;51Hast\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;54H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;55H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;54He\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;55H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;56H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;55Hr\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;56H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;57H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;56H.\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;57H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;60H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;20H\x1b[0m\x1b[49m\x1b[K\x1b[6;79H\x1b[0m\x1b[49m\x1b[K\x1b[7;73H\x1b[0m\x1b[49m\x1b[K\x1b[8;12H\x1b[0m\x1b[49m\x1b[K\x1b[9;37H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;33H\x1b[0m\x1b[49m\x1b[K\x1b[12;2H\x1b[0m\x1b[49m\x1b[K\x1b[13;54H\x1b[0m\x1b[49m\x1b[K\x1b[14;78H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;65H\x1b[0m\x1b[49m\x1b[K\x1b[17;69H\x1b[0m\x1b[49m\x1b[K\x1b[18;71H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;2H\x1b[0m\x1b[49m\x1b[K\x1b[21;66H\x1b[0m\x1b[49m\x1b[K\x1b[22;57H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;57H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;20H\x1b[0m\x1b[49m\x1b[K\x1b[5;79H\x1b[0m\x1b[49m\x1b[K\x1b[6;73H\x1b[0m\x1b[49m\x1b[K\x1b[7;12H\x1b[0m\x1b[49m\x1b[K\x1b[8;37H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;33H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;54H\x1b[0m\x1b[49m\x1b[K\x1b[13;78H\x1b[0m\x1b[49m\x1b[K\x1b[14;72H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;69H\x1b[0m\x1b[49m\x1b[K\x1b[17;71H\x1b[0m\x1b[49m\x1b[K\x1b[18;65H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;57H\x1b[0m\x1b[49m\x1b[K\x1b[22;2H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[4;3HYou\x1b[4;7Hare\x1b[4;11HSentinel.\x1b[5;3HPerm\x1b[5;8Hn\x1b[5;10Hnt ide\x1b[5;17Htity:\x1b[5;23HSentinel.\x1b[5;33HDo\x1b[5;36Hnot\x1b[5;40Hrename\x1b[5;47Hyourself\x1b[5;56Hand\x1b[5;60Hdo\x1b[5;63Hnot\x1b[5;67Hconfuse\x1b[5;75Hthis\x1b[6;3Hadmin-term\x1b[6;14Hnal \x1b[6;19Hdentity with vector,\x1b[6;41Hook, forge, falcon, asolaria, or\x1b[7;3Hwatchdog.\x1b[8;3HRole: helper/watch\x1b[8;22Hadmin\x1b[8;28Hterminal.\x1b[10;3HProfile\x1b[10;11Hid:\x1b[10;15Hadmin-sentinel-v1.\x1b[12;3HRead\x1b[12;8Hthese\x1b[12;14Hfiles\x1b[12;20Hin\x1b[12;23Horder\x1b[12;29Hbefore\x1b[12;36Htaking\x1b[12;43Hany\x1b[12;47Haction:\x1b[13;3H1. C:\\Users\\ac\x1b[13;18Hr\\Asolaria\\r\x1b[13;31Hp\x1b[13;34Hts\\\x1b[13;38Hdmin-terminal-sentinel-profile-latest.md\x1b[14;3H2\x1b[14;52Hidentities-latest.md\x1b[15;3H3\x1b[15;37Hcodex\x1b[15;43Hstate-freez\x1b[15;55H-la\x1b[15;59Hest.md\x1b[16;3H4\x1b[16;37Hhelm-controller-packe\x1b[16;59H-latest.md\x1b[17;3H5\x1b[17;37Hqdd-super-swarm\x1b[17;53Hcontract-latest.md\x1b[18;3H6\x1b[18;37Hsector-d\x1b[18;46Hift-wat\x1b[18;54Hh-latest.md\x1b[20;3HCurrent\x1b[20;11Hmission:\x1b[20;20HWatch\x1b[20;26Hruntime\x1b[20;34Hdrift\x1b[20;40Hand\x1b[20;44Hcontroller\x1b[20;55Hmismatches.\x1b[21;4Hanonical rep\x1b[21;17H target:\x1b[21;26HD:\\projects\\QDD\\ebacmap-master.\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;3H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;20H\x1b[0m\x1b[49m\x1b[K\x1b[5;79H\x1b[0m\x1b[49m\x1b[K\x1b[6;73H\x1b[0m\x1b[49m\x1b[K\x1b[7;12H\x1b[0m\x1b[49m\x1b[K\x1b[8;37H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;33H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;54H\x1b[0m\x1b[49m\x1b[K\x1b[13;78H\x1b[0m\x1b[49m\x1b[K\x1b[14;72H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;69H\x1b[0m\x1b[49m\x1b[K\x1b[17;71H\x1b[0m\x1b[49m\x1b[K\x1b[18;65H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;57H\x1b[0m\x1b[49m\x1b[K\x1b[22;4H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;3HI\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;4H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;20H\x1b[0m\x1b[49m\x1b[K\x1b[5;79H\x1b[0m\x1b[49m\x1b[K\x1b[6;73H\x1b[0m\x1b[49m\x1b[K\x1b[7;12H\x1b[0m\x1b[49m\x1b[K\x1b[8;37H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;33H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;54H\x1b[0m\x1b[49m\x1b[K\x1b[13;78H\x1b[0m\x1b[49m\x1b[K\x1b[14;72H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;69H\x1b[0m\x1b[49m\x1b[K\x1b[17;71H\x1b[0m\x1b[49m\x1b[K\x1b[18;65H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;57H\x1b[0m\x1b[49m\x1b[K\x1b[22;25H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;4Hmmediate\x1b[22;13Hnext\x1b[22;18Hmove:\x1b[22;24HR\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;25H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;20H\x1b[0m\x1b[49m\x1b[K\x1b[5;79H\x1b[0m\x1b[49m\x1b[K\x1b[6;73H\x1b[0m\x1b[49m\x1b[K\x1b[7;12H\x1b[0m\x1b[49m\x1b[K\x1b[8;37H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;33H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;54H\x1b[0m\x1b[49m\x1b[K\x1b[13;78H\x1b[0m\x1b[49m\x1b[K\x1b[14;72H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;69H\x1b[0m\x1b[49m\x1b[K\x1b[17;71H\x1b[0m\x1b[49m\x1b[K\x1b[18;65H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;57H\x1b[0m\x1b[49m\x1b[K\x1b[22;25H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;25H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;20H\x1b[0m\x1b[49m\x1b[K\x1b[5;79H\x1b[0m\x1b[49m\x1b[K\x1b[6;73H\x1b[0m\x1b[49m\x1b[K\x1b[7;12H\x1b[0m\x1b[49m\x1b[K\x1b[8;37H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;33H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;54H\x1b[0m\x1b[49m\x1b[K\x1b[13;78H\x1b[0m\x1b[49m\x1b[K\x1b[14;72H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;69H\x1b[0m\x1b[49m\x1b[K\x1b[17;71H\x1b[0m\x1b[49m\x1b[K\x1b[18;65H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;57H\x1b[0m\x1b[49m\x1b[K\x1b[22;27H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;25Hef\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;27H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;20H\x1b[0m\x1b[49m\x1b[K\x1b[5;79H\x1b[0m\x1b[49m\x1b[K\x1b[6;73H\x1b[0m\x1b[49m\x1b[K\x1b[7;12H\x1b[0m\x1b[49m\x1b[K\x1b[8;37H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;33H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;54H\x1b[0m\x1b[49m\x1b[K\x1b[13;78H\x1b[0m\x1b[49m\x1b[K\x1b[14;72H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;69H\x1b[0m\x1b[49m\x1b[K\x1b[17;71H\x1b[0m\x1b[49m\x1b[K\x1b[18;65H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;57H\x1b[0m\x1b[49m\x1b[K\x1b[22;28H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;27Hr\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;28H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;20H\x1b[0m\x1b[49m\x1b[K\x1b[5;79H\x1b[0m\x1b[49m\x1b[K\x1b[6;73H\x1b[0m\x1b[49m\x1b[K\x1b[7;12H\x1b[0m\x1b[49m\x1b[K\x1b[8;37H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;33H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;54H\x1b[0m\x1b[49m\x1b[K\x1b[13;78H\x1b[0m\x1b[49m\x1b[K\x1b[14;72H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;69H\x1b[0m\x1b[49m\x1b[K\x1b[17;71H\x1b[0m\x1b[49m\x1b[K\x1b[18;65H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;57H\x1b[0m\x1b[49m\x1b[K\x1b[22;29H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;28He\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;29H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;20H\x1b[0m\x1b[49m\x1b[K\x1b[5;79H\x1b[0m\x1b[49m\x1b[K\x1b[6;73H\x1b[0m\x1b[49m\x1b[K\x1b[7;12H\x1b[0m\x1b[49m\x1b[K\x1b[8;37H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;33H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;54H\x1b[0m\x1b[49m\x1b[K\x1b[13;78H\x1b[0m\x1b[49m\x1b[K\x1b[14;72H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;69H\x1b[0m\x1b[49m\x1b[K\x1b[17;71H\x1b[0m\x1b[49m\x1b[K\x1b[18;65H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;57H\x1b[0m\x1b[49m\x1b[K\x1b[22;60H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;29Hsh\x1b[22;32Hsector-drift-watch-latest.md\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;60H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;20H\x1b[0m\x1b[49m\x1b[K\x1b[5;79H\x1b[0m\x1b[49m\x1b[K\x1b[6;73H\x1b[0m\x1b[49m\x1b[K\x1b[7;12H\x1b[0m\x1b[49m\x1b[K\x1b[8;37H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;33H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;54H\x1b[0m\x1b[49m\x1b[K\x1b[13;78H\x1b[0m\x1b[49m\x1b[K\x1b[14;72H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;69H\x1b[0m\x1b[49m\x1b[K\x1b[17;71H\x1b[0m\x1b[49m\x1b[K\x1b[18;65H\x1b[0m\x1b[49m\x1b[K\x1b[19;2H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;57H\x1b[0m\x1b[49m\x1b[K\x1b[22;64H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;60H,\x1b[22;62Hco\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;64H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;32H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[3;3HYou\x1b[3;7Hare\x1b[3;11HSentinel.\x1b[4;3HPerm\x1b[4;8Hn\x1b[4;10Hnt ide\x1b[4;17Htity:\x1b[4;23HSentinel.\x1b[4;33HDo\x1b[4;36Hnot\x1b[4;40Hrename\x1b[4;47Hyourself\x1b[4;56Hand\x1b[4;60Hdo\x1b[4;63Hnot\x1b[4;67Hconfuse\x1b[4;75Hthis\x1b[5;3Hadmin-term\x1b[5;14Hnal \x1b[5;19Hdentity with vector,\x1b[5;41Hook, forge, falcon, asolaria, or\x1b[6;3Hwatchdog.\x1b[7;3HRole: helper/watch\x1b[7;22Hadmin\x1b[7;28Hterminal.\x1b[9;3HProfile\x1b[9;11Hid:\x1b[9;15Hadmin-sentinel-v1.\x1b[11;3HRead\x1b[11;8Hthese\x1b[11;14Hfiles\x1b[11;20Hin\x1b[11;23Horder\x1b[11;29Hbefore\x1b[11;36Htaking\x1b[11;43Hany\x1b[11;47Haction:\x1b[12;3H1. C:\\Users\\ac\x1b[12;18Hr\\Asolaria\\r\x1b[12;31Hp\x1b[12;34Hts\\\x1b[12;38Hdmin-terminal-sentinel-profile-latest.md\x1b[13;3H2\x1b[13;52Hidentities-latest.md\x1b[14;3H3\x1b[14;37Hcodex\x1b[14;43Hstate-freez\x1b[14;55H-la\x1b[14;59Hest.md\x1b[15;3H4\x1b[15;37Hhelm-controller-packe\x1b[15;59H-latest.md\x1b[16;3H5\x1b[16;37Hqdd-super-swarm\x1b[16;53Hcontract-latest.md\x1b[17;3H6\x1b[17;37Hsector-d\x1b[17;46Hift-wat\x1b[17;54Hh-latest.md\x1b[19;3HCurrent\x1b[19;11Hmission:\x1b[19;20HWatch\x1b[19;26Hruntime\x1b[19;34Hdrift\x1b[19;40Hand\x1b[19;44Hcontroller\x1b[19;55Hmismatches.\x1b[20;4Hanonical rep\x1b[20;17H target:\x1b[20;26HD:\\projects\\QDD\\ebacmap-master.\x1b[21;3HImmed\x1b[21;9Hate\x1b[21;13Hn\x1b[21;15Hxt\x1b[21;18Hmove: Refresh s\x1b[21;36Hor-drift-watch-la\x1b[21;55Hst.md,\x1b[21;62Hcompare\x1b[21;70Hrestart\x1b[22;3Hanchors, a\x1b[22;14Hd notify Helm only\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;32H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;32H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;33H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;34H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;33Ho\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;34H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;35H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;34Hn\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;35H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;35H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;36H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;60H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;36Hmeaningful\x1b[22;47Hcheckpoint\x1b[22;58Hch\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;60H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;61H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;60Ha\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;61H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;62H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;61Hn\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;62H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;66H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;62Hges.\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;66H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;20H\x1b[0m\x1b[49m\x1b[K\x1b[4;79H\x1b[0m\x1b[49m\x1b[K\x1b[5;73H\x1b[0m\x1b[49m\x1b[K\x1b[6;12H\x1b[0m\x1b[49m\x1b[K\x1b[7;37H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;33H\x1b[0m\x1b[49m\x1b[K\x1b[10;2H\x1b[0m\x1b[49m\x1b[K\x1b[11;54H\x1b[0m\x1b[49m\x1b[K\x1b[12;78H\x1b[0m\x1b[49m\x1b[K\x1b[13;72H\x1b[0m\x1b[49m\x1b[K\x1b[14;65H\x1b[0m\x1b[49m\x1b[K\x1b[15;69H\x1b[0m\x1b[49m\x1b[K\x1b[16;71H\x1b[0m\x1b[49m\x1b[K\x1b[17;65H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;66H\x1b[0m\x1b[49m\x1b[K\x1b[20;57H\x1b[0m\x1b[49m\x1b[K\x1b[21;77H\x1b[0m\x1b[49m\x1b[K\x1b[22;66H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;66H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;73H\x1b[0m\x1b[49m\x1b[K\x1b[4;12H\x1b[0m\x1b[49m\x1b[K\x1b[5;37H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;33H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;54H\x1b[0m\x1b[49m\x1b[K\x1b[10;78H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;65H\x1b[0m\x1b[49m\x1b[K\x1b[13;69H\x1b[0m\x1b[49m\x1b[K\x1b[14;71H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;2H\x1b[0m\x1b[49m\x1b[K\x1b[17;66H\x1b[0m\x1b[49m\x1b[K\x1b[18;57H\x1b[0m\x1b[49m\x1b[K\x1b[19;77H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;36H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[3;3Hadmin-terminal identity\x1b[3;27Hwith\x1b[3;32Hvector,\x1b[3;40Hrook,\x1b[3;46Hforge,\x1b[3;53Hfalcon,\x1b[3;61Hasolaria,\x1b[3;71Hor\x1b[4;3Hwatchdog.\x1b[5;3HRole: h\x1b[5;11Hlper/watch admin terminal.\x1b[7;3HProfile id: admin-sent\x1b[7;27Hel-v1.\x1b[9;3HRead these files in order before\x1b[9;36Htaking\x1b[9;43Hany\x1b[9;47Haction:\x1b[10;3H1.\x1b[10;6HC:\\Users\\acer\\Asolaria\\reports\\admin-terminal-sentinel-profile-latest.md\x1b[11;3H2. C:\\Users\\ac\x1b[11;18Hr\\Asolaria\\r\x1b[11;31Hp\x1b[11;34Hts\\\x1b[11;38Hdmin-terminal-identities-latest.md\x1b[12;3H3\x1b[12;37Hcodex\x1b[12;43Hstate-freeze-latest.md\x1b[13;3H4\x1b[13;37Hhelm-controller-packe\x1b[13;59H-lates\x1b[13;66H.md\x1b[14;3H5\x1b[14;37Hqd\x1b[14;40H-super-swa\x1b[14;51Hm-contract-latest.md\x1b[15;3H6\x1b[15;37Hs\x1b[15;39Hctor-drift-watch-la\x1b[15;59Hest.md\x1b[17;3HCurrent mi\x1b[17;14Hsion: Watch runtime drift and controller mismatches.\x1b[18;3HCanonical\x1b[18;13Hrepo\x1b[18;18Htarget:\x1b[18;26HD:\\projects\\QDD\\ebacmap-master.\x1b[19;3HImmediate next move: Refresh sector-drift-wa\x1b[19;48Hch-\x1b[19;52Hatest.\x1b[19;59Hd, compare\x1b[19;70Hrestart\x1b[20;3Hanchors, and no\x1b[20;19Hify Helm only on meaningful checkpoint\x1b[20;58Hchanges.\x1b[22;3HAsola\x1b[22;9Hia\x1b[22;12Hsurfaces \x1b[22;22Hou can use: mo\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;36H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;73H\x1b[0m\x1b[49m\x1b[K\x1b[4;12H\x1b[0m\x1b[49m\x1b[K\x1b[5;37H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;33H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;54H\x1b[0m\x1b[49m\x1b[K\x1b[10;78H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;65H\x1b[0m\x1b[49m\x1b[K\x1b[13;69H\x1b[0m\x1b[49m\x1b[K\x1b[14;71H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;2H\x1b[0m\x1b[49m\x1b[K\x1b[17;66H\x1b[0m\x1b[49m\x1b[K\x1b[18;57H\x1b[0m\x1b[49m\x1b[K\x1b[19;77H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;41H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;36Hnitor\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;41H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;73H\x1b[0m\x1b[49m\x1b[K\x1b[4;12H\x1b[0m\x1b[49m\x1b[K\x1b[5;37H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;33H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;54H\x1b[0m\x1b[49m\x1b[K\x1b[10;78H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;65H\x1b[0m\x1b[49m\x1b[K\x1b[13;69H\x1b[0m\x1b[49m\x1b[K\x1b[14;71H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;2H\x1b[0m\x1b[49m\x1b[K\x1b[17;66H\x1b[0m\x1b[49m\x1b[K\x1b[18;57H\x1b[0m\x1b[49m\x1b[K\x1b[19;77H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;41H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;41H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;73H\x1b[0m\x1b[49m\x1b[K\x1b[4;12H\x1b[0m\x1b[49m\x1b[K\x1b[5;37H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;33H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;54H\x1b[0m\x1b[49m\x1b[K\x1b[10;78H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;65H\x1b[0m\x1b[49m\x1b[K\x1b[13;69H\x1b[0m\x1b[49m\x1b[K\x1b[14;71H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;2H\x1b[0m\x1b[49m\x1b[K\x1b[17;66H\x1b[0m\x1b[49m\x1b[K\x1b[18;57H\x1b[0m\x1b[49m\x1b[K\x1b[19;77H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;42H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;41H_\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;42H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;73H\x1b[0m\x1b[49m\x1b[K\x1b[4;12H\x1b[0m\x1b[49m\x1b[K\x1b[5;37H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;33H\x1b[0m\x1b[49m\x1b[K\x1b[8;2H\x1b[0m\x1b[49m\x1b[K\x1b[9;54H\x1b[0m\x1b[49m\x1b[K\x1b[10;78H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;65H\x1b[0m\x1b[49m\x1b[K\x1b[13;69H\x1b[0m\x1b[49m\x1b[K\x1b[14;71H\x1b[0m\x1b[49m\x1b[K\x1b[15;65H\x1b[0m\x1b[49m\x1b[K\x1b[16;2H\x1b[0m\x1b[49m\x1b[K\x1b[17;66H\x1b[0m\x1b[49m\x1b[K\x1b[18;57H\x1b[0m\x1b[49m\x1b[K\x1b[19;77H\x1b[0m\x1b[49m\x1b[K\x1b[20;66H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;50H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[22;42Hasolaria\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;50H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;2H\x1b[0m\x1b[49m\x1b[K\x1b[4;54H\x1b[0m\x1b[49m\x1b[K\x1b[5;78H\x1b[0m\x1b[49m\x1b[K\x1b[6;72H\x1b[0m\x1b[49m\x1b[K\x1b[7;65H\x1b[0m\x1b[49m\x1b[K\x1b[8;69H\x1b[0m\x1b[49m\x1b[K\x1b[9;71H\x1b[0m\x1b[49m\x1b[K\x1b[10;65H\x1b[0m\x1b[49m\x1b[K\x1b[11;2H\x1b[0m\x1b[49m\x1b[K\x1b[12;66H\x1b[0m\x1b[49m\x1b[K\x1b[13;57H\x1b[0m\x1b[49m\x1b[K\x1b[14;77H\x1b[0m\x1b[49m\x1b[K\x1b[15;66H\x1b[0m\x1b[49m\x1b[K\x1b[16;2H\x1b[0m\x1b[49m\x1b[K\x1b[17;59H\x1b[0m\x1b[49m\x1b[K\x1b[18;72H\x1b[0m\x1b[49m\x1b[K\x1b[19;65H\x1b[0m\x1b[49m\x1b[K\x1b[20;64H\x1b[0m\x1b[49m\x1b[K\x1b[21;20H\x1b[0m\x1b[49m\x1b[K\x1b[22;37H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[4;3HRead these\x1b[4;14Hfiles\x1b[4;20Hin\x1b[4;23Horder\x1b[4;29Hbefore\x1b[4;36Htaking\x1b[4;43Hany\x1b[4;47Haction:\x1b[5;3H1. C\x1b[5;8H\\Users\\acer\\Asolaria\\reports\\admin-terminal-sentinel-profile-latest.md\x1b[6;3H2.\x1b[6;6HC:\\Users\\acer\\Asolaria\\reports\\admin-terminal-identities-latest.md\x1b[7;3H3. C:\\Users\\\x1b[7;16Hcer\\A\x1b[7;22Holaria\\reports\\codex-state-freeze-latest.md\x1b[8;3H4.\x1b[8;6HC:\\Users\\acer\\Asolaria\\reports\\helm-controller-packet-latest.md\x1b[9;3H5. C:\\Users\\ac\x1b[9;18Hr\\Asolaria\\r\x1b[9;31Hp\x1b[9;34Hts\\qdd-super-swarm-contract-latest.md\x1b[10;3H6\x1b[10;37Hsector-d\x1b[10;46Hift-watch-latest.md\x1b[12;3HCurrent mi\x1b[12;14Hsion: Watch runtime drift and controll\x1b[12;53Hr mismatches.\x1b[13;3HCanonical repo target: D:\x1b[13;29Hprojects\\QDD\\ebacmap-master.\x1b[14;3HImmediat\x1b[14;12H next move: Refresh sector-\x1b[14;40Hrift-watch-lates\x1b[14;57H.md, compare restart\x1b[15;3Hanchors, and notify Helm only on meaningful checkpoint changes.\x1b[17;3HAsolaria surfaces you can use:\x1b[17;34Hmoni\x1b[17;39Hor_asolaria_runtime,\x1b[18;3Hprepare_relay_to_vec\x1b[18;24Hor, prepare_relay_to_rook, operate_browser_task,\x1b[19;3Hoperate_mobile_c\x1b[19;20Hntrol, use_playwright_cli, use_project_store,\x1b[20;3Huse_mi\x1b[20;10Htake_memory,\x1b[20;23Huse_augment_sidecar, \x1b[20;45Hse_symph\x1b[20;54Hny_status,\x1b[21;3Huse_gemini_status\x1b[22;3HSuper swarm p\x1b[22;17Hrticipants:\x1b[22;29Hlocal_co\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;37H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;65H\x1b[0m\x1b[49m\x1b[K\x1b[4;2H\x1b[0m\x1b[49m\x1b[K\x1b[5;66H\x1b[0m\x1b[49m\x1b[K\x1b[6;57H\x1b[0m\x1b[49m\x1b[K\x1b[7;77H\x1b[0m\x1b[49m\x1b[K\x1b[8;66H\x1b[0m\x1b[49m\x1b[K\x1b[9;2H\x1b[0m\x1b[49m\x1b[K\x1b[10;59H\x1b[0m\x1b[49m\x1b[K\x1b[11;72H\x1b[0m\x1b[49m\x1b[K\x1b[12;65H\x1b[0m\x1b[49m\x1b[K\x1b[13;64H\x1b[0m\x1b[49m\x1b[K\x1b[14;20H\x1b[0m\x1b[49m\x1b[K\x1b[15;71H\x1b[0m\x1b[49m\x1b[K\x1b[16;18H\x1b[0m\x1b[49m\x1b[K\x1b[17;2H\x1b[0m\x1b[49m\x1b[K\x1b[18;72H\x1b[0m\x1b[49m\x1b[K\x1b[19;75H\x1b[0m\x1b[49m\x1b[K\x1b[20;55H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;74H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[3;3H6.\x1b[3;6HC:\\Users\\acer\\Asolaria\\reports\\sector-drift-watch-latest.md\x1b[5;3HCurrent mi\x1b[5;14Hsion: Watch runtime drift a\x1b[5;42Hd contro\x1b[5;51Hler m\x1b[5;57Hsmatches.\x1b[6;3HCanonical repo target: D:\x1b[6;29Hprojects\\QDD\\ebac\x1b[6;47Hap-mast\x1b[6;55Hr.\x1b[7;3HImmediat\x1b[7;12H next move: Refresh sector-\x1b[7;40Hrift-watch-lat\x1b[7;55Hst.md, compare\x1b[7;70Hrestart\x1b[8;3Hanchors, and notify Helm only on meaningful checkpoint chang\x1b[8;65H.\x1b[10;3HAsolaria surfaces y\x1b[10;23Hu can use: monitor_asolaria_runtime,\x1b[11;3Hprepare_relay_to_vector,\x1b[11;28Hprepare_relay_to_rook,\x1b[11;51Hoperate_browser_task,\x1b[12;3Hope\x1b[12;7Hate_\x1b[12;12Hobile_control, \x1b[12;28Hse_playwright_cli, use_project_s\x1b[12;61Hor\x1b[12;64H,\x1b[13;3Huse_m\x1b[13;9Hstake_memory, use_augment_sidecar, use_sy\x1b[13;51Hphony_status,\x1b[14;3Huse_gemini_status\x1b[15;3HSuper \x1b[15;10Hwarm par\x1b[15;20Hcipants: local_codex, abacus, symphony, gemini_api,\x1b[16;3Haugment_context\x1b[18;3HWorking \x1b[18;12Hu\x1b[18;14He: keep the watch lane bounded. Update sec\x1b[18;57Hor-drift-watch-\x1b[19;3Hlates\x1b[19;9H.md, th\x1b[19;17Hn no\x1b[19;22Hify Helm onl\x1b[19;35H for drift_changed, controll\x1b[19;64Hr_conflict,\x1b[20;3Hnew\x1b[20;7Hblocker, sector_cl\x1b[20;26Hared, or needs_helm_decision.\x1b[22;3HRe\x1b[22;6Hly\x1b[22;9Hwith a short checkpoint on\x1b[22;36He\x1b[22;38Hyour\x1b[22;43Hprofile\x1b[22;51His\x1b[22;54Hloaded,\x1b[22;62Hthe\x1b[22;66Hactive\x1b[22;73Hp\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;74H\x1b[?2026l\x1b[?2026h\x1b[1;2H\x1b[0m\x1b[49m\x1b[K\x1b[2;2H\x1b[0m\x1b[49m\x1b[K\x1b[3;57H\x1b[0m\x1b[49m\x1b[K\x1b[4;77H\x1b[0m\x1b[49m\x1b[K\x1b[5;66H\x1b[0m\x1b[49m\x1b[K\x1b[6;2H\x1b[0m\x1b[49m\x1b[K\x1b[7;59H\x1b[0m\x1b[49m\x1b[K\x1b[8;72H\x1b[0m\x1b[49m\x1b[K\x1b[9;65H\x1b[0m\x1b[49m\x1b[K\x1b[10;64H\x1b[0m\x1b[49m\x1b[K\x1b[11;20H\x1b[0m\x1b[49m\x1b[K\x1b[12;71H\x1b[0m\x1b[49m\x1b[K\x1b[13;18H\x1b[0m\x1b[49m\x1b[K\x1b[14;2H\x1b[0m\x1b[49m\x1b[K\x1b[15;72H\x1b[0m\x1b[49m\x1b[K\x1b[16;75H\x1b[0m\x1b[49m\x1b[K\x1b[17;55H\x1b[0m\x1b[49m\x1b[K\x1b[18;2H\x1b[0m\x1b[49m\x1b[K\x1b[19;79H\x1b[0m\x1b[49m\x1b[K\x1b[20;60H\x1b[0m\x1b[49m\x1b[K\x1b[21;2H\x1b[0m\x1b[49m\x1b[K\x1b[22;2H\x1b[0m\x1b[49m\x1b[K\x1b[23;2H\x1b[0m\x1b[49m\x1b[K\x1b[24;32H\x1b[0m\x1b[49m\x1b[K\x1b[3;3HCanonical repo target: D:\x1b[3;29Hprojects\\QDD\\ebacmap\x1b[3;50Hm\x1b[3;52Hster.\x1b[4;3HImmediate\x1b[4;13Hnext\x1b[4;18Hmove:\x1b[4;24HRefresh\x1b[4;32Hsector-drift-watch-latest.md,\x1b[4;62Hcompare\x1b[4;70Hrestart\x1b[5;3Hanchors, and notify Helm only on meani\x1b[5;42Hgful checkpoint chang\x1b[7;3HAsolaria surfaces you can use: monito\x1b[7;41H_asol\x1b[7;47Hria_runtime,\x1b[8;3Hprepa\x1b[8;9He_relay_to_vector,\x1b[8;28Hprepare_r\x1b[8;38Hlay_to_rook, o\x1b[8;53Hera\x1b[8;57He_browser_task,\x1b[9;3Hoperate_mobile_control,\x1b[9;27Huse_playwright_cli,\x1b[9;47Huse_project_store,\x1b[10;3Hu\x1b[10;5He_mistake_memory, \x1b[10;24Hse_augm\x1b[10;32Hnt_sidecar, use_symphony_status,\x1b[11;3Hus\x1b[11;6H_gemini_sta\x1b[11;18Hus\x1b[12;3HSuper swarm participants: local_codex, abacus, symphony, gemini_api,\x1b[13;3Haugment_context\x1b[15;3HWorking rule: keep the watch lane bounded. Update sector-drift-w\x1b[15;68Htch-\x1b[16;3Hlatest.md, \x1b[16;15Hhen\x1b[16;19Hnotify\x1b[16;26HHelm\x1b[16;31Honly\x1b[16;36Hfor\x1b[16;40Hdrift_changed,\x1b[16;55Hcontroller_conflict,\x1b[17;3Hnew_blocker,\x1b[17;16Hsector_cleared,\x1b[17;32Hor\x1b[17;35Hneeds_helm_decision.\x1b[19;3HReply with\x1b[19;14Ha short checkpoint once you\x1b[19;42H profile is loaded, the active packet\x1b[20;3His understood, and the first\x1b[20;32Hbou\x1b[20;36Hd\x1b[20;39H next move is chosen.\x1b[39m\x1b[49m\x1b[0m\x1b[?25h\x1b[22;3H\x1b[?2026l"
+                - generic [ref=e552]:
+                  - textbox "Ask Sentinel to watch drift, verify a surface, or report a bounded mismatch." [ref=e553]
+                  - generic [ref=e554]:
+                    - generic [ref=e555]: Inbox 0
+                    - button "Prompt Sentinel" [ref=e556] [cursor=pointer]
+            - paragraph [ref=e557]: "Updated: 11/03/2026, 23:40:53"
+          - generic [ref=e558]:
+            - heading "Phone Agent Runtime" [level=3] [ref=e559]
+            - paragraph [ref=e560]: Waiting for phone runtime status...
+            - paragraph [ref=e561]: "Updated: n/a"
+          - generic [ref=e562]:
+            - heading "Open Chrome" [level=3] [ref=e563]
+            - generic [ref=e564]:
+              - textbox "https://example.com" [ref=e565]
+              - button "Launch" [ref=e566] [cursor=pointer]
+          - generic [ref=e567]:
+            - heading "Voice & Avatar" [level=3] [ref=e568]
+            - generic [ref=e569]:
+              - generic [ref=e570]:
+                - generic [ref=e571]: Voice
+                - combobox "Voice" [ref=e572]:
+                  - option "on" [selected]
+                  - option "off"
+                - combobox [ref=e573]:
+                  - option "Avatar on" [selected]
+                  - option "Avatar off"
+              - generic [ref=e574]:
+                - generic [ref=e575]: Avatar mode
+                - combobox "Avatar mode" [ref=e576]:
+                  - option "orb" [selected]
+                  - option "video"
+                  - option "live2d"
+                - combobox [ref=e577]:
+                  - option "browser" [selected]
+                  - option "server"
+                  - option "kitty_tts"
+              - generic [ref=e578]:
+                - generic [ref=e579]: Voice input source
+                - combobox "Voice input source" [ref=e580]:
+                  - option "Meeting Mix (incoming + outgoing)"
+                  - option "System / Speaker Loopback" [selected]
+                  - option "Microphone"
+                  - option "Microphone (dshow fallback)"
+                - combobox [ref=e581]:
+                  - option "Auto (recommended)" [selected]
+              - generic [ref=e582]:
+                - generic [ref=e583]: Voice output device
+                - combobox "Voice output device" [ref=e584]:
+                  - option "System default" [selected]
+                - button "Refresh audio devices" [disabled] [ref=e585] [cursor=pointer]
+              - paragraph [ref=e586]: Audio devices will appear after refresh.
+              - 'textbox "Wake word (example: Asolaria)" [ref=e587]': asolaria
+              - textbox "Kitty endpoint URL (optional)" [ref=e588]
+              - textbox "Kitty API key (optional)" [ref=e589]
+              - generic [ref=e590]:
+                - button "Save Voice/Avatar" [ref=e591] [cursor=pointer]
+                - button "Test Speak" [ref=e592] [cursor=pointer]
+            - paragraph [ref=e593]: Voice and avatar controls are live for this Asolaria session.
+          - generic [ref=e594]:
+            - heading "Asolaria Phone Mode" [level=3] [ref=e595]
+            - paragraph [ref=e596]: Interactive mirror and controls for the connected phone.
+            - button "Open Phone Mode" [ref=e598] [cursor=pointer]
+          - generic [ref=e599]:
+            - heading "Screenshot" [level=3] [ref=e600]
+            - generic [ref=e601]:
+              - textbox "https://example.com" [ref=e602]
+              - textbox "home-page.png" [ref=e603]
+              - button "Capture" [ref=e604] [cursor=pointer]
+            - paragraph
+          - generic [ref=e605]:
+            - heading "Backend Chat Channel" [level=3] [ref=e606]
+            - paragraph [ref=e607]: Send chat prompts via backend browser automation and extract replies into Asolaria runtime.
+            - generic [ref=e608]:
+              - textbox "https://chat.example.com" [ref=e609]
+              - 'textbox "Input selector (example: textarea)" [ref=e610]'
+              - textbox "Message to send" [ref=e611]
+              - generic [ref=e612]:
+                - textbox "Send button selector (optional)" [ref=e613]
+                - textbox "Response selector (optional)" [ref=e614]
+              - generic [ref=e615]:
+                - 'textbox "Send key (default: Enter)" [ref=e616]'
+                - generic [ref=e617]:
+                  - checkbox "Extract links" [ref=e618]
+                  - text: Extract links
+              - button "Run Chat Channel" [ref=e619] [cursor=pointer]
+            - paragraph
+          - generic [ref=e620]:
+            - heading "Skills" [level=3] [ref=e621]
+            - generic [ref=e622]:
+              - button "Refresh Skills" [ref=e623] [cursor=pointer]
+              - button "Reload Registry" [ref=e624] [cursor=pointer]
+            - generic [ref=e625]:
+              - combobox [ref=e626]
+              - textbox "Optional JSON input (or plain text)" [ref=e627]
+              - button "Run Skill" [ref=e628] [cursor=pointer]
+            - paragraph
+          - generic [ref=e629]:
+            - heading "OpenClaw Control" [level=3] [ref=e630]
+            - generic [ref=e631]:
+              - button "Gateway Status" [ref=e632] [cursor=pointer]
+              - button "Daemon Status" [ref=e633] [cursor=pointer]
+              - button "Models Status" [ref=e634] [cursor=pointer]
+              - button "Cron List" [ref=e635] [cursor=pointer]
+              - button "Approvals" [ref=e636] [cursor=pointer]
+              - button "Nodes" [ref=e637] [cursor=pointer]
+            - generic [ref=e638]:
+              - button "Gateway Start" [ref=e639] [cursor=pointer]
+              - button "Gateway Restart" [ref=e640] [cursor=pointer]
+              - button "Daemon Restart" [ref=e641] [cursor=pointer]
+            - generic [ref=e642]:
+              - textbox "cron-job-name" [ref=e643]
+              - button "Run OpenClaw Cron Job" [ref=e644] [cursor=pointer]
+            - paragraph
+          - generic [ref=e645]:
+            - heading "Gateway Audit" [level=3] [ref=e646]
+            - paragraph [ref=e647]: "Authority: loading..."
+            - paragraph [ref=e648]: "Audit: loading..."
+            - generic [ref=e649]:
+              - combobox [ref=e650]:
+                - option "All event types" [selected]
+                - option "authority.transition_requested"
+                - option "authority.mode_changed"
+                - option "approval.created"
+                - option "approval.decided"
+                - option "approval.used"
+                - option "tool.invoked"
+                - option "server.started"
+              - spinbutton [ref=e651]: "15"
+              - generic [ref=e652]:
+                - button "Refresh Audit" [ref=e653] [cursor=pointer]
+                - button "Verify Chain" [ref=e654] [cursor=pointer]
+                - button "Readiness Drill" [ref=e655] [cursor=pointer]
+              - generic [ref=e656]:
+                - button "Run Heartbeat" [ref=e657] [cursor=pointer]
+                - button "Start Sandbox Manager" [ref=e658] [cursor=pointer]
+            - paragraph
+            - generic [ref=e660]: Readiness recommendations appear here after running a drill.
+          - generic [ref=e662]:
+            - heading "External Providers" [level=3] [ref=e663]
+            - generic [ref=e664]:
+              - button "Antigravity Status" [ref=e665] [cursor=pointer]
+              - button "Cursor Status" [ref=e666] [cursor=pointer]
+              - button "Anthropic Status" [ref=e667] [cursor=pointer]
+              - button "Gemini CLI Status" [ref=e668] [cursor=pointer]
+            - generic [ref=e669]:
+              - combobox [ref=e670]:
+                - option "anthropic" [selected]
+                - option "gemini"
+                - option "antigravity"
+                - option "cursor"
+              - combobox "Model alias or exact ID for anthropic (optional)" [ref=e671]
+              - paragraph [ref=e672]: "Aliases for anthropic: opus, sonnet, haiku, claude-sonnet-4-5-20250929, claude-opus, claude-opus-4, claude-opus-4-1, opus-4, ..."
+              - paragraph [ref=e673]: "Observed models for anthropic: none yet."
+              - generic [ref=e674]:
+                - generic [ref=e675]: Token profile
+                - combobox "Token profile" [ref=e676]:
+                  - option "balanced" [selected]
+                  - option "aggressive"
+                  - option "off"
+                - generic [ref=e677]: MCP schema mode
+                - combobox "MCP schema mode" [ref=e678]:
+                  - option "compact" [selected]
+                  - option "pointer"
+                  - option "full"
+              - generic [ref=e679]:
+                - spinbutton "Prompt token budget" [ref=e680]: "1600"
+                - textbox "MCP context key (optional)" [ref=e681]
+              - textbox "Skill hints (comma-separated, optional)" [ref=e682]
+              - textbox "WebMCP hints (comma-separated, optional)" [ref=e683]
+              - paragraph [ref=e684]: Token reduction uses compact prompts + pointer/compact MCP tool schemas + context reuse.
+              - generic [ref=e685]:
+                - button "Save Default Model" [ref=e686] [cursor=pointer]
+                - button "Clear Default Model" [ref=e687] [cursor=pointer]
+                - button "Clear Observed Models" [ref=e688] [cursor=pointer]
+                - button "Clear Observed (All)" [ref=e689] [cursor=pointer]
+                - button "Model Settings" [ref=e690] [cursor=pointer]
+              - generic [ref=e691]:
+                - spinbutton [ref=e692]: "30"
+                - button "Prune Observed" [ref=e693] [cursor=pointer]
+              - generic [ref=e694]:
+                - checkbox "Auto-prune observed models daily" [ref=e695]
+                - text: Auto-prune observed models daily
+              - generic [ref=e696]:
+                - spinbutton "Max age days" [ref=e697]: "30"
+                - spinbutton "Daily hour (local)" [ref=e698]: "3"
+                - button "Save Auto Prune" [ref=e699] [cursor=pointer]
+              - paragraph [ref=e700]: "Auto-prune ON (idle): keep 30 day(s), run daily at 03:00 local. Next: n/a. Last: n/a. Runs: 0."
+              - textbox "Prompt for selected provider" [ref=e701]
+              - button "Run External Provider" [ref=e702] [cursor=pointer]
+            - paragraph
+          - generic [ref=e703]:
+            - heading "Company Policy" [level=3] [ref=e704]
+            - generic [ref=e705]:
+              - checkbox "Allow external posting actions" [ref=e706]
+              - text: Allow external posting actions
+            - generic [ref=e707]:
+              - button "Mission" [ref=e708] [cursor=pointer]
+              - button "Draft Post" [ref=e709] [cursor=pointer]
+              - button "Decide Proceed" [ref=e710] [cursor=pointer]
+            - paragraph [ref=e711]: "Default is safe mode: no external posting."
+          - generic [ref=e712]:
+            - heading "Company Account" [level=3] [ref=e713]
+            - generic [ref=e714]:
+              - button "Create Primary Sign-in Profile" [ref=e715] [cursor=pointer]
+              - button "Show Account (Masked)" [ref=e716] [cursor=pointer]
+              - button "Reveal Account" [ref=e717] [cursor=pointer]
+              - button "Mark Registered" [ref=e718] [cursor=pointer]
+              - button "Open Company Portal" [ref=e719] [cursor=pointer]
+            - paragraph [ref=e720]: Credentials are encrypted at rest in Asolaria vault.
+          - generic [ref=e721]:
+            - heading "Guardian Autonomy" [level=3] [ref=e722]
+            - generic [ref=e723]:
+              - generic [ref=e724]: Mode
+              - combobox "Mode" [ref=e725]:
+                - option "off" [selected]
+                - option "notify"
+                - option "autonomous"
+                - option "strict"
+              - button "Save" [ref=e726] [cursor=pointer]
+            - generic [ref=e727]:
+              - generic [ref=e728]: Risk threshold
+              - combobox "Risk threshold" [ref=e729]:
+                - option "low" [selected]
+                - option "medium"
+                - option "high"
+                - option "critical"
+              - button "Save" [ref=e730] [cursor=pointer]
+            - generic [ref=e731]:
+              - checkbox "Enable guardian alerts" [ref=e732]
+              - text: Enable guardian alerts
+            - generic [ref=e733]:
+              - checkbox "Auto-block critical risk actions" [ref=e734]
+              - text: Auto-block critical risk actions
+            - generic [ref=e735]:
+              - button "Guardian Status" [ref=e736] [cursor=pointer]
+              - button "Bootstrap Contacts" [ref=e737] [cursor=pointer]
+              - button "Send Test Alert" [ref=e738] [cursor=pointer]
+            - paragraph [ref=e739]: Guardian watches high-risk actions and can alert your contacts.
+          - generic [ref=e740]:
+            - heading "Power Automate Desktop" [level=3] [ref=e741]
+            - button "Open PAD" [ref=e743] [cursor=pointer]
+            - generic [ref=e744]:
+              - textbox "C:\\\\path\\\\to\\\\package.zip" [ref=e745]
+              - combobox [ref=e746]:
+                - option "LocalRun" [selected]
+                - option "Run"
+                - option "Debug"
+              - generic [ref=e747]:
+                - checkbox "Disable PAD execution screenshots" [ref=e748]
+                - text: Disable PAD execution screenshots
+              - button "Run Package" [ref=e749] [cursor=pointer]
+            - paragraph
+          - generic [ref=e750]:
+            - heading "Project Memory" [level=3] [ref=e751]
+            - paragraph [ref=e752]: Loading memory...
+            - generic [ref=e753]:
+              - generic [ref=e754]: Window turns
+              - spinbutton "Window turns" [ref=e755]: "12"
+              - button "Save" [ref=e756] [cursor=pointer]
+            - generic [ref=e758]:
+              - button "Refresh Memory" [ref=e759] [cursor=pointer]
+              - button "Clear Memory" [ref=e760] [cursor=pointer]
+          - generic [ref=e761]:
+            - heading "Project Task Ledger" [level=3] [ref=e762]
+            - paragraph [ref=e763]: Loading tasks...
+            - generic [ref=e764]:
+              - textbox "Task title" [ref=e765]
+              - textbox "Task description (optional)" [ref=e766]
+              - generic [ref=e767]:
+                - generic [ref=e768]: Priority
+                - combobox "Priority" [ref=e769]:
+                  - option "normal" [selected]
+                  - option "low"
+                  - option "high"
+                  - option "critical"
+                - button "Add Task" [ref=e770] [cursor=pointer]
+            - generic [ref=e771]:
+              - generic [ref=e772]: Status
+              - combobox "Status" [ref=e773]:
+                - option "all" [selected]
+                - option "planned"
+                - option "ready"
+                - option "in_progress"
+                - option "blocked"
+                - option "review"
+                - option "done"
+                - option "canceled"
+                - option "archived"
+              - combobox [ref=e774]:
+                - option "all priorities" [selected]
+                - option "low"
+                - option "normal"
+                - option "high"
+                - option "critical"
+            - generic [ref=e775]:
+              - generic [ref=e776]: Search
+              - textbox "Search" [ref=e777]:
+                - /placeholder: Search task text
+              - button "Refresh" [ref=e778] [cursor=pointer]
+            - generic [ref=e779]:
+              - checkbox "Include archived" [checked] [ref=e780]
+              - text: Include archived
+            - paragraph [ref=e782]: Recent events
+          - generic [ref=e784]:
+            - heading "Event Log" [level=3] [ref=e785]
+            - generic [ref=e787]: "[23:40:32] Focus turnover (2026-03-11): adds=0, removes=0, replacements=0, clears=0"

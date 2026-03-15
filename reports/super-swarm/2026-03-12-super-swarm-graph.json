@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-03-12T18:40:30Z",
+  "context": {
+    "operator": "Jesse",
+    "machineProfile": "16 GB local machine",
+    "source": "verified local runtime + bridge poll + SwarmDesk inspection"
+  },
+  "nodes": [
+    {
+      "id": "asolaria-core",
+      "label": "Asolaria Core",
+      "kind": "orchestrator",
+      "status": "running",
+      "surface": "local_http",
+      "verified": true
+    },
+    {
+      "id": "codex-cli",
+      "label": "Codex CLI",
+      "kind": "model_surface",
+      "status": "configured",
+      "model": "gpt-5.4",
+      "reasoningEffort": "xhigh",
+      "verified": true
+    },
+    {
+      "id": "claude-code",
+      "label": "Claude Code Pro",
+      "kind": "trusted_coder_surface",
+      "status": "connected",
+      "account": "plasmatoid@gmail.com",
+      "verified": true
+    },
+    {
+      "id": "warp",
+      "label": "Warp",
+      "kind": "terminal_surface",
+      "status": "installed",
+      "verified": true
+    },
+    {
+      "id": "bridge-relay",
+      "label": "Codex Bridge Relay",
+      "kind": "coordination_bus",
+      "status": "running",
+      "url": "http://127.0.0.1:8788",
+      "verified": true
+    },
+    {
+      "id": "symphony",
+      "label": "Symphony",
+      "kind": "long_running_tracker",
+      "status": "running",
+      "issue": "ASO-10",
+      "verified": true
+    },
+    {
+      "id": "omnispindle",
+      "label": "Omnispindle",
+      "kind": "remote_mcp",
+      "status": "connected",
+      "url": "https://madnessinteractive.cc/api/mcp/",
+      "verified": true
+    },
+    {
+      "id": "asolaria-augment",
+      "label": "Asolaria Augment MCP",
+      "kind": "local_mcp",
+      "status": "connected",
+      "url": "http://127.0.0.1:4793/mcp",
+      "verified": true
+    },
+    {
+      "id": "rook",
+      "label": "Rook",
+      "kind": "agent_lane",
+      "status": "running",
+      "role": "ops",
+      "verified": true
+    },
+    {
+      "id": "forge",
+      "label": "Forge",
+      "kind": "agent_lane",
+      "status": "running",
+      "role": "build",
+      "verified": true
+    },
+    {
+      "id": "falcon",
+      "label": "Falcon",
+      "kind": "agent_lane",
+      "status": "running",
+      "role": "mobile",
+      "verified": true
+    },
+    {
+      "id": "vector",
+      "label": "Vector",
+      "kind": "agent_lane",
+      "status": "degraded",
+      "role": "gemini_cloud_worker",
+      "issue": "fetch failed",
+      "verified": true
+    },
+    {
+      "id": "google-gemini",
+      "label": "Google Gemini / Vertex",
+      "kind": "cloud_model_surface",
+      "status": "configured_but_not_reliably_reachable_from_vector",
+      "verified": true
+    },
+    {
+      "id": "swarmdesk",
+      "label": "MadnessInteractive SwarmDesk",
+      "kind": "3d_control_world",
+      "status": "live_ui_static_feed",
+      "verified": true
+    }
+  ],
+  "edges": [
+    { "from": "asolaria-core", "to": "bridge-relay", "type": "CONTROLS", "verified": true },
+    { "from": "asolaria-core", "to": "symphony", "type": "CONTROLS", "verified": true },
+    { "from": "asolaria-core", "to": "codex-cli", "type": "USES", "verified": true },
+    { "from": "claude-code", "to": "omnispindle", "type": "USES", "verified": true },
+    { "from": "claude-code", "to": "asolaria-augment", "type": "USES", "verified": true },
+    { "from": "bridge-relay", "to": "rook", "type": "ROUTES_TO", "verified": true },
+    { "from": "bridge-relay", "to": "forge", "type": "ROUTES_TO", "verified": true },
+    { "from": "bridge-relay", "to": "falcon", "type": "ROUTES_TO", "verified": true },
+    { "from": "bridge-relay", "to": "vector", "type": "ROUTES_TO", "verified": true },
+    { "from": "vector", "to": "google-gemini", "type": "USES", "verified": true },
+    { "from": "omnispindle", "to": "swarmdesk", "type": "PROJECTS_TO", "verified": true },
+    { "from": "asolaria-core", "to": "swarmdesk", "type": "PROJECTS_TO", "verified": false },
+    { "from": "warp", "to": "asolaria-core", "type": "USES", "verified": true }
+  ],
+  "observations": [
+    "SwarmDesk current project rail is static and does not include Asolaria.",
+    "SwarmDesk inspector shows UML source is Omnispindle.",
+    "External analytics show active agents without populated project/code-city data.",
+    "Vector is the current weak link for trusted Google/Gemini participation."
+  ]
+}

@@ -1,0 +1,50 @@
+﻿{
+    "ok":  true,
+    "sessionId":  "matrix_20260304_195545_cd7834",
+    "source":  "teams_caption",
+    "laneId":  "teams_lane",
+    "lastId":  6,
+    "entriesCount":  6,
+    "diagnostics":  {
+                        "requestedSessionId":  "matrix_20260304_195545_cd7834",
+                        "requestedLaneId":  "teams_lane",
+                        "acceptedCount":  32,
+                        "dedupedCount":  0,
+                        "rejectedCount":  0,
+                        "pullCount":  15,
+                        "resetCount":  10,
+                        "lastPushAt":  "2026-03-04T22:55:47.390Z",
+                        "lastPullAt":  "2026-03-04T22:55:52.980Z",
+                        "lastReason":  "",
+                        "lastMonotonicAdjustMs":  0,
+                        "requestedAfterId":  0,
+                        "returnedCount":  2,
+                        "backlogCount":  0,
+                        "windowStartId":  5,
+                        "windowEndId":  6,
+                        "nonMonotonicIdCount":  0,
+                        "duplicateIdCount":  0,
+                        "latestEntryAt":  "2026-03-04T22:55:47.390Z",
+                        "lagMs":  5590
+                    },
+    "entries":  [
+                    {
+                        "id":  5,
+                        "at":  "2026-03-04T22:55:47.257Z",
+                        "text":  "Teams interviewer: Show me your validation matrix.",
+                        "source":  "teams_caption",
+                        "sessionId":  "matrix_20260304_195545_cd7834",
+                        "laneId":  "teams_lane",
+                        "direction":  "incoming"
+                    },
+                    {
+                        "id":  6,
+                        "at":  "2026-03-04T22:55:47.390Z",
+                        "text":  "Teams candidate: We verify bridge, live, and merged transcript views.",
+                        "source":  "teams_caption",
+                        "sessionId":  "matrix_20260304_195545_cd7834",
+                        "laneId":  "teams_lane",
+                        "direction":  "incoming"
+                    }
+                ]
+}

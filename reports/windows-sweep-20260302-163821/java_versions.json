@@ -1,0 +1,22 @@
+﻿[
+    {
+        "executable":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\java.exe",
+        "version":  ""
+    },
+    {
+        "executable":  "C:\\Java\\jdk1.8.0_392\\bin\\java.exe",
+        "version":  ""
+    },
+    {
+        "executable":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\javac.exe",
+        "version":  "javac 21.0.10"
+    },
+    {
+        "executable":  "C:\\Java\\jdk1.8.0_392\\bin\\javac.exe",
+        "version":  ""
+    },
+    {
+        "executable":  "C:\\Program Files\\Microsoft\\jdk-21.0.10.7-hotspot\\bin\\jshell.exe",
+        "version":  "jshell 21.0.10"
+    }
+]

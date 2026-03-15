@@ -1,0 +1,49 @@
+﻿{
+    "generatedAt":  "2026-03-05T01:40:14.3646314-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "mode":  {
+                 "name":  "asolaria_gemini_control_mode",
+                 "asolariaLed":  true,
+                 "geminiPrimary":  true,
+                 "startupBrainAutoSelectEnabled":  false,
+                 "lockPrimaryProvider":  true
+             },
+    "settings":  {
+                     "brainPrimaryProvider":  "gemini-api",
+                     "brainFallbackOrder":  [
+                                                "codex",
+                                                "anthropic",
+                                                "vertex",
+                                                "openclaw",
+                                                "gemini-cli",
+                                                "cursor",
+                                                "antigravity"
+                                            ],
+                     "swarmModeEnabled":  true,
+                     "swarmModeAutoDispatch":  true,
+                     "bridgeAutoSyncEnabled":  true,
+                     "agentColonyWatchdogEnabled":  true,
+                     "authorityPolicyEnabled":  true,
+                     "allowExternalPosting":  false
+                 },
+    "runtime":  {
+                    "brainLeaderSelectedProvider":  "gemini-api",
+                    "brainLeaderSelectedModel":  "gemini-2.0-flash",
+                    "swarmOnlineAgents":  6,
+                    "swarmActiveAgents":  2,
+                    "swarmWatchdogEnabled":  true
+                },
+    "gemini":  {
+                   "apiEnabled":  true,
+                   "apiConfigured":  true,
+                   "apiDefaultModel":  "gemini-2.0-flash",
+                   "enterpriseWebEnabled":  true,
+                   "enterpriseWebDefaultHost":  "business.gemini.google",
+                   "enterpriseWebBrowserTasksEnabled":  true
+               },
+    "applied":  {
+                    "settingsOk":  true,
+                    "geminiConfigOk":  true,
+                    "leaderSelectOk":  false
+                }
+}

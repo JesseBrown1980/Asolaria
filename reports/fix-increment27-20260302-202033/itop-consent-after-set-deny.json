@@ -1,0 +1,22 @@
+﻿[
+    {
+        "Root":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone\\NonPackaged",
+        "Key":  "C:#Program Files#iTop Screen Recorder#iScrGPURecording.exe",
+        "NewValue":  "Deny"
+    },
+    {
+        "Root":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone\\NonPackaged",
+        "Key":  "C:#Program Files#iTop Screen Recorder#iScrRec.exe",
+        "NewValue":  "Deny"
+    },
+    {
+        "Root":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone\\NonPackaged",
+        "Key":  "C:#Program Files#iTop Screen Recorder#iScrRecording.exe",
+        "NewValue":  "Deny"
+    },
+    {
+        "Root":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\microphone\\NonPackaged",
+        "Key":  "C:#Program Files#iTop Screen Recorder#iScrVoiceCapture.exe",
+        "NewValue":  "Deny"
+    }
+]

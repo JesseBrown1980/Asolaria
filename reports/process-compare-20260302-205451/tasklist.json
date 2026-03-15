@@ -1,0 +1,1142 @@
+﻿[
+    {
+        "Name":  "System Idle Process",
+        "Id":  0
+    },
+    {
+        "Name":  "System",
+        "Id":  4
+    },
+    {
+        "Name":  "Secure System",
+        "Id":  140
+    },
+    {
+        "Name":  "Registry",
+        "Id":  184
+    },
+    {
+        "Name":  "smss.exe",
+        "Id":  608
+    },
+    {
+        "Name":  "csrss.exe",
+        "Id":  1008
+    },
+    {
+        "Name":  "wininit.exe",
+        "Id":  1044
+    },
+    {
+        "Name":  "services.exe",
+        "Id":  1164
+    },
+    {
+        "Name":  "LsaIso.exe",
+        "Id":  1208
+    },
+    {
+        "Name":  "lsass.exe",
+        "Id":  1216
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1348
+    },
+    {
+        "Name":  "fontdrvhost.exe",
+        "Id":  1388
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1480
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1536
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1704
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1720
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1812
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1820
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1836
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2020
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2028
+    },
+    {
+        "Name":  "IntelCpHDCPSvc.exe",
+        "Id":  1500
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1592
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1972
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2072
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2140
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2156
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2308
+    },
+    {
+        "Name":  "IntelCpHeciSvc.exe",
+        "Id":  2320
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2392
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2728
+    },
+    {
+        "Name":  "NVDisplay.Container.exe",
+        "Id":  2816
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2876
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2888
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2956
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2976
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3020
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2208
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2480
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3000
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3164
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3192
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3288
+    },
+    {
+        "Name":  "Memory Compression",
+        "Id":  3308
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3316
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3340
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3484
+    },
+    {
+        "Name":  "igfxCUIService.exe",
+        "Id":  3492
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3544
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3572
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3652
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3760
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3932
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  3956
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4064
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4072
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4084
+    },
+    {
+        "Name":  "dasHost.exe",
+        "Id":  4196
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4360
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4436
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4520
+    },
+    {
+        "Name":  "spoolsv.exe",
+        "Id":  4560
+    },
+    {
+        "Name":  "remoting_host.exe",
+        "Id":  4744
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4752
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4760
+    },
+    {
+        "Name":  "OneApp.IGCC.WinService.exe",
+        "Id":  4768
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4776
+    },
+    {
+        "Name":  "WsNativePushService.exe",
+        "Id":  4784
+    },
+    {
+        "Name":  "AnyDesk.exe",
+        "Id":  4792
+    },
+    {
+        "Name":  "armsvc.exe",
+        "Id":  4800
+    },
+    {
+        "Name":  "ExpressVPN.SystemService.exe",
+        "Id":  4808
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4820
+    },
+    {
+        "Name":  "ExpressVPN.VpnService.exe",
+        "Id":  4828
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4836
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4844
+    },
+    {
+        "Name":  "ss_conn_service2.exe",
+        "Id":  4852
+    },
+    {
+        "Name":  "Microsoft.Flow.RPA.LogShipper.exe",
+        "Id":  4860
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4872
+    },
+    {
+        "Name":  "ss_conn_service.exe",
+        "Id":  4888
+    },
+    {
+        "Name":  "MpDefenderCoreService.exe",
+        "Id":  4896
+    },
+    {
+        "Name":  "CptService.exe",
+        "Id":  4928
+    },
+    {
+        "Name":  "sqlwriter.exe",
+        "Id":  4936
+    },
+    {
+        "Name":  "RstMwService.exe",
+        "Id":  4944
+    },
+    {
+        "Name":  "OfficeClickToRun.exe",
+        "Id":  4960
+    },
+    {
+        "Name":  "Microsoft.Flow.RPA.UpdateService.exe",
+        "Id":  4972
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4984
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4992
+    },
+    {
+        "Name":  "PAD.Java.Sync.Service.Host.exe",
+        "Id":  5008
+    },
+    {
+        "Name":  "wslservice.exe",
+        "Id":  5016
+    },
+    {
+        "Name":  "MsMpEng.exe",
+        "Id":  5028
+    },
+    {
+        "Name":  "mongod.exe",
+        "Id":  5116
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  5444
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  5508
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  5676
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  6096
+    },
+    {
+        "Name":  "remoting_host.exe",
+        "Id":  6852
+    },
+    {
+        "Name":  "ExpressVPN.AppService.exe",
+        "Id":  5492
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  8496
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  8576
+    },
+    {
+        "Name":  "wlanext.exe",
+        "Id":  8844
+    },
+    {
+        "Name":  "PresentationFontCache.exe",
+        "Id":  8964
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  9128
+    },
+    {
+        "Name":  "AggregatorHost.exe",
+        "Id":  8976
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  9256
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  9536
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  9676
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  9920
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  10196
+    },
+    {
+        "Name":  "NgcIso.exe",
+        "Id":  10344
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  10776
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  11136
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  13888
+    },
+    {
+        "Name":  "NisSrv.exe",
+        "Id":  14744
+    },
+    {
+        "Name":  "SecurityHealthService.exe",
+        "Id":  8160
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  11708
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  16340
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  16040
+    },
+    {
+        "Name":  "SearchIndexer.exe",
+        "Id":  15240
+    },
+    {
+        "Name":  "DolbyDAX2API.exe",
+        "Id":  18192
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  18836
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  18860
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  18252
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  8928
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  10760
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  4132
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  10104
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  13452
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  18760
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  10352
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  11524
+    },
+    {
+        "Name":  "csrss.exe",
+        "Id":  3904
+    },
+    {
+        "Name":  "winlogon.exe",
+        "Id":  9524
+    },
+    {
+        "Name":  "fontdrvhost.exe",
+        "Id":  17568
+    },
+    {
+        "Name":  "dwm.exe",
+        "Id":  16820
+    },
+    {
+        "Name":  "NVDisplay.Container.exe",
+        "Id":  4276
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  23540
+    },
+    {
+        "Name":  "sihost.exe",
+        "Id":  8136
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  14240
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  1668
+    },
+    {
+        "Name":  "igfxEM.exe",
+        "Id":  11188
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  20284
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  23544
+    },
+    {
+        "Name":  "taskhostw.exe",
+        "Id":  22532
+    },
+    {
+        "Name":  "explorer.exe",
+        "Id":  14568
+    },
+    {
+        "Name":  "ShellHost.exe",
+        "Id":  15148
+    },
+    {
+        "Name":  "CrossDeviceResume.exe",
+        "Id":  11420
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  16420
+    },
+    {
+        "Name":  "CrossDeviceService.exe",
+        "Id":  22332
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  9616
+    },
+    {
+        "Name":  "RuntimeBroker.exe",
+        "Id":  21700
+    },
+    {
+        "Name":  "SearchHost.exe",
+        "Id":  16324
+    },
+    {
+        "Name":  "StartMenuExperienceHost.exe",
+        "Id":  11768
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  16200
+    },
+    {
+        "Name":  "Widgets.exe",
+        "Id":  18568
+    },
+    {
+        "Name":  "UserOOBEBroker.exe",
+        "Id":  4012
+    },
+    {
+        "Name":  "WidgetService.exe",
+        "Id":  16108
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  10428
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  12344
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  23036
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  21332
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  15284
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  11916
+    },
+    {
+        "Name":  "ShellExperienceHost.exe",
+        "Id":  10024
+    },
+    {
+        "Name":  "ctfmon.exe",
+        "Id":  10328
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  8004
+    },
+    {
+        "Name":  "TextInputHost.exe",
+        "Id":  8912
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  12792
+    },
+    {
+        "Name":  "SecurityHealthSystray.exe",
+        "Id":  5384
+    },
+    {
+        "Name":  "RAVCpl64.exe",
+        "Id":  3596
+    },
+    {
+        "Name":  "RAVBg64.exe",
+        "Id":  13368
+    },
+    {
+        "Name":  "RAVBg64.exe",
+        "Id":  12212
+    },
+    {
+        "Name":  "WindowsTerminal.exe",
+        "Id":  13004
+    },
+    {
+        "Name":  "OpenConsole.exe",
+        "Id":  12016
+    },
+    {
+        "Name":  "powershell.exe",
+        "Id":  14880
+    },
+    {
+        "Name":  "RuntimeBroker.exe",
+        "Id":  8716
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  7376
+    },
+    {
+        "Name":  "codex.exe",
+        "Id":  22612
+    },
+    {
+        "Name":  "ExpressVPN.exe",
+        "Id":  23368
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  3900
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  19980
+    },
+    {
+        "Name":  "ExpressVPNNotificationService.exe",
+        "Id":  11476
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  3588
+    },
+    {
+        "Name":  "conhost.exe",
+        "Id":  21240
+    },
+    {
+        "Name":  "IGCCTray.exe",
+        "Id":  17192
+    },
+    {
+        "Name":  "IGCC.exe",
+        "Id":  12204
+    },
+    {
+        "Name":  "MicrosoftSecurityApp.exe",
+        "Id":  10748
+    },
+    {
+        "Name":  "Copilot.exe",
+        "Id":  10416
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  1324
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  8372
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  5356
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  2760
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  7496
+    },
+    {
+        "Name":  "ChatGPT.exe",
+        "Id":  15088
+    },
+    {
+        "Name":  "ChatGPT.exe",
+        "Id":  19920
+    },
+    {
+        "Name":  "ChatGPT.exe",
+        "Id":  21348
+    },
+    {
+        "Name":  "WhatsApp.Root.exe",
+        "Id":  17564
+    },
+    {
+        "Name":  "ChatGPT.exe",
+        "Id":  16260
+    },
+    {
+        "Name":  "AnyDesk.exe",
+        "Id":  7036
+    },
+    {
+        "Name":  "ChatGPT.exe",
+        "Id":  2720
+    },
+    {
+        "Name":  "RuntimeBroker.exe",
+        "Id":  11908
+    },
+    {
+        "Name":  "RuntimeBroker.exe",
+        "Id":  22948
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  7136
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  14100
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  10332
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  20112
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  17360
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  12132
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  15400
+    },
+    {
+        "Name":  "MidiSrv.exe",
+        "Id":  11952
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  14208
+    },
+    {
+        "Name":  "AppActions.exe",
+        "Id":  20808
+    },
+    {
+        "Name":  "ApplicationFrameHost.exe",
+        "Id":  11808
+    },
+    {
+        "Name":  "SystemSettings.exe",
+        "Id":  12924
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  22584
+    },
+    {
+        "Name":  "dllhost.exe",
+        "Id":  10784
+    },
+    {
+        "Name":  "taskhostw.exe",
+        "Id":  1864
+    },
+    {
+        "Name":  "msedgewebview2.exe",
+        "Id":  9772
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  16660
+    },
+    {
+        "Name":  "WsToastNotification.exe",
+        "Id":  11844
+    },
+    {
+        "Name":  "conhost.exe",
+        "Id":  1092
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  11676
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  13092
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  5172
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  6308
+    },
+    {
+        "Name":  "PhoneExperienceHost.exe",
+        "Id":  13016
+    },
+    {
+        "Name":  "backgroundTaskHost.exe",
+        "Id":  22936
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  1900
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  18272
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  17796
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  2856
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  20724
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  5056
+    },
+    {
+        "Name":  "SearchProtocolHost.exe",
+        "Id":  22872
+    },
+    {
+        "Name":  "SearchFilterHost.exe",
+        "Id":  17656
+    },
+    {
+        "Name":  "SearchFilterHost.exe",
+        "Id":  22912
+    },
+    {
+        "Name":  "SearchFilterHost.exe",
+        "Id":  17440
+    },
+    {
+        "Name":  "py.exe",
+        "Id":  10884
+    },
+    {
+        "Name":  "conhost.exe",
+        "Id":  11244
+    },
+    {
+        "Name":  "python.exe",
+        "Id":  17596
+    },
+    {
+        "Name":  "WmiPrvSE.exe",
+        "Id":  14724
+    },
+    {
+        "Name":  "SearchFilterHost.exe",
+        "Id":  15156
+    },
+    {
+        "Name":  "powershell.exe",
+        "Id":  15892
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  12992
+    },
+    {
+        "Name":  "cloudflared.exe",
+        "Id":  12148
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  11416
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  12844
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  18264
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  4392
+    },
+    {
+        "Name":  "node.exe",
+        "Id":  19772
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  12244
+    },
+    {
+        "Name":  "OneDrive.Sync.Service.exe",
+        "Id":  3940
+    },
+    {
+        "Name":  "SearchFilterHost.exe",
+        "Id":  8368
+    },
+    {
+        "Name":  "SearchFilterHost.exe",
+        "Id":  11860
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  15848
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  22696
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  12548
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  16896
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  1684
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  18512
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  18360
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  11772
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  9032
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  12936
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  20728
+    },
+    {
+        "Name":  "cmd.exe",
+        "Id":  16576
+    },
+    {
+        "Name":  "conhost.exe",
+        "Id":  21176
+    },
+    {
+        "Name":  "PAD.BrowserNativeMessageHost.exe",
+        "Id":  4344
+    },
+    {
+        "Name":  "cmd.exe",
+        "Id":  17392
+    },
+    {
+        "Name":  "conhost.exe",
+        "Id":  23064
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  22672
+    },
+    {
+        "Name":  "ExpressVPN.BrowserHelper.exe",
+        "Id":  20088
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  11540
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  13056
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  10804
+    },
+    {
+        "Name":  "WUDFHost.exe",
+        "Id":  5156
+    },
+    {
+        "Name":  "dllhost.exe",
+        "Id":  2512
+    },
+    {
+        "Name":  "dllhost.exe",
+        "Id":  1328
+    },
+    {
+        "Name":  "dllhost.exe",
+        "Id":  8836
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  20500
+    },
+    {
+        "Name":  "chrome.exe",
+        "Id":  14632
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  2936
+    },
+    {
+        "Name":  "Taskmgr.exe",
+        "Id":  7044
+    },
+    {
+        "Name":  "svchost.exe",
+        "Id":  12000
+    },
+    {
+        "Name":  "powershell.exe",
+        "Id":  10276
+    },
+    {
+        "Name":  "tasklist.exe",
+        "Id":  13360
+    }
+]

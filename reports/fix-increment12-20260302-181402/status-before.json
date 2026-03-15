@@ -1,0 +1,72 @@
+﻿{
+    "serverTime":  "2026-03-02T21:14:02.399639+00:00",
+    "phone":  {
+                  "online":  false,
+                  "deviceId":  "test-change",
+                  "connectedAt":  "2026-03-02T20:21:36.488838+00:00",
+                  "lastSeenAt":  "2026-03-02T20:21:36.488838+00:00",
+                  "staleSeconds":  3145.91,
+                  "connectId":  "",
+                  "connectors":  {
+
+                                 }
+              },
+    "metrics":  {
+                    "sentToPhoneCount":  1,
+                    "receivedFromPhoneCount":  0,
+                    "eventsCount":  4,
+                    "requestsCount":  0
+                },
+    "requests":  [
+
+                 ],
+    "events":  [
+                   {
+                       "at":  "2026-03-02T19:06:32.105950+00:00",
+                       "level":  "info",
+                       "message":  "PC server started",
+                       "detail":  {
+                                      "host":  "0.0.0.0",
+                                      "port":  8765
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T20:21:36.488838+00:00",
+                       "level":  "info",
+                       "message":  "Phone connected",
+                       "detail":  {
+                                      "deviceId":  "test-change",
+                                      "connectId":  "cf44857b2056"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T20:21:36.501830+00:00",
+                       "level":  "warning",
+                       "message":  "Phone disconnected",
+                       "detail":  {
+                                      "reason":  "websocket_disconnect",
+                                      "deviceId":  "test-change",
+                                      "connectId":  "cf44857b2056"
+                                  }
+                   },
+                   {
+                       "at":  "2026-03-02T20:21:43.053773+00:00",
+                       "level":  "info",
+                       "message":  "PC command executed",
+                       "detail":  {
+                                      "source":  "audit",
+                                      "action":  "status",
+                                      "ok":  true
+                                  }
+                   }
+               ],
+    "pcConnectors":  {
+                         "pc_status":  true,
+                         "local_ai":  false,
+                         "pc_shell_enabled":  false,
+                         "pc_shell_allowlist":  [
+
+                                                ],
+                         "phone_bridge":  true
+                     }
+}

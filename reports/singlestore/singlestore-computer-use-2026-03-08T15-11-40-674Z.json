@@ -1,0 +1,569 @@
+{
+  "ok": false,
+  "startedAt": "2026-03-08T15:11:49.225Z",
+  "profileDirectory": "Profile 3",
+  "createUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding",
+  "workspacesUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces",
+  "developUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/develop",
+  "editorUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/develop/editor",
+  "tempRoot": "C:\\Users\\acer\\AppData\\Local\\Temp\\asolaria-singlestore-Profile_3",
+  "workspaceName": "workspace-b402b6af",
+  "actions": [
+    {
+      "action": "create_workspace_click",
+      "clicked": "text=Create Workspace"
+    },
+    {
+      "action": "workspace_monitor",
+      "ready": false,
+      "reason": "provision_timeout",
+      "tickCount": 56
+    }
+  ],
+  "states": [
+    {
+      "at": "2026-03-08T15:12:39.679Z",
+      "stage": "create_open",
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding",
+      "workspaceName": "workspace-b402b6af",
+      "authRequired": false,
+      "provisioning": false
+    },
+    {
+      "at": "2026-03-08T15:12:44.108Z",
+      "stage": "create_after_click",
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding",
+      "workspaceName": "workspace-b402b6af",
+      "provisioning": false
+    },
+    {
+      "at": "2026-03-08T15:27:55.281Z",
+      "stage": "workspace_monitor_done",
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe",
+      "reason": "provision_timeout"
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T15-11-40-674Z-create-open.png",
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T15-11-40-674Z-create-after-click.png",
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T15-11-40-674Z-workspace-status.png"
+  ],
+  "sql": {
+    "attempted": false,
+    "bootstrap": null,
+    "verify": null
+  },
+  "workspaceMonitor": {
+    "ready": false,
+    "reason": "provision_timeout",
+    "ticks": [
+      {
+        "at": "2026-03-08T15:12:50.083Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:13:05.837Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:13:21.634Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:13:37.620Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:13:53.747Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:14:09.835Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:14:25.709Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:14:41.552Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:14:57.522Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:15:13.632Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:15:29.652Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:15:46.066Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:16:01.934Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:16:18.799Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:16:35.120Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:16:51.135Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:17:07.211Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:17:23.712Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:17:40.018Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:17:55.922Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:18:12.092Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:18:27.711Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:18:43.436Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:18:59.004Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:19:16.657Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:19:32.291Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:19:48.121Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:20:03.714Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:20:19.458Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:20:35.360Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:20:51.374Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:21:07.364Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:21:23.422Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:21:39.229Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:21:55.509Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:22:11.473Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:22:27.575Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:22:44.097Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:23:00.223Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:23:16.468Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:23:32.728Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:23:49.245Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:24:05.414Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:24:21.697Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:24:38.044Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:24:54.656Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:25:11.403Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:25:28.367Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:25:44.629Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:26:01.002Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:26:17.323Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": false,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:26:33.488Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:26:49.865Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:27:06.133Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:27:22.691Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      },
+      {
+        "at": "2026-03-08T15:27:39.161Z",
+        "hasWorkspace": false,
+        "provisioning": false,
+        "connectVisible": true,
+        "spinnerOnly": true,
+        "percent": null,
+        "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/166af02d-76d6-4740-8d97-87776b35f6fe"
+      }
+    ],
+    "text": "Search\n\nCtrl + k\nAsk SQrL\nHome\nDeployments\nIngestion\nEditor\nAI\nContainer Services\nMonitoring\nConfiguration\nJB\nSQrL Assistant\nAsk SQrL – your help assistant\n\nNeed help with database setup, SQL, Python, or debugging? We’ve got you.\n\nTry asking\n\nHow do I connect to my database?\nHow do I load data?\nHow do I move Postgres data into SingleStore?\nUsage policy"
+  },
+  "error": "Error: Workspace not ready: provision_timeout\n    at main (C:\\Users\\acer\\Asolaria\\tools\\Run-SingleStore-ComputerUse.js:516:13)",
+  "finishedAt": "2026-03-08T15:27:58.915Z"
+}

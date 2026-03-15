@@ -1,0 +1,12 @@
+﻿[
+    {
+        "entry":  "C:\\Users\\acer\\AppData\\Local\\Programs\\Windsurf\\bin",
+        "normalized":  "c:\\users\\acer\\appdata\\local\\programs\\windsurf\\bin",
+        "exists":  false
+    },
+    {
+        "entry":  "C:\\Users\\acer\\.dotnet\\tools",
+        "normalized":  "c:\\users\\acer\\.dotnet\\tools",
+        "exists":  false
+    }
+]

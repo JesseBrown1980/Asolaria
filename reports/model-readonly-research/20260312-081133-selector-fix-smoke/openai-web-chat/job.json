@@ -1,0 +1,45 @@
+{
+    "id":  "job_1773313898256_nuxgsz",
+    "type":  "browser_task",
+    "status":  "failed",
+    "payload":  {
+                    "url":  "https://chatgpt.com/",
+                    "steps":  [
+                                  {
+                                      "action":  "type",
+                                      "selector":  "#prompt-textarea, textarea[data-id=\u0027root\u0027], textarea, [contenteditable=\u0027true\u0027][role=\u0027textbox\u0027]",
+                                      "text":  "Asolaria read-only diagnosis.\n\nSurface: OpenAI Web Chat\n\nIf Deep Research / Deep Think or a similar higher-depth mode is available in this surface, use it. If not, answer in standard mode.\n\nQuestion:\nIs this fixable, and are the main remaining problems profile permissions or transport/runtime behavior?\n\nVerified facts:\n- Helm now accepts dashboard prompts through live inbox delivery instead of restart-with-prompt.\n- /api/health and /api/admin-terminals/cockpit respond again.\n- Browser verification showed: Prompt queued for helm, Helm card ACTIVE, dashboard prompt visible in Helm transcript.\n- runtime/admin-terminals/helm/status.json showed lastInputSource = \"Asolaria Dashboard\" and inboxLinesProcessed = 2.\n\nRemaining symptoms:\n- Dashboard can temporarily show \"No admin terminals registered yet.\" until refresh.\n- Frequent background polling and noisy console errors remain.\n- gateway authority status and gateway audit status remain unstable/degraded.\n- Server can still become slow under load.\n\nImportant:\n- Read-only analysis only.\n- Do not modify files.\n- Do not suggest destructive resets.\n- Do not assume profile permissions are the cause unless evidence supports it.\n\nReturn exactly these sections:\n1. Executive summary\n2. Ranked root causes\n3. Why profile permissions are or are not central\n4. Read-only validation plan\n5. Minimal ranked fix plan\n6. Risks and unknowns\n7. Confidence",
+                                      "clear":  true
+                                  },
+                                  {
+                                      "action":  "press",
+                                      "key":  "Enter"
+                                  },
+                                  {
+                                      "action":  "wait",
+                                      "ms":  20000
+                                  },
+                                  {
+                                      "action":  "extract_text",
+                                      "selector":  "[data-testid=\u0027conversation-turns\u0027], main, [role=\u0027main\u0027], body",
+                                      "name":  "chat_reply",
+                                      "limit":  28000
+                                  }
+                              ],
+                    "organization":  "qdd",
+                    "waitMs":  0,
+                    "maxChars":  28000,
+                    "maxLinks":  40,
+                    "actionTimeoutMs":  20000,
+                    "useChromePersistentProfile":  true,
+                    "chromeUserDataDir":  "C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data",
+                    "chromeProfileDirectory":  "Default"
+                },
+    "createdAt":  "2026-03-12T11:11:38.256Z",
+    "updatedAt":  "2026-03-12T11:11:40.708Z",
+    "startedAt":  "2026-03-12T11:11:38.256Z",
+    "finishedAt":  "2026-03-12T11:11:40.708Z",
+    "elapsedMs":  2452,
+    "result":  null,
+    "error":  "Failed to launch Chrome persistent profile context. userDataDir=\"C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data\", profileDirectory=\"Default\", reason=\"browserType.launchPersistentContext: Target page, context or browser has been closed\nBrowser logs:\n\n\u003claunching\u003e C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --no-first-run --no-default-browser-check --disable-translate --disable-features=Translate,TranslateUI --profile-directory=Default --user-data-dir=C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data --remote-debugging-pipe about:blank\n\u003claunched\u003e pid=12016\nCall log:\n\u001b[2m  - \u003claunching\u003e C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --no-first-run --no-default-browser-check --disable-translate --disable-features=Translate,TranslateUI --profile-directory=Default --user-data-dir=C:\\Users\\acer\\AppData\\Local\\Google\\Chrome\\User Data --remote-debugging-pipe about:blank\u001b[22m\n\u001b[2m  - \u003claunched\u003e pid=12016\u001b[22m\n\u001b[2m  - [pid=12016] \u003cgracefully close start\u003e\u001b[22m\n\u001b[2m  - [pid=12016] \u003ckill\u003e\u001b[22m\n\u001b[2m  - [pid=12016] \u003cwill force kill\u003e\u001b[22m\n\u001b[2m  - [pid=12016] taskkill stderr: ERRO: o processo \"12016\" nao foi encontrado.\u001b[22m\n\u001b[2m  - [pid=12016] \u003cprocess did exit: exitCode=21, signal=null\u003e\u001b[22m\n\u001b[2m  - [pid=12016] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=12016] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=12016] \u003cgracefully close end\u003e\u001b[22m\n\"."
+}

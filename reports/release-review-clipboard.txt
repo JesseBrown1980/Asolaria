@@ -1,0 +1,83 @@
+﻿
+Loading Google Play Console
+To publish apps, finish setting up your developer account
+Google Play Console logo
+
+Asolaria
+Dashboard
+Statistics
+Publishing overview
+Test and release
+Latest releases and bundles
+Production
+Testing
+Open testing
+Closed testing
+Internal testing
+Pre-launch report
+Internal app sharing
+Pre-registration
+App integrity
+Advanced settings
+Monitor and improve
+Grow users
+Monetise with Play
+Create closed testing release
+We found some problems with your release
+Create release
+2
+Preview and confirm
+Errors, warnings and messages
+8 Errors
+Error
+You need to upload an APK or Android App Bundle for this app.
+
+Error
+Your app cannot be published yet. Complete the steps listed on the dashboard.
+
+Error
+Add a full description to save
+
+Error
+You can't roll out this release because it doesn't allow any existing users to upgrade to the newly added app bundles.
+
+Error
+This release does not add or remove any app bundles.
+
+Error
+No countries or regions have been selected for this track. Add at least one country or region to roll out this release. Learn more
+
+Error
+You must let us know whether your app includes any financial features.
+
+Error
+You must complete the health declaration
+
+2 Warnings
+
+
+
+
+Release delivery
+Size for new installs
+-
+Time to download
+-
+Size for updates
+-
+New app bundles
+New app bundles will be shown here
+
+Release notes
+Default language – en-US
+Initial closed testing release for Asolaria.
+Includes core phone-computer bridge connectivity, OAuth flow updates, and stability improvements.
+To save, fix errors
+Product updates
+Status dashboard
+Help
+© 2026 Google
+Privacy
+Developer Distribution Agreement
+Terms of Service
+

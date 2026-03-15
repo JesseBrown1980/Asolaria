@@ -1,0 +1,43 @@
+﻿{
+    "startedAt":  "2026-03-10T02:14:25.3775450-03:00",
+    "deadline":  "2026-03-10T02:26:24.0000000",
+    "chatId":  "overnight-readiness-loop",
+    "threadId":  "overnight-readiness-20260310",
+    "cycles":  1,
+    "lastJobId":  "job_1773119667310_gqrgtp",
+    "lastSummary":  "system_readiness: blocked - Timed out waiting for job job_1773119667310_gqrgtp after 6 minutes.",
+    "stopRequested":  false,
+    "tasks":  {
+                  "system_readiness":  {
+                                           "status":  "blocked",
+                                           "attempts":  1,
+                                           "summary":  "Timed out waiting for job job_1773119667310_gqrgtp after 6 minutes.",
+                                           "lastRunAt":  "2026-03-10T02:14:27.0265861-03:00"
+                                       },
+                  "media_defaults":  {
+                                         "status":  "pending",
+                                         "attempts":  0,
+                                         "summary":  "",
+                                         "lastRunAt":  ""
+                                     },
+                  "notebooklm_memory":  {
+                                            "status":  "pending",
+                                            "attempts":  0,
+                                            "summary":  "",
+                                            "lastRunAt":  ""
+                                        },
+                  "swarm_readiness":  {
+                                          "status":  "pending",
+                                          "attempts":  0,
+                                          "summary":  "",
+                                          "lastRunAt":  ""
+                                      },
+                  "ebacmap_prep":  {
+                                       "status":  "pending",
+                                       "attempts":  0,
+                                       "summary":  "",
+                                       "lastRunAt":  ""
+                                   }
+              },
+    "completedAt":  "2026-03-10T02:20:41.3418327-03:00"
+}

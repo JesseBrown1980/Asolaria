@@ -1,0 +1,27 @@
+﻿[
+    {
+        "TaskName":  "iTop JunSale Task (One-Time)",
+        "TaskPath":  "\\",
+        "State":  1
+    },
+    {
+        "TaskName":  "iTop Screen Recorder SkipUAC (acer)",
+        "TaskPath":  "\\",
+        "State":  1
+    },
+    {
+        "TaskName":  "iTop Screen Recorder Startup",
+        "TaskPath":  "\\",
+        "State":  1
+    },
+    {
+        "TaskName":  "iTop Screen Recorder Update",
+        "TaskPath":  "\\",
+        "State":  1
+    },
+    {
+        "TaskName":  "iTopEN VD2026 Task (One-Time)",
+        "TaskPath":  "\\",
+        "State":  1
+    }
+]

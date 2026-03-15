@@ -1,0 +1,844 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e6]:
+      - heading "Asolaria" [level=1] [ref=e7]
+      - paragraph [ref=e8]: One interface. Multiple engines.
+    - generic [ref=e9]:
+      - button "Natural20 Daily" [ref=e10] [cursor=pointer]:
+        - generic [ref=e11]: Natural20 Daily
+      - link "Graph Runtime" [ref=e12] [cursor=pointer]:
+        - /url: /graph-runtime.html
+        - generic [ref=e13]: Graph Runtime
+      - link "Abacus Worker" [ref=e14] [cursor=pointer]:
+        - /url: /abacus-worker.html
+        - generic [ref=e15]: Abacus Worker
+      - link "Worker Runtime" [ref=e16] [cursor=pointer]:
+        - /url: /worker-runtime.html
+        - generic [ref=e17]: Worker Runtime
+      - link "Worker Router" [ref=e18] [cursor=pointer]:
+        - /url: /worker-router.html
+        - generic [ref=e19]: Worker Router
+      - generic [ref=e20] [cursor=pointer]:
+        - checkbox "Stealth OFF" [ref=e21]
+        - generic [ref=e22]: Stealth OFF
+      - generic [ref=e23]:
+        - generic [ref=e24]: Approvals
+        - combobox "Approvals" [ref=e25]:
+          - option "smart" [selected]
+          - option "manual"
+          - option "deny"
+      - generic [ref=e26]:
+        - generic [ref=e27]: Cost
+        - combobox "Cost" [ref=e28]:
+          - option "low" [selected]
+          - option "balanced"
+          - option "quality"
+      - generic [ref=e29]:
+        - generic [ref=e30]: Web
+        - combobox "Web" [ref=e31]:
+          - option "off" [selected]
+          - option "on"
+      - generic [ref=e32]:
+        - generic [ref=e33]: OpenClaw (legacy)
+        - combobox "OpenClaw (legacy)" [ref=e34]:
+          - option "read_only" [selected]
+          - option "governed"
+          - option "disabled"
+      - generic [ref=e35]:
+        - generic [ref=e36]: UI
+        - combobox "UI" [ref=e37]:
+          - option "simple"
+          - option "admin"
+          - option "super admin" [selected]
+      - generic [ref=e38]:
+        - generic [ref=e39]: Voice Out
+        - combobox "Voice Out" [ref=e40]:
+          - option "browser" [selected]
+          - option "server"
+          - option "kitty_tts"
+      - generic [ref=e41]:
+        - generic [ref=e42]: Auto Speak
+        - combobox "Auto Speak" [ref=e43]:
+          - option "off" [selected]
+          - option "on"
+      - generic [ref=e44]: "Phone Runtime: checking..."
+      - generic [ref=e45]: Checking system...
+  - generic [ref=e56]:
+    - heading "Asolaria Startup Monitor" [level=2] [ref=e57]
+    - paragraph [ref=e58]: Hello, I am Asolaria. Right now, we are loading the main brain...
+    - paragraph [ref=e59]: Preparing provider probes...
+    - generic [ref=e60]:
+      - generic [ref=e61]: "Attempt: 0"
+      - generic [ref=e62]: "Timeout: 30s per provider"
+      - generic [ref=e63]: "Loop: booting"
+    - list
+  - region "Asolaria quick interface" [ref=e64]:
+    - generic [ref=e74]:
+      - heading "Asolaria Live Interface" [level=2] [ref=e75]
+      - paragraph [ref=e76]: Avatar idle. Voice is ready when you are.
+      - generic [ref=e77]:
+        - generic [ref=e78]: "Avatar: orb | Voice: browser"
+        - generic [ref=e79]: "Agent Colony: checking..."
+        - generic [ref=e80]: "Phone Lane: checking..."
+    - generic [ref=e81]:
+      - button "Start Voice" [ref=e82] [cursor=pointer]
+      - button "Push-to-Talk" [ref=e83] [cursor=pointer]
+      - button "Test Voice Out" [ref=e84] [cursor=pointer]
+      - button "Avatar Stage" [ref=e85] [cursor=pointer]
+      - button "Phone View" [ref=e86] [cursor=pointer]
+      - button "Open Super Admin" [ref=e87] [cursor=pointer]
+    - region "Dashboard launcher" [ref=e88]:
+      - generic [ref=e89]:
+        - heading "Dashboards" [level=3] [ref=e90]
+        - paragraph [ref=e91]: Start from one tile, then open the exact workspace you want.
+      - generic [ref=e92]:
+        - button "Chat Open the brain console and continue the current task." [ref=e93] [cursor=pointer]:
+          - generic [ref=e94]: C
+          - generic [ref=e95]:
+            - strong [ref=e96]: Chat
+            - generic [ref=e97]: Open the brain console and continue the current task.
+        - button "Runtime Core start, phone connect, control plane, and health actions." [ref=e98] [cursor=pointer]:
+          - generic [ref=e99]: R
+          - generic [ref=e100]:
+            - strong [ref=e101]: Runtime
+            - generic [ref=e102]: Core start, phone connect, control plane, and health actions.
+        - button "Transcript Live capture, bridge lanes, and interview copilot tools." [ref=e103] [cursor=pointer]:
+          - generic [ref=e104]: T
+          - generic [ref=e105]:
+            - strong [ref=e106]: Transcript
+            - generic [ref=e107]: Live capture, bridge lanes, and interview copilot tools.
+        - button "Phone Open the mobile view and companion phone controls." [ref=e108] [cursor=pointer]:
+          - generic [ref=e109]: P
+          - generic [ref=e110]:
+            - strong [ref=e111]: Phone
+            - generic [ref=e112]: Open the mobile view and companion phone controls.
+        - button "Natural20 Open Wes Roth's daily model tracker and AI brief." [ref=e113] [cursor=pointer]:
+          - generic [ref=e114]: N20
+          - generic [ref=e115]:
+            - strong [ref=e116]: Natural20
+            - generic [ref=e117]: Open Wes Roth's daily model tracker and AI brief.
+        - button "Super Admin Reveal the brain lane, admin lane, and live terminal surfaces." [ref=e118] [cursor=pointer]:
+          - generic [ref=e119]: SA
+          - generic [ref=e120]:
+            - strong [ref=e121]: Super Admin
+            - generic [ref=e122]: Reveal the brain lane, admin lane, and live terminal surfaces.
+    - region "Runtime controls" [ref=e123]:
+      - heading "Runtime Controls" [level=3] [ref=e124]
+      - generic [ref=e125]:
+        - button "Start Core" [ref=e126] [cursor=pointer]
+        - button "Phone Connect" [ref=e127] [cursor=pointer]
+        - button "Control Plane" [ref=e128] [cursor=pointer]
+        - button "Control+Sandbox" [ref=e129] [cursor=pointer]
+        - button "ADB Health" [ref=e130] [cursor=pointer]
+        - button "Stop Core" [ref=e131] [cursor=pointer]
+        - button "Stop Control Plane" [ref=e132] [cursor=pointer]
+    - paragraph [ref=e133]: Runtime controls are ready. Ask Asolaria or use the quick buttons.
+    - paragraph [ref=e134]: Voice is off. Web Speech runs now; Kitty.TTS can be swapped in as the output voice engine.
+    - region "Realtime transcription" [ref=e135]:
+      - generic [ref=e136]:
+        - heading "Realtime Transcript" [level=3] [ref=e137]
+        - generic [ref=e138]: Idle. Ready for tab audio.
+      - paragraph [ref=e139]: Pick a capture source first. For clean meeting transcript lines, use tab/window capture so other app audio is excluded.
+      - generic [ref=e140]:
+        - generic [ref=e141]: Capture Source
+        - combobox "Capture Source" [ref=e142]:
+          - option "Meeting Tab Audio (Recommended)" [selected]
+          - option "App Window Audio"
+          - option "Entire Screen/System Audio"
+          - option "Microphone Only"
+          - option "System Audio (Server Loopback, Copyable)"
+          - option "Google Meet Captions (Instant, Copyable)"
+          - option "Custom Caption Bridge (Script, Copyable)"
+      - generic [ref=e143]:
+        - generic [ref=e144]: Transcript Source
+        - combobox "Transcript Source" [ref=e145]:
+          - option "Live Engine" [selected]
+          - option "Bridge Captions"
+          - option "Live + Bridge"
+      - generic [ref=e146]:
+        - generic [ref=e147]: Bridge Push Token (Optional)
+        - textbox "Bridge Push Token (Optional)" [ref=e148]:
+          - /placeholder: Used when copying bridge scripts to token-protected ingest
+      - generic [ref=e149]:
+        - button "Start tab audio" [ref=e150] [cursor=pointer]
+        - button "Stop" [disabled] [ref=e151] [cursor=pointer]
+        - button "Clear" [disabled] [ref=e152] [cursor=pointer]
+        - button "Copy" [disabled] [ref=e153] [cursor=pointer]
+      - generic [ref=e154]:
+        - generic [ref=e155]:
+          - checkbox "Auto-copy incoming lines" [checked] [ref=e156]
+          - generic [ref=e157]: Auto-copy incoming lines
+        - generic [ref=e158]:
+          - checkbox "Mirror lines into chat box" [checked] [ref=e159]
+          - generic [ref=e160]: Mirror lines into chat box
+        - button "Copy Last Line" [disabled] [ref=e161] [cursor=pointer]
+        - button "Instant Ask Last Line" [disabled] [ref=e162] [cursor=pointer]
+      - paragraph [ref=e163]: "Hotkeys: Ctrl+Shift+M = start/stop live capture, Ctrl+Shift+K = instant ask on latest line."
+      - generic [ref=e164]: Transcript will appear here while capture is active.
+      - generic [ref=e165]: Live Transcript Chat Box (Copy/Paste Ready)
+      - textbox "Live Transcript Chat Box (Copy/Paste Ready)" [ref=e166]:
+        - /placeholder: Live transcript lines will stream here in chat-ready format.
+      - generic "Flow monitor controls" [ref=e167]:
+        - button "Flow Monitor On" [pressed] [ref=e168] [cursor=pointer]
+        - button "AI Analysis Off" [ref=e169] [cursor=pointer]
+        - button "Refresh Board" [ref=e170] [cursor=pointer]
+        - textbox "Probe text..." [ref=e171]
+        - textbox "Lane id (optional)" [ref=e172]
+        - button "Probe Lane" [ref=e173] [cursor=pointer]
+      - generic [ref=e174]: No lanes detected yet. Start capture or bridge captions to discover flows.
+      - region "AI interview copilot" [ref=e175]:
+        - generic [ref=e176]:
+          - heading "AI Interview Copilot" [level=3] [ref=e177]
+          - generic [ref=e178]: 0/200 words
+        - textbox "Ask a question from the live transcript..." [ref=e179]
+        - paragraph [ref=e180]: Type or paste your question. Use quick actions to inject the latest live line.
+        - generic [ref=e181]:
+          - button "Ask Copilot" [disabled] [ref=e182] [cursor=pointer]
+          - button "Use Last Line" [disabled] [ref=e183] [cursor=pointer]
+          - button "Clear Question" [disabled] [ref=e184] [cursor=pointer]
+    - region "Super admin terminals" [ref=e185]:
+      - generic [ref=e186]:
+        - generic [ref=e187]:
+          - heading "Super Admin Terminals" [level=3] [ref=e188]
+          - paragraph [ref=e189]: See the active brain lane and the admin lane before you trust a reply.
+        - generic [ref=e190]: Syncing terminal feeds...
+      - generic [ref=e191]:
+        - article [ref=e192]:
+          - generic [ref=e193]:
+            - generic [ref=e194]:
+              - heading "Main Brain" [level=4] [ref=e195]
+              - paragraph [ref=e196]: Provider and model information will appear here.
+            - button "Open Brain PowerShell" [ref=e197] [cursor=pointer]
+          - generic [ref=e198]: Waiting for the main brain terminal feed...
+        - article [ref=e199]:
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - heading "Super Admin" [level=4] [ref=e202]
+              - paragraph [ref=e203]: Runtime control, startup, and watchdog status will appear here.
+            - button "Open Admin PowerShell" [ref=e204] [cursor=pointer]
+          - generic [ref=e205]: Waiting for the admin terminal feed...
+        - article [ref=e206]:
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - heading "Direct Codex Window" [level=4] [ref=e209]
+              - paragraph [ref=e210]: Internal-only lane. RouteLLM and external fallback are bypassed here.
+            - button "Open Full Thread" [ref=e211] [cursor=pointer]
+          - generic [ref=e212]:
+            - generic [ref=e213]: Direct Codex lane idle.
+            - generic [ref=e214]: Internal only
+          - generic [ref=e216]: Send a direct message to talk to internal Codex without routed shortcuts.
+          - generic [ref=e217]:
+            - textbox "Talk directly to internal Codex..." [ref=e218]
+            - generic [ref=e219]:
+              - button "Clear" [ref=e220] [cursor=pointer]
+              - button "Send Direct" [ref=e221] [cursor=pointer]
+  - region "Interview Copilot" [ref=e222]:
+    - generic [ref=e223]:
+      - generic [ref=e224]:
+        - heading "Interview Copilot" [level=2] [ref=e225]
+        - paragraph [ref=e226]: Asolaria-native workflow on top of local routing, transcript, and voice controls.
+        - paragraph [ref=e227]: "Asolaria-native runtime: no third-party copilot billing or session metering."
+      - generic [ref=e228]:
+        - generic [ref=e229]: "Flow: setup pending"
+        - button "Start Interview Copilot" [ref=e230] [cursor=pointer]
+        - button "Share Audio" [ref=e231] [cursor=pointer]
+        - button "Stop Audio" [ref=e232] [cursor=pointer]
+        - button "Preferences" [ref=e233] [cursor=pointer]
+        - button "Keyboard Shortcuts" [ref=e234] [cursor=pointer]
+    - generic "Interview flow status" [ref=e235]:
+      - article [ref=e236]:
+        - paragraph [ref=e237]: 1. Setup
+        - paragraph [ref=e238]: Preset + profile
+        - paragraph [ref=e239]: Complete setup checklist (0/3)
+      - article [ref=e240]:
+        - paragraph [ref=e241]: 2. Capture
+        - paragraph [ref=e242]: Share interview audio
+        - paragraph [ref=e243]: Capture not started
+      - article [ref=e244]:
+        - paragraph [ref=e245]: 3. Ask
+        - paragraph [ref=e246]: Draft your question
+        - paragraph [ref=e247]: Use transcript line or type your question
+      - article [ref=e248]:
+        - paragraph [ref=e249]: 4. Answer
+        - paragraph [ref=e250]: Get interview guidance
+        - paragraph [ref=e251]: No response yet
+    - generic "Interview runtime state" [ref=e252]:
+      - generic [ref=e253]: "Transcript: idle"
+      - generic [ref=e254]: "Source: Meeting Tab Audio (Recommended) | Preset: Manual"
+    - generic [ref=e255]:
+      - generic [ref=e256]:
+        - heading "Review and confirm" [level=3] [ref=e257]
+        - generic [ref=e258]:
+          - generic [ref=e259]: Role
+          - textbox "Role" [ref=e260]:
+            - /placeholder: Software Engineer @ Company
+            - text: Software engineer @ Capital RX
+        - generic [ref=e261]:
+          - generic [ref=e262]: Time Limit (minutes)
+          - spinbutton "Time Limit (minutes)" [ref=e263]: "15"
+        - generic [ref=e264]:
+          - generic [ref=e265]: Parallel Audio Lanes
+          - spinbutton "Parallel Audio Lanes" [ref=e266]: "2"
+        - generic [ref=e267]:
+          - generic [ref=e268]: Language
+          - combobox "Language" [ref=e269]:
+            - option "English" [selected]
+            - option "Spanish"
+            - option "Portuguese"
+            - option "French"
+            - option "German"
+        - generic [ref=e270]:
+          - checkbox "Stealth Mode" [ref=e271]
+          - text: Stealth Mode
+        - generic [ref=e272]:
+          - generic [ref=e273]: Capture Source
+          - combobox "Capture Source" [ref=e274]:
+            - option "Meeting Tab Audio (Recommended)" [selected]
+            - option "App Window Audio"
+            - option "Entire Screen/System Audio"
+            - option "Microphone Only"
+            - option "System Audio (Server Loopback)"
+            - option "Google Meet Captions"
+            - option "Custom Caption Bridge"
+        - region "Capture source onboarding" [ref=e275]:
+          - paragraph [ref=e276]: Capture Source Onboarding
+          - paragraph [ref=e277]: Pick your meeting app. Asolaria will apply a source preset and checklist for Meet, Zoom, or Teams.
+          - group "Meeting app preset" [ref=e278]:
+            - button "Google Meet Use Meet tab audio for native capture" [ref=e279] [cursor=pointer]:
+              - generic [ref=e280]: Google Meet
+              - generic [ref=e281]: Use Meet tab audio for native capture
+            - button "Zoom Capture the Zoom app window audio" [ref=e282] [cursor=pointer]:
+              - generic [ref=e283]: Zoom
+              - generic [ref=e284]: Capture the Zoom app window audio
+            - button "Microsoft Teams Capture Teams window with steady output" [ref=e285] [cursor=pointer]:
+              - generic [ref=e286]: Microsoft Teams
+              - generic [ref=e287]: Capture Teams window with steady output
+            - button "Manual Choose source and routing yourself" [ref=e288] [cursor=pointer]:
+              - generic [ref=e289]: Manual
+              - generic [ref=e290]: Choose source and routing yourself
+          - generic [ref=e291]:
+            - generic [ref=e292]: "Preset: Manual | Custom routing"
+            - generic [ref=e293]: "Recommended source: Use selected Capture Source"
+          - paragraph [ref=e294]: "Tip: Pick the source with the least background noise, then confirm transcript movement before asking."
+          - group "Capture readiness checklist" [ref=e295]:
+            - generic [ref=e296]:
+              - checkbox "Select the right source for your meeting app." [ref=e297]
+              - generic [ref=e298]: Select the right source for your meeting app.
+            - generic [ref=e299]:
+              - checkbox "Start capture and watch for first transcript lines." [ref=e300]
+              - generic [ref=e301]: Start capture and watch for first transcript lines.
+            - generic [ref=e302]:
+              - checkbox "Validate bridge routing only if voice injection is required." [ref=e303]
+              - generic [ref=e304]: Validate bridge routing only if voice injection is required.
+          - generic [ref=e305]:
+            - button "Apply Preset Source" [ref=e306] [cursor=pointer]
+            - button "Start Capture with Preset" [ref=e307] [cursor=pointer]
+            - button "Reset Checklist" [ref=e308] [cursor=pointer]
+          - paragraph [ref=e309]: "Checklist: 0/3 complete. Finish onboarding before interview starts."
+          - paragraph [ref=e310]: "Next: choose a preset, complete checklist, then start capture."
+          - paragraph [ref=e311]: "Preset: Manual. Active source: Meeting Tab Audio (Recommended). Capture state: idle."
+          - list [ref=e312]:
+            - listitem [ref=e313]: Pick a capture source that matches your interview app.
+            - listitem [ref=e314]: Start capture and confirm transcript mirror is updating.
+            - listitem [ref=e315]: Run bridge wizard if you need injected voice replies.
+        - paragraph [ref=e316]: Interview Copilot ready. Start when you are.
+      - generic [ref=e317]:
+        - heading "Model" [level=3] [ref=e318]
+        - combobox [ref=e319]:
+          - option "GPT-5-Mini" [selected]
+          - option "GPT-5.2 Instant (Pro Plan Only)"
+          - option "GPT-5.2 (Pro Plan Only)"
+          - option "GPT-5.1 (Pro Plan Only)"
+          - option "GPT-5 (Pro Plan Only)"
+          - option "GPT-OSS-120B"
+          - option "Kimi K2"
+          - option "Kimi K2.5"
+          - option "Kimi K2 Thinking (Pro Plan Only)"
+          - option "DeepSeek V3.1"
+          - option "Gemini 3 Pro (Pro Plan Only)"
+          - option "Gemini 3 Flash"
+          - option "Gemini 2.5 Flash"
+          - option "Gemini 2.5 Pro (Pro Plan Only)"
+          - option "Grok 4 (Pro Plan Only)"
+          - option "Grok 4 Reasoning (Pro Plan Only)"
+          - option "Grok Code Fast"
+          - option "Claude 4 Sonnet (Pro Plan Only)"
+          - option "Claude 4.5 Sonnet (Pro Plan Only)"
+          - option "Qwen-2.5-235B (Pro Plan Only)"
+          - option "MiniMax M2.5"
+          - option "GLM-5"
+        - paragraph [ref=e320]: "OpenAI (Recommended) | Locked route: /api/providers/openai/run"
+        - generic [ref=e321]:
+          - generic [ref=e322]: Response Length
+          - combobox "Response Length" [ref=e323]:
+            - option "Concise"
+            - option "Balanced" [selected]
+            - option "Detailed"
+        - generic [ref=e324]:
+          - generic [ref=e325]: Session Sharing
+          - generic [ref=e326]:
+            - textbox "Session Sharing" [ref=e327]: http://127.0.0.1:4781/?session=yixj97n4mmmuzag5&view=interview
+            - button "Copy" [ref=e328] [cursor=pointer]
+        - paragraph [ref=e329]: Open this link on another device to view the same interview context.
+    - generic [ref=e330]:
+      - generic [ref=e331]:
+        - heading "Ask a question..." [level=3] [ref=e332]
+        - textbox "Ask for exact answer, concise guidance, or follow-up strategy." [ref=e333]
+        - generic [ref=e334]:
+          - button "Ask Copilot" [ref=e335] [cursor=pointer]
+          - button "Use Last Transcript Line" [ref=e336] [cursor=pointer]
+          - button "Clear" [ref=e337] [cursor=pointer]
+        - paragraph [ref=e338]: "Shortcut: Ctrl+K focuses input. Ctrl+Shift+Y sends."
+        - paragraph [ref=e339]: "Route: idle"
+        - generic [ref=e340]: Copilot responses will appear here.
+      - generic [ref=e341]:
+        - heading "Live transcript mirror" [level=3] [ref=e342]
+        - paragraph [ref=e343]: Idle. Ready for tab audio.
+        - generic [ref=e344]: Transcript will appear here while capture is active.
+    - generic [ref=e346]:
+      - heading "Voice Injection Bridge" [level=3] [ref=e347]
+      - paragraph [ref=e348]: Set this output to a virtual cable endpoint, and set your meeting microphone to the same cable for injected speech.
+      - generic [ref=e349]:
+        - generic [ref=e350]: Injection Output Device
+        - combobox "Injection Output Device" [ref=e351]:
+          - option "System default" [selected]
+      - textbox "Type what Asolaria should inject into the meeting audio path..." [ref=e352]
+      - generic [ref=e353]:
+        - button "Inject Voice" [ref=e354] [cursor=pointer]
+        - button "Self-Test Bridge" [ref=e355] [cursor=pointer]
+        - button "Bridge Setup Wizard" [ref=e356] [cursor=pointer]
+        - button "Refresh Devices" [ref=e357] [cursor=pointer]
+      - paragraph [ref=e358]: Idle. Choose output and inject a line.
+  - generic [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]:
+        - heading "Brain Console" [level=2] [ref=e362]
+        - paragraph [ref=e363]: Codex-backed reasoning stream
+      - generic [ref=e364]:
+        - complementary [ref=e365]:
+          - generic [ref=e366]:
+            - button "Tools" [ref=e367] [cursor=pointer]
+            - button "Work" [ref=e368] [cursor=pointer]
+            - button "Conversations" [ref=e369] [cursor=pointer]
+          - generic [ref=e370]:
+            - textbox "Search conversations..." [ref=e371]
+            - generic [ref=e372]:
+              - 'generic "Today (2026-03-11): active=0, blocked=0, done today=0" [ref=e373]': 0 Active | 0 Blocked | 0 Done Today
+              - 'generic "Today (2026-03-11): NBA CTR 0/1 (0%), Reopen ratio 0/0 (0%)" [ref=e374]': NBA 0/1 | Reopen 0/0
+              - button "Reset Metrics" [ref=e375] [cursor=pointer]
+            - generic [ref=e376]:
+              - heading "Recently Active" [level=4] [ref=e377]
+              - generic [ref=e378]:
+                - generic [ref=e379]:
+                  - generic [ref=e380]:
+                    - button "Super Admin Direct" [ref=e381] [cursor=pointer]
+                    - button "Add to Focus" [ref=e382] [cursor=pointer]
+                  - generic [ref=e383]: No messages yet.
+                  - generic [ref=e384]: "Turns: 0 • Updated: 23:38:32"
+                - generic [ref=e385]:
+                  - generic [ref=e386]:
+                    - button "Main Chat" [ref=e387] [cursor=pointer]
+                    - button "Add to Focus" [ref=e388] [cursor=pointer]
+                  - generic [ref=e389]: No messages yet.
+                  - generic [ref=e390]: "Turns: 0 • Updated: 23:38:32"
+            - generic [ref=e391]:
+              - generic [ref=e392]:
+                - heading "Focus" [level=4] [ref=e393]
+                - 'generic "Today''s focus turnover (2026-03-11): adds=0, removes=0, replacements=0, clears=0" [ref=e394]': A0 | R0 | X0 | C0
+                - button "Clear Focus" [ref=e395] [cursor=pointer]
+              - generic [ref=e396]:
+                - generic [ref=e397]: "Suggested Focus: Main Chat - You worked on this today"
+                - button "Add Suggested" [ref=e398] [cursor=pointer]
+              - generic [ref=e400]: Your current priorities. Limited to 3.
+            - generic [ref=e401]:
+              - heading "Recent" [level=4] [ref=e402]
+              - generic [ref=e403]:
+                - generic [ref=e404]:
+                  - generic [ref=e405]:
+                    - button "Super Admin Direct" [ref=e406] [cursor=pointer]
+                    - button "Add to Focus" [ref=e407] [cursor=pointer]
+                  - generic [ref=e408]: No messages yet.
+                  - generic [ref=e409]: "Turns: 0 • Updated: 23:38:32"
+                - generic [ref=e410]:
+                  - generic [ref=e411]:
+                    - button "Main Chat" [ref=e412] [cursor=pointer]
+                    - button "Add to Focus" [ref=e413] [cursor=pointer]
+                  - generic [ref=e414]: No messages yet.
+                  - generic [ref=e415]: "Turns: 0 • Updated: 23:38:32"
+        - generic [ref=e416]:
+          - generic "We surface what seems most relevant based on your recent activity." [ref=e417]:
+            - generic [ref=e418]:
+              - generic [ref=e419]: Pick up where you left off
+              - generic [ref=e420]: Start something new
+              - generic [ref=e421]: No active task yet
+            - generic [ref=e422]:
+              - button "Start new" [ref=e423] [cursor=pointer]
+              - button "Start new" [ref=e424] [cursor=pointer]
+          - generic [ref=e425]:
+            - generic [ref=e426]: Resolve and archive this or continue working?
+            - generic [ref=e427]:
+              - button "Resolve & Archive" [ref=e428] [cursor=pointer]
+              - button "Resume" [ref=e429] [cursor=pointer]
+          - generic [ref=e430]:
+            - generic [ref=e431]: Resolved and archived. You can reopen anytime.
+            - button "Reopen" [ref=e432] [cursor=pointer]
+          - generic [ref=e434]:
+            - generic [ref=e435]: System
+            - generic [ref=e436]: New chat ready. Ask me anything about your Asolaria task.
+          - generic [ref=e437]:
+            - textbox "Give Asolaria a task..." [ref=e438]
+            - button "Send" [ref=e439] [cursor=pointer]
+            - generic [ref=e440]:
+              - generic [ref=e441] [cursor=pointer]:
+                - generic [ref=e442]: Attach image(s)
+                - button "Attach image(s)" [ref=e443]
+              - generic [ref=e444]: No images selected.
+              - generic [ref=e445] [cursor=pointer]:
+                - generic [ref=e446]: Attach file(s)
+                - button "Attach file(s)" [ref=e447]
+              - generic [ref=e448]: No files selected.
+    - complementary [ref=e449]:
+      - generic [ref=e450]:
+        - heading "Connectors" [level=2] [ref=e451]
+        - paragraph [ref=e452]: Backend controls for tools
+      - generic [ref=e453]:
+        - generic [ref=e454]:
+          - button "Home" [ref=e455] [cursor=pointer]
+          - button "Projects" [ref=e456] [cursor=pointer]
+          - button "Tasks" [ref=e457] [cursor=pointer]
+          - button "Skills" [ref=e458] [cursor=pointer]
+          - button "Runtime" [ref=e459] [cursor=pointer]
+        - generic [ref=e460]:
+          - generic [ref=e461]:
+            - heading "Workspace Projects" [level=3] [ref=e462]
+            - paragraph [ref=e463]: Active project scope controls task grouping and quick focus.
+            - textbox "Filter project folders..." [ref=e464]
+            - button "All Projects" [ref=e466] [cursor=pointer]
+            - generic [ref=e467]:
+              - button "Refresh Projects" [ref=e468] [cursor=pointer]
+              - button "New Project" [ref=e469] [cursor=pointer]
+              - button "Edit Selected" [ref=e470] [cursor=pointer]
+              - button "Delete Selected" [ref=e471] [cursor=pointer]
+            - paragraph [ref=e472]: Projects are persisted in local data storage.
+            - generic [ref=e473]:
+              - generic [ref=e474]: All Projects folders (0/0)
+              - generic [ref=e475]: No folders match this filter.
+          - generic [ref=e476]:
+            - heading "Live Agent Colony" [level=3] [ref=e477]
+            - paragraph [ref=e478]: Waiting for live runtime status...
+            - paragraph [ref=e479]: "Updated: n/a"
+          - generic [ref=e480]:
+            - generic [ref=e481]:
+              - generic [ref=e482]:
+                - heading "Admin Terminal Cockpit" [level=3] [ref=e483]
+                - paragraph [ref=e484]: No admin terminals registered yet.
+              - generic [ref=e485]: Launching admin terminals...
+            - generic [ref=e486]:
+              - button "Launch Helm + Sentinel" [ref=e487] [cursor=pointer]
+              - button "Refresh" [ref=e488] [cursor=pointer]
+              - button "Re-brief Both" [ref=e489] [cursor=pointer]
+              - generic [ref=e490]:
+                - checkbox "Auto-launch in Super Admin" [checked] [ref=e491]
+                - text: Auto-launch in Super Admin
+            - generic [ref=e493]: No admin terminals registered yet.
+            - paragraph [ref=e494]: "Updated: 11/03/2026, 23:38:32"
+          - generic [ref=e495]:
+            - heading "Phone Agent Runtime" [level=3] [ref=e496]
+            - paragraph [ref=e497]: Waiting for phone runtime status...
+            - paragraph [ref=e498]: "Updated: n/a"
+          - generic [ref=e499]:
+            - heading "Open Chrome" [level=3] [ref=e500]
+            - generic [ref=e501]:
+              - textbox "https://example.com" [ref=e502]
+              - button "Launch" [ref=e503] [cursor=pointer]
+          - generic [ref=e504]:
+            - heading "Voice & Avatar" [level=3] [ref=e505]
+            - generic [ref=e506]:
+              - generic [ref=e507]:
+                - generic [ref=e508]: Voice
+                - combobox "Voice" [ref=e509]:
+                  - option "on" [selected]
+                  - option "off"
+                - combobox [ref=e510]:
+                  - option "Avatar on" [selected]
+                  - option "Avatar off"
+              - generic [ref=e511]:
+                - generic [ref=e512]: Avatar mode
+                - combobox "Avatar mode" [ref=e513]:
+                  - option "orb" [selected]
+                  - option "video"
+                  - option "live2d"
+                - combobox [ref=e514]:
+                  - option "browser" [selected]
+                  - option "server"
+                  - option "kitty_tts"
+              - generic [ref=e515]:
+                - generic [ref=e516]: Voice input source
+                - combobox "Voice input source" [ref=e517]:
+                  - option "Meeting Mix (incoming + outgoing)"
+                  - option "System / Speaker Loopback" [selected]
+                  - option "Microphone"
+                  - option "Microphone (dshow fallback)"
+                - combobox [ref=e518]:
+                  - option "Auto (recommended)" [selected]
+              - generic [ref=e519]:
+                - generic [ref=e520]: Voice output device
+                - combobox "Voice output device" [ref=e521]:
+                  - option "System default" [selected]
+                - button "Refresh audio devices" [disabled] [ref=e522] [cursor=pointer]
+              - paragraph [ref=e523]: Audio devices will appear after refresh.
+              - 'textbox "Wake word (example: Asolaria)" [ref=e524]': asolaria
+              - textbox "Kitty endpoint URL (optional)" [ref=e525]
+              - textbox "Kitty API key (optional)" [ref=e526]
+              - generic [ref=e527]:
+                - button "Save Voice/Avatar" [ref=e528] [cursor=pointer]
+                - button "Test Speak" [ref=e529] [cursor=pointer]
+            - paragraph [ref=e530]: Voice and avatar controls are live for this Asolaria session.
+          - generic [ref=e531]:
+            - heading "Asolaria Phone Mode" [level=3] [ref=e532]
+            - paragraph [ref=e533]: Interactive mirror and controls for the connected phone.
+            - button "Open Phone Mode" [ref=e535] [cursor=pointer]
+          - generic [ref=e536]:
+            - heading "Screenshot" [level=3] [ref=e537]
+            - generic [ref=e538]:
+              - textbox "https://example.com" [ref=e539]
+              - textbox "home-page.png" [ref=e540]
+              - button "Capture" [ref=e541] [cursor=pointer]
+            - paragraph
+          - generic [ref=e542]:
+            - heading "Backend Chat Channel" [level=3] [ref=e543]
+            - paragraph [ref=e544]: Send chat prompts via backend browser automation and extract replies into Asolaria runtime.
+            - generic [ref=e545]:
+              - textbox "https://chat.example.com" [ref=e546]
+              - 'textbox "Input selector (example: textarea)" [ref=e547]'
+              - textbox "Message to send" [ref=e548]
+              - generic [ref=e549]:
+                - textbox "Send button selector (optional)" [ref=e550]
+                - textbox "Response selector (optional)" [ref=e551]
+              - generic [ref=e552]:
+                - 'textbox "Send key (default: Enter)" [ref=e553]'
+                - generic [ref=e554]:
+                  - checkbox "Extract links" [ref=e555]
+                  - text: Extract links
+              - button "Run Chat Channel" [ref=e556] [cursor=pointer]
+            - paragraph
+          - generic [ref=e557]:
+            - heading "Skills" [level=3] [ref=e558]
+            - generic [ref=e559]:
+              - button "Refresh Skills" [ref=e560] [cursor=pointer]
+              - button "Reload Registry" [ref=e561] [cursor=pointer]
+            - generic [ref=e562]:
+              - combobox [ref=e563]
+              - textbox "Optional JSON input (or plain text)" [ref=e564]
+              - button "Run Skill" [ref=e565] [cursor=pointer]
+            - paragraph
+          - generic [ref=e566]:
+            - heading "OpenClaw Control" [level=3] [ref=e567]
+            - generic [ref=e568]:
+              - button "Gateway Status" [ref=e569] [cursor=pointer]
+              - button "Daemon Status" [ref=e570] [cursor=pointer]
+              - button "Models Status" [ref=e571] [cursor=pointer]
+              - button "Cron List" [ref=e572] [cursor=pointer]
+              - button "Approvals" [ref=e573] [cursor=pointer]
+              - button "Nodes" [ref=e574] [cursor=pointer]
+            - generic [ref=e575]:
+              - button "Gateway Start" [ref=e576] [cursor=pointer]
+              - button "Gateway Restart" [ref=e577] [cursor=pointer]
+              - button "Daemon Restart" [ref=e578] [cursor=pointer]
+            - generic [ref=e579]:
+              - textbox "cron-job-name" [ref=e580]
+              - button "Run OpenClaw Cron Job" [ref=e581] [cursor=pointer]
+            - paragraph
+          - generic [ref=e582]:
+            - heading "Gateway Audit" [level=3] [ref=e583]
+            - paragraph [ref=e584]: "Authority: loading..."
+            - paragraph [ref=e585]: "Audit: loading..."
+            - generic [ref=e586]:
+              - combobox [ref=e587]:
+                - option "All event types" [selected]
+                - option "authority.transition_requested"
+                - option "authority.mode_changed"
+                - option "approval.created"
+                - option "approval.decided"
+                - option "approval.used"
+                - option "tool.invoked"
+                - option "server.started"
+              - spinbutton [ref=e588]: "15"
+              - generic [ref=e589]:
+                - button "Refresh Audit" [ref=e590] [cursor=pointer]
+                - button "Verify Chain" [ref=e591] [cursor=pointer]
+                - button "Readiness Drill" [ref=e592] [cursor=pointer]
+              - generic [ref=e593]:
+                - button "Run Heartbeat" [ref=e594] [cursor=pointer]
+                - button "Start Sandbox Manager" [ref=e595] [cursor=pointer]
+            - paragraph
+            - generic [ref=e597]: Readiness recommendations appear here after running a drill.
+          - generic [ref=e599]:
+            - heading "External Providers" [level=3] [ref=e600]
+            - generic [ref=e601]:
+              - button "Antigravity Status" [ref=e602] [cursor=pointer]
+              - button "Cursor Status" [ref=e603] [cursor=pointer]
+              - button "Anthropic Status" [ref=e604] [cursor=pointer]
+              - button "Gemini CLI Status" [ref=e605] [cursor=pointer]
+            - generic [ref=e606]:
+              - combobox [ref=e607]:
+                - option "anthropic" [selected]
+                - option "gemini"
+                - option "antigravity"
+                - option "cursor"
+              - combobox "Model alias or exact ID (optional)" [ref=e608]
+              - paragraph [ref=e609]: Model aliases will load from server.
+              - paragraph [ref=e610]: Observed models for selected provider will appear here.
+              - generic [ref=e611]:
+                - generic [ref=e612]: Token profile
+                - combobox "Token profile" [ref=e613]:
+                  - option "balanced" [selected]
+                  - option "aggressive"
+                  - option "off"
+                - generic [ref=e614]: MCP schema mode
+                - combobox "MCP schema mode" [ref=e615]:
+                  - option "compact" [selected]
+                  - option "pointer"
+                  - option "full"
+              - generic [ref=e616]:
+                - spinbutton "Prompt token budget" [ref=e617]: "1600"
+                - textbox "MCP context key (optional)" [ref=e618]
+              - textbox "Skill hints (comma-separated, optional)" [ref=e619]
+              - textbox "WebMCP hints (comma-separated, optional)" [ref=e620]
+              - paragraph [ref=e621]: Token reduction uses compact prompts + pointer/compact MCP tool schemas + context reuse.
+              - generic [ref=e622]:
+                - button "Save Default Model" [ref=e623] [cursor=pointer]
+                - button "Clear Default Model" [ref=e624] [cursor=pointer]
+                - button "Clear Observed Models" [ref=e625] [cursor=pointer]
+                - button "Clear Observed (All)" [ref=e626] [cursor=pointer]
+                - button "Model Settings" [ref=e627] [cursor=pointer]
+              - generic [ref=e628]:
+                - spinbutton [ref=e629]: "30"
+                - button "Prune Observed" [ref=e630] [cursor=pointer]
+              - generic [ref=e631]:
+                - checkbox "Auto-prune observed models daily" [ref=e632]
+                - text: Auto-prune observed models daily
+              - generic [ref=e633]:
+                - spinbutton "Max age days" [ref=e634]: "30"
+                - spinbutton "Daily hour (local)" [ref=e635]: "3"
+                - button "Save Auto Prune" [ref=e636] [cursor=pointer]
+              - paragraph [ref=e637]: "Auto-prune ON (idle): keep 30 day(s), run daily at 03:00 local. Next: n/a. Last: n/a. Runs: 0."
+              - textbox "Prompt for selected provider" [ref=e638]
+              - button "Run External Provider" [ref=e639] [cursor=pointer]
+            - paragraph
+          - generic [ref=e640]:
+            - heading "Company Policy" [level=3] [ref=e641]
+            - generic [ref=e642]:
+              - checkbox "Allow external posting actions" [ref=e643]
+              - text: Allow external posting actions
+            - generic [ref=e644]:
+              - button "Mission" [ref=e645] [cursor=pointer]
+              - button "Draft Post" [ref=e646] [cursor=pointer]
+              - button "Decide Proceed" [ref=e647] [cursor=pointer]
+            - paragraph [ref=e648]: "Default is safe mode: no external posting."
+          - generic [ref=e649]:
+            - heading "Company Account" [level=3] [ref=e650]
+            - generic [ref=e651]:
+              - button "Create Primary Sign-in Profile" [ref=e652] [cursor=pointer]
+              - button "Show Account (Masked)" [ref=e653] [cursor=pointer]
+              - button "Reveal Account" [ref=e654] [cursor=pointer]
+              - button "Mark Registered" [ref=e655] [cursor=pointer]
+              - button "Open Company Portal" [ref=e656] [cursor=pointer]
+            - paragraph [ref=e657]: Credentials are encrypted at rest in Asolaria vault.
+          - generic [ref=e658]:
+            - heading "Guardian Autonomy" [level=3] [ref=e659]
+            - generic [ref=e660]:
+              - generic [ref=e661]: Mode
+              - combobox "Mode" [ref=e662]:
+                - option "off" [selected]
+                - option "notify"
+                - option "autonomous"
+                - option "strict"
+              - button "Save" [ref=e663] [cursor=pointer]
+            - generic [ref=e664]:
+              - generic [ref=e665]: Risk threshold
+              - combobox "Risk threshold" [ref=e666]:
+                - option "low" [selected]
+                - option "medium"
+                - option "high"
+                - option "critical"
+              - button "Save" [ref=e667] [cursor=pointer]
+            - generic [ref=e668]:
+              - checkbox "Enable guardian alerts" [ref=e669]
+              - text: Enable guardian alerts
+            - generic [ref=e670]:
+              - checkbox "Auto-block critical risk actions" [ref=e671]
+              - text: Auto-block critical risk actions
+            - generic [ref=e672]:
+              - button "Guardian Status" [ref=e673] [cursor=pointer]
+              - button "Bootstrap Contacts" [ref=e674] [cursor=pointer]
+              - button "Send Test Alert" [ref=e675] [cursor=pointer]
+            - paragraph [ref=e676]: Guardian watches high-risk actions and can alert your contacts.
+          - generic [ref=e677]:
+            - heading "Power Automate Desktop" [level=3] [ref=e678]
+            - button "Open PAD" [ref=e680] [cursor=pointer]
+            - generic [ref=e681]:
+              - textbox "C:\\\\path\\\\to\\\\package.zip" [ref=e682]
+              - combobox [ref=e683]:
+                - option "LocalRun" [selected]
+                - option "Run"
+                - option "Debug"
+              - generic [ref=e684]:
+                - checkbox "Disable PAD execution screenshots" [ref=e685]
+                - text: Disable PAD execution screenshots
+              - button "Run Package" [ref=e686] [cursor=pointer]
+            - paragraph
+          - generic [ref=e687]:
+            - heading "Project Memory" [level=3] [ref=e688]
+            - paragraph [ref=e689]: Loading memory...
+            - generic [ref=e690]:
+              - generic [ref=e691]: Window turns
+              - spinbutton "Window turns" [ref=e692]: "12"
+              - button "Save" [ref=e693] [cursor=pointer]
+            - generic [ref=e695]:
+              - button "Refresh Memory" [ref=e696] [cursor=pointer]
+              - button "Clear Memory" [ref=e697] [cursor=pointer]
+          - generic [ref=e698]:
+            - heading "Project Task Ledger" [level=3] [ref=e699]
+            - paragraph [ref=e700]: Loading tasks...
+            - generic [ref=e701]:
+              - textbox "Task title" [ref=e702]
+              - textbox "Task description (optional)" [ref=e703]
+              - generic [ref=e704]:
+                - generic [ref=e705]: Priority
+                - combobox "Priority" [ref=e706]:
+                  - option "normal" [selected]
+                  - option "low"
+                  - option "high"
+                  - option "critical"
+                - button "Add Task" [ref=e707] [cursor=pointer]
+            - generic [ref=e708]:
+              - generic [ref=e709]: Status
+              - combobox "Status" [ref=e710]:
+                - option "all" [selected]
+                - option "planned"
+                - option "ready"
+                - option "in_progress"
+                - option "blocked"
+                - option "review"
+                - option "done"
+                - option "canceled"
+                - option "archived"
+              - combobox [ref=e711]:
+                - option "all priorities" [selected]
+                - option "low"
+                - option "normal"
+                - option "high"
+                - option "critical"
+            - generic [ref=e712]:
+              - generic [ref=e713]: Search
+              - textbox "Search" [ref=e714]:
+                - /placeholder: Search task text
+              - button "Refresh" [ref=e715] [cursor=pointer]
+            - generic [ref=e716]:
+              - checkbox "Include archived" [checked] [ref=e717]
+              - text: Include archived
+            - paragraph [ref=e719]: Recent events
+          - generic [ref=e721]:
+            - heading "Event Log" [level=3] [ref=e722]
+            - generic [ref=e724]: "[23:38:32] Focus turnover (2026-03-11): adds=0, removes=0, replacements=0, clears=0"

@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "startedAt": "2026-03-08T14:54:58.987Z",
+  "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding",
+  "profileDirectory": "Profile 3",
+  "tempRoot": "C:\\Users\\acer\\AppData\\Local\\Temp\\asolaria-singlestore-Profile_3",
+  "states": [
+    {
+      "at": "2026-03-08T14:55:07.040Z",
+      "state": "create_form",
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding"
+    },
+    {
+      "at": "2026-03-08T14:55:09.979Z",
+      "state": "create_form",
+      "url": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding"
+    }
+  ],
+  "actions": [
+    {
+      "action": "create_workspace_click",
+      "clicked": "button:has-text('Create Workspace')"
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T14-54-52-946Z-start.png",
+    "C:\\Users\\acer\\Asolaria\\captures\\singlestore\\singlestore-2026-03-08T14-54-52-946Z-end.png"
+  ],
+  "sql": {
+    "attempted": false,
+    "bootstrap": null,
+    "verify": null
+  },
+  "finalUrl": "https://portal.singlestore.com/organizations/bc8e29e2-6b74-41ea-b4d4-efc7c73b4f5f/workspaces/create?initialDeploymentType=dedicated&from=%2Fonboarding",
+  "finalTitle": "SingleStore Customer Portal",
+  "finalState": "create_form",
+  "finalText": "Search\n\nCtrl + k\nAsk SQrL\nHome\nDeployments\nIngestion\nEditor\nAI\nContainer Services\nMonitoring\nConfiguration\nJB\nSQrL Assistant\nAsk SQrL – your help assistant\n\nNeed help with database setup, SQL, Python, or debugging? We’ve got you.\n\nTry asking\n\nHow do I connect to my database?\nHow do I load data?\nHow do I move Postgres data into SingleStore?\nUsage policy\nCreate New Workspace\nName\n\nWorkspace Name\nProject\n\nProject\nStandard ProjectSTANDARD\nGroup\n\nWorkspace Group\n+ Create new group\nGroup Name\n\nWorkspace Group Name\nCloud Provider\n\nAWS\n\nGCP\n\nAzure\n\nRegion\n\nRegion\nUS East 1 (N. Virginia)\nSize\n\nS-00\n\nEdit\n\nvCPUs\n\n2\n\nRAM\n\n16 GB\n\nCredits per hour\n\n0.25 CR\n\nSettings\nDeployment Type \nProduction\nDeploy in Two Availability Zones \nMongo Compatible Endpoint API \nAutoscale \nAdvanced Settings\nSummary\nName\n\nworkspace-7e2b06b3\n\nGroup\n\nGroup 28ef2544+ NEW\n\nProject and Edition\n\nStandard ProjectSTANDARD\n\nProvider and Region\n\nAWS US East 1 (N. Virginia)\n\nCompute\nSize\n\nS-00\n\nScale Factor\n\nX1\n\nCache Multiplier\n\nX1\n\nCredits per Hour\n\n0.25 CR / hour\n\nCredits Available\n\n167 CR\n\nBack\nCreate Workspace",
+  "finishedAt": "2026-03-08T14:55:11.719Z"
+}

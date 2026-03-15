@@ -1,0 +1,32 @@
+﻿[
+    {
+        "FullName":  "C:\\ProgramData\\Microsoft\\Search\\Data\\Applications\\Windows\\Windows-gather.db",
+        "Length":  259403776,
+        "LastWriteTime":  "\/Date(1772480069118)\/"
+    },
+    {
+        "FullName":  "C:\\ProgramData\\Microsoft\\Search\\Data\\Applications\\Windows\\Windows-gather.db-shm",
+        "Length":  32768,
+        "LastWriteTime":  "\/Date(1772403205768)\/"
+    },
+    {
+        "FullName":  "C:\\ProgramData\\Microsoft\\Search\\Data\\Applications\\Windows\\Windows-gather.db-wal",
+        "Length":  4136512,
+        "LastWriteTime":  "\/Date(1772480111812)\/"
+    },
+    {
+        "FullName":  "C:\\ProgramData\\Microsoft\\Search\\Data\\Applications\\Windows\\Windows.db",
+        "Length":  3537780736,
+        "LastWriteTime":  "\/Date(1772478104569)\/"
+    },
+    {
+        "FullName":  "C:\\ProgramData\\Microsoft\\Search\\Data\\Applications\\Windows\\Windows.db-shm",
+        "Length":  32768,
+        "LastWriteTime":  "\/Date(1772403205741)\/"
+    },
+    {
+        "FullName":  "C:\\ProgramData\\Microsoft\\Search\\Data\\Applications\\Windows\\Windows.db-wal",
+        "Length":  1137152,
+        "LastWriteTime":  "\/Date(1772478333945)\/"
+    }
+]

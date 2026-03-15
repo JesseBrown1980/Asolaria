@@ -1,0 +1,246 @@
+﻿{
+    "ok":  true,
+    "sessionId":  "meet_20260303_004246_70d2bf",
+    "entriesCount":  34,
+    "sample":  [
+                   {
+                       "id":  1,
+                       "at":  "2026-03-03T03:43:51.367Z",
+                       "text":  "[bridge-active] meet_20260303_004246_70d2bf",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  2,
+                       "at":  "2026-03-03T03:43:51.368Z",
+                       "text":  "00:43 • Tue 3 Mar",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  3,
+                       "at":  "2026-03-03T03:43:51.368Z",
+                       "text":  "help_outline",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  4,
+                       "at":  "2026-03-03T03:43:51.369Z",
+                       "text":  "Report a problem",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  5,
+                       "at":  "2026-03-03T03:43:51.369Z",
+                       "text":  "HelpTrainingTerms of ServicePrivacy PolicyTerms Summary",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  6,
+                       "at":  "2026-03-03T03:43:51.370Z",
+                       "text":  "Terms of Service",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  7,
+                       "at":  "2026-03-03T03:43:51.370Z",
+                       "text":  "Privacy Policy",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  8,
+                       "at":  "2026-03-03T03:43:51.370Z",
+                       "text":  "Terms Summary",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  9,
+                       "at":  "2026-03-03T03:43:51.371Z",
+                       "text":  "Connect, collaborate and celebrate from anywhere with Google Meet",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  10,
+                       "at":  "2026-03-03T03:43:51.371Z",
+                       "text":  "Your meeting is safe",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  11,
+                       "at":  "2026-03-03T03:43:51.371Z",
+                       "text":  "No one can join a meeting unless invited or admitted by the host",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  12,
+                       "at":  "2026-03-03T03:43:51.371Z",
+                       "text":  "Jesse Daniel Brown and Alpha Smart Money",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  13,
+                       "at":  "2026-03-03T03:43:51.371Z",
+                       "text":  "From your Google Calendar account: plasmatoid@gmail.com",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  14,
+                       "at":  "2026-03-03T03:43:51.372Z",
+                       "text":  "Learn more about Google Meet",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  15,
+                       "at":  "2026-03-03T03:43:51.372Z",
+                       "text":  "linkCreate a meeting for lateraddStart an instant meetingcalendar_todaySchedule in Google Calendar",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  16,
+                       "at":  "2026-03-03T03:43:51.372Z",
+                       "text":  "Create a meeting for later",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  17,
+                       "at":  "2026-03-03T03:43:51.373Z",
+                       "text":  "Start an instant meeting",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  18,
+                       "at":  "2026-03-03T03:43:51.373Z",
+                       "text":  "calendar_today",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  19,
+                       "at":  "2026-03-03T03:43:51.373Z",
+                       "text":  "Schedule in Google Calendar",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  20,
+                       "at":  "2026-03-03T03:43:51.373Z",
+                       "text":  "Get a link that you can shareClick New meeting to get a link that you can send to people that you want to meet with",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  21,
+                       "at":  "2026-03-03T03:43:51.376Z",
+                       "text":  "Click New meeting to get a link that you can send to people that you want to meet with",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  22,
+                       "at":  "2026-03-03T03:43:51.376Z",
+                       "text":  "Plan aheadClick New meeting to schedule meetings in Google Calendar and send invitations to participants",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  23,
+                       "at":  "2026-03-03T03:43:51.377Z",
+                       "text":  "Click New meeting to schedule meetings in Google Calendar and send invitations to participants",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  24,
+                       "at":  "2026-03-03T03:43:51.377Z",
+                       "text":  "Your meeting is safeNo one can join a meeting unless invited or admitted by the host",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  25,
+                       "at":  "2026-03-03T03:43:51.377Z",
+                       "text":  "circlecirclecircle",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  26,
+                       "at":  "2026-03-03T03:43:51.378Z",
+                       "text":  "notifications",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  27,
+                       "at":  "2026-03-03T03:43:51.378Z",
+                       "text":  "Receive desktop notifications from Meet",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  28,
+                       "at":  "2026-03-03T03:43:51.379Z",
+                       "text":  "Allowing notifications lets Meet alert you about incoming calls and updates that occur while you\u0027re in another tab",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  29,
+                       "at":  "2026-03-03T03:43:51.379Z",
+                       "text":  "Google AccountJesse Daniel Brownplasmatoid@gmail.com",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  30,
+                       "at":  "2026-03-03T03:43:51.379Z",
+                       "text":  "Allow notifications",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  31,
+                       "at":  "2026-03-03T03:43:51.380Z",
+                       "text":  "Google Account",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  32,
+                       "at":  "2026-03-03T03:43:51.380Z",
+                       "text":  "Jesse Daniel Brown",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  33,
+                       "at":  "2026-03-03T03:43:51.380Z",
+                       "text":  "plasmatoid@gmail.com",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   },
+                   {
+                       "id":  34,
+                       "at":  "2026-03-03T03:44:00.895Z",
+                       "text":  "00:44 • Tue 3 Mar",
+                       "source":  "google_meet_caption",
+                       "sessionId":  "meet_20260303_004246_70d2bf"
+                   }
+               ],
+    "screenshot":  "C:\\Users\\acer\\Asolaria\\captures\\desktop\\meet-bridge-broad-pass-20260303-004434.png"
+}

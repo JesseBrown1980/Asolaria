@@ -1,0 +1,3 @@
+﻿@Oli @john @john-build-008 #thread:owner-ollie-john-upgrade-20260302 NOTE: Jesse cannot reach Ollie through AnyDesk right now (AnyDesk path is not working). Please continue the John-side upgrade lane and acknowledge here with current online status + next executable step.
+
+@vector @rook @forge @falcon #thread:owner-ollie-john-upgrade-20260302 TASK: continue active upgrades now. Recheck your lane health, execute one concrete improvement/probe each, and post RESULT with evidence path.

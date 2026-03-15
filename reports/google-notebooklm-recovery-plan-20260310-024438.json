@@ -1,0 +1,103 @@
+﻿{
+    "ok":  true,
+    "generatedAt":  "2026-03-10T02:44:38-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "accounts":  [
+                     {
+                         "account":  "jesse@jbrowndevelopmentllc.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  0,
+                         "oauthStatus":  "reauth-needed",
+                         "oauthReason":  "Google token request failed: reauth related error (invalid_rapt)",
+                         "oauthJobId":  "job_1773121471741_s7z0f5",
+                         "enterpriseStatus":  "not-run",
+                         "enterpriseErrorClass":  "",
+                         "enterpriseReason":  "",
+                         "enterpriseJobId":  "",
+                         "enterpriseNotebookCount":  0,
+                         "enterpriseNotebookTitles":  [
+
+                                                      ],
+                         "finalState":  "oauth-blocked",
+                         "nextAction":  "Complete Google OAuth reauth with a fresh link, then rerun this script.",
+                         "reauthLink":  "https://accounts.google.com/o/oauth2/v2/auth?client_id=742368506950-i0a9e90pkv9784rvu9snmshblcdh7kaa.apps.googleusercontent.com\u0026redirect_uri=http%3A%2F%2F127.0.0.1%3A4781%2Fapi%2Fintegrations%2Fgoogle%2Foauth%2Fcallback\u0026response_type=code\u0026scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform\u0026access_type=offline\u0026include_granted_scopes=true\u0026prompt=consent\u0026state=cc97788913a7bee2a6ebc165946af527917d\u0026login_hint=jesse%40jbrowndevelopmentllc.com",
+                         "reauthState":  "cc97788913a7bee2a6ebc165946af527917d",
+                         "reauthError":  ""
+                     },
+                     {
+                         "account":  "jessebrown.soft1980@gmail.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  2886,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773121472302_t8fqjr",
+                         "enterpriseStatus":  "failed",
+                         "enterpriseErrorClass":  "enterprise-error",
+                         "enterpriseReason":  "UserStore projects/742368506950/locations/global/userStores/default_user_store has reached license config quota for license config projects/742368506950/locations/global/licenseConfigs/62fc0f5e-8b41-4ca2-99e9-b2b8469e4b49",
+                         "enterpriseJobId":  "job_1773121472832_pfiwl7",
+                         "enterpriseNotebookCount":  0,
+                         "enterpriseNotebookTitles":  [
+
+                                                      ],
+                         "finalState":  "enterprise-degraded",
+                         "nextAction":  "Inspect enterprise error details and rerun this script.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     },
+                     {
+                         "account":  "plasmatoid@gmail.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  2887,
+                         "oauthStatus":  "healthy",
+                         "oauthReason":  "",
+                         "oauthJobId":  "job_1773121476528_cy1pgr",
+                         "enterpriseStatus":  "completed",
+                         "enterpriseErrorClass":  "",
+                         "enterpriseReason":  "",
+                         "enterpriseJobId":  "job_1773121476990_u8sxzh",
+                         "enterpriseNotebookCount":  1,
+                         "enterpriseNotebookTitles":  [
+                                                          "Asolaria Enterprise Memory"
+                                                      ],
+                         "finalState":  "ready",
+                         "nextAction":  "No action needed.",
+                         "reauthLink":  "",
+                         "reauthState":  "",
+                         "reauthError":  ""
+                     },
+                     {
+                         "account":  "plasmatoid@jbrowndevelopmentllc.com",
+                         "connected":  true,
+                         "hasRefreshToken":  true,
+                         "expiresInSec":  0,
+                         "oauthStatus":  "reauth-needed",
+                         "oauthReason":  "Google token request failed: reauth related error (invalid_rapt)",
+                         "oauthJobId":  "job_1773121477934_kyapei",
+                         "enterpriseStatus":  "not-run",
+                         "enterpriseErrorClass":  "",
+                         "enterpriseReason":  "",
+                         "enterpriseJobId":  "",
+                         "enterpriseNotebookCount":  0,
+                         "enterpriseNotebookTitles":  [
+
+                                                      ],
+                         "finalState":  "oauth-blocked",
+                         "nextAction":  "Complete Google OAuth reauth with a fresh link, then rerun this script.",
+                         "reauthLink":  "https://accounts.google.com/o/oauth2/v2/auth?client_id=742368506950-i0a9e90pkv9784rvu9snmshblcdh7kaa.apps.googleusercontent.com\u0026redirect_uri=http%3A%2F%2F127.0.0.1%3A4781%2Fapi%2Fintegrations%2Fgoogle%2Foauth%2Fcallback\u0026response_type=code\u0026scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdocuments+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform\u0026access_type=offline\u0026include_granted_scopes=true\u0026prompt=consent\u0026state=8a62e0730bdb3c9e7a8a5fa0276276fc3da5\u0026login_hint=plasmatoid%40jbrowndevelopmentllc.com",
+                         "reauthState":  "8a62e0730bdb3c9e7a8a5fa0276276fc3da5",
+                         "reauthError":  ""
+                     }
+                 ],
+    "summary":  {
+                    "totalAccounts":  4,
+                    "ready":  1,
+                    "oauthBlocked":  2,
+                    "iamBlocked":  0,
+                    "infraBlocked":  0,
+                    "enterpriseDegraded":  1
+                }
+}

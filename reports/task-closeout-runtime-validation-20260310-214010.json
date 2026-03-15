@@ -1,0 +1,100 @@
+﻿{
+    "generatedAt":  "2026-03-10T21:42:24.6569814-03:00",
+    "baseUrl":  "http://127.0.0.1:4781",
+    "project":  "winged-complex-390417",
+    "notebook":  {
+                     "account":  "p*********@gmail.com",
+                     "location":  "global",
+                     "jobId":  "",
+                     "status":  "",
+                     "enterpriseReady":  false,
+                     "access":  "",
+                     "requiredSubscriptionTier":  "",
+                     "blockers":  [
+
+                                  ],
+                     "error":  "O tempo limite da operação foi atingido."
+                 },
+    "runtime":  {
+                    "healthOk":  false,
+                    "healthError":  "O tempo limite da operação foi atingido.",
+                    "queue":  {
+                                  "queued":  0,
+                                  "running":  2,
+                                  "total":  12,
+                                  "concurrency":  2
+                              },
+                    "jobsListed":  12,
+                    "jobsError":  ""
+                },
+    "slack":  {
+                  "enabled":  true,
+                  "configured":  true,
+                  "tokenSource":  "env",
+                  "connectionError":  "",
+                  "policyAllowedWorkspaces":  [
+
+                                              ],
+                  "statusError":  "",
+                  "reviewJobId":  "",
+                  "reviewStatus":  "",
+                  "reviewError":  ""
+              },
+    "google":  {
+                   "enabled":  false,
+                   "configured":  false,
+                   "allowlistedMissing":  [
+
+                                          ],
+                   "connectedAccountsCount":  0,
+                   "statusError":  "O tempo limite da operação foi atingido.",
+                   "consoleGate":  {
+                                       "statusLine":  "HTTP/1.1 302 Found",
+                                       "location":  "https://accounts.google.com/ServiceLogin",
+                                       "error":  ""
+                                   }
+               },
+    "phone":  {
+                  "bootstrapOk":  true,
+                  "bootstrapError":  "",
+                  "pushStatusOk":  true,
+                  "pushStatusError":  "",
+                  "pushSubscriptions":  0,
+                  "phoneTunnelSmoke":  {
+                                           "ok":  false,
+                                           "checkedAt":  "2026-03-11T00:42:21.5272576+00:00",
+                                           "reportPath":  "C:\\Users\\acer\\Asolaria\\reports\\phone-tunnel-smoke-20260310-214222.md",
+                                           "controlPlaneHealthy":  false,
+                                           "keeperRunning":  false,
+                                           "adbAuthorizedCount":  1,
+                                           "notes":  [
+                                                         "Local /api/health probe failed: O tempo limite da operação foi atingido.",
+                                                         "Local /api/mobile/bootstrap probe failed: O tempo limite da operação foi atingido.",
+                                                         "Remote base URL could not be resolved from bootstrap.",
+                                                         "Remote mobile console returned HTTP status 0."
+                                                     ]
+                                       },
+                  "phoneTunnelSmokeError":  ""
+              },
+    "ppo005":  {
+                   "johnCutoverScriptPath":  "/Users/john/dev/oli/scripts/phone_provider_cutover.sh",
+                   "johnCutoverTasksPath":  "/Users/john/dev/oli/ops/projects/oli-upgrade/subprojects/phone-provider-onboarding/tasks.json",
+                   "scriptExists":  false,
+                   "tasksExists":  false
+               },
+    "liveTranscript":  {
+                           "latestRealMeetingSummary":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260307-104917\\REALMEET_SUMMARY.md",
+                           "latestRealMeetingDir":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-realmeet-20260307-104917",
+                           "latestChecklist":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-real-meeting-checklist-20260307-1027.md",
+                           "latestPacket":  "C:\\Users\\acer\\Asolaria\\reports\\live-transcript-real-meeting-packet-20260307-1027.md"
+                       },
+    "blockers":  [
+                     "Runtime health not confirmed at http://127.0.0.1:4781/api/health.",
+                     "Google Console auth overview still redirects to sign-in (owner login required).",
+                     "NotebookLM Enterprise not ready.",
+                     "Phone push subscription count is 0; manual tap-through still pending.",
+                     "PPO-005 John runtime dependencies are not present on this machine.",
+                     "Security follow-up pending: rotate previously exposed password from historical logs/chat context.",
+                     "Real meeting transcript matrix remains manual: Zoom/Meet/Teams live-call validation still needed."
+                 ]
+}

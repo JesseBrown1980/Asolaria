@@ -1,0 +1,36 @@
+# Runtime and private state
+data/
+logs/
+captures/
+inbox/
+private/
+certs/
+runtime/
+quarantine/
+backups/
+tmp-http_ece/
+tmp-symphony-workspace-test/
+
+# Dependencies and local build artifacts
+node_modules/
+**/node_modules/
+dist/
+apps/dashboard/dist/
+
+# Generated reports and temp/debug files
+reports/
+tmp-*
+*.pid
+*.log
+*.tmp
+
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.public.example
+*.token
+*.token.txt
+*secret_id.txt
+*role_id.txt
+*vault.master.key
+*vault.secrets.json

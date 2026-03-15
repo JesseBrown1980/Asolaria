@@ -1,0 +1,16 @@
+{
+  "stamp": "2026-02-21T19-05-16-774Z",
+  "prompt": "Explain how to check disk usage on Windows in a practical way.",
+  "desktop": {
+    "totalMessages": 2,
+    "meta": "You",
+    "text": "Explain how to check disk usage on Windows in a practical way.",
+    "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-chat-test\\desktop-chat-2026-02-21T19-05-16-774Z.png"
+  },
+  "mobile": {
+    "chatStatus": "Completed (24355ms, provider=codex; tried=codex): Practical approach on Windows:\n\n1. Check free space fast  \nOpen **File Explorer → This PC** and look at each drive bar (`C:`, `D:`, etc.).\n\n2. See what is using space (built-in)",
+    "jobMeta": "id:job_1771700722638_w62h7f | type:brain | status:completed | elapsedMs:24355",
+    "jobBox": "{\n  \"provider\": \"codex\",\n  \"providersTried\": [\n    \"codex\"\n  ],\n  \"reply\": \"Practical approach on Windows:\\n\\n1. Check free space fast  \\nOpen **File Explorer → This PC** and look at each drive bar (`C:`, `D:`, etc.).\\n\\n2. See what is using space (built-in)  \\nOpen **Settings → System → Storage**.  \\nThis gives a breakdown (Apps, Temporary files, Documents, etc.) and is the best first stop.\\n\\n3. Use terminal (since you’re already in Windows Terminal)\\n\\n```powershell\\nGet-PSDrive -PSProvider FileSystem |\\nSelect-Object Name,\\n@{N='UsedGB';E={[math]::Round($_.Used/1GB,1)}},\\n@{N='FreeGB';E={[math]::Round($_.Free/1GB,1)}}\\n```\\n\\n4. Find biggest folders in your user profile\\n\\n```powershell\\nGet-ChildItem $env:USERPROFILE -Directory -Force |\\nForEach-Object {\\n  $size = (Get-ChildItem $_.FullName -Recurse -File -Force -ErrorAction SilentlyContinue |\\n    Measure-Object Length -Sum).Sum\\n  [PSCustomObject]@{Folder=$_.FullName; SizeGB=[math]::Round($size/1GB,2)}\\n} | Sort-Object SizeGB -Descending | Select-Object -First 15\\n```\\n\\n5. Clean up safely  \\nUse **Settings → Storage → Temporary files** first (safe and built-in).  \\n\\nIf you want, I can give you a “safe cleanup checklist” in 2 minutes (what to delete vs avoid).\",\n  \"approvals\": [],\n  \"imagesUsed\": [\n    \"C:\\\\Users\\\\acer\\\\Asolaria\\\\captures\\\\desktop\\\\desktop-latest.png\"\n  ]\n}",
+    "screenshot": "C:\\Users\\acer\\Asolaria\\reports\\ui-chat-test\\mobile-chat-2026-02-21T19-05-16-774Z.png"
+  }
+}
