@@ -33530,6 +33530,8 @@ async function startAsolariaServers() {
   app.listen(port, bindHost || undefined, () => {
     const hostLabel = bindHost || "0.0.0.0";
     console.log(`Asolaria is running on http://${hostLabel}:${port}`);
+    // Start self-watchdog for process supervision (Phase 1)
+    try { require("./lib/selfWatchdog").start({ intervalMs: 60000 }); } catch (_) {}
     void (async () => {
       try {
         await ensureLocalMqttBroker();
