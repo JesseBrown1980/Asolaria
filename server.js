@@ -20799,6 +20799,69 @@ require("./lib/guardian").init({
   notifyGuardianContacts, sendMobilePushNotification, clipText
 });
 
+// ── Server Context singleton init (Phase 3) — bundles ALL inline functions ──
+require("./lib/serverContext").init({
+  // Settings + state
+  settings, runtimeState, runtimeSecrets, toolPaths,
+  // Swarm
+  getAgentColonyStatus, buildSuperSwarmStatusSnapshot, buildSuperSwarmIntegrationSummary,
+  normalizeSuperSwarmMethod, normalizeSuperSwarmMission, normalizeSuperSwarmParticipants,
+  DEFAULT_SUPER_SWARM_PARTICIPANTS,
+  // Persistence
+  persistRuntimeSettingsSnapshot, addAssistantTurn, addUserTurn,
+  appendMistakeLedger, safeTaskLedger, createTaskLedgerTask, addTaskLedgerEvent,
+  startTaskLedgerJobMonitor, updateTaskLedgerTask,
+  // Notebook + memory
+  addNotebookNote, updateNotebookNote, deleteNotebookNote, getNotebookState,
+  searchNotebookNotes, runNotebookMaintenance, withNotebookNoteDisplay,
+  hasNotebookDeleteApprovalToken, EXPLICIT_DELETE_APPROVAL,
+  getMemoryState, searchTurns, buildMemoryCompactionProposal, applyMemoryCompaction,
+  clearMemory, hasMemoryCompactionApprovalToken, hasMemoryClearApprovalToken,
+  withMemoryTurnDisplay, listConversationSummaries, getConversationTurns, normalizeConversationId,
+  readNotebookMirrorState, normalizeEmailKey, enqueueNotebookGoogleMirrorSync,
+  // Providers
+  getExternalModelSettingsSnapshot, normalizeExternalProviderId,
+  setExternalDefaultModel, clearObservedProviderModels, clearAllObservedProviderModels,
+  pruneObservedProviderModels, pruneAllObservedProviderModels, normalizeObservedPruneDays,
+  resolveConfiguredCodexRunProfile, enqueueCodex, enqueueConfiguredCodexRun,
+  enqueueOpenAiModelLocked, enqueueExternalProvider,
+  OPENAI_LOCKED_MODEL_MAP, MODEL_ALIAS_HINTS, EXTERNAL_PROVIDER_SETTING_KEYS,
+  EXTERNAL_PROVIDER_LIMIT_COOLDOWN_MS, buildModelAliasCatalog,
+  getExternalProviderCooldownSnapshot, normalizeOpenAiLockedModel,
+  // Skills
+  getSkillRegistry, listSkillSummaries, getSkillDefinition, reloadSkillRegistry,
+  discoverCodexSkills, normalizeLevel, buildMistakeAvoidanceHints,
+  readSkillsToolsIndex, rebuildSkillsToolsIndex, getSkillsToolsIndexPath, enqueueSkillRun,
+  // Browser + chrome
+  enqueueBrowserTask, enqueueChromeInspect, enqueueScreenshot,
+  launchChromeUrl, launchChromeInUiSlot, launchStealthSimulationUrl,
+  resolveStealthSimulationTarget, normalizeChromeWindowTarget, listManagedChromeProfiles,
+  compileFormChannelBrowserTaskPayload, compileChatChannelBrowserTaskPayload,
+  // Work context + policy
+  resolveWorkContextFromRequest, enforceWorkLinkPolicyForUrl, enforceRestrictedOrgVpnGate,
+  combinePolicyWarnings, enforceWorkLinkPolicyForBrowserTask, requestedChannel,
+  getWorkOrgPolicySummary, getWorkLinkPolicySummary, setActiveWorkOrg, getConnectionRoutingState,
+  noteChannelHeartbeat, normalizeChannels, sanitizeRemoteBaseUrl, normalizeWorkOrgKey, workOrgPolicy,
+  // Local ops
+  enqueueLocalOpsRun, localOpsPolicy, browserTaskPolicy,
+  // Auth helpers
+  verifyMobileToken, resolveDesktopSuperMasterAccess, resolveScreenViewerAccess,
+  maskSensitive, clipText, denyRemoteRequest,
+  // Policies
+  googlePolicy, getMobileControlSummary, getBrainLeaderRuntimeSummary, getModelAuditRuntimeSummary,
+  // Runtime actions
+  buildMobileBootstrapPayload, buildMobileImageUrl, buildMobileInboxState,
+  captureDesktopState, getDesktopCaptureSummary, getDesktopDisplayTopology,
+  captureSummaryRequiresTrustedViewer, listDesktopDisplays, resolveRemoteBaseUrl,
+  getPhoneBridgeKeeperStatus, getPhoneTunnelMonitorStatus,
+  armMobileControl, disarmMobileControl, normalizeControlPoint, invokeDesktopInput,
+  openAsolariaUiTarget, cleanupManagedChromeWindows, getWolConfigSummary,
+  // Push + approvals
+  upsertSubscription, removeSubscriptionByEndpoint, removeSubscriptionsByTokenHash, getStoreSummary,
+  decideApproval, getApprovalById, markApprovalUsed, resumeApprovedRequest,
+  syncApprovalDecisionToTaskLedger, rotateMobileApprovalToken, sendMobilePushNotification
+});
+
 async function runRoutedIntent(message) {
   const routed = routeIntent(message);
   if (!routed.matched) {
