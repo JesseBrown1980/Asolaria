@@ -3041,6 +3041,18 @@ settings.mistakeTaxonomyArchiveDays = Math.max(7, Math.min(3650, Number(settings
 settings.mistakeHintsMax = settings.mistakeTaxonomyHintsMax;
 settings.mistakeArchiveMaxIdleDays = settings.mistakeTaxonomyArchiveDays;
 
+// ── Settings singleton init (Phase 3) — makes settings importable by route modules ──
+require("./lib/settings").init(settings);
+// ── Guardian init (Phase 3) — makes evaluateGuardianGuard importable by route modules ──
+// Note: guardian.init() must be called AFTER all guardian deps are defined (around line 20600+)
+// We defer this to after the function definitions below.
+// ── Work context init (Phase 3) — makes policy helpers importable by route modules ──
+require("./lib/workContext").init({
+  resolveWorkOrgContext, normalizeWorkOrgKey, workOrgPolicy, workLinkPolicy,
+  hardRestrictedWorkOrgVpnRequired, workOrgHardVpnWarnOnly,
+  configuredWorkOrgVpnLocationHint, getConnectionRoutingState
+});
+
 function buildPersistedRuntimeSettingsSnapshot() {
   return {
     costMode: asEnum(settings.costMode, ["low", "balanced", "quality"], "low"),
@@ -20746,6 +20758,14 @@ async function evaluateGuardianGuard({ message, routed, source }) {
   };
 }
 
+// ── Guardian lib init (deferred — all deps now defined) ──
+require("./lib/guardian").init({
+  evaluateRisk, normalizeLevel, isLevelAtOrAbove,
+  consumeApprovedOverride, decideGuardianAction, shouldNotifyGuardian,
+  createApprovalRequest, buildRemoteApprovalUrl,
+  notifyGuardianContacts, sendMobilePushNotification, clipText
+});
+
 async function runRoutedIntent(message) {
   const routed = routeIntent(message);
   if (!routed.matched) {
@@ -28698,6 +28718,9 @@ app.use("/api/vault", requireLoopbackOnly, require("./routes/vault"));
 app.use("/api", requireLoopbackOnly, require("./routes/misc")({ getNatural20DailyDigest, serverDir: __dirname }));
 app.use("/api/gateway", require("./routes/gateway")({ callGatewayControlApi, isLoopbackRequest }));
 app.use("/api/worker-router", requireLoopbackOnly, require("./routes/workerRouter"));
+app.use("/api/integrations", requireLoopbackOnly, require("./routes/integrationConfig")({
+  setSlackConfig, setGithubConfig, setVertexConfig, vertexPolicy
+}));
 app.use("/api/integrations", require("./routes/integrationStatus")({
   getGithubIntegrationStatus, githubPolicy,
   getSymphonyIntegrationStatus, fetchSymphonyLiveState,
@@ -29870,47 +29893,7 @@ app.post("/api/integrations/mqtt/publish", requireLoopbackOnly, async (req, res)
 
 // ── Slack status extracted to routes/integrationStatus.js ──
 
-app.post("/api/integrations/slack/config", async (req, res) => {
-  try {
-    if (!isLoopbackRequest(req)) {
-      return respondError(res, "Slack configuration is only allowed from local loopback.", 403);
-    }
-
-    const clear = asBool(req.body?.clear, false);
-    const token = String(req.body?.botToken || req.body?.token || "").trim();
-    const defaultChannel = String(req.body?.defaultChannel || "").trim();
-    const guardian = await evaluateGuardianGuard({
-      message: clear
-        ? "Slack integration settings clear request"
-        : `Slack integration settings update request${defaultChannel ? ` defaultChannel=${defaultChannel}` : ""}`,
-      routed: { action: "slack_config" },
-      source: "api.integrations.slack.config"
-    });
-    if (guardian.triggered && guardian.blocked) {
-      const approvalHint = guardian.approvalRequest?.id
-        ? ` Approval ID ${guardian.approvalRequest.id}. Use APPROVE ${guardian.approvalRequest.id} to allow once.`
-        : "";
-      return respondError(
-        res,
-        `Guardian blocked Slack config update (${guardian.risk.level}). ${guardian.decision?.text || ""}${approvalHint}`.trim(),
-        403
-      );
-    }
-
-    const config = setSlackConfig({
-      clear,
-      botToken: token,
-      defaultChannel
-    });
-    return res.json({
-      ok: true,
-      config,
-      guardian
-    });
-  } catch (error) {
-    return respondError(res, error, 400);
-  }
-});
+// ── Slack config extracted to routes/integrationConfig.js (ADR-0001 Phase 3) ──
 
 app.get("/api/integrations/telegram/status", async (_req, res) => {
   try {
@@ -30211,52 +30194,7 @@ app.get("/api/integrations/github/repos", async (req, res) => {
   }
 });
 
-app.post("/api/integrations/github/config", async (req, res) => {
-  try {
-    if (!isLoopbackRequest(req)) {
-      return respondError(res, "GitHub configuration is only allowed from local loopback.", 403);
-    }
-
-    const clear = asBool(req.body?.clear, false);
-    const token = String(req.body?.token || req.body?.pat || req.body?.apiKey || "").trim();
-    const baseUrl = String(req.body?.baseUrl || req.body?.apiBaseUrl || "").trim();
-    const defaultOwner = String(req.body?.defaultOwner || "").trim();
-    const defaultRepo = String(req.body?.defaultRepo || "").trim();
-
-    const guardian = await evaluateGuardianGuard({
-      message: clear
-        ? "GitHub integration settings clear request"
-        : `GitHub integration settings update request${defaultOwner ? ` defaultOwner=${defaultOwner}` : ""}${defaultRepo ? ` defaultRepo=${defaultRepo}` : ""}`,
-      routed: { action: "github_config" },
-      source: "api.integrations.github.config"
-    });
-    if (guardian.triggered && guardian.blocked) {
-      const approvalHint = guardian.approvalRequest?.id
-        ? ` Approval ID ${guardian.approvalRequest.id}. Use APPROVE ${guardian.approvalRequest.id} to allow once.`
-        : "";
-      return respondError(
-        res,
-        `Guardian blocked GitHub config update (${guardian.risk.level}). ${guardian.decision?.text || ""}${approvalHint}`.trim(),
-        403
-      );
-    }
-
-    const config = setGithubConfig({
-      clear,
-      token,
-      baseUrl,
-      defaultOwner,
-      defaultRepo
-    });
-    return res.json({
-      ok: true,
-      config,
-      guardian
-    });
-  } catch (error) {
-    return respondError(res, error, inferHttpStatusForError(error, 400));
-  }
-});
+// ── GitHub config extracted to routes/integrationConfig.js (ADR-0001 Phase 3) ──
 
 app.post("/api/integrations/augment-context/config", async (req, res) => {
   try {
@@ -31952,53 +31890,7 @@ app.post("/api/integrations/gcp/config/import_latest_download", async (req, res)
   }
 });
 
-app.post("/api/integrations/vertex/config", async (req, res) => {
-  try {
-    if (!isLoopbackRequest(req)) {
-      return respondError(res, "Vertex integration configuration is only allowed from local loopback.", 403);
-    }
-    if (!vertexPolicy.enabled) {
-      return respondError(res, "Vertex integration is disabled by policy.", 403);
-    }
-
-    const clear = asBool(req.body?.clear, false);
-    const enabled = req.body?.enabled === undefined ? undefined : asBool(req.body?.enabled, true);
-    const project = String(req.body?.project || req.body?.defaultProject || req.body?.projectId || "").trim();
-    const location = String(req.body?.location || "").trim();
-    const model = String(req.body?.model || "").trim();
-
-    const guardian = await evaluateGuardianGuard({
-      message: clear ? "Vertex integration settings clear request" : "Vertex integration settings update request",
-      routed: { action: "vertex_config" },
-      source: "api.integrations.vertex.config"
-    });
-    if (guardian.triggered && guardian.blocked) {
-      const approvalHint = guardian.approvalRequest?.id
-        ? ` Approval ID ${guardian.approvalRequest.id}. Use APPROVE ${guardian.approvalRequest.id} to allow once.`
-        : "";
-      return respondError(
-        res,
-        `Guardian blocked Vertex config update (${guardian.risk.level}). ${guardian.decision?.text || ""}${approvalHint}`.trim(),
-        403
-      );
-    }
-
-    const config = setVertexConfig({
-      clear,
-      enabled,
-      project,
-      location,
-      model
-    });
-    return res.json({
-      ok: true,
-      config,
-      guardian
-    });
-  } catch (error) {
-    return respondError(res, error, 400);
-  }
-});
+// ── Vertex config extracted to routes/integrationConfig.js (ADR-0001 Phase 3) ──
 
 // ── Gemini API status extracted to routes/integrationStatus.js ──
 
