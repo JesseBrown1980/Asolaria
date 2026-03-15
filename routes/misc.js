@@ -7,8 +7,20 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 const { asBool, respondError } = require("../lib/helpers");
+const settings = require("../lib/settings");
 
-function createMiscRouter({ getNatural20DailyDigest, serverDir }) {
+function createMiscRouter({ getNatural20DailyDigest, serverDir, buildInstallProbe, toolPaths, publicProfileEnabled }) {
+
+  router.get("/settings", (_req, res) => {
+    res.json({ ok: true, settings: settings.get() });
+  });
+
+  router.get("/install/probe", (_req, res) => {
+    try {
+      const probe = buildInstallProbe({ toolPaths, settings: settings.get(), publicProfileEnabled });
+      res.json(probe);
+    } catch (error) { return respondError(res, error, 500); }
+  });
 
   router.get("/daily-sites/natural20", async (req, res) => {
     try {

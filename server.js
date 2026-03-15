@@ -23256,25 +23256,7 @@ app.get("/api/health", async (req, res) => {
   res.json(payload);
 });
 
-app.get("/api/install/probe", (_req, res) => {
-  try {
-    const probe = buildInstallProbe({
-      toolPaths,
-      settings,
-      publicProfileEnabled
-    });
-    res.json(probe);
-  } catch (error) {
-    respondError(res, error, 500);
-  }
-});
-
-app.get("/api/settings", (_req, res) => {
-  res.json({
-    ok: true,
-    settings
-  });
-});
+// ── Install probe + settings GET extracted to routes/misc.js (ADR-0001 Phase 3) ──
 
 app.post("/api/startup/brain-leader/run", async (req, res) => {
   try {
@@ -23385,40 +23367,7 @@ app.post("/api/asolaria/runtime-actions/run", requirePhoneBridgeAccess, requireD
 
 // ── Personas routes extracted to routes/personas.js (ADR-0001 Phase 3) ──
 
-app.get("/api/automation/model-audit/status", (_req, res) => {
-  res.json({
-    ok: true,
-    modelAudit: getModelAuditRuntimeSummary()
-  });
-});
-
-app.post("/api/automation/model-audit/run", requireLoopbackOnly, async (req, res) => {
-  try {
-    const reason = String(req.body?.reason || "manual_api").trim() || "manual_api";
-    const result = await runModelAuditJob({ reason });
-    const rearmScheduler = asBool(req.body?.rearmScheduler, true);
-    if (rearmScheduler) {
-      syncModelAuditScheduler({
-        reason: "manual_run_rearm",
-        log: false
-      });
-    }
-    return res.json({
-      ok: Boolean(result?.ok),
-      result,
-      modelAudit: getModelAuditRuntimeSummary()
-    });
-  } catch (error) {
-    return respondError(res, error, inferHttpStatusForError(error, 500));
-  }
-});
-
-app.get("/api/automation/brain-leader/status", (_req, res) => {
-  return res.json({
-    ok: true,
-    brainLeader: getBrainLeaderRuntimeSummary()
-  });
-});
+// ── Automation model-audit + brain-leader extracted to routes/automation.js (ADR-0001 Phase 3) ──
 
 app.post("/api/automation/brain-leader/select", requireLoopbackOnly, async (req, res) => {
   try {
@@ -28560,9 +28509,13 @@ app.use("/api/admin-terminals", requireLoopbackOnly, require("./routes/adminTerm
 app.use("/api/task-ledger", requireLoopbackOnly, require("./routes/taskLedger")({ respondError, inferHttpStatusForError }));
 app.use("/api/jobs", requireLoopbackOnly, require("./routes/jobs"));
 app.use("/api/vault", requireLoopbackOnly, require("./routes/vault"));
-app.use("/api", requireLoopbackOnly, require("./routes/misc")({ getNatural20DailyDigest, serverDir: __dirname }));
+app.use("/api", requireLoopbackOnly, require("./routes/misc")({ getNatural20DailyDigest, serverDir: __dirname, buildInstallProbe, toolPaths, publicProfileEnabled }));
 app.use("/api/gateway", require("./routes/gateway")({ callGatewayControlApi, isLoopbackRequest }));
 app.use("/api/worker-router", requireLoopbackOnly, require("./routes/workerRouter"));
+app.use("/api/automation", requireLoopbackOnly, require("./routes/automation")({
+  getModelAuditRuntimeSummary, runModelAuditJob, syncModelAuditScheduler,
+  getBrainLeaderRuntimeSummary
+}));
 app.use("/api", require("./routes/company")({
   buildCompanyMissionPayload, buildCompanyPrimarySigninSummaryPayload,
   getCompanyPrimarySigninSummary, migrateLegacyCompanyPrimarySigninSecret,
