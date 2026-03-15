@@ -28578,7 +28578,9 @@ app.use("/api/guardian", require("./routes/guardian")({
 }));
 app.use("/api/integrations", requireLoopbackOnly, require("./routes/integrationOps")({
   submitSymphonyWorkItem, startSymphonyService, stopSymphonyService, restartSymphonyService,
-  getAbacusWorkPacket
+  getAbacusWorkPacket,
+  enqueueGmailInbox, enqueueGmailSearch, enqueueCalendarList, enqueueCalendarUpcoming, googlePolicy,
+  runGeminiApiEmbedContent, geminiApiPolicy
 }));
 app.use("/api/integrations", requireLoopbackOnly, require("./routes/integrationConfig")({
   setSlackConfig, setGithubConfig, setVertexConfig, vertexPolicy,
@@ -31446,39 +31448,7 @@ app.post("/api/integrations/gcp/config/import_latest_download", async (req, res)
 
 // ── Gemini API status extracted to routes/integrationStatus.js ──
 
-app.post("/api/integrations/gemini_api/embed", async (req, res) => {
-  try {
-    if (!isLoopbackRequest(req)) {
-      return respondError(res, "Gemini API embedding requests are only allowed from local loopback.", 403);
-    }
-    const result = await runGeminiApiEmbedContent({
-      model: req.body?.model,
-      taskType: req.body?.taskType,
-      outputDimensionality: req.body?.outputDimensionality,
-      content: req.body?.content,
-      contents: req.body?.contents,
-      items: req.body?.items,
-      parts: req.body?.parts,
-      title: req.body?.title,
-      text: req.body?.text,
-      prompt: req.body?.prompt,
-      message: req.body?.message
-    }, geminiApiPolicy);
-    return res.json({
-      ok: true,
-      result: {
-        model: result.model,
-        taskType: result.taskType,
-        outputDimensionality: result.outputDimensionality,
-        count: Array.isArray(result.embeddings) ? result.embeddings.length : 0,
-        dimensions: Array.isArray(result.embeddings?.[0]) ? result.embeddings[0].length : 0,
-        embeddings: result.embeddings
-      }
-    });
-  } catch (error) {
-    return respondError(res, error, 400);
-  }
-});
+// ── Gemini API embed extracted to routes/integrationOps.js (ADR-0001 Phase 3) ──
 
 app.post("/api/integrations/gemini_api/explain-file", requireLoopbackOnly, async (req, res) => {
   try {
@@ -32892,84 +32862,7 @@ app.get("/api/integrations/hubspot/oauth/callback", async (req, res) => {
   }
 });
 
-app.get("/api/integrations/gmail/inbox", async (req, res) => {
-  try {
-    if (!googlePolicy.enabled) {
-      return respondError(res, "Google integration is disabled by policy.", 403);
-    }
-    const account = String(req.query?.account || req.query?.email || "").trim();
-    const limit = asInt(req.query?.limit, 12, 1, googlePolicy.maxMessages);
-    const job = enqueueGmailInbox({ account, limit });
-    return res.json({
-      ok: true,
-      ...queueReply(job, `Queued Gmail inbox job ${job.id}.`)
-    });
-  } catch (error) {
-    return respondError(res, error, 400);
-  }
-});
-
-app.get("/api/integrations/gmail/search", async (req, res) => {
-  try {
-    if (!googlePolicy.enabled) {
-      return respondError(res, "Google integration is disabled by policy.", 403);
-    }
-    const account = String(req.query?.account || req.query?.email || "").trim();
-    const q = String(req.query?.q || req.query?.query || "").trim();
-    if (!q) {
-      return respondError(res, "q is required.", 400);
-    }
-    const limit = asInt(req.query?.limit, 12, 1, googlePolicy.maxMessages);
-    const job = enqueueGmailSearch({ account, q, limit });
-    return res.json({
-      ok: true,
-      ...queueReply(job, `Queued Gmail search job ${job.id}.`)
-    });
-  } catch (error) {
-    return respondError(res, error, 400);
-  }
-});
-
-app.get("/api/integrations/calendar/list", async (req, res) => {
-  try {
-    if (!googlePolicy.enabled) {
-      return respondError(res, "Google integration is disabled by policy.", 403);
-    }
-    const account = String(req.query?.account || req.query?.email || "").trim();
-    const limit = asInt(req.query?.limit, 50, 1, 250);
-    const job = enqueueCalendarList({ account, limit });
-    return res.json({
-      ok: true,
-      ...queueReply(job, `Queued Calendar list job ${job.id}.`)
-    });
-  } catch (error) {
-    return respondError(res, error, 400);
-  }
-});
-
-app.get("/api/integrations/calendar/upcoming", async (req, res) => {
-  try {
-    if (!googlePolicy.enabled) {
-      return respondError(res, "Google integration is disabled by policy.", 403);
-    }
-    const account = String(req.query?.account || req.query?.email || "").trim();
-    const calendarId = String(req.query?.calendarId || "primary").trim() || "primary";
-    const days = asInt(req.query?.days, 7, 1, 60);
-    const limit = asInt(req.query?.limit, 20, 1, googlePolicy.maxCalendarEvents);
-    const job = enqueueCalendarUpcoming({
-      account,
-      calendarId,
-      days,
-      limit
-    });
-    return res.json({
-      ok: true,
-      ...queueReply(job, `Queued Calendar upcoming job ${job.id}.`)
-    });
-  } catch (error) {
-    return respondError(res, error, 400);
-  }
-});
+// ── Gmail/Calendar routes extracted to routes/integrationOps.js (ADR-0001 Phase 3) ──
 
 app.post("/api/chrome/open", async (req, res) => {
   try {
