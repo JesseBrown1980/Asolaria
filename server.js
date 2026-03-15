@@ -24082,25 +24082,7 @@ function buildCompanyPrimarySigninSummaryPayload() {
   };
 }
 
-app.get("/api/company/mission", (_req, res) => {
-  res.json(buildCompanyMissionPayload());
-});
-
-app.get("/api/moltbook/mission", (_req, res) => {
-  res.json(buildCompanyMissionPayload());
-});
-
-app.get("/api/company/account", (_req, res) => {
-  res.json(buildCompanyPrimarySigninSummaryPayload());
-});
-
-app.get("/api/company/primary-signin", (_req, res) => {
-  res.json(buildCompanyPrimarySigninSummaryPayload());
-});
-
-app.get("/api/moltbook/account", (_req, res) => {
-  res.json(buildCompanyPrimarySigninSummaryPayload());
-});
+// ── Company/Moltbook GET routes extracted to routes/company.js (ADR-0001 Phase 3) ──
 
 app.post("/api/company/primary-signin/migrate-legacy", async (req, res) => {
   try {
@@ -28578,6 +28560,12 @@ app.use("/api/vault", requireLoopbackOnly, require("./routes/vault"));
 app.use("/api", requireLoopbackOnly, require("./routes/misc")({ getNatural20DailyDigest, serverDir: __dirname }));
 app.use("/api/gateway", require("./routes/gateway")({ callGatewayControlApi, isLoopbackRequest }));
 app.use("/api/worker-router", requireLoopbackOnly, require("./routes/workerRouter"));
+app.use("/api", require("./routes/company")({
+  buildCompanyMissionPayload, buildCompanyPrimarySigninSummaryPayload,
+  getCompanyPrimarySigninSummary, migrateLegacyCompanyPrimarySigninSecret,
+  updateCompanyPrimarySignin, bootstrapCompanyPrimarySignin,
+  markCompanyPrimarySigninRegistered, revealCompanyPrimarySignin
+}));
 app.use("/api/guardian", require("./routes/guardian")({
   getGuardianStatusSummary, getGuardianAlertStats,
   readGuardianProfile, bootstrapGuardianProfile, updateGuardianProfile,
