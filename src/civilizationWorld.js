@@ -1279,6 +1279,51 @@ function buildCivilizationWorldState(input = {}) {
   };
 }
 
+// ── Phase 11: Security State for World Entities ──
+
+function computeSecurityState(entity, options = {}) {
+  const risk = entity.risk || {};
+  const score = Number(risk.score || 0);
+  const level = String(risk.level || "low").toLowerCase();
+
+  // Default: normal
+  let securityState = "normal";
+  let arrestReason = null;
+
+  // Quarantine: risk >= 7
+  if (score >= 7) {
+    securityState = "quarantined";
+  }
+
+  // Checking: risk 4-6 with hot flag
+  if (score >= 4 && score < 7 && entity.hot) {
+    securityState = "checking";
+  }
+
+  // Arrested: explicitly blocked by guardian (passed via options)
+  if (options.guardianBlocked) {
+    securityState = "arrested";
+    arrestReason = options.arrestReason || "guardian_blocked";
+  }
+
+  return {
+    securityState,
+    arrestReason,
+    quarantineSince: securityState === "quarantined" ? new Date().toISOString() : null,
+    approvalId: options.approvalId || null,
+    riskColor: score <= 2 ? "green" : score <= 5 ? "yellow" : score <= 7 ? "orange" : "red"
+  };
+}
+
+function enrichEntityWithSecurity(entity, options = {}) {
+  return {
+    ...entity,
+    ...computeSecurityState(entity, options)
+  };
+}
+
 module.exports = {
-  buildCivilizationWorldState
+  buildCivilizationWorldState,
+  computeSecurityState,
+  enrichEntityWithSecurity
 };
