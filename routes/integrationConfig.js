@@ -82,6 +82,44 @@ function createIntegrationConfigRouter(ctx) {
     } catch (error) { return respondError(res, error, 400); }
   });
 
+  // Microsoft
+  router.post("/microsoft/config", requirePermission("admin"), guardedConfig("Microsoft", async (req, { clear }) => {
+    const body = req.body || {};
+    const has = (k) => Object.prototype.hasOwnProperty.call(body, k);
+    return ctx.setMicrosoftOAuthConfig({
+      clear,
+      tenant: String(body.tenant || body.directory || "organizations").trim(),
+      clientId: String(body.clientId || body.appId || "").trim(),
+      allowedAccounts: has("allowedAccounts") ? (Array.isArray(body.allowedAccounts) ? body.allowedAccounts : String(body.allowedAccounts || "").trim()) : undefined,
+      scopes: (has("scopes") || has("oauthScopes")) ? (Array.isArray(body.scopes) ? body.scopes : Array.isArray(body.oauthScopes) ? body.oauthScopes : String(body.scopes || body.oauthScopes || "").trim()) : undefined
+    });
+  }));
+
+  // Atlassian
+  router.post("/atlassian/config", requirePermission("admin"), guardedConfig("Atlassian", async (req, { clear }) => {
+    const body = req.body || {};
+    const has = (k) => Object.prototype.hasOwnProperty.call(body, k);
+    return ctx.setAtlassianOAuthConfig({
+      clear,
+      clientId: String(body.clientId || "").trim(),
+      clientSecret: String(body.clientSecret || "").trim(),
+      allowedAccounts: has("allowedAccounts") ? (Array.isArray(body.allowedAccounts) ? body.allowedAccounts : String(body.allowedAccounts || "").trim()) : undefined,
+      scopes: (has("scopes") || has("oauthScopes")) ? (Array.isArray(body.scopes) ? body.scopes : Array.isArray(body.oauthScopes) ? body.oauthScopes : String(body.scopes || body.oauthScopes || "").trim()) : undefined
+    });
+  }));
+
+  // HubSpot
+  router.post("/hubspot/config", requirePermission("admin"), guardedConfig("HubSpot", async (req, { clear }) => {
+    const body = req.body || {};
+    const has = (k) => Object.prototype.hasOwnProperty.call(body, k);
+    return ctx.setHubSpotOAuthConfig({
+      clear,
+      clientId: String(body.clientId || "").trim(),
+      clientSecret: String(body.clientSecret || "").trim(),
+      scopes: (has("scopes") || has("oauthScopes")) ? (Array.isArray(body.scopes) ? body.scopes : Array.isArray(body.oauthScopes) ? body.oauthScopes : String(body.scopes || body.oauthScopes || "").trim()) : undefined
+    });
+  }));
+
   return router;
 }
 
