@@ -3974,6 +3974,9 @@ const runtimeState = {
     }
   }
 };
+// ── Runtime state singleton init (Phase 3) ──
+require("./lib/runtimeState").init(runtimeState);
+
 const taskLedgerRuntime = {
   jobMonitorById: new Map(),
   approvalTaskById: new Map()
