@@ -3,6 +3,22 @@ const fs = require("fs");
 const http = require("http");
 const https = require("https");
 const path = require("path");
+
+// ── Dan's hooks: process-level safety net (prevents route crashes from killing server) ──
+process.on("uncaughtException", (error) => {
+  console.error("[SAFETY] Uncaught exception (server kept alive):", error?.message || error);
+  try {
+    require("./src/graphRuntimeStore").appendGraphEvent({
+      component: "safety_net", category: "process", action: "uncaught_exception",
+      actor: { type: "runtime", id: "asolaria-core" },
+      context: { error: String(error?.message || error).slice(0, 500) },
+      risk: { score: 7, level: "high", reasons: ["uncaught_exception"] }
+    });
+  } catch (_) {}
+});
+process.on("unhandledRejection", (reason) => {
+  console.error("[SAFETY] Unhandled rejection (server kept alive):", reason?.message || reason);
+});
 const crypto = require("crypto");
 const os = require("os");
 const childProcess = require("child_process");
@@ -23462,7 +23478,43 @@ app.use("/api/mobile", require("./routes/mobile")({
 app.use("/api/phone", require("./routes/phone")({}));
 app.use("/api/voice", require("./routes/voice")({}));
 app.use("/api/integrations", require("./routes/integrationsRemaining")({}));
-app.use("/api", require("./routes/remaining")({}));
+app.use("/api", require("./routes/remaining")({
+  getAgentColonyStatus, buildSuperSwarmStatusSnapshot, buildSuperSwarmIntegrationSummary,
+  normalizeSuperSwarmMethod, normalizeSuperSwarmMission, normalizeSuperSwarmParticipants,
+  persistRuntimeSettingsSnapshot, DEFAULT_SUPER_SWARM_PARTICIPANTS,
+  addAssistantTurn, addUserTurn, clipText, denyRemoteRequest,
+  appendMistakeLedger, safeTaskLedger, createTaskLedgerTask, addTaskLedgerEvent,
+  startTaskLedgerJobMonitor, updateTaskLedgerTask,
+  getExternalModelSettingsSnapshot, normalizeExternalProviderId,
+  setExternalDefaultModel, clearObservedProviderModels, clearAllObservedProviderModels,
+  pruneObservedProviderModels, pruneAllObservedProviderModels, normalizeObservedPruneDays,
+  resolveConfiguredCodexRunProfile, enqueueCodex, enqueueConfiguredCodexRun,
+  enqueueOpenAiModelLocked, enqueueExternalProvider, enqueueBrowserTask, enqueueChromeInspect,
+  enqueueScreenshot, enqueueSkillRun, enqueueLocalOpsRun,
+  OPENAI_LOCKED_MODEL_MAP, MODEL_ALIAS_HINTS, EXTERNAL_PROVIDER_SETTING_KEYS,
+  EXTERNAL_PROVIDER_LIMIT_COOLDOWN_MS, buildModelAliasCatalog,
+  getExternalProviderCooldownSnapshot, normalizeOpenAiLockedModel,
+  getSkillRegistry, listSkillSummaries, getSkillDefinition, reloadSkillRegistry,
+  discoverCodexSkills, normalizeLevel, buildMistakeAvoidanceHints,
+  readSkillsToolsIndex, rebuildSkillsToolsIndex, getSkillsToolsIndexPath,
+  addNotebookNote, updateNotebookNote, deleteNotebookNote, getNotebookState,
+  searchNotebookNotes, runNotebookMaintenance, withNotebookNoteDisplay,
+  hasNotebookDeleteApprovalToken, EXPLICIT_DELETE_APPROVAL,
+  getMemoryState, searchTurns, buildMemoryCompactionProposal, applyMemoryCompaction,
+  clearMemory, hasMemoryCompactionApprovalToken, hasMemoryClearApprovalToken,
+  withMemoryTurnDisplay, listConversationSummaries, getConversationTurns, normalizeConversationId,
+  resolveWorkContextFromRequest, enforceWorkLinkPolicyForUrl, enforceRestrictedOrgVpnGate,
+  combinePolicyWarnings, enforceWorkLinkPolicyForBrowserTask, requestedChannel,
+  launchChromeUrl, launchChromeInUiSlot, launchStealthSimulationUrl,
+  resolveStealthSimulationTarget, normalizeChromeWindowTarget, listManagedChromeProfiles,
+  compileFormChannelBrowserTaskPayload, compileChatChannelBrowserTaskPayload,
+  localOpsPolicy, browserTaskPolicy, toolPaths,
+  verifyMobileToken, resolveDesktopSuperMasterAccess, resolveScreenViewerAccess,
+  getWorkOrgPolicySummary, getWorkLinkPolicySummary, setActiveWorkOrg, getConnectionRoutingState,
+  noteChannelHeartbeat, normalizeChannels, sanitizeRemoteBaseUrl, normalizeWorkOrgKey, workOrgPolicy,
+  readNotebookMirrorState, normalizeEmailKey, googlePolicy, enqueueNotebookGoogleMirrorSync,
+  getBrainLeaderRuntimeSummary, getModelAuditRuntimeSummary
+}));
 // ── End Extracted Routes ────────────────────────────────────────────────
 
 // ── Jobs routes extracted to routes/jobs.js (ADR-0001 Phase 3) ──
@@ -23649,6 +23701,22 @@ async function startAsolariaServers() {
   }
   process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
   process.on("SIGINT", () => gracefulShutdown("SIGINT"));
+
+  // ── Dan's hooks: Express error boundary (catches route handler crashes) ──
+  app.use((err, _req, res, _next) => {
+    console.error("[SAFETY] Route error caught:", err?.message || err);
+    try {
+      require("./src/graphRuntimeStore").appendGraphEvent({
+        component: "safety_net", category: "route", action: "route_error",
+        actor: { type: "runtime", id: "asolaria-core" },
+        context: { error: String(err?.message || err).slice(0, 500), stack: String(err?.stack || "").slice(0, 300) },
+        risk: { score: 5, level: "high", reasons: ["route_handler_error"] }
+      });
+    } catch (_) {}
+    if (!res.headersSent) {
+      res.status(500).json({ ok: false, error: "Internal server error." });
+    }
+  });
 
   const minimalStartupMode = readEnvBool(process.env.ASOLARIA_MINIMAL_STARTUP_MODE, true);
   const rawProbePort = Number(process.env.ASOLARIA_RAW_PROBE_PORT || 4782);

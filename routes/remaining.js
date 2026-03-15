@@ -25,7 +25,43 @@ function createRemainingRouter(ctx) {
     delete: (p, ...h) => router.delete(p, ...h),
     options: (p, ...h) => { try { router.options(p, ...h); } catch(_) {} }
   };
-  const deps = ctx;
+  const {
+    getAgentColonyStatus, buildSuperSwarmStatusSnapshot, buildSuperSwarmIntegrationSummary,
+    normalizeSuperSwarmMethod, normalizeSuperSwarmMission, normalizeSuperSwarmParticipants,
+    persistRuntimeSettingsSnapshot, DEFAULT_SUPER_SWARM_PARTICIPANTS,
+    addAssistantTurn, addUserTurn, clipText, denyRemoteRequest,
+    appendMistakeLedger, safeTaskLedger, createTaskLedgerTask, addTaskLedgerEvent,
+    startTaskLedgerJobMonitor, updateTaskLedgerTask,
+    getExternalModelSettingsSnapshot, normalizeExternalProviderId,
+    setExternalDefaultModel, clearObservedProviderModels, clearAllObservedProviderModels,
+    pruneObservedProviderModels, pruneAllObservedProviderModels, normalizeObservedPruneDays,
+    resolveConfiguredCodexRunProfile, enqueueCodex, enqueueConfiguredCodexRun,
+    enqueueOpenAiModelLocked, enqueueExternalProvider, enqueueBrowserTask, enqueueChromeInspect,
+    enqueueScreenshot, enqueueSkillRun, enqueueLocalOpsRun,
+    OPENAI_LOCKED_MODEL_MAP, MODEL_ALIAS_HINTS, EXTERNAL_PROVIDER_SETTING_KEYS,
+    EXTERNAL_PROVIDER_LIMIT_COOLDOWN_MS, buildModelAliasCatalog,
+    getExternalProviderCooldownSnapshot, normalizeOpenAiLockedModel,
+    getSkillRegistry, listSkillSummaries, getSkillDefinition, reloadSkillRegistry,
+    discoverCodexSkills, normalizeLevel, buildMistakeAvoidanceHints,
+    readSkillsToolsIndex, rebuildSkillsToolsIndex, getSkillsToolsIndexPath,
+    addNotebookNote, updateNotebookNote, deleteNotebookNote, getNotebookState,
+    searchNotebookNotes, runNotebookMaintenance, withNotebookNoteDisplay,
+    hasNotebookDeleteApprovalToken, EXPLICIT_DELETE_APPROVAL,
+    getMemoryState, searchTurns, buildMemoryCompactionProposal, applyMemoryCompaction,
+    clearMemory, hasMemoryCompactionApprovalToken, hasMemoryClearApprovalToken,
+    withMemoryTurnDisplay, listConversationSummaries, getConversationTurns, normalizeConversationId,
+    resolveWorkContextFromRequest, enforceWorkLinkPolicyForUrl, enforceRestrictedOrgVpnGate,
+    combinePolicyWarnings, enforceWorkLinkPolicyForBrowserTask, requestedChannel,
+    launchChromeUrl, launchChromeInUiSlot, launchStealthSimulationUrl,
+    resolveStealthSimulationTarget, normalizeChromeWindowTarget, listManagedChromeProfiles,
+    compileFormChannelBrowserTaskPayload, compileChatChannelBrowserTaskPayload,
+    localOpsPolicy, browserTaskPolicy, toolPaths,
+    verifyMobileToken, resolveDesktopSuperMasterAccess, resolveScreenViewerAccess,
+    getWorkOrgPolicySummary, getWorkLinkPolicySummary, setActiveWorkOrg, getConnectionRoutingState,
+    noteChannelHeartbeat, normalizeChannels, sanitizeRemoteBaseUrl, normalizeWorkOrgKey, workOrgPolicy,
+    readNotebookMirrorState, normalizeEmailKey, googlePolicy, enqueueNotebookGoogleMirrorSync,
+    getBrainLeaderRuntimeSummary, getModelAuditRuntimeSummary
+  } = ctx;
 
 app.post("/startup/brain-leader/run", async (req, res) => {
   try {
