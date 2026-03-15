@@ -358,11 +358,29 @@ const READ_ONLY_PATTERNS = [
   /\bhead\b/i, /\btail\b/i, /\bwc\b/i, /\bgrep\b/i
 ];
 
-function classifyCommandRisk(commandText) {
+function classifyCommandRisk(commandText, options = {}) {
   const text = String(commandText || "").trim();
-  if (!text) return { class: "benign", ...COMMAND_RISK_CLASSES.benign, reasons: [] };
+  if (!text) return { class: "benign", ...COMMAND_RISK_CLASSES.benign, reasons: [], hookBlocked: false };
 
   const reasons = [];
+
+  // Phase 2: Dan's hooks guard integration
+  // If a tool context is provided, check hook guards first
+  if (options.toolName) {
+    try {
+      const { getGuardVerdict } = require("./connectors/hooksConnector");
+      const verdict = getGuardVerdict(options.toolName, { command: text, file_path: options.filePath || "" });
+      if (verdict.blocked) {
+        return {
+          class: "destructive",
+          ...COMMAND_RISK_CLASSES.destructive,
+          reasons: [{ class: "destructive", pattern: "hook_guard", detail: verdict.reason }],
+          hookBlocked: true,
+          hookReason: verdict.reason
+        };
+      }
+    } catch (_) { /* hooks not available — continue with pattern matching */ }
+  }
 
   // Check destructive and high-risk patterns first
   for (const group of RISK_PATTERNS) {
