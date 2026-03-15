@@ -28596,7 +28596,9 @@ app.use("/api/integrations", require("./routes/integrationStatus")({
   getExternalProviderStatus, getExternalMcpCacheStatus, getExternalMcpPolicyPresets, getExternalMcpTokenReductionProfiles,
   getGeminiLiveStatus, getGeminiLiveAudioStatus,
   getOpenAiWebChatPolicySummary, getContactOutPolicySummary, getGeminiEnterpriseWebPolicySummary,
-  getMqttIntegrationStatus, getLocalMqttBrokerStatus, buildMqttBrowserRealtimePacket
+  getMqttIntegrationStatus, getLocalMqttBrokerStatus, buildMqttBrowserRealtimePacket,
+  getTelegramIntegrationStatus, telegramPolicy,
+  enqueueSlackChannels, enqueueGithubRepos
 }));
 app.use("/api/worker-runtime", requireLoopbackOnly, require("./routes/workerRuntime")({
   resolveCachedRuntimePayload, workerRuntimeRouteCaches,
@@ -29754,20 +29756,7 @@ app.post("/api/integrations/mqtt/publish", requireLoopbackOnly, async (req, res)
 
 // ── Slack config extracted to routes/integrationConfig.js (ADR-0001 Phase 3) ──
 
-app.get("/api/integrations/telegram/status", async (_req, res) => {
-  try {
-    const status = await getTelegramIntegrationStatus(telegramPolicy);
-    return res.json({
-      ok: true,
-      status,
-      runtime: {
-        polling: runtimeState.telegram?.polling || null
-      }
-    });
-  } catch (error) {
-    return respondError(res, error, inferHttpStatusForError(error, 500));
-  }
-});
+// ── Telegram status extracted to routes/integrationStatus.js ──
 
 app.post("/api/integrations/telegram/config", async (req, res) => {
   try {
@@ -29918,23 +29907,7 @@ app.post("/api/integrations/telegram/webhook", async (req, res) => {
   }
 });
 
-app.get("/api/integrations/slack/channels", async (req, res) => {
-  try {
-    if (!slackPolicy.enabled) {
-      return respondError(res, "Slack integration is disabled by policy.", 403);
-    }
-    const job = enqueueSlackChannels({
-      limit: asInt(req.query?.limit, 50, 1, 200),
-      cursor: String(req.query?.cursor || "").trim()
-    });
-    return res.json({
-      ok: true,
-      ...queueReply(job, `Queued Slack channels job ${job.id}.`)
-    });
-  } catch (error) {
-    return respondError(res, error, 400);
-  }
-});
+// ── Slack channels extracted to routes/integrationStatus.js ──
 
 app.post("/api/integrations/slack/review", async (req, res) => {
   try {
@@ -30036,22 +30009,7 @@ app.get("/api/integrations/abacus/packets/:id", requireLoopbackOnly, (req, res) 
 
 // ── Augment-context status extracted to routes/integrationStatus.js ──
 
-app.get("/api/integrations/github/repos", async (req, res) => {
-  try {
-    if (!githubPolicy.enabled) {
-      return respondError(res, "GitHub integration is disabled by policy.", 403);
-    }
-    const job = enqueueGithubRepos({
-      limit: asInt(req.query?.limit, 30, 1, githubPolicy.maxRepos)
-    });
-    return res.json({
-      ok: true,
-      ...queueReply(job, `Queued GitHub repos job ${job.id}.`)
-    });
-  } catch (error) {
-    return respondError(res, error, inferHttpStatusForError(error, 400));
-  }
-});
+// ── GitHub repos extracted to routes/integrationStatus.js ──
 
 // ── GitHub config extracted to routes/integrationConfig.js (ADR-0001 Phase 3) ──
 

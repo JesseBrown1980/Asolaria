@@ -5,6 +5,7 @@
 const express = require("express");
 const router = express.Router();
 const { respondError, inferHttpStatusForError, asInt } = require("../lib/helpers");
+const runtimeState = require("../lib/runtimeState");
 
 function createIntegrationStatusRouter(ctx) {
   const {
@@ -21,6 +22,17 @@ function createIntegrationStatusRouter(ctx) {
     try { return res.json({ ok: true, status: await getSlackIntegrationStatus(slackPolicy) }); }
     catch (error) { return respondError(res, error, inferHttpStatusForError(error, 500)); }
   });
+
+  // GitHub repos (job dispatch)
+  if (ctx.enqueueGithubRepos) {
+    router.get("/github/repos", async (req, res) => {
+      try {
+        if (!githubPolicy.enabled) return respondError(res, "GitHub integration is disabled by policy.", 403);
+        const job = ctx.enqueueGithubRepos({ limit: asInt(req.query?.limit, 30, 1, githubPolicy.maxRepos || 100) });
+        return res.json({ ok: true, mode: "queued", reply: `Queued GitHub repos job ${job.id}.`, job });
+      } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 400)); }
+    });
+  }
 
   // GitHub
   router.get("/github/status", async (_req, res) => {
@@ -161,6 +173,29 @@ function createIntegrationStatusRouter(ctx) {
   router.get("/gemini_enterprise_web/status", async (_req, res) => {
     try { return res.json({ ok: true, status: ctx.getGeminiEnterpriseWebPolicySummary() }); }
     catch (error) { return respondError(res, error, 400); }
+  });
+
+  // Slack channels (job dispatch)
+  if (ctx.enqueueSlackChannels) {
+    router.get("/slack/channels", async (req, res) => {
+      try {
+        if (!slackPolicy.enabled) return respondError(res, "Slack integration is disabled by policy.", 403);
+        const job = ctx.enqueueSlackChannels({
+          limit: asInt(req.query?.limit, 50, 1, 200),
+          cursor: String(req.query?.cursor || "").trim()
+        });
+        return res.json({ ok: true, mode: "queued", reply: `Queued Slack channels job ${job.id}.`, job });
+      } catch (error) { return respondError(res, error, 400); }
+    });
+  }
+
+  // Telegram
+  router.get("/telegram/status", async (_req, res) => {
+    try {
+      const status = await ctx.getTelegramIntegrationStatus(ctx.telegramPolicy);
+      const state = runtimeState.get();
+      return res.json({ ok: true, status, runtime: { polling: state.telegram?.polling || null } });
+    } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 500)); }
   });
 
   // MQTT
