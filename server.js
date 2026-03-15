@@ -26670,149 +26670,9 @@ app.post("/api/phone/virtual-display/launch", requirePhoneBridgeAccess, requireD
   }
 });
 
-app.get("/api/guardian/status", (_req, res) => {
-  res.json({
-    ok: true,
-    settings: {
-      guardianMode: settings.guardianMode,
-      guardianAlertsEnabled: settings.guardianAlertsEnabled,
-      guardianRiskThreshold: settings.guardianRiskThreshold,
-      guardianAutoBlockCritical: settings.guardianAutoBlockCritical,
-      guardianNotifyPolicy: settings.guardianNotifyPolicy,
-      guardianRequireOwnerForCritical: settings.guardianRequireOwnerForCritical
-    },
-    summary: getGuardianStatusSummary(),
-    alerts: getGuardianAlertStats()
-  });
-});
+// ── Guardian status/profile/smtp extracted to routes/guardian.js (ADR-0001 Phase 3) ──
 
-app.get("/api/guardian/profile", (_req, res) => {
-  res.json({
-    ok: true,
-    profile: readGuardianProfile() || bootstrapGuardianProfile({})
-  });
-});
-
-app.post("/api/guardian/profile/bootstrap", (_req, res) => {
-  const profile = bootstrapGuardianProfile({});
-  res.json({
-    ok: true,
-    profile
-  });
-});
-
-app.post("/api/guardian/profile/update", (req, res) => {
-  try {
-    const profile = updateGuardianProfile({
-      ownerName: req.body?.ownerName,
-      aliases: req.body?.aliases,
-      contacts: req.body?.contacts
-    });
-    res.json({
-      ok: true,
-      profile
-    });
-  } catch (error) {
-    respondError(res, error, 400);
-  }
-});
-
-app.get("/api/guardian/smtp", (_req, res) => {
-  res.json({
-    ok: true,
-    smtp: readGuardianSmtpConfig()
-  });
-});
-
-app.post("/api/guardian/smtp", (req, res) => {
-  try {
-    const smtp = setGuardianSmtpConfig({
-      host: req.body?.host,
-      port: req.body?.port,
-      secure: req.body?.secure,
-      username: req.body?.username,
-      password: req.body?.password,
-      fromEmail: req.body?.fromEmail
-    });
-    res.json({
-      ok: true,
-      smtp
-    });
-  } catch (error) {
-    respondError(res, error, 400);
-  }
-});
-
-app.get("/api/guardian/whatsapp", (_req, res) => {
-  res.json({
-    ok: true,
-    whatsapp: readGuardianWhatsAppConfig()
-  });
-});
-
-app.post("/api/guardian/whatsapp", (req, res) => {
-  try {
-    const body = req.body && typeof req.body === "object" ? req.body : {};
-    const current = readGuardianWhatsAppConfig({ reveal: true }) || {};
-    const hasOwn = (key) => Object.prototype.hasOwnProperty.call(body, key);
-    const whatsapp = setGuardianWhatsAppConfig({
-      enabled: hasOwn("enabled") ? body.enabled : current.enabled,
-      accountSid: hasOwn("accountSid") ? body.accountSid : current.accountSid,
-      authToken: hasOwn("authToken") ? body.authToken : current.authToken,
-      fromNumber: hasOwn("fromNumber") ? body.fromNumber : current.fromNumber,
-      toNumber: hasOwn("toNumber") ? body.toNumber : current.toNumber,
-      backupAsolariaNumber: hasOwn("backupAsolariaNumber")
-        ? body.backupAsolariaNumber
-        : current.backupAsolariaNumber,
-      backupUserNumber: hasOwn("backupUserNumber")
-        ? body.backupUserNumber
-        : current.backupUserNumber,
-      app: hasOwn("app") ? body.app : current.app,
-      packageName: hasOwn("packageName") ? body.packageName : current.packageName,
-      userId: hasOwn("userId") ? body.userId : current.userId,
-      notifyMode: hasOwn("notifyMode") ? body.notifyMode : current.notifyMode
-    });
-    res.json({
-      ok: true,
-      whatsapp
-    });
-  } catch (error) {
-    respondError(res, error, 400);
-  }
-});
-
-app.get("/api/guardian/alerts", (req, res) => {
-  const limit = asInt(req.query?.limit, 30, 1, 200);
-  res.json({
-    ok: true,
-    alerts: listGuardianAlerts(limit),
-    stats: getGuardianAlertStats()
-  });
-});
-
-app.get("/api/guardian/approvals", (req, res) => {
-  const limit = asInt(req.query?.limit, 30, 1, 200);
-  const status = asEnum(
-    req.query?.status,
-    ["all", "pending", "approved", "denied", "expired"],
-    "pending"
-  );
-  res.json({
-    ok: true,
-    approvals: listApprovals({ status, limit })
-  });
-});
-
-app.get("/api/guardian/approvals/:id", (req, res) => {
-  const approval = getApprovalById(req.params.id);
-  if (!approval) {
-    return respondError(res, "Approval not found.", 404);
-  }
-  res.json({
-    ok: true,
-    approval
-  });
-});
+// ── Guardian all read routes + smtp/whatsapp config extracted to routes/guardian.js (ADR-0001 Phase 3) ──
 
 app.post("/api/guardian/approvals/decide", async (req, res) => {
   try {
@@ -28718,6 +28578,13 @@ app.use("/api/vault", requireLoopbackOnly, require("./routes/vault"));
 app.use("/api", requireLoopbackOnly, require("./routes/misc")({ getNatural20DailyDigest, serverDir: __dirname }));
 app.use("/api/gateway", require("./routes/gateway")({ callGatewayControlApi, isLoopbackRequest }));
 app.use("/api/worker-router", requireLoopbackOnly, require("./routes/workerRouter"));
+app.use("/api/guardian", require("./routes/guardian")({
+  getGuardianStatusSummary, getGuardianAlertStats,
+  readGuardianProfile, bootstrapGuardianProfile, updateGuardianProfile,
+  readGuardianSmtpConfig, setGuardianSmtpConfig,
+  readGuardianWhatsAppConfig, setGuardianWhatsAppConfig,
+  listGuardianAlerts: listGuardianAlerts, listApprovals, getApprovalById
+}));
 app.use("/api/integrations", requireLoopbackOnly, require("./routes/integrationConfig")({
   setSlackConfig, setGithubConfig, setVertexConfig, vertexPolicy,
   setMicrosoftOAuthConfig, setAtlassianOAuthConfig, setHubSpotOAuthConfig
