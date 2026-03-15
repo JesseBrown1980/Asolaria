@@ -4414,6 +4414,12 @@ app.use((req, _res, next) => {
 app.use(express.json({ limit: "60mb" }));
 app.use(express.urlencoded({ extended: false, limit: "10mb" }));
 
+// ── Health endpoints (public, no auth, before all middleware) ──
+app.get("/api/health/fast", async (req, res) => {
+  const payload = await getCachedFastHealthPayload({ redactTokens: !isLoopbackRequest(req) });
+  res.json(payload);
+});
+
 // ── Auth middleware (Phase 2) — sets req.authRole for RBAC, non-blocking ──
 const { gatewayAuth, validateToken, getRole } = require("./middleware/auth");
 const { isLoopbackRequest: isLoopbackReq } = require("./lib/network");
