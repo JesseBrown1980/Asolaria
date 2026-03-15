@@ -28576,6 +28576,10 @@ app.use("/api/guardian", require("./routes/guardian")({
   readGuardianWhatsAppConfig, setGuardianWhatsAppConfig,
   listGuardianAlerts: listGuardianAlerts, listApprovals, getApprovalById
 }));
+app.use("/api/integrations", requireLoopbackOnly, require("./routes/integrationOps")({
+  submitSymphonyWorkItem, startSymphonyService, stopSymphonyService, restartSymphonyService,
+  getAbacusWorkPacket
+}));
 app.use("/api/integrations", requireLoopbackOnly, require("./routes/integrationConfig")({
   setSlackConfig, setGithubConfig, setVertexConfig, vertexPolicy,
   setMicrosoftOAuthConfig, setAtlassianOAuthConfig, setHubSpotOAuthConfig
@@ -29958,48 +29962,11 @@ app.post("/api/integrations/slack/review", async (req, res) => {
 
 // ── Symphony status extracted to routes/integrationStatus.js ──
 
-app.post("/api/integrations/symphony/submit", requireLoopbackOnly, async (req, res) => {
-  try {
-    const body = req.body && typeof req.body === "object" ? req.body : {};
-    const title = String(body.title || body.summary || "").trim();
-    const objective = String(body.objective || body.description || "").trim();
-    if (!title && !objective) {
-      return respondError(res, "Symphony submission requires a title or objective.", 400);
-    }
-    const submission = await submitSymphonyWorkItem({
-      title,
-      objective,
-      instructions: String(body.instructions || "").trim(),
-      allowedPaths: Array.isArray(body.allowedPaths) ? body.allowedPaths : body.paths,
-      expectedArtifacts: Array.isArray(body.expectedArtifacts) ? body.expectedArtifacts : body.artifacts,
-      taskType: String(body.taskType || "long_running").trim(),
-      sensitivity: String(body.sensitivity || "internal").trim(),
-      size: String(body.size || "medium").trim(),
-      taskId: String(body.taskId || "").trim(),
-      dispatchId: String(body.dispatchId || "").trim(),
-      ensureService: asBool(body.ensureService, true)
-    });
-    return res.json({
-      ok: true,
-      submission
-    });
-  } catch (error) {
-    return respondError(res, error, inferHttpStatusForError(error, 400));
-  }
-});
+// ── Symphony submit extracted to routes/integrationOps.js (ADR-0001 Phase 3) ──
 
 // ── Abacus status/strategy/presets/packets extracted to routes/integrationStatus.js ──
 
-app.get("/api/integrations/abacus/packets/:id", requireLoopbackOnly, (req, res) => {
-  try {
-    return res.json({
-      ok: true,
-      packet: getAbacusWorkPacket(String(req.params.id || "").trim())
-    });
-  } catch (error) {
-    return respondError(res, error, inferHttpStatusForError(error, 404));
-  }
-});
+// ── Abacus packet detail extracted to routes/integrationOps.js (ADR-0001 Phase 3) ──
 
 // ── Worker router status extracted to routes/workerRouter.js (ADR-0001 Phase 3) ──
 
@@ -30990,86 +30957,7 @@ app.post("/api/integrations/abacus/cli/probe", requireLoopbackOnly, async (req, 
   }
 });
 
-app.post("/api/integrations/symphony/start", requireLoopbackOnly, async (_req, res) => {
-  try {
-    const guardian = await evaluateGuardianGuard({
-      message: "Symphony service start request",
-      routed: { action: "symphony_start" },
-      source: "api.integrations.symphony.start"
-    });
-    if (guardian.triggered && guardian.blocked) {
-      const approvalHint = guardian.approvalRequest?.id
-        ? ` Approval ID ${guardian.approvalRequest.id}. Use APPROVE ${guardian.approvalRequest.id} to allow once.`
-        : "";
-      return respondError(
-        res,
-        `Guardian blocked Symphony start (${guardian.risk.level}). ${guardian.decision?.text || ""}${approvalHint}`.trim(),
-        403
-      );
-    }
-    return res.json({
-      ok: true,
-      guardian,
-      status: startSymphonyService()
-    });
-  } catch (error) {
-    return respondError(res, error, inferHttpStatusForError(error, 400));
-  }
-});
-
-app.post("/api/integrations/symphony/stop", requireLoopbackOnly, async (_req, res) => {
-  try {
-    const guardian = await evaluateGuardianGuard({
-      message: "Symphony service stop request",
-      routed: { action: "symphony_stop" },
-      source: "api.integrations.symphony.stop"
-    });
-    if (guardian.triggered && guardian.blocked) {
-      const approvalHint = guardian.approvalRequest?.id
-        ? ` Approval ID ${guardian.approvalRequest.id}. Use APPROVE ${guardian.approvalRequest.id} to allow once.`
-        : "";
-      return respondError(
-        res,
-        `Guardian blocked Symphony stop (${guardian.risk.level}). ${guardian.decision?.text || ""}${approvalHint}`.trim(),
-        403
-      );
-    }
-    return res.json({
-      ok: true,
-      guardian,
-      status: stopSymphonyService()
-    });
-  } catch (error) {
-    return respondError(res, error, inferHttpStatusForError(error, 400));
-  }
-});
-
-app.post("/api/integrations/symphony/restart", requireLoopbackOnly, async (_req, res) => {
-  try {
-    const guardian = await evaluateGuardianGuard({
-      message: "Symphony service restart request",
-      routed: { action: "symphony_restart" },
-      source: "api.integrations.symphony.restart"
-    });
-    if (guardian.triggered && guardian.blocked) {
-      const approvalHint = guardian.approvalRequest?.id
-        ? ` Approval ID ${guardian.approvalRequest.id}. Use APPROVE ${guardian.approvalRequest.id} to allow once.`
-        : "";
-      return respondError(
-        res,
-        `Guardian blocked Symphony restart (${guardian.risk.level}). ${guardian.decision?.text || ""}${approvalHint}`.trim(),
-        403
-      );
-    }
-    return res.json({
-      ok: true,
-      guardian,
-      status: restartSymphonyService()
-    });
-  } catch (error) {
-    return respondError(res, error, inferHttpStatusForError(error, 400));
-  }
-});
+// ── Symphony start/stop/restart extracted to routes/integrationOps.js (ADR-0001 Phase 3) ──
 
 // ── External status extracted to routes/integrationStatus.js ──
 
