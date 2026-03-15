@@ -20761,6 +20761,11 @@ async function evaluateGuardianGuard({ message, routed, source }) {
   };
 }
 
+// ── Mobile auth lib init (deferred — all deps now defined) ──
+require("./lib/mobileAuth").init({
+  verifyMobileToken, verifyMobileTokenStrict, verifyRemoteApiToken,
+  resolveDesktopSuperMasterAccess, isTransportEncrypted, denyRemoteRequest
+});
 // ── Guardian lib init (deferred — all deps now defined) ──
 require("./lib/guardian").init({
   evaluateRisk, normalizeLevel, isLevelAtOrAbove,
