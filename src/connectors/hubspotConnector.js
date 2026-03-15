@@ -18,6 +18,12 @@ const DEFAULT_SCOPES = [
   "crm.schemas.deals.read"
 ];
 
+const WRITE_SCOPES = [
+  "crm.objects.contacts.write",
+  "crm.objects.companies.write",
+  "crm.objects.deals.write"
+];
+
 const OAUTH_STATE_TTL_MS = 12 * 60 * 1000;
 const HUBSPOT_NETWORK_RETRY_DELAYS_MS = [500, 1200];
 const pendingOauthStates = new Map(); // state -> { createdAtMs, portalHint, scopes, codeVerifier }
@@ -741,6 +747,29 @@ function manifest() {
   };
 }
 
+// ── Phase 4: Write-capable HubSpot functions (approval-gated) ──
+
+async function createContact({ account, email, firstName, lastName, phone, company, properties } = {}, policy = {}) {
+  if (!policy.enabled) throw new Error("HubSpot integration is disabled by policy.");
+  const token = await ensureAccessToken(account);
+  const body = { properties: { email, firstname: firstName, lastname: lastName, phone, company, ...properties } };
+  return hubspotApiRequest({ method: "POST", path: "/crm/v3/objects/contacts", body: JSON.stringify(body), accessToken: token.access_token });
+}
+
+async function createDeal({ account, dealName, pipeline, stage, amount, properties } = {}, policy = {}) {
+  if (!policy.enabled) throw new Error("HubSpot integration is disabled by policy.");
+  const token = await ensureAccessToken(account);
+  const body = { properties: { dealname: dealName, pipeline, dealstage: stage, amount: String(amount || ""), ...properties } };
+  return hubspotApiRequest({ method: "POST", path: "/crm/v3/objects/deals", body: JSON.stringify(body), accessToken: token.access_token });
+}
+
+async function updateContact({ account, contactId, properties } = {}, policy = {}) {
+  if (!policy.enabled) throw new Error("HubSpot integration is disabled by policy.");
+  if (!contactId) throw new Error("contactId is required.");
+  const token = await ensureAccessToken(account);
+  return hubspotApiRequest({ method: "PATCH", path: `/crm/v3/objects/contacts/${contactId}`, body: JSON.stringify({ properties }), accessToken: token.access_token });
+}
+
 module.exports = {
   HUBSPOT_OAUTH_SECRET_NAME,
   HUBSPOT_ACCOUNTS_SECRET_NAME,
@@ -755,5 +784,9 @@ module.exports = {
   listDeals,
   hubspotApiRequest,
   getHubSpotIntegrationStatus,
+  createContact,
+  createDeal,
+  updateContact,
+  WRITE_SCOPES,
   manifest
 };

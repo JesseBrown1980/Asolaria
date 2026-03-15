@@ -731,6 +731,33 @@ function manifest() {
   };
 }
 
+// ── Phase 4: GCP governance functions ──
+
+async function getBillingInfo(options = {}) {
+  const projectId = options.projectId || getGcpConfigSummary({}).projectId;
+  if (!projectId) throw new Error("GCP project ID not configured.");
+  return gcpApiRequest({
+    url: `https://cloudbilling.googleapis.com/v1/projects/${projectId}/billingInfo`,
+    method: "GET"
+  });
+}
+
+async function listBillingAccounts() {
+  return gcpApiRequest({
+    url: "https://cloudbilling.googleapis.com/v1/billingAccounts",
+    method: "GET"
+  });
+}
+
+async function getProjectInfo(options = {}) {
+  const projectId = options.projectId || getGcpConfigSummary({}).projectId;
+  if (!projectId) throw new Error("GCP project ID not configured.");
+  return gcpApiRequest({
+    url: `https://cloudresourcemanager.googleapis.com/v1/projects/${projectId}`,
+    method: "GET"
+  });
+}
+
 module.exports = {
   DEFAULT_SCOPES,
   getGcpConfigSummary,
@@ -739,5 +766,8 @@ module.exports = {
   gcpApiRequest,
   listEnabledServices,
   enableService,
+  getBillingInfo,
+  listBillingAccounts,
+  getProjectInfo,
   manifest
 };
