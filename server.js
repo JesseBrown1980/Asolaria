@@ -1027,7 +1027,8 @@ const DEFAULT_SCREEN_VIEWER_ALLOWLIST = Object.freeze([
 const DEFAULT_AUTHORITY_SUPER_MASTER_ALLOWLIST = Object.freeze([
   "owner",
   "asolaria",
-  "vector"
+  "vector",
+  "falcon"
 ]);
 const DEFAULT_AUTHORITY_PHONE_MASTER_ALLOWLIST = Object.freeze([
   "asolaria-phone",
@@ -1041,7 +1042,6 @@ const DEFAULT_AUTHORITY_DESKTOP_REGULAR_ALLOWLIST = Object.freeze([
   "oli"
 ]);
 const DEFAULT_AUTHORITY_PHONE_REGULAR_ALLOWLIST = Object.freeze([
-  "falcon",
   "felipe"
 ]);
 const VIEWER_DISPLAY_NAMES = Object.freeze({
