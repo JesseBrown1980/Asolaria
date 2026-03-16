@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/icons/asolaria-icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="/icons/asolaria-icon-512.png" />
   <link rel="apple-touch-icon" href="/icons/asolaria-icon-192.png" />
-  <title>Jesse's Phone Link</title>
+  <title>Phone Link</title>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap");
     :root {
@@ -850,11 +850,11 @@
   <main class="shell">
     <header class="top">
       <div class="brand">
-        <h1>Jesse's Phone Link</h1>
+        <h1 id="phoneLinkTitle">Phone Link</h1>
         <p>Communication-first phone surface connected to Asolaria.</p>
       </div>
       <div class="status-row">
-        <span id="deviceBadge" class="pill">Primary: Jesse's Phone (checking...)</span>
+        <span id="deviceBadge" class="pill">Primary: Phone (checking...)</span>
         <span id="oliLaneBadge" class="pill">Oli lane: checking...</span>
         <span id="orientationBadge" class="pill">Orientation: unknown</span>
         <span id="mirrorBadge" class="pill">Mirror: idle</span>
@@ -927,7 +927,7 @@
     </section>
 
     <section class="card live-hub">
-      <h2>Jesse Phone Live</h2>
+      <h2 id="phoneLiveTitle">Phone Live</h2>
       <p class="hint">Same colony session as desktop: chat, voice, and avatar-first flow.</p>
       <div class="live-grid">
         <div class="live-avatar-wrap">
@@ -1191,6 +1191,21 @@
       </aside>
     </section>
   </main>
+  <script>
+    (function() {
+      var viewerNames = { falcon: "Jesse", felipe: "Felipe" };
+      var params = new URLSearchParams(window.location.search);
+      var viewer = (params.get("viewer") || "").trim().toLowerCase();
+      var name = viewerNames[viewer] || viewer.charAt(0).toUpperCase() + viewer.slice(1) || "User";
+      document.title = name + "'s Phone Link";
+      var titleEl = document.getElementById("phoneLinkTitle");
+      if (titleEl) titleEl.textContent = name + "'s Phone Link";
+      var badgeEl = document.getElementById("deviceBadge");
+      if (badgeEl) badgeEl.textContent = "Primary: " + name + "'s Phone (checking...)";
+      var liveEl = document.getElementById("phoneLiveTitle");
+      if (liveEl) liveEl.textContent = name + " Phone Live";
+    })();
+  </script>
   <script src="phone-mode.js"></script>
 </body>
 </html>

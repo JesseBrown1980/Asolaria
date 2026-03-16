@@ -1041,8 +1041,16 @@ const DEFAULT_AUTHORITY_DESKTOP_REGULAR_ALLOWLIST = Object.freeze([
   "oli"
 ]);
 const DEFAULT_AUTHORITY_PHONE_REGULAR_ALLOWLIST = Object.freeze([
-  "falcon"
+  "falcon",
+  "felipe"
 ]);
+const VIEWER_DISPLAY_NAMES = Object.freeze({
+  falcon: "Jesse",
+  felipe: "Felipe"
+});
+function getViewerDisplayName(viewerId) {
+  return VIEWER_DISPLAY_NAMES[String(viewerId || "").trim().toLowerCase()] || "Jesse";
+}
 
 function normalizeScreenViewerId(value, fallback = "") {
   const normalized = String(value || "").trim().toLowerCase();
@@ -1133,31 +1141,28 @@ function normalizeVoiceOutputMode(value, fallback = "browser") {
   return "browser";
 }
 
-function normalizePhoneEdgeGreeting(text, fallback = "Hello Jesse, Asolaria is taking over now.") {
+function normalizePhoneEdgeGreeting(text, fallback, userName) {
+  const name = userName || "Jesse";
+  const greeting = `Hello ${name}, `;
   const raw = String(text || "").trim();
-  const safeFallback = String(fallback || "").trim();
+  const safeFallback = String(fallback || `Hello ${name}, Asolaria is taking over now.`).trim();
   if (!raw) {
     return safeFallback;
   }
   let normalized = raw
-    .replace(/^hellojesse\b[:!,\s-]*/i, "Hello Jesse, ")
-    .replace(/^hello\s+jesse\b[:!\s-]*/i, "Hello Jesse, ")
-    .replace(/^hello,\s*jesse\b[:!\s-]*/i, "Hello Jesse, ")
-    .replace(/^heyjesse\b[:!,\s-]*/i, "Hello Jesse, ")
-    .replace(/^hey\s+jesse\b[:!\s-]*/i, "Hello Jesse, ")
-    .replace(/^hey,\s*jesse\b[:!\s-]*/i, "Hello Jesse, ")
-    .replace(/^hijesse\b[:!,\s-]*/i, "Hello Jesse, ")
-    .replace(/^hi\s+jesse\b[:!\s-]*/i, "Hello Jesse, ")
-    .replace(/^hi,\s*jesse\b[:!\s-]*/i, "Hello Jesse, ")
-    .replace(/^jesse\b[:!\s-]*/i, "Hello Jesse, ")
+    .replace(/^(?:hello|hey|hi),?\s*\w+\b[:!,\s-]*/i, greeting)
+    .replace(/^\w+\b[:!\s-]+(?=\S)/i, greeting)
     .replace(/\s+/g, " ")
     .trim();
-  normalized = normalized.replace(/^hello jesse,\s*[,;:-]+\s*/i, "Hello Jesse, ");
-  if (/^(hello jesse,\s*){2,}/i.test(normalized)) {
-    normalized = normalized.replace(/^(hello jesse,\s*)+/i, "Hello Jesse, ");
+  const greetingPattern = new RegExp(`^hello ${name},\\s*[,;:-]+\\s*`, "i");
+  normalized = normalized.replace(greetingPattern, greeting);
+  const dupePattern = new RegExp(`^(hello ${name},\\s*){2,}`, "i");
+  if (dupePattern.test(normalized)) {
+    normalized = normalized.replace(new RegExp(`^(hello ${name},\\s*)+`, "i"), greeting);
   }
-  if (!/^hello jesse,/i.test(normalized)) {
-    normalized = `Hello Jesse, ${normalized}`.replace(/\s+/g, " ").trim();
+  const startsPattern = new RegExp(`^hello ${name},`, "i");
+  if (!startsPattern.test(normalized)) {
+    normalized = `${greeting}${normalized}`.replace(/\s+/g, " ").trim();
   }
   return normalized;
 }
@@ -1495,7 +1500,7 @@ function humanizePhoneEdgeVoiceMode(value = "") {
   return normalized.replace(/[_-]+/g, " ");
 }
 
-function buildPhoneEdgeGeminiDeterministicReply(prompt = "", grounding = null) {
+function buildPhoneEdgeGeminiDeterministicReply(prompt = "", grounding = null, userName) {
   const text = String(prompt || "").trim().toLowerCase();
   const toolRows = Array.isArray(grounding?.toolCalls) ? grounding.toolCalls : [];
   if (!toolRows.length) {
@@ -1564,7 +1569,7 @@ function buildPhoneEdgeGeminiDeterministicReply(prompt = "", grounding = null) {
   if (!parts.length) {
     return "";
   }
-  return normalizePhoneEdgeGreeting(parts.join(" "), "Hello Jesse, I am on it.");
+  return normalizePhoneEdgeGreeting(parts.join(" "), `Hello ${userName || "Jesse"}, I am on it.`, userName);
 }
 
 function isPhoneEdgeReplyIncomplete(text = "") {
@@ -1575,7 +1580,7 @@ function isPhoneEdgeReplyIncomplete(text = "") {
   if (!normalized) {
     return true;
   }
-  const body = normalized.replace(/^hello jesse,\s*/i, "").trim();
+  const body = normalized.replace(/^hello \w+,\s*/i, "").trim();
   if (!body) {
     return true;
   }
@@ -1587,32 +1592,34 @@ function isPhoneEdgeReplyIncomplete(text = "") {
   return false;
 }
 
-function buildPhoneEdgeGeminiFallbackReply(prompt = "") {
+function buildPhoneEdgeGeminiFallbackReply(prompt = "", userName) {
+  const name = userName || "Jesse";
   const text = String(prompt || "").trim().toLowerCase();
   if (
     /\b(gemini|asolaria|model|models|api|live|integration|integrate|control)\b/i.test(text)
     && /\b(can|could|how|why|use|work|working|enable|talk|voice)\b/i.test(text)
   ) {
-    return "Hello Jesse, Asolaria can use Gemini through the managed API and live voice paths right now. I am widening the phone reply lane so you get a direct answer instead of a short acknowledgement.";
+    return `Hello ${name}, Asolaria can use Gemini through the managed API and live voice paths right now. I am widening the phone reply lane so you get a direct answer instead of a short acknowledgement.`;
   }
   if (/\b(meeting|zoom|teams|slack|google meet|meet|call)\b/i.test(text)) {
-    return "Hello Jesse, Asolaria can already watch the meeting transcript and track action items. Speaking directly into the meeting is the next layer.";
+    return `Hello ${name}, Asolaria can already watch the meeting transcript and track action items. Speaking directly into the meeting is the next layer.`;
   }
   if (/\b(phone inbox|inbox)\b/i.test(text) && /\b(point|purpose|what is the point|what is the purpose|what does it do|for)\b/i.test(text)) {
-    return "Hello Jesse, the phone inbox is your fast queue for urgent approvals, active tasks, and important alerts.";
+    return `Hello ${name}, the phone inbox is your fast queue for urgent approvals, active tasks, and important alerts.`;
   }
   if (/\b(avatar|voice|mic|microphone|talk button)\b/i.test(text) && /\b(point|purpose|what does it do|how)\b/i.test(text)) {
-    return "Hello Jesse, the avatar button starts a quick voice turn, sends it through Asolaria, and speaks the reply back.";
+    return `Hello ${name}, the avatar button starts a quick voice turn, sends it through Asolaria, and speaks the reply back.`;
   }
-  return "Hello Jesse, I heard you. I am turning that into a direct answer now.";
+  return `Hello ${name}, I heard you. I am turning that into a direct answer now.`;
 }
 
-function repairPhoneEdgeFastReply(text = "") {
-  const normalized = normalizePhoneEdgeGreeting(text, "").trim();
+function repairPhoneEdgeFastReply(text = "", userName) {
+  const name = userName || "Jesse";
+  const normalized = normalizePhoneEdgeGreeting(text, "", name).trim();
   if (!normalized) {
     return "";
   }
-  const body = normalized.replace(/^hello jesse,\s*/i, "").trim();
+  const body = normalized.replace(/^hello \w+,\s*/i, "").trim();
   if (!body) {
     return "";
   }
@@ -1622,7 +1629,7 @@ function repairPhoneEdgeFastReply(text = "") {
     return "";
   }
   if (!/[.!?]["')\]]*$/.test(body)) {
-    return `Hello Jesse, ${body}.`;
+    return `Hello ${name}, ${body}.`;
   }
   return normalized;
 }
@@ -7169,7 +7176,8 @@ const AGENT_IDENTITY_ENTRIES = Object.freeze([
   Object.freeze({ id: "vector", name: "Vector", aliases: ["vector"] }),
   Object.freeze({ id: "rook", name: "Rook", aliases: ["rook"] }),
   Object.freeze({ id: "forge", name: "Forge", aliases: ["forge"] }),
-  Object.freeze({ id: "falcon", name: "Falcon", aliases: ["falcon"] })
+  Object.freeze({ id: "falcon", name: "Falcon", aliases: ["falcon"] }),
+  Object.freeze({ id: "felipe", name: "Felipe", aliases: ["felipe"] })
 ]);
 
 const AGENT_IDENTITY_LOOKUP = (() => {

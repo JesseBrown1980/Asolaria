@@ -154,7 +154,8 @@ app.post("/edge/gemini", requireMobileAuth, async (req, res) => {
     ].filter(Boolean).join("\n\n");
 
     if (!result && fastLatencyMode && !String(inlineData || "").trim()) {
-      const deterministicReply = buildPhoneEdgeGeminiDeterministicReply(prompt, grounding);
+      const phoneUserName = getViewerDisplayName(req.query?.viewer || req.body?.viewer || req.headers["x-asolaria-viewer"]);
+      const deterministicReply = buildPhoneEdgeGeminiDeterministicReply(prompt, grounding, phoneUserName);
       if (deterministicReply) {
         result = {
           reply: deterministicReply,
@@ -242,9 +243,10 @@ app.post("/edge/gemini", requireMobileAuth, async (req, res) => {
       provider = "gemini-api";
     }
 
-    let replyText = normalizePhoneEdgeGreeting(result?.reply);
+    const viewerName = phoneUserName || getViewerDisplayName(req.query?.viewer || req.body?.viewer || req.headers["x-asolaria-viewer"]);
+    let replyText = normalizePhoneEdgeGreeting(result?.reply, undefined, viewerName);
     if (fastLatencyMode && provider !== "asolaria-grounded-fast" && isPhoneEdgeReplyIncomplete(replyText)) {
-      replyText = repairPhoneEdgeFastReply(replyText) || buildPhoneEdgeGeminiFallbackReply(prompt);
+      replyText = repairPhoneEdgeFastReply(replyText, viewerName) || buildPhoneEdgeGeminiFallbackReply(prompt, viewerName);
     }
     if (prompt) {
       addUserTurn(prompt, {

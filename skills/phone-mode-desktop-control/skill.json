@@ -1,7 +1,7 @@
 {
   "id": "phone.mode.desktop.control",
   "title": "Phone Mode Desktop Control Interface",
-  "description": "Jesse's Phone Link (phone-mode.html) — bidirectional desktop mirror/control surface served by Asolaria. Shows live desktop screenshots on phone Chrome with click-to-control, voice chat, approvals inbox, WhatsApp bridge, and more.",
+  "description": "Phone Link (phone-mode.html) — bidirectional desktop mirror/control surface served by Asolaria. Shows live desktop screenshots on phone Chrome with click-to-control, voice chat, approvals inbox, WhatsApp bridge, and more. Viewer name is set dynamically from the ?viewer= URL parameter.",
   "version": "0.1.0",
   "risk": "high",
   "permissions": ["desktop.capture", "desktop.control", "mobile.auth"],

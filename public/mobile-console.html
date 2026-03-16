@@ -351,6 +351,36 @@
       .push-row > button {
         flex: 1 1 calc(50% - 6px);
       }
+      .card.full .item {
+        min-width: 0 !important;
+        flex: 1 1 100% !important;
+      }
+      .card.full .item .row > input,
+      .card.full .item .row > select,
+      .card.full .item .row > button {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        flex: 1 1 100%;
+      }
+      .title {
+        font-size: 20px;
+      }
+      body {
+        padding: 8px;
+      }
+      .card {
+        padding: 8px;
+      }
+      .screen-wrap {
+        max-height: min(45vh, 320px);
+      }
+    }
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    .app {
+      overflow-x: hidden;
     }
     @media (min-width: 980px) {
       .grid {
@@ -547,7 +577,7 @@
           <span id="integrationsHint" class="hint"></span>
         </div>
         <div class="row">
-          <div class="item" style="flex:1; min-width:280px;">
+          <div class="item" style="flex:1; min-width:min(280px, 100%);">
             <div class="msg-role">SLACK</div>
             <div class="row">
               <button id="slackStatusBtn">Status</button>
@@ -564,7 +594,7 @@
             </div>
             <div id="slackStatusBox" class="status small">Slack: tap Status.</div>
           </div>
-          <div class="item" style="flex:1; min-width:280px;">
+          <div class="item" style="flex:1; min-width:min(280px, 100%);">
             <div class="msg-role">GOOGLE</div>
             <div class="row">
               <button id="googleStatusBtn">Status</button>
@@ -592,7 +622,7 @@
             <div id="googleStatusBox" class="status small">Google: tap Status.</div>
             <div id="googleAuthUrlBox" class="status small">OAuth URL: (none)</div>
           </div>
-          <div class="item" style="flex:1; min-width:280px;">
+          <div class="item" style="flex:1; min-width:min(280px, 100%);">
             <div class="msg-role">GCP</div>
             <div class="row">
               <button id="gcpStatusBtn">Status</button>

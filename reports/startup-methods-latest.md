@@ -1,6 +1,6 @@
 ﻿# Asolaria Startup Method Catalog
 
-Generated: 2026-03-15 10:40:49 -03:00
+Generated: 2026-03-15 23:14:17 -03:00
 JSON: C:\Users\acer\Asolaria\logs\startup-method-paths.json
 
 ## desktop_default
