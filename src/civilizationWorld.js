@@ -73,6 +73,7 @@ function districtForEntity(kind, subtype = "") {
     return "gate_ring";
   }
   if (normalizedKind === "packet" || normalizedKind === "task") return "ledger_quarter";
+  if (normalizedKind === "construction") return "construction_yard";
   return "workshop";
 }
 
@@ -126,6 +127,11 @@ function buildDistricts() {
       id: "world_bridge",
       label: "World Bridge",
       purpose: "External world renderers and trusted remote workspaces."
+    },
+    {
+      id: "construction_yard",
+      label: "Construction Yard",
+      purpose: "Simulation constructions — project workstreams, domain modules, and instant agent spawning grounds."
     }
   ];
 }
@@ -1185,6 +1191,38 @@ function buildCivilizationWorldState(input = {}) {
     });
   }
 
+  // ── Phase 10b: Construction Yard Entities (Simulation Layer) ──
+  try {
+    const { buildConstructionEntities: buildConstructionSim } = require("./constructionIndex");
+    const { buildPhoneConstructionEntities } = require("./phoneConstructionBridge");
+    const constructionSim = buildConstructionSim();
+    const phoneSim = buildPhoneConstructionEntities();
+    // Merge phone construction workers into the entity set
+    if (phoneSim.entities) constructionSim.entities.push(...phoneSim.entities);
+    if (phoneSim.routes) constructionSim.routes.push(...phoneSim.routes);
+    if (constructionSim.entities && constructionSim.entities.length > 0) {
+      for (const entity of constructionSim.entities) {
+        registerEntity(registry, entity, [entity.id]);
+      }
+      // Connect construction yard gate to sovereign
+      routes.push(buildRoute(sovereign.id, "gate:construction-yard", "sovereign_control", {
+        status: "online",
+        lastSeenAt: generatedAt,
+        notes: "Asolaria sovereign governs the construction yard."
+      }));
+      for (const route of constructionSim.routes) {
+        routes.push(buildRoute(route.source, route.target, route.kind, {
+          status: route.status,
+          traffic: route.traffic || 0,
+          lastSeenAt: route.lastSeenAt || generatedAt,
+          notes: route.notes || ""
+        }));
+      }
+    }
+  } catch (_constructionErr) {
+    // Construction simulation not yet initialized — skip silently
+  }
+
   const dedupedRoutes = [];
   const seenRouteIds = new Set();
   routes.forEach((route) => {
@@ -1234,6 +1272,7 @@ function buildCivilizationWorldState(input = {}) {
       gates: countsByKind.gate || 0,
       packets: countsByKind.packet || 0,
       tasks: countsByKind.task || 0,
+      constructions: countsByKind.construction || 0,
       routes: dedupedRoutes.length,
       events: events.length,
       onlineEntities: entities.filter((entity) => entity.online).length,
@@ -1274,6 +1313,8 @@ function buildCivilizationWorldState(input = {}) {
       "Guardian towers are derived from Helm and Sentinel admin sidecars.",
       "Connector towers now represent Codex, Claude Max, Omnispindle, Augment Context, Gemini API, Vertex, Symphony, MQTT, SwarmDesk, relay, and tunnel boundaries.",
       "Packets are modeled as carried work bundles tied to active mission files.",
+      "Construction Yard hosts simulation constructions where instant agents spawn to process domain-specific work.",
+      "GNN watchers guide construction routing. Tracer spindles record conversation flow for profile enrichment.",
       "The world state is a projection of the canonical runtime, not the source of truth."
     ]
   };

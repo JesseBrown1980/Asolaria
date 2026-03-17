@@ -130,6 +130,28 @@ const {
   getLocalOpsPolicySummary,
   runLocalProjectTask
 } = require("./src/connectors/localOpsConnector");
+
+function safeGetLocalOpsPolicySummary(policy = {}) {
+  if (typeof getLocalOpsPolicySummary !== "function") {
+    return {
+      enabled: Boolean(policy?.enabled),
+      summary: "local ops policy summary unavailable",
+      reason: "localOpsConnector.getLocalOpsPolicySummary is not available",
+      fallback: true
+    };
+  }
+
+  try {
+    return getLocalOpsPolicySummary(policy);
+  } catch (error) {
+    return {
+      enabled: Boolean(policy?.enabled),
+      summary: "local ops policy summary failed",
+      reason: String(error?.message || error).slice(0, 240),
+      fallback: true
+    };
+  }
+}
 const {
   getSlackConfigSummary,
   setSlackConfig,
@@ -6761,6 +6783,8 @@ function getExternalModelSettingsSnapshot(options = {}) {
 }
 
 const OPENAI_LOCKED_MODEL_MAP = Object.freeze({
+  "gpt-5.3-codex-spark": Object.freeze({ model: "gpt-5.3-codex-spark", reasoningEffort: "minimal", timeoutMs: 60000 }),
+  "gpt-5.3-spark-mini": Object.freeze({ model: "gpt-5.3-codex-spark", reasoningEffort: "minimal", timeoutMs: 45000 }),
   "gpt-5-mini": Object.freeze({ model: "gpt-5-mini", reasoningEffort: "minimal", timeoutMs: 90000 }),
   "gpt-5.2-instant": Object.freeze({ model: "gpt-5.2", reasoningEffort: "minimal", timeoutMs: 70000 }),
   "gpt-5.2": Object.freeze({ model: "gpt-5.2", reasoningEffort: "low", timeoutMs: 90000 }),
@@ -21318,7 +21342,7 @@ async function runRoutedIntent(message) {
     return {
       mode: "routed",
       reply: toJsonText({
-        localOps: getLocalOpsPolicySummary(localOpsPolicy),
+        localOps: safeGetLocalOpsPolicySummary(localOpsPolicy),
         browserTasks: getBrowserTaskPolicySummary(),
         slack: getSlackPolicySummary(),
         telegram: getTelegramPolicySummary(),
@@ -23218,7 +23242,7 @@ app.get("/api/health", async (req, res) => {
       clawbotCaution: CLAWBOT_CAUTION
     },
     automation: {
-      localOps: getLocalOpsPolicySummary(localOpsPolicy),
+      localOps: safeGetLocalOpsPolicySummary(localOpsPolicy),
       browserTasks: getBrowserTaskPolicySummary(),
       slack: getSlackPolicySummary(),
       telegram: getTelegramPolicySummary(),
@@ -23453,6 +23477,7 @@ app.use("/api/security", requireLoopbackOnly, require("./routes/security"));
 app.use("/api/graph-runtime", requireLoopbackOnly, require("./routes/graphRuntime"));
 app.use("/api/federation", require("./routes/federation")({ publishMqttMessage, respondError, inferHttpStatusForError }));
 app.use("/api/omnispindle", requireLoopbackOnly, require("./routes/omnispindle")({ resolveToolPaths, respondError, serverDir: __dirname }));
+app.use("/api/constructions", requireLoopbackOnly, require("./routes/constructions"));
 app.use("/api/auto-continue", requireLoopbackOnly, require("./routes/autoContinue"));
 app.use("/api/projects", requireLoopbackOnly, require("./routes/projects")());
 app.use("/api/mistakes", requireLoopbackOnly, require("./routes/mistakes")({ settings, respondError, inferHttpStatusForError }));
@@ -23548,7 +23573,58 @@ app.use("/api/mobile", require("./routes/mobile")({
 }));
 app.use("/api/phone", require("./routes/phone")({}));
 app.use("/api/voice", require("./routes/voice")({}));
-app.use("/api/integrations", require("./routes/integrationsRemaining")({}));
+app.use("/api/integrations", require("./routes/integrationsRemaining")({
+  // MQTT
+  setMqttBrowserFeedCorsHeaders, buildMqttBrowserRealtimePacket,
+  setMqttConfig, syncMqttBridge, publishMqttMessage, getMqttIntegrationStatus,
+  // Telegram
+  setTelegramConfig, syncTelegramPollingFromConfig, enqueueTelegramSend,
+  getTelegramWebhookSecretToken, enqueueTelegramInbound,
+  // Slack
+  enqueueSlackReview,
+  // Augment Context
+  setAugmentContextConfig, buildAugmentContextProviderPatch, redactAugmentContextProviderPatch,
+  // Symphony
+  setSymphonyConfig,
+  // Abacus
+  setAbacusConfig, getAbacusIntegrationStatus, emitAbacusManifest, emitAbacusEvent,
+  openAbacusDesktop, createAbacusWorkPacket, openAbacusWorkPacket,
+  scanAbacusWorkPacket, writeAbacusWorkPacketResponse, runAbacusCliProbe,
+  // External providers / MCP
+  setExternalProviderConfig, getExternalMcpCacheStatus,
+  normalizeExternalProviderId, clearExternalMcpCache,
+  // Chrome
+  launchChromeInUiSlot, launchChromeUrl,
+  // Google OAuth
+  setGoogleOAuthConfig, startGoogleOAuth, completeGoogleOAuthCallback,
+  // GCP
+  setGcpServiceAccountConfig, getGcpConfigSummary, listEnabledServices,
+  enqueueGcpApiRequest, enqueueGcpEnabledServices, enqueueGcpEnableService,
+  resolveGcpBootstrapServiceSelection, enqueueGcpServicesBootstrap,
+  // Gemini / Vertex
+  runGeminiApiExplainFile, writeGeminiFileAnalysisArtifact,
+  setGeminiApiConfig, setVertexBudgetConfig, resetVertexBudgetUsage,
+  clearVertexBudgetAlertState, enqueueVertexGemini,
+  // Google workspace
+  enqueueGoogleApiRequest, runGoogleWorkspaceCli,
+  // Atlassian
+  startAtlassianOAuth, completeAtlassianOAuthCallback, getAtlassianConfigSummary,
+  // HubSpot
+  startHubSpotOAuth, completeHubSpotOAuthCallback,
+  // Browser tasks
+  compileOpenAiWebChatPayload, compileGeminiEnterpriseWebChatPayload,
+  resolveWorkContextFromRequest, enforceRestrictedOrgVpnGate,
+  enforceWorkLinkPolicyForBrowserTask, enqueueBrowserTask,
+  // ContactOut
+  CONTACTOUT_DEFAULT_URL, normalizeUrl, resolveContactOutLaunchTargets,
+  // NotebookLM Enterprise
+  enqueueNotebooklmEnterpriseStatus, enqueueNotebooklmEnterpriseList,
+  enqueueNotebooklmEnterpriseCreate, enqueueNotebooklmEnterpriseSourcesAdd,
+  // Misc
+  clipText,
+  // Policy objects
+  telegramPolicy, slackPolicy, contactOutPolicy, gcpPolicy, atlassianPolicy
+}));
 app.use("/api", require("./routes/remaining")({
   getAgentColonyStatus, buildSuperSwarmStatusSnapshot, buildSuperSwarmIntegrationSummary,
   normalizeSuperSwarmMethod, normalizeSuperSwarmMission, normalizeSuperSwarmParticipants,
@@ -23582,9 +23658,36 @@ app.use("/api", require("./routes/remaining")({
   localOpsPolicy, browserTaskPolicy, toolPaths,
   verifyMobileToken, resolveDesktopSuperMasterAccess, resolveScreenViewerAccess,
   getWorkOrgPolicySummary, getWorkLinkPolicySummary, setActiveWorkOrg, getConnectionRoutingState,
+  getLocalOpsPolicySummary: safeGetLocalOpsPolicySummary,
+  getBrowserTaskPolicySummary, getSlackPolicySummary, getGithubPolicySummary,
+  getSymphonyPolicySummary, getAugmentContextPolicySummary,
+  getGooglePolicySummary, getMicrosoftPolicySummary,
   noteChannelHeartbeat, normalizeChannels, sanitizeRemoteBaseUrl, normalizeWorkOrgKey, workOrgPolicy,
   readNotebookMirrorState, normalizeEmailKey, googlePolicy, enqueueNotebookGoogleMirrorSync,
-  getBrainLeaderRuntimeSummary, getModelAuditRuntimeSummary
+  getBrainLeaderRuntimeSummary, getModelAuditRuntimeSummary,
+  getCursorAgentStatus, getAnthropicCliStatus, getGeminiCliStatus,
+  getExternalProviderStatus, getExternalMcpCacheStatus,
+  getExternalMcpPolicyPresets, getExternalMcpTokenReductionProfiles,
+  getStartupBrainLeaderLoopPromise: () => startupBrainLeaderLoopPromise,
+  runStartupBrainLeaderLoop, summarizeBrainLeaderProbeError, autoSelectStartupBrainLeader,
+  listAsolariaRuntimeActions, getSuperAdminTerminalPanels, runAsolariaRuntimeAction,
+  handleCompanyPrimarySigninReveal,
+  normalizeVoiceOutputMode, normalizeWakeWord, normalizeLiveVoiceCaptureMode,
+  normalizeVoiceOutputDeviceId, sanitizeKittyTtsUrl, normalizeAvatarRenderMode,
+  runtimeSecrets, normalizeBrainProviderId, normalizeBrainFallbackOrder,
+  defaultBrainFallbackOrder, BRAIN_PROVIDER_DEFAULT_CHAIN,
+  normalizeAuthorityActorAllowlist,
+  DEFAULT_AUTHORITY_SUPER_MASTER_ALLOWLIST, DEFAULT_AUTHORITY_PHONE_MASTER_ALLOWLIST,
+  DEFAULT_AUTHORITY_DESKTOP_REGULAR_ALLOWLIST, DEFAULT_AUTHORITY_PHONE_REGULAR_ALLOWLIST,
+  normalizeScreenViewerAllowlist, DEFAULT_SCREEN_VIEWER_ALLOWLIST,
+  normalizeObservedPruneDailyHour, normalizeTimeZoneName, normalizeExternalDefaultModels,
+  resolveConfiguredBrainProviderModel, deriveDefaultPreferredList,
+  persistExternalDefaultModelsSnapshot,
+  syncExternalObservedPruneScheduler, syncModelAuditScheduler, syncAgentColonyWatchdogScheduler,
+  workerRuntimeRouteCaches, notifyGuardianContacts, sendMobilePushNotification,
+  normalizeAvatarState, getGoogleIntegrationStatus, buildSkillsToolsIndexRuntime,
+  normalizeChatRouteMode, normalizeImagePaths, normalizeFilePaths,
+  runRoutedIntent, enqueuePadRun, enqueueOpenclawRead, enqueueOpenclawControl
 }));
 // ── End Extracted Routes ────────────────────────────────────────────────
 
