@@ -154,19 +154,19 @@ async function cycle() {
     consecutiveHangs++;
   }
 
+  // BEHCS-FIX: raise thresholds — ESC kills Claude Code sessions
+  // Only escalate after 5+ consecutive hangs (2.5 min), never ESC into Claude Code
   const action = status === 'working' ? 'observe' :
-                 status === 'waiting' ? 'nudge' :
-                 consecutiveHangs <= 2 ? 'unstick' : 'restart';
+                 status === 'waiting' ? 'observe' :
+                 consecutiveHangs <= 5 ? 'observe' : 'nudge_only';
 
-  // Step 4: Act
-  if (action === 'nudge') {
-    typeText('Falcon%sstatus%scheck.%sRespond%swith%sheartbeat.');
-    pressEnter();
-  } else if (action === 'unstick') {
-    pressEsc();
-    typeText('Falcon%sESC%ssent.%sUnsticking.%sRespond%snow.');
-    pressEnter();
-  } else if (action === 'restart') {
+  // Step 4: Act — NEVER press ESC (kills Claude Code), NEVER restart
+  // Only send a gentle nudge via bus after 5+ hangs
+  if (action === 'nudge_only') {
+    // Send via bus only — don't touch the screen
+    logToBus({ verb: 'behcs.nudge', text: 'Falcon heartbeat stale >2.5min', consecutiveHangs });
+    consecutiveHangs = 0; // reset after nudge
+  } else if (action === 'DISABLED_restart') {
     console.log(`[${ts}] #${cycleCount} RESTARTING TERMUX — ${consecutiveHangs} consecutive hangs`);
     restartTermux();
     consecutiveHangs = 0;
