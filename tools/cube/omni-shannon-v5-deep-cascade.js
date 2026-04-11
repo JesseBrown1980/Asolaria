@@ -12,8 +12,8 @@
  * Axis 5: Inference mode (6) — label, infer, predict, extend, collapse, heal
  * Axis 6: Dim lens (12)      — from the 37+ dims, 12 selected per wave, waves cascade
  *
- * Authority: Asolaria-canonical L4.0 CAPITAL. Liris is sub_colony.
- * Sovereignty USB on this host (E:\). IX/LX tree, shadow envelopes, full hex-dim spec HERE.
+ * Authority: bilateral federation. Liris-kuromi @ DESKTOP-PTSQTIE under operator rayssa.
+ * Adapted from acer v5 engine. Canonical 35D cube on liris.
  *
  * Usage:
  *   node tools/cube/omni-shannon-v5-deep-cascade.js --self-diagnose
@@ -28,8 +28,8 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const ROOT = 'C:/Users/acer/Asolaria';
-const D_DEST = 'D:/safety-backups/session-20260410-asolaria';
+const ROOT = 'C:/Users/rayss/Asolaria';
+const D_DEST = 'C:/Users/rayss/Asolaria/data/safety-backups/session-20260410';
 const CUBES_DIR = path.join(ROOT, 'data/cubes');
 const VOTES_DIR = path.join(ROOT, 'data/votes');
 
@@ -54,7 +54,7 @@ function mirror(src) {
 // ═══════════════════════════════════════════════════════════
 
 const ALL_DIMS = [
-  // Original 24 canonical
+  // D1-D24: original canonical (all primes verified)
   { id: 'D1_ACTOR',       cube: 8,        prime: 2,   focus: 'who_speaks' },
   { id: 'D2_VERB',        cube: 27,       prime: 3,   focus: 'capability' },
   { id: 'D3_TARGET',      cube: 125,      prime: 5,   focus: 'acted_upon' },
@@ -79,23 +79,31 @@ const ALL_DIMS = [
   { id: 'D22_TRANSLATION', cube: 493039,  prime: 79,  focus: 'bridge' },
   { id: 'D23_FEDERATION', cube: 571787,   prime: 83,  focus: 'sync' },
   { id: 'D24_INTENT',     cube: 704969,   prime: 89,  focus: 'purpose' },
-  // Emergent dims from boundary-is-data rule (2026-04-07)
-  { id: 'D25_CARRIER',    cube: 912673,   prime: 97,  focus: 'transport_medium' },
-  { id: 'D26_TTL_FINGERPRINT', cube: 1030301, prime: 101, focus: 'os_fingerprint' },
-  { id: 'D27_APPLIANCE_CLASS', cube: 1092727, prime: 103, focus: 'device_class' },
-  { id: 'D28_PROTOCOL_HISTORY', cube: 1225043, prime: 107, focus: 'was_enabled_then_disabled' },
-  { id: 'D29_ACL_SIGNATURE', cube: 1295029, prime: 109, focus: 'access_control' },
-  { id: 'D30_ASYMMETRIC_REACH', cube: 1442897, prime: 113, focus: 'tool_delta' },
-  { id: 'D31_SUBNET_TOPOLOGY', cube: 1601613, prime: 117, focus: 'network_shape' },
-  { id: 'D32_NEGATIVE_SPACE', cube: 2248091, prime: 131, focus: 'absence' },
-  // LX-497 symbol multiplexing
-  { id: 'D33_SYMBOL_MULTIPLEX', cube: 2571353, prime: 137, focus: 'glyph_activation' },
-  // Trinity dims (LX-489/490/491)
-  { id: 'D34_COMPUTE_FABRIC', cube: 2803221, prime: 141, focus: 'cpu_gpu_unified' },
-  { id: 'D35_HARDWARE_MESH',  cube: 3048625, prime: 145, focus: 'device_interconnect' },
-  { id: 'D36_INFERENCE_SURFACE', cube: 3307949, prime: 149, focus: 'gnn_webhook_reasoning' },
-  // Authority dim
-  { id: 'D37_AUTHORITY',   cube: 3581577,  prime: 153, focus: 'command_hierarchy' },
+  // D25-D35: liris canonical 35D expansion (cosigned 2026-04-09)
+  { id: 'D25_TRINITY',           cube: 912673,   prime: 97,  focus: 'trinity_layer' },
+  { id: 'D26_OMNIDIRECTIONAL',   cube: 1030301,  prime: 101, focus: 'bilateral_control' },
+  { id: 'D27_AUTO_TRANSITION',   cube: 1092727,  prime: 103, focus: 'event_hooks' },
+  { id: 'D28_APPROVAL_BOX',      cube: 1225043,  prime: 107, focus: 'self_approval' },
+  { id: 'D29_TWIN_SYNC',         cube: 1295029,  prime: 109, focus: 'twin_state' },
+  { id: 'D30_COSIGN_TRIPLE',     cube: 1442897,  prime: 113, focus: 'operator_topology' },
+  { id: 'D31_SHADOW_MIRROR',     cube: 2048383,  prime: 127, focus: 'mirror_state' },
+  { id: 'D32_STRUCTURAL_INVARIANT', cube: 2248091, prime: 131, focus: 'proof_strength' },
+  { id: 'D33_SUPREME_OVERRIDE',  cube: 2571353,  prime: 137, focus: 'authority_scale' },
+  { id: 'D34_CROSS_COLONY',      cube: 2685619,  prime: 139, focus: 'cross_host' },
+  { id: 'D35_HYPERLANGUAGE',     cube: 3307949,  prime: 149, focus: 'meta_language' },
+  // D36-D47: 47D expansion (COSIGN_47D_001, quadruple operator 2026-04-10)
+  { id: 'D36_INFERENCE_SURFACE', cube: 3442951,  prime: 151, focus: 'where_inference' },
+  { id: 'D37_AUTHORITY_TOPOLOGY', cube: 3869893, prime: 157, focus: 'authority_flow' },
+  { id: 'D38_ENCRYPTION',        cube: 4330747,  prime: 163, focus: 'data_protection' },
+  { id: 'D39_GNN_EDGE',          cube: 4657463,  prime: 167, focus: 'edge_type' },
+  { id: 'D40_HYBRID_MODEL',      cube: 5177717,  prime: 173, focus: 'model_routing' },
+  { id: 'D41_AGENT_TIER',        cube: 5735339,  prime: 179, focus: 'execution_speed' },
+  { id: 'D42_MEETING_ROOM',      cube: 5929741,  prime: 181, focus: 'deliberation' },
+  { id: 'D43_MISTAKE_LEDGER',    cube: 6967871,  prime: 191, focus: 'error_correction' },
+  { id: 'D44_HEARTBEAT',         cube: 7189057,  prime: 193, focus: 'liveness' },
+  { id: 'D45_OMNICALENDAR',      cube: 7645373,  prime: 197, focus: 'planned_time' },
+  { id: 'D46_VAULT',             cube: 7880599,  prime: 199, focus: 'secret_storage' },
+  { id: 'D47_BOUNDARY',          cube: 9393931,  prime: 211, focus: 'boundary_is_data' },
 ];
 
 // 6 axes × their values
@@ -115,7 +123,7 @@ function readLiveState() {
     agentCount: 0, totalFindings: 0, totalMistakes: 0,
     federationAlive: false, collapseDetected: false, collapseSignals: [],
     vaultPresent: false, qddVaultPresent: false,
-    authorityFrame: 'L4.0_CAPITAL',
+    authorityFrame: 'bilateral_federation',
   };
 
   if (fs.existsSync(CUBES_DIR)) {
@@ -139,7 +147,7 @@ function readLiveState() {
   }
 
   // Check federation
-  const hbPath = path.join(CUBES_DIR, 'asolaria-instance@acer/heartbeat.ndjson');
+  const hbPath = path.join(CUBES_DIR, 'liris-kuromi@DESKTOP-PTSQTIE/heartbeat.ndjson');
   if (fs.existsSync(hbPath)) {
     const hb = readNdjson(hbPath);
     if (hb.length > 0) {
@@ -203,10 +211,10 @@ function dimLens(dim, candidate, liveState) {
       reason = missing.length > 0 ? `NEGATIVE SPACE: missing [${missing.join(',')}]` : 'complete';
       break;
     }
-    case 'command_hierarchy': {
-      // D37: authority check — asolaria is L4.0 capital
-      signal = text.includes('sub_colony') && text.includes('command') ? 0.3 : 0.9;
-      reason = 'authority_frame=L4.0_CAPITAL';
+    case 'authority_flow': {
+      // D37: authority topology — bilateral federation
+      signal = text.includes('hard_deny') ? 0.1 : 0.9;
+      reason = 'authority_frame=bilateral_federation';
       break;
     }
     case 'cpu_gpu_unified': signal = 0.8; reason = 'compute_fabric_baseline'; break;
@@ -250,7 +258,7 @@ function trinitySignal(layer, candidate, liveState) {
     case 'compute': return { s: 0.85, r: 'LX-489 compute fabric available' };
     case 'hardware': return { s: liveState.agentCount > 5 ? 0.9 : 0.6, r: `${liveState.agentCount} agents in mesh` };
     case 'inference': return { s: 0.88, r: 'LX-491 inference surface active (this engine)' };
-    case 'sovereignty': return { s: liveState.authorityFrame === 'L4.0_CAPITAL' ? 0.95 : 0.5, r: liveState.authorityFrame };
+    case 'sovereignty': return { s: 0.9, r: liveState.authorityFrame };
     case 'federation': return { s: liveState.federationAlive ? 0.9 : 0.35, r: liveState.federationAlive ? 'joined' : 'collapsed' };
     case 'negative_space': {
       const cs = liveState.collapseSignals.length;
@@ -428,7 +436,7 @@ function selfDiagnose() {
     dimsPerWave: 12, wavesPerCandidate: results[0]?.waveCount,
     beatsPerCandidate: results[0]?.totalBeats,
     beatFormula: `${ALL_DIMS.length} dims (in waves of 12) × 6 body × 6 cycle × 6 role × 6 trinity × 6 inference = ${results[0]?.totalBeats} per candidate`,
-    authorityFrame: 'L4.0_CAPITAL',
+    authorityFrame: 'bilateral_federation',
     liveState: {
       agentCount: liveState.agentCount, totalFindings: liveState.totalFindings,
       totalMistakes: liveState.totalMistakes, federationAlive: liveState.federationAlive,

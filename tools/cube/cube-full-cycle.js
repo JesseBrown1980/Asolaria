@@ -30,9 +30,9 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const ROOT = 'C:/Users/acer/Asolaria';
-const D_DEST = 'D:/safety-backups/session-20260410-asolaria';
-const CYCLE_LOG = path.join(ROOT, 'data/cubes/asolaria-instance@acer/cycle-log.ndjson');
+const ROOT = 'C:/Users/rayss/Asolaria';
+const D_DEST = 'C:/Users/rayss/Asolaria/data/safety-backups/session-20260410';
+const CYCLE_LOG = path.join(ROOT, 'data/cubes/liris-kuromi@DESKTOP-PTSQTIE/cycle-log.ndjson');
 
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 function appendLog(obj) { ensureDir(path.dirname(CYCLE_LOG)); fs.appendFileSync(CYCLE_LOG, JSON.stringify(obj) + '\n'); }
