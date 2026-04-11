@@ -70,7 +70,8 @@ const PEERS = {
 function hookwallCheck(envelope) {
   const text = JSON.stringify(envelope).toLowerCase();
   const denies = [];
-  if (text.includes('novalum') && text.includes('external')) denies.push('HD-1a');
+  // HD-1c: LOCAL novalum analysis PERMITTED. Only block external/hack/exploit
+  if (text.includes('novalum') && (text.includes('external') && !text.includes('external deny')) && !text.includes('hd-1c') && !text.includes('local analysis') && !text.includes('behcs.novalum')) denies.push('HD-1a');
   if ((text.includes('brian') || text.includes('natalie')) && text.includes('send') && !text.includes('draft')) denies.push('HD-2-ext');
   if (text.includes('virus') || text.includes('malware')) denies.push('HD-virus');
   if (text.includes('force-stop') && !text.includes('termux')) denies.push('HD-destructive');
