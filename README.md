@@ -110,6 +110,20 @@ cd C:\Users\acer\Asolaria
 powershell -ExecutionPolicy Bypass -File .\tools\Build-PublicRelease.ps1 -Zip
 ```
 
+One-command publishable OS release:
+
+```powershell
+cd C:\Users\acer\Asolaria
+powershell -ExecutionPolicy Bypass -File .\tools\Invoke-Asolaria-PublishableRelease.ps1 -Zip
+```
+
+Verifier only:
+
+```powershell
+cd C:\Users\acer\Asolaria
+powershell -ExecutionPolicy Bypass -File .\tools\Test-Asolaria-PublishableRelease.ps1
+```
+
 Phone redeploy (private package + phone push + USB open):
 
 ```powershell
@@ -125,6 +139,7 @@ powershell -ExecutionPolicy Bypass -File .\tools\Sync-Asolaria-BrandIcons.ps1 -S
 ```
 
 More details: `docs/PUBLIC_RELEASE_PIPELINE.md`.
+Publishable bundle guide: `docs/PUBLISHABLE_RELEASE.md`.
 App registration + demo guidance: `docs/APP_REGISTRATION_DEMO_RUNBOOK.md`.
 Gateway authority details: `docs/GATEWAY_TOOL_AUTHORITY.md`.
 Authority modes: `docs/AUTHORITY_MODES.md`.
@@ -258,6 +273,13 @@ Vault AppRole runbook: `docs/VAULT_APPROLE_RUNBOOK.md`.
 - Chat image uploads are stored under `C:\Users\acer\Asolaria\captures\ingest`.
 - Memory is persisted in `C:\Users\acer\Asolaria\data\memory.json`.
 - Memory clear (`DELETE /api/memory`) is loopback-only and requires explicit `confirm=APPROVE_MEMORY_CLEAR`.
+- Private full-memory lane is persisted under `C:\Users\acer\Asolaria\data\private\full-memory-lane`.
+- Private full-memory lane endpoints are loopback-only:
+  - `GET /api/full-memory/status`
+  - `GET /api/full-memory/conversations`
+  - `GET /api/full-memory/conversations/:chatId`
+  - `GET /api/full-memory/search`
+  - `POST /api/full-memory/backfill/public-memory`
 - Notebook memory is persisted in `C:\Users\acer\Asolaria\data\notebook.json`.
 - Notebook auto-capture mode can be set with `ASOLARIA_NOTEBOOK_AUTO_MODE=off|auto` or `POST /api/settings` (`notebookAutoMode`).
 - Approval prefix memory is persisted in `C:\Users\acer\Asolaria\data\approval-rules.json`.

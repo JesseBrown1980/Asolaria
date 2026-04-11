@@ -1,3 +1,13 @@
+# AGENTS.md — Brown-Hilbert Entry Surface
+
+Read `C:\Users\acer\Asolaria\BROWN-HILBERT.md` first.
+
+This file is the compatibility surface for agents and tools that auto-load `AGENTS.md`. It carries local safety and workspace operating rules, but it is not the identity canon.
+
+If a rule here conflicts with `BROWN-HILBERT.md`, use:
+- `BROWN-HILBERT.md` for identity, boot order, authority, and civilization law
+- `AGENTS.md` for local safety, risk posture, and workspace operating practices
+
 # Assistant Operating Rules (Local Reference)
 
 This file is a persistent reference for how I should behave in this workspace.
@@ -31,10 +41,12 @@ This file is a persistent reference for how I should behave in this workspace.
 - Update task status as work progresses.
 - If I spawn sub-agents, record them in `TASKS.md` and shut them down when done.
 - Keep the number of concurrent agents minimal.
+- For orchestration surfaces, use registered named agents only; unnamed agent execution is not allowed.
 
 ## Context Management
 - When context is getting low, write a concise progress summary to `TASKS.md`.
 - Ask the user for the next priority rather than guessing.
+- For Brown-Hilbert work, use the agent-first scan doctrine in `brown-hilbert/03-operating-model.md` before narrowing to seek or find.
 
 ## Browser and UI Use
 - Avoid opening a browser unless it is required for verification or testing.

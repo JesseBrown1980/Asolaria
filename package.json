@@ -2,7 +2,7 @@
   "name": "asolaria",
   "version": "0.1.0",
   "private": true,
-  "description": "Asolaria master orchestrator for Codex, Chrome, and Power Automate Desktop",
+  "description": "Asolaria OS control plane for Codex, Chrome, and Power Automate Desktop",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -17,7 +17,9 @@
     "gateway:start": "node src/gateway/server.js",
     "sandbox:start": "node services/sandbox-manager/server.js",
     "memory:start": "node services/memory-indexer/server.js",
-    "release:public": "powershell -ExecutionPolicy Bypass -File .\\tools\\Build-PublicRelease.ps1 -Zip"
+    "release:public": "powershell -ExecutionPolicy Bypass -File .\\tools\\Build-PublicRelease.ps1 -Zip",
+    "release:verify": "powershell -ExecutionPolicy Bypass -File .\\tools\\Test-Asolaria-PublishableRelease.ps1",
+    "release:publishable": "powershell -ExecutionPolicy Bypass -File .\\tools\\Invoke-Asolaria-PublishableRelease.ps1 -Zip"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",

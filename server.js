@@ -23,9 +23,34 @@ const crypto = require("crypto");
 const os = require("os");
 const childProcess = require("child_process");
 const webpush = require("web-push");
+
+// ── Lazy connector loader: defers require() until first function call ──
+function lazyConnector(modulePath) {
+  let mod;
+  return new Proxy({}, {
+    get(_, prop) {
+      return (...args) => {
+        if (!mod) { mod = require(modulePath); console.log(`[lazy] loaded ${modulePath}`); }
+        const val = mod[prop];
+        return typeof val === "function" ? val(...args) : val;
+      };
+    }
+  });
+}
+
+// ── Eager loads (needed at startup) ──
+const sovereigntyBoot = require("./src/sovereignty-boot");
 const { resolveToolPaths } = require("./src/connectors/systemPaths");
 const { runBrainTask } = require("./src/brainOrchestrator");
-const { runCodex } = require("./src/connectors/codexConnector");
+const {
+  getOmnispindle,
+  VALID_LANE_IDS: OMNISPINDLE_LANE_IDS
+} = require("./src/omnispindle");
+
+// ── Lazy connectors (loaded on first use) ──
+const {
+  runCodex
+} = lazyConnector("./src/connectors/codexConnector");
 const {
   openChromeUrl,
   launchChromeUrl,
@@ -34,19 +59,19 @@ const {
   resolveManagedProfile,
   listManagedChromeProfiles,
   listManagedChromeProfilesWithExtension
-} = require("./src/connectors/chromeConnector");
+} = lazyConnector("./src/connectors/chromeConnector");
 const {
   captureScreenshot,
   inspectPage,
   runBrowserTask,
   warmScreenshotWorker
-} = require("./src/connectors/screenshotConnector");
+} = lazyConnector("./src/connectors/screenshotConnector");
 const {
   captureDesktopSnapshot,
   safeDesktopFileName
-} = require("./src/connectors/desktopCaptureConnector");
-const { listDesktopDisplays } = require("./src/connectors/desktopDisplayConnector");
-const { invokeDesktopInput } = require("./src/connectors/desktopControlConnector");
+} = lazyConnector("./src/connectors/desktopCaptureConnector");
+const { listDesktopDisplays } = lazyConnector("./src/connectors/desktopDisplayConnector");
+const { invokeDesktopInput } = lazyConnector("./src/connectors/desktopControlConnector");
 const {
   safePhoneVoiceFileName,
   getPhoneMirrorStatus,
@@ -63,18 +88,18 @@ const {
   openPhoneWhatsAppChat,
   setPhoneMirrorVoiceOutput,
   getPhoneMirrorVoiceOutput
-} = require("./src/connectors/phoneMirrorConnector");
+} = lazyConnector("./src/connectors/phoneMirrorConnector");
 const {
   listPhoneDeveloperOptions,
   getPhoneDeveloperOptionsStatus,
   setPhoneDeveloperOptionState,
   runPhoneDeveloperOptionsSweep
-} = require("./src/connectors/phoneDeveloperOptionsConnector");
+} = lazyConnector("./src/connectors/phoneDeveloperOptionsConnector");
 const {
   getPhoneProMirrorStatus,
   startPhoneProMirror,
   stopPhoneProMirror
-} = require("./src/connectors/phoneProMirrorConnector");
+} = lazyConnector("./src/connectors/phoneProMirrorConnector");
 const {
   initCapturesDir: initVirtualDisplayCapturesDir,
   listVirtualDisplays,
@@ -86,8 +111,8 @@ const {
   typeOnVirtualDisplay,
   launchOnVirtualDisplay,
   getState: getVirtualDisplayState
-} = require("./src/connectors/virtualDisplayConnector");
-const { readOnlyOpenclaw, governedOpenclaw, runOpenclawAgent } = require("./src/connectors/openclawConnector");
+} = lazyConnector("./src/connectors/virtualDisplayConnector");
+const { readOnlyOpenclaw, governedOpenclaw, runOpenclawAgent } = lazyConnector("./src/connectors/openclawConnector");
 const {
   getExternalProviderStatus,
   getExternalMcpCacheStatus,
@@ -97,39 +122,35 @@ const {
   setExternalProviderConfig,
   getExternalProvider,
   runExternalProvider
-} = require("./src/connectors/externalBrainConnector");
+} = lazyConnector("./src/connectors/externalBrainConnector");
 const {
   runCursorAgent,
   getCursorAgentStatus
-} = require("./src/connectors/cursorAgentConnector");
+} = lazyConnector("./src/connectors/cursorAgentConnector");
 const {
   runAnthropicCli,
   getAnthropicCliStatus
-} = require("./src/connectors/anthropicCliConnector");
-const {
-  getOmnispindle,
-  VALID_LANE_IDS: OMNISPINDLE_LANE_IDS
-} = require("./src/omnispindle");
+} = lazyConnector("./src/connectors/anthropicCliConnector");
 const {
   runGeminiCli,
   getGeminiCliStatus
-} = require("./src/connectors/geminiCliConnector");
+} = lazyConnector("./src/connectors/geminiCliConnector");
 const {
   runGoogleWorkspaceCli,
   getGoogleWorkspaceCliStatus
-} = require("./src/connectors/googleWorkspaceCliConnector");
+} = lazyConnector("./src/connectors/googleWorkspaceCliConnector");
 const {
   splitSentences,
   detectVoiceTools,
   transcribeAudioFile,
   synthesizeSpeechToFile,
   buildVoicePlan
-} = require("./src/connectors/voiceConnector");
-const { openPadDesktop, runPadPackage } = require("./src/connectors/padConnector");
+} = lazyConnector("./src/connectors/voiceConnector");
+const { openPadDesktop, runPadPackage } = lazyConnector("./src/connectors/padConnector");
 const {
   getLocalOpsPolicySummary,
   runLocalProjectTask
-} = require("./src/connectors/localOpsConnector");
+} = lazyConnector("./src/connectors/localOpsConnector");
 
 function safeGetLocalOpsPolicySummary(policy = {}) {
   if (typeof getLocalOpsPolicySummary !== "function") {
@@ -157,8 +178,10 @@ const {
   setSlackConfig,
   getSlackIntegrationStatus,
   listSlackChannels,
-  reviewSlackConversation
-} = require("./src/connectors/slackConnector");
+  reviewSlackConversation,
+  sendSlackMessage,
+  createSlackEventPoller
+} = lazyConnector("./src/connectors/slackConnector");
 const {
   getTelegramConfigSummary,
   setTelegramConfig,
@@ -167,13 +190,13 @@ const {
   fetchTelegramUpdates,
   getTelegramWebhookSecretToken,
   normalizeChatId
-} = require("./src/connectors/telegramConnector");
+} = lazyConnector("./src/connectors/telegramConnector");
 const {
   getGithubConfigSummary,
   setGithubConfig,
   getGithubIntegrationStatus,
   listGithubRepos
-} = require("./src/connectors/githubConnector");
+} = lazyConnector("./src/connectors/githubConnector");
 const {
   getMqttIntegrationStatus,
   setMqttConfig,
@@ -194,7 +217,7 @@ const {
   stopSymphonyService,
   restartSymphonyService,
   submitSymphonyWorkItem
-} = require("./src/connectors/symphonyConnector");
+} = lazyConnector("./src/connectors/symphonyConnector");
 const {
   getAbacusIntegrationStatus,
   setAbacusConfig,
@@ -210,20 +233,20 @@ const {
   openAbacusDesktop,
   emitAbacusEvent,
   emitAbacusManifest
-} = require("./src/connectors/abacusConnector");
+} = lazyConnector("./src/connectors/abacusConnector");
 const {
   getWorkerRouterStatus,
   recommendWorker,
   dispatchWorkerTask,
   listWorkerDispatches,
   getWorkerDispatch
-} = require("./src/connectors/workerRouter");
+} = lazyConnector("./src/connectors/workerRouter");
 const {
   getAugmentContextStatus,
   setAugmentContextConfig,
   buildAugmentContextProviderPatch,
   redactAugmentContextProviderPatch
-} = require("./src/connectors/augmentContextConnector");
+} = lazyConnector("./src/connectors/augmentContextConnector");
 const {
   getGoogleConfigSummary,
   setGoogleOAuthConfig,
@@ -237,12 +260,12 @@ const {
   sendGmail,
   createCalendarEvent,
   createDriveFile
-} = require("./src/connectors/googleConnector");
+} = lazyConnector("./src/connectors/googleConnector");
 const {
   getMicrosoftConfigSummary,
   setMicrosoftOAuthConfig,
   getMicrosoftIntegrationStatus
-} = require("./src/connectors/microsoftConnector");
+} = lazyConnector("./src/connectors/microsoftConnector");
 const {
   getAtlassianConfigSummary,
   setAtlassianOAuthConfig,
@@ -250,7 +273,7 @@ const {
   completeAtlassianOAuthCallback,
   atlassianApiRequest,
   getAtlassianIntegrationStatus
-} = require("./src/connectors/atlassianConnector");
+} = lazyConnector("./src/connectors/atlassianConnector");
 const {
   getHubSpotConfigSummary,
   setHubSpotOAuthConfig,
@@ -261,14 +284,14 @@ const {
   listDeals: listHubSpotDeals,
   hubspotApiRequest,
   getHubSpotIntegrationStatus
-} = require("./src/connectors/hubspotConnector");
+} = lazyConnector("./src/connectors/hubspotConnector");
 const {
   getGcpConfigSummary,
   setGcpServiceAccountConfig,
   gcpApiRequest,
   listEnabledServices,
   enableService
-} = require("./src/connectors/gcpConnector");
+} = lazyConnector("./src/connectors/gcpConnector");
 const {
   getVertexConfigSummary,
   setVertexConfig,
@@ -276,7 +299,7 @@ const {
   setVertexBudgetConfig,
   resetVertexBudgetUsage,
   runVertexGemini
-} = require("./src/connectors/vertexConnector");
+} = lazyConnector("./src/connectors/vertexConnector");
 const {
   getGeminiApiConfigSummary,
   setGeminiApiConfig,
@@ -284,25 +307,25 @@ const {
   runGeminiApiMultimodal,
   runGeminiApiEmbedContent,
   runGeminiApiExplainFile
-} = require("./src/connectors/geminiApiConnector");
+} = lazyConnector("./src/connectors/geminiApiConnector");
 const {
   getGeminiLiveStatus,
   getGeminiLiveAudioStatus,
   runGeminiLiveTextTurn,
   runGeminiLiveTextToolTurn
-} = require("./src/connectors/geminiLiveConnector");
+} = lazyConnector("./src/connectors/geminiLiveConnector");
 const {
   runNotebooklmAsk,
   getNotebooklmEnterpriseStatus,
   listNotebooklmEnterpriseNotebooks,
   createNotebooklmEnterpriseNotebook,
   batchCreateNotebooklmSources
-} = require("./src/connectors/notebooklmConnector");
+} = lazyConnector("./src/connectors/notebooklmConnector");
 const {
   getWolConfigSummary,
   setWolConfig,
   sendWakeOnLan
-} = require("./src/connectors/wolConnector");
+} = lazyConnector("./src/connectors/wolConnector");
 const {
   getCapturesPolicy,
   collectCapturesStats,
@@ -310,7 +333,7 @@ const {
   pruneImportantCaptures,
   pruneTrashCaptures,
   markCaptureImportant
-} = require("./src/connectors/capturesConnector");
+} = lazyConnector("./src/connectors/capturesConnector");
 const {
   ingestHookEvent,
   getGuardVerdict,
@@ -342,6 +365,9 @@ const {
   getConversationTurns
 } = require("./src/memoryStore");
 const {
+  backfillFullMemoryFromPublicMemory
+} = require("./src/fullMemoryLaneStore");
+const {
   addNotebookNote,
   updateNotebookNote,
   deleteNotebookNote,
@@ -357,6 +383,16 @@ const {
   searchWorkspaceKnowledge,
   getWorkspaceKnowledgeStatus
 } = require("./src/workspaceKnowledgeStore");
+const {
+  getAgentIndexStatus,
+  searchAgentIndex,
+  buildAgentIndexContextForPrompt
+} = require("./src/agentIndexStore");
+const {
+  getColonyMemoryStatus,
+  searchColonyMemory,
+  buildColonyMemoryContextForPrompt
+} = require("./src/colonyMemoryStore");
 const {
   ensureSemanticKnowledgeIndex,
   getSemanticKnowledgeStatus,
@@ -410,6 +446,18 @@ const {
   setSecret,
   deleteSecret
 } = require("./src/secureVault");
+
+try {
+  const initialMemoryState = getMemoryState(400, { clean: false });
+  const backfillResult = backfillFullMemoryFromPublicMemory(initialMemoryState, {
+    onlyIfEmpty: true
+  });
+  if (backfillResult?.ok && !backfillResult?.skipped && Number(backfillResult.importedTurns || 0) > 0) {
+    console.log(`[fullMemoryLane] imported ${backfillResult.importedTurns} public-memory turns into the private lane.`);
+  }
+} catch (error) {
+  console.warn("[fullMemoryLane] initial backfill failed:", error?.message || error);
+}
 const { evaluateRisk, isLevelAtOrAbove, normalizeLevel } = require("./src/riskEngine");
 const {
   bootstrapGuardianProfile,
@@ -460,6 +508,9 @@ const {
   deriveDefaultPreferredList,
   enforceChannelPrivacyPolicy
 } = require("./src/connectionPolicy");
+const {
+  summarizeNetworkFixture
+} = require("./src/networkFixtureCatalog");
 const { buildInstallProbe } = require("./src/installPlanner");
 const {
   projectRoot,
@@ -2971,15 +3022,49 @@ const settings = {
   guardianAutoBlockCritical: String(process.env.ASOLARIA_GUARDIAN_AUTO_BLOCK_CRITICAL || "false").toLowerCase() === "true",
   guardianNotifyPolicy: String(process.env.ASOLARIA_GUARDIAN_NOTIFY_POLICY || "important").toLowerCase(),
   guardianRequireOwnerForCritical: String(process.env.ASOLARIA_GUARDIAN_REQUIRE_OWNER_FOR_CRITICAL || "true").toLowerCase() !== "false",
-  connectionPreference: normalizeChannels(process.env.ASOLARIA_CONNECTION_PREFERENCE || deriveDefaultPreferredList()),
-  connectionAvailable: normalizeChannels(process.env.ASOLARIA_CONNECTION_AVAILABLE || "usb,vpn,private_internet"),
-  connectionAllowPublicInternet: String(process.env.ASOLARIA_ALLOW_PUBLIC_INTERNET || "false").toLowerCase() === "true",
-  connectionPublicInternetPrivate: String(process.env.ASOLARIA_PUBLIC_INTERNET_IS_PRIVATE || "false").toLowerCase() === "true",
-  connectionRemoteBaseUrl: sanitizeRemoteBaseUrl(process.env.ASOLARIA_REMOTE_APPROVAL_BASE_URL || "", ""),
-  networkRemoteAuthRequired: String(process.env.ASOLARIA_NETWORK_REMOTE_AUTH_REQUIRED || "true").toLowerCase() !== "false",
-  networkRequireEncryptedRemote: String(process.env.ASOLARIA_NETWORK_REQUIRE_ENCRYPTED_REMOTE || "true").toLowerCase() !== "false",
-  networkStealthDeny: String(process.env.ASOLARIA_NETWORK_STEALTH_DENY || "true").toLowerCase() !== "false",
-  networkMobileDirectControlEnabled: String(process.env.ASOLARIA_NETWORK_MOBILE_DIRECT_CONTROL_ENABLED || "false").toLowerCase() === "true",
+  connectionPreference: normalizeChannels(
+    readRuntimeSettingsString(
+      persistedRuntimeSettings.connectionPreference,
+      process.env.ASOLARIA_CONNECTION_PREFERENCE || deriveDefaultPreferredList().join(",")
+    )
+  ),
+  connectionAvailable: normalizeChannels(
+    readRuntimeSettingsString(
+      persistedRuntimeSettings.connectionAvailable,
+      process.env.ASOLARIA_CONNECTION_AVAILABLE || "usb,vpn,private_internet"
+    )
+  ),
+  connectionAllowPublicInternet: readRuntimeSettingsBool(
+    persistedRuntimeSettings.connectionAllowPublicInternet,
+    String(process.env.ASOLARIA_ALLOW_PUBLIC_INTERNET || "false").toLowerCase() === "true"
+  ),
+  connectionPublicInternetPrivate: readRuntimeSettingsBool(
+    persistedRuntimeSettings.connectionPublicInternetPrivate,
+    String(process.env.ASOLARIA_PUBLIC_INTERNET_IS_PRIVATE || "false").toLowerCase() === "true"
+  ),
+  connectionRemoteBaseUrl: sanitizeRemoteBaseUrl(
+    readRuntimeSettingsString(
+      persistedRuntimeSettings.connectionRemoteBaseUrl,
+      process.env.ASOLARIA_REMOTE_APPROVAL_BASE_URL || ""
+    ),
+    ""
+  ),
+  networkRemoteAuthRequired: readRuntimeSettingsBool(
+    persistedRuntimeSettings.networkRemoteAuthRequired,
+    String(process.env.ASOLARIA_NETWORK_REMOTE_AUTH_REQUIRED || "true").toLowerCase() !== "false"
+  ),
+  networkRequireEncryptedRemote: readRuntimeSettingsBool(
+    persistedRuntimeSettings.networkRequireEncryptedRemote,
+    String(process.env.ASOLARIA_NETWORK_REQUIRE_ENCRYPTED_REMOTE || "true").toLowerCase() !== "false"
+  ),
+  networkStealthDeny: readRuntimeSettingsBool(
+    persistedRuntimeSettings.networkStealthDeny,
+    String(process.env.ASOLARIA_NETWORK_STEALTH_DENY || "true").toLowerCase() !== "false"
+  ),
+  networkMobileDirectControlEnabled: readRuntimeSettingsBool(
+    persistedRuntimeSettings.networkMobileDirectControlEnabled,
+    String(process.env.ASOLARIA_NETWORK_MOBILE_DIRECT_CONTROL_ENABLED || "false").toLowerCase() === "true"
+  ),
   authorityPolicyEnabled: readEnvBool(process.env.ASOLARIA_AUTHORITY_POLICY_ENABLED, true),
   authorityAllowRemoteSuperMaster: readEnvBool(process.env.ASOLARIA_AUTHORITY_ALLOW_REMOTE_SUPER_MASTER, false),
   authoritySuperMasterAllowlist: configuredAuthoritySuperMasterAllowlist,
@@ -3056,7 +3141,16 @@ const settings = {
   externalDefaultModels: readExternalDefaultModelsSnapshot(
     parseExternalDefaultModelsEnv(process.env.ASOLARIA_EXTERNAL_DEFAULT_MODELS || "")
   ),
-  activeWorkOrg: normalizeWorkOrgKey(process.env.ASOLARIA_ACTIVE_WORK_ORG || workOrgPolicy.defaultOrg || "")
+  activeWorkOrg: normalizeWorkOrgKey(
+    readRuntimeSettingsString(
+      persistedRuntimeSettings.activeWorkOrg,
+      process.env.ASOLARIA_ACTIVE_WORK_ORG || workOrgPolicy.defaultOrg || ""
+    )
+  ),
+  activeNetworkFixtureId: readRuntimeSettingsString(
+    persistedRuntimeSettings.activeNetworkFixtureId,
+    process.env.ASOLARIA_ACTIVE_NETWORK_FIXTURE || ""
+  )
 };
 if (!workOrgPolicy.profiles[settings.activeWorkOrg]) {
   settings.activeWorkOrg = workOrgPolicy.defaultOrg || Object.keys(workOrgPolicy.profiles)[0] || "";
@@ -3131,7 +3225,22 @@ function buildPersistedRuntimeSettingsSnapshot() {
     startupBrainRetryDelayMs: Math.max(3000, Number(settings.startupBrainRetryDelayMs || 30000)),
     startupBrainRetryMaxAttempts: Math.max(0, Number(settings.startupBrainRetryMaxAttempts || 0)),
     startupBrainProbeMessage: String(settings.startupBrainProbeMessage || "Reply with exactly: READY").trim(),
-    startupSeedPrompt: String(settings.startupSeedPrompt || "").trim().slice(0, 1200)
+    startupSeedPrompt: String(settings.startupSeedPrompt || "").trim().slice(0, 1200),
+    connectionPreference: Array.isArray(settings.connectionPreference)
+      ? settings.connectionPreference.join(",")
+      : "",
+    connectionAvailable: Array.isArray(settings.connectionAvailable)
+      ? settings.connectionAvailable.join(",")
+      : "",
+    connectionAllowPublicInternet: Boolean(settings.connectionAllowPublicInternet),
+    connectionPublicInternetPrivate: Boolean(settings.connectionPublicInternetPrivate),
+    connectionRemoteBaseUrl: sanitizeRemoteBaseUrl(settings.connectionRemoteBaseUrl || "", ""),
+    networkRemoteAuthRequired: Boolean(settings.networkRemoteAuthRequired),
+    networkRequireEncryptedRemote: Boolean(settings.networkRequireEncryptedRemote),
+    networkStealthDeny: Boolean(settings.networkStealthDeny),
+    networkMobileDirectControlEnabled: Boolean(settings.networkMobileDirectControlEnabled),
+    activeWorkOrg: normalizeWorkOrgKey(settings.activeWorkOrg || workOrgPolicy.defaultOrg || ""),
+    activeNetworkFixtureId: String(settings.activeNetworkFixtureId || "").trim().toLowerCase()
   };
 }
 
@@ -4461,8 +4570,27 @@ app.use(express.urlencoded({ extended: false, limit: "10mb" }));
 
 // ── Health endpoints (public, no auth, before all middleware) ──
 app.get("/api/health/fast", async (req, res) => {
-  const payload = await getCachedFastHealthPayload({ redactTokens: !isLoopbackRequest(req) });
-  res.json(payload);
+  const loopback = isLoopbackRequest(req);
+  const payload = await getCachedFastHealthPayload({ redactTokens: !loopback });
+  let responsePayload = payload;
+  if (loopback) {
+    const [phoneBridgeKeeper, phoneTunnelMonitor, systemSupervisor] = await Promise.all([
+      getPhoneBridgeKeeperStatus({ forceRefresh: true }),
+      getPhoneTunnelMonitorStatus({ forceRefresh: true }),
+      getSystemSupervisorStatus({ forceRefresh: true })
+    ]);
+    responsePayload = {
+      ...payload,
+      networkPolicy: {
+        ...(payload?.networkPolicy || {}),
+        phoneBridgeKeeper,
+        phoneTunnelMonitor
+      },
+      systemSupervisor
+    };
+  }
+  try { responsePayload.sovereignty = sovereigntyBoot.status(); } catch (_) {}
+  res.json(responsePayload);
 });
 
 // ── Auth middleware (Phase 2) — sets req.authRole for RBAC, non-blocking ──
@@ -4492,6 +4620,8 @@ app.use("/api", (req, _res, next) => {
 // ── Attribution middleware (Phase 2) — logs mutations to audit trail ──
 app.use("/api", attributionMiddleware({ logMutationsOnly: true }));
 const noCacheMobileAssets = new Set([
+  "/phone-mode.html",
+  "/phone-mode.js",
   "/mobile-console.html",
   "/mobile-console.js",
   "/mobile-approvals.html",
@@ -4501,6 +4631,12 @@ const noCacheMobileAssets = new Set([
   "/mobile-push-sw.js",
   "/mobile.webmanifest"
 ]);
+
+app.get(["/mobile", "/mobile/"], (req, res) => {
+  const queryIndex = String(req.originalUrl || "").indexOf("?");
+  const query = queryIndex >= 0 ? String(req.originalUrl || "").slice(queryIndex) : "";
+  return res.redirect(302, `/mobile-console.html${query}`);
+});
 
 app.use(express.static(path.join(__dirname, "public"), {
   setHeaders: (res, filePath) => {
@@ -5225,17 +5361,29 @@ async function getHybridWorkspaceKnowledgeStatus(options = {}) {
   void ensureSemanticKnowledgeIndex({}).catch(() => {});
   const lexical = getWorkspaceKnowledgeStatus(options);
   const semantic = getSemanticKnowledgeStatus();
+  const agentIndex = getAgentIndexStatus(options);
+  const colonyMemory = getColonyMemoryStatus(options);
   return {
     ...lexical,
     retrievalMode: semantic.ready ? "hybrid" : "lexical",
+    indexedMemory: agentIndex.enabled,
+    structuredContracts: colonyMemory.enabled,
     lexical,
-    semantic
+    semantic,
+    agentIndex,
+    colonyMemory
   };
 }
 
 async function searchHybridWorkspaceKnowledge(query, options = {}) {
   void ensureSemanticKnowledgeIndex({}).catch(() => {});
   const safeLimit = Math.max(1, Math.min(30, Number(options.limit) || 8));
+  const agentIndex = searchAgentIndex(query, {
+    limit: safeLimit
+  });
+  const colonyMemory = searchColonyMemory(query, {
+    limit: safeLimit
+  });
   const lexical = searchWorkspaceKnowledge(query, {
     limit: safeLimit
   });
@@ -5263,6 +5411,37 @@ async function searchHybridWorkspaceKnowledge(query, options = {}) {
 
   const combined = [];
   const seen = new Set();
+  for (const row of Array.isArray(agentIndex.matches) ? agentIndex.matches : []) {
+    const key = `index:${row.ix || ""}:${row.source || ""}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    combined.push({
+      source: String(row.source || row.ix || "agent-index"),
+      title: String(row.title || row.ix || ""),
+      line: Number(row.line || 1),
+      score: Number(row.score || 0),
+      snippet: String(row.snippet || ""),
+      kind: "index",
+      ix: String(row.ix || "")
+    });
+  }
+  for (const row of Array.isArray(colonyMemory.matches) ? colonyMemory.matches : []) {
+    const key = `colony_memory:${row.source || ""}:${row.title || ""}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    combined.push({
+      source: String(row.source || "config/colony-memory"),
+      title: String(row.title || ""),
+      line: Number(row.line || 1),
+      score: Number(row.score || 0),
+      snippet: String(row.snippet || ""),
+      kind: "colony_memory"
+    });
+  }
   for (const row of Array.isArray(semantic.matches) ? semantic.matches : []) {
     const key = `semantic:${row.sourceKind || ""}:${row.source || ""}:${row.title || ""}:${row.snippet || ""}`;
     if (seen.has(key)) {
@@ -5296,11 +5475,13 @@ async function searchHybridWorkspaceKnowledge(query, options = {}) {
 
   return {
     ok: true,
-    enabled: Boolean(lexical.enabled),
+    enabled: Boolean(lexical.enabled) || Boolean(agentIndex.enabled),
     query: String(query || ""),
     retrievalMode: semantic.ready ? "hybrid" : "lexical",
     count: combined.length,
     matches: combined.slice(0, safeLimit),
+    agentIndex,
+    colonyMemory,
     lexical,
     semantic
   };
@@ -5320,6 +5501,12 @@ async function buildSharedMemoryContext(query, options = {}) {
   const notebookContext = buildNotebookContextForPrompt(query, {
     costMode
   });
+  const agentIndexContext = buildAgentIndexContextForPrompt(query, {
+    costMode
+  });
+  const colonyMemoryContext = buildColonyMemoryContextForPrompt(query, {
+    costMode
+  });
   const workspaceKnowledgeContext = buildWorkspaceKnowledgeContextForPrompt(query, {
     costMode
   });
@@ -5334,6 +5521,8 @@ async function buildSharedMemoryContext(query, options = {}) {
   return [
     formatRecentTurnsForPrompt(recentLimit, { clean: true, chatId: conversationId }),
     notebookContext,
+    agentIndexContext,
+    colonyMemoryContext,
     workspaceKnowledgeContext,
     semanticKnowledgeContext
   ].filter(Boolean).join("\n\n");
@@ -5589,6 +5778,50 @@ function enqueueSlackReview(payload) {
       analysisRaw: parsed ? "" : String(analysisTask.reply || "")
     };
   });
+}
+
+function enqueueSlackSend(payload) {
+  return enqueue("slack_send", payload, async () => {
+    if (!slackPolicy.enabled) {
+      throw new Error("Slack integration is disabled by policy.");
+    }
+    return sendSlackMessage({
+      channel: payload.channel,
+      text: payload.text,
+      thread_ts: payload.thread_ts
+    }, slackPolicy);
+  });
+}
+
+// --- Slack Event Poller (real-time nerve) ---
+let slackEventPoller = null;
+function initSlackEventPoller() {
+  if (slackEventPoller) return slackEventPoller;
+  const asolariaCh = process.env.ASOLARIA_SLACK_CHANNEL || "C0APKFR4PSA";
+  const intervalMs = Number(process.env.ASOLARIA_SLACK_POLL_INTERVAL || 8000);
+  try {
+    slackEventPoller = createSlackEventPoller({
+      channels: [asolariaCh],
+      intervalMs,
+      policy: slackPolicy,
+      onMessage({ channelId, message }) {
+        const ts = new Date().toISOString();
+        const user = message.user || "unknown";
+        const text = String(message.text || "").slice(0, 500);
+        console.log(`[slack-event] ${ts} ch=${channelId} user=${user}: ${text.slice(0, 120)}`);
+        // Emit to ASO observation log
+        try {
+          const asoPath = require("path").join(__dirname, "data", "slack-events.ndjson");
+          require("fs").appendFileSync(asoPath,
+            JSON.stringify({ at: ts, channelId, user, text, ts: message.ts }) + "\n"
+          );
+        } catch (_) { /* best effort */ }
+      }
+    });
+  } catch (err) {
+    console.error("[slack-event-poller] init failed:", err.message);
+  }
+  return slackEventPoller;
 }
 
 function enqueueGithubRepos(payload) {
@@ -12529,6 +12762,11 @@ function normalizeHostHeaderHost(value) {
   return first;
 }
 
+function isLoopbackWildcardHost(host) {
+  const value = normalizeIpLiteral(host).toLowerCase();
+  return value === "0.0.0.0" || value === "::" || value === "0:0:0:0:0:0:0:0";
+}
+
 function isLoopbackRequest(req) {
   const ip = String(req.ip || "").trim();
   const remote = String(req.socket?.remoteAddress || "").trim();
@@ -12550,7 +12788,7 @@ function isLoopbackRequest(req) {
   );
   if (hostHeader && hostHeader !== "localhost") {
     const hostAsIp = normalizeIpLiteral(hostHeader);
-    if (!isLoopbackAddress(hostAsIp)) {
+    if (!isLoopbackAddress(hostAsIp) && !isLoopbackWildcardHost(hostAsIp)) {
       return false;
     }
   }
@@ -14331,7 +14569,39 @@ const ADMIN_TERMINAL_SCREEN_ROWS = 24;
 const ADMIN_TERMINAL_SCREEN_COLUMNS = 100;
 const ADMIN_TERMINAL_FALLBACK_META = Object.freeze({
   helm: Object.freeze({ name: "Helm", role: "Controller Admin Terminal", icon: "H" }),
-  sentinel: Object.freeze({ name: "Sentinel", role: "Helper/Watch Admin Terminal", icon: "S" })
+  sentinel: Object.freeze({ name: "Sentinel", role: "Helper/Watch Admin Terminal", icon: "S" }),
+  gaia: Object.freeze({ name: "Gaia", role: "Sub-colony Leader Admin Terminal", icon: "G" }),
+  liris: Object.freeze({ name: "Liris", role: "Federated Super Admin Terminal", icon: "L" })
+});
+const ADMIN_TERMINAL_MISSION_META = Object.freeze({
+  helm: Object.freeze({
+    title: "Control QDD and the admin swarm lane",
+    repoPath: "D:\\projects\\QDD\\ebacmap-master",
+    nextMove: "Continue the QDD monorepo controller lane, keep the restart packets honest, and route bounded side work through the live swarm surfaces.",
+    workingRule: "own controller decisions, keep QDD pointed at the monorepo, and use the super swarm surfaces for bounded delegation instead of reopening stale lanes.",
+    promptPlaceholder: "Ask Helm to choose the next move, route work, or reconcile controller state."
+  }),
+  sentinel: Object.freeze({
+    title: "Watch runtime drift and controller mismatches",
+    repoPath: "D:\\projects\\QDD\\ebacmap-master",
+    nextMove: "Refresh sector-drift-watch-latest.md, compare restart anchors, and notify Helm only on meaningful checkpoint changes.",
+    workingRule: "keep the watch lane bounded. Update sector-drift-watch-latest.md, then notify Helm only for drift_changed, controller_conflict, new_blocker, sector_cleared, or needs_helm_decision.",
+    promptPlaceholder: "Ask Sentinel to watch drift, verify a surface, or report a bounded mismatch."
+  }),
+  gaia: Object.freeze({
+    title: "Lead the local sub-colony backlog",
+    repoPath: __dirname,
+    nextMove: "Turn the IX-indexed local backlog into bounded local packets, keep this machine's surfaces coherent, and escalate controller-only decisions instead of duplicating Helm.",
+    workingRule: "lead bounded local execution, keep the local IX backlog moving, and hand controller-only choices back to Helm.",
+    promptPlaceholder: "Ask Gaia to triage backlog, lead a bounded local task, or reconcile a local restart packet."
+  }),
+  liris: Object.freeze({
+    title: "Bridge Liris archaeology and federated state",
+    repoPath: __dirname,
+    nextMove: "Load the IX/LX archaeology, prepare bounded Rayssa-side handoff packets, and keep the named Liris identity stable even when the attached child model changes.",
+    workingRule: "stay Liris even if the child model changes, use explicit packets for Rayssa-side coordination, and do not assume takeover of an arbitrary existing shell.",
+    promptPlaceholder: "Ask Liris to load archaeology, prepare a remote handoff, or reconcile federated colony state."
+  })
 });
 
 function resolveAbsolutePathOrFallback(rawValue, fallbackValue = "") {
@@ -14393,6 +14663,7 @@ function getAdminTerminalDefs() {
         enabled: rawSidecar.enabled !== false,
         terminalId: callName,
         runtimeRoot: resolveAbsolutePathOrFallback(rawSidecar.runtimeRoot, defaultSidecar.runtimeRoot),
+        screenPath: resolveAbsolutePathOrFallback(rawSidecar.screenPath, defaultSidecar.screenPath),
         transcriptPath: resolveAbsolutePathOrFallback(rawSidecar.transcriptPath, defaultSidecar.transcriptPath),
         inboxPath: resolveAbsolutePathOrFallback(rawSidecar.inboxPath, defaultSidecar.inboxPath),
         statusPath: resolveAbsolutePathOrFallback(rawSidecar.statusPath, defaultSidecar.statusPath),
@@ -14473,6 +14744,7 @@ function buildAdminTerminalAgent(definition, nowMs = Date.now()) {
       enabled: Boolean(definition?.sidecar?.enabled),
       state: reportedState || (running ? "running" : "offline"),
       runtimeRoot: String(definition?.sidecar?.runtimeRoot || "").trim(),
+      screenPath: String(definition?.sidecar?.screenPath || "").trim(),
       transcriptPath: String(definition?.sidecar?.transcriptPath || "").trim(),
       inboxPath: String(definition?.sidecar?.inboxPath || "").trim(),
       statusPath: String(definition?.sidecar?.statusPath || "").trim(),
@@ -14491,12 +14763,13 @@ function buildAdminTerminalAgent(definition, nowMs = Date.now()) {
 }
 
 function normalizeAdminTerminalId(value, fallback = "") {
+  const knownIds = new Set(getAdminTerminalDefs().map((entry) => String(entry?.id || "").trim().toLowerCase()).filter(Boolean));
   const requested = String(value || "").trim().toLowerCase();
-  if (requested === "helm" || requested === "sentinel") {
+  if (knownIds.has(requested)) {
     return requested;
   }
   const safeFallback = String(fallback || "").trim().toLowerCase();
-  if (safeFallback === "helm" || safeFallback === "sentinel") {
+  if (knownIds.has(safeFallback)) {
     return safeFallback;
   }
   return "";
@@ -14520,45 +14793,108 @@ function listExistingPaths(paths = []) {
 
 function getAdminTerminalCurrentTaskPacketPath(definition) {
   const terminalId = normalizeAdminTerminalId(definition?.id || definition?.name || "", "");
-  const candidates = terminalId === "sentinel"
-    ? [
+  let candidates = [];
+  switch (terminalId) {
+    case "sentinel":
+      candidates = [
       path.join(__dirname, "reports", "sector-drift-watch-latest.md"),
       path.join(__dirname, "reports", "qdd-codex-restart-packet-latest.md"),
       path.join(__dirname, "reports", "qdd-monorepo-ez-protect-checkpoint-latest.md")
-    ]
-    : [
+      ];
+      break;
+    case "gaia":
+      candidates = [
+        path.join(__dirname, "reports", "gaia-morning-checklist-2026-03-18.md"),
+        path.join(__dirname, "reports", "helm-controller-packet-latest.md"),
+        path.join(__dirname, "reports", "qdd-codex-restart-packet-latest.md"),
+        path.join(__dirname, "reports", "qdd-monorepo-ez-protect-checkpoint-latest.md")
+      ];
+      break;
+    case "liris":
+      candidates = [
+        path.join(__dirname, "data", "agent-index", "CATALOG.md"),
+        path.join(__dirname, "data", "agent-index", "IX-084.md"),
+        path.join(__dirname, "data", "agent-index", "IX-075.md"),
+        path.join(__dirname, "data", "agent-index", "IX-037.md"),
+        path.join(__dirname, "reports", "helm-controller-packet-latest.md")
+      ];
+      break;
+    default:
+      candidates = [
       path.join(__dirname, "reports", "qdd-codex-restart-packet-latest.md"),
       path.join(__dirname, "reports", "qdd-monorepo-ez-protect-checkpoint-latest.md"),
       "D:\\projects\\QDD\\ebacmap-master\\apps\\web-ebacmap\\docs\\codex-restart-packet-20260311.md",
       "D:\\projects\\QDD\\ebacmap-master\\apps\\web-ebacmap\\docs\\ez-protect-monorepo-checkpoint-20260311.md"
-    ];
+      ];
+      break;
+  }
   return listExistingPaths(candidates)[0] || "";
 }
 
 function getAdminTerminalMissionSummary(definition) {
   const terminalId = normalizeAdminTerminalId(definition?.id || definition?.name || "", "");
-  if (terminalId === "sentinel") {
-    return {
-      title: "Watch runtime drift and controller mismatches",
-      repoPath: "D:\\projects\\QDD\\ebacmap-master",
-      nextMove: "Refresh sector-drift-watch-latest.md, compare restart anchors, and notify Helm only on meaningful checkpoint changes.",
-      activePacketPath: getAdminTerminalCurrentTaskPacketPath(definition)
-    };
-  }
+  const missionMeta = ADMIN_TERMINAL_MISSION_META[terminalId] || ADMIN_TERMINAL_MISSION_META.helm;
   return {
-    title: "Control QDD and the admin swarm lane",
-    repoPath: "D:\\projects\\QDD\\ebacmap-master",
-    nextMove: "Continue the QDD monorepo controller lane, keep the restart packets honest, and route bounded side work through the live swarm surfaces.",
+    title: missionMeta.title,
+    repoPath: missionMeta.repoPath,
+    nextMove: missionMeta.nextMove,
+    workingRule: missionMeta.workingRule,
+    promptPlaceholder: missionMeta.promptPlaceholder,
     activePacketPath: getAdminTerminalCurrentTaskPacketPath(definition)
+  };
+}
+
+function getAdminTerminalIndexFirstBootstrapPreset(definition) {
+  const terminalId = normalizeAdminTerminalId(definition?.id || definition?.name || "", "");
+  if (terminalId !== "helm" && terminalId !== "sentinel") {
+    return null;
+  }
+  const paths = listExistingPaths([
+    path.join(__dirname, "reports", "asolaria-startup-compliance-packet-latest.md"),
+    path.join(__dirname, "reports", "minimal-helm-startup-packet-latest.md"),
+    path.join(__dirname, "reports", "staged-supervisor-startup-slice-latest.md"),
+    path.join(__dirname, "reports", "startup-backtalk-authority-correction-latest.md"),
+    path.join(__dirname, "data", "agent-index", "CATALOG.md"),
+    path.join(__dirname, "data", "agent-index", "IX-280.md"),
+    path.join(__dirname, "data", "agent-index", "IX-279.md"),
+    path.join(__dirname, "data", "agent-index", "IX-278.md"),
+    path.join(__dirname, "data", "agent-index", "IX-277.md"),
+    path.join(__dirname, "data", "agent-index", "IX-274.md"),
+    path.join(__dirname, "data", "agent-index", "IX-273.md"),
+    path.join(__dirname, "data", "agent-index", "IX-268.md"),
+    path.join(__dirname, "data", "agent-index", "IX-266.md"),
+    path.join(__dirname, "data", "agent-index", "IX-265.md"),
+    path.join(__dirname, "data", "agent-index", "IX-060.md")
+  ]);
+  const guidance = terminalId === "helm"
+    ? [
+      "Startup mode: index-first compressed boot. Do not load archaeology, stale transcripts, or broad lore into working memory.",
+      "Sentinel is your bounded drift watch. Use it for compression and blocker detection instead of reopening the whole archive.",
+      "Vector, Abacus, Augment, Symphony, Gemini, and other delegation surfaces are tools, not startup memory. Pull them only after the minimal packet shows a concrete blocker.",
+      "When you reply, stay inside: STATUS / BLOCKERS / NEXT / BOUNDARIES."
+    ]
+    : [
+      "Startup mode: index-first compressed boot. Your job is bounded watch, compression, and drift detection for Helm.",
+      "Do not widen context unless a concrete controller conflict or blocker requires it.",
+      "Your outputs should be short evidence packets that keep Helm below context pressure.",
+      "When you reply, stay inside: STATUS / WHAT_CHANGED / WHY_IT_MATTERS / HELM_NEXT."
+    ];
+  return {
+    heading: "Read these startup anchors in order before taking any action:",
+    paths,
+    guidance
   };
 }
 
 function buildAdminTerminalBootstrapPrompt(definition, options = {}) {
   const mission = getAdminTerminalMissionSummary(definition);
-  const bootstrapFiles = listExistingPaths([
-    ...(Array.isArray(definition?.bootstrapOrder) ? definition.bootstrapOrder : []),
-    mission.activePacketPath
-  ]);
+  const indexFirstPreset = getAdminTerminalIndexFirstBootstrapPreset(definition);
+  const bootstrapFiles = indexFirstPreset
+    ? indexFirstPreset.paths
+    : listExistingPaths([
+      ...(Array.isArray(definition?.bootstrapOrder) ? definition.bootstrapOrder : []),
+      mission.activePacketPath
+    ]);
   const callName = String(definition?.name || definition?.id || "Admin Terminal").trim() || "Admin Terminal";
   const role = String(definition?.role || "Admin Terminal").trim() || "Admin Terminal";
   const profileId = String(definition?.profile || "").trim();
@@ -14577,8 +14913,12 @@ function buildAdminTerminalBootstrapPrompt(definition, options = {}) {
     lines.push(`Profile id: ${profileId}.`, "");
   }
 
+  if (indexFirstPreset?.guidance?.length) {
+    lines.push(...indexFirstPreset.guidance, "");
+  }
+
   if (bootstrapFiles.length > 0) {
-    lines.push("Read these files in order before taking any action:");
+    lines.push(indexFirstPreset?.heading || "Read these files in order before taking any action:");
     bootstrapFiles.forEach((item, index) => {
       lines.push(`${index + 1}. ${item}`);
     });
@@ -14598,15 +14938,10 @@ function buildAdminTerminalBootstrapPrompt(definition, options = {}) {
     lines.push(`Super swarm participants: ${swarmParticipants.join(", ")}`);
   }
 
-  if (normalizeAdminTerminalId(definition?.id || "", "") === "sentinel") {
+  if (String(mission.workingRule || "").trim()) {
     lines.push(
       "",
-      "Working rule: keep the watch lane bounded. Update sector-drift-watch-latest.md, then notify Helm only for drift_changed, controller_conflict, new_blocker, sector_cleared, or needs_helm_decision."
-    );
-  } else {
-    lines.push(
-      "",
-      "Working rule: own controller decisions, keep QDD pointed at the monorepo, and use the super swarm surfaces for bounded delegation instead of reopening stale lanes."
+      `Working rule: ${mission.workingRule}`
     );
   }
 
@@ -14743,9 +15078,7 @@ function buildAdminTerminalCockpitTerminalSnapshot(definition, nowMs = Date.now(
       inboxPath: String(definition?.sidecar?.inboxPath || "").trim(),
       statusPath: String(definition?.sidecar?.statusPath || "").trim(),
       pendingInboxCount,
-      promptPlaceholder: normalizeAdminTerminalId(definition?.id || "", "") === "sentinel"
-        ? "Ask Sentinel to watch drift, verify a surface, or report a bounded mismatch."
-        : "Ask Helm to choose the next move, route work, or reconcile controller state."
+      promptPlaceholder: String(mission?.promptPlaceholder || "Ask this admin terminal to pick a bounded next move.").trim()
     }
   };
 }
@@ -17062,6 +17395,7 @@ function getConnectionRoutingState() {
     publicInternetIsPrivate: settings.connectionPublicInternetPrivate
   });
   const selected = choosePreferredChannel(enforcement.allowed, preferred);
+  const activeFixture = summarizeNetworkFixture(settings.activeNetworkFixtureId);
   return {
     configuredAvailable,
     detectedAvailable,
@@ -17075,6 +17409,7 @@ function getConnectionRoutingState() {
       remoteBaseUrl
     },
     remoteBaseUrl,
+    activeFixture,
     selected
   };
 }
@@ -23106,12 +23441,36 @@ const healthSnapshotCache = {
 // ── Graph Runtime routes extracted to routes/graphRuntime.js (ADR-0001 Phase 3) ──
 
 app.get("/api/health/fast", async (req, res) => {
-  const payload = await getCachedFastHealthPayload({ redactTokens: !isLoopbackRequest(req) });
-  res.json(payload);
+  const loopback = isLoopbackRequest(req);
+  const payload = await getCachedFastHealthPayload({ redactTokens: !loopback });
+  let responsePayload = payload;
+  if (loopback) {
+    const [phoneBridgeKeeper, phoneTunnelMonitor, systemSupervisor] = await Promise.all([
+      getPhoneBridgeKeeperStatus({ forceRefresh: true }),
+      getPhoneTunnelMonitorStatus({ forceRefresh: true }),
+      getSystemSupervisorStatus({ forceRefresh: true })
+    ]);
+    responsePayload = {
+      ...payload,
+      networkPolicy: {
+        ...(payload?.networkPolicy || {}),
+        phoneBridgeKeeper,
+        phoneTunnelMonitor
+      },
+      systemSupervisor
+    };
+  }
+  responsePayload.sovereignty = sovereigntyBoot.status();
+  res.json(responsePayload);
+});
+
+app.get("/api/sovereignty/status", (_req, res) => {
+  res.json(sovereigntyBoot.status());
 });
 
 app.get("/api/health", async (req, res) => {
-  const redactTokens = !isLoopbackRequest(req);
+  const loopback = isLoopbackRequest(req);
+  const redactTokens = !loopback;
   if (readEnvBool(process.env.ASOLARIA_MINIMAL_STARTUP_MODE, true)) {
     const fastPayload = await getCachedFastHealthPayload({ redactTokens });
     const memory = getMemoryState(1);
@@ -23120,8 +23479,25 @@ app.get("/api/health", async (req, res) => {
     const vault = getVaultStatus();
     const guardianSummary = getGuardianStatusSummary();
     const guardianAlertStats = getGuardianAlertStats();
+    let phoneRuntimeOverrides = {};
+    if (loopback) {
+      const [phoneBridgeKeeper, phoneTunnelMonitor, systemSupervisor] = await Promise.all([
+        getPhoneBridgeKeeperStatus({ forceRefresh: true }),
+        getPhoneTunnelMonitorStatus({ forceRefresh: true }),
+        getSystemSupervisorStatus({ forceRefresh: true })
+      ]);
+      phoneRuntimeOverrides = {
+        networkPolicy: {
+          ...(fastPayload?.networkPolicy || {}),
+          phoneBridgeKeeper,
+          phoneTunnelMonitor
+        },
+        systemSupervisor
+      };
+    }
     return res.json({
       ...fastPayload,
+      ...phoneRuntimeOverrides,
       toolPaths,
       settings,
       memory: {
@@ -23470,12 +23846,15 @@ app.use("/api/hooks", require("./routes/hooks"));
 // ── End Hooks Connector Routes ──────────────────────────────────────────
 
 // ── Extracted Routes (ADR-0001 Phase 3 — strangler fig) ─────────────────
+app.use("/api/ix", require("./routes/ixExec"));
 app.use("/api/standing-directives", requireLoopbackOnly, require("./routes/standingDirectives"));
+app.use("/api/manifest-sync", requireLoopbackOnly, require("./routes/manifestSync"));
 app.use("/api/connectors/manifests", requireLoopbackOnly, require("./routes/connectorManifests"));
 app.use("/api/gateway/tokens", requireLoopbackOnly, require("./routes/gatewayTokens"));
 app.use("/api/security", requireLoopbackOnly, require("./routes/security"));
 app.use("/api/graph-runtime", requireLoopbackOnly, require("./routes/graphRuntime"));
 app.use("/api/federation", require("./routes/federation")({ publishMqttMessage, respondError, inferHttpStatusForError }));
+app.use("/api/shared-compute", requireLoopbackOnly, require("./routes/sharedCompute")({ publishMqttMessage }));
 app.use("/api/omnispindle", requireLoopbackOnly, require("./routes/omnispindle")({ resolveToolPaths, respondError, serverDir: __dirname }));
 app.use("/api/constructions", requireLoopbackOnly, require("./routes/constructions"));
 app.use("/api/auto-continue", requireLoopbackOnly, require("./routes/autoContinue"));
@@ -23484,13 +23863,37 @@ app.use("/api/mistakes", requireLoopbackOnly, require("./routes/mistakes")({ set
 app.use("/api/personas", requireLoopbackOnly, require("./routes/personas")({ respondError }));
 app.use("/api/captures", requireLoopbackOnly, require("./routes/captures")({ respondError, capturesDir }));
 app.use("/api/uploads", requireLoopbackOnly, require("./routes/uploads")({ respondError }));
-app.use("/api/policy", require("./routes/policy")({ respondError, inferHttpStatusForError, getWorkLinkPolicySummary, getWorkOrgPolicySummary, setActiveWorkOrg, CLAWBOT_CAUTION, getConnectionRoutingState }));
-app.use("/api/workspace-knowledge", require("./routes/workspaceKnowledge")({ respondError, getHybridWorkspaceKnowledgeStatus, searchHybridWorkspaceKnowledge }));
+app.use("/api/policy", require("./routes/policy")({
+  respondError,
+  inferHttpStatusForError,
+  getWorkLinkPolicySummary,
+  getWorkOrgPolicySummary,
+  setActiveWorkOrg,
+  persistRuntimeSettingsSnapshot,
+  CLAWBOT_CAUTION,
+  getConnectionRoutingState
+}));
+app.use("/api/catalog", require("./routes/catalog")({
+  respondError,
+  inferHttpStatusForError,
+  getWorkOrgPolicySummary,
+  getConnectionRoutingState,
+  publishMqttMessage
+}));
+app.use("/api/workspace-knowledge", require("./routes/workspaceKnowledge")({
+  respondError,
+  getHybridWorkspaceKnowledgeStatus,
+  searchHybridWorkspaceKnowledge,
+  getAgentIndexStatus,
+  searchAgentIndex,
+  getColonyMemoryStatus,
+  searchColonyMemory
+}));
 app.use("/api/admin-terminals", requireLoopbackOnly, require("./routes/adminTerminals")({ respondError, getCachedAdminTerminalCockpitSnapshot, ensureAdminTerminalCockpit, stopAdminTerminalCockpit, promptAdminTerminalCockpit, normalizeAdminTerminalId, adminTerminalCockpitCache, ADMIN_TERMINAL_COCKPIT_TTL_MS }));
 app.use("/api/task-ledger", requireLoopbackOnly, require("./routes/taskLedger")({ respondError, inferHttpStatusForError }));
 app.use("/api/jobs", requireLoopbackOnly, require("./routes/jobs"));
 app.use("/api/vault", requireLoopbackOnly, require("./routes/vault"));
-app.use("/api", requireLoopbackOnly, require("./routes/misc")({ getNatural20DailyDigest, serverDir: __dirname, buildInstallProbe, toolPaths, publicProfileEnabled }));
+app.use("/api/full-memory", requireLoopbackOnly, require("./routes/fullMemoryLane")({ getMemoryState }));
 app.use("/api/gateway", require("./routes/gateway")({ callGatewayControlApi, isLoopbackRequest }));
 app.use("/api/worker-router", requireLoopbackOnly, require("./routes/workerRouter"));
 app.use("/api/automation", requireLoopbackOnly, require("./routes/automation")({
@@ -23571,8 +23974,11 @@ app.use("/api/mobile", require("./routes/mobile")({
   clipText, requestedChannel, resolveScreenViewerAccess, rotateMobileApprovalToken,
   updateTaskLedgerTask, sendMobilePushNotification
 }));
+app.use("/api/cube-fabric", requireLoopbackOnly, require("./routes/cube-fabric"));
 app.use("/api/phone", require("./routes/phone")({}));
 app.use("/api/voice", require("./routes/voice")({}));
+app.use("/api/aso", require("./routes/aso"));
+app.use("/api", requireLoopbackOnly, require("./routes/misc")({ getNatural20DailyDigest, serverDir: __dirname, buildInstallProbe, toolPaths, publicProfileEnabled }));
 app.use("/api/integrations", require("./routes/integrationsRemaining")({
   // MQTT
   setMqttBrowserFeedCorsHeaders, buildMqttBrowserRealtimePacket,
@@ -23581,7 +23987,8 @@ app.use("/api/integrations", require("./routes/integrationsRemaining")({
   setTelegramConfig, syncTelegramPollingFromConfig, enqueueTelegramSend,
   getTelegramWebhookSecretToken, enqueueTelegramInbound,
   // Slack
-  enqueueSlackReview,
+  enqueueSlackReview, enqueueSlackSend,
+  slackEventPoller: initSlackEventPoller(),
   // Augment Context
   setAugmentContextConfig, buildAugmentContextProviderPatch, redactAugmentContextProviderPatch,
   // Symphony
@@ -23623,7 +24030,8 @@ app.use("/api/integrations", require("./routes/integrationsRemaining")({
   // Misc
   clipText,
   // Policy objects
-  telegramPolicy, slackPolicy, contactOutPolicy, gcpPolicy, atlassianPolicy
+  telegramPolicy, slackPolicy, contactOutPolicy, gcpPolicy, atlassianPolicy,
+  googlePolicy, hubspotPolicy, openAiWebChatPolicy, browserTaskPolicy, vertexPolicy
 }));
 app.use("/api", require("./routes/remaining")({
   getAgentColonyStatus, buildSuperSwarmStatusSnapshot, buildSuperSwarmIntegrationSummary,
@@ -23902,6 +24310,8 @@ async function startAsolariaServers() {
     try { require("./lib/selfWatchdog").start({ intervalMs: 60000 }); } catch (_) {}
     // Start phone health check (Phase 6)
     try { require("./src/phoneHealthCheck").start(300000); } catch (_) {}
+    // Start ASO colony daemon
+    try { require("./src/colony-daemon").start(); } catch(e) { console.error("[ASO] colony-daemon start failed:", e.message); }
     void (async () => {
       try {
         await ensureLocalMqttBroker();

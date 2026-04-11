@@ -25,6 +25,66 @@ const COOLDOWN_MS = 2000;
 const spawnerEmitter = new EventEmitter();
 spawnerEmitter.setMaxListeners(32);
 
+// ── PID Registry ──
+// Maps agentId → { pid, deviceBinding, ixRef, spawnedAt }
+const _pidRegistry = new Map();
+
+// Universal PID bridge (IX-321 / LX-249)
+let _universalPid = null;
+function getUniversalPid() {
+  if (_universalPid === null) {
+    try {
+      const scb = require("./spawnContextBuilder");
+      _universalPid = { register: scb.registerSpawnPid, despawn: scb.despawnPid, generate: scb.generateVirtualPid };
+    } catch (_) { _universalPid = false; }
+  }
+  return _universalPid || null;
+}
+
+/**
+ * Register a PID for a spawned agent.
+ */
+function registerPid(agentId, info = {}) {
+  _pidRegistry.set(agentId, {
+    pid: info.pid || process.pid,
+    deviceBinding: info.deviceBinding || "jesse-desktop",
+    ixRef: info.ixRef || "—",
+    spawnedAt: new Date().toISOString()
+  });
+  spawnerEmitter.emit("pid_registered", { agentId, ..._pidRegistry.get(agentId) });
+  // Bridge to universal PID registry
+  const upid = getUniversalPid();
+  if (upid) {
+    try {
+      const virtualPid = upid.generate(agentId);
+      upid.register(agentId, virtualPid);
+    } catch (_) { /* non-fatal */ }
+  }
+}
+
+/**
+ * Clear a PID when agent despawns.
+ */
+function clearPid(agentId) {
+  const entry = _pidRegistry.get(agentId);
+  if (entry) {
+    _pidRegistry.delete(agentId);
+    spawnerEmitter.emit("pid_cleared", { agentId, ...entry });
+    // Bridge to universal PID registry
+    const upid = getUniversalPid();
+    if (upid) {
+      try { upid.despawn(agentId); } catch (_) { /* non-fatal */ }
+    }
+  }
+}
+
+/**
+ * Get all registered PIDs.
+ */
+function getPidRegistry() {
+  return Object.fromEntries(_pidRegistry);
+}
+
 // ── Instant Agent ──
 
 let _agentCounter = 0;
@@ -364,6 +424,13 @@ function spawnInstantAgent(construction, message, options = {}) {
 
   _activeAgents.set(agent.id, agent);
 
+  // Register PID
+  registerPid(agent.id, {
+    pid: process.pid,
+    deviceBinding: options.deviceBinding || "jesse-desktop",
+    ixRef: options.ixRef || "—"
+  });
+
   // Notify tracers
   for (const tracer of _tracers.values()) {
     tracer.observe({
@@ -445,7 +512,8 @@ function completeAndTransfer(agentId, response, nextConstruction = null) {
     });
   }
 
-  // Clean up after cooldown
+  // Clear PID and clean up after cooldown
+  clearPid(agentId);
   setTimeout(() => {
     _activeAgents.delete(agentId);
   }, COOLDOWN_MS);
@@ -531,5 +599,8 @@ module.exports = {
   getActiveAgents,
   getSpawnerStatus,
   initializeTracers,
+  registerPid,
+  clearPid,
+  getPidRegistry,
   MAX_INSTANT_AGENTS
 };

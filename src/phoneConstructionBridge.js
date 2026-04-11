@@ -27,7 +27,7 @@ const PHONE_AGENTS = Object.freeze({
     owner: "jesse",
     deviceId: "R5CXA4MGQXV",
     role: "mobile_construction_worker",
-    capabilities: ["screen_capture", "browser_history", "whatsapp", "adb_control", "ui_automation", "developer_options"],
+    capabilities: ["screen_capture", "browser_history", "whatsapp", "adb_control", "ui_automation", "developer_options", "termux", "termux_api", "edge_compute"],
     omnispindleLane: "falcon",
     constructionAffinity: ["qdd-ez-protect", "qdd-scheduler-fixes"] // default preferred constructions
   },
@@ -153,6 +153,9 @@ class PhoneConstructionWorker {
   }
 
   toJSON() {
+    const latestResult = this.edgeComputeResults.length > 0
+      ? this.edgeComputeResults[this.edgeComputeResults.length - 1]
+      : null;
     return {
       id: this.id,
       label: this.label,
@@ -167,7 +170,10 @@ class PhoneConstructionWorker {
       taskCount: this.taskCount,
       lastTaskAt: this.lastTaskAt,
       lastSeenAt: this.lastSeenAt,
-      edgeComputeResultCount: this.edgeComputeResults.length
+      edgeComputeResultCount: this.edgeComputeResults.length,
+      latestEdgeComputeAt: latestResult?.at || "",
+      latestEdgeComputeSummary: latestResult?.summary || "",
+      latestEdgeComputeSuccess: latestResult ? Boolean(latestResult.success) : null
     };
   }
 }
@@ -177,11 +183,15 @@ class PhoneConstructionWorker {
 const _phoneWorkers = new Map();
 
 function initializePhoneWorkers() {
-  for (const [key, spec] of Object.entries(PHONE_AGENTS)) {
+  for (const spec of Object.values(PHONE_AGENTS)) {
     if (!_phoneWorkers.has(spec.id)) {
       _phoneWorkers.set(spec.id, new PhoneConstructionWorker(spec));
     }
   }
+}
+
+function resetPhoneWorkers() {
+  _phoneWorkers.clear();
 }
 
 function getPhoneWorker(phoneId) {
@@ -296,6 +306,7 @@ module.exports = {
   PhoneConstructionWorker,
   phoneEmitter,
   initializePhoneWorkers,
+  resetPhoneWorkers,
   getPhoneWorker,
   getAllPhoneWorkers,
   findBestPhoneWorker,
