@@ -1,0 +1,22 @@
+Prezado Dr. Carlos,
+
+Bom dia. Envio em anexo o pacote completo de evidências digitais relacionadas ao caso contra Google Brasil referente às cobranças não autorizadas no aplicativo Rise of Kings.
+
+O pacote contém:
+- CSV completo com todas as compras Google encontradas (com hashes SHA-256 de cada recibo para tamper-evidence)
+- Correspondência com OneMt (desenvolvedor do jogo) — 76 mensagens
+- Correspondência com Flexion Mobile Ltd (distribuidor)
+- Correspondência do caso legal
+- Pedidos de reembolso e reclamações Google Support — mais de 1.100 mensagens
+- Manifest SHA-256 de cada arquivo para prova de integridade
+
+Total: 1.847 arquivos, gerados a partir das contas plasmatoid@gmail.com e jessebrown.soft1980@gmail.com via Gmail API sob minha autorização.
+
+O PDF em anexo é o sumário executivo — recomendo começar por ele. O arquivo ZIP é o pacote completo (12,4 MB).
+
+Observação importante: os recibos originais de compras in-app do Rise of Kings podem não estar presentes no Gmail. Recomendo solicitar adicionalmente o Google Takeout (Play Order History) como fonte autoritativa — takeout.google.com.
+
+Qualquer dúvida estou à disposição.
+
+Atenciosamente,
+Jesse Daniel Brown

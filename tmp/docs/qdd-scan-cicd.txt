@@ -1,0 +1,257 @@
+QDD / eBacMap — CI/CD & Deployment Config Scan
+================================================
+Date: 2026-03-25
+Source: D:\projects\QDD\ebacmap-master\
+
+1. REPOSITORY STRUCTURE
+========================
+Monorepo (pnpm workspace + Turborepo)
+  Workspace packages:  apps/*, libs/*
+  Apps:                admin, web-ebacmap, queue-server, sync-server
+  Shared libs:         types, common, db, domains, utils
+  Package manager:     pnpm (pinned 10.32.0 in package.json, CI uses 9.12.2 — MISMATCH)
+  Node version:        20.x (engines constraint); CI image: node:20.11.0; Dockerfiles: node:20.14
+  Build orchestrator:  Turborepo 2.5.8 (via pnpm dlx in CI)
+  Root version:        4.7.19
+
+2. BITBUCKET PIPELINES (bitbucket-pipelines.yml — 999+ lines)
+==============================================================
+Runner:        node:20.11.0, docker: true, size: 4x, docker service 3072 MB RAM
+Caches:        pnpmstore, turbocache, nextcache
+
+Branch triggers:
+  - default (PRs):      Build all 4 apps (PUBLISH=0, build-only verification)
+  - {master}:           Build + Push all 4 apps to DigitalOcean Container Registry (PUBLISH=1, PRERELEASE=1)
+  - {release/*}:        Build + Push all 4 apps (same as master, PRERELEASE=1)
+  - {production}:       Build + Push all 4 apps (PUBLISH=1, no prerelease)
+
+Build logic (reusable anchor cmd_build_maybe_push):
+  1. Turbo dry-run to detect if app is affected since BASE_SHA
+  2. Skip build if not affected (unless FORCE_BUILD=1)
+  3. Turbo prune --scope=$APP --docker to create minimal Docker context
+  4. Install deps in pruned workspace (pnpm install --frozen-lockfile, fallback --no-frozen-lockfile)
+  5. Build with NODE_OPTIONS="--max-old-space-size=4096"
+  6. Extract version from app package.json
+  7. Docker build with app-specific Dockerfile
+  8. Push to registry.digitalocean.com/${REGISTRY}/<repo-name> if PUBLISH=1
+  9. Skip push if tag already exists in registry
+
+Custom pipelines (manual triggers):
+  - build-push-web:           Force build + push web-ebacmap
+  - build-push-admin:         Force build + push admin
+  - deploy-admin:             DO App Platform deploy (Production)
+  - deploy-web-staging:       DO App Platform deploy (Staging)
+  - deploy-web-qa:            DO App Platform deploy (QA/Release)
+  - deploy-web-production:    DO App Platform deploy (Production)
+  - deploy-web-sgs:           DO App Platform deploy (SGS tenant)
+  - deploy-web-charm:         DO App Platform deploy (Charm tenant)
+  - deploy-web-charm-beta:    DO App Platform deploy (Charm beta)
+  - deploy-web-gwfg:          DO App Platform deploy (GWFG tenant)
+  - deploy-queue-live:        SSH deploy queue-server to 4 Docker containers (prod, charm, sgs, gwfg)
+  - deploy-queue-staging:     SSH deploy queue-server (staging)
+  - deploy-queue-charm:       SSH deploy queue-server (charm only)
+  - deploy-sync-staging:      SSH deploy sync-server (staging)  [defined as YAML anchor]
+  - deploy-sync-production:   SSH deploy sync-server (production) [defined as YAML anchor]
+
+Deployment targets:
+  - DO App Platform:    web-ebacmap, admin (via doctl apps update with changeAppSpec.sh)
+  - Docker on VPS:      queue-server, sync-server (via atlassian/ssh-run pipe, root@$HOST)
+  - Container Registry: registry.digitalocean.com/${REGISTRY}/...
+    Repo names:         staging, production, admin, queue-server, sync-server
+
+Registry cleanup step runs after builds on master, release/*, production branches.
+
+3. DOCKERFILES (5 total, excluding node_modules)
+=================================================
+
+Root Dockerfile (legacy, likely unused by CI):
+  - FROM node:20.14-slim
+  - Uses yarn (not pnpm!) — STALE, CI uses app-specific Dockerfiles
+  - COPY . . with no pruning
+  - yarn playwright install --with-deps chromium
+  - CMD [ "yarn", "start" ]
+  - EXPOSE 3000
+
+apps/web-ebacmap/Dockerfile:
+  - FROM node:20.14 (full, not slim — includes more build tools)
+  - pnpm 9.12.2 via corepack
+  - apt-get: python3, make, g++
+  - pnpm install --prod --frozen-lockfile
+  - Copies templates folder for email templates
+  - Playwright install --with-deps chromium
+  - EXPOSE 3000, CMD ["pnpm","start"]
+
+apps/admin/Dockerfile:
+  - FROM node:20.14-slim
+  - pnpm 9.12.2 via corepack
+  - apt-get: python3, make, g++
+  - pnpm install --prod --frozen-lockfile
+  - No Playwright
+  - EXPOSE 3000, CMD [ "pnpm", "start" ]
+
+apps/queue-server/Dockerfile:
+  - FROM node:20.14-slim
+  - pnpm 9.12.2 via corepack
+  - Hardcoded ENV vars: PROD_MONGODB_URI, STG_MONGODB_URI, CHARM_MONGODB_URI,
+    SGS_MONGODB_URI, GWFG_MONGODB_URI, POSTMARK_API_KEY, PUPPETEER_EXECUTABLE_PATH
+  - apt-get: python3, make, g++
+  - Playwright install --with-deps chromium
+  - EXPOSE 80, CMD [ "pnpm", "start" ]
+
+apps/sync-server/Dockerfile:
+  - FROM node:20.14-slim
+  - pnpm 9.12.2 via corepack
+  - Hardcoded ENV vars: MONGODB_URI, SERIAL_PORT, TWOFISH_KEY, CAPA_PRODUCT_ID
+  - apt-get: python3, make, g++
+  - pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile
+  - No Playwright
+  - EXPOSE 443, CMD [ "pnpm", "start" ]
+
+apps/sync-server/src/Dockerfile (LEGACY — no pnpm, no apt-get, just COPY . .):
+  - FROM node:20.14-slim
+  - Same hardcoded ENV vars as parent
+  - CMD [ "pnpm", "start" ], EXPOSE 443
+
+4. SENTRY CONFIGURATION
+=========================
+Organization:   quick-draw-development
+Project:        ebacmap
+URL:            https://sentry.io/
+
+Config files:
+  - sentry.properties (root + apps/web-ebacmap): org, project, cli.executable path
+  - sentry.client.config.js (root): Replay, Feedback, Canvas, BrowserTracing, BrowserProfiling
+  - apps/web-ebacmap/sentry.client.config.js: Same integrations + sourcemaps disabled, telemetry off
+  - apps/web-ebacmap/sentry.server.config.js: (not checked but exists)
+  - apps/web-ebacmap/sentry.edge.config.ts: Exists (not read)
+  - apps/admin/sentry.server.config.js: nodeProfilingIntegration, tracesSampleRate 0.5
+  - apps/admin/sentry.edge.config.ts: tracesSampleRate 0.2, sendClientReports false
+
+CI Sentry behavior:
+  - Source maps upload DISABLED in CI build (SENTRY_UPLOAD_SOURCE_MAPS=false,
+    SENTRY_DISABLE_AUTO_UPLOAD=true, SENTRY_SKIP_AUTO_RELEASE=true)
+  - Sentry release pipe defined: sentryio/sentry-new-release:0.3.0
+    Uses: SENTRY_AUTH_TOKEN, SENTRY_ORG, SENTRY_PROJECT='ebacmap'
+  - NOTE: The Sentry release pipe is DEFINED but never called in any branch pipeline.
+    It is only a YAML anchor (x_pipe_sentry) that appears unused.
+
+Required Sentry env vars:
+  - SENTRY_DSN / NEXT_PUBLIC_SENTRY_DSN
+  - SENTRY_AUTH_TOKEN
+  - SENTRY_ORG
+  - SENTRY_IGNORE_API_RESOLUTION_ERROR=1 (set in .env files)
+
+5. ENVIRONMENT VARIABLES (Required)
+=====================================
+From .env.example (web-ebacmap) — 42 vars:
+  Core:           APP_ENV, APP_URL, API_URL, NEXT_PUBLIC_APP_URL
+  Database:       MONGODB_URI, QUEUE_URI, MONGOOSE_DEBUG, USE_PROD_DB
+  Auth:           SECRET_COOKIE_PASSWORD, MASTER_HASH, FORCE_SSO
+  External APIs:  ZEPLO_TOKEN, FILESTACK_KEY, FILEPICKER_APIKEY, POSTMARK_API_KEY
+  Payments:       STRIPE_PRIVATE_KEY, NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  Push:           WEB_PUSH_EMAIL, WEB_PUSH_PRIVATE_KEY, NEXT_PUBLIC_WEB_PUSH_PUBLIC_KEY
+  Storage:        SPACES_ACCESS_KEY, SPACES_SECRET_ACCESS_KEY, S3_KEY, S3_SECRET,
+                  S3_ENDPOINT, S3_SPACES_ENDPOINT, S3_CDN_ENDPOINT
+  Encryption:     TWOFISH_KEY, USE_ENCRYPTION, SERIAL_PORT
+  Sync:           SYNC_SERVER_URL, CAPA_PRODUCT_ID
+  Feature flags:  NEXT_PUBLIC_MAINTENANCE_MODE, MAINTENANCE_MODE, ANALYZE
+  Sentry:         SENTRY_DSN, NEXT_PUBLIC_SENTRY_DSN, SENTRY_AUTH_TOKEN,
+                  SENTRY_IGNORE_API_RESOLUTION_ERROR
+
+From .env.example (admin) — 7 vars:
+  APP_ENV, MONGOOSE_DEBUG, AUTH_MONGODB_URI,
+  TENANT_ONE_MONGODB_URI, TENANT_TWO_MONGODB_URI, TENANT_THREE_MONGODB_URI
+
+From queue-server Dockerfile (hardcoded as ENV):
+  PROD_MONGODB_URI, STG_MONGODB_URI, CHARM_MONGODB_URI,
+  SGS_MONGODB_URI, GWFG_MONGODB_URI, POSTMARK_API_KEY,
+  PUPPETEER_EXECUTABLE_PATH, PORT=80
+
+From queue-server deploy (docker run -e):
+  JWT_SECRET (used in all queue deploy targets)
+
+6. EZ PROTECT STATUS IN BUILD
+===============================
+EZ Protect IS in the codebase:
+  - DB models:    libs/db/src/models/EzProtectAlert.ts, EzProtectAlertHistory.ts,
+                  EzProtectEvent.ts, EzProtectMsaConfig.ts
+  - Types:        libs/types/src/lib/Views.ts, Users.ts, Permissions.ts
+  - Domains:      libs/domains/src/users/UserPermission.ts, BuildPermissions.ts
+                  libs/domains/src/locations/SubscriptionFeatures.ts
+  - Frontend:     apps/web-ebacmap/src/pages/ez-protect/ (index, results, results/[id], troubleshooting)
+                  apps/web-ebacmap/src/services/ezProtect.ts
+                  apps/web-ebacmap/src/utils/ezProtect.ts (feature flag check)
+  - Backend:      apps/queue-server/src/use-cases/SyncEzProtectToLims/
+                  apps/queue-server/src/use-cases/ProcessEzProtectFile/
+                  apps/queue-server/src/use-cases/EvaluateEzProtectAlerts/
+  - Tests:        jest.ez-protect.base.js, jest.ez-protect.unit.config.js,
+                  jest.ez-protect.integration.config.js, tsconfig.ez-protect.integration.json
+  - Feature flag: NEXT_PUBLIC_FEATURE_CHARM_EZP_MODULE (set to true in .env.local only)
+
+EZ Protect IS included in builds:
+  - It lives in libs/ (db, types, domains) and apps/ (web-ebacmap, queue-server)
+  - Turbo build includes all libs as dependencies of each app
+  - No exclusion of EZ Protect files in any Dockerfile or pipeline config
+  - Feature flag controls RUNTIME visibility, not build inclusion
+
+7. IDENTIFIED GAPS AND ISSUES
+================================
+
+[GAP-1] PNPM VERSION MISMATCH
+  package.json engines: pnpm ^10.0.0, packageManager: pnpm@10.32.0
+  CI pipelines + Dockerfiles: pnpm 9.12.2
+  Risk: lockfile format incompatibility, different resolution behavior
+
+[GAP-2] ROOT DOCKERFILE IS STALE
+  Uses yarn (not pnpm), no turbo prune, no build step
+  Likely a leftover from pre-monorepo era. Should be deleted or updated.
+
+[GAP-3] LEGACY DUPLICATE DOCKERFILE
+  apps/sync-server/src/Dockerfile duplicates apps/sync-server/Dockerfile
+  The src/ version has no pnpm setup, no apt-get, no build tools — would fail if used.
+
+[GAP-4] SENTRY RELEASE PIPE UNUSED
+  The x_pipe_sentry anchor is defined but never referenced (*pipe_sentry not used anywhere).
+  Sentry releases are NOT being created on deploy. Source maps upload is also disabled.
+  Result: Sentry will show unversioned/unlinked errors in production.
+
+[GAP-5] SENTRY SOURCE MAPS DISABLED
+  CI explicitly sets SENTRY_UPLOAD_SOURCE_MAPS=false, SENTRY_DISABLE_AUTO_UPLOAD=true
+  web-ebacmap sentry config: sourcemaps.disable=true, deleteSourcemapsAfterUpload=true
+  Error stack traces in Sentry will show minified code, not original source.
+
+[GAP-6] HARDCODED ENV VARS IN DOCKERFILES
+  queue-server/Dockerfile and sync-server/Dockerfile set ENV vars like MONGODB_URI,
+  TWOFISH_KEY etc. These are overridden by docker run -e at deploy time, but the
+  Dockerfile ENV lines bake empty values into the image layer — a minor security concern.
+
+[GAP-7] NO AUTOMATED TESTS IN CI
+  No test step in any pipeline branch (default, master, release, production).
+  jest, cypress, and ez-protect test configs exist but are never executed in CI.
+  Linting and type-checking also absent from pipeline.
+
+[GAP-8] NO HEALTH CHECK AFTER DEPLOY
+  SSH-based deploys (queue-server, sync-server) do docker run but no verification
+  that the container started successfully or passes health checks.
+
+[GAP-9] EZ PROTECT FEATURE FLAG NOT IN CI ENV
+  NEXT_PUBLIC_FEATURE_CHARM_EZP_MODULE is only in .env.local (test env).
+  Not set in any CI/CD pipeline or deployment env var list.
+  However, the code now uses permission-based access (not the flag),
+  so this is LOW RISK. The flag is effectively vestigial.
+
+[GAP-10] DOCKER PRUNE -a -f ON EVERY DEPLOY
+  Every SSH deploy runs "docker system prune -a -f" before starting containers.
+  This removes ALL unused images on the host. If multiple apps share a VPS,
+  a queue-server deploy would nuke cached images for other containers.
+
+[GAP-11] NO docker-compose.yml
+  No docker-compose file exists. Local dev relies on running services individually.
+  Multi-service local testing requires manual coordination.
+
+[GAP-12] SECRET_COOKIE_PASSWORD IN CI
+  The build step exports SECRET_COOKIE_PASSWORD from env var into the build process.
+  This is used during Next.js build (SSR pages). If the value differs between build
+  and runtime, iron-session cookies will be invalid.
+
+END OF SCAN

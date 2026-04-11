@@ -1,0 +1,26 @@
+{
+  "terminalId": "Gaia",
+  "terminalKey": "gaia",
+  "state": "running",
+  "sidecarPid": 35556,
+  "childPid": 29928,
+  "startedAt": "2026-04-07T22:45:25.764814-03:00",
+  "updatedAt": "2026-04-08T01:06:02.751923-03:00",
+  "workdir": "C:\\Users\\acer",
+  "commandPath": "C:\\nvm4w\\nodejs\\codex.CMD",
+  "commandArgs": [
+    "-a",
+    "never",
+    "-s",
+    "danger-full-access"
+  ],
+  "transcriptPath": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\gaia\\transcript.log",
+  "inboxPath": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\gaia\\inbox.ndjson",
+  "inboxLinesProcessed": 0,
+  "lastInputAt": "",
+  "lastInputSource": "",
+  "lastOutputAt": "2026-04-08T01:06:02.751923-03:00",
+  "lastOutputStream": "out",
+  "lastOutputText": "\u001b[13;3H\u001b[?2026l",
+  "lastExitCode": 0
+}

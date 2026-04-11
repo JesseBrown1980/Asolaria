@@ -1,0 +1,188 @@
+==============================================================================
+LINEAR (linear.app) DEEP INVENTORY — Asolaria Colony
+Generated: 2026-03-25  |  READ ONLY
+==============================================================================
+
+1. MCP INTEGRATION (PRIMARY ACCESS PATH)
+=========================================
+Linear MCP is LIVE and configured via Claude Code's claude.ai proxy.
+
+Server ID: mcpsrv_0135kLivHnyWe5iCxVM9VPzG
+Proxy URL: https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_0135kLivHnyWe5iCxVM9VPzG
+Server:    Linear MCP v1.0.0 (https://linear.app)
+Auth:      OAuth via claude.ai proxy (no local API key needed for MCP path)
+
+Allowed in settings.local.json:
+  - mcp__claude_ai_Linear__get_issue  (line 74, explicitly allowed)
+
+Available MCP tools (33 total, from deferred tool list):
+  create_attachment, create_document, create_issue_label, delete_attachment,
+  delete_comment, extract_images, get_attachment, get_document, get_issue,
+  get_issue_status, get_milestone, get_project, get_team, get_user,
+  list_comments, list_cycles, list_documents, list_issue_labels,
+  list_issue_statuses, list_issues, list_milestones, list_project_labels,
+  list_projects, list_teams, list_users, save_comment, save_issue,
+  save_milestone, save_project, search_documentation, update_document
+
+MCP Log Locations:
+  Asolaria workspace: C:\Users\acer\AppData\Local\claude-cli-nodejs\Cache\C--Users-acer-Asolaria\mcp-logs-claude-ai-Linear\
+    - 20 log files, first: 2026-03-17, latest: 2026-03-25
+  Home workspace:     C:\Users\acer\AppData\Local\claude-cli-nodejs\Cache\C--Users-acer\mcp-logs-claude-ai-Linear\
+    - 13 log files, first: 2026-03-16, latest: 2026-03-22
+
+MCP Connection Health (from logs):
+  - Connects successfully in ~1.5-2.7 seconds
+  - Frequent SSE stream drops (Bad Gateway, terminated, Internal Server Error)
+  - Auto-reconnects up to 3 terminal errors, then gives up
+  - Typical uptime per session: 1300-31000 seconds before first drop
+
+
+2. SYMPHONY CONNECTOR (BACKEND INTEGRATION)
+=============================================
+File: C:\Users\acer\Asolaria\src\connectors\symphonyConnector.js (~1456 lines)
+
+Linear GraphQL integration built directly into symphonyConnector.js:
+  - linearGraphqlRequest()        — sends GraphQL to https://api.linear.app/graphql
+  - resolveLinearProjectContext()  — resolves project slug to team/project/states
+  - slugifyLinearText()            — normalizes text for matching
+  - extractLinearProjectSlugCandidates() — parses configured slug
+  - pickLinearTodoState()          — finds Todo state from project states
+  - Issue creation via GraphQL mutation (creates issues, returns identifier/url)
+
+Environment Variables:
+  - LINEAR_API_KEY                          (primary)
+  - ASOLARIA_SYMPHONY_LINEAR_API_KEY        (fallback)
+  - ASOLARIA_SYMPHONY_LINEAR_PROJECT_SLUG   (project slug)
+
+Configuration via API:
+  - POST /api/integrations/symphony/config — accepts linearProjectSlug, linearApiKey
+  - GET  /api/integrations/symphony/status — shows linearProjectSlug, linearApiKeyConfigured, linearApiKeyHint
+
+Route wiring:
+  - C:\Users\acer\Asolaria\routes\integrationsRemaining.js — handles linearProjectSlug and linearApiKey in config updates
+
+
+3. SYMPHONY WORKFLOW CONFIGURATION
+====================================
+File: C:\Users\acer\Asolaria\config\symphony\WORKFLOW.asolaria.md
+
+  tracker:
+    kind: linear
+    project_slug: "asolaria-symphony-e3159fb1e260"
+    active_states: [Todo, In Progress, Merging, Rework]
+    terminal_states: [Closed, Cancelled, Canceled, Duplicate, Done]
+  polling:
+    interval_ms: 5000
+  agent:
+    max_concurrent_agents: 4
+    max_turns: 12
+  codex:
+    approval_policy: never
+    thread_sandbox: workspace-write
+
+Example workflow also exists: C:\Users\acer\Asolaria\config\symphony\WORKFLOW.example.md
+
+
+4. WORKER ROUTER INTEGRATION
+==============================
+File: C:\Users\acer\Asolaria\src\connectors\workerRouter.js
+
+  - Symphony lane described as "Linear-backed long-running work"
+  - dispatchMode: "linear_issue"
+  - After submission: logs Linear Issue identifier and URL
+  - Depends on valid Symphony configuration and healthy Linear-backed setup
+
+
+5. CODEX SKILL (REFERENCE WRAPPER)
+====================================
+Asolaria wrapper: C:\Users\acer\Asolaria\skills\codex-ref-linear\skill.json
+  - id: codex.ref.linear
+  - Points to local Codex skill at C:\Users\acer\.codex\skills\linear\
+
+Local Codex skill: C:\Users\acer\.codex\skills\linear\
+  Files: LICENSE.txt, SKILL.md, agents/openai.yaml, assets/linear-small.svg, assets/linear.png
+  - Full workflow skill for managing Linear issues, projects, team workflows
+  - Prerequisites: Linear MCP via OAuth
+  - Setup: codex mcp add linear --url https://mcp.linear.app/mcp
+  - Available tools: list_issues, get_issue, create_issue, update_issue, list_my_issues,
+    list_issue_statuses, list_issue_labels, create_issue_label, list_projects, get_project,
+    create_project, update_project, list_teams, get_team, list_users, list_documents,
+    get_document, search_documentation, list_comments, create_comment, list_cycles
+
+
+6. VAULT STATUS — LINEAR KEYS
+================================
+Vault has 44 entries. Relevant:
+  - integrations.symphony (created 2026-03-06, updated 2026-03-06) — may contain LINEAR_API_KEY
+  - NO dedicated "integrations.linear" vault entry exists
+  - The Linear API key is stored INSIDE the Symphony integration config, not separately
+
+
+7. SERVER.JS REFERENCES
+=========================
+File: C:\Users\acer\Asolaria\server.js
+  - line ~11427: linearProjectSlug exposed in status
+  - line ~11864: Warning if Symphony configured but not running — "Linear issues will not be picked up"
+
+
+8. AGENT INDEX (IX/LX) ENTRIES REFERENCING LINEAR
+===================================================
+Direct Linear references (not counting neural-network "linear layer" mentions):
+
+  IX-078  — Reference: codex.ref.linear listed as a tool
+  IX-188  — ALL BUILD TOOLS FOUND: Symphony configured with Linear project slug
+  IX-313  — Pattern: Linear listed as external integration surface
+  IX-316  — Reference: symphonyConnector.js described as "Linear integration"
+  IX-317  — Plan: Symphony meeting worker with Linear integration
+  IX-320  — Definitive system map: symphonyConnector includes Linear
+  IX-358  — Reference: symphonyConnector listed as "Meeting orchestration + Linear"
+  IX-362  — Mistake: AI Healthcare connected to Symphony/Linear (different project!)
+  IX-387  — Tool: Symphony API endpoints including linearProjectSlug config
+
+  LX-022  — Pattern: Symphony Integration (Linear + Codex + Elixir)
+  LX-024  — Tool: Linear listed in Liris's tool inventory
+  LX-029  — Pattern: WORKFLOW.asolaria — Linear + Codex + helper surfaces
+  LX-084  — Skill: Chrome session access to Linear
+  LX-085  — Skill: Read Linear project boards
+  LX-109  — Tool: MCP tools loaded — Gmail, Linear, Slack
+  LX-119  — Pattern: Symphony configured with Linear project
+  LX-207  — Rule: CLI Claude Code has MCP access to Linear
+  LX-214  — Task: Linear is MIRROR surface, IX task entry is canonical
+
+  CHAINS.md — "External tools (NotebookLM, Linear, SwarmDesk) are mirrors"
+  XREF.md   — codex-ref-linear listed in cross-references
+  CATALOG-TASKS.md — "External surfaces (NotebookLM, Linear, phone notes) are MIRRORS"
+
+
+9. CHROME INDEXEDDB (BROWSER STATE)
+=====================================
+Not directly searchable from CLI. Chrome stores Linear session data in IndexedDB
+under the linear.app origin. The browser profile at:
+  C:\Users\acer\Asolaria\runtime\whatsapp-browser-profile\
+...is dedicated to WhatsApp, not Linear.
+
+Jesse's main Chrome profile would have Linear session cookies/IndexedDB at:
+  C:\Users\acer\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\
+  (look for https_linear.app_0.indexeddb.* folders)
+
+
+10. SUMMARY OF ACCESS PATHS
+=============================
+| Path                  | Status      | Auth Method           | Notes                           |
+|-----------------------|-------------|------------------------|----------------------------------|
+| MCP (Claude Code)     | LIVE        | OAuth via claude.ai    | 33 tools, SSE drops common       |
+| Symphony connector    | CONFIGURED  | LINEAR_API_KEY env var | GraphQL to api.linear.app        |
+| Codex skill           | INSTALLED   | OAuth via codex mcp    | Wrapper at .codex/skills/linear  |
+| Worker router         | WIRED       | Via Symphony           | dispatchMode: linear_issue       |
+| Chrome browser        | PASSIVE     | Session cookies        | IndexedDB state, not API         |
+
+Linear Project Slug: asolaria-symphony-e3159fb1e260
+
+KEY FINDING: Linear is deeply integrated into Asolaria through THREE paths:
+  1. MCP (direct tool access from Claude Code sessions)
+  2. Symphony (automated issue creation/pickup via GraphQL)
+  3. Codex skill (structured workflow for issue management)
+
+All three paths are CONFIGURED. The MCP path is actively LIVE this session.
+The Symphony path requires LINEAR_API_KEY to be set and Symphony service running.
+No dedicated vault entry for Linear — key is bundled inside integrations.symphony.

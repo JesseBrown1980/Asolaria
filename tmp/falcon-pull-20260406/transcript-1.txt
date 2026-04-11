@@ -1,0 +1,84 @@
+[1] pre-dev/scope undefined undefined changes_requested: slice lacks explicit governance anchors and should inherit them from stronger stages
+[2] pre-dev/scope undefined undefined changes_requested: topology leans exploratory; anchor density should improve before promotion
+[3] pre-dev/scope undefined undefined approved: retrieval pressure is bounded
+[4] pre-dev/scope undefined undefined changes_requested: slice risk is mostly inherited from neighboring project pressure
+[5] pre-dev/scope undefined undefined approved: compaction pressure is limited
+[6] pre-dev/scope undefined undefined changes_requested: proof density trails planning density in this slice
+[7] pre-dev/scope shannon audit changes_requested: slice crosses the full-audit threshold
+[8] pre-dev/scope gaia review changes_requested: canon truth review of Shannon full result
+[9] pre-dev/scope helm review changes_requested: rollout order review of Shannon full result
+[10] pre-dev/scope sentinel review blocked: boundary and rollback review of Shannon full result
+[11] pre-dev/scope forge review changes_requested: implementation realism review of Shannon full result
+[12] pre-dev/scope rook review changes_requested: operations and runtime handling review of Shannon full result
+[13] pre-dev/scope falcon review changes_requested: edge and orbital perspective review of Shannon full result
+[14] pre-dev/scope codex final blocked: at least one downstream reviewer blocked the slice
+[15] dev/build undefined undefined changes_requested: slice lacks explicit governance anchors and should inherit them from stronger stages
+[16] dev/build undefined undefined changes_requested: topology leans exploratory; anchor density should improve before promotion
+[17] dev/build undefined undefined approved: retrieval pressure is bounded
+[18] dev/build undefined undefined changes_requested: slice risk is mostly inherited from neighboring project pressure
+[19] dev/build undefined undefined approved: compaction pressure is limited
+[20] dev/build undefined undefined approved: proof density is keeping up with scope
+[21] dev/build shannon audit changes_requested: slice stays in dry-run audit territory
+[22] dev/build gaia review changes_requested: canon truth review of Shannon dry_run result
+[23] dev/build helm review changes_requested: rollout order review of Shannon dry_run result
+[24] dev/build sentinel review blocked: boundary and rollback review of Shannon dry_run result
+[25] dev/build forge review changes_requested: implementation realism review of Shannon dry_run result
+[26] dev/build rook review changes_requested: operations and runtime handling review of Shannon dry_run result
+[27] dev/build falcon review changes_requested: edge and orbital perspective review of Shannon dry_run result
+[28] dev/build codex final blocked: at least one downstream reviewer blocked the slice
+[29] pre-staging/integration undefined undefined changes_requested: slice lacks explicit governance anchors and should inherit them from stronger stages
+[30] pre-staging/integration undefined undefined changes_requested: topology leans exploratory; anchor density should improve before promotion
+[31] pre-staging/integration undefined undefined changes_requested: retrieval pressure is reference-heavy and benefits from compaction into stronger anchors
+[32] pre-staging/integration undefined undefined changes_requested: slice risk is mostly inherited from neighboring project pressure
+[33] pre-staging/integration undefined undefined changes_requested: compaction opportunity exists in the exploratory cluster
+[34] pre-staging/integration undefined undefined approved: proof density is keeping up with scope
+[35] pre-staging/integration shannon audit changes_requested: slice crosses the full-audit threshold
+[36] pre-staging/integration gaia review changes_requested: canon truth review of Shannon full result
+[37] pre-staging/integration helm review changes_requested: rollout order review of Shannon full result
+[38] pre-staging/integration sentinel review blocked: boundary and rollback review of Shannon full result
+[39] pre-staging/integration forge review changes_requested: implementation realism review of Shannon full result
+[40] pre-staging/integration rook review changes_requested: operations and runtime handling review of Shannon full result
+[41] pre-staging/integration falcon review changes_requested: edge and orbital perspective review of Shannon full result
+[42] pre-staging/integration codex final blocked: at least one downstream reviewer blocked the slice
+[43] staging/verification undefined undefined changes_requested: slice lacks explicit governance anchors and should inherit them from stronger stages
+[44] staging/verification undefined undefined approved: topology remains balanced against proof-bearing nodes
+[45] staging/verification undefined undefined approved: retrieval pressure is bounded
+[46] staging/verification undefined undefined changes_requested: slice risk is mostly inherited from neighboring project pressure
+[47] staging/verification undefined undefined approved: compaction pressure is limited
+[48] staging/verification undefined undefined approved: proof density is keeping up with scope
+[49] staging/verification shannon audit changes_requested: slice stays in dry-run audit territory
+[50] staging/verification gaia review changes_requested: canon truth review of Shannon dry_run result
+[51] staging/verification helm review changes_requested: rollout order review of Shannon dry_run result
+[52] staging/verification sentinel review changes_requested: boundary and rollback review of Shannon dry_run result
+[53] staging/verification forge review changes_requested: implementation realism review of Shannon dry_run result
+[54] staging/verification rook review changes_requested: operations and runtime handling review of Shannon dry_run result
+[55] staging/verification falcon review changes_requested: edge and orbital perspective review of Shannon dry_run result
+[56] staging/verification codex final changes_requested: multiple downstream reviewers requested changes
+[57] pre-prod/risk undefined undefined changes_requested: slice lacks explicit governance anchors and should inherit them from stronger stages
+[58] pre-prod/risk undefined undefined changes_requested: topology leans exploratory; anchor density should improve before promotion
+[59] pre-prod/risk undefined undefined approved: retrieval pressure is bounded
+[60] pre-prod/risk undefined undefined changes_requested: mistake debt is materially present in this slice
+[61] pre-prod/risk undefined undefined approved: compaction pressure is limited
+[62] pre-prod/risk undefined undefined approved: proof density is keeping up with scope
+[63] pre-prod/risk shannon audit changes_requested: slice stays in dry-run audit territory
+[64] pre-prod/risk gaia review changes_requested: canon truth review of Shannon dry_run result
+[65] pre-prod/risk helm review changes_requested: rollout order review of Shannon dry_run result
+[66] pre-prod/risk sentinel review blocked: boundary and rollback review of Shannon dry_run result
+[67] pre-prod/risk forge review changes_requested: implementation realism review of Shannon dry_run result
+[68] pre-prod/risk rook review changes_requested: operations and runtime handling review of Shannon dry_run result
+[69] pre-prod/risk falcon review changes_requested: edge and orbital perspective review of Shannon dry_run result
+[70] pre-prod/risk codex final blocked: at least one downstream reviewer blocked the slice
+[71] prod/operations undefined undefined approved: governance anchors exist for this slice
+[72] prod/operations undefined undefined changes_requested: topology leans exploratory; anchor density should improve before promotion
+[73] prod/operations undefined undefined approved: retrieval pressure is bounded
+[74] prod/operations undefined undefined changes_requested: slice risk is mostly inherited from neighboring project pressure
+[75] prod/operations undefined undefined approved: compaction pressure is limited
+[76] prod/operations undefined undefined approved: proof density is keeping up with scope
+[77] prod/operations shannon audit changes_requested: slice stays in dry-run audit territory
+[78] prod/operations gaia review changes_requested: canon truth review of Shannon dry_run result
+[79] prod/operations helm review changes_requested: rollout order review of Shannon dry_run result
+[80] prod/operations sentinel review blocked: boundary and rollback review of Shannon dry_run result
+[81] prod/operations forge review changes_requested: implementation realism review of Shannon dry_run result
+[82] prod/operations rook review changes_requested: operations and runtime handling review of Shannon dry_run result
+[83] prod/operations falcon review changes_requested: edge and orbital perspective review of Shannon dry_run result
+[84] prod/operations codex final blocked: at least one downstream reviewer blocked the slice

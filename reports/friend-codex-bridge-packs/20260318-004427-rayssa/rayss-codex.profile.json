@@ -1,0 +1,39 @@
+﻿{
+    "version":  1,
+    "profileName":  "rayss-codex",
+    "description":  "Friend machine Codex bridge profile for Rayssa.",
+    "relay":  {
+                  "urlEnv":  "CODEX_BRIDGE_URL",
+                  "tokenEnv":  "CODEX_BRIDGE_TOKEN",
+                  "room":  "asolaria-friend-rayss",
+                  "from":  "rayss-codex"
+              },
+    "security":  {
+                     "allowSenders":  [
+                                          "vector",
+                                          "helm"
+                                      ],
+                     "senderTokenEnv":  "CODEX_BRIDGE_SENDER_TOKEN_RAYSS_CODEX",
+                     "requireRoomPolicy":  true
+                 },
+    "runtime":  {
+                    "cursorFile":  "cursor-rayss-codex.json",
+                    "pollIntervalMs":  1000,
+                    "maxBatch":  50,
+                    "maxMessageChars":  6000
+                },
+    "routing":  {
+                    "taskPrefixes":  [
+                                         "TASK:",
+                                         "QUESTION:",
+                                         "NOTE:"
+                                     ],
+                    "requireThreadTag":  true,
+                    "requireMention":  true
+                },
+    "ops":  {
+                "logPrefix":  "rayss-codex",
+                "workdir":  ".",
+                "startMode":  "manual"
+            }
+}

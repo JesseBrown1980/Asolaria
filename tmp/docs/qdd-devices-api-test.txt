@@ -1,0 +1,26 @@
+QDD EZ Protect Devices API Test — 2026-03-25
+=============================================
+Server: 127.0.0.1:3000
+Auth: /api/auth/dev-bypass (session cookie)
+
+=== TEST 1: WITH locationId=69c41938d84980e337ac77cf ===
+GET /api/ez-protect/devices?locationId=69c41938d84980e337ac77cf
+Status: 200
+Body: {"devices":[]}
+
+=== TEST 2: WITHOUT locationId ===
+GET /api/ez-protect/devices
+Status: 200
+Body: {"devices":[]}
+
+=== TEST 3: WITH different locationId=000000000000000000000000 ===
+GET /api/ez-protect/devices?locationId=000000000000000000000000
+Status: 200
+Body: {"devices":[]}
+
+SUMMARY
+-------
+- All three requests return HTTP 200 with an empty devices array.
+- The endpoint does not reject missing or unknown locationId values — it returns empty results for all cases.
+- No errors or auth failures observed; dev-bypass session works correctly.
+- The devices collection appears to be empty in the current database.

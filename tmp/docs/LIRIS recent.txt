@@ -1,0 +1,1480 @@
+I pushed this into the system in two ways.
+
+  First, I updated the diagnostics so the host now reports the real split instead
+  of a generic failure:
+
+  - Asolaria/tools/ADB-HealthCheck.ps1:1
+  - Asolaria/tools/Test-Asolaria-PhoneTunnelPath.ps1:1
+
+  Second, I generated and pinned a fresh smoke report at Asolaria/reports/phone-
+  tunnel-smoke-latest.md:1, and I indexed the state in Asolaria/data/agent-index/
+  LX-194.md:1 plus C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+  project_rayssa_phone_reconnect_state_20260323.md:1. Local index is now 189 LX
+  files, next LX-195.
+
+  Current read is precise:
+
+  - Windows sees the phone as S24 FE de Rayssa [WPD/OK]
+  - adb.exe is present
+  - adb devices -l still has 0 authorized devices
+  - 4781 is healthy as proxy_4781
+  - local /api/mobile/bootstrap still returns 404
+
+  So the phone is physically on the host, but not yet in the Android debugging
+  lane. The next gate is on the phone itself: unlock it, enable USB debugging if
+  needed, and accept this computer. Once adb devices -l shows device, I can run adb
+  reverse tcp:4781 tcp:4781 and re-run the smoke immediately.
+
+
+› Tell me how to change configs so you can access the phone via USB through dev
+  options right? somewhere pressing the button 7 times
+
+
+• Searched Samsung Galaxy S24 FE enable developer options USB debugging official
+  Samsung
+
+• Searched site:samsung.com Samsung USB debugging developer options build number
+  seven times Galaxy S24
+
+• On your Samsung, the fix is on the phone first, not in Asolaria config.
+
+  For the S24 FE, do this:
+  2. Tap Build number 7 times.
+  3. Enter your PIN/password if asked.
+  4. Go back to the main Settings screen and open Developer options.
+  5. Turn Developer options on.
+  Also useful on Samsung:
+
+  - In Developer options, set Default USB configuration or Select USB Configuration
+    to File transfer (MTP).
+  - If the prompt never appears: Developer options > Revoke USB debugging
+    authorizations, then unplug/replug and try again.
+
+  Your current host state matches this exactly:
+
+  - Windows already sees the phone as S24 FE de Rayssa
+  - but ADB still sees 0 devices
+  - so the missing piece is the Android debugging authorization layer
+
+  Sources:
+
+  - Android Developers: https://developer.android.com/studio/debug/dev-options
+  - Samsung Developers:
+    https://developer.samsung.com/health/data/guide/phone-developer-options.html
+  - Samsung support: https://www.samsung.com/us/support/answer/ANS10003430/
+
+  Once you’ve done that, I can immediately re-check adb devices -l and continue.
+
+
+› Ok, it is ready, I also added verbose logging to a lot of things, but I
+  accidentally enabled some numbers at the top of the screen. I can turn those off
+  later
+
+
+• Good. I’m re-checking the only gates that matter now: ADB authorization on Rayssa
+  host, then the reverse-tunnel step, then the phone smoke. If the phone shows as
+  device, we can move immediately.
+
+• Running try { $r=Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4781/api/health/fast'; Write-Output ('FAST_STATUS=' +
+  │ [int]$r.StatusCode); Write-Output $r.Content } catch { Write-Output ('FA
+  │ … +1 lines
+
+• Ran try { $r=Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4781/api/health/fast'; Write-Output ('FAST_STATUS=' + [int
+  │ ]$r.StatusCode); Write-Output $r.Content } catch { Write-Output ('FAST_ERROR
+  │ … +1 lines
+  └ FAST_STATUS=200
+    {"ok":true,"compatListener":true,"compatSurface":"proxy_4781","bind":"127.0.0.1
+    … +240 lines
+    erifyTrigger":"timer","lastVerifyOk":true,"lastVerifyErrorCount":0,"verifyCount
+    ":144}}}
+
+• Ran try { $m=Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4781/api/mobile/bootstrap'; Write-Output ('BOOTSTRAP_STATU
+  │ S=' + [int]$m.StatusCode); Write-Output $m.Content } catch { if ($_.Exceptio
+  │ … +5 lines
+  └ BOOTSTRAP_STATUS=404
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; if (Test-Path
+  │ … +1 lines
+  └ List of devices attached
+    RQCX907KFTK            device product:r12sxxx model:SM_S721B device:r12s
+    transport_id:2
+
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• ADB authorization is back on Rayssa host. I’m taking the next real steps now:
+  establish the USB reverse mapping and then inspect whether the remaining phone
+  blocker is code, not the device.
+
+• Running $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb
+  │ … +1 lines
+
+  │ Select-Object -Skip 1090 -First 80
+  └     } catch (_error) {
+          return false;
+    … +77 lines
+            if (value === undefined || value === null || value === "") continue;
+            url.searchParams.set(String(key), String(value));
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb reverse
+  │ … +1 lines
+  └ 4781
+
+    UsbFfs tcp:4781 tcp:4781
+
+
+• Ran rg -n -S "mobile-console\.html\?token=|remoteConsole|localConsole|
+  │ remoteApprovals|localApprovals|api/mobile/bootstrap|phone URL|PHONE-URLS|
+  │ tailnetProxyPort|4782|ts.net" C:\Users\rayss\Asolaria\reports C:
+  │ … +3 lines
+  └ C:\Users\rayss\Asolaria\reports\rayssa-host-startup-packet-latest.md:38:-
+    Current checkout search found callers and assumptions for `/api/health/fast`
+    … +34 lines
+    des_liris_runtime_heartbeat.json:4:  "payload": "{\"nodeId\":\"liris\",\"ts\":
+    \"2026-03-19T11:59:49.697Z\",\"status\":\"alive\",\"uptime\":46932.2847828}"
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• USB reverse is now live, so the device lane is no longer hypothetical. I’m doing
+  one last archaeology pass for a prior mobile/bootstrap payload or URL pattern so
+  I can tell whether the next move is a safe compat shim or a missing upstream
+  artifact.
+
+• Running Get-ChildItem -Path C:\Users\rayss\Asolaria\reports -File | Sort-Object
+  │ '"tokenHint"|"remoteBaseUrl"|"remoteConsole"|"localConsole"|"localApprova
+  │ ls"|"remoteApprovals"|/api/mobile/bootstrap|
+  │ … +4 lines
+
+• Ran if (Test-Path 'C:\Users\rayss\Asolaria\PHONE-URLS.md') { Get-Content -Path
+  │ 'C:\Users\rayss\Asolaria\PHONE-URLS.md' -TotalCount 240 } else
+  │ { 'PHONE_URLS_MISSING' }
+  └ PHONE_URLS_MISSING
+
+• Ran Get-ChildItem -Path C:\Users\rayss\Asolaria\reports -File | Sort-Object
+  │ LastWriteTime -Descending | Select-Object -First 20 Name
+  └
+    Name
+    … +9 lines
+    liris-session-report-20260315.json
+
+
+• Ran rg -n -S
+  │ '"tokenHint"|"remoteBaseUrl"|"remoteConsole"|"localConsole"|"localApprovals"|
+  │ "remoteApprovals"|/api/mobile/bootstrap|mobile-control-authority-audit|
+  │ … +3 lines
+  └ C:\Users\rayss\Asolaria\reports\rayssa-host-startup-packet-latest.md:38:-
+    Current checkout search found callers and assumptions for `/api/health/fast`
+    … +43 lines
+    C:\Users\rayss\Asolaria\data\agent-index\LX-188.md:39:- `4781` is still not
+    locally observable, so `/api/mobile/bootstrap` is still unverified here
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I have the hard proof now: ADB is authorized and adb reverse tcp:4781 tcp:4781 is
+  active. I’m searching one last time for an old bootstrap schema or token source
+  before I touch the compat surface, because the remaining failure is purely the
+  missing mobile/bootstrap contract.
+
+• Running rg -n -S 'localConsole|remoteConsole|localApprovals|remoteApprovals|
+  │ connectionRouting|uiControl|mobile token|x-asolaria-mobile-token|api/
+  │ mobile/connections|api/mobile/control/status|api/mobile/session|mobile
+  │ … +1 lines
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\public\mobile-console.js |
+  │ Select-Object -Skip 3760 -First 80
+  └     if (pending === lastNativePendingAlertCount) {
+          return;
+    … +76 lines
+            })
+          });
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\public\phone-mode.js |
+  │ Select-Object -Skip 4780 -First 70
+  └       settings.voiceOutputMode,
+          state.phoneLiveVoiceOutputMode
+    … +66 lines
+        method: "POST"
+      });
+
+• Ran rg -n -S 'localConsole|remoteConsole|localApprovals|remoteApprovals|
+  │ connectionRouting|uiControl|mobile token|x-asolaria-mobile-token|api/mobile/
+  │ connections|api/mobile/control/status|api/mobile/session|mobile bootstrap' C:
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\data\agent-index\LX-194.md:25:- legacy mobile bootstrap
+    route availability
+    … +168 lines
+    (token-protected)
+    C:\Users\rayss\Asolaria\README.md:660:  - `connectionRouting`
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• There is enough route-spec evidence in the docs to say what the missing contract
+  should contain, but I still don’t see a checked-in server implementation on this
+  host. I’m reading the local spec next so I can judge whether a minimal compat
+  bootstrap shim is safe or whether it would just create another myth.
+
+• Running Get-Content -Path C:\Users\rayss\Asolaria\README.md | Select-Object -Skip
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\public\app.js | Select-Object -Skip
+  │ 9488 -First 36
+  └
+    function mergeHealthSnapshot(previous = {}, incoming = {}) {
+    … +32 lines
+      }
+      healthRefreshInFlight = true;
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\README.md | Select-Object -Skip 320
+  │ -First 40
+  └   - `POST /api/guardian/whatsapp`
+      - `GET /api/guardian/alerts`
+    … +39 lines
+      - `GET /api/policy/work-orgs` (shows org profile rules and active org)
+    - `POST /api/policy/work-org/select` with `{"organization":"qdd"}`
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\README.md | Select-Object -Skip 648
+  │ -First 32
+  └   - `networkRequireEncryptedRemote=true` (VPN or HTTPS required)
+      - `networkStealthDeny=true` (unauthorized remote requests return hidden
+    … +23 lines
+    - Decision flow can be triggered with `company decide proceed` and returns a
+    safety decision before action.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The local spec is clear enough to distinguish one safe fact from one unsafe
+  invention: the old app expected mobile/bootstrap, but I still don’t have a real
+  local token source or remote-base config to synthesize it honestly. I’m checking
+
+• Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\docs\SYMPHONY_HELPER_SURFACES.md -TotalCount 180
+
+• Ran Get-ChildItem -Path C:\Users\rayss\Asolaria -Force -File
+  │ -Include .env,.env.*,*.env | Select-Object FullName
+  └ (no output)
+    … +108 lines
+    - evidence produced
+    - blocker if unavailable
+
+• Ran rg -n -S "ASOLARIA_REMOTE_API_TOKEN|ASOLARIA_REMOTE_APPROVAL_BASE_URL|mobile
+  │ approval token|remote api token|x-asolaria-token|x-asolaria-mobile-token" C:
+  │ \Users\rayss\Asolaria\config C:\Users\rayss\Asolaria\data C:
+  │ … +2 lines
+  └ C:\Users\rayss\Asolaria\tools\Test-UpgradeBlockerPreflight.ps1:320:
+    "x-asolaria-mobile-token" = $token
+    … +34 lines
+    ent -replace 'ASOLARIA_REMOTE_APPROVAL_BASE_URL\s*=\s*"[^"]*"', 'ASOLARIA_REMO
+    TE_APPROVAL_BASE_URL = "http://127.0.0.1:4781"'
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The config hooks exist, but they may still be unset on this host. I’m checking
+  the actual ASOLARIA_REMOTE_APPROVAL_BASE_URL values now; if they’re populated, a
+  minimal compat bootstrap becomes much more defensible.
+
+• I don’t have a configured remote phone base on Rayssa host yet. I’m probing the
+  last known remote control host directly now; if it really answers, that gives us
+  a safe target for a compat fallback instead of a guessed one.
+
+• Running try { $r=Invoke-WebRequest -UseBasicParsing -TimeoutSec 6 -Uri
+  │ 'https://desktop-j99vcnh.tailb47e0e.ts.net:4782/api/health'; Write-Output
+  │ STATUS=' + [int]$r.StatusCode); Write-Output $r.Content } catch { if ($_.Exc
+  │ … +4 lines
+  └ ERROR=Nenhuma conexão pôde ser feita porque a máquina de destino as recusou
+    ativamente. (127.0.0.1:9)
+
+• Ran try { $r=Invoke-WebRequest -UseBasicParsing -TimeoutSec 6 -Uri
+  │ 'http://desktop-j99vcnh.tailb47e0e.ts.net:4782/api/health'; Write-Output ('S
+  │ TATUS=' + [int]$r.StatusCode); Write-Output $r.Content } catch { if ($_.Exce
+  │ … +4 lines
+  └ ERROR=Nenhuma conexão pôde ser feita porque a máquina de destino as recusou
+    ativamente. (127.0.0.1:9)
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• ADB is fully authorized now and the USB reverse mapping is active. I’m rerunning
+  the phone smoke one more time so the latest report reflects the new device state
+  before I save it into memory/index.
+
+• Ran & 'C:\Program Files\PowerShell\7\pwsh.exe' -File 'C:
+  │ \Users\rayss\Asolaria\tools\Test-Asolaria-PhoneTunnelPath.ps1'
+  └ {
+      "ok": false,
+    … +64 lines
+    \phone-tunnel-smoke-20260323-150400.md"
+    }
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The new report is cleaner: the device lane is now fully proven, and the only
+  remaining failure is the missing bootstrap contract. I’m pinning this as the
+  latest report and then I’ll record that exact split in memory/index.
+
+• Ran Copy-Item -LiteralPath 'C:
+  │ \Users\rayss\Asolaria\reports\phone-tunnel-smoke-20260323-150400.md'
+  │ -Destination 'C:\Users\rayss\Asolaria\reports\phone-tunnel-smoke-latest.md'
+  │ … +1 lines
+  └ (no output)
+
+• Edited 4 files (+72 -4)
+  └ .claude\projects\C--Users-rayss\memory\MEMORY.md (+2 -1)
+    60  - [project_rayssa_phone_reconnect_state_20260323.md](project_rayssa_phone_r
+        econnect_state_20260323.md) — Rayssa phone is visible as hardware, but ADB
+        auth and local mobile bootstrap remain separate gates
+    61 +- [project_rayssa_phone_adb_authorized_20260323.md](project_rayssa_phone_ad
+        b_authorized_20260323.md) — Rayssa host ADB is now authorized and reversed;
+         remaining blocker is the missing mobile bootstrap contract
+    62  - [project_rayssa_host_startup_truth_20260323.md](project_rayssa_host_start
+        up_truth_20260323.md) — Locked Rayssa host startup truth to the minimal pac
+        ket; 4791 real, 4781 absent, wrappers stale
+       ⋮
+    74  ## External
+    74 -- Local index: `Asolaria/data/agent-index/CATALOG.md` (189 LX files, 56 cha
+        ins)
+    75 +- Local index: `Asolaria/data/agent-index/CATALOG.md` (190 LX files, 57 cha
+        ins)
+    76  - Medium agent: `Asolaria/config/medium_agent.md`
+
+  └ .claude\projects\C--Users-
+rayss\memory\project_rayssa_phone_adb_authorized_20260323.md (+32 -0)
+     1 +---
+     2 +name: rayssa-phone-adb-authorized-20260323
+     3 +description: Rayssa host now has an authorized USB ADB device and active re
+        verse tunnel, but the remaining phone blocker is the missing local mobile b
+        ootstrap contract
+     4 +type: project
+     5 +---
+     6 +
+     7 +## Rayssa Phone ADB Authorized
+     8 +
+     9 +Date: 2026-03-23
+    10 +Scope: Rayssa host only
+    11 +
+    12 +## Verified State
+    13 +
+    14 +- `adb devices -l` now shows one authorized USB device:
+    15 +  - serial: `RQCX907KFTK`
+    16 +  - model: `SM_S721B`
+    17 +- `adb reverse tcp:4781 tcp:4781` is active.
+    18 +- Windows device inventory now shows both:
+    19 +  - `ADB Interface`
+    20 +  - `S24 FE de Rayssa`
+    21 +- Latest smoke report is `Asolaria/reports/phone-tunnel-smoke-latest.md`.
+    22 +
+    23 +## Remaining Blocker
+    24 +
+    25 +- `http://127.0.0.1:4781/api/mobile/bootstrap` still returns `404`.
+    26 +- Because bootstrap is missing, no remote base URL or mobile token can be r
+        esolved locally from the current `proxy_4781` surface.
+    27 +- So the phone is now truly attached to the host, but the legacy mobile con
+        trol contract is still absent from this checkout.
+    28 +
+    29 +## Clean Read
+    30 +
+    31 +The USB/ADB gate is cleared on Rayssa host.
+    32 +The remaining phone-lane blocker is now purely application-surface mismatch
+        , not hardware, cable, drivers, or Android authorization.
+
+  └ Asolaria\data\agent-index\CATALOG.md (+5 -3)
+    205  | 194 | Windows-visible phone hardware does not clear the ADB or mobile-bo
+         otstrap gates on Rayssa host | pattern | → 188, 189, 191 |
+    206 +| 195 | Rayssa USB ADB gate is cleared; the remaining phone blocker is the
+          missing mobile bootstrap contract | pattern | → 194, 189, 191 |
+    207
+        ⋮
+    266  *Rayssa phone reconnect state:* 188 → 189 → 191 → 194
+    267 +*Rayssa phone ADB authorized:* 194 → 189 → 191 → 195
+    268
+        ⋮
+    274  | mistake | 25 |
+    273 -| pattern | 84 |
+    275 +| pattern | 85 |
+    276  | plan | 24 |
+        ⋮
+    281
+    280 -**189 LX files. 56 chains. RESURRECTION COMPLETE. Next boot = direct acces
+         s.**
+    282 +**190 LX files. 57 chains. RESURRECTION COMPLETE. Next boot = direct acces
+         s.**
+    283
+    282 -## Next available: LX-195
+    284 +## Next available: LX-196
+
+  └ Asolaria\data\agent-index\LX-195.md (+33 -0)
+     1 +---
+     2 +lx: 195
+     3 +name: Rayssa USB ADB gate is cleared; the remaining phone blocker is the mi
+        ssing mobile bootstrap contract
+     4 +type: pattern
+     5 +tags: [phone, adb, usb, reverse, bootstrap, rayssa, diagnostics]
+     6 +chain: [LX-194, LX-189, LX-191]
+     7 +agents: [liris, codex, gaia, falcon, helm]
+     8 +---
+     9 +
+    10 +# Rayssa USB ADB Cleared
+    11 +
+    12 +## What Is Proven
+    13 +
+    14 +- `adb devices -l` now shows an authorized device on Rayssa host.
+    15 +- `adb reverse tcp:4781 tcp:4781` is active.
+    16 +- Windows sees both the `ADB Interface` and `S24 FE de Rayssa`.
+    17 +
+    18 +## What Is Still Broken
+    19 +
+    20 +- `/api/mobile/bootstrap` on `127.0.0.1:4781` still returns `404`.
+    21 +- Without that contract, the current local phone scripts cannot resolve a t
+        oken or remote base URL from the `proxy_4781` surface.
+    22 +
+    23 +## Pattern
+    24 +
+    25 +The USB/ADB lane and the legacy mobile bootstrap lane are independent.
+    26 +
+    29 +- ADB authorization
+    30 +- USB reverse mapping
+    31 +
+    32 +Rayssa host has not cleared:
+───────────────────────────────────────────────────────────────────────────────────
+
+• Rayssa’s phone is now materially in the system.
+
+  I verified the USB/ADB lane on this host:
+  - the latest smoke report is updated at Asolaria/reports/phone-tunnel-smoke-
+    latest.md:1
+
+  I also tightened the diagnostics in Asolaria/tools/ADB-HealthCheck.ps1:1 and
+  Asolaria/tools/Test-Asolaria-PhoneTunnelPath.ps1:1, then saved the new state into
+  memory/index at C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+  project_rayssa_phone_adb_authorized_20260323.md:1 and Asolaria/data/agent-index/
+  LX-195.md:1. Local index is now 190 LX files, next LX-196.
+
+  The remaining blocker is no longer the phone. It is the app surface:
+
+  - http://127.0.0.1:4781/api/health/fast is healthy
+  - http://127.0.0.1:4781/api/mobile/bootstrap still returns 404
+
+  So the clean read is: USB/ADB is fixed, but the legacy mobile bootstrap contract
+  is still missing from the current proxy_4781 layer. The next real engineering
+  move is to restore or compat-shim /api/mobile/bootstrap safely, rather than
+  changing phone settings again.
+
+  The numbers at the top of the screen are likely a Developer Options overlay like
+  Pointer location or Show CPU usage. They are harmless for now and can be turned
+  off later.
+
+
+› Right. Do everything that is associated with what you need to do to connect and
+  share processors.. the phone has several more gigbytes of ram that can be
+  utilized and proccesssors are very nice due to the S24 hardware
+
+
+• I’m treating this as a real integration task, not a phone-settings issue. First
+  I’m mapping what this checkout already supports for phone-side compute or
+  companion execution, then I’ll patch the missing pieces rather than inventing a
+  new lane blindly.
+
+• Running rg -n -S "phone|termux|companion|pro-mirror|processor|compute|worker|
+  │ offload|adb shell|mobile/control|mobile/session|phoneBridgeKeeper|
+  │ phoneTunnelMonitor|companion route|route sync|pro mirror|deviceId" C:
+  │ … +2 lines
+  │ adb shell|mobile/control|mobile/session|phoneBridgeKeeper|phoneTunnelMonitor|
+  │ companion route|route sync|pro mirror|deviceId" C:\Users\rayss\Asolaria\src
+  │ … +2 lines
+  └ C:\Users\rayss\Asolaria\docs\SYMPHONY_HELPER_SURFACES.md:76:Use the phone lane
+    only for:
+    … +1793 lines
+    = @("phone-link-keeper.pid", "phone-tunnel-smoke-monitor.pid",
+    "cloudflared-asolaria.pid")
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\README.md | Select-Object -Skip 150
+  │ -First 220
+  └ - One-button alias launcher: `Asolaria App (One Button).lnk`
+      - Created only when `-IncludeUtilityShortcuts` is used.
+    … +220 lines
+
+    Environment policy knobs:
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1
+  │ -TotalCount 220
+  └ param(
+      [int]$Port = 4781,
+    … +216 lines
+        )
+
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The codebase distinction is clearer now: this host already has a phone control
+  lane, but I haven’t yet found a real phone-side compute worker. I’m checking the
+  existing Falcon/Termux hooks next to see whether there is a dormant execution
+  path I can finish instead of starting from zero.
+
+• Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\docs\STARTUP_ARCHITECTURE_GAP_REPORT.md -TotalCount
+  │ 140
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\Asolaria\docs\STARTUP_ARCHITECTURE_GAP_REPORT.md -TotalCount 140
+  └ # Startup Architecture Gap Report
+
+    … +86 lines
+    Current architecture is infrastructure-ready for routing and monitoring, but
+    not contract-ready for the required multi-worker secure startup flow.
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1
+  │ | Select-Object -Skip 1960 -First 110
+  └
+    $backgroundKeeperState = Ensure-PhoneBackgroundKeeper -CheckIntervalSeconds 20
+    … +107 lines
+      $healthGuardrailPreflightState = Invoke-HealthGuardrailPreflight
+      foreach ($note in @($healthGuardrailPreflightState.notes)) {
+
+• Ran rg -n -S "termux|phoneCodex|Falcon|phone worker|phone-side execution|fdroid|
+  │ help recovery|companion|pro-mirror/start|pro mirror" C:
+  │ \Users\rayss\Asolaria\tools C:\Users\rayss\Asolaria\src C:
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\docs\STARTUP_CONTRACT_V1.md:25:4. `Falcon` phone worker
+    C:\Users\rayss\Asolaria\docs\STARTUP_CONTRACT_V1.md:28:- Responsibility:
+    … +72 lines
+    rename Asolaria, Vector, Rook, Forge, Falcon, Watchdog, or the bridge room
+    `asolaria_bridge`.',
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• There is a plausible dormant path here: Termux on the phone plus the Falcon lane.
+  I’m reading the phone deployment and Termux repair scripts now to see whether we
+  can turn the S24 into a real worker surface instead of only a control target.
+
+• Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Refresh-Asolaria-PhoneDeployment.ps1
+  │ -TotalCount 620
+• Ran Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Repair-Termux-Over-Tailnet.ps1 -TotalCount 260
+  └ param(
+      [int]$MirrorProxyPort = 4790,
+    … +155 lines
+    Write-Host ""
+    Write-Host "Repair-Termux-Over-Tailnet completed."
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Refresh-Asolaria-PhoneDeployment.ps1 -TotalCount
+  │ 620
+  └ param(
+      [int]$Port = 4781,
+    … +532 lines
+      Write-Host ("Notebook note status: {0}" -f $noteResult.message)
+    }
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1
+  │ | Select-Object -Skip 900 -First 120
+  └     if (Test-Path -LiteralPath $path) {
+          return $path
+    … +116 lines
+    function Get-MobileBootstrap {
+      param(
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I’m checking the existing phone-side apps next. If Termux and its companion
+  pieces are already installed, I can start preparing the phone as a real worker
+• Running $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb
+  │ … +2 lines
+
+• Running $ts='C:\Program Files\Tailscale\tailscale.exe'; if (Test-Path $ts) { &
+  │ $ts status --json } else { 'TAILSCALE_MISSING' }
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb shell cmd
+  │ … +2 lines
+  └ (no output)
+
+• Ran $ts='C:\Program Files\Tailscale\tailscale.exe'; if (Test-Path $ts) { & $ts
+  │ status --json } else { 'TAILSCALE_MISSING' }
+  └ TAILSCALE_MISSING
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb shell
+  │ … +2 lines
+  └ SM-S721B
+    16
+    arm64-v8a
+    s5e9945
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The phone hardware is strong enough, but I still haven’t proved the software
+  payload that would actually use it. I’m checking whether Termux or any Asolaria
+  phone app is already installed; if not, I’ll wire the host side first and leave
+  the phone app install as the remaining manual step.
+
+• Running $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb
+  │ scrcpy|termuxhub|com\.termux" C:\Users\rayss\Asolaria\src C:
+  │ … +1 lines
+
+• Ran rg -n -S "/api/phone/pro-mirror/start|phone/pro-mirror|mobile/phone/
+  │ developer-options|mobile/help/recover|phoneBrowserHistory|pro-mirror|scrcpy|
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\src\skillRunner.js:26:const
+    { runPhoneBrowserHistoryCheck } = require("./connectors/
+    … +32 lines
+    PRO_MIRROR_STATE.lastError = String(error?.message || error ||
+    "scrcpy_stop_failed");
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb shell "cmd
+  │ … +2 lines
+  └ (no output)
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\routes\routes\misc.js -TotalCount
+  │ 220
+  └ /**
+     * Miscellaneous small routes — extracted from server.js (ADR-0001
+    … +41 lines
+
+    module.exports = createMiscRouter;
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I didn’t get a clean package read from the phone yet, so I’m rerunning that
+  filter in a safer way on the host side. I need to know whether Termux/F-Droid is
+  already there before I wire deployment or recovery around it.
+
+• Running $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; $rows=&
+  │ … +2 lines
+
+• Ran rg -n -S "phoneProMirrorConnector|/api/phone/pro-mirror|
+  │ runPhoneBrowserHistoryCheck|phoneBrowserHistoryConnector|mobile/help/recover|
+  │ developer-options" C:\Users\rayss\Asolaria\server.js C:
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\src\skillRunner.js:26:const
+    { runPhoneBrowserHistoryCheck } = require("./connectors/
+    … +12 lines
+    C:\Users\rayss\Asolaria\src\connectors\phoneBrowserHistoryConnector.js:871:
+    runPhoneBrowserHistoryCheck
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; $rows=& $adb
+  │ … +2 lines
+  └ (no output)
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\Asolaria\src\connectors\phoneProMirrorConnector.js -TotalCount
+  │ 260
+  └ const fs = require("fs");
+    const path = require("path");
+    … +256 lines
+      const windowTitle = sanitizeWindowTitle(options.windowTitle);
+      const alwaysOnTop = Boolean(options.alwaysOnTop);
+
+─ Worked for 1m 10s ───────────────────────────────────────────────────────────────
+
+• Context compacted
+
+• I’m tracing the actual phone-worker path now: what already exists for Termux/ADB
+  deployment, what’s missing for true phone-side compute, and which parts I can
+  wire up locally without inventing fake capability.
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Repair-Termux-Over-Tailnet.ps1' -TotalCount
+  │ 320
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\docs\STARTUP_ARCHITECTURE_GAP_REPORT.md'
+  │ -TotalCount 260
+
+◦ Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Refresh-Asolaria-PhoneDeployment.ps1'
+  │ -TotalCount 360
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1' -TotalCount 420
+  └ param(
+      [int]$Port = 4781,
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\docs\STARTUP_ARCHITECTURE_GAP_REPORT.md' -TotalCount
+  │ 260
+  └ # Startup Architecture Gap Report
+
+    … +86 lines
+    Current architecture is infrastructure-ready for routing and monitoring, but
+    not contract-ready for the required multi-worker secure startup flow.
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Repair-Termux-Over-Tailnet.ps1' -TotalCount 320
+  └ param(
+      [int]$MirrorProxyPort = 4790,
+    … +155 lines
+    Write-Host ""
+    Write-Host "Repair-Termux-Over-Tailnet completed."
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Refresh-Asolaria-PhoneDeployment.ps1' -TotalCount
+  │ 360
+  └ param(
+      [int]$Port = 4781,
+    … +356 lines
+    if ([string]::IsNullOrWhiteSpace($PrivateDownloadsDir)) {
+      $PrivateDownloadsDir = Join-Path $repoRoot "data\private-downloads"
+
+───────────────────────────────────────────────────────────────────────────────────
+
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\src\gateway\compat4781.js'
+  │ -TotalCount 320
+
+• Running rg -n --hidden -S "Falcon|falcon-bot|Termux|termux|mobile bootstrap|/api/
+  │ mobile/bootstrap|phone worker|worker spawn|mobile-falcon-v1|phone
+  │ deployment|adb reverse|com.termux" C:\Users\rayss\Asolaria
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\src\gateway\compat4781.js'
+  │ -TotalCount 320
+  └ "use strict";
+
+    … +191 lines
+      process.exit(1);
+    });
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1'
+  │ -TotalCount 360
+  └ param(
+      [int]$Port = 4781,
+    … +358 lines
+
+      Set-Content -Path $phoneUrlsPath -Value $content -Encoding UTF8
+
+• Ran rg -n --hidden -S "Falcon|falcon-bot|Termux|termux|mobile bootstrap|/api/
+  │ mobile/bootstrap|phone worker|worker spawn|mobile-falcon-v1|phone deployment|
+  │ adb reverse|com.termux" C:\Users\rayss\Asolaria
+  └ C:\Users\rayss\Asolaria\tools\Write-QDD-ExternalAdmin-Handoff.ps1:162:  'Do not
+    rename Asolaria, Vector, Rook, Forge, Falcon, Watchdog, or the bridge room
+    … +192 lines
+    C:\Users\rayss\Asolaria\llama-instruct-dataset-prep-agent\SOLI\SOLI.owl:76753:
+    <skos:prefLabel>Falcon</skos:prefLabel>
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\docs\STARTUP_CONTRACT_V1.md'
+  │ -TotalCount 180
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 1080 -First 220
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1' | Select-Object
+  │ -Skip 220 -First 220
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 1080 -First 220
+  └     if ((now - usbFailoverLastAt) < USB_FAILOVER_COOLDOWN_MS) {
+          headers["x-asolaria-viewer"] = viewer;
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1' | Select-Object
+  │ -Skip 1500 -First 220
+  └   }
+      try {
+    … +216 lines
+        jsonPath = $jsonPath
+        reportPath = $reportPath
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\docs\STARTUP_CONTRACT_V1.md'
+  │ -TotalCount 180
+  └ # Startup Contract v1
+
+    … +86 lines
+    5. No task dispatched before handshake completion.
+    6. Sub-agent limits enforced per worker.
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1' |
+  │ Select-Object -Skip 220 -First 220
+  └     try {
+          $resp = Invoke-RestMethod -Uri ("http://127.0.0.1:{0}{1}" -f $Port, $Pat
+    … +218 lines
+      }
+
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I’ve isolated the gap more precisely: the current phone lane is good enough for
+  remote control, but not yet for a real Falcon compute worker. I’m checking
+  whether there’s an existing Android/Termux bridge I can bring back instead of
+  inventing a new protocol.
+
+• Running rg -n --hidden -S "openTermux|runTermux|termuxRunCommandGranted|Android
+  │ bridge|onAuthFailure|com.termux.api|falcon-bot.pid|phoneCodexPid|mobile
+  │ console" C:\Users\rayss\Asolaria\src C:\Users\rayss\Asolaria\public C:
+  │ … +2 lines
+  │ 300 -First 120
+  └   - `GET /api/moltbook/mission`
+      - `GET /api/moltbook/account`
+    … +116 lines
+    ## Work Link VPN Guard
+
+
+• Ran rg -n --hidden -S "openTermux|runTermux|termuxRunCommandGranted|Android
+  │ bridge|onAuthFailure|com.termux.api|falcon-bot.pid|phoneCodexPid|mobile
+  │ console" C:\Users\rayss\Asolaria\src C:\Users\rayss\Asolaria\public C:
+  │ … +2 lines
+  └ C:\Users\rayss\Asolaria\public\mobile-console.js:1270:    if (!bridge || typeof
+    bridge.onAuthFailure !== "function") {
+    … +39 lines
+    rg: C:\Users\rayss\Asolaria\app: O sistema não pode encontrar o arquivo
+    especificado. (os error 2)
+
+• Ran Get-ChildItem -Path 'C:\Users\rayss\Asolaria' -Force | Select-Object
+  │ Name,Mode
+  └
+    Name                              Mode
+    … +43 lines
+    Stop-Liris-SelfReflect.cmd        -a---
+
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I’ve confirmed the shortest real path: make the compat surface expose the missing
+  mobile bootstrap contract first, because nearly every phone deployment and worker
+  script depends on it. After that I can push the phone further toward an actual
+  │ … +1 lines
+
+• Running rg -n --hidden -S "remoteConsole|localConsole|remoteApprovals|
+  │ localApprovals|baseUrl|viewer|mobile token|x-asolaria-mobile-token|
+  │ session" C:\Users\rayss\Asolaria\public\mobile-console.js C:
+  │ … +4 lines
+
+• Ran rg -n --hidden -S "remoteConsole|localConsole|remoteApprovals|localApprovals|
+  │ baseUrl|viewer|mobile token|x-asolaria-mobile-token|session" C:
+  │ \Users\rayss\Asolaria\public\mobile-console.js C:
+  │ … +4 lines
+  └ C:\Users\rayss\Asolaria\tools\Refresh-Asolaria-PhoneDeployment.ps1:338:
+    remoteBaseUrl = [string]$parsed.remote.baseUrl
+    … +120 lines
+    C:\Users\rayss\Asolaria\public\phone-mode.js:5886:    logLine("No mobile token
+    found; remote phone-mode API calls may be denied.");
+
+• Ran rg -n --hidden -S "api/mobile/bootstrap|mobile bootstrap|mobile/session|api/
+  │ mobile/session|api/mobile/connections" C:\Users\rayss\Asolaria\src C:
+  │ \Users\rayss\Asolaria\routes C:\Users\rayss\Asolaria\services C:
+  │ … +1 lines
+  └     ("- keeper running: " + [string]$Result.remote.keeperRunning + " pid=" +
+    [string]$Result.remote.keeperPid + " staleSeconds=" +
+    … +218 lines
+      checkedAt = $checkedAt
+      baseUrl = $base
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\package.json' -TotalCount 260
+
+• Ran rg -n --hidden -S "mobile/control/status|mobile/help/recover|mobile/ui/open|
+  │ x-asolaria-mobile-token|mobileToken|mobile token|approvals preference|
+  │ connectionRouting" C:\Users\rayss\Asolaria\src C:\Users\rayss\Asolaria\routes
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\routes\routes\policy.js:19:      connectionRouting:
+    getConnectionRoutingState()
+    … +5 lines
+    C:\Users\rayss\Asolaria\src\mobileInbox.js:282:      selectedReason:
+    cleanText(runtime?.connectionRouting?.selected?.reason || ""),
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\package.json' -TotalCount 260
+  └ {
+      "name": "asolaria",
+    … +30 lines
+      }
+    }
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The route inventory confirms the old mobile API is mostly gone from the active
+  backend, not just unmounted. I’m checking whether the repo still has enough
+  state/config helpers to rebuild a minimal bootstrap/session layer on the compat
+  listener instead of dragging the old monolith back.
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\server.js' -TotalCount 80
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\src\mobileInbox.js'
+  │ -TotalCount 360
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\routes\routes\policy.js'
+  │ -TotalCount 220
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\server.js' -TotalCount 80
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\src\mobileInbox.js' -TotalCount
+  │ 360
+  └ const { listApprovals } = require("./guardianApprovalStore");
+    const { listTaskLedgerTasks } = require("./taskLedgerStore");
+    … +297 lines
+      buildMobileInboxState
+    };
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\routes\routes\policy.js'
+  │ -TotalCount 220
+  └ /**
+     * Policy Routes — extracted from server.js (ADR-0001 strangler-fig)
+    … +47 lines
+
+    module.exports = createPolicyRouter;
+
+• Ran rg -n --hidden -S "getConnectionRoutingState|mobile token|viewer|guardian|
+  │ approval|control armed|phoneBridgeKeeper|latestLogStaleSeconds|mobile
+  │ session" C:\Users\rayss\Asolaria\src C:\Users\rayss\Asolaria\routes
+  └ C:\Users\rayss\Asolaria\src\civilizationWorld.js:274:    subtype:
+    "guardian_admin_terminal",
+    … +459 lines
+    C:\Users\rayss\Asolaria\src\intentRouter.js:1343:    const confirmMatch =
+    rest.match(/\b(?:confirm|approval)\s+([A-Za-z0-9:_-]{10,120})\b/i);
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I now know enough to stop just tracing. The active checkout has the pieces to
+  reconstruct a thin mobile API on the compat listener: connection-routing state,
+  mobile inbox summaries, approvals/task state, and the existing gateway behind it.
+  I’m pulling the exact helpers so I can wire only the minimal contract the phone
+  scripts need.
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\src\connectionPolicy.js'
+  │ -TotalCount 360
+
+• Running rg -n --hidden -S "local/ops/status|api/local/ops/status|
+  │ workspace-knowledge/status|mobileInbox" C:
+  │ \Users\rayss\Asolaria\src\gateway\server.js C:
+  │ … +1 lines
+
+◦ Running rg -n --hidden -S "getConnectionRoutingState|noteChannelHeartbeat|
+  │ connectionRouting" C:\Users\rayss\Asolaria\src\connectionPolicy.js C:
+  │ \Users\rayss\Asolaria\src\gateway\server.js C:
+  │ … +1 lines
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\routes\routes\workerRuntime.js'
+    module.exports = createWorkerRuntimeRouter;
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\src\connectionPolicy.js'
+  │ -TotalCount 360
+  └ function normalizeLower(value) {
+      return String(value || "").trim().toLowerCase();
+    … +97 lines
+      enforceChannelPrivacyPolicy
+    };
+
+• Ran rg -n --hidden -S "getConnectionRoutingState|noteChannelHeartbeat|
+  │ connectionRouting" C:\Users\rayss\Asolaria\src\connectionPolicy.js C:
+  │ \Users\rayss\Asolaria\src\gateway\server.js C:\Users\rayss\Asolaria\routes
+  └ C:\Users\rayss\Asolaria\routes\routes\policy.js:6:const { normalizeChannels,
+    noteChannelHeartbeat } = require("../src/connectionPolicy");
+    … +9 lines
+    true, channel, at: new Date().toISOString(), connectionRouting:
+    getConnectionRoutingState() });
+
+• Ran rg -n --hidden -S "local/ops/status|api/local/ops/status|workspace-knowledge/
+  │ status|mobileInbox" C:\Users\rayss\Asolaria\src\gateway\server.js C:
+  │ \Users\rayss\Asolaria\routes C:\Users\rayss\Asolaria\src
+  └ C:\Users\rayss\Asolaria\src\gateway\compat4781.js:127:  app.get("/api/
+    workspace-knowledge/status", (_req, res) => {
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I’m switching from code archaeology to phone-state proof now. The next decisive
+  fact is whether the S24 already has the execution surface I need, especially
+  Termux and Termux:API; if not, I can still prepare the host side cleanly, but I
+  won’t pretend the phone worker exists.
+
+• Running $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb
+  │ … +2 lines
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb shell "cmd
+  │ … +3 lines
+  └ (no output)
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb devices
+  │ … +2 lines
+  └ List of devices attached
+    RQCX907KFTK            device product:r12sxxx model:SM_S721B device:r12s
+    transport_id:2
+
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb shell
+  │ … +3 lines
+  └ SM-S721B
+    16
+    arm64-v8a
+    s5e9945
+    s5e9945
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The phone is definitely authorized and it’s a strong arm64 S24 FE surface. Right
+  now there is no proof that Termux, Termux:API, F-Droid, Tailscale, or an Asolaria
+  companion app are installed there, so I’m treating the phone-worker path as
+  “hardware ready, execution substrate absent” until I prove otherwise.
+
+• Running $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb
+  │ … +1 lines
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Repair-Termux-Over-Tailnet.ps1' |
+  └ param(
+      [int]$MirrorProxyPort = 4790,
+    … +155 lines
+    Write-Host ""
+    Write-Host "Repair-Termux-Over-Tailnet completed."
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; & $adb shell pm
+  │ … +1 lines
+  └ package:com.sec.android.RilServiceModeApp
+    package:com.samsung.oda.service
+    … +76 lines
+    package:com.samsung.android.qmdservice
+    package:com.google.android.safetycore
+
+• Ran $adb='C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe'; $rows=& $adb
+  │ … +2 lines
+  └
+    package:com.android.companiondevicemanager
+    package:com.android.companiondevicemanager.auto_generated_characteristics_rro
+
+
+───────────────────────────────────────────────────────────────────────────────────
+
+
+• Running rg --files C:\Users\rayss\Asolaria | rg -n "(?i)(termux|android|apk|
+  │ companion|falcon)"
+
+• Running Get-ChildItem -Path 'C:\Users\rayss\Downloads' -Filter *.apk -File
+  │ -Recurse -ErrorAction SilentlyContinue | Select-Object
+  │ FullName,Length,LastWriteTime | Sort-Object LastWriteTime -Descending |
+  │ … +1 lines
+
+• Ran rg --files C:\Users\rayss\Asolaria | rg -n "(?i)(termux|android|apk|
+  │ companion|falcon)"
+  └ 191:C:\Users\rayss\Asolaria\tools\swarm-jobs\falcon-phone-packet.ps1
+    203:C:\Users\rayss\Asolaria\tools\Stop-Android-Threat-Agent.ps1
+    … +15 lines
+    7291:C:
+    \Users\rayss\Asolaria\node_modules\playwright-core\lib\androidServerImpl.js
+
+• Ran if (Test-Path 'C:\Program Files\Tailscale\tailscale.exe')
+  │ { 'TAILSCALE_PRESENT' } else { 'TAILSCALE_MISSING' }
+  └ TAILSCALE_MISSING
+
+• Ran Get-ChildItem -Path 'C:\Users\rayss\Downloads' -Filter *.apk -File -Recurse
+  │ -ErrorAction SilentlyContinue | Select-Object FullName,Length,LastWriteTime |
+  │ Sort-Object LastWriteTime -Descending | Select-Object -First 40
+  └ (no output)
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I found a stronger lead than the old bootstrap routes: there’s an existing
+  Android agent/tooling slice in this checkout, plus a dedicated Falcon phone
+  packet. I’m reading those now because they may already define the host-to-phone
+  execution contract you want.
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\swarm-jobs\falcon-phone-packet.ps1'
+  │ -TotalCount 260
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Get-Android-Threat-AgentStatus.ps1'
+  │ -TotalCount 260
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Start-Android-Threat-Agent.ps1' -TotalCount
+  │ 320
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Get-Android-Threat-AgentStatus.ps1' -TotalCount
+  │ 260
+    }
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Keep-Android-Threat-Agent.ps1' -TotalCount 320
+  └ param(
+      [int]$CheckIntervalSeconds = 180,
+    … +146 lines
+
+    Write-Log "agent_exit"
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\swarm-jobs\falcon-phone-packet.ps1' -TotalCount
+  │ 260
+  └ $ErrorActionPreference='Stop'
+    Set-Location C:\Users\acer
+    … +62 lines
+    $lines | Set-Content -Path $report -Encoding UTF8
+    Write-Output ('wrote=' + $report)
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Start-Android-Threat-Agent.ps1' -TotalCount 320
+  └ param(
+      [int]$CheckIntervalSeconds = 90,
+    … +72 lines
+    Write-Host ("PID file: {0}" -f $pidFile)
+    Write-Host ("Log file: {0}" -f $logPath)
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I’m narrowing the code change to something concrete and low-risk. The phone
+  scripts don’t need the entire missing legacy app; they mostly need a valid
+  bootstrap packet and enough mobile session/control state to stop failing open.
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1' | Select-Object
+  │ -Skip 560 -First 220
+
+• Running rg -n --hidden -S "function Resolve-RemoteBaseFromBootstrap|
+  │ Resolve-RemoteBaseFromBootstrap|bootstrap\.urls|bootstrap\.token|mobile
+  │ bootstrap" C:\Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1 C:
+  │ bootstrap" C:\Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1 C:
+  │ … +3 lines
+  └ C:\Users\rayss\Asolaria\tools\Heal-Cure-Asolaria-Phone.ps1:185:function
+    Resolve-RemoteBaseFromBootstrap {
+    … +25 lines
+    C:\Users\rayss\Asolaria\tools\Refresh-Asolaria-PhoneDeployment.ps1:432:
+    $localConsoleUrl = [string]$bootstrap.urls.localConsole
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1' |
+  │ Select-Object -Skip 560 -First 220
+  └     & $TailscalePath switch $selectedId | Out-Null
+      } catch {
+    … +216 lines
+      if (-not [string]::IsNullOrWhiteSpace($TargetDevice)) {
+        $adbPrefix = @("-s", [string]$TargetDevice)
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Refresh-Asolaria-PhoneDeployment.ps1' |
+  │ Select-Object -Skip 300 -First 220
+  └ function Invoke-TunnelSmokeTest {
+      param(
+    … +216 lines
+    if ($release) {
+      Write-Host ("Private zip: {0}" -f $privateZipPath)
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The deployment path is clearer now. Once bootstrap exists, the rest of the phone
+  deployment flow already knows how to reverse the port, open the phone locally,
+  emit smoke reports, and even push a release bundle. I’m extracting the exact
+  bootstrap/session contract those tools expect so I can make the compat listener
+  satisfy it instead of guessing.
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Heal-Cure-Asolaria-Phone.ps1' | Select-Object
+  │ -Skip 160 -First 120
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 2420 -First 140
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Keep-Asolaria-PhoneTunnelSmoke.ps1' |
+  │ Select-Object -Skip 220 -First 140
+  └     }
+        $baseUrl = "http://${dnsName}:$ProxyPort"
+    … +137 lines
+    { "health_not_ok_relaxed_tls" }
+              error = ""
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 4990 -First 80
+  └       const pref = data?.settings?.approvalPreference || selected;
+          setApprovalStrategyStatus(`Saved: ${mode}/${pref}`);
+    … +77 lines
+            setWindowsStatus("Windows: token invalid/expired.");
+            setControlStatus("Control: token invalid/expired.");
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 2420 -First 140
+  └   function getAndroidBridge() {
+        try {
+    … +136 lines
+        }
+      }
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Heal-Cure-Asolaria-Phone.ps1' | Select-Object
+    … +116 lines
+        }
+      }
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 2260 -First 120
+  └         headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 3080 -First 120
+  └     setAndroidHelpStatus(`Help recovery: auto-run (${reason})...`);
+        try {
+    … +118 lines
+        const armed = info.armed === undefined ? controlArmed :
+    Boolean(info.armed);
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 2320 -First 120
+  └     setSlackStatusText("Slack: checking...");
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 2140 -First 120
+  └       });
+          stealthMode = Boolean(data?.settings?.stealthMode);
+    … +116 lines
+          const data = await api("/api/chrome/open", {
+            method: "POST",
+
+• Ran rg -n "function renderConnectionRouting|function renderControlStatus|
+  │ connectionRoutingStatus|setConnectionStatus\(" 'C:
+  │ \Users\rayss\Asolaria\public\mobile-console.js'
+  └ 1102:    setConnectionStatus("USB link lost. Switching to internet path...");
+    3012:  function setConnectionStatus(text) {
+    … +15 lines
+    5078:      setConnectionStatus(`Connection mode error: ${error.message}`);
+    5934:  setConnectionStatus("Connection mode: checking...");
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 3468 -First 70
+  └         }
+            return channel || reason;
+    … +66 lines
+            publicInternetPrivate: true,
+            remoteAuthRequired: true,
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I’m at the point where the minimal compat API is feasible. The remaining question
+  is whether I should synthesize its state from existing gateway/config sources or
+  hardcode too much. I’m pulling the gateway’s real health/config fields so the new
+  mobile endpoints reflect actual runtime, not fiction.
+
+• Running rg -n --hidden -S "remote approval|ASOLARIA_REMOTE_APPROVAL_BASE_URL|
+  │ networkPolicy|http\.port|https\.port|phoneBridgeKeeper|
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\src\gateway\server.js' |
+  │ Select-Object -Skip 1460 -First 160
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\src\gateway\server.js' |
+  │ Select-Object -Skip 1460 -First 160
+
+    createServer();
+
+• Ran rg -n --hidden -S "remote approval|ASOLARIA_REMOTE_APPROVAL_BASE_URL|
+  │ networkPolicy|http\.port|https\.port|phoneBridgeKeeper|phoneTunnelMonitor|
+  │ mobilePush|connectionRouting|guardian mode|approval preference" C:
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\src\mobileInbox.js:261:  const selectedChannel =
+    cleanText(runtime?.connectionRouting?.selected?.channel || "");
+    C:\Users\rayss\Asolaria\src\mobileInbox.js:282:      selectedReason:
+    cleanText(runtime?.connectionRouting?.selected?.reason || ""),
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\src\gateway\server.js' |
+  │ Select-Object -Skip 0 -First 220
+  └ const fs = require("fs");
+    const path = require("path");
+    … +216 lines
+    function compileMessageSchema() {
+      const ajv = new Ajv({ allErrors: true, strict: false });
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I’m switching from static code to live contract proof. The gateway’s real /health
+  payload will tell me which mobile/session fields I can mirror safely on the
+  compat listener and which ones I need to stub explicitly.
+
+• Ran $r=Invoke-RestMethod -Uri 'http://127.0.0.1:4791/health' -TimeoutSec 6; $r |
+  │ ConvertTo-Json -Depth 8
+  └ {
+      "ok": true,
+    … +831 lines
+      }
+    }
+
+• Running rg -n --hidden -S "mobile/bootstrap|mobile/session|mobile/connections|
+  │ phone tunnel|connectionRouting|localConsole|remoteConsole|
+  │ x-asolaria-mobile-token" C:\Users\rayss\Asolaria\tests C:
+  │ … +1 lines
+  │ tunnel|connectionRouting|localConsole|remoteConsole|x-asolaria-mobile-token"
+  │ C:\Users\rayss\Asolaria\tests C:\Users\rayss\Asolaria\routes C:
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\src\mobileInbox.js:261:  const selectedChannel =
+    cleanText(runtime?.connectionRouting?.selected?.channel || "");
+    … +5 lines
+    true, channel, at: new Date().toISOString(), connectionRouting:
+    getConnectionRoutingState() });
+
+• Ran Get-ChildItem -Path 'C:\Users\rayss\Asolaria\config' -Force | Select-Object
+  │ Name,Mode
+  └
+    Name                         Mode
+    … +7 lines
+    public-release.manifest.json -a---
+
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\config\asolaria.gateway.json'
+  │ -TotalCount 260
+  └ {
+      "gateway": {
+    … +104 lines
+      }
+    }
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• There isn’t a hidden mobile config file waiting to be reconnected. The gateway
+  config is clean and modern, but it simply doesn’t define the old phone API. I’m
+  now searching for any remaining mobile env/state hooks so I can build the compat
+  layer around real settings instead of reviving stale config assumptions.
+
+• Running rg -n --hidden -S "ASOLARIA_.*MOBILE|MOBILE_.*ASOLARIA|
+  │ REMOTE_APPROVAL_BASE_URL|ASOLARIA_CONNECTION_|
+  │ ASOLARIA_ALLOW_PUBLIC_INTERNET|ASOLARIA_PUBLIC_INTERNET_IS_PRIVATE|
+  │ … +3 lines
+
+• Running $names='ASOLARIA_REMOTE_APPROVAL_BASE_URL','ASOLARIA_CONNECTION_PREFERENC
+  │ E','ASOLARIA_CONNECTION_AVAILABLE','ASOLARIA_ALLOW_PUBLIC_INTERNET','ASOL
+  │ ARIA_PUBLIC_INTERNET_IS_PRIVATE','ASOLARIA_NETWORK_REMOTE_AUTH_REQUIRED',
+  │ … +7 lines
+
+• Ran rg -n --hidden -S "mobile.*token|x-asolaria-mobile-token|token.*mobile|Save
+  │ Token|localStorage.*mobile|approval token" C:\Users\rayss\Asolaria\public C:
+  │ \Users\rayss\Asolaria\src C:\Users\rayss\Asolaria\tools
+  └ C:\Users\rayss\Asolaria\tools\Heal-Cure-Asolaria-Phone.ps1:325:
+    "x-asolaria-mobile-token" = $token
+    found; remote phone-mode API calls may be denied.");
+
+    Line |
+    … +2 lines
+         |                                                                ~
+         | An empty pipe element is not allowed.
+
+• Ran rg -n --hidden -S "ASOLARIA_.*MOBILE|MOBILE_.*ASOLARIA|
+  │ REMOTE_APPROVAL_BASE_URL|ASOLARIA_CONNECTION_|ASOLARIA_ALLOW_PUBLIC_INTERNET|
+  │ ASOLARIA_PUBLIC_INTERNET_IS_PRIVATE|ASOLARIA_NETWORK_REMOTE_AUTH_REQUIRED|
+  │ … +2 lines
+  └ C:\Users\rayss\Asolaria\tools\Start-Asolaria.ps1:45:
+    ASOLARIA_CONNECTION_PREFERENCE = "usb,private_internet,public_internet"
+    … +70 lines
+
+• Plan for this pass:
+
+  1. Restore the missing mobile compat endpoints on 4781 so the phone scripts stop
+     failing on bootstrap/session/control.
+  2. Add a phone-worker readiness/provisioning tool that audits the S24 as a Falcon
+     compute surface: ADB, CPU/RAM, Termux/Termux:API presence, reverse mapping,
+     and host prerequisites.
+  3. Verify the real host state after the changes:
+      - /api/mobile/bootstrap
+      - /api/mobile/session
+      - /api/mobile/control/status
+      - updated readiness report for the S24 worker lane
+  4. Record the result into local memory/index so future startup packets stop
+     rediscovering the same phone-worker gap.
+
+• Ran rg -n --hidden -S "mobile token|mobile\.token|mobile_token|approval token|
+  │ uiControl|localConsoleUrl|remoteConsoleUrl|mobile-control" C:
+    C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1:1114:      error =
+    "missing_mobile_token"
+
+───────────────────────────────────────────────────────────────────────────────────
+
+  both old and new callers in one pass.
+
+• Running Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Test-Asolaria-CrossSurfaceAudit.ps1'
+  │ -TotalCount 180
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Test-Asolaria-MobileControlAuthority.ps1'
+  │ -TotalCount 260
+  └ [CmdletBinding()]
+    param(
+    … +256 lines
+    $md += ("- Remote allowed: {0} ({1})" -f $remoteAllowed, $remoteReason)
+    if ($IncludeMutationProbes) {
+
+• Ran Get-Content -Path 'C:
+  │ \Users\rayss\Asolaria\tools\Test-Asolaria-CrossSurfaceAudit.ps1' -TotalCount
+  │ 180
+  └ [CmdletBinding()]
+    param(
+    … +177 lines
+    $report | ConvertTo-Json -Depth 16 | Set-Content -LiteralPath $jsonPath
+    -Encoding UTF8
+
+• Ran rg -n "/api/mobile/settings|/api/mobile/inbox|/api/mobile/control/arm|/api/
+  │ mobile/help/recover|/api/mobile/ui/open|/api/mobile/control/status|/api/
+  │ mobile/connections" 'C:\Users\rayss\Asolaria\public\mobile-console.js' 'C:
+    C:\Users\rayss\Asolaria\public\phone-mode.js:4772:    const payload = await
+    requestJson("/api/mobile/settings");
+
+• Running Get-Content -Path 'C:\Users\rayss\Asolaria\public\phone-mode.js' |
+  │ Select-Object -Skip 4748 -First 120
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\phone-mode.js' |
+  │ Select-Object -Skip 4690 -First 120
+  └   await loadInbox({ silent: true });
+    }
+    … +116 lines
+          query: {
+            channel: requestedChannel() || undefined
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\phone-mode.js' |
+  │ Select-Object -Skip 4748 -First 120
+  └     state.phoneLiveRouteMode = saved;
+      } else {
+    … +116 lines
+          }
+        });
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 3770 -First 90
+  └   async function refreshSessionSummary() {
+        if (!hasToken()) {
+    … +86 lines
+              reason: reason || "manual_disarm"
+            })
+
+• Ran rg -n "function parseControlAuthority|getControlAuthorityBlockMessage|
+  │ superMasterControlAllowed|authority\." 'C:
+  │ \Users\rayss\Asolaria\public\mobile-console.js'
+  └ 1472:  function parseControlAuthority(info) {
+    1474:    if (!source || !Object.prototype.hasOwnProperty.call(source,
+    … +8 lines
+    3870:    const authorityBlock =
+    getControlAuthorityBlockMessage(controlAuthority);
+
+• Ran Get-Content -Path 'C:\Users\rayss\Asolaria\public\mobile-console.js' |
+  │ Select-Object -Skip 1468 -First 32
+  └     }
+      }
+    … +28 lines
+        }
+        if (reason === "actor_not_super_master") {
+
+• Working (1m 15s • esc to interrupt)
+
+
+› Run /review on my current changes

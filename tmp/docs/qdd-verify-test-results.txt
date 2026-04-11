@@ -1,0 +1,173 @@
+QDD Test Results Verification Report
+=====================================
+Date: 2026-03-25
+Project: D:\projects\QDD\ebacmap-master
+
+SUMMARY: The 60 seeded test results are NOT queryable by the reports system.
+         The seed writes to `testresults` but the API reads from `testresultreads`.
+
+=== FINDING: DUAL-COLLECTION ARCHITECTURE ===
+
+The eBacMap application uses a CQRS-like pattern with two collections:
+
+  1. `testresults`      — write model (TestResultModel)
+  2. `testresultreads`  — read model (TestResultReadModel) — DENORMALIZED
+
+The seed script (scripts/seed-test-results.js) inserts 60 documents into
+`testresults` with FLAT ObjectId references:
+
+    client: ObjectId('69c41938d84980e337ac77cd')        // flat
+    location: ObjectId('69c41938d84980e337ac77cf')       // flat
+    site: ObjectId(...)                                  // flat
+
+But the API (ListTests use case at line 1255 of TestResultRepo.ts) queries
+the READ model using EMBEDDED object syntax:
+
+    'client._id': new ObjectId(clientId)                 // nested
+    'location._id': new ObjectId(location)               // nested
+
+The read model schema (libs/db/src/models/TestResultRead.ts) expects:
+
+    client:         { _id: ObjectId }                    // embedded
+    location:       { _id: ObjectId, name: String }      // embedded
+    site:           { _id: ObjectId, name: String, ... } // embedded
+    zone:           { _id: ObjectId, name: String }      // embedded
+    testDefinition: { _id: ObjectId, subTest: String, ...} // embedded
+    category:       { _id: ObjectId, name: String }      // embedded
+
+The denormalization happens in TestResultService.ts (line 219+) via
+the `denormalizeTestResult()` method, which is called during the normal
+create flow (CreateTestResult use case), NOT during bulk seed.
+
+=== VERIFICATION STEPS ===
+
+Step 1 — Count testresults: EXPECTED 60 in `testresults` collection
+  Command: mongosh --eval "db.getSiblingDB('ebacmap-local-test').testresults.countDocuments()"
+  Status: NEEDS MANUAL RUN (Bash denied for mongosh)
+
+Step 2 — Filter query:
+  Command: mongosh --eval "db.getSiblingDB('ebacmap-local-test').testresults.countDocuments({client: ObjectId('69c41938d84980e337ac77cd'), location: ObjectId('69c41938d84980e337ac77cf')})"
+  Expected: 60
+
+Step 3 — Sample document field check:
+  The seed script DOES include all required fields with correct types:
+    client:         ObjectId  ✓ (but WRONG shape for read model)
+    location:       ObjectId  ✓ (but WRONG shape for read model)
+    site:           ObjectId  ✓
+    category:       ObjectId  ✓
+    zone:           ObjectId  ✓
+    testDefinition: ObjectId  ✓
+    sampleDate:     Date      ✓
+    finalRating:    Number    ✓
+
+Step 4 — Count testresultreads:
+  Command: mongosh --eval "db.getSiblingDB('ebacmap-local-test').testresultreads.countDocuments()"
+  Expected: 0 (seed does NOT populate this collection)
+
+Step 5 — API test:
+  First: curl http://localhost:3000/api/auth/dev-bypass (sets session cookie)
+  Then:  curl http://localhost:3000/api/test-results?location=69c41938d84980e337ac77cf
+  Expected: EMPTY RESULTS — because testresultreads has no documents
+
+Step 6 — Field name check:
+  The API uses ctx.user.clientId (from dev-bypass session: '69c41938d84980e337ac77cd')
+  This is passed to testResultRepo.search() as the `clientId` parameter.
+  The query uses: 'client._id': new ObjectId(clientId)
+  This queries the READ model (testresultreads), NOT testresults.
+
+=== ROOT CAUSE ===
+
+The seed script writes raw documents to the `testresults` (write model)
+collection but does NOT create corresponding denormalized documents in
+the `testresultreads` (read model) collection.
+
+The API's list/search endpoint reads ONLY from `testresultreads`.
+
+=== FIX REQUIRED ===
+
+The seed script must ALSO insert denormalized documents into `testresultreads`.
+Each document needs embedded objects instead of flat ObjectIds:
+
+  Instead of:   client: ObjectId('69c41938d84980e337ac77cd')
+  Must write:   client: { _id: ObjectId('69c41938d84980e337ac77cd') }
+
+  Instead of:   location: ObjectId('69c41938d84980e337ac77cf')
+  Must write:   location: { _id: ObjectId('69c41938d84980e337ac77cf'), name: 'Test Facility' }
+
+  Instead of:   site: ObjectId(...)
+  Must write:   site: { _id: ObjectId(...), name: '...', description: '...', siteId: '...' }
+
+  (same pattern for zone, testDefinition, category, organism)
+
+The denormalization shape is defined in:
+  apps/web-ebacmap/src/modules/test-results/services/TestResultService.ts
+  method: denormalizeTestResult() (line 203-280)
+
+=== RECOMMENDED NEXT STEP ===
+
+Add a second insertMany to seed-test-results.js that writes to `testresultreads`
+with the denormalized shape. Example patch:
+
+  // After inserting into testresults, also create read model docs
+  const readDocs = results.map(r => ({
+    _id: r._id,
+    client: { _id: r.client },
+    user: { _id: r.user, firstName: 'Dev', lastName: 'User' },
+    location: { _id: r.location, name: 'Test Facility' },
+    site: sites.find(s => s._id.equals(r.site))
+      ? { _id: r.site, name: sites.find(s=>s._id.equals(r.site)).name,
+          description: sites.find(s=>s._id.equals(r.site)).description || '',
+          siteId: sites.find(s=>s._id.equals(r.site)).siteId || '' }
+      : undefined,
+    zone: zones.find(z => z._id.equals(r.zone))
+      ? { _id: r.zone, name: zones.find(z=>z._id.equals(r.zone)).name }
+      : undefined,
+    testDefinition: testDefs.find(t => t._id.equals(r.testDefinition))
+      ? { _id: r.testDefinition,
+          subTest: testDefs.find(t=>t._id.equals(r.testDefinition)).name }
+      : undefined,
+    category: { _id: r.category, name: categories.find(c=>c._id.equals(r.category))?.name },
+    sampleDate: r.sampleDate,
+    enteredDate: r.enteredDate,
+    resultType: r.resultType,
+    resultValue: r.resultValue,
+    qualitativeValue: r.qualitativeValue,
+    quantitativeValue: r.quantitativeValue,
+    rating: r.rating,
+    finalRating: r.finalRating,
+    ebacmapCode: r.ebacmapCode,
+    isDeleted: false,
+    nonconformanceStatus: r.nonconformanceStatus,
+    retest: r.retest,
+    createdAt: r.createdAt,
+    updatedAt: r.updatedAt
+  }));
+  await db.collection('testresultreads').deleteMany({ 'client._id': CLIENT_ID });
+  await db.collection('testresultreads').insertMany(readDocs);
+
+=== MONGOSH VERIFICATION SCRIPT ===
+
+Paste this into mongosh after fixing the seed:
+
+  use ebacmap-local-test
+  print("testresults:", db.testresults.countDocuments())
+  print("testresultreads:", db.testresultreads.countDocuments())
+  print("filtered write:", db.testresults.countDocuments({
+    client: ObjectId('69c41938d84980e337ac77cd'),
+    location: ObjectId('69c41938d84980e337ac77cf')
+  }))
+  print("filtered read:", db.testresultreads.countDocuments({
+    'client._id': ObjectId('69c41938d84980e337ac77cd'),
+    'location._id': ObjectId('69c41938d84980e337ac77cf')
+  }))
+
+=== FILES EXAMINED ===
+
+  Seed script:     D:\projects\QDD\ebacmap-master\scripts\seed-test-results.js
+  API endpoint:    D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\test-results\index.ts
+  Use case:        D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\test-results\use-cases\ListTests\UseCase.ts
+  Repo (search):   D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\test-results\repos\TestResultRepo.ts (line 1147-1306)
+  Read model:      D:\projects\QDD\ebacmap-master\libs\db\src\models\TestResultRead.ts
+  Denormalizer:    D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\test-results\services\TestResultService.ts (line 203+)
+  Dev bypass:      D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\auth\dev-bypass.ts
+  Model registry:  D:\projects\QDD\ebacmap-master\libs\db\src\models\index.ts

@@ -1,0 +1,31 @@
+{
+  "terminalId": "Sentinel",
+  "terminalKey": "sentinel",
+  "state": "exited",
+  "sidecarPid": 17168,
+  "childPid": 12776,
+  "startedAt": "2026-03-17T20:07:15.016137-03:00",
+  "updatedAt": "2026-03-18T20:11:08.439966-03:00",
+  "workdir": "C:\\Users\\acer",
+  "commandPath": "C:\\nvm4w\\nodejs\\claude.CMD",
+  "commandArgs": [
+    "--dangerously-skip-permissions"
+  ],
+  "transcriptPath": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\sentinel\\transcript.log",
+  "inboxPath": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\sentinel\\inbox.ndjson",
+  "inboxLinesProcessed": 9,
+  "lastInputAt": "2026-03-18T20:10:48.405926-03:00",
+  "lastInputSource": "Gaia",
+  "lastOutputAt": "2026-03-18T20:11:06.255797-03:00",
+  "lastOutputStream": "out",
+  "lastOutputText": "\u001b]0;\u001b\\\u001b[?25h\u001b[?2026h\u001b[?25h\u001b[?2026l\u001b[<u\u001b[?1004l\u001b[?1004h\u001b[?2004l\u001b[?25h\u001b]9;4;0;\u0007\u001b[?25h\u001b[?1004l\u001b[?1004h\u001b[?2004l",
+  "lastExitCode": 1,
+  "bootstrap": {
+    "childPid": 12776,
+    "sentAt": "2026-03-17T23:07:15.832Z",
+    "source": "Asolaria Dashboard",
+    "reason": "dashboard_rebrief_single",
+    "queuedMessageId": ""
+  },
+  "lastError": "inbox_parse_failed: Extra data: line 1 column 1231 (char 1230)"
+}

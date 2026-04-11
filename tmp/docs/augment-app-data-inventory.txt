@@ -1,0 +1,98 @@
+Augment Code (Auggie) — Application Data Inventory
+====================================================
+Scanned: 2026-03-25
+Status: READ ONLY — inventory, no modifications made
+
+1. AppData\Local — TIMEOUT (too many files to scan with glob)
+   No dedicated "Augment" folder found at top level of AppData\Local.
+   No Augment-specific entries in AppData\Local\Programs\ (only networkx/torchvision "augmentation" python libs).
+
+2. AppData\Roaming — NO AUGMENT DATA
+   No folder matching "augment" or "Augment" found.
+
+3. AppData\Local\Programs — NO AUGMENT INSTALLATION
+   Not installed as a standalone program via Programs folder.
+
+4. npm global — NOT CHECKED (Bash denied)
+   Could not run `npm list -g`. Augment is not an npm package anyway — it's a VS Code extension.
+
+5. Editor Extensions
+   - Cursor (.cursor\extensions\):      NO Augment extension found
+   - Antigravity (.antigravity\extensions\): NO Augment extension found
+     (Only: devsense.intelli-php, vscjava.vscode-java-pack, vscjava.vscode-maven, ms-python.debugpy)
+   - VS Code (.vscode\extensions\):     NO Augment extension found
+
+   CONCLUSION: Augment is NOT installed as an editor extension on this machine.
+   It likely ran as a standalone CLI or was used temporarily and uninstalled.
+
+6. SQLite / Database files in .augment — NONE
+   No .sqlite, .sqlite3, or .db files found in C:\Users\acer\.augment\.
+
+7. PRIMARY DATA LOCATION: C:\Users\acer\.augment\
+   ================================================
+   This is the main Augment data directory. Contents:
+
+   a) session.json — Active session credentials
+      - accessToken: 915a60a21a99c73f... (truncated)
+      - tenantURL: https://d11.api.augmentcode.com/
+      - scopes: ["email"]
+
+   b) .auggie.json — Usage metadata
+      - lastUsed: 2026-03-06T23:01:03.183Z (19 days ago)
+      - sessionCount: 7
+      - anonId: 96a729b8-2418-4c36-8e81-c43f00b1b061
+      - onboardingVersion: 1.0.0
+
+   c) prompt-history.jsonl — 1 line
+      - "Hello. Are you connected to my AI asolaria?"
+
+   d) sessions/ — 1 session file
+      - b83319f2-ce6c-4313-8f13-132bd7faf1f4.json
+        Title: "Asolaria Connection Check"
+        Created: 2026-03-06T23:06:38.511Z
+        Model: gpt-5-4 (OpenAI)
+        User: plasmatoid@gmail.com
+        1 exchange: Jesse asked if Auggie was connected to Asolaria.
+        Response: "Not automatically" — Auggie saw the workspace config but had no
+        active connection. Offered to verify relay/bridge status.
+        Provider: OpenAI (openai_id in metadata)
+        Token usage: 9634 cache creation, 455 output tokens
+        No sub-agent credits used.
+
+   e) task-storage/ — 7 task entries (all "NOT_STARTED")
+      manifest file + 7 UUID task files.
+      All tasks named "Current Task List" with no subtasks.
+      Task UUIDs:
+        f0c023c8-1c54-4732-8462-35ca85473b76
+        c48b3dd3-4586-447a-b726-ac6526e57efd
+        6b71d48b-788d-4854-8c93-21c252e52711
+        dbed7ff7-319b-4007-b6ce-12b9a5ef4d1d
+        0cfb7c4a-27fe-407c-a35d-49d07a7db53f
+        94ee4777-861c-42d6-86d4-bc9585e99000
+        db07fe67-c5df-4c01-afe8-a787a9961a70
+
+   f) binaries/ — Bundled ripgrep
+      - binaries\ripgrep\v14.1.1-win32-x64\rg.exe
+
+8. MCP Configuration — NO AUGMENT MCP
+   - C:\Users\acer\.claude\settings.local.json: No augment MCP config.
+     (Only permission entries referencing .augment paths for Read access)
+   - C:\Users\acer\Asolaria\.claude\settings.local.json: No augment MCP config.
+     (Same — only Read permission entries for .augment paths)
+
+9. WhatsApp Chat — NO MENTIONS
+   Searched runtime/*.ndjson for "augment" or "auggie" — no matches.
+
+SUMMARY
+=======
+- Augment Code is installed as a CLI tool at C:\Users\acer\.augment\
+- Last used: 2026-03-06 (19 days ago, 7 sessions total)
+- Account: plasmatoid@gmail.com on tenant d11.api.augmentcode.com
+- Model used: gpt-5-4 (OpenAI provider)
+- Only 1 conversation preserved locally (Asolaria connection check)
+- 7 empty task records, no subtasks
+- No editor extension installed (not in Cursor, VS Code, or Antigravity)
+- No SQLite databases — all data is JSON/JSONL
+- No MCP integration configured
+- Ships its own ripgrep binary (v14.1.1)
+- No WhatsApp mentions of augment/auggie found

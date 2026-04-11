@@ -1,0 +1,123 @@
+QDD EZ Protect — /ez-protect/devices Shows 0 Devices Despite 300 Events
+========================================================================
+Date: 2026-03-25
+Investigator: Gaia (Claude Opus 4.6)
+
+SYMPTOMS
+--------
+- Devices page shows 0 online, 0 offline, 0 error
+- Database has 300 events with 10 unique device serial numbers
+
+ROOT CAUSES (TWO BUGS)
+-----------------------
+
+BUG 1: Response shape mismatch (CRITICAL — causes all zeros)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Frontend expects:  { devices: EzProtectDevice[] }
+Backend returns:   DeviceInfo[]  (flat array, no wrapper)
+
+The use case (GetDeviceHealthUseCase) returns Result<DeviceInfo[]>.
+The Endpoint framework unwraps Result to the raw value, so the API
+responds with a JSON array: [ {deviceSerialNumber: "..."}, ... ]
+
+The frontend (devices.tsx line 34-36) defines:
+  interface EzProtectDevicesResponse {
+    devices: EzProtectDevice[];
+  }
+
+And reads data.devices (line 140, 173, 186). On an array, .devices
+is undefined. The summary cards guard on data?.devices (line 173),
+so they never render. filteredDevices defaults to [] (line 140).
+
+FIX: Either wrap the use case response or fix the frontend type.
+
+Option A — Fix the use case to wrap the response:
+  File: apps/web-ebacmap/src/modules/ez-protect/use-cases/GetDeviceHealth/UseCase.ts
+  Change return to:  return Result.ok({ devices });
+  Update type:       GetDeviceHealthResponse = { devices: DeviceInfo[] }
+
+Option B — Fix the frontend to read the flat array:
+  File: apps/web-ebacmap/src/pages/ez-protect/devices.tsx
+  Change interface to:  type EzProtectDevicesResponse = EzProtectDevice[]
+  Change all data.devices references to just data
+
+RECOMMENDATION: Option A (wrap in use case). Follows REST convention
+of returning { devices: [...] } and is less churn on the frontend.
+
+
+BUG 2: Field name mismatch (causes empty cells even after Bug 1 fix)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Frontend EzProtectDevice        Backend DeviceInfo (repo output)
+--------------------------      --------------------------------
+id                              (not returned — _id is the serial)
+serialNumber                    deviceSerialNumber
+model                           deviceModel
+lastSeenAt                      lastSeenAt           (OK)
+status                          status               (OK)
+calibrationStatus               lastCalibrationStatus
+pmStatus                        lastPmStatus
+totalEvents                     totalEvents          (OK)
+facility                        facilityId
+
+Six fields don't match. The table would render rows but every cell
+except lastSeenAt, status, and totalEvents would be empty/undefined.
+
+FIX: Align the field names. Either:
+  - Map fields in the use case before returning, OR
+  - Update the frontend interface to match backend names
+
+RECOMMENDED: Map in the use case so the API contract matches frontend:
+
+  return results.map((r) => ({
+    id: r._id,                           // <-- ADD
+    serialNumber: r._id,                 // <-- RENAME from deviceSerialNumber
+    model: r.deviceModel,               // <-- RENAME
+    lastSeenAt: r.lastSeenAt?.toISOString?.() ?? r.lastSeenAt,
+    status,
+    calibrationStatus: r.lastCalibrationStatus ?? 'N/A',  // <-- RENAME
+    pmStatus: r.lastPmStatus ?? 'N/A',                    // <-- RENAME
+    totalEvents: r.totalEvents,
+    facility: r.facilityId ?? 'Unknown', // <-- RENAME
+  }));
+
+
+DATA FLOW TRACE
+---------------
+1. Page loads, builds URL: /api/ez-protect/devices?locationId=<id>
+2. Endpoint.ts getRequestContent() for GET → spreads req.query into req.body
+3. Yup validates { locationId, clientId } — both optional, passes
+4. UseCase.executeImpl receives { locationId } from req.body
+5. Adds clientId from ctx.user.clientId
+6. Calls ezProtectRepo.getDevices({ locationId, clientId })
+7. Repo runs MongoDB aggregation pipeline:
+   - $match on locationId + clientId
+   - $sort by completedAt desc
+   - $group by deviceSerialNumber → gets first (latest) values
+   - Maps to DeviceInfo with status logic (online if seen <24h, error if cal/pm fail)
+8. Returns DeviceInfo[] (flat array)
+9. Frontend receives array, reads .devices → undefined → 0 counts
+
+The aggregation pipeline itself is CORRECT. It properly groups by
+deviceSerialNumber and computes status. The bug is purely in the
+response shape and field naming at the API boundary.
+
+
+FILES INVOLVED
+--------------
+- D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\src\pages\ez-protect\devices.tsx
+  (frontend page — reads data.devices, wrong field names)
+
+- D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\src\pages\api\ez-protect\devices.ts
+  (API route — wires Endpoint to GetDeviceHealthUseCase)
+
+- D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\src\modules\ez-protect\use-cases\GetDeviceHealth\UseCase.ts
+  (use case — returns flat DeviceInfo[], no wrapper)
+
+- D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\src\modules\ez-protect\repos\EzProtectRepo.ts
+  (repo — getDevices() aggregation pipeline, lines 528-587)
+
+- D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\src\modules\ez-protect\domain\EzProtectEvent.ts
+  (DeviceInfo interface, lines 120-132)
+
+- D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\src\common\core\Endpoint.ts
+  (framework — unwraps Result.value and returns as JSON, line 342-366)

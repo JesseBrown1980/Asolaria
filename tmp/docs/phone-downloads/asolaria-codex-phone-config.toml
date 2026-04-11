@@ -1,0 +1,5 @@
+model = "gpt-5.3-codex"
+model_reasoning_effort = "xhigh"
+sandbox_mode = "workspace-write"
+approval_policy = "never"
+suppress_unstable_features_warning = true

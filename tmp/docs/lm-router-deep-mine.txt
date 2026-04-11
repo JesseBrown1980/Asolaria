@@ -1,0 +1,352 @@
+LM Router Deep Mine — Asolaria Model Routing Architecture
+==========================================================
+Generated: 2026-03-25
+Source: Full code read of brainOrchestrator.js, workerRouter.js, externalBrainConnector.js,
+        intentRouter.js, brainPolicy.js, server.js routing, agent-index entries
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAYER 1: BRAIN ORCHESTRATOR (src/brainOrchestrator.js — 729 lines)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PURPOSE: The primary "which LLM answers this question" router.
+         Called by the /api/providers/brain/run endpoint.
+
+DEFAULT PROVIDER CHAIN (hard-coded fallback order):
+  1. anthropic    (Claude CLI)
+  2. codex        (OpenAI Codex CLI — local agent)
+  3. gemini-api   (Google Gemini API — REST)
+  4. vertex       (Google Vertex AI — GCP)
+  5. gemini-cli   (Google Gemini CLI)
+  6. openclaw     (OpenClaw local agent)
+  7. openai       (OpenAI API via externalBrainConnector)
+  8. cursor       (Cursor API via externalBrainConnector)
+  9. antigravity  (Antigravity API via externalBrainConnector)
+
+EFFECTIVE ORDER (runtime):
+  Built by buildEffectiveProviderOrder(settings):
+    1. settings.brainPrimaryProvider (default: "anthropic")
+    2. settings.brainFallbackOrder (parsed from comma/semicolon/pipe/newline list)
+    3. Remaining DEFAULT_PROVIDER_CHAIN entries appended
+    4. All deduped
+
+  Can be OVERRIDDEN per-request via executionProfile.providerOrder.
+  If executionProfile.disableFallback=true or only 1 provider, NO fallback.
+  If executionProfile.internalOnly=true, ONLY codex lane runs.
+
+FALLBACK DECISION (shouldFallbackToAlternateProvider):
+  HARD STOPS (never fallback, throw instead):
+    - "guardian blocked", "blocked by policy", "owner denied", "approval denied", "deny", "denied"
+  TRIGGERS (do fallback):
+    - 429, quota, credit, insufficient, rate limit, timed out, not configured,
+      forbidden, unauthorized, authentication, model, unavailable, or any non-empty error
+
+COST MODES:
+  - "quality":  timeout 300s, maxTokens 1200, temp 0.2, full memory context
+  - "balanced": timeout 90s,  maxTokens 850,  temp 0.2, last 10 lines of memory
+  - "low":      timeout 70s,  maxTokens 600,  temp 0.1, last 6 lines of memory (DEFAULT)
+
+SENSITIVE DATA BLOCKING:
+  External providers (cursor, antigravity) are BLOCKED if:
+    - Request contains images or files
+    - Message or memory context contains passwords, tokens, API keys, private keys, etc.
+  Internal providers (anthropic, codex, vertex, gemini, openclaw) are NOT blocked.
+
+TEMPLATE FALLBACK:
+  If ALL providers fail, returns a "low-cost fallback" text response listing
+  which providers were tried and suggesting local tools instead.
+
+PROVIDER ID NORMALIZATION:
+  "gemini" / "geminiapi" → "gemini-api"
+  "claude" / "anthropic-cli" → "anthropic"
+  "gpt" / "chatgpt" → "openai"
+  "vertex-ai" → "vertex"
+  etc.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAYER 2: WORKER ROUTER (src/connectors/workerRouter.js — ~1099 lines)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PURPOSE: Routes TASKS (not prompts) to the right worker lane.
+         Called by /api/workers/route and /api/workers/dispatch.
+
+4 WORKER LANES:
+  1. local_codex  — Highest-trust local coding/repo execution. Owner-plane safe.
+  2. claude_max   — Fast review lane (Claude Code CLI). Read-only analysis, no repo writes.
+  3. abacus       — External bounded worker (AbacusAI desktop/browser/cloud). Sanitized only.
+  4. symphony     — Long-running issue lane (Linear-backed). Persistent managed service.
+
+TASK TYPES: quick_chore, patch, review, research, orchestration, long_running, issue_execution
+SENSITIVITY: public, sanitized, internal, privileged, owner_plane
+SIZE: small, medium, large
+
+ROUTING DECISION TREE (recommendWorker):
+  1. If preferredWorker set and available → use it
+  2. If sensitivity=privileged/owner_plane:
+     - Check ASOLARIA_OWNER_PLANE_EXECUTOR env:
+       "codex"  → always local_codex
+       "claude" → always claude_max
+       "auto"   → probe Codex health, use if healthy, else Claude (cached 60s)
+  3. If taskType=review and claude_max available → claude_max
+  4. If needsLongRunning and symphony available → symphony
+  5. If research/quick_chore/needsCloudWorker/needsInteractiveCanvas and abacus available → abacus
+  6. Default → local_codex
+
+DISPATCH TARGETS:
+  - local_codex: Direct Codex CLI execution with prompt+instructions
+  - claude_max:  Direct Claude Code CLI execution
+  - abacus:      Packet handoff (chat_quick_chore, workflow_studio_job, deep_agent_cloud_job, etc.)
+  - symphony:    Linear issue creation for Symphony to pick up
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAYER 3: EXTERNAL BRAIN CONNECTOR (src/connectors/externalBrainConnector.js — 1907 lines)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PURPOSE: Manages 3 external LLM providers as OpenAI-compatible API endpoints.
+
+PROVIDERS: openai, cursor, antigravity
+
+CONFIG SOURCES (priority order):
+  1. Encrypted vault (integrations.external.<providerId>)
+  2. Environment variables (ASOLARIA_OPENAI_*, ASOLARIA_CURSOR_*, ASOLARIA_ANTIGRAVITY_*)
+     Note: env API keys are detected but ignored with warning — vault only.
+
+API STYLES:
+  - openai_chat_completions (/v1/chat/completions) — default
+  - openai_responses (/v1/responses) — newer OpenAI API
+
+MODEL FALLBACKS:
+  - gpt-5.3-codex → gpt-5.2-codex (unless ASOLARIA_ALLOW_GPT53_CODEX_API=true)
+  - gpt-5.3-codex-spark → gpt-5.2-codex
+
+ANTIGRAVITY special rule: requireOfficialApi=true (must use official OpenAI host)
+
+MCP TOOL INTEGRATION:
+  Each external provider can have MCP (Model Context Protocol) enabled:
+  - serverUrl, connectorId, authorization, allowedTools (max 64)
+  - approvalMode: always/never/auto
+  - Policy presets: read_only, balanced, write_guarded
+  - Token reduction profiles: off, balanced, aggressive
+  - Dynamic tool allowlist: selects relevant tools per-prompt using keyword matching
+  - Tool schema modes: full, compact, pointer
+  - Context TTL with caching
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAYER 4: INTENT ROUTER (src/intentRouter.js — ~1200+ lines)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PURPOSE: Pattern-matches user text commands to structured actions.
+         NOT an LLM router — this is a regex-based command dispatcher.
+
+ROUTES model-related intents:
+  - "external models status [provider]" → external_models_status
+  - "set default model <provider> <model>" → external_model_default_set
+  - "openclaw models status" → openclaw_models_status
+  - Provider-specific commands: run prompts with --provider flag
+
+Also routes: skill commands, chrome/URL, persona, work org, UI paths, screenshots, etc.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAYER 5: BRAIN POLICY (src/brainPolicy.js — 93 lines)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PURPOSE: Constructs a safety prefix prepended to ALL brain prompts.
+
+RULES INJECTED:
+  - ClawBot/adversarial network caution
+  - Read-only skill inspection by default
+  - No raw credential sharing with external providers
+  - Vault namespace enforcement (owner vs asolaria)
+  - CAPTCHA escalation to human
+  - Cost mode awareness
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAYER 6: SERVER.JS — Brain Leader Selection & Runtime Settings
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+KEY ENDPOINTS:
+  - POST /api/startup/brain-leader/run — Trigger brain leader probe/selection
+  - POST /api/automation/brain-leader/select — Auto-select brain provider
+  - GET  /api/providers/external/status — External provider health
+  - GET  /api/providers/model-aliases — Model alias map
+  - GET  /api/providers/model-settings/* — Per-provider model settings
+  - POST /api/providers/brain/run — Execute brain task (calls brainOrchestrator)
+  - POST /api/providers/openai/run — Direct OpenAI execution
+  - POST /api/providers/codex/run — Direct Codex execution
+  - POST /api/providers/external/run — Direct external provider execution
+
+BRAIN LEADER SELECTION (from server.js):
+  - settings.brainPrimaryProvider normalized at startup (default: "codex")
+  - settings.brainFallbackOrder computed, excluding primary
+  - runtime.selectedProvider tracks the live selected provider
+  - Brain leader probe: POST to /api/startup/brain-leader/run
+  - Auto-select: can change brainPrimaryProvider + rebuild fallback order
+  - Previous primary preserved in fallback chain when switching
+
+HEALTH ENDPOINT (/api/health/fast):
+  Reports brainLeader with selectedProvider, model, status.
+
+SETTINGS OBJECT (integration panel):
+  - Codex Head Model: settings.codexModel, codexModelReasoningEffort
+  - brainPrimaryProvider: which provider is "primary" (anthropic, codex, etc.)
+  - brainFallbackOrder: ordered fallback list
+  - anthropicModel, geminiCliModel: per-provider model overrides
+  - costMode: quality/balanced/low
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAYER 7: INDIVIDUAL PROVIDER CONNECTORS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  src/connectors/codexConnector.js (651 lines)
+    - Spawns OpenAI Codex CLI as child process
+    - Sandbox modes: read-only, workspace-write, danger-full-access
+    - Approval modes: untrusted, on-failure, on-request, never
+    - Model selection via settings.codexModel
+    - Web search toggle
+
+  src/connectors/anthropicCliConnector.js
+    - Spawns Claude CLI (anthropic CLI)
+    - Model via settings.anthropicModel or ASOLARIA_ANTHROPIC_MODEL env
+    - Timeout from budget
+
+  src/connectors/geminiApiConnector.js
+    - REST API to Gemini (generateContent)
+    - Model via config or default
+
+  src/connectors/vertexConnector.js
+    - Google Vertex AI (GCP)
+    - CRITICAL: Must NEVER be auto-selected as brain (feedback_vertex_billing)
+    - Paid research ONLY
+
+  src/connectors/geminiCliConnector.js
+    - Spawns Gemini CLI
+    - Model via settings.geminiCliModel or ASOLARIA_GEMINI_MODEL env
+
+  src/connectors/openclawConnector.js
+    - OpenClaw local agent
+    - Can be disabled via settings.openclawMode="disabled"
+
+  src/connectors/cursorAgentConnector.js (312 lines)
+    - Cursor IDE agent bridge
+
+  src/connectors/abacusConnector.js
+    - AbacusAI integration (desktop app + browser + cloud)
+    - NOT a brain provider — it's a WORKER lane
+    - Presets: chat_quick_chore, workflow_studio_job, deep_agent_cloud_job, repo_scan, etc.
+    - Packet-based handoff system
+
+  src/connectors/symphonyConnector.js
+    - Symphony (Linear-backed) long-running issue lane
+    - NOT a brain provider — it's a WORKER lane
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAYER 8: GNN PREDICTIVE ROUTING (gnnConstructionWatcher.js)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PURPOSE: Graph Neural Network-informed task routing within the simulation.
+NOT LLM model routing — this routes CONSTRUCTION tasks based on learned patterns.
+
+- Maintains _routingGraph: Map<sourceId, Map<targetId, {count, confidence, lastAt}>>
+- Records routing edges on "construction_energy_transfer" events
+- Predicts next construction: routing graph (if confidence > 0.6) else pattern memory
+- Pre-spawns agents based on predictions
+- Rule-based at runtime (frequency + keyword), not the trained GNN model
+- The trained GNN model (baseline_model.pt) is used by Sentinel for threat scoring
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ABACUS AI — Internal Model Routing
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AbacusAI desktop app installed at:
+  C:\Users\acer\AppData\Local\Programs\AbacusAI\
+
+The browser contrib directory contains only a "media" subfolder — no exposed
+model routing config files found in the Electron app's packaged resources.
+
+AbacusAI's model selection happens INTERNALLY within their cloud service.
+Asolaria treats it as an opaque worker lane, not a model router.
+The abacusConnector.js sends work packets; AbacusAI decides which model runs them.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WARP TERMINAL — Model Routing
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Warp SQLite database at: C:\Users\acer\AppData\Local\warp\Warp\data\warp.sqlite
+Query attempted: SELECT DISTINCT model_id, planning_model_id, coding_model_id FROM ai_queries
+Result: Could not query (sandbox permission denied for python/sqlite3).
+
+Warp uses separate model_id, planning_model_id, and coding_model_id columns,
+suggesting it routes different sub-tasks (planning vs coding) to different models.
+This is Warp's internal "auto-genius" feature — not controlled by Asolaria.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AGENT INDEX ENTRIES (IX- references)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IX-318: Execution Infrastructure Map
+  - brainOrchestrator.js = primary brain selection, model routing
+  - brainPolicy.js = cost mode, provider selection rules
+  - externalBrainConnector.js = 7-provider LLM fallback chain
+  - intentRouter.js = intent classification → correct handler
+  - workerRouter.js = 4-worker dispatch: codex, claude, abacus, symphony
+
+IX-333 / LX-228: "The Brain" — 7-provider fallback chain (XREF pair)
+IX-334 / LX-229: Worker Router — same 4-worker dispatch (XREF pair)
+IX-388: Browser task integrations (OpenAI Web + Gemini Enterprise + MCP cache)
+IX-389: routes/remaining.js — Providers & Models (7 routes for model routing, cooldown, etc.)
+IX-355: GNN runtime pipeline — events → export → training → predictions → routing → pre-spawn
+IX-201: HIJACK UNDONE — brainPrimaryProvider changed to anthropic (security incident record)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LIVE STATUS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Asolaria server status: NOT REACHABLE at time of query (server likely not running).
+Brain leader status: Unknown (could not query /api/health/fast).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SUMMARY: THE ROUTING ARCHITECTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+There are TWO SEPARATE routing systems:
+
+1. BRAIN ROUTER (brainOrchestrator.js)
+   "Which LLM answers this prompt?"
+   9 providers in a configurable fallback chain.
+   Primary provider configurable at runtime. Fallback on error.
+   External providers (openai/cursor/antigravity) blocked for sensitive data.
+   Cost modes control timeout, token budget, and memory context size.
+
+2. WORKER ROUTER (workerRouter.js)
+   "Which agent executes this task?"
+   4 worker lanes with different trust/capability profiles.
+   Routes based on task type, sensitivity, size, and worker availability.
+   Owner-plane work stays on highest-trust lane (codex or claude).
+
+These are INDEPENDENT — a task can be routed to claude_max worker lane
+while the brain orchestrator uses anthropic as primary brain provider.
+
+NO ensemble/multi-model/cowork/parallel model patterns found in the codebase.
+Each request goes to ONE provider at a time with sequential fallback.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+KEY FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+C:\Users\acer\Asolaria\src\brainOrchestrator.js      — 729 lines, 9-provider fallback chain
+C:\Users\acer\Asolaria\src\brainPolicy.js             — 93 lines, safety prefix builder
+C:\Users\acer\Asolaria\src\connectors\workerRouter.js — ~1099 lines, 4-worker task dispatch
+C:\Users\acer\Asolaria\src\connectors\externalBrainConnector.js — 1907 lines, OpenAI/Cursor/Antigravity
+C:\Users\acer\Asolaria\src\intentRouter.js            — ~1200+ lines, command pattern matcher
+C:\Users\acer\Asolaria\src\connectors\codexConnector.js — 651 lines, Codex CLI spawner
+C:\Users\acer\Asolaria\src\connectors\anthropicCliConnector.js — Claude CLI spawner
+C:\Users\acer\Asolaria\src\connectors\geminiApiConnector.js — Gemini REST API
+C:\Users\acer\Asolaria\src\connectors\vertexConnector.js — Vertex AI (GCP, PAID)
+C:\Users\acer\Asolaria\src\connectors\geminiCliConnector.js — Gemini CLI
+C:\Users\acer\Asolaria\src\connectors\openclawConnector.js — OpenClaw local
+C:\Users\acer\Asolaria\src\connectors\abacusConnector.js — AbacusAI worker lane
+C:\Users\acer\Asolaria\src\connectors\cursorAgentConnector.js — Cursor IDE bridge
+C:\Users\acer\Asolaria\src\connectors\symphonyConnector.js — Symphony/Linear lane
+C:\Users\acer\Asolaria\server.js — Brain leader selection, settings, health endpoint
+C:\Users\acer\Asolaria\data\agent-index\tools\IX-318.md — Infrastructure map
+C:\Users\acer\Asolaria\data\agent-index\tools\IX-388.md — Browser task + MCP cache
+C:\Users\acer\Asolaria\data\agent-index\references\IX-389.md — 67 core routes including providers

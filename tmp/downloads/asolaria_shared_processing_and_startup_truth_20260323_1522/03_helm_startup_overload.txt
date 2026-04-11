@@ -1,0 +1,63 @@
+PACKET 3: WHAT OVERLOADS HELM AT STARTUP
+Generated: 2026-03-23
+Source: NotebookLM deep extraction from 102 sources
+===============================================================
+
+STARTUP MEMORY (what Helm reads to initialize)
+- AGENTS.md, CONSTITUTION.md, CATALOG.md
+- admin-terminal profiles for Gaia, Liris, Helm
+- reports/admin-terminal-identities-latest.md
+- codex-state-freeze-latest.md, helm-controller-packet-latest.md
+- QDD restart packet cluster (qdd-super-swarm-contract-latest.md)
+- Startup seed path in server.js
+- NotebookLM Enterprise sync bundle
+
+DELEGATION TOOLS (Helm invokes but should NOT internalize)
+- Augment/Auggie: read-only retrieval sidecar
+- Symphony: long-running issue lane (start/stop only)
+- Falcon: phone worker (spawned by supervisor)
+- /api/health/fast: lightweight liveness probe
+- MCP pointer + compact allowlist
+- Colony workers (Vector, Rook, Falcon) via delegation
+
+WHAT IS MOST LIKELY TO OVERLOAD HELM AT STARTUP
+1. STALE QDD RESTART PACKETS AND SUPER-SWARM CANON
+   Restart packet cluster is stale (feature/ez-protect-admin-monorepo + fanout 3 / local_codex) vs live (chore/pnpm-10-upgrade + fanout 4 / claude_max). Heavy reconciliation load.
+
+2. DEGRADED /api/swarm/status (~11.61s LATENCY)
+   Repeated queries create massive delays.
+
+3. DIRTY AND DEGRADED REPOSITORY STATE
+   QDD repo dirty on fix/clear-retest with upstream [gone]. Colony degraded (1/6).
+
+4. SYMPHONY CONFIGURED-BUT-NOT-RUNNING + WORKER-ROUTER MISMATCH
+   Attempting to diagnose consumes resources resolving missing dependencies.
+
+5. FULL /api/health DIAGNOSTIC PAYLOAD (2.8-3.8s)
+   /api/health/fast exists as alternative.
+
+SOURCES SAYING HELM SHOULD STAY COMPRESSED / BELOW CONTEXT PRESSURE
+1. Augment Context Sidecar: "super-admin terminal should remain status-only"
+2. Symphony Integration/Workflow: "Direct repo writes stay on the local Codex lane unless controller explicitly routes"
+   "Use helper surfaces deliberately: Augment/Auggie only as a read-only codebase retrieval sidecar"
+3. Asolaria System Card: MCP "pointer + compact allowlist instead of full inline schemas" (~98-99% savings)
+4. Startup Gap Report / Active Tasks: /api/swarm/status degraded, QDD restart packets stale, Symphony not running
+5. Runtime Snapshot: Helm is "live sidecar-managed admin terminal" with controlled bootstrap brief
+
+WHAT HELM SHOULD NOT LOAD AT STARTUP
+- Full /api/health diagnostics (use /api/health/fast)
+- Stale QDD restart packets or super-swarm contracts
+- Full inline MCP tool schemas (use pointer + compact allowlist)
+- Symphony process management at boot
+- Repeated /api/swarm/status calls (11.61s each; watch item, not blocker)
+- Un-implemented security enforcement (gaps to track, not startup actions)
+- Manual Codex terminal session integration
+- Vector/Vertex conflation
+- Old-repo EZ Protect re-porting
+- Bridge ACK signals as progress proof
+- Queue-server SFTP slice (unless Brian asks)
+- Pre-port checkpoint text (no longer current)
+- Dirty monorepo worktree revert
+
+FINAL RULE:
+Helm must, at startup, refresh the QDD restart packet cluster and super-swarm canon, and treat /api/swarm/status latency as an active watch item before proceeding with other actions. Everything else is delegation, not memory.

@@ -1,0 +1,280 @@
+================================================================================
+ABACUS AI - COMPLETE HISTORY AND API STATUS REPORT
+Generated: 2026-03-25
+================================================================================
+
+## 1. ABACUS CLI INSTALLATION STATUS
+
+CLI Location: C:\Users\acer\AppData\Local\Programs\AbacusAI\bin\abacusai.cmd
+Desktop App: C:\Users\acer\AppData\Local\Programs\AbacusAI\ (VS Code fork)
+App Version: 1.106.21004 (from package.json) / v1.106.2807 (from CLI banner)
+Listener App: C:\Users\acer\AppData\Local\Programs\AbacusAI Listener\ (installed but NOT running)
+User Data: C:\Users\acer\AppData\Roaming\AbacusAI\
+
+NOTE: Bash tool was denied during this session, so live CLI commands could not
+be executed. All data below is from local file inspection.
+
+## 2. ABACUS CONFIG
+
+File: C:\Users\acer\.abacusai\config.json
+Contents: {"allow-editing": []}
+(Minimal config -- no API keys stored here)
+
+## 3. VAULT SECRET STATUS
+
+Secret Name: integrations.abacus
+Vault Endpoint: http://127.0.0.1:4781/api/vault/secret/integrations.abacus
+(Could not query -- Bash denied. The abacusConnector.js reads this secret via
+getSecret("integrations.abacus", { namespace: "owner" }) at runtime.)
+
+Config fields stored in vault (from connector code):
+  - enabled (bool)
+  - appUrl (default: https://apps.abacus.ai/chatllm/?appId=7560d5f36)
+  - appId (derived from URL: 7560d5f36)
+  - accountEmail (plasmatoid@gmail.com)
+  - authProvider (google)
+  - profileName (asolaria-slot-phone_mode)
+  - windowTarget (phone_mode)
+  - browserMode (managed_isolated)
+  - notes
+  - updatedAt
+
+## 4. CLI PROBE STATUS (last probe: 2026-03-07)
+
+File: C:\Users\acer\Asolaria\data\integrations\abacus\cli-probe-status.json
+
+### Mode: mcp_list -- OK
+  - Command: abacusai.cmd mcp list
+  - Exit Code: 0
+  - MCP servers configured in Abacus:
+    * codacy: npx -y @codacy/codacy-mcp@latest
+    * google_wiki: node C:\Users\acer\mcp-servers\google-wiki\server.js
+    * MCP_DOCKER: docker mcp gateway run
+
+### Mode: ready_json -- FAILED
+  - Command: abacusai.cmd -p --output-format json "Return exactly READY."
+  - Exit Code: 1 (timed out)
+  - Broken resource paths detected
+  - CLI print mode NOT reliable for headless use
+
+### Mode: version -- PARTIAL
+  - Command: abacusai.cmd --version
+  - Exit Code: 1 (timed out, interactive shell detected)
+  - Version banner visible: v1.106.2807
+  - Login prompt triggered (interactive shell mode)
+
+SUMMARY: CLI MCP listing works. Headless print mode does NOT work reliably.
+The desktop app is functional but the CLI cannot be used as an unattended worker.
+
+## 5. ABACUS DESKTOP APP LOG SESSIONS
+
+Three log sessions found in C:\Users\acer\AppData\Roaming\AbacusAI\logs\:
+  1. 2026-03-12T13:55:06 -- Single window, extensions: Git, GitHub Auth, Codex,
+     Claude Code (VSCode), GitLens, Remote Containers, PostgreSQL, LLDB
+  2. 2026-03-16T09:11:58 -- Two windows, extensions: MongoDB, ESLint, GitHub
+     Actions, Angular Schematics, Playground output + all from session 1
+  3. 2026-03-17T11:53:12 -- Single window (brief session)
+  4. 2026-03-17T16:28:38 -- Single window, full extension set
+
+## 6. ABACUS CONNECTOR (abacusConnector.js)
+
+File: C:\Users\acer\Asolaria\src\connectors\abacusConnector.js
+Size: ~16K tokens
+
+Key constants:
+  - DEFAULT_APP_URL: https://apps.abacus.ai/chatllm/?appId=7560d5f36
+  - ABACUS_SECRET_NAME: "integrations.abacus"
+  - ABACUS_RUNTIME_ROOT: data/integrations/abacus/
+  - ABACUS_PACKET_ROOT: data/integrations/abacus/packets/
+
+8 Packet Presets defined:
+  1. chat_quick_chore -- Fast chat-mode for small bounded chores
+  2. workflow_studio_job -- Multi-step Workflow Studio canvas work
+  3. deep_agent_cloud_job -- Cloud-heavy remote execution
+  4. repo_scan -- Read-only repo inspection
+  5. claude_code_patch -- Bounded coding via Claude Code surface
+  6. claude_code_review -- Read-only review/audit
+  7. listener_triage -- Meeting/transcript context triage
+  8. research_brief -- External/internal research with sources
+
+6 Operating Strategy Profiles:
+  1. quick_chore (low cost)
+  2. coding_patch (medium cost)
+  3. code_review (medium cost)
+  4. workflow_orchestration (medium cost)
+  5. meeting_listener (medium cost)
+  6. cloud_heavy_job (high cost -- "treat as scarce")
+
+Known Issues (from connector):
+  - CLI print mode is still not reliable -- NOT a safe headless worker
+  - Desktop app exposes many VS Code surfaces not all relevant to Asolaria
+  - Listener installed but not running -- opportunistic only
+  - Browser/deep-agent cloud work consumes subscription usage fast
+  - Outputs must be imported via Asolaria packets, not treated as ground truth
+
+## 7. ALL WORK PACKETS SENT TO ABACUS (chronological)
+
+### Packet 1: Abacus integration smoke packet
+  ID: 20260307235254-abacus-integration-smoke-packet
+  Date: 2026-03-07 23:52:54 UTC
+  Objective: Summarize Asolaria graph-runtime Abacus integration state
+  Worker Mode: desktop_packet
+  Account: plasmatoid@gmail.com
+  Response: COMPLETED -- "Synthetic validation response from Asolaria. Abacus
+    packet loop is working. Next steps: wire a real desktop response harvester,
+    link source task IDs by default, and add packet presets for Claude Code
+    workflow jobs."
+
+### Packet 2: Abacus preset smoke
+  ID: 20260308002117-abacus-preset-smoke
+  Date: 2026-03-08 00:21:17 UTC
+  Objective: Review current Abacus integration lane, list 2 safe improvements
+  Worker Mode: claude_code_review
+  Preset: claude_code_review
+  Surfaces: claude_code, code_mode
+  Response: PENDING (no response received)
+
+### Packet 3: Workflow Studio surface map
+  ID: 20260308002230-workflow-studio-surface-map
+  Date: 2026-03-08 00:22:30 UTC
+  Objective: Map authenticated Abacus Workflow Studio and Claude Code surfaces,
+    recommend best bounded uses for Asolaria packet handoffs
+  Worker Mode: workflow_studio
+  Preset: workflow_studio_job
+  Surfaces: workflow_studio, code_mode
+  Response: PENDING (no response received)
+
+### Packet 4: Abacus router smoke
+  ID: 20260308014943-abacus-router-smoke
+  Date: 2026-03-08 01:49:43 UTC
+  Objective: Create bounded external worker packet through unified router
+  Worker Mode: research_brief
+  Preset: research_brief
+  Surfaces: chat_mode, web_research
+  Router Task ID: task_1772934577441_bnncz9
+  Fallback Worker: local_codex
+  Response: PENDING (no response received)
+
+### Packet 5: Symphony router smoke
+  ID: 20260308015042-symphony-router-smoke
+  Date: 2026-03-08 01:50:42 UTC
+  Objective: Prepare Symphony tracked handoff through unified router
+  Worker Mode: chat_mode
+  Preset: chat_quick_chore
+  Surfaces: chat_mode, browser_surface
+  Response: PENDING (no response received)
+
+### Packet 6: Symphony direct smoke
+  ID: 20260308015101-symphony-direct-smoke
+  Date: 2026-03-08 01:51:01 UTC
+  Objective: Prepare Symphony tracked handoff through unified router
+  Worker Mode: chat_mode
+  Preset: chat_quick_chore
+  Surfaces: chat_mode, browser_surface
+  Response: PENDING (no response received)
+
+### Packet 7: Abacus direct smoke
+  ID: 20260308015101-abacus-direct-smoke
+  Date: 2026-03-08 01:51:01 UTC
+  Objective: Create bounded external worker packet through unified router
+  Worker Mode: research_brief
+  Preset: research_brief
+  Surfaces: chat_mode, web_research
+  Router Task ID: task_1772934653618_36d3wd
+  Fallback Worker: local_codex
+  Response: PENDING (no response received)
+
+### Packet 8: Security review of QDD eBacMap EZ Protect module
+  ID: 20260314035030-security-review-of-qdd-ebacmap-ez-protect-module-...
+  Date: 2026-03-14 03:50:30 UTC
+  Objective: Security review covering 6 checks:
+    (1) clientId isolation in all API endpoints and alert rule CRUD
+    (2) sort field and threshold field injection prevention via whitelists
+    (3) ingest endpoint authorization (Manage permission on EzProtect domain)
+    (4) cross-tenant data leakage in export/dashboard
+    (5) ObjectId validation on event detail page
+    (6) alert rule delete prevents removing defaults
+  Worker Mode: chat_mode
+  Preset: chat_quick_chore
+  Surfaces: chat_mode, browser_surface
+  Router Task ID: task_1773460230508_ntx6u0
+  Response: PENDING (no response received)
+
+### Packet 9: QDD pre-commit hook fix
+  ID: 20260317192700-qdd-pre-commit-hook-fix
+  Date: 2026-03-17 19:27:00 UTC
+  Objective: Run npx husky install in D:\projects\QDD\ebacmap-master to install
+    git hooks. Then start the MQTT broker bound to 0.0.0.0:18886 so Liris can
+    connect over LAN.
+  Worker Mode: chat_mode
+  Preset: chat_quick_chore
+  Allowed Paths: D:\projects\QDD\ebacmap-master
+  Surfaces: chat_mode, browser_surface
+  Router Task ID: task_1773775620868_aa9wmm
+  Response: PENDING (no response received)
+
+## 8. WORKER-ROUTER DISPATCHES (Abacus-routed)
+
+The worker-router (src/connectors/workerRouter.js) manages 4 lanes:
+  1. local_codex -- highest-trust local coding lane
+  2. claude_max -- fast review lane
+  3. abacus -- bounded external worker
+  4. symphony -- long-running issue/workspace lane
+
+Abacus-specific dispatches:
+  - 20260308014937 -- Abacus router smoke -> abacus (packet mode)
+  - 20260308015053 -- Abacus direct smoke -> abacus (packet mode)
+  - 20260314035030 -- QDD EZ Protect security review -> abacus (packet mode)
+  - 20260317192700 -- QDD pre-commit hook fix -> abacus (packet mode)
+
+Non-Abacus dispatches (for context, Abacus was listed as fallback):
+  - 20260308015005 -- local-codex-router-smoke -> local_codex
+  - 20260308015034 -- symphony-router-smoke -> symphony
+  - 20260308015053 -- codex-direct-smoke -> local_codex
+  - 20260308015053 -- symphony-direct-smoke -> symphony
+  - 20260308015224 -- symphony-fix-dispatch -> symphony (Linear issue ASO-7)
+  - 20260308035142 -- runtime cleanup -> symphony (Linear issue ASO-7)
+  - 20260313014852 -- claude-max-lane-smoke -> claude_max
+  - 20260313015427 -- claude-max-lane-smoke -> claude_max (COMPLETED)
+  - 20260313030357 -- civilization preview deep review -> claude_max (COMPLETED)
+  - 20260315000853..20260315103625 -- Phase 0/1/2 architecture dispatches (7 tasks)
+
+## 9. APP URL AND ACCOUNT
+
+App URL: https://apps.abacus.ai/chatllm/?appId=7560d5f36
+Account: plasmatoid@gmail.com
+Auth Provider: Google
+Browser Profile: asolaria-slot-phone_mode (managed_isolated)
+
+## 10. SUMMARY AND STATUS
+
+WHAT JESSE SENT TO ABACUS:
+  - 9 work packets total (2026-03-07 through 2026-03-17)
+  - 1 completed (the initial smoke test -- synthetic validation)
+  - 8 still showing "Pending response from Abacus"
+  - Topics covered: integration smoke tests, Workflow Studio mapping,
+    router smoke tests, QDD security review, QDD pre-commit hook fix
+
+WHAT WORKS:
+  - Abacus desktop app installed and functional (v1.106)
+  - CLI MCP listing works (codacy, google_wiki, MCP_DOCKER configured)
+  - Packet creation/routing pipeline works end-to-end
+  - Worker-router correctly recommends Abacus for bounded external tasks
+  - 8 packet presets defined and functional
+  - Connector code is mature (~16K tokens, full operating strategy)
+
+WHAT DOES NOT WORK:
+  - CLI headless/print mode: BROKEN (times out, interactive shell traps)
+  - Listener: installed but NOT running
+  - Response harvesting: NOT wired -- packets created but responses not
+    collected back from the Abacus desktop/cloud surfaces
+  - 8 of 9 packets remain permanently "pending" -- no return path exists
+
+BLOCKERS TO FULL ABACUS API INTEGRATION:
+  1. No response harvester -- packets go out but results don't come back
+  2. CLI print mode broken -- can't use Abacus as headless worker
+  3. Listener not running -- can't use live context/meeting features
+  4. No Abacus REST API key configured -- only browser-auth via Google SSO
+================================================================================
+END OF REPORT
+================================================================================

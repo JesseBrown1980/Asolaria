@@ -1,0 +1,16 @@
+﻿{
+    "defaultRequireSenderToken":  false,
+    "senderTokens":  {
+                         "vector":  "CHANGE_ME_VECTOR_SENDER_TOKEN",
+                         "rayss-codex":  "CHANGE_ME_FRIEND_SENDER_TOKEN"
+                     },
+    "rooms":  {
+                  "asolaria-friend-rayss":  {
+                                                "allowPostFrom":  [
+                                                                      "vector",
+                                                                      "rayss-codex"
+                                                                  ],
+                                                "requireSenderToken":  true
+                                            }
+              }
+}

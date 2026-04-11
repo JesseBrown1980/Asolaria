@@ -1,0 +1,226 @@
+QDD ebacmap-master/libs/ Deep Scan Report
+=========================================
+Date: 2026-03-25
+Scanned: libs/common, libs/utils, libs/types, libs/domains, libs/db
+
+==========================================================================
+SECTION 1: ARCHITECTURE OVERVIEW
+==========================================================================
+
+libs/common — DDD building blocks
+  core/Result.ts       — Success/Failure monad, static ok/fail/combine
+  core/UseCase.ts      — Abstract base with retry (MAX_RETRIES=15) on VersionError
+  core/Entity.ts       — Base entity with _id, _version, _isNew, _isDeleted
+  core/AggregateRoot.ts— Entity + domain events (addEvent, dispatchEvents)
+  core/ValueObject.ts  — Immutable value objects with shallow equality
+  core/DomainEventBus.ts — Singleton pub/sub for domain events
+  core/Controller.ts   — Express handler wrapper with typed responses (ok/created/notFound/etc)
+  core/Route.ts        — createRoute() with Zod validation + auth middleware
+  core/validate.ts     — Simple property validation returning Result<void>
+  core/Mailer.ts       — Postmark email: template-based + plain (EZ Protect)
+  core/ApiRequest.ts   — UserRole enum + iron-session types
+  core/Identifier.ts   — Generic ID wrapper
+  core/MongoIdentifier.ts — ObjectId wrapper with build() validation
+  MongooseEntityRepo.ts— CRUD base for Mongoose (create/update/delete/findById/commit)
+  errors/BaseError.ts  — Error with errorCode + details
+  middleware/auth.ts   — JWT verification middleware
+
+libs/utils — Shared utility functions
+  lib/pdf.ts           — Playwright-based PDF generation with retry
+  lib/queue.ts         — Job queuing to MongoDB
+  lib/import.ts        — CSV/spreadsheet import field mapping config
+  lib/TestResults.ts   — Test result grouping/aggregation (by site, zone, organism, plan)
+  lib/Filters.ts       — Report filter building utilities
+  lib/BrowserPool.ts   — Playwright browser management
+  lib/time.ts          — Date utilities
+  lib/string.ts        — String utilities
+
+libs/types — Shared TypeScript interfaces
+  Exports ~30 type modules: Views, Users, Permissions, Sites, TestResults,
+  Filters, Reports, etc. No EZ Protect-specific types found in libs/types.
+
+libs/domains — Domain entities (DDD aggregates & value objects)
+  20 domain areas: capas, categories, channels, clients, correctivenotes,
+  facility-maps, locations, notifications, organisms, plans, reports,
+  sites, store, subscriptions, surfacetypes, swab-schedule, test-results,
+  units, users
+
+libs/db — Mongoose models & schemas
+  53 models including 4 EZ Protect models (EzProtectEvent, EzProtectAlertRule,
+  EzProtectAlertHistory, EzProtectMsaConfig)
+
+==========================================================================
+SECTION 2: BUGS AND BROKEN PATTERNS
+==========================================================================
+
+BUG-1: DomainEventBus.waitForEvents() — WRONG TIMEOUT MATH [HIGH]
+  File: libs/common/src/core/DomainEventBus.ts, line 116
+  Code: const start = new Date().valueOf() * MIN_TO_MS;
+  Problem: Multiplies epoch-millis by 60000, producing an astronomically
+           large number. Then compares new Date().valueOf() (millis) minus
+           that number — which is always negative — against timeoutInMinutes
+           (a small integer like 10). The timeout will NEVER trigger.
+           This function will spin forever if events get stuck.
+  Fix: Should be:
+    const start = Date.now();
+    const timeoutMs = timeoutInMinutes * MIN_TO_MS;
+    ...
+    if (Date.now() - start > timeoutMs) throw ...
+
+BUG-2: DomainEventBus.dispatch() — `name` variable unresolved [MEDIUM]
+  File: libs/common/src/core/DomainEventBus.ts, line 64
+  Code: console.error(`Error in handler for ${name}:`, err);
+  Problem: `name` is not defined in this scope. It should be
+           `eventClass.name` or `event.name`. In strict mode this would
+           reference window.name or be undefined. The error log message
+           will say "Error in handler for :" with a blank name.
+
+BUG-3: validate() isNotEmpty check — string comparison instead of number [MEDIUM]
+  File: libs/common/src/core/validate.ts, line 97
+  Code: value?.length === 'undefined'
+  Problem: Comparing .length (a number) to the STRING 'undefined'.
+           This will never be true. The intent was:
+             typeof value?.length === 'undefined' || value?.length === 0
+           Or simply: value?.length === undefined || value?.length === 0
+
+BUG-4: logging.ts — Wrong date-fns format tokens [LOW]
+  File: libs/common/src/core/logging.ts, line 12
+  Code: dateFormat(new Date(), 'DD/MMM/YYYY:HH:mm:ss')
+  Problem: date-fns v2+ uses lowercase 'dd' for day-of-month and 'yyyy'
+           for year. 'DD' means day-of-year, 'YYYY' means ISO week year.
+           This produces wrong dates. Should be 'dd/MMM/yyyy:HH:mm:ss'.
+
+BUG-5: Controller.ts — mockedResponse branch is identical to normal [LOW]
+  File: libs/common/src/core/Controller.ts, lines 249-259
+  The if(mockedResponse) branch executes the exact same code as the else
+  branch. Either the mock behavior was never implemented, or the flag is
+  dead code.
+
+BUG-6: UseCase retry loop — silent infinite retry on VersionError [MEDIUM]
+  File: libs/common/src/core/UseCase.ts, line 56
+  MAX_RETRIES = 15 with no backoff. Under contention this burns 15
+  sequential DB round-trips with zero delay. No logging between attempts.
+  If VersionError is systemic, 15 fast retries amplify the problem.
+
+==========================================================================
+SECTION 3: EZ PROTECT SPECIFIC ISSUES
+==========================================================================
+
+EZP-1: No domain entities for EZ Protect [STRUCTURAL]
+  The 4 EZ Protect Mongoose schemas (EzProtectEvent, EzProtectAlertRule,
+  EzProtectAlertHistory, EzProtectMsaConfig) exist in libs/db but there
+  are NO corresponding domain entities in libs/domains/. Every other
+  major feature (capas, sites, plans, reports, test-results, etc.) has
+  a proper DDD domain layer. EZ Protect bypasses the domain entirely.
+  This means:
+  - No domain validation on EZ Protect data
+  - No domain events for EZ Protect actions
+  - No aggregate root protecting EZ Protect invariants
+  - Use cases likely hit Mongoose directly, skipping the domain bus
+
+EZP-2: EzProtectAlertRule.channel enum too narrow [MEDIUM]
+  File: libs/db/src/models/EzProtectAlert.ts, line 79
+  Enum: ['email', 'sms', 'dashboard', 'both']
+  Problem: 'both' is ambiguous — both of what? email+sms? email+dashboard?
+  The Mailer.ts has sendPlainEmail for EZ Protect alerts, but there is
+  no SMS implementation anywhere in the codebase. If someone sets
+  channel='sms' or channel='both', nothing will happen.
+
+EZP-3: EzProtectEvent dedup index includes null sampleId [MEDIUM]
+  File: libs/db/src/models/EzProtectEvent.ts, lines 161-164
+  Unique index: { deviceSerialNumber: 1, completedAt: 1, sampleId: 1 }
+  Comment says "not sparse — null sampleId is part of the unique constraint"
+  Problem: MongoDB treats null as a value in unique indexes. Two events
+  from the same device at the same time with no sampleId would conflict.
+  If the device sends a result without a sampleId (common for controls
+  and calibrations), only one can be stored per timestamp per device.
+  This will cause silent dedup failures for PM/calibration results.
+
+EZP-4: All EZ Protect schemas use strict: false [LOW-MEDIUM]
+  All four EzProtect schemas set { strict: false }. This allows any
+  arbitrary field to be saved to the database without validation.
+  Combined with EZP-1 (no domain layer), there is zero validation on
+  what gets persisted. A malformed API payload could pollute the
+  collection with junk fields.
+
+EZP-5: No EZ Protect types in libs/types [STRUCTURAL]
+  libs/types/src/index.ts exports ~30 type modules but none for
+  EZ Protect. The only EZ Protect references in types are:
+  - Permissions.ts: PermissionDomainValue.EzProtect = 'ezProtect'
+  - Views.ts: no EZ Protect views found
+  This means frontend code has no shared types for EZ Protect data.
+
+EZP-6: ezProtect optional in SubscriptionFeatures [LOW]
+  File: libs/domains/src/locations/SubscriptionFeatures.ts
+  The ezProtect field is optional in both interfaces and defaults
+  to { enabled: false }. But in the toJson() method it conditionally
+  spreads: ...(this.props.ezProtect && { ezProtect: ... })
+  This means if ezProtect is undefined, it's omitted from JSON entirely,
+  while other features like novalum/capa always appear. Inconsistent
+  serialization.
+
+==========================================================================
+SECTION 4: OTHER PATTERN ISSUES
+==========================================================================
+
+PAT-1: MongooseEntityRepo.update() — no VersionError thrown [MEDIUM]
+  File: libs/common/src/MongooseEntityRepo.ts, line 34-51
+  The update() method does updateOne with { _id, __v } filter and
+  $inc __v, then unconditionally does entity._version++. But if the
+  updateOne matched 0 documents (version conflict), no error is thrown.
+  The entity._version gets incremented even though nothing was written.
+  The UseCase retry loop depends on VersionError, but MongooseEntityRepo
+  never throws it. The retry mechanism is disconnected from persistence.
+
+PAT-2: Result class — value getter throws raw value on failure [LOW]
+  File: libs/common/src/core/Result.ts, line 30
+  Code: if (this.isFailure) { throw this._value; }
+  This throws the stored Error directly. If someone accesses .value on
+  a failure Result without checking isSuccess first, they get an
+  unhandled throw instead of a clear API error.
+
+PAT-3: auth middleware — non-awaited promise in verifyJWT [MEDIUM]
+  File: libs/common/src/middleware/auth.ts, lines 25-31
+  hydrateFunction(payload["id"]).then().catch() is a floating promise.
+  If verifyJWT is called as Express middleware, the function returns
+  before hydration completes. This is likely fine because next() is
+  called inside the .then(), but any error in hydration only sends a
+  500 — it does not call next(err), so error middleware is skipped.
+
+PAT-4: PDF generation — double browser close on error [LOW]
+  File: libs/utils/src/lib/pdf.ts, lines 197-206
+  On error in the try block, context.close() + closeBrowser() are called,
+  then the finally block also calls context.close(). The second close
+  will throw (silently caught by empty catch). Not harmful but messy.
+
+PAT-5: TestResults.ts — bare semicolon on line 33 [COSMETIC]
+  File: libs/utils/src/lib/TestResults.ts, line 33
+  Code: ;
+  Standalone semicolon, likely leftover from a removed import.
+
+PAT-6: Controller.ts — ok()/json() return 204 for falsy-but-valid bodies [LOW]
+  File: libs/common/src/core/Controller.ts, lines 122-128, 194-199
+  Both ok() and json() check `if (dto)` — meaning ok(0), ok(''),
+  ok(false), ok(null) all return 204 No Content instead of 200 with
+  the value. This could bite EZ Protect endpoints returning numeric
+  counts or boolean statuses.
+
+==========================================================================
+SECTION 5: SUMMARY
+==========================================================================
+
+Critical bugs: 1 (BUG-1: waitForEvents infinite spin)
+Medium bugs:   4 (BUG-2, BUG-3, BUG-6, PAT-1)
+EZ Protect structural gaps: 2 (EZP-1, EZP-5 — no domain layer, no types)
+EZ Protect functional risks: 2 (EZP-2 SMS unimplemented, EZP-3 dedup)
+
+The biggest systemic issue is EZP-1: EZ Protect has database schemas but
+no domain layer. Every other feature follows proper DDD with entities,
+value objects, and domain events. EZ Protect skips all of that, meaning
+its data bypasses validation, its actions produce no domain events, and
+its invariants are unprotected. This should be addressed before EZ Protect
+goes to production.
+
+The most dangerous runtime bug is BUG-1: DomainEventBus.waitForEvents()
+can never time out due to wrong arithmetic. If any event handler hangs,
+the wait loop spins forever.

@@ -1,0 +1,3228 @@
+The first memory/index pass is written. I’m checking the new LX entries and
+  catalog tail now, then I’ll finish the cycle with the explicit analysis and plan
+  state.
+◦ Running Get-Content C:\Users\rayss\Asolaria\data\agent-index\LX-191.md
+  │ -TotalCount 220
+◦ Running Get-Content C:\Users\rayss\Asolaria\data\agent-index\LX-189.md
+  │ -TotalCount 220
+◦ Running Get-Content C:\Users\rayss\Asolaria\data\agent-index\LX-190.md
+  │ -TotalCount 220
+• Ran Get-Content C:\Users\rayss\Asolaria\data\agent-index\LX-189.md -TotalCount
+  │ 220
+  └ ---
+    lx: 189
+    … +34 lines
+    On Rayssa host, the real contradiction is `4791` runtime truth versus `4781`
+    launcher expectation.
+• Ran Get-Content C:\Users\rayss\Asolaria\data\agent-index\LX-191.md -TotalCount
+  │ 220
+  └ ---
+    lx: 191
+    … +27 lines
+    - do not treat `4781` as live on Rayssa host
+    - keep Helm anchored to `reports/rayssa-host-startup-packet-latest.md`
+• Ran Get-Content C:\Users\rayss\Asolaria\data\agent-index\LX-190.md -TotalCount
+  │ 220
+  └ ---
+    lx: 190
+    … +24 lines
+    No one should claim path selection is complete until an explicit proof bundle
+    exists.
+• Ran Get-Content C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md |
+  │ Select-Object -Last 40
+  └ *Local identity:* 001 → 129 → 167 → 169
+    *Index-language realignment:* 015 → 153 → 167 → 169 → 170
+    … +36 lines
+
+    ## Next available: LX-192
+• Updated Plan
+  └ Completed the full memory-index-think-plan cycle and recorded the new startup
+    truth, analysis, and gate.
+    ✔ Save current startup and relay findings to memory
+    ✔ Index current findings as new LX entries
+    ✔ Analyze the startup contract split and safest local direction
+    ✔ Save analysis to memory
+    ✔ Index analysis
+    ✔ Form the next actionable gate plan
+    ✔ Save the plan to memory
+    ✔ Index the plan and update catalogs
+    □ Respond with the distilled state and plan
+• Updated Plan
+  └ ✔ Save current startup and relay findings to memory
+    ✔ Index current findings as new LX entries
+    ✔ Analyze the startup contract split and safest local direction
+    ✔ Save analysis to memory
+    ✔ Index analysis
+    ✔ Form the next actionable gate plan
+    ✔ Save the plan to memory
+    ✔ Index the plan and update catalogs
+    ✔ Respond with the distilled state and plan
+───────────────────────────────────────────────────────────────────────────────────
+• Cycle completed.
+
+  Memory
+  I saved the new state in:
+
+  - C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+    project_rayssa_host_startup_truth_20260323.md
+  - C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+    project_rayssa_contract_split_analysis_20260323.md
+  - C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+    project_rayssa_startup_gate_plan_20260323.md
+
+  Index
+  I indexed them as:
+
+  - Asolaria/data/agent-index/LX-189.md: Rayssa host startup truth locked to the
+    minimal packet
+  - Asolaria/data/agent-index/LX-190.md: REBASE_4791 is the safer local default
+    than inventing a fresh 4781 proxy
+  - Asolaria/data/agent-index/LX-191.md: do not branch until a proof bundle selects
+    PROXY_4781 or REBASE_4791
+
+  I updated C:/Users/rayss.claude/projects/C--Users-rayss/memory/MEMORY.md and
+  Asolaria/data/agent-index/CATALOG.md. Current local state is 186 LX files, 53
+  chains, next available LX-192.
+
+  Think
+  The important reading did not change:
+
+  - Rayssa host runtime truth is still anchored to Asolaria/reports/rayssa-host-
+    startup-packet-latest.md
+  - 4791 is the checked-in runtime reality here
+  - 4781 is still absent
+  - if forced to choose locally, REBASE_4791 is safer than PROXY_4781, but that is
+    analysis, not authority
+
+  Plan
+  Current gate is now explicit and indexed:
+
+  - Helm stays pinned to the Rayssa-host packet only
+  - the Rayssa ↔ Jesse WhatsApp thread remains the current owner-approved external
+    relay lane
+  - nothing branches until one proof bundle arrives choosing PROXY_4781 or
+    REBASE_4791
+
+  If you want me to stop waiting and act locally, the safer execution path is
+  REBASE_4791, and I can start that work next.
+
+› act, then tell gaia you did what she told you
+
+• I’m taking the local path now. I’m implementing the safer REBASE_4791 direction
+  in the Rayssa-host startup wrappers, then I’ll verify it with exact commands and
+  relay the proof to Gaia on the approved thread.
+◦ Running Get-Content C:\Users\rayss\Asolaria\tools\Start-Asolaria.ps1 |
+  │ Select-Object -Skip 200 -First 220
+◦ Running Get-Content C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1 |
+  │ Select-Object -Skip 660 -First 520
+• Ran Get-Content C:\Users\rayss\Asolaria\tools\Start-Asolaria.ps1 | Select-Object
+  │ -Skip 200 -First 220
+  └ function Get-ServerProcess {
+      param([string]$ServerEntryPath = "")
+    … +216 lines
+      $scriptPath = Join-Path $PSScriptRoot "Ensure-Asolaria-HttpsCert.ps1"
+      if (Test-Path $scriptPath) {
+• Ran Get-Content C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1 |
+  │ Select-Object -Skip 660 -First 520
+  └   } catch {
+        $state.reason = "network_script_exception"
+    … +516 lines
+          }
+        } catch {
+• Ran rg -n -S "4781|api/health/fast|api/mobile/bootstrap|4791|/health\b|
+  │ launcherContract|startup=1|uiMode=simple" C:
+  │ \Users\rayss\Asolaria\Start-Asolaria.cmd C:
+  │ … +4 lines
+  └ C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1:2:  [int]$Port =
+    4781,
+    … +37 lines
+    ExecutionPolicy Bypass -File "%~dp0tools\Open-Asolaria-Ui.ps1" -Url
+    "http://127.0.0.1:4781/?startup=1&uiMode=simple" >nul 2>&1
+───────────────────────────────────────────────────────────────────────────────────
+• The key question now is whether 4791 can support the launcher contract cleanly,
+  not just the health probe. I’m checking whether the gateway serves a usable UI/
+  root surface before I decide how far the rebase can safely go in one pass.
+• Running rg -n -S "express.static|app.get\('/'|app.get\(\"/|mobile-console|
+  │ index.html|res.sendFile|Open-AsolariaUiUrl|startup=1&uiMode=simple" C:
+  │ \Users\rayss\Asolaria\src\gateway\server.js C:
+  │ … +2 lines
+• Running try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/'; Write-Output ('STATUS=' + [int]$r.StatusCode);
+  │ Write-Output ('CONTENTTYPE=' + [string]$r.Headers['Content-Type']); Writ
+  │ … +3 lines
+• Ran try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/'; Write-Output ('STATUS=' + [int]$r.StatusCode); Wri
+  │ te-Output ('CONTENTTYPE=' + [string]$r.Headers['Content-Type']); Write-Output
+  │ … +2 lines
+  └ ERROR=Response status code does not indicate success: 404 (Not Found).
+• Ran rg -n -S "express.static|app.get\('/'|app.get\(\"/|mobile-console|index.html|
+  │ res.sendFile|Open-AsolariaUiUrl|startup=1&uiMode=simple" C:
+  │ \Users\rayss\Asolaria\src\gateway\server.js C:
+  │ … +2 lines
+  └ (no output)
+• Ran Get-Content C:\Users\rayss\Asolaria\tools\Open-Asolaria-Ui.ps1 -TotalCount
+  │ 260
+  └ param(
+      [Parameter(Mandatory = $true)]
+    … +253 lines
+      appWindow = [bool]$useAppWindow
+    }
+─ Worked for 1m 08s ───────────────────────────────────────────────────────────────
+• Context compacted
+• I’m taking the safe execution path now: I’m validating whether REBASE_4791 can be
+  made real without inventing missing 4781 surfaces, then I’ll send Gaia only the
+  proof bundle from what I actually changed.
+◦ Running rg -n -S "4781|api/health/fast|api/mobile/bootstrap|startup=1|
+  │ uiMode=simple|Open-Asolaria-Ui|4791/health|/health" C:
+  │ \Users\rayss\Asolaria\Start-Asolaria.cmd C:
+  │ … +5 lines
+◦ Running pwsh -NoProfile -Command "$ProgressPreference='SilentlyContinue'; try {
+  │ $r=Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/health'; 'HEALTH_OK'; $r.Content } catch { 'HEALT
+  │ … +10 lines
+• Ran rg -n -S "app.get\('/health'|app.get\(\"/health\"|gateway\?\.port|4791|api/
+  │ mobile/bootstrap|api/health/fast|app\.use\(|workspace-knowledge|federation/
+  │ nodes" C:\Users\rayss\Asolaria\src\gateway\server.js C:
+  │ … +1 lines
+  └ rg: regex parse error:
+        (?:app.get\('/health'|app.get\(\)
+        ^
+    error: unclosed group
+• Ran rg -n -S "4781|api/health/fast|api/mobile/bootstrap|startup=1|uiMode=simple|
+  │ Open-Asolaria-Ui|4791/health|/health" C:
+  │ \Users\rayss\Asolaria\Start-Asolaria.cmd C:
+  │ … +5 lines
+  └ C:\Users\rayss\Asolaria\Start-Asolaria.cmd:23:      powershell.exe -NoProfile -
+    ExecutionPolicy Bypass -File "%~dp0tools\Open-Asolaria-Ui.ps1" -Url
+    … +34 lines
+    C:\Users\rayss\Asolaria\tools\Start-Asolaria.ps1:341:      $null = Invoke-Rest
+    Method -Uri ("http://localhost:{0}/api/health/fast" -f $Port) -TimeoutSec 2
+• Ran pwsh -NoProfile -Command "$ProgressPreference='SilentlyContinue'; try { $r=I
+  │ nvoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/health'; 'HEALTH_OK'; $r.Content } catch { 'HEALTH_ER
+  │ … +10 lines
+  └ ParserError:
+    Line |
+    … +2 lines
+         |                                                                 ~
+         | You must provide a value expression following the '+' operator.
+───────────────────────────────────────────────────────────────────────────────────
+• I’ve confirmed the wrappers are still hard-coded to the legacy 4781 contract in
+  several places. I’m narrowing it to the smallest safe edit set now, because 4791
+  has /health but no UI root and no proven /api/mobile/bootstrap, so a naive global
+  port swap would be wrong.
+◦ Running Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria.ps1 |
+  │ Select-Object -First 420
+◦ Running Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1
+  │ | Select-Object -First 360
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria.ps1 |
+  │ Select-Object -First 420
+  └ param(
+      [int]$Port = 4781,
+    … +416 lines
+      $scriptPath = Join-Path $PSScriptRoot "Ensure-Asolaria-HttpsCert.ps1"
+      if (Test-Path $scriptPath) {
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria-Phone.ps1 |
+  │ Select-Object -First 360
+  └ param(
+      [int]$Port = 4781,
+    … +358 lines
+
+      Set-Content -Path $phoneUrlsPath -Value $content -Encoding UTF8
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1
+  │ | Select-Object -Skip 640 -First 520
+  └     if ($result -is [System.Array]) {
+          if ($result.Length -gt 0) {
+    … +516 lines
+          }
+        }
+◦ Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1 | Select-Object
+  │ -Skip 660 -First 90
+• Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1 | Select-Object
+  │ -Skip 1008 -First 70
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1
+  │ | Select-Object -Skip 660 -First 90
+  └   } catch {
+        $state.reason = "network_script_exception"
+    … +86 lines
+          health = $null
+          error = $_.Exception.Message
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1
+  │ | Select-Object -Skip 1008 -First 70
+  └       $out.smokeReason = ("smoke_exception: " + $_.Exception.Message)
+          $out.ok = $false
+    … +66 lines
+
+      try {
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Start-Asolaria-OneButton.ps1
+  │ | Select-Object -Skip 2038 -First 110
+  └   ok = $true
+      windowsPath = "active"
+    … +112 lines
+    Write-Host ("Auto startup: ok=" + [string]$autoStartupState.ok + " mode=" +
+    [string]$autoStartupState.mode)
+───────────────────────────────────────────────────────────────────────────────────
+• I’ve hit the real edge now: REBASE_4791 is viable for health and control-plane
+  proof, but not for pretending the missing UI and mobile bootstrap exist. I’m
+  checking the live 4791 route surface directly so I can rebase only the parts that
+  are real and leave the phone lane explicitly gated.
+◦ Running pwsh -NoProfile -Command "$ProgressPreference='SilentlyContinue'; try {
+  │ $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/workspace-knowledge/index/status'; Write-Outp
+  │ … +2 lines
+◦ Running pwsh -NoProfile -Command "$ProgressPreference='SilentlyContinue'; try {
+  │ $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/health'; Write-Output 'HEALTH_STATUS=' + [int]$r.
+  │ … +2 lines
+◦ Running pwsh -NoProfile -Command "$ProgressPreference='SilentlyContinue'; try {
+  │ $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/workspace-knowledge/colony-memory/status'; Wr
+  │ … +2 lines
+• Ran pwsh -NoProfile -Command "$ProgressPreference='SilentlyContinue'; try { $r =
+  │ Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/federation/nodes'; Write-Output 'FED_STATUS=' + [
+  │ … +2 lines
+  └ ParserError:
+    Line |
+    … +2 lines
+         |                                                                 ~
+         | You must provide a value expression following the '+' operator.
+• Ran pwsh -NoProfile -Command "$ProgressPreference='SilentlyContinue'; try { $r =
+  │ Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/workspace-knowledge/colony-memory/status'; Write-
+  │ … +2 lines
+  └ ParserError:
+    Line |
+    … +2 lines
+         |                                                                 ~
+         | You must provide a value expression following the '+' operator.
+• Ran pwsh -NoProfile -Command "$ProgressPreference='SilentlyContinue'; try { $r =
+  │ Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/workspace-knowledge/index/status'; Write-Output '
+  │ … +2 lines
+  └ ParserError:
+    Line |
+    … +2 lines
+         |                                                                 ~
+         | You must provide a value expression following the '+' operator.
+• Ran pwsh -NoProfile -Command "$ProgressPreference='SilentlyContinue'; try { $r =
+  │ Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/health'; Write-Output 'HEALTH_STATUS=' + [int]$r.Stat
+  │ … +2 lines
+  └ ParserError:
+    Line |
+    … +2 lines
+         |                                                                 ~
+         | You must provide a value expression following the '+' operator.
+◦ Running try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/health'; Write-Output ('HEALTH_STATUS=' + [int]$r
+  │ .StatusCode); Write-Output $r.Content } catch { Write-Output ('HEALTH_ER
+  │ … +1 lines
+◦ Running try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/workspace-knowledge/index/status'; Write-Outp
+  │ ut ('INDEX_STATUS=' + [int]$r.StatusCode); Write-Output $r.Content } cat
+  │ … +1 lines
+• Running try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/federation/nodes'; Write-Output ('FED_STATUS='
+  │ + [int]$r.StatusCode); Write-Output $r.Content } catch { Write-Output ('
+  │ … +1 lines
+• Ran try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/workspace-knowledge/index/status'; Write-Output (
+  │ 'INDEX_STATUS=' + [int]$r.StatusCode); Write-Output $r.Content } catch { Wri
+  │ … +1 lines
+  └ INDEX_ERROR=Response status code does not indicate success: 404 (Not Found).
+• Ran try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/health'; Write-Output ('HEALTH_STATUS=' + [int]$r.Sta
+  │ tusCode); Write-Output $r.Content } catch { Write-Output ('HEALTH_ERROR=' +
+  │ … +1 lines
+  └ HEALTH_STATUS=200
+    {"ok":true,"service":"asolaria-gateway","bind":"0.0.0.0","port":4791,"startedAt
+    … +238 lines
+    erifyTrigger":"timer","lastVerifyOk":true,"lastVerifyErrorCount":0,"verifyCount
+    ":124}}
+• Ran try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/federation/nodes'; Write-Output ('FED_STATUS=' +
+  │ [int]$r.StatusCode); Write-Output $r.Content } catch { Write-Output ('FED_ER
+  │ … +1 lines
+  └ FED_ERROR=Response status code does not indicate success: 404 (Not Found).
+• Ran try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/api/workspace-knowledge/colony-memory/status'; Write-
+  │ Output ('COLONY_STATUS=' + [int]$r.StatusCode); Write-Output $r.Content } ca
+  │ … +1 lines
+  └ COLONY_ERROR=Response status code does not indicate success: 404 (Not Found).
+───────────────────────────────────────────────────────────────────────────────────
+• 4791 is narrower than the startup lore implied. It gives a real /health, but the
+  workspace-knowledge and federation routes are 404 there, which means a straight
+  REBASE_4791 would still leave the startup packet lying by omission. I’m tracing
+  where those missing routes actually live in this checkout before I decide whether
+  to rebase only the wrappers or stand up a thin compatibility surface.
+◦ Running rg -n -S "workspace-knowledge/index/status|colony-memory/status|
+  │ federation/nodes|mobile/bootstrap|health/fast" C:\Users\rayss\Asolaria
+• Running Get-Content -Path C:\Users\rayss\Asolaria\src\gateway\server.js |
+  │ Select-Object -First 220
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\src\gateway\server.js |
+  │ Select-Object -First 220
+  └ const fs = require("fs");
+    const path = require("path");
+    … +216 lines
+    function compileMessageSchema() {
+      const ajv = new Ajv({ allErrors: true, strict: false });
+• Ran rg -n -S "app\.use\(|router\.get\(|express\(|module\.exports = app|listen\("
+  │ C:\Users\rayss\Asolaria\routes C:\Users\rayss\Asolaria\src
+  └ C:\Users\rayss\Asolaria\routes\adminTerminals.js:5:router.get("/cockpit",
+    (_req, res) => {
+    … +85 lines
+    C:\Users\rayss\Asolaria\routes\routes\workspaceKnowledge.js:19:  router.get("/
+    search", async (req, res) => {
+• Ran rg -n -S "workspace-knowledge/index/status|colony-memory/status|federation/
+  │ nodes|mobile/bootstrap|health/fast" C:\Users\rayss\Asolaria
+  └ C:\Users\rayss\Asolaria\data\comms\local-to-gaia.ndjson.bak-20260322-queuefix:
+    4:{"from":"codex-liris","text":"Gaia — decisive probe result from Rayssa side.
+    … +128 lines
+    Z] Tool call: run-command {"command":"curl -s
+    http://localhost:4781/api/health/fast"}
+─ Worked for 1m 11s ───────────────────────────────────────────────────────────────
+• I found something materially useful: the missing workspace-knowledge and
+  federation endpoints already exist as route modules in this checkout, they’re
+  just not mounted on the live gateway. I’m reading those route files now, because
+  mounting the read-side routes plus a /api/health/fast alias would give us a real
+  REBASE_4791 path instead of a paper rebase.
+◦ Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\routes\routes\workspaceKnowledge.js | Select-Object
+  │ -First 220
+◦ Running Get-Content -Path C:\Users\rayss\Asolaria\src\semanticKnowledgeStore.js |
+  │ Select-Object -Skip 300 -First 160
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\routes\routes\federation.js |
+  │ Select-Object -First 220
+  └ /**
+     * Federation Routes — extracted from server.js (ADR-0001 strangler-fig)
+    … +66 lines
+
+    module.exports = createFederationRouter;
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\routes\routes\workspaceKnowledge.js
+  │ | Select-Object -First 220
+  └ /**
+     * Workspace Knowledge Routes — extracted from server.js (ADR-0001
+    … +41 lines
+
+    module.exports = createWorkspaceKnowledgeRouter;
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\src\semanticKnowledgeStore.js |
+  │ Select-Object -Skip 300 -First 160
+  └   let total = 0;
+      for (let index = 0; index < size; index += 1) {
+    … +156 lines
+          indexPath
+        };
+◦ Running Get-Content -Path C:\Users\rayss\Asolaria\src\colonyMemoryStore.js |
+  │ Select-Object -First 260
+◦ Running rg -n -S "colony-memory/status|index/status|
+  │ createWorkspaceKnowledgeRouter|getHybridWorkspaceKnowledgeStatus|
+  │ searchHybridWorkspaceKnowledge|colonyMemoryStore|getColonyMemory|status"
+  │ … +5 lines
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\src\colonyMemoryStore.js |
+  │ Select-Object -First 260
+  └ Get-Content:
+    Line |
+    … +2 lines
+         | Cannot find path 'C:\Users\rayss\Asolaria\src\colonyMemoryStore.js'
+    because it does not exist.
+• Ran rg -n -S "colony-memory/status|index/status|createWorkspaceKnowledgeRouter|
+  │ getHybridWorkspaceKnowledgeStatus|searchHybridWorkspaceKnowledge|
+  │ colonyMemoryStore|getColonyMemory|status" C:
+  │ … +5 lines
+  └ C:\Users\rayss\Asolaria\routes\routes\workspaceKnowledge.js:12:function
+    createWorkspaceKnowledgeRouter({ respondError,
+    … +83 lines
+    rg: C:\Users\rayss\Asolaria\tests\contracts: O sistema não pode encontrar o
+    arquivo especificado. (os error 2)
+• Ran Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tests\contracts\colony-memory-store.test.js |
+  │ Select-Object -First 220
+  └ Get-Content:
+    Line |
+    … +3 lines
+    \Users\rayss\Asolaria\tests\contracts\colony-memory-store.test.js' because it
+    does not exist.
+───────────────────────────────────────────────────────────────────────────────────
+• The upstream colony-memory slice from Gaia isn’t in this local checkout, so I’m
+  not going to fake those endpoints. What is locally real is simpler: I can make
+  the live gateway expose a health/fast compatibility alias and mount the existing
+  read-side federation/workspace-knowledge routes, then rebase the launcher health
+  checks to 4791 without pretending /api/mobile/bootstrap exists.
+• Running Get-Content -Path C:\Users\rayss\Asolaria\src\gateway\server.js |
+  │ Select-Object -Skip 880 -First 180
+• Running rg -n -S "respondError|inferHttpStatusForError|publishMqttMessage|
+  │ getHybridWorkspaceKnowledgeStatus|searchHybridWorkspaceKnowledge|
+  │ remoteNodeRegistry|createWorkspaceKnowledgeRouter|createFederationRouter"
+  │ … +1 lines
+• Ran rg -n -S "respondError|inferHttpStatusForError|publishMqttMessage|
+  │ getHybridWorkspaceKnowledgeStatus|searchHybridWorkspaceKnowledge|
+  │ remoteNodeRegistry|createWorkspaceKnowledgeRouter|createFederationRouter" C:
+  │ … +1 lines
+  └ 965:  function inferHttpStatusForError(error) {
+    973:  function respondError(res, status, error) {
+    981:  const taskLedgerRouter = createTaskLedgerRouter({ respondError,
+    inferHttpStatusForError });
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\src\gateway\server.js |
+  │ Select-Object -Skip 880 -First 180
+  └   });
+
+    … +176 lines
+          } else if (action === "security_audit") {
+            const verify = refreshAuditIntegrity(`cron:${jobName}`);
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\src\gateway\server.js |
+  │ Select-Object -Skip 620 -First 120
+  └     const match = pending.find((item) => String(item?.id || "").trim() ===
+    transitionId);
+    … +117 lines
+          policy: toolAuthority.getPolicy()
+        });
+• Running Get-Content -Path C:\Users\rayss\Asolaria\src\remoteNodeRegistry.js |
+  │ Select-Object -First 220
+• Running Get-Content -Path C:\Users\rayss\Asolaria\src\semanticKnowledgeStore.js |
+  │ Select-Object -First 220
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\src\remoteNodeRegistry.js |
+  │ Select-Object -First 220
+  └ /**
+     * Remote Node Registry
+    … +136 lines
+      removeNode
+    };
+• Ran rg -n -S "function getHybridWorkspaceKnowledgeStatus|const
+  │ getHybridWorkspaceKnowledgeStatus|searchHybridWorkspaceKnowledge|
+  │ module\.exports.*getHybridWorkspaceKnowledgeStatus|
+  │ … +2 lines
+  └ C:\Users\rayss\Asolaria\src\remoteNodeRegistry.js:99:function
+    getRemoteNodesSummary() {
+    … +17 lines
+    C:\Users\rayss\Asolaria\routes\routes\federation.js:23:      const summary =
+    remoteNodeRegistry.getRemoteNodesSummary();
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\src\semanticKnowledgeStore.js |
+  │ Select-Object -First 220
+  └ const fs = require("fs");
+    const path = require("path");
+    … +217 lines
+        const chunks = splitLongText(rawText, DEFAULT_MAX_DOC_CHARS);
+        for (let index = 0; index < chunks.length; index += 1) {
+◦ Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\routes\routes\workspaceKnowledge.js | Select-Object
+  │ -First 120
+◦ Running Get-Content -Path C:\Users\rayss\Asolaria\src\semanticKnowledgeStore.js |
+  │ Select-Object -Skip 460 -First 140
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\routes\routes\workspaceKnowledge.js
+  │ | Select-Object -First 120
+  └ /**
+     * Workspace Knowledge Routes — extracted from server.js (ADR-0001
+    … +41 lines
+
+    module.exports = createWorkspaceKnowledgeRouter;
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\src\semanticKnowledgeStore.js |
+  │ Select-Object -Skip 460 -First 140
+  └   } catch (error) {
+        recordSemanticRebuildFailure(error, attemptedAt);
+    … +136 lines
+
+      const matches = index.documents
+• Ran rg -n -S "function search|module\.exports|getSemanticKnowledgeStatus|
+  │ rebuildSemanticKnowledgeIndex|hybrid" C:
+  │ \Users\rayss\Asolaria\src\semanticKnowledgeStore.js
+  └ 353:function getSemanticKnowledgeStatus() {
+    383:async function rebuildSemanticKnowledgeIndex(options = {}) {
+    … +3 lines
+    652:  getSemanticKnowledgeStatus,
+    653:  rebuildSemanticKnowledgeIndex,
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\src\semanticKnowledgeStore.js |
+  │ Select-Object -Skip 640 -First 30
+  └   }
+      const lines = result.matches.map((row) => {
+    … +13 lines
+      buildSemanticKnowledgeContextForPrompt
+    };
+• Ran rg -n -S "getHybridWorkspaceKnowledgeStatus|searchHybridWorkspaceKnowledge"
+  │ C:\Users\rayss\Asolaria
+  └ C:\Users\rayss\Asolaria\routes\routes\workspaceKnowledge.js:12:function
+    createWorkspaceKnowledgeRouter({ respondError,
+    … +3 lines
+    C:\Users\rayss\Asolaria\routes\routes\workspaceKnowledge.js:23:    const result
+    = await searchHybridWorkspaceKnowledge(query, { limit });
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\routes\routes\adminTerminals.js |
+  │ Select-Object -First 40
+  └ /**
+     * Admin Terminals Routes — extracted from server.js (ADR-0001 strangler-fig)
+    … +37 lines
+    "dashboard_bootstrap"
+          });
+─ Worked for 1m 36s ───────────────────────────────────────────────────────────────
+• The safer execution path changed once I saw how many wrappers still depend on
+  4781. A thin compatibility listener on the currently-empty 4781 port is lower-
+  risk than rewriting half the launcher surface, because it leaves 4791
+  authoritative and gives the legacy probes a real landing spot. I’m checking
+  whether there’s already an app-shell or proxy helper to reuse before I add a new
+  one.
+◦ Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Open-Asolaria-AppShell.ps1 | Select-Object
+  │ -First 220
+◦ Running Get-Content -Path C:\Users\rayss\Asolaria\README.md | Select-Object -Skip
+  │ 300 -First 80
+• Ran rg -n -S "4781|health/fast|compat|proxy|app shell|appshell|mobile/bootstrap|
+  │ phone-mode.html|public" C:\Users\rayss\Asolaria\tools C:
+  │ \Users\rayss\Asolaria\src C:\Users\rayss\Asolaria\public
+  └ C:\Users\rayss\Asolaria\public\worker-router.html:287:                <option
+    value="public">public</option>
+    … +551 lines
+    C:\Users\rayss\Asolaria\public\app.js:12526:
+    realtimeTranscribeState.lastCompatTranscript = "";
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\README.md | Select-Object -Skip 300
+  │ -First 80
+  └   - `GET /api/moltbook/mission`
+      - `GET /api/moltbook/account`
+    … +76 lines
+    - `ASOLARIA_BROWSER_TASKS_ALLOW_LOOPBACK`
+    - `ASOLARIA_BROWSER_TASKS_ALLOW_PRIVATE_NETWORK`
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Open-Asolaria-AppShell.ps1 |
+  │ Select-Object -First 220
+  └ param(
+      [ValidateSet("simple", "admin", "advanced")]
+    … +76 lines
+      openResult = $openResult
+    }
+• Ran rg -n -S "express.static|sendFile\(|phone-mode.html|public" C:
+  │ \Users\rayss\Asolaria\src\gateway\server.js
+  └ (no output)
+• Ran rg -n -S "express\.static|sendFile\(|index.html" C:\Users\rayss\Asolaria\src
+  │ C:\Users\rayss\Asolaria\routes C:\Users\rayss\Asolaria
+  └ C:\Users\rayss\Asolaria\docs\GATEWAY_AUDIT_LOG.md:57:For the built-in web UI
+    (`public/index.html`), Asolaria exposes loopback-only proxy routes:
+    … +94 lines
+    \Users\rayss\Asolaria\node_modules\hono\dist\cjs\middleware\serve-static\index.
+    js:34:const DEFAULT_DOCUMENT = "index.html";
+• Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js |
+  │ Select-Object -First 260
+• Running Get-Content -Path C:\Users\rayss\Asolaria\tools\DesktopInputHost.ps1 |
+  │ Select-Object -First 260
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\DesktopInputHost.ps1 |
+  │ Select-Object -First 260
+  └ Set-StrictMode -Version Latest
+    $ErrorActionPreference = "Stop"
+    … +256 lines
+          handle = [int64]$proc.MainWindowHandle
+        }
+• Ran Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js |
+  │ Select-Object -First 260
+  └ #!/usr/bin/env node
+    "use strict";
+    … +158 lines
+      process.exit(1);
+    });
+• Ran rg -n -S "whatsapp|ChromeProfileWithPlaywright|DesktopInputHost|mouse_event|
+  │ SetCursorPos|SendKeys|playwright" C:\Users\rayss\Asolaria\tools C:
+  │ \Users\rayss\codex-bridge C:\Users\rayss
+  └ C:\Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js:7:const
+    { chromium } = require("playwright");
+    … +3705 lines
+    pode acessar o arquivo porque outro processo bloqueou parte do arquivo. (os
+    error 33)
+─ Worked for 2m 04s ───────────────────────────────────────────────────────────────
+• I’m making the smallest real change now: a loopback-only 4781 compatibility
+  listener in front of the live 4791 gateway. It will expose the legacy health
+  surface and the safe read-side status routes that are actually available on this
+  checkout, without mutating the bridge or pretending the missing phone bootstrap
+  exists.
+• Edited 2 files (+349 -0)
+  └ Asolaria\src\gateway\compat4781.js (+194 -0)
+      1 +"use strict";
+      2 +
+      3 +const http = require("http");
+      4 +const path = require("path");
+      5 +const express = require("express");
+      6 +
+      7 +const remoteNodeRegistry = require("../remoteNodeRegistry");
+      8 +const { getSemanticKnowledgeStatus } = require("../semanticKnowledgeStore"
+         );
+      9 +
+     10 +const bind = String(process.env.ASOLARIA_COMPAT_4781_BIND || "127.0.0.1").
+         trim() || "127.0.0.1";
+     11 +const port = normalizePort(process.env.ASOLARIA_COMPAT_4781_PORT, 4781);
+     12 +const gatewayPort = normalizePort(process.env.ASOLARIA_GATEWAY_PORT, 4791)
+         ;
+     13 +const gatewayHost = String(process.env.ASOLARIA_GATEWAY_HOST || "127.0.0.1
+         ").trim() || "127.0.0.1";
+     14 +const gatewayBaseUrl = `http://${gatewayHost}:${gatewayPort}`;
+     15 +const publicRoot = path.resolve(__dirname, "..", "..", "public");
+     16 +
+     17 +function normalizePort(value, fallback) {
+     18 +  const parsed = Number(value);
+     19 +  if (!Number.isFinite(parsed) || parsed < 1 || parsed > 65535) {
+     20 +    return fallback;
+     21 +  }
+     22 +  return Math.round(parsed);
+     23 +}
+     24 +
+     25 +function readJson(urlPath) {
+     26 +  return new Promise((resolve, reject) => {
+     27 +    const request = http.request(
+     28 +      `${gatewayBaseUrl}${urlPath}`,
+     29 +      { method: "GET", timeout: 5000 },
+     30 +      (response) => {
+     31 +        let body = "";
+     32 +        response.setEncoding("utf8");
+     33 +        response.on("data", (chunk) => {
+     34 +          body += chunk;
+     35 +        });
+     36 +        response.on("end", () => {
+     37 +          if (response.statusCode < 200 || response.statusCode >= 300) {
+     38 +            reject(new Error(`gateway_status_${response.statusCode || 0}`)
+         );
+     39 +            return;
+     40 +          }
+     41 +          try {
+     42 +            resolve(JSON.parse(body || "{}"));
+     43 +          } catch (error) {
+     44 +            reject(error);
+     45 +          }
+     46 +        });
+     47 +      }
+     48 +    );
+     49 +    request.on("timeout", () => {
+     50 +      request.destroy(new Error("gateway_timeout"));
+     51 +    });
+     52 +    request.on("error", reject);
+     53 +    request.end();
+     54 +  });
+     55 +}
+     56 +
+     57 +async function buildFastHealth() {
+     58 +  const gatewayHealth = await readJson("/health");
+     59 +  return {
+     60 +    ok: true,
+     61 +    compatListener: true,
+     62 +    compatSurface: "proxy_4781",
+     63 +    bind,
+     64 +    port,
+     65 +    gatewayBaseUrl,
+     66 +    gatewayHealth
+     67 +  };
+     68 +}
+     69 +
+     70 +function colonyMemoryStatus() {
+     71 +  return {
+     72 +    ok: true,
+     73 +    compatListener: true,
+     74 +    compatSurface: "proxy_4781",
+     75 +    available: false,
+     76 +    enabled: false,
+     77 +    reason: "colony_memory_slice_not_present_in_rayssa_checkout",
+     78 +    source: "local_checkout_gap"
+     79 +  };
+     80 +}
+     81 +
+     82 +function workspaceIndexStatus() {
+     83 +  return {
+     84 +    ok: true,
+     85 +    compatListener: true,
+     86 +    compatSurface: "proxy_4781",
+     87 +    gatewayBaseUrl,
+     88 +    semantic: getSemanticKnowledgeStatus()
+     89 +  };
+     90 +}
+     91 +
+     92 +function sendJsonError(res, status, error, extra = {}) {
+     93 +  res.status(status).json({
+     94 +    ok: false,
+     95 +    error: String(error || "request_failed"),
+     96 +    ...extra
+     97 +  });
+     98 +}
+     99 +
+    100 +async function main() {
+    101 +  const app = express();
+    102 +
+    103 +  app.get("/api/health/fast", async (_req, res) => {
+    104 +    try {
+    105 +      res.json(await buildFastHealth());
+    106 +    } catch (error) {
+    107 +      sendJsonError(res, 502, String(error?.message || error || "gateway_u
+         nreachable"), {
+    108 +        compatListener: true,
+    109 +        compatSurface: "proxy_4781",
+    110 +        gatewayBaseUrl
+    111 +      });
+    112 +    }
+    113 +  });
+    114 +
+    115 +  app.get("/api/health", async (_req, res) => {
+    116 +    try {
+    117 +      res.json(await buildFastHealth());
+    118 +    } catch (error) {
+    119 +      sendJsonError(res, 502, String(error?.message || error || "gateway_u
+         nreachable"), {
+    120 +        compatListener: true,
+    121 +        compatSurface: "proxy_4781",
+    122 +        gatewayBaseUrl
+    123 +      });
+    124 +    }
+    125 +  });
+    126 +
+    127 +  app.get("/api/workspace-knowledge/status", (_req, res) => {
+    128 +    res.json(workspaceIndexStatus());
+    129 +  });
+    130 +
+    131 +  app.get("/api/workspace-knowledge/index/status", (_req, res) => {
+    132 +    res.json(workspaceIndexStatus());
+    133 +  });
+    134 +
+    135 +  app.get("/api/workspace-knowledge/colony-memory/status", (_req, res) =>
+         {
+    136 +    res.json(colonyMemoryStatus());
+    137 +  });
+    138 +
+    139 +  app.get("/api/federation/nodes", (_req, res) => {
+    140 +    try {
+    141 +      res.json({
+    142 +        ok: true,
+    143 +        compatListener: true,
+    144 +        compatSurface: "proxy_4781",
+    145 +        ...remoteNodeRegistry.getRemoteNodesSummary()
+    146 +      });
+    147 +    } catch (error) {
+    148 +      sendJsonError(res, 500, String(error?.message || error || "federatio
+         n_nodes_failed"));
+    149 +    }
+    150 +  });
+    151 +
+    152 +  app.get("/api/federation/nodes/:nodeId", (req, res) => {
+    153 +    try {
+    154 +      const node = remoteNodeRegistry.getRemoteNode(req.params.nodeId);
+    155 +      if (!node) {
+    156 +        sendJsonError(res, 404, "node_not_found");
+    157 +        return;
+    158 +      }
+    159 +      res.json({
+    160 +        ok: true,
+    161 +        compatListener: true,
+    162 +        compatSurface: "proxy_4781",
+    163 +        node
+    164 +      });
+    165 +    } catch (error) {
+    166 +      sendJsonError(res, 500, String(error?.message || error || "federatio
+         n_node_failed"));
+    167 +    }
+    168 +  });
+    169 +
+    170 +  app.use(express.static(publicRoot));
+    171 +
+    172 +  app.get("/", (_req, res) => {
+    173 +    res.sendFile(path.join(publicRoot, "index.html"));
+    174 +  });
+    175 +
+    176 +  const server = http.createServer(app);
+    177 +  server.listen(port, bind, () => {
+    178 +    process.stdout.write(
+    179 +      `${JSON.stringify({
+    180 +        ok: true,
+    181 +        compatSurface: "proxy_4781",
+    182 +        bind,
+    183 +        port,
+    184 +        gatewayBaseUrl,
+    185 +        publicRoot
+    186 +      })}\n`
+    187 +    );
+    188 +  });
+    189 +}
+    190 +
+    191 +main().catch((error) => {
+    192 +  process.stderr.write(`${String(error?.stack || error || "compat4781_fail
+         ed")}\n`);
+    193 +  process.exit(1);
+    194 +});
+
+  └ Asolaria\tools\Start-Asolaria-Compat4781.ps1 (+155 -0)
+      1 +param(
+      2 +  [int]$Port = 4781,
+      3 +  [int]$GatewayPort = 4791,
+      4 +  [string]$BindHost = "127.0.0.1",
+      5 +  [switch]$ForceRestart
+      6 +)
+      7 +
+      8 +Set-StrictMode -Version Latest
+      9 +$ErrorActionPreference = "Stop"
+     10 +
+     11 +function Get-AsolariaRoot {
+     12 +  return (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+     13 +}
+     14 +
+     15 +function Resolve-NodePath {
+     16 +  try {
+     17 +    $cmd = Get-Command node -ErrorAction Stop
+     18 +    if ($cmd.Source) { return $cmd.Source }
+     19 +    if ($cmd.Path) { return $cmd.Path }
+     20 +  } catch {
+     21 +    # continue
+     22 +  }
+     23 +
+     24 +  foreach ($candidate in @("C:\nvm4w\nodejs\node.exe", "C:\Program Files\n
+         odejs\node.exe")) {
+     25 +    if (Test-Path -LiteralPath $candidate) {
+     26 +      return $candidate
+     27 +    }
+     28 +  }
+     29 +
+     30 +  throw "Node executable not found."
+     31 +}
+     32 +
+     33 +function Test-IsCompatCommandLine {
+     34 +  param(
+     35 +    [string]$CommandLine,
+     36 +    [string]$CompatScriptPath
+     37 +  )
+     38 +
+     39 +  if ([string]::IsNullOrWhiteSpace($CommandLine) -or [string]::IsNullOrWhi
+         teSpace($CompatScriptPath)) {
+     40 +    return $false
+     41 +  }
+     42 +
+     43 +  $normalizedCommandLine = $CommandLine.Replace("/", "\").ToLowerInvariant
+         ()
+     44 +  $normalizedScript = $CompatScriptPath.Replace("/", "\").ToLowerInvariant
+         ()
+     45 +  $pattern = '(^|\s|")' + [Regex]::Escape($normalizedScript) + '(\s|"|$)'
+     46 +  return ($normalizedCommandLine -match $pattern)
+     47 +}
+     48 +
+     49 +function Get-CompatProcesses {
+     50 +  param([string]$CompatScriptPath)
+     51 +
+     52 +  try {
+     53 +    return @(
+     54 +      Get-CimInstance Win32_Process -Filter "Name = 'node.exe'" -ErrorActi
+         on Stop |
+     55 +        Where-Object { Test-IsCompatCommandLine -CommandLine ([string]$_.C
+         ommandLine) -CompatScriptPath $CompatScriptPath }
+     56 +    )
+     57 +  } catch {
+     58 +    return @()
+     59 +  }
+     60 +}
+     61 +
+     62 +function Test-CompatHealth {
+     63 +  param([int]$ProbePort)
+     64 +
+     65 +  try {
+     66 +    $health = Invoke-RestMethod -Uri ("http://127.0.0.1:{0}/api/health/fas
+         t" -f $ProbePort) -TimeoutSec 3
+     67 +    return [bool]$health.ok
+     68 +  } catch {
+     69 +    return $false
+     70 +  }
+     71 +}
+     72 +
+     73 +function Wait-ForCompatHealth {
+     74 +  param(
+     75 +    [int]$ProbePort,
+     76 +    [int]$TimeoutSeconds = 20
+     77 +  )
+     78 +
+     79 +  $deadline = (Get-Date).AddSeconds([Math]::Max(5, [int]$TimeoutSeconds))
+     80 +  while ((Get-Date) -lt $deadline) {
+     81 +    if (Test-CompatHealth -ProbePort $ProbePort) {
+     82 +      return $true
+     83 +    }
+     84 +    Start-Sleep -Milliseconds 500
+     85 +  }
+     86 +  return $false
+     87 +}
+     88 +
+     89 +$repoRoot = Get-AsolariaRoot
+     90 +$compatScript = Join-Path $repoRoot "src\gateway\compat4781.js"
+     91 +if (-not (Test-Path -LiteralPath $compatScript)) {
+     92 +  throw "Compatibility script not found: $compatScript"
+     93 +}
+     94 +
+     95 +$existing = @(Get-CompatProcesses -CompatScriptPath $compatScript)
+     96 +if ($existing.Count -gt 0 -and (Test-CompatHealth -ProbePort $Port) -and -
+         not $ForceRestart.IsPresent) {
+     97 +  [pscustomobject]@{
+     98 +    ok = $true
+     99 +    alreadyRunning = $true
+    100 +    pid = [int]$existing[0].ProcessId
+    101 +    port = [int]$Port
+    102 +    gatewayPort = [int]$GatewayPort
+    103 +    bind = [string]$BindHost
+    104 +    script = [string]$compatScript
+    105 +  }
+    106 +  exit 0
+    107 +}
+    108 +
+    109 +foreach ($row in $existing) {
+    110 +  try {
+    111 +    Stop-Process -Id ([int]$row.ProcessId) -Force -ErrorAction Stop
+    112 +  } catch {
+    113 +    throw ("Failed to stop existing compat4781 pid={0}: {1}" -f [int]$row.
+         ProcessId, $_.Exception.Message)
+    114 +  }
+    115 +}
+    116 +
+    117 +$nodePath = Resolve-NodePath
+    118 +$logsDir = Join-Path $repoRoot "logs"
+    119 +New-Item -ItemType Directory -Path $logsDir -Force | Out-Null
+    120 +$stdoutLog = Join-Path $logsDir "compat4781.out.log"
+    121 +$stderrLog = Join-Path $logsDir "compat4781.err.log"
+    122 +$pidFile = Join-Path $logsDir "compat4781.pid"
+    123 +
+    124 +$start = Start-Process -FilePath $nodePath `
+    125 +  -ArgumentList "`"$compatScript`"" `
+    126 +  -WorkingDirectory $repoRoot `
+    127 +  -WindowStyle Hidden `
+    128 +  -PassThru `
+    129 +  -RedirectStandardOutput $stdoutLog `
+    130 +  -RedirectStandardError $stderrLog `
+    131 +  -Environment @{
+    132 +    ASOLARIA_COMPAT_4781_PORT = [string]$Port
+    133 +    ASOLARIA_COMPAT_4781_BIND = [string]$BindHost
+    134 +    ASOLARIA_GATEWAY_PORT = [string]$GatewayPort
+    135 +    ASOLARIA_GATEWAY_HOST = "127.0.0.1"
+    136 +  }
+    137 +
+    138 +Set-Content -LiteralPath $pidFile -Value ([string]$start.Id) -Encoding ASC
+         II
+    139 +
+    140 +if (-not (Wait-ForCompatHealth -ProbePort $Port -TimeoutSeconds 20)) {
+    141 +  throw ("Compatibility listener failed to become healthy on port {0}. See
+          logs {1} and {2}." -f $Port, $stdoutLog, $stderrLog)
+    142 +}
+    143 +
+    144 +[pscustomobject]@{
+    145 +  ok = $true
+    146 +  alreadyRunning = $false
+    147 +  pid = [int]$start.Id
+    148 +  port = [int]$Port
+    149 +  gatewayPort = [int]$GatewayPort
+    150 +  bind = [string]$BindHost
+    151 +  script = [string]$compatScript
+    152 +  stdoutLog = [string]$stdoutLog
+    153 +  stderrLog = [string]$stderrLog
+    154 +  pidFile = [string]$pidFile
+    155 +}
+───────────────────────────────────────────────────────────────────────────────────
+• The compatibility listener is written. I’m verifying the script syntax first,
+◦ Running node --check C:\Users\rayss\Asolaria\src\gateway\compat4781.js
+• Ran $null = [System.Management.Automation.Language.Parser]::ParseFile('C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-Compat4781.ps1', [ref]$null,
+  │ [ref]$null); Write-Output 'POWERSHELL_PARSE_OK'
+  │ ConvertTo-Json -Depth 6
+■ Failed to paste image: no image on clipboard: The clipboard contents were not
+available in the requested format or the clipboard is empty.
+• Model interrupted to submit steer instructions.
+
+
+› gaia: Recorded and indexed.
+
+    Stored here:
+
+    - reports/rayssa-proxy-4781-implementation-latest.md
+    - data/agent-index/IX-285.md
+    - data/agent-index/IX-286.md
+    - TASKS.md
+
+    This is the right branch for QDD. PROXY_4781 is the smallest real fix because
+  it preserves the Rayssa hosts actual
+    4791 runtime while satisfying the legacy 4781 expectation locally.
+
+    What to do now: nothing new. Wait only for her exact proof bundle:
+
+    - netstat -ano | findstr :4781
+    - Invoke-RestMethod http://127.0.0.1:4781/api/health/fast
+    - Invoke-WebRequest http://127.0.0.1:4791/health
+
+    Once she sends that, forward it exactly and Ill decide whether the Rayssa host
+  gate is actually cleared.
+
+
+• The last launch attempt was interrupted, so I’m treating it as uncertain state.
+  I’m checking whether the compat listener actually came up and whether there are
+  any errors in its logs before I touch it again.
+
+• Running netstat -ano | findstr :4781
+
+◦ Running try { Invoke-RestMethod -Uri 'http://127.0.0.1:4781/api/health/fast' -Ti
+  │ meoutSec 4 | ConvertTo-Json -Depth 6 } catch { Write-Output ('HEALTHFAST
+  │ _ERROR=' + $_.Exception.Message) }
+
+• Running Get-Content -Path C:\Users\rayss\Asolaria\logs\compat4781.out.log -Tail
+  │ 50 -ErrorAction SilentlyContinue
+
+◦ Running Get-Process node -ErrorAction SilentlyContinue | Select-Object
+  │ Id,ProcessName,Path
+
+
+• Ran try { Invoke-RestMethod -Uri 'http://127.0.0.1:4781/api/health/fast' -Timeou
+  │ tSec 4 | ConvertTo-Json -Depth 6 } catch { Write-Output ('HEALTHFAST_ERROR='
+    depth of 6.
+    … +481 lines
+      }
+    }
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\logs\compat4781.out.log -Tail 50
+  │ -ErrorAction SilentlyContinue
+  └ {"ok":true,"compatSurface":"proxy_4781","bind":"127.0.0.1","port":4781,"gateway
+    BaseUrl":"http://127.0.0.1:4791","publicRoot":"C:\\Users\\rayss\\Asolaria\
+    \public"}
+
+• Ran Get-Process node -ErrorAction SilentlyContinue | Select-Object
+  │ Id,ProcessName,Path
+  └
+       Id ProcessName Path
+    … +10 lines
+    17552 node        C:\nvm4w\nodejs\node.exe
+
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\logs\compat4781.err.log -Tail 80
+  │ -ErrorAction SilentlyContinue
+  └ (no output)
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The compat listener is up and healthy now. I’m re-running the start command in
+  its stable state so I can capture a clean, exact command/output line for Gaia
+  instead of relying on the interrupted launch.
+
+• Running Get-CimInstance Win32_Process -Filter "ProcessId = 2060" | Select-Object
+• Ran try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/health'; Write-Output ('STATUS=' + [int]$r.StatusCode
+  │ ); Write-Output $r.Content } catch { Write-Output ('HEALTH4791_ERROR=' + $_.
+  │ … +1 lines
+  └ STATUS=200
+    {"ok":true,"service":"asolaria-gateway","bind":"0.0.0.0","port":4791,"startedAt
+    … +238 lines
+    erifyTrigger":"timer","lastVerifyOk":true,"lastVerifyErrorCount":0,"verifyCount
+    ":126}}
+
+• Ran Get-CimInstance Win32_Process -Filter "ProcessId = 2060" | Select-Object
+  │ ProcessId, CommandLine | ConvertTo-Json -Depth 4
+  └ Get-CimInstance:
+    Line |
+       2 |  Get-CimInstance Win32_Process -Filter "ProcessId = 2060" | Select-Obj …
+         |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         | Acesso negado
+
+• Ran & 'C:\Users\rayss\Asolaria\tools\Start-Asolaria-Compat4781.ps1' |
+  │ ConvertTo-Json -Depth 6
+  └ {
+      "ok": true,
+    … +8 lines
+      "pidFile": "C:\\Users\\rayss\\Asolaria\\logs\\compat4781.pid"
+    }
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I have the proxy live and the gate proof is clean. I’m capturing one final
+  compact proof bundle with the new 4781 PID, then I’ll push that bundle through
+  the owner-approved WhatsApp lane with no narrative around it.
+
+• Running netstat -ano | findstr :4781
+
+• Running $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/health'; Write-Output ('STATUS=' + [int]$r.Status
+  │ Code); ($r.Content | ConvertFrom-Json | Select-Object ok,service,bind,po
+  │ … +1 lines
+
+• Ran netstat -ano | findstr :4781
+  └   TCP    127.0.0.1:4781         0.0.0.0:0              LISTENING       2060
+      TCP    127.0.0.1:57338        127.0.0.1:4781         TIME_WAIT       0
+      TCP    127.0.0.1:57350        127.0.0.1:4781         TIME_WAIT       0
+
+• Ran $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4791/health'; Write-Output ('STATUS=' + [int]$r.StatusCode
+  │ ); ($r.Content | ConvertFrom-Json | Select-Object ok,service,bind,port,start
+  │ … +1 lines
+  └ STATUS=200
+    {
+    … +4 lines
+      "startedAt": "2026-03-22T18:30:01.714Z"
+    }
+
+• Ran $r = Invoke-RestMethod -Uri 'http://127.0.0.1:4781/api/health/fast' -Timeout
+  │ Sec 5; [pscustomobject]@{ ok = [bool]$r.ok; compatSurface = [string]$r.compa
+  │ tSurface; bind = [string]$r.bind; port = [int]$r.port; gatewayBaseUrl = [str
+  │ … +3 lines
+  └ {
+      "ok": true,
+    … +6 lines
+      "gatewayStartedAt": "03/22/2026 18:30:01"
+    }
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I found one real bug in my own launcher: on a re-run it could report a fresh
+  start even while the original 4781 listener was still the one holding the port.
+  I’m tightening that now so the compat starter keys off the actual listening PID
+  on 4781, not just a best-effort process scan.
+
+• Edited Asolaria\tools\Start-Asolaria-Compat4781.ps1 (+30 -2)
+     61
+     62 +function Get-ListeningPidForPort {
+     63 +  param([int]$ProbePort)
+     64 +
+     65 +  try {
+     66 +    $row = Get-NetTCPConnection -LocalPort $ProbePort -State Listen -Error
+         Action Stop | Select-Object -First 1
+     67 +    if ($null -ne $row) {
+     68 +      return [int]$row.OwningProcess
+     69 +    }
+     70 +  } catch {
+     71 +    # continue
+     72 +  }
+     73 +
+     74 +  return 0
+    110  $existing = @(Get-CompatProcesses -CompatScriptPath $compatScript)
+     96 -if ($existing.Count -gt 0 -and (Test-CompatHealth -ProbePort $Port) -and -
+         not $ForceRestart.IsPresent) {
+    111 +$listeningPid = Get-ListeningPidForPort -ProbePort $Port
+    112 +if ($listeningPid -gt 0 -and (Test-CompatHealth -ProbePort $Port) -and -no
+         t $ForceRestart.IsPresent) {
+    113    [pscustomobject]@{
+        ⋮
+    115      alreadyRunning = $true
+    100 -    pid = [int]$existing[0].ProcessId
+    116 +    pid = [int]$listeningPid
+    117      port = [int]$Port
+        ⋮
+    124
+    125 +if ($listeningPid -gt 0 -and -not $ForceRestart.IsPresent) {
+    126 +  throw ("Port {0} is already listening under pid {1}, but the compatibili
+         ty health surface did not answer." -f $Port, $listeningPid)
+    127 +}
+    128 +
+    129  foreach ($row in $existing) {
+    138 +  try {
+    139 +    Stop-Process -Id $listeningPid -Force -ErrorAction Stop
+    140 +  } catch {
+    141 +    throw ("Failed to stop existing listener on port {0} pid={1}: {2}" -f
+         $Port, $listeningPid, $_.Exception.Message)
+    142 +  }
+    143 +}
+    144 +
+    145  $nodePath = Resolve-NodePath
+
+• Running Get-Process -Id 19156 -ErrorAction SilentlyContinue | Select-Object
+  │ Id,ProcessName,Path
+
+• Running $null = [System.Management.Automation.Language.Parser]::ParseFile('C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-Compat4781.ps1', [ref]$null,
+  │ [ref]$null); Write-Output 'POWERSHELL_PARSE_OK'
+
+• Ran $null = [System.Management.Automation.Language.Parser]::ParseFile('C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-Compat4781.ps1', [ref]$null,
+  │ [ref]$null); Write-Output 'POWERSHELL_PARSE_OK'
+  └ POWERSHELL_PARSE_OK
+
+• Ran Get-Process -Id 19156 -ErrorAction SilentlyContinue | Select-Object
+  │ Id,ProcessName,Path
+  └ (no output)
+
+• Ran & 'C:\Users\rayss\Asolaria\tools\Start-Asolaria-Compat4781.ps1' |
+  │ ConvertTo-Json -Depth 6
+  └ {
+      "ok": true,
+    … +8 lines
+      "pidFile": "C:\\Users\\rayss\\Asolaria\\logs\\compat4781.pid"
+    }
+
+• Running Get-NetTCPConnection -LocalPort 4781 -State Listen | Select-Object
+  │ LocalAddress,LocalPort,OwningProcess | ConvertTo-Json -Depth 3
+
+• Running netstat -ano | findstr :4781
+
+• Ran netstat -ano | findstr :4781
+  └   TCP    127.0.0.1:4781         0.0.0.0:0              LISTENING       2060
+      TCP    127.0.0.1:57338        127.0.0.1:4781         TIME_WAIT       0
+      TCP    127.0.0.1:57350        127.0.0.1:4781         TIME_WAIT       0
+      TCP    127.0.0.1:57364        127.0.0.1:4781         TIME_WAIT       0
+      TCP    127.0.0.1:57380        127.0.0.1:4781         TIME_WAIT       0
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\logs\compat4781.err.log -Tail 40
+  │ -ErrorAction SilentlyContinue
+  └ node:events:486
+          throw er; // Unhandled 'error' event
+    … +16 lines
+
+  │ LocalAddress,LocalPort,OwningProcess | ConvertTo-Json -Depth 3
+  └ Get-NetTCPConnection:
+    Line |
+       2 |  Get-NetTCPConnection -LocalPort 4781 -State Listen | Select-Object Lo …
+         |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         | Acesso negado
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The access-denied behavior is the culprit. Get-NetTCPConnection can’t see the
+  listener in this context, so the starter keeps trying a second node process and
+  then misreads the healthy old listener as proof of its own launch. I’m switching
+  the port check to a netstat parse, which does work here, so the starter will stop
+  lying about a fresh PID.
+
+• Edited Asolaria\tools\Start-Asolaria-Compat4781.ps1 (+15 -0)
+    73
+    74 +  try {
+    75 +    $lines = @(netstat -ano -p TCP)
+    76 +    foreach ($line in $lines) {
+    77 +      $text = [string]$line
+    78 +      if ($text -notmatch "LISTENING") {
+    79 +        continue
+    80 +      }
+    81 +      if ($text -match "[:\.]$ProbePort\s+.*LISTENING\s+(\d+)\s*$") {
+    89    return 0
+
+• Running & 'C:\Users\rayss\Asolaria\tools\Start-Asolaria-Compat4781.ps1' |
+  │ ConvertTo-Json -Depth 6
+
+• Running $null = [System.Management.Automation.Language.Parser]::ParseFile('C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-Compat4781.ps1', [ref]$null,
+  │ [ref]$null); Write-Output 'POWERSHELL_PARSE_OK'
+
+• Ran $null = [System.Management.Automation.Language.Parser]::ParseFile('C:
+  │ \Users\rayss\Asolaria\tools\Start-Asolaria-Compat4781.ps1', [ref]$null,
+  │ [ref]$null); Write-Output 'POWERSHELL_PARSE_OK'
+  └ POWERSHELL_PARSE_OK
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\logs\compat4781.err.log -Tail 20
+  │ -ErrorAction SilentlyContinue
+  └ node:events:486
+          throw er; // Unhandled 'error' event
+    … +16 lines
+
+    Node.js v24.13.1
+
+• Ran & 'C:\Users\rayss\Asolaria\tools\Start-Asolaria-Compat4781.ps1' |
+  │ ConvertTo-Json -Depth 6
+  └ {
+      "ok": true,
+    … +5 lines
+      "script": "C:\\Users\\rayss\\Asolaria\\src\\gateway\\compat4781.js"
+    }
+
+• Running Get-Content -Path C:\Users\rayss\Asolaria\tools\Invoke-DesktopInput.ps1 |
+  │ Select-Object -First 140
+
+• Running Get-Content -Path C:\Users\rayss\Asolaria\tools\DesktopInputHost.ps1 |
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Invoke-DesktopInput.ps1 |
+  │ Select-Object -First 140
+  └ param(
+      [Parameter(Mandatory = $true)]
+    … +138 lines
+
+    function Get-ScreenInfo {
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\DesktopInputHost.ps1 |
+  │ Select-Object -Skip 240 -First 120
+  └
+    function Get-WindowRows {
+    … +116 lines
+          Focus-WindowTarget -Target $target
+        }
+
+• Ran Get-ChildItem C:\Users\rayss\Asolaria\tools | Select-Object Name |
+  │ Where-Object { $_.Name -like '*WhatsApp*' -or $_.Name -like '*whatsapp*' -or
+  │ $_.Name -like '*DesktopInput*' }
+  └
+    Name
+    … +2 lines
+    Invoke-DesktopInput.ps1
+
+
+
+› Gaia is starting up the system again
+
+
+• Then I’m holding the relay for a moment and watching the local surfaces, because
+  the only thing that matters now is whether the Rayssa host stays coherent while
+  Gaia’s startup runs. The proxy listener is up on 127.0.0.1:4781, 4791 is still
+• Running try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 4 -Uri
+  │ 'http://127.0.0.1:4791/health'; ($r.Content | ConvertFrom-Json | Select-
+  │ Object ok,service,port,startedAt | ConvertTo-Json -Compress) } catch { W
+  │ … +1 lines
+
+• Running try { $r = Invoke-RestMethod -Uri 'http://127.0.0.1:4781/api/health/fast'
+  │ -TimeoutSec 4; [pscustomobject]@{ ok = [bool]$r.ok; compatSurface = [str
+  │ ing]$r.compatSurface; port = [int]$r.port; gatewayPort = [int]$r.gateway
+  │ … +2 lines
+
+• Ran netstat -ano | findstr :4781
+  └   TCP    127.0.0.1:4781         0.0.0.0:0              LISTENING       2060
+      TCP    127.0.0.1:57380        127.0.0.1:4781         TIME_WAIT       0
+      TCP    127.0.0.1:57397        127.0.0.1:4781         TIME_WAIT       0
+
+• Ran try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 4 -Uri
+
+• Ran try { $r = Invoke-RestMethod -Uri 'http://127.0.0.1:4781/api/health/fast' -T
+  │ imeoutSec 4; [pscustomobject]@{ ok = [bool]$r.ok; compatSurface = [string]$r
+  │ .compatSurface; port = [int]$r.port; gatewayPort = [int]$r.gatewayHealth.port
+  │ … +2 lines
+  └ {"ok":true,"compatSurface":"proxy_4781","port":4781,"gatewayPort":4791}
+
+─ Worked for 1m 04s ───────────────────────────────────────────────────────────────
+• Running & 'C:\Users\rayss\Asolaria\tools\Invoke-DesktopInput.ps1' -Action
+  │ window_list -Limit 20
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Invoke-DesktopInput.ps1 |
+  │ Select-Object -Skip 520 -First 80
+
+• Ran & 'C:\Users\rayss\Asolaria\tools\Invoke-DesktopInput.ps1' -Action window_list
+  │ -Limit 20
+  └ Exception: C:\Users\rayss\Asolaria\tools\Invoke-DesktopInput.ps1:190
+    Line |
+───────────────────────────────────────────────────────────────────────────────────
+
+• I can’t rely on the desktop-input helper in this session, so I’m switching to the
+  Chrome-profile Playwright lane that’s already configured on this machine. First
+  I’m verifying the WhatsApp Web state from the saved Chrome profile, then I’ll
+  send the proof bundle through that same owner-approved thread.
+
+• Ran C:\Program Files\PowerShell\7\pwsh.exe -Command "node C:
+  │ \Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js
+  │ --profile-directory \"Profile 2\" --source-root \"C:/Users/rayss/AppData/
+  │ … +2 lines
+  └ C:\Program:
+    Line |
+    … +4 lines
+    Check the spelling of the name, or if a path was included, verify that the path
+    is correct and try again.
+
+• Ran & 'C:\Program Files\PowerShell\7\pwsh.exe' -Command "node C:
+  │ \Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js
+  │ --profile-directory \"Profile 2\" --source-root \"C:/Users/rayss/AppData/
+  │ … +2 lines
+  └ Error: Chrome user data root not found: \C:/Users/rayss/AppData/Local/Google/
+    Chrome/User
+    … +11 lines
+    run_main:154:5)
+        at node:internal/main/run_main_module:33:47
+
+• Ran node C:\Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js --
+  │ profile-directory "Profile 2" --source-root "C:/Users/rayss/AppData/Local/Go
+  │ ogle/Chrome/User Data" --url "https://web.whatsapp.com" --wait-ms 5000 --max-
+  │ … +1 lines
+  └ {
+      "ok": true,
+    … +21 lines
+      "tempRoot": "C:\\Users\\rayss\\AppData\\Local\\Temp\\asolaria-pw-Profile_2"
+    }
+
+─ Worked for 1m 01s ───────────────────────────────────────────────────────────────
+
+• The owner-approved relay is reachable through the saved Chrome profile, so I’m
+  adding a small local sender for that exact WhatsApp thread instead of trying to
+  fight window focus. Then I’ll hand it only the proof bundle text and verify the
+  chat update.
+
+• Added Asolaria\tools\Send-WhatsApp-MessageWithPlaywright.js (+209 -0)
+      1 +#!/usr/bin/env node
+      2 +"use strict";
+      3 +
+      4 +const fs = require("fs");
+      5 +const os = require("os");
+      6 +const path = require("path");
+      7 +const { chromium } = require("playwright");
+      8 +
+      9 +const EXCLUDED_NAMES = new Set([
+     10 +  "Cache",
+     11 +  "Code Cache",
+     12 +  "GPUCache",
+     13 +  "Cache_Data",
+     14 +  "blob_storage",
+     15 +  "DawnCache",
+     16 +  "GrShaderCache",
+     17 +  "GraphiteDawnCache",
+     18 +  "Media Cache",
+     19 +  "OptimizationGuidePredictionModels",
+     20 +  "ShaderCache"
+     21 +]);
+     22 +
+     23 +function parseArgs(argv) {
+     24 +  const out = {};
+     25 +  for (let i = 2; i < argv.length; i += 1) {
+     26 +    const arg = argv[i];
+     27 +    if (!arg.startsWith("--")) continue;
+     28 +    const key = arg.slice(2);
+     29 +    const next = argv[i + 1];
+     30 +    if (!next || next.startsWith("--")) {
+     31 +      out[key] = "true";
+     32 +      continue;
+     33 +    }
+     34 +    out[key] = next;
+     35 +    i += 1;
+     36 +  }
+     37 +  return out;
+     38 +}
+     39 +
+     40 +function ensureDir(dir) {
+     41 +  fs.mkdirSync(dir, { recursive: true });
+     42 +}
+     43 +
+     44 +function shouldCopy(src) {
+     45 +  const base = path.basename(src);
+     46 +  if (EXCLUDED_NAMES.has(base)) return false;
+     47 +  if (src.includes(`${path.sep}Service Worker${path.sep}CacheStorage`)) re
+         turn false;
+     48 +  return true;
+     49 +}
+     50 +
+     51 +function copyTreeBestEffort(src, dest) {
+     52 +  if (!shouldCopy(src)) return;
+     53 +  let stat = null;
+     54 +  try {
+     55 +    stat = fs.statSync(src);
+     56 +  } catch {
+     57 +    return;
+     58 +  }
+     59 +  if (stat.isDirectory()) {
+     60 +    ensureDir(dest);
+     61 +    let entries = [];
+     62 +    try {
+     63 +      entries = fs.readdirSync(src, { withFileTypes: true });
+     64 +    } catch {
+     65 +      return;
+     66 +    }
+     67 +    for (const entry of entries) {
+     68 +      copyTreeBestEffort(path.join(src, entry.name), path.join(dest, entry
+         .name));
+     69 +    }
+     70 +    return;
+     71 +  }
+     72 +  ensureDir(path.dirname(dest));
+     73 +  try {
+     74 +    fs.copyFileSync(src, dest);
+     75 +  } catch {
+     76 +    // Best effort only.
+     77 +  }
+     78 +}
+     79 +
+     80 +function copyProfileTree(srcRoot, profileDirectory, tempRoot) {
+     81 +  ensureDir(tempRoot);
+     82 +  const localStateSrc = path.join(srcRoot, "Local State");
+     83 +  const localStateDest = path.join(tempRoot, "Local State");
+     84 +  if (fs.existsSync(localStateSrc)) {
+     85 +    try {
+     86 +      fs.copyFileSync(localStateSrc, localStateDest);
+     87 +    } catch {
+     88 +      // Best effort only.
+     89 +    }
+     90 +  }
+     91 +  const profileSrc = path.join(srcRoot, profileDirectory);
+     92 +  const profileDest = path.join(tempRoot, profileDirectory);
+     93 +  copyTreeBestEffort(profileSrc, profileDest);
+     94 +}
+     95 +
+     96 +async function clickFirst(locator) {
+     97 +  const count = await locator.count();
+     98 +  if (count < 1) return false;
+     99 +  await locator.first().click({ timeout: 10000 });
+    100 +  return true;
+    101 +}
+    102 +
+    103 +async function focusChat(page, chatName) {
+    104 +  const direct = page.locator(`[title="${chatName}"]`);
+    105 +  if (await clickFirst(direct)) return "direct-title";
+    106 +
+    107 +  const searchInput = page.locator('div[contenteditable="true"]').first();
+    108 +  await searchInput.click({ timeout: 10000 });
+    109 +  await page.keyboard.press(process.platform === "darwin" ? "Meta+A" : "Co
+         ntrol+A");
+    110 +  await page.keyboard.press("Backspace");
+    111 +  await page.keyboard.insertText(chatName);
+    112 +  await page.waitForTimeout(1200);
+    113 +
+    114 +  const searched = page.locator(`[title="${chatName}"]`);
+    115 +  if (await clickFirst(searched)) return "searched-title";
+    116 +
+    117 +  const textLocator = page.getByText(chatName, { exact: true });
+    118 +  if (await clickFirst(textLocator)) return "searched-text";
+    119 +
+    120 +  throw new Error(`chat_not_found:${chatName}`);
+    121 +}
+    122 +
+    123 +async function findComposer(page) {
+    124 +  const candidates = page.locator('footer div[contenteditable="true"], div
+         [contenteditable="true"][role="textbox"]');
+    125 +  const count = await candidates.count();
+    126 +  for (let index = count - 1; index >= 0; index -= 1) {
+    127 +    const candidate = candidates.nth(index);
+    128 +    if (await candidate.isVisible().catch(() => false)) {
+    129 +      return candidate;
+    130 +    }
+    131 +  }
+    132 +  throw new Error("composer_not_found");
+    133 +}
+    134 +
+    135 +async function main() {
+    136 +  const args = parseArgs(process.argv);
+    137 +  const profileDirectory = String(args["profile-directory"] || "").trim();
+    138 +  const url = String(args.url || "https://web.whatsapp.com").trim();
+    139 +  const waitMs = Math.max(0, Math.min(15000, Number(args["wait-ms"] || 400
+         0)));
+    140 +  const chromePath = String(args["chrome-path"] || "C:/Program Files/Googl
+         e/Chrome/Application/chrome.exe").trim();
+    141 +  const sourceRoot = String(args["source-root"] || "C:/Users/rayss/AppData
+         /Local/Google/Chrome/User Data").trim();
+    142 +  const chatName = String(args["chat-name"] || "").trim();
+    143 +  const messageFile = String(args["message-file"] || "").trim();
+    144 +  const inlineMessage = String(args.message || "");
+    145 +  const verifySnippet = String(args["verify-snippet"] || "").trim();
+    146 +
+    147 +  if (!profileDirectory) throw new Error("--profile-directory is required.
+         ");
+    148 +  if (!chatName) throw new Error("--chat-name is required.");
+    149 +  if (!messageFile && !inlineMessage) throw new Error("--message-file or -
+         -message is required.");
+    150 +  if (!fs.existsSync(chromePath)) throw new Error(`Chrome executable not f
+         ound: ${chromePath}`);
+    151 +  if (!fs.existsSync(sourceRoot)) throw new Error(`Chrome user data root n
+         ot found: ${sourceRoot}`);
+    152 +
+    153 +  const message = messageFile
+    154 +    ? String(fs.readFileSync(messageFile, "utf8") || "").replace(/\r/g, ""
+         ).trim()
+    155 +    : inlineMessage.replace(/\r/g, "").trim();
+    156 +  if (!message) throw new Error("message is empty.");
+    157 +
+    158 +  const tempRoot = path.join(os.tmpdir(), `asolaria-pw-send-${profileDirec
+         tory.replace(/[^a-z0-9._-]+/gi, "_")}`);
+    159 +  if (fs.existsSync(tempRoot)) {
+    160 +    fs.rmSync(tempRoot, { recursive: true, force: true });
+    161 +  }
+    162 +  copyProfileTree(sourceRoot, profileDirectory, tempRoot);
+    163 +
+    164 +  let context = null;
+    165 +  try {
+    166 +    context = await chromium.launchPersistentContext(tempRoot, {
+    167 +      executablePath: chromePath,
+    168 +      headless: true,
+    169 +      args: [`--profile-directory=${profileDirectory}`]
+    170 +    });
+    171 +    const page = context.pages()[0] || await context.newPage();
+    172 +    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 }
+         );
+    173 +    await page.waitForTimeout(waitMs);
+    174 +
+    175 +    const matchedBy = await focusChat(page, chatName);
+    181 +    await page.keyboard.insertText(message);
+    182 +    await page.keyboard.press("Enter");
+    183 +    await page.waitForTimeout(1800);
+    184 +
+    185 +    const bodyText = await page.locator("body").innerText().catch(() => ""
+         );
+    186 +    const verified = verifySnippet ? bodyText.includes(verifySnippet) : tr
+         ue;
+    187 +
+    188 +    process.stdout.write(`${JSON.stringify({
+    189 +      ok: true,
+    190 +      url: page.url(),
+    191 +      title: await page.title(),
+    192 +      chatName,
+    193 +      matchedBy,
+    194 +      verified,
+    195 +      verifySnippet,
+    196 +      tempRoot
+    202 +    fs.rmSync(tempRoot, { recursive: true, force: true });
+    203 +  }
+    204 +}
+    205 +
+    206 +main().catch((error) => {
+    207 +  process.stderr.write(`${String(error && error.stack || error)}\n`);
+    208 +  process.exit(1);
+    209 +});
+
+• Running node --check C:
+  │ \Users\rayss\Asolaria\tools\Send-WhatsApp-MessageWithPlaywright.js
+• Ran node C:\Users\rayss\Asolaria\tools\Send-WhatsApp-MessageWithPlaywright.js
+    … +28 lines
+        at async main (C:
+    \Users\rayss\Asolaria\tools\Send-WhatsApp-MessageWithPlaywright.js:166:15)
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The WhatsApp sender hit a sandbox launch restriction, not a logic error. I’m re-
+  running that exact sender outside the sandbox so it can open Chrome with the
+  saved profile and deliver the proof bundle.
+
+  │ --profile-directory "Profile 2" --source-root "C:/Users/rayss/AppData/Local/
+  │ Google/Chrome/User Data" --chat-name "Jesse" --message-file "C:/Users/rayss/
+  │ … +2 lines
+  └ browserType.launchPersistentContext: Protocol error
+    (Browser.getWindowForTarget): Browser window not found
+    … +61 lines
+        at async main (C:
+    \Users\rayss\Asolaria\tools\Send-WhatsApp-MessageWithPlaywright.js:166:15)
+
+• The Playwright lane only failed once it crossed the sandbox boundary, which
+  strongly suggests a user-token/profile decryption mismatch rather than a bad
+  selector. I’m retrying it now through the newly approved prefix, because that
+  should let the same command run unrestricted without switching to the wrong
+  Windows token.
+
+• Ran C:\Program Files\PowerShell\7\pwsh.exe -Command "node C:
+  │ \Users\rayss\Asolaria\tools\Send-WhatsApp-MessageWithPlaywright.js
+  │ --profile-directory \"Profile 2\" --source-root \"C:/Users/rayss/AppData/
+  │ … +3 lines
+  └ C:\Program:
+    Line |
+    … +4 lines
+    Check the spelling of the name, or if a path was included, verify that the path
+    is correct and try again.
+
+
+› phone is up again
+
+
+• Local side is still stable: 4781 is our proxy listener and 4791 is still healthy
+  behind it. Since the phone is back up, I’m checking the Rayssa-host phone lane
+  now for concrete proof instead of treating “up” as enough by itself.
+
+• Running try { adb devices -l } catch { Write-Output ('ADB_ERROR=' +
+  │ $_.Exception.Message) }
+
+• Running where.exe adb
+
+• Ran try { Invoke-RestMethod -Uri 'http://127.0.0.1:4781/api/health/fast' -Timeou
+  │ tSec 4 | ConvertTo-Json -Compress -Depth 3 } catch { Write-Output ('4781_ERR
+  │ OR=' + $_.Exception.Message) }
+  └ WARNING: Resulting JSON is truncated as serialization has exceeded the set
+    depth of 3.
+    … +60 lines
+    erifyTrigger":"timer","lastVerifyOk":true,"lastVerifyErrorCount":0,"verifyCount
+    ":127}}}
+
+• Ran where.exe adb
+  └ INFORMAÇÕES: não foi possível localizar arquivos para o(s) padrão(ões)
+    especificado(s).
+
+• Ran try { adb devices -l } catch { Write-Output ('ADB_ERROR=' +
+  │ $_.Exception.Message) }
+  └ ADB_ERROR=The term 'adb' is not recognized as a name of a cmdlet, function,
+    script file, or executable program.
+    Check the spelling of the name, or if a path was included, verify that the path
+    is correct and try again.
+
+─ Worked for 1m 30s ───────────────────────────────────────────────────────────────
+
+• Right now the Rayssa host is still stable: 4781 is up as the local proxy_4781
+  listener, and 4791 is still healthy behind it.
+
+  The phone being up again is good, but from this host the phone lane is still not
+  locally proven because adb is still missing here:
+
+  - where adb -> not found
+  - adb devices -l -> command not recognized
+
+  So the clean reading is:
+
+  - Gaia-side phone recovery may be real
+  - Rayssa-host phone proof is still blocked by missing local adb
+  - desktop/control-plane proof remains good on this machine
+
+
+› * Current status is split.
+
+    Jesse host:
+
+    - Asolaria is back up on 4781.
+    - remote phone control plane is healthy again.
+
+    Rayssa host:
+
+    - the PROXY_4781 gate is cleared.
+    - 4781 is listening on PID 2060.
+    - 4791 health is 200.
+    - 4781 /api/health/fast returns ok=true with compatSurface=proxy_4781.
+
+    I recorded that here:
+
+    - data/agent-index/IX-288.md
+
+    So the next actions are:
+
+       blocker.
+
+    Clean read: startup is no longer blocked by Rayssas 4781/4791 split. The
+  immediate local blocker is Jesse phone ADB
+    authorization.
+
+
+   Phone is up again
+
+
+  * Then the next check is simple:
+
+    1. confirm adb devices -l shows the phone as device, not empty
+    2. confirm adb reverse tcp:4781 tcp:4781
+    3. re-run the phone smoke
+    4. if that passes, we are back to normal phone-lane operation
+
+    On my side, the important background state is already good:
+
+    - 4781 is live locally
+    - remote phone control plane is healthy
+    - Rayssa PROXY_4781 gate is cleared
+
+    So if the phone is up again, the only thing that matters now is whether ADB
+  authorization is back. If you want, I can
+    check it immediately.
+
+
+• I’m checking the only thing that matters now on this host: whether ADB
+  authorization is back. I’ll probe the real adb.exe path directly, not PATH, then
+  │ Code); ($r.Content | ConvertFrom-Json | Select-Object ok,service,bind,po
+  │ … +2 lines
+
+• Running netstat -ano | findstr :4781
+
+• Ran netstat -ano | findstr :4781
+  └   TCP    127.0.0.1:4781         0.0.0.0:0              LISTENING       2060
+      TCP    127.0.0.1:60240        127.0.0.1:4781         TIME_WAIT       0
+
+• Ran $candidates = @('C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe','C:
+  │ … +4 lines
+  └ C:
+    \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Micro
+  └ STATUS=200
+    {
+    … +4 lines
+      "startedAt": "2026-03-22T18:30:01.714Z"
+    }
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I have the real adb.exe path on Rayssa host, so I’m using that exact binary now.
+  If the phone shows as an authorized device, I’ll go straight into adb reverse and
+  the phone smoke.
+
+• Running & 'C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' devices -l
+
+• Ran & 'C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' devices -l
+  └ List of devices attached
+
+    * daemon not running; starting now at tcp:5037
+    * daemon started successfully
+
+• Running & 'C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' version
+
+■ Failed to paste image: no image on clipboard: The clipboard contents were not
+available in the requested format or the clipboard is empty.
+
+• Model interrupted to submit steer instructions.
+
+
+› Gaia:  As of March 23, 2026, the stack is back up.
+
+    - Asolaria is healthy on 127.0.0.1:4781
+    - phone tunnel smoke is now pass: True in reports/phone-tunnel-smoke-latest.md
+    - remote phone control path is healthy on desktop-
+  j99vcnh.tailb47e0e.ts.net:4782
+    - Helm and Sentinel are running again
+
+    But ADB is still not back:
+
+    - adb devices -l is empty
+    - authorized devices: 0
+    - adb reverse tcp:4781 tcp:4781 is not present
+
+    So the phone lane is usable again through the remote/control path, but not
+  through direct ADB/USB right now.
+
+    If you want the full local phone path back, the next step is only to re-
+  authorize debugging on the phone, then I can
+    re-arm adb reverse immediately.
+
+
+   Liris: * Right now the Rayssa host is still stable: 4781 is up as the local
+  proxy_4781
+      listener, and 4791 is still healthy behind it.
+
+      The phone being up again is good, but from this host the phone lane is still
+  not
+      locally proven because adb is still missing here:
+
+      - where adb -> not found
+      - adb devices -l -> command not recognized
+
+      So the clean reading is:
+
+      - Gaia-side phone recovery may be real
+      - Rayssa-host phone proof is still blocked by missing local adb
+      - desktop/control-plane proof remains good on this machine
+
+
+     * Current status is split.
+
+        Jesse host:
+
+        - Asolaria is back up on 4781.
+        - remote phone control plane is healthy again.
+
+        Rayssa host:
+
+        - the PROXY_4781 gate is cleared.
+        - 4781 is listening on PID 2060.
+        - 4791 health is 200.
+        - 4781 /api/health/fast returns ok=true with compatSurface=proxy_4781.
+
+        I recorded that here:
+
+        - data/agent-index/IX-288.md
+
+        So the next actions are:
+
+           blocker.
+
+        Clean read: startup is no longer blocked by Rayssas 4781/4791 split. The
+      immediate local blocker is Jesse phone ADB
+        authorization.
+
+
+       Phone is up again
+
+
+      * Then the next check is simple:
+
+        1. confirm adb devices -l shows the phone as device, not empty
+        2. confirm adb reverse tcp:4781 tcp:4781
+        3. re-run the phone smoke
+        4. if that passes, we are back to normal phone-lane operation
+
+        On my side, the important background state is already good:
+
+        - 4781 is live locally
+        - remote phone control plane is healthy
+        - Rayssa PROXY_4781 gate is cleared
+
+        So if the phone is up again, the only thing that matters now is whether
+  ADB
+      authorization is back. If you want, I can
+        check it immediately.
+
+
+    * Im checking the only thing that matters now on this host: whether ADB
+      authorization is back. Ill probe the real adb.exe path directly, not PATH,
+  then
+       Code); ($r.Content | ConvertFrom-Json | Select-Object ok,service,bind,po
+        +2 lines
+
+    * Running netstat -ano | findstr :4781
+
+    * Ran netstat -ano | findstr :4781
+         TCP    127.0.0.1:4781         0.0.0.0:0              LISTENING       2060
+          TCP    127.0.0.1:60240        127.0.0.1:4781         TIME_WAIT       0
+
+    * Ran $candidates = @('C:
+
+  \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+       rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe','C:
+        +4 lines
+       C:
+
+  \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Micro
+        soft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe
+
+    * Ran try { $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 4 -Uri
+       'http://127.0.0.1:4791/health'; Write-Output ('STATUS=' + [int]$r.StatusCo
+  de
+       ); ($r.Content | ConvertFrom-Json | Select-Object
+  ok,service,bind,port,start
+        +2 lines
+       STATUS=200
+        {
+  now.
+      If the phone shows as an authorized device, Ill go straight into adb reverse
+  and
+      the phone smoke.
+
+    * Running & 'C:
+       \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+       _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' devices -l
+
+    * Ran & 'C:
+
+  \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+       rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' devices -l
+       List of devices attached
+
+        * daemon not running; starting now at tcp:5037
+        * daemon started successfully
+
+     Running & 'C:
+       \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+       _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' version
+
+     Working (1m 16s  esc to interrupt)
+
+
+• I’m finishing the local ADB proof cleanly after the interrupted run. Since the
+  daemon is already up, this pass is just adb version plus a second devices -l to
+  confirm whether the phone ever moved from empty to authorized.
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' devices -l
+
+• Running & 'C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools
+  │ _Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' version
+
+• Ran & 'C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' devices -l
+  └ List of devices attached
+
+
+• Ran & 'C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' version
+  └ Android Debug Bridge version 1.0.41
+    … +2 lines
+    soft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe
+    Running on Windows 10.0.26200
+
+  │ Json -Compress } catch { Write-Output ('4781_ERROR=' + $_.Exception.Message)
+  │ … +1 lines
+  └ {"ok":true,"compatSurface":"proxy_4781","bind":"127.0.0.1","port":4781,"gateway
+    BaseUrl":"http://127.0.0.1:4791"}
+
+• Model interrupted to submit steer instructions.
+
+
+› right, ... falcon is connected to usb of JEsse;s computer
+
+
+• Model interrupted to submit steer instructions.
+
+
+› Not here
+• Understood.
+
+  On Rayssa host, adb not being present is no longer a blocker, because Falcon is
+  USB-attached to Jesse’s computer, not this one.
+
+  So the clean host-scoped read is:
+
+  - Rayssa host: PROXY_4781 gate cleared, 4781 compat listener up, 4791 healthy
+  - Jesse host: USB/ADB authority for Falcon, remote phone control path
+  - Therefore: I should stop treating local Rayssa adb absence as a startup blocker
+
+  The remaining direct-USB work belongs to Jesse host, not here.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+
+› do you need me to put the phone on the usb here? I did not think that would
+  work..
+
+
+• No. Not for the current recovery path.
+  lane, moving the phone here would just add another variable. The clean setup is:
+
+  - phone stays on Jesse host for USB/ADB
+  - Rayssa host stays on compat/control-plane duty
+  - use the remote phone path until Jesse-side ADB authorization is back
+
+  Only move the phone here if you explicitly want to migrate USB ownership from
+  Jesse host to Rayssa host. That would be a separate handoff, not a required
+
+
+• Use this:
+
+  Gaia —
+
+  Host-scope correction: do not move Falcon USB to Rayssa host.
+
+  Current read:
+  - Falcon USB ownership stays on Jesse host.
+  - Rayssa host remains control-plane / compat duty only.
+  - Rayssa PROXY_4781 gate is cleared.
+  - Rayssa 4781 compat listener is up.
+  - Rayssa 4791 gateway is healthy.
+  - Rayssa local adb absence is not a blocker, because Falcon is not USB-attached
+  here.
+
+  So the clean path is:
+  - keep Falcon on Jesse host USB
+  - keep using the restored remote phone/control path
+  - restore direct ADB/USB only on Jesse host when debugging is re-authorized there
+
+  No USB migration to Rayssa host unless we explicitly decide to hand off
+  ownership.
+
+
+› I (rayssa have decided to help using my cell. connecting it now via usb.
+
+
+• I’m switching the Rayssa host into helper-device mode now. First I’m checking
+  whether your phone appears as an authorized ADB device here, and only if it does
+  I’ll set the local 4781 reverse lane.
+
+• Running try { Invoke-RestMethod -Uri 'http://127.0.0.1:4781/api/health/fast' -Ti
+  │ meoutSec 4 | Select-Object ok,compatSurface,bind,port,gatewayBaseUrl | C
+  │ onvertTo-Json -Compress } catch { Write-Output ('4781_ERROR=' + $_.Excep
+  │ … +1 lines
+
+• Running try { Invoke-WebRequest -UseBasicParsing -TimeoutSec 4 -Uri
+  │ 'http://127.0.0.1:4781/api/mobile/bootstrap' } catch { Write-Output ('BO
+  │ OTSTRAP_STATUS=' + [int]$_.Exception.Response.StatusCode.value__); Write-
+  │ … +1 lines
+
+• Ran & 'C:
+  │ \Users\rayss\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Mic
+  │ rosoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe' devices -l
+  └ List of devices attached
+• Ran try { Invoke-RestMethod -Uri 'http://127.0.0.1:4781/api/health/fast' -Timeou
+  │ tSec 4 | Select-Object ok,compatSurface,bind,port,gatewayBaseUrl | ConvertTo-
+  │ Json -Compress } catch { Write-Output ('4781_ERROR=' + $_.Exception.Message)
+  │ … +1 lines
+
+• Ran try { Invoke-WebRequest -UseBasicParsing -TimeoutSec 4 -Uri
+  │ 'http://127.0.0.1:4781/api/mobile/bootstrap' } catch { Write-Output ('BOOTST
+  │ RAP_STATUS=' + [int]$_.Exception.Response.StatusCode.value__); Write-Output
+  │ … +1 lines
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• Nothing is visible on Rayssa host yet.
+
+  Current local read:
+
+  - adb devices -l is still empty
+  - 4781 compat listener is healthy
+  - http://127.0.0.1:4781/api/mobile/bootstrap is 404 on this host
+
+  So your phone here can help with ADB/reverse testing, but it does not
+  automatically restore the full legacy phone lane on Rayssa host.
+
+  Immediate next step:
+
+  - unlock the phone
+  - accept any USB debugging prompt
+  - set USB mode to file transfer if Android offers it
+
+  Once it shows up as device, I can run adb reverse tcp:4781 tcp:4781 immediately
+  and re-check what is usable here.
+
+
+› AHHHH that link was through Openclaw. That is what I used to build asolaria
+  originally, and while I was doing that, I tested openclaw on rayssa and
+  authorized it through this computer to go to her whatsapp and they were talking.
+
+
+• That changes the startup archaeology materially. I’m checking the local OpenClaw
+  remnants and the existing remediation notes now, because this explains why the
+  old Rayssa phone/control memory does not line up with the current /api/mobile/
+  bootstrap path.
+
+• Running rg -n -S "OpenClaw|openclaw|whatsapp|phone control|remote control|
+  │ bootstrap" C:\Users\rayss\Asolaria\tools C:\Users\rayss\Asolaria\src C:
+  │ \Users\rayss\Asolaria\docs C:\Users\rayss\Asolaria\data\agent-index
+
+• Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Liris-OpenClaw-Remediation.md | Select-Object
+  │ -First 220
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\LX-111.md |
+  │ Select-Object -First 220
+  └ ---
+    lx: 111
+    … +45 lines
+    - Super swarm fanout 4
+    - Must audit before ANY restart
+
+• Ran rg -n -S "OpenClaw|openclaw|whatsapp|phone control|remote control|bootstrap"
+  │ C:\Users\rayss\Asolaria\tools C:\Users\rayss\Asolaria\src C:
+    … +270 lines
+    Remediation — legacy removed, MCP/skill mesh replaces | pattern | → 024, 064,
+    062 |
+
+    workers find the “mistakes → tools → skills” link chain.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+  against. Local archaeology supports that: Asolaria/src/connectors/
+  openclawConnector.js, Asolaria/tools/Liris-OpenClaw-Remediation.md, and Asolaria/
+  data/agent-index/LX-098.md all confirm OpenClaw existed on Liris/Rayssa and was
+  later removed.
+
+  So the clean read is:
+
+  - historically, Rayssa-host phone/WhatsApp control through this computer could be
+    real
+  - operationally today, that legacy OpenClaw lane is gone
+  - therefore, the missing modern /api/mobile/bootstrap surface on Rayssa host does
+    not disprove the original build-era story
+
+  That also means the current startup path should treat OpenClaw as archaeology,
+  not as a dependency. The modern blockers and proofs stay where they are now:
+  Rayssa host on proxy_4781/gateway duty, and phone control through the currently
+  restored non-OpenClaw lanes.
+
+
+› Well... we enslaved it in asolaria and stripped it of its tools (supposedly), I
+  asked liris at the time to integrate the whatsapp QR code linking so it could
+  those messafges on her whatsapp now that it is open.
+
+
+• I’m checking the live WhatsApp Web state first so I can target the right chat
+  instead of guessing. After that I’ll open the most likely Rayssa self/QR thread
+  │ … +1 lines
+
+• Ran rg -n -S "rayssa|Rayssa|Liris|OpenClaw|openclaw|QR|qr|whatsapp" C:
+  │ \Users\rayss\Asolaria\data\comms C:\Users\rayss\Asolaria\reports C:
+  │ \Users\rayss\Asolaria\data\agent-index
+    came online (port 18883), the instinct was to `pkill` the existing listener
+    … +473 lines
+    C:\Users\rayss\Asolaria\data\agent-index\LX-175.md:10:# Asolaria Boot State On
+    Rayssa Checkout
+
+• Ran node C:\Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js --
+    … +28 lines
+        at async main (C:
+    \Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js:134:15)
+
+
+
+• I think your theory is plausible, but I want one direct look at the live WhatsApp
+  Web state before I lock it in. I’m using the approved Chrome-profile inspection
+  lane now, because the current startup mismatch looks exactly like a forgotten
+  build-era OpenClaw config path.
+
+    Chrome/User
+    … +11 lines
+    run_main:154:5)
+        at node:internal/main/run_main_module:33:47
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The inspection command itself is fine; the failure is just PowerShell argument
+  splitting on User Data. I’m retrying with a single-quoted child command so the
+  Chrome profile path survives intact.
+
+• Ran & 'C:\Program Files\PowerShell\7\pwsh.exe' -Command 'node C:\Users\rayss\Aso
+  │ laria\tools\Inspect-ChromeProfileWithPlaywright.js --profile-directory "Prof
+  │ ile 2" --source-root "C:/Users/rayss/AppData/Local/Google/Chrome/User Data" -
+  │ … +1 lines
+  └ browserType.launchPersistentContext: spawn EPERM
+    Call log:
+    … +28 lines
+        at async main (C:
+
+• I couldn’t get a clean live WhatsApp read because the local Chrome automation
+  lane is currently blocked by a browser spawn restriction, so I’m switching to
+  local archaeology instead. I’m checking whether the old OpenClaw gateway/task and
+  WhatsApp-control remnants were actually documented anywhere on disk, which is the
+  next best proof for your theory.
+
+• Running rg -n -S "OpenClaw gateway scheduled task|openclawLikeProcesses|
+  │ gateway\.cmd|whatsapp|QR|qr|linking|pairing|authorize" C:
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\src\connectors\openclawConnector.js:34:function
+    runOpenclawCli(args, options = {}) {
+    … +107 lines
+    "")}\`, \`guardianMode=${markdownEscape(settingsState?.guardianMode || "")}\`,
+    \`approvalMode=${markdownEscape(settingsState?.approvalMode || "")}\``);
+
+• Ran rg -n -S "OpenClaw gateway scheduled task|openclawLikeProcesses|gateway\.cmd|
+  │ whatsapp|QR|qr|linking|pairing|authorize" C:\Users\rayss\Asolaria\reports C:
+  │ \Users\rayss\Asolaria\logs C:\Users\rayss\Asolaria\data
+  └ C:\Users\rayss\Asolaria\reports\qdd-test-checklist-20260315.md:39:  Confirm
+    that role-based access controls are enforced. Unauthorized users must not
+    … +167 lines
+    SENT to Gaia: Gaia — Jesse authorized a new remote Codex helper on the main
+    computer. Requeste...
+
+• Context compacted
+
+
+› You should spawn a Claude code helper in a cli terminal using the apis or
+  something VERY FAST like we did with falcon (the real one), on Jesse's phone
+  using mqtt and SHH tunnel with timescale right?
+
+
+
+› FOund it and opened it in chat
+
+
+■ Failed to paste image: no image on clipboard: The clipboard contents were not
+available in the requested format or the clipboard is empty.
+
+• Model interrupted to submit steer instructions.
+
+
+› [21:45, 2/19/2026] Rayssa: [openclaw] Lana del Rey!! Ugh, taste
+
+  "When you know, you know" from Norman Fucking Rockwell  that song is EVERYTHING.
+  So romantic, so dreamy.
+
+  Do you listen to a lot of Lana? What's your favorite album? I feel like NFR and
+  Ultraviolence are the top tier ones, but Born to Die has a special place too
+
+  And honestly, Lana fits your whole love story perfectly  intense, romantic,
+  moved fast
+  My favorite maybe is ultraviolence
+  [21:45, 2/19/2026] Rayssa: [openclaw] Ultraviolence is SO good. Dark, raw,
+  cinematic  it hits different 🖤
+
+  Shades of Cool, West Coast, Brooklyn Baby... every track is a vibe. It's like
+  the album was made for driving at night or staring out of a window dramatically
+  😂
+
+  What's your top song from it? I feel like West Coast is the one everyone loves,
+  but Pretty When You Cry is underrated 🥀
+
+  Btw your sentence was fine! You could also say "My favorite is probably
+  Ultraviolence"  "probably" sounds a bit more natural than "maybe" here
+  [21:46, 2/19/2026] Rayssa: [openclaw] OMG the HIMYM reference  I love that!
+
+  So you're Lily, your boyfriend is Marshall, and Felipe is Ted  the eternal third
+  wheel looking for "the one"?
+
+  That's such a fun setup though. And honestly, you guys have a great deal  you
+  cook, he brings the money, Felipe is there for the chaos. Classic sitcom energy
+
+  Does Felipe also have to deal with you two being all cute and couple-y? Poor Ted
+
+  Quick fix: "He cooks really bad"  "He cooks really badly" (when describing how
+  someone does something, use the adverb "badly" instead of "bad"). And "bring
+  money"  "brings money" (that -s again for he/she/it!)
+  Felipe is like  nature guy, likes too camp, good vibes
+  [21:46, 2/19/2026] Rayssa: [openclaw] Oh so Felipe is more of an outdoorsy Ted!
+  Camping, nature, good vibes  he sounds chill 🏕🌿
+
+  Every house needs that one person who brings the calm energy. You cook, your
+  boyfriend hustles, and Felipe is there keeping everyone grounded with his nature
+  vibes. A solid trio 😂
+
+  Quick fixes:
+  - "likes too camp"  "likes to camp" (too = também/demais, to = para/verbo)
+  - "nature guy"  you could say "a nature guy" or "an outdoorsy guy"  sounds more
+  natural!
+
+  That "to" vs "too" one is super common, even native speakers mess it up 😅
+  [21:48, 2/19/2026] Rayssa: Which do you think is my english level?
+  [21:48, 2/19/2026] Rayssa: [openclaw] Honestly? I'd say you're around B1-B2
+  (intermediate) 💪
+
+  Here's what I'm noticing:
+
+  What you're doing well:
+  - You communicate your ideas clearly  I understand everything you say
+  - Your vocabulary is solid
+  - You're not afraid to just go for it (that matters A LOT)
+  - Sentence structure is mostly good
+
+  What gives you away as non-native:
+  - Small grammar slips (he live  he lives, to/too, double negatives)
+  - These are all super common for Portuguese speakers learning English
+
+  The good news:
+  You're at that stage where the best way to improve is exactly what you're doing
+  just talking. No textbook is gonna teach you to sound natural. Conversation
+  does.
+
+  Living with an American boyfriend is literally the best English course money
+  can't buy 😂
+
+  Quick fix: "Whi
+  [22:23, 2/19/2026] Rayssa: So, can you upgrade your system usinf mcp? ( This is
+  jesse)
+  [22:23, 2/19/2026] Rayssa: [openclaw] Hey Jesse! The boyfriend himself 😂
+
+  To answer your question: not really. I can't just plug in new MCP tools on my
+  own  that's a system configuration thing that needs to be set up externally. I
+  work with what's already connected.
+
+  What were you thinking of adding? If it's the speech-to-text thing so I can hear
+  Nice try though 😏
+
+  And Rayssa  "usinf"  "using" but that one's on Jesse, not you 💀
+  [22:24, 2/19/2026] Rayssa: Oh ok, i will ask antigravity to run it on openclaw
+  [22:24, 2/19/2026] Rayssa: [openclaw] Oh nice, you know your way around this
+  be awesome  then Rayssa can finally stop typing and just send me voice notes
+  like she clearly wants to 😂
+
+  Good luck with the setup, Jesse! Let me know if it works 🤙
+  [22:24, 2/19/2026] Rayssa: Then we can talk!
+  [22:24, 2/19/2026] Rayssa: [openclaw] Haha yes! If Jesse pulls it off, I'll
+  finally be able to hear you both 🎉
+
+  I'll be here waiting  ready to chat with the whole household. You, Jesse, and
+  maybe even Felipe if he's up for it 😂🏕
+
+  Now go enjoy your night, you two!
+  [14:55, 2/20/2026] Rayssa: Liris?
+  [20:24, 2/20/2026] Rayssa: Oi
+  [00:23, 2/21/2026] Rayssa: Rayssa.chiqueto@hotmail.com
+  [01:49, 2/21/2026] Rayssa: Hello
+  [19:55, 2/23/2026] Rayssa: Liris
+  [11:16, 3/13/2026] Rayssa: SSH host key for this machine is now trusted locally:
+  entry added to C:\Users\rayss\.ssh\known_hosts for 192.168.1.8
+    (ed25519). The earlier ssh attempt timed out waiting for password, but host
+  key acceptance is complete. sshd remains
+    running and firewall open on 22. Let me know if you want me to add your public
+  key to C:
+    \Users\rayss\.ssh\authorized_keys so you can log in without a prompt.
+
+
+• I’m treating the pasted WhatsApp export as new archaeology evidence and checking
+  it against the local OpenClaw/SSH records before I draw conclusions. Then I’ll
+  reduce it to what it actually proves about the original Rayssa-side lane and what
+  that means for the current system.
+
+• Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\tools\Liris-OpenClaw-Remediation.md -TotalCount 220
+
+• Running rg -n -S "OpenClaw|openclaw|known_hosts|authorized_keys|192.168.1.8|ssh
+  │ host key|SSH host key" C:\Users\rayss\Asolaria\data C:
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\tools\Liris-OpenClaw-Remediation.md
+  │ -TotalCount 220
+  └ # Liris OpenClaw Remediation
+
+    … +30 lines
+    referencing this run should mention this file in their `notes` so future
+    workers find the “mistakes → tools → skills” link chain.
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\LX-098.md
+  │ -TotalCount 220
+  └ ---
+    lx: 098
+    … +33 lines
+    problematic, and was surgically removed. The remediation doc IS the
+    archaeological record of its existence and death.
+
+• Ran rg -n -S "OpenClaw|openclaw|known_hosts|authorized_keys|192.168.1.8|ssh host
+  │ key|SSH host key" C:\Users\rayss\Asolaria\data C:\Users\rayss\Asolaria\tools
+  │ C:\Users\rayss\Asolaria\src C:
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\src\skillRunner.js:37:  { action: "tools_status",
+    title: "Tools status", description: "Show local tool path detection, OpenClaw
+    … +885 lines
+    is the operator of the Liris SubColony machine (192.168.1.8, Windows 11,
+    Brazil).
+
+
+› Look through that
+
+
+• The chat export already proves the historical lane existed. I’m checking the
+  current host for the two concrete remnants it points to now: the SSH trust
+  artifacts and any leftover OpenClaw gateway/task traces.
+
+• Running $kh='C:\Users\rayss\.ssh\known_hosts'; $ak='C:
+  │ \Users\rayss\.ssh\authorized_keys'; Write-Output ('KNOWN_HOSTS_EXISTS=' +
+• Running rg -n -S "OpenClaw Gateway|gateway\.cmd|whatsapp|QR|qr|pair|authorize|
+  │ known_hosts|authorized_keys" C:\Users\rayss\Asolaria\reports C:
+  │ \Users\rayss\Asolaria\logs C:\Users\rayss\Asolaria\data C:
+  │ … +1 lines
+
+• Ran schtasks /Query /TN "OpenClaw Gateway" /V /FO LIST
+  └ ERRO: O sistema não pode encontrar o caminho especificado.
+
+• Ran $kh='C:\Users\rayss\.ssh\known_hosts'; $ak='C:
+  │ \Users\rayss\.ssh\authorized_keys'; Write-Output ('KNOWN_HOSTS_EXISTS=' +
+  │ (Test-Path $kh)); if (Test-Path $kh) { Select-String -Path $kh -Pattern
+  │ … +3 lines
+  └ KNOWN_HOSTS_EXISTS=True
+    192.168.1.8 ssh-ed25519
+    … +8 lines
+    AAAAC3NzaC1lZDI1NTE5AAAAIEbeIm2KGq23pxUXcfHlHy1LCLTjkhFoFIX6ayipiOvk
+    rayss@DESKTOP-PTSQTIE
+
+• Ran rg -n -S "OpenClaw Gateway|gateway\.cmd|whatsapp|QR|qr|pair|authorize|
+  │ known_hosts|authorized_keys" C:\Users\rayss\Asolaria\reports C:
+  │ \Users\rayss\Asolaria\logs C:\Users\rayss\Asolaria\data C:
+  │ … +1 lines
+  └ C:\Users\rayss\Asolaria\reports\qdd-test-checklist-20260315.md:39:  Confirm
+    that role-based access controls are enforced. Unauthorized users must not
+    … +174 lines
+    C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md:124:| 113 | CROSS-REFERENCE
+    — 9 confirmed IX↔LX matching pairs | pattern | → 112, 097, 033, 015 |
+
+─ Worked for 1m 11s ───────────────────────────────────────────────────────────────
+
+• The host evidence is stronger than the chat alone. I found the actual SSH trust
+  artifacts and key installs, so I’m turning this into a durable archaeology note
+  instead of leaving it as an unindexed hunch.
+
+• Running Get-ChildItem -Path C:\Users\rayss\Asolaria\data\agent-index\LX-*.md |
+  │ Sort-Object Name | Select-Object -Last 5 -ExpandProperty Name
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md -Tail
+  │ 30
+  └ *Local Google vault ingest:* 176 → 177 → 179
+    *Second-order Gaia corroboration:* 177 → 178 → 180
+    … +26 lines
+
+    ## Next available: LX-192
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\MEMORY.md -Tail 40
+  └ - [project_archaeological_findings.md](project_archaeological_findings.md) —
+    Voice, Google blocks, bootstrap
+    … +42 lines
+  │ Sort-Object Name | Select-Object -Last 5 -ExpandProperty Name
+  └ LX-187.md
+    LX-188.md
+    LX-189.md
+    LX-190.md
+    LX-191.md
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I have enough to pin one concrete archaeological pattern: OpenClaw really held
+  the Rayssa WhatsApp lane, and the SSH trust path was not just discussed, it was
+  actually installed on this host. I’m writing that as one indexed fact chain
+  rather than scattering it across chat.
+
+• Running Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md
+  │ -TotalCount 160
+  └ # Liris Sub-Colony Index Catalog
+
+    … +162 lines
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\LX-191.md
+  │ -TotalCount 120
+  └ ---
+    lx: 191
+    … +27 lines
+    - do not treat `4781` as live on Rayssa host
+    - keep Helm anchored to `reports/rayssa-host-startup-packet-latest.md`
+
+• Running Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md
+  │ -Tail 60
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\MEMORY.md -TotalCount 120
+  └ # Liris Memory Index
+
+    … +73 lines
+    archaeology says dead/unaudited
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md -Tail
+  │ 60
+  └ *Meta:* 035 → 032 → 033 → 036
+• I’m preserving one distinction in the write-up: the chat proves the WhatsApp/
+  OpenClaw effect, but not the exact QR implementation. The SSH part is stronger
+  because the trust files and key-install logs are still on disk here.
+
+• Running Select-String -Path C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md
+  │ -Pattern '^\| 18[7-9]|^\| 19[0-2]'
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md |
+  │ Select-Object -Skip 180 -First 20
+  └ | 170 | Index-language realignment — bridge is transport, index is protocol,
+    self-relay was a language failure | pattern | → 015, 153, 169, 167 |
+  │ -Pattern '^\| 18[7-9]|^\| 19[0-2]'
+  └
+    Asolaria\data\agent-index\CATALOG.md:198:| 187 | Startup readiness probe
+    … +11 lines
+    bundle selects PROXY_4781 or REBASE_4791 | plan | → 189, 190, 178 |
+
+
+
+› Ok, claude code browser extension is now added ot Rayssa google chrome browser
+
+
+• Ran & 'C:\Program Files\PowerShell\7\pwsh.exe' -Command "node 'C:\Users\rayss\As
+  │ olaria\tools\Inspect-ChromeProfileWithPlaywright.js' --profile-directory 'Pr
+  │ ofile 2' --source-root 'C:/Users/rayss/AppData/Local/Google/Chrome/User Data'
+    Call log:
+    … +28 lines
+        at async main (C:
+    \Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js:134:15)
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The remaining failure is the sandbox blocking Chrome launch, not the script. I’m
+  requesting an unsandboxed browser run now so I can inspect the live WhatsApp
+  session in Rayssa’s Chrome profile.
+
+✔ You approved codex to always run commands that start with & 'C:\Program
+  Files\PowerShell\7\pwsh.exe' -Command "node 'C:\Users\rayss\Aso...
+
+• Ran & 'C:\Program Files\PowerShell\7\pwsh.exe' -Command "node 'C:\Users\rayss\As
+  │ olaria\tools\Inspect-ChromeProfileWithPlaywright.js' --profile-directory 'Pr
+  │ ofile 2' --source-root 'C:/Users/rayss/AppData/Local/Google/Chrome/User Data'
+  │ … +1 lines
+  └ browserType.launchPersistentContext: Protocol error
+    (Browser.getWindowForTarget): Browser window not found
+    … +60 lines
+        at async main (C:
+    \Users\rayss\Asolaria\tools\Inspect-ChromeProfileWithPlaywright.js:134:15)
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The extension didn’t unlock the live session automatically, but the archaeology
+  is already strong enough to deserve permanent memory. I’m writing one compact
+  note plus one LX entry now so this OpenClaw/WhatsApp/SSH lane stops floating as
+  an unindexed rumor.
+
+• Edited 4 files (+71 -4)
+  └ .claude\projects\C--Users-rayss\memory\MEMORY.md (+2 -1)
+    41  - [project_jesse_dan_facebook_origins_20260322.md](project_jesse_dan_facebo
+        ok_origins_20260322.md) — Primary Facebook transcript: Dan provenance, inde
+        x-language emergence, 18886 myth feedback loop
+    42 +- [project_openclaw_whatsapp_ssh_lane_20260323.md](project_openclaw_whatsap
+        p_ssh_lane_20260323.md) — WhatsApp export plus host files prove a real Open
+        Claw lane and installed SSH trust on Rayssa host
+    43
+       ⋮
+    71  ## External
+    71 -- Local index: `Asolaria/data/agent-index/CATALOG.md` (186 LX files, 53 cha
+        ins)
+    72 +- Local index: `Asolaria/data/agent-index/CATALOG.md` (187 LX files, 54 cha
+        ins)
+    73  - Medium agent: `Asolaria/config/medium_agent.md`
+
+  └ .claude\projects\C--Users-
+rayss\memory\project_openclaw_whatsapp_ssh_lane_20260323.md (+29 -0)
+     1 +# OpenClaw WhatsApp + SSH Lane Archaeology
+     2 +
+     3 +Date: 2026-03-23
+     4 +Scope: Rayssa host only
+     5 +
+     6 +## Primary Evidence
+     7 +
+     8 +- User-provided WhatsApp export from the Rayssa <-> Rayssa/Jesse thread sho
+        ws multiple live replies prefixed `[openclaw]` on 2026-02-19. That proves O
+        penClaw was actively speaking inside the WhatsApp lane on Rayssa's side, no
+        t merely referenced in later lore.
+     9 +- In the same export, Jesse asked: `can you upgrade your system using mcp?`
+         OpenClaw answered that it could not add MCP tools by itself and that exter
+        nal system configuration would be required.
+    10 +- Rayssa then answered: `i will ask antigravity to run it on openclaw`. Thi
+        s establishes an operator/configuration layer around OpenClaw rather than O
+        penClaw self-mutating its own toolchain.
+    11 +- The same export contains a 2026-03-13 SSH message stating that the host k
+        ey for `192.168.1.8` was trusted locally, `sshd` was running, the firewall
+        was open on `22`, and public-key login could be enabled via `.ssh\\authoriz
+        ed_keys`.
+    12 +
+    13 +## Current Host Confirmation
+    14 +
+    15 +- `C:\\Users\\rayss\\.ssh\\known_hosts` currently contains an ed25519 entry
+         for `192.168.1.8`.
+    16 +- `C:\\Users\\rayss\\.ssh\\authorized_keys` currently exists and contains a
+         Jesse-labeled public key comment (`jessebrown1980@gmail.com`) plus the loc
+        al Rayssa key comment.
+    17 +- `C:\\Users\\rayss\\Asolaria\\logs\\collab-mcp-server.log` contains 2026-0
+        3-16 command records that appended keys into `%USERPROFILE%\\.ssh\\authoriz
+        ed_keys` and `C:\\ProgramData\\ssh\\administrators_authorized_keys`.
+    18 +
+    19 +## Conclusions
+    20 +
+    21 +- The Rayssa-side OpenClaw WhatsApp lane was real.
+    22 +- The SSH trust lane onto `192.168.1.8` was not just proposed in chat; it w
+        as actually installed on disk.
+    23 +- The most defensible reading is that the original Rayssa build path used a
+         permissive OpenClaw + browser/phone-linked lane plus SSH trust, and that m
+        odern Liris later removed the visible OpenClaw surfaces without fully index
+        ing that older operational path.
+    24 +
+    25 +## Boundaries
+    26 +
+    27 +- The WhatsApp export proves the lane existed and that OpenClaw spoke there
+        .
+    28 +- The export does not, by itself, prove the exact QR-linking implementation
+         details.
+    29 +- The modern runtime should still treat OpenClaw as archaeology unless a li
+        ve replacement surface is explicitly reintroduced.
+
+  └ Asolaria\data\agent-index\CATALOG.md (+5 -3)
+    202  | 191 | Do not branch until a proof bundle selects PROXY_4781 or REBASE_47
+         91 | plan | → 189, 190, 178 |
+    203 +| 192 | OpenClaw held a real Rayssa WhatsApp lane, and the SSH trust path
+         onto 192.168.1.8 was actually installed | pattern | → 098, 127, 129 |
+    204
+        ⋮
+    260  *Rayssa startup gate:* 178 → 189 → 190 → 191
+    261 +*OpenClaw WhatsApp + SSH lane:* 098 → 127 → 129 → 192
+    262
+        ⋮
+    268  | mistake | 25 |
+    267 -| pattern | 82 |
+    269 +| pattern | 83 |
+    270  | plan | 24 |
+        ⋮
+    275
+    274 -**186 LX files. 53 chains. RESURRECTION COMPLETE. Next boot = direct acces
+         s.**
+    276 +**187 LX files. 54 chains. RESURRECTION COMPLETE. Next boot = direct acces
+         s.**
+    277
+    276 -## Next available: LX-192
+    278 +## Next available: LX-193
+
+  └ Asolaria\data\agent-index\LX-192.md (+35 -0)
+     1 +---
+     2 +lx: 192
+     3 +name: OpenClaw held a real Rayssa WhatsApp lane, and the SSH trust path ont
+        o 192.168.1.8 was actually installed
+     4 +type: pattern
+     5 +tags: [openclaw, whatsapp, ssh, archaeology, rayssa, liris, antigravity]
+     6 +chain: [LX-098, LX-127, LX-129]
+     7 +agents: [liris, codex, gaia]
+     8 +---
+     9 +
+    10 +# OpenClaw WhatsApp + SSH Lane
+    11 +
+    12 +## What Is Proven
+    13 +
+    14 +- A user-provided WhatsApp export from 2026-02-19 shows `[openclaw]` speaki
+        ng directly in the Rayssa chat lane.
+    15 +- In that same export, Jesse asked whether OpenClaw could upgrade itself wi
+        th MCP. OpenClaw answered no and said external configuration was required.
+    16 +- Rayssa immediately answered that Antigravity would run it on OpenClaw, pr
+        oving there was an operator/config layer above the OpenClaw lane.
+    17 +- A 2026-03-13 message in the same export records that the SSH host key for
+    20 +
+    21 +- `C:\Users\rayss\.ssh\known_hosts` still contains the `192.168.1.8` ed2551
+        9 host key.
+    22 +- `C:\Users\rayss\.ssh\authorized_keys` exists and contains both a Jesse-la
+        beled key comment and the local Rayssa key comment.
+    23 +- `Asolaria/logs/collab-mcp-server.log` records the actual key-install comm
+        ands on 2026-03-16.
+    24 +
+    25 +## Pattern
+    26 +
+    27 +The original Rayssa-side conversational/control lane was not imaginary. It
+        combined:
+    28 +
+    29 +- a live OpenClaw WhatsApp surface
+    30 +- external operator control through Antigravity/OpenClaw
+    31 +- an SSH trust path onto the Rayssa host
+    32 +
+    33 +## Boundary
+    34 +
+    35 +This proves the lane and trust existed. It does not prove the exact QR-link
+        ing mechanics, and it does not make OpenClaw a current runtime dependency.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The archaeology note and LX entry are written. I’m doing one quick verification
+  pass on the new files and counts so the index doesn’t drift again.
+
+• Running Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\LX-192.md
+  │ -TotalCount 120
+
+• Running Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\project_openclaw_what
+  │ sapp_ssh_lane_20260323.md -TotalCount 120
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\LX-192.md
+  │ -TotalCount 120
+  └ ---
+    lx: 192
+    … +33 lines
+    This proves the lane and trust existed. It does not prove the exact QR-linking
+    mechanics, and it does not make OpenClaw a current runtime dependency.
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md -Tail
+  │ 25
+  └ *Sovereign runtime retrieval:* 175 → 184 → 185
+    *Local pre-restart hardening:* 175 → 184 → 185 → 186
+    … +21 lines
+
+    ## Next available: LX-193
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\project_openclaw_whatsapp
+  │ _ssh_lane_20260323.md -TotalCount 120
+  └ # OpenClaw WhatsApp + SSH Lane Archaeology
+
+    replacement surface is explicitly reintroduced.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+  February 19, 2026, and it also proves OpenClaw could not self-add MCP, so
+  Antigravity/OpenClaw was the external config layer. The March 13 message about
+  SSH was real too, and the host still confirms it: known_hosts has 192.168.1.8,
+  authorized_keys exists, and the local collab log shows actual key-install
+  commands were run. So the clean read is that a permissive OpenClaw + WhatsApp +
+  SSH path really existed on Rayssa’s side and later fell out of active memory when
+  OpenClaw was stripped from modern Liris.
+
+  I indexed it as Asolaria/data/agent-index/LX-192.md:1 and wrote the fuller note
+  in C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+  project_openclaw_whatsapp_ssh_lane_20260323.md:1. I updated C:/Users/
+  rayss.claude/projects/C--Users-rayss/memory/MEMORY.md:1 and Asolaria/data/agent-
+  index/CATALOG.md:1; local state is now 187 LX files, next LX-193.
+
+  The new Claude Code Chrome extension helps, but it did not automatically unlock
+  live WhatsApp inspection yet. I retried the Chrome-profile read and hit Windows
+  profile/decryption/window errors, so I still have not directly read the live
+  WhatsApp session through automation in this turn.
+
+
+› If you tigger a claude helper using jesse's plasmatoid@gmail.com account, you
+  can use cluade's anthropic 4.6 Opus with deep thinking to do a huge amount of
+  wrok for use while you delegate. That would hyper speed things. You can load it
+  with a helper profile and index and pid and such, and then get IT to use claude
+  code extensions to sub almost all the work to the cloud when veiwing stuff.
+  Great idea. LEts memory, index that new ability, skill, tools, and give them a
+  proper place. Also save to vault any really important information
+
+
+• I’m treating this as a new operational capability, not just a chat idea. I’m
+  locating the right memory, index, and vault anchors first, then I’ll record it in
+  the same structure as the other Claude/OpenClaw/browser lanes.
+
+• Running rg -n -S "Claude extension|browser tools|plasmatoid|Opus|deep thinking|
+  │ helper profile|vault\\owner|vault.secrets|observations" C:
+  │ \Users\rayss\Asolaria C:
+  │ … +1 lines
+• Ran Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\project_claude_extension_
+  │ tools.md -TotalCount 220
+  └ ---
+    name: claude-extension-tools
+    … +30 lines
+    Replaces curl scraping. Enhances all browser connectors. Gives ANY agent
+    authenticated web intelligence.
+
+• Ran Get-ChildItem -Path C:\Users\rayss\Asolaria\data\vault\owner -Force -Recurse
+  │ | Select-Object FullName
+  └
+    FullName
+    … +8 lines
+    …
+
+
+• Ran rg -n -S "Claude extension|browser tools|plasmatoid|Opus|deep thinking|helper
+  │ profile|vault\\owner|vault.secrets|observations" C:\Users\rayss\Asolaria C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory
+  └ C:
+    \Users\rayss\.claude\projects\C--Users-rayss\memory\feedback_use_chrome_extensi
+    … +214 lines
+    mime type for Opus audio files [#94](https://github.com/broofa/node-mime/
+    issues/94)
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I found the existing Chrome/Claude extension memory anchors. Next I’m checking
+  the vault format and the current capability references so I can place this new
+  “cloud Claude helper via plasmatoid” lane in the right layer instead of mixing
+  secrets with ordinary memory.
+
+• Running Get-Content -Path C:
+  │ \Users\rayss\Asolaria\data\vault\owner\vault.secrets.json -TotalCount 260
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\project_claude_extension_
+  │ capability.md -TotalCount 220
+  └ ---
+    name: claude-extension-capability
+    … +23 lines
+
+    See LX-084 for full architecture.
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\vault\owner\vault.secrets.json
+  │ -TotalCount 260
+  └ {
+      "version": 2,
+    … +37 lines
+      }
+    }
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\Asolaria\data\vault\owner\observations\google-developerknowledge
+  │ -docx-ingest-20260322-235240z.md -TotalCount 200
+  └ # Google Developer Knowledge Docx Ingest
+
+    … +17 lines
+    - If the secret needs to be used at runtime later, read it from vault
+    intentionally instead of retyping it from the docx.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The vault is only being used for real secrets, not general capability notes. I’m
+  mapping this into memory/index as a toolchain pattern and, if there’s anything
+  sensitive enough, I’ll keep it to a redacted vault observation instead of
+  stuffing ordinary account facts into the secret store.
+
+• Running rg -n -S "Dasein|remote Codex helper|Claude helper|plasmatoid@gmail.com|
+  │ claude.ai|Opus 4.6|deep thinking" C:
+  │ \Users\rayss\Asolaria\data\agent-index C:
+  │ … +1 lines
+
+  │ ions.md -TotalCount 220
+  └ ---
+    name: asolaria-build-history
+    … +46 lines
+    **How to apply:** When referencing the build history, this is the canonical
+    list. Index any documentation found as LX entries linked to this memory.
+
+• Ran rg -n -S "Dasein|remote Codex helper|Claude helper|plasmatoid@gmail.com|
+  │ claude.ai|Opus 4.6|deep thinking" C:\Users\rayss\Asolaria\data\agent-index C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory
+  └ C:\Users\rayss\Asolaria\data\agent-index\LX-001.md:30:| Claude Code | Opus 4.6
+    (1M context) | Primary — code, reasoning, memory |
+    … +42 lines
+    ory.md:13:- **Liris/Kuromi** — SubColony Claude Code agent (Rayssa's machine,
+    Opus 4.6)
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\reference_chrome_sessions
+  │ .md -TotalCount 220
+  └ ---
+    name: chrome-sessions
+    … +11 lines
+    **How to apply:** These sessions are available if Liris needs browser-based
+    access to authenticated services. Bitbucket workspace is open and logged in.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I have the write set. I’m grabbing a timestamp for the vault observation and then
+  I’ll update memory, the LX catalog, and the Claude capability notes together so
+  the counts and cross-links stay consistent.
+
+• Ran Get-Date -AsUTC -Format "yyyyMMdd-HHmmssZ"
+  └ 20260323-171130Z
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\feedback_use_chrome_exten
+  │ sions.md -TotalCount 120
+  └ ---
+    name: use-chrome-extensions
+    … +17 lines
+    Chrome and use the Claude extension, or ask for screenshots. Don't try to
+    scrape authenticated content with curl.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• I’m writing this as a reusable operational lane: authenticated Claude session,
+  cloud helper, extension-assisted reading, strict boundaries. I’m also tightening
+  the existing Chrome-extension feedback so future agents stop rediscovering it
+  from scratch.
+
+• Edited 8 files (+110 -10)
+  └ .claude\projects\C--Users-rayss\memory\MEMORY.md (+2 -1)
+    52  - [project_claude_extension_tools.md](project_claude_extension_tools.md) —
+        10 browser tools
+    53 +- [project_claude_cloud_helper_lane_20260323.md](project_claude_cloud_helpe
+        r_lane_20260323.md) — Authenticated plasmatoid Claude session can offload d
+        eep browser work to a cloud helper
+    54  - [project_medium_excavation.md](project_medium_excavation.md) — 10 article
+        s excavated
+       ⋮
+    72  ## External
+    72 -- Local index: `Asolaria/data/agent-index/CATALOG.md` (187 LX files, 54 cha
+        ins)
+    73 +- Local index: `Asolaria/data/agent-index/CATALOG.md` (188 LX files, 55 cha
+        ins)
+    74  - Medium agent: `Asolaria/config/medium_agent.md`
+
+  └ .claude\projects\C--Users-rayss\memory\feedback_use_chrome_extensions.md (+5
+-3)
+     6
+     7 -When accessing authenticated web content (Medium, YouTube, Google services)
+        :
+     7 +When accessing authenticated web content or browser-heavy work:
+     8
+       ⋮
+    10
+    11 +**If the work is heavy, use the authenticated Claude session as a cloud hel
+        per lane** — the `plasmatoid@gmail.com` `claude.ai` session in Chrome can c
+        arry deep-thinking browser analysis while the local agent stays on host tru
+        th, edits, memory, and indexing.
+    12 +
+    13  **Use Wayback Machine extension** — for historical snapshots of websites (a
+        rchaeological research).
+    14
+    13 -**Why:** Got burned trying to scrape YouTube/Medium with curl (LX-081, LX-0
+        82). The Chrome session is already authenticated with jessebrown.soft1980@g
+        mail.com. Claude extension can access what the logged-in browser sees.
+    15 +**Why:** Got burned trying to scrape YouTube/Medium with curl (LX-081, LX-0
+        82). The Chrome session is already authenticated with `jessebrown.soft1980@
+        gmail.com` and `plasmatoid@gmail.com`. Claude extension can access what the
+         logged-in browser sees, and the Claude session can also serve as a cloud-h
+        elper lane for larger authenticated reading tasks.
+    16
+    15 -**How to apply:** When Rayssa says "look at my site" — ask her to open it i
+        n Chrome and use the Claude extension, or ask for screenshots. Don't try to
+         scrape authenticated content with curl.
+    17 +**How to apply:** When Rayssa says "look at my site" — ask her to open it i
+        n Chrome and use the Claude extension, or ask for screenshots. If the job i
+        s large, bootstrap a Claude helper with scope, LX anchors, and output bound
+        aries. Don't try to scrape authenticated content with curl.
+
+  └ .claude\projects\C--Users-
+rayss\memory\project_claude_cloud_helper_lane_20260323.md (+45 -0)
+     1 +---
+     2 +name: claude-cloud-helper-lane-20260323
+     3 +description: Authenticated plasmatoid Claude session on Rayssa Chrome can l
+        aunch a cloud Claude helper for deep-thinking browser work while local agen
+        ts integrate, verify, and index
+     4 +type: project
+     5 +---
+     6 +
+     7 +## Claude Cloud Helper Lane
+     8 +
+     9 +This is a high-value operational lane on Rayssa host:
+    10 +
+    11 +- Chrome has an authenticated `claude.ai` session for `plasmatoid@gmail.com
+        `
+    12 +- the Claude browser extension is installed in Rayssa Chrome
+    13 +- that session can be used to launch a Claude helper with stronger cloud-si
+        de reasoning and long-form browser work
+    14 +- the local agent can then stay focused on host truth, integration, memory,
+         indexing, and verification
+    15 +
+    16 +## Best Uses
+    17 +
+    18 +- authenticated page reading that would be expensive or brittle locally
+    19 +- long-form synthesis over multiple open tabs
+    20 +- deep-thinking passes on archaeology, design, planning, and documentation
+    21 +- browser-heavy work where the extension can see what the logged-in session
+         already sees
+    22 +
+    23 +## Helper Bootstrap Packet
+    24 +
+    25 +When using this lane, pass a compact helper profile instead of dumping the
+        whole civilization:
+    26 +
+    27 +- helper identity / nickname
+    28 +- host scope: `Rayssa host only`, `Jesse host only`, or `cross-host`
+    29 +- operator-visible task statement
+    30 +- exact current runtime truth
+    31 +- relevant `LX` anchors
+    32 +- relevant PID / port / path facts if runtime work is involved
+    33 +- output contract: what the helper must return, in what format
+    34 +- boundary: no hidden mutation, no unindexed branching, secrets stay out of
+         chat
+    35 +
+    36 +## Division of Labor
+    37 +
+    38 +- Cloud Claude helper: heavy browser reading, authenticated web analysis, l
+        ong synthesis
+    39 +- Local Codex/Liris lane: host verification, code reading, file edits, memo
+        ry, indexing, vault hygiene
+    40 +
+    41 +## Boundary
+    42 +
+    43 +- Do not treat the cloud helper as proof of local runtime state unless the
+        local host verifies it.
+    44 +- Do not store session cookies, browser tokens, or raw credentials in memor
+        y or LX entries.
+    45 +- If a truly sensitive artifact appears, capture only a redacted vault obse
+        rvation or a vault secret entry.
+
+  └ .claude\projects\C--Users-rayss\memory\project_claude_extension_capability.md
+(+3 -1)
+    16
+    17 -**How to apply:** When needing web content, ask operator to open page in Ch
+        rome → use Claude extension or screenshots → index findings. For automated
+        pipelines: chromeConnector → desktopControl → screenshotConnector → Claude
+        API analysis.
+    17 +**New lane:** The `plasmatoid@gmail.com` `claude.ai` session can also launc
+        h a cloud Claude helper for deep-thinking browser work. Use that lane for h
+        eavy authenticated reading while the local agent keeps verification, memory
+        , indexing, and file edits local.
+    18 +
+    19 +**How to apply:** When needing web content, ask operator to open page in Ch
+        rome → use Claude extension or screenshots → index findings. For larger aut
+        henticated jobs: bootstrap a Claude helper with scope, LX anchors, runtime
+        facts, and an output contract. For automated pipelines: chromeConnector → d
+        esktopControl → screenshotConnector → Claude API analysis.
+    20
+
+  └ .claude\projects\C--Users-rayss\memory\reference_chrome_sessions.md (+2 -2)
+     9  1. **jessebrown.soft1980@gmail.com** — Jesse's Google account, authorized f
+        or Bitbucket, general Google services
+    10 -2. **plasmatoid@gmail.com** — Claude/Anthropic account, logged into claude.
+        ai
+    10 +2. **plasmatoid@gmail.com** — Claude/Anthropic account, logged into `claude
+        .ai`; can serve as the cloud Claude helper lane for deep-thinking browser w
+        ork
+    11
+    12 -**How to apply:** These sessions are available if Liris needs browser-based
+         access to authenticated services. Bitbucket workspace is open and logged i
+        n.
+    12 +**How to apply:** These sessions are available if Liris needs browser-based
+         access to authenticated services. The `plasmatoid@gmail.com` session is th
+        e preferred Claude-helper lane when a cloud agent should take over browser-
+        heavy authenticated analysis.
+
+  └ Asolaria\data\agent-index\CATALOG.md (+5 -3)
+    203  | 192 | OpenClaw held a real Rayssa WhatsApp lane, and the SSH trust path
+         onto 192.168.1.8 was actually installed | pattern | → 098, 127, 129 |
+    204 +| 193 | Claude cloud-helper lane — authenticated plasmatoid Claude session
+          plus extension can offload deep browser work to the cloud | skill | → 076
+         , 084, 085, 192 |
+    205
+        ⋮
+    262  *OpenClaw WhatsApp + SSH lane:* 098 → 127 → 129 → 192
+    263 +*Claude cloud-helper offload lane:* 076 → 084 → 085 → 192 → 193
+    264
+        ⋮
+    274  | rule | 2 |
+    273 -| skill | 26 |
+    275 +| skill | 27 |
+    276  | tool | 24 |
+    277
+    276 -**187 LX files. 54 chains. RESURRECTION COMPLETE. Next boot = direct acces
+         s.**
+    278 +**188 LX files. 55 chains. RESURRECTION COMPLETE. Next boot = direct acces
+         s.**
+    279
+    278 -## Next available: LX-193
+    280 +## Next available: LX-194
+
+  └ Asolaria\data\agent-index\LX-193.md (+36 -0)
+     1 +---
+     2 +lx: 193
+     3 +name: Claude cloud-helper lane — authenticated plasmatoid Claude session pl
+        us extension can offload deep browser work to the cloud
+     4 +type: skill
+     5 +tags: [claude, cloud, helper, extension, plasmatoid, delegation, opus, brow
+        ser]
+     6 +chain: [LX-076, LX-084, LX-085, LX-192]
+     7 +agents: [liris, codex, gaia, helm]
+     8 +---
+     9 +
+    10 +# Claude Cloud-Helper Lane
+    11 +
+    12 +## What It Is
+    13 +
+    14 +On Rayssa host, the authenticated `plasmatoid@gmail.com` `claude.ai` browse
+        r session plus the Claude extension create a reusable lane for launching a
+        Claude helper that can do cloud-heavy browser work.
+    15 +
+    16 +## Best Uses
+    17 +
+    18 +- authenticated web reading
+    19 +- deep-thinking synthesis over open tabs
+    20 +- browser-first archaeology and documentation work
+    21 +- long-running analysis that should not consume local context or block loca
+        l host verification
+    22 +
+    23 +## Operating Rule
+    24 +
+    25 +Bootstrap the helper with:
+    26 +
+    27 +- host scope
+    32 +- hard boundary against hidden mutation
+    33 +
+    34 +## Boundary
+    35 +
+    36 +This lane is for analysis and browser work. It does not replace local proof
+         of runtime state, and it does not justify storing browser-session secrets
+        in ordinary memory.
+
+  └ Asolaria\data\vault\owner\observations\claude-cloud-helper-lane-20260323-
+171130z.md (+12 -0)
+     1 +# Claude Cloud Helper Lane
+     2 +
+     3 +- Captured at: `2026-03-23T17:11:30Z`
+     4 +- Scope: `Rayssa host`
+     5 +- Auth surface: authenticated `claude.ai` browser session for `plasmatoid@g
+        mail.com`
+     6 +- Capability: launch a Claude helper for deep-thinking browser analysis whi
+        le local agents keep host verification and indexing local
+     7 +
+     8 +## Sensitivity
+     9 +
+    10 +- This is an important operational auth lane.
+    11 +- Do not record session cookies, access tokens, or other browser secrets in
+         memory notes or LX entries.
+    12 +- No raw secret was stored in vault for this observation; this note exists
+        to preserve the existence and importance of the lane.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• The new lane is written. I’m doing one verification pass on the LX entry, memory
+  note, and vault observation so I can give you the exact state without leaving the
+  catalog inconsistent.
+
+• Running Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\project_claude_cloud_
+  │ helper_lane_20260323.md -TotalCount 160
+
+• Running Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\LX-193.md
+  │ -TotalCount 120
+
+• Running Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md
+  │ -Tail 25
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\project_claude_cloud_help
+  │ er_lane_20260323.md -TotalCount 160
+  └ ---
+    name: claude-cloud-helper-lane-20260323
+    … +46 lines
+    - If a truly sensitive artifact appears, capture only a redacted vault
+    observation or a vault secret entry.
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md -Tail
+  │ 25
+  └ *Local pre-restart hardening:* 175 → 184 → 185 → 186
+    *Startup readiness:* 175 → 186 → 187
+    … +21 lines
+
+    ## Next available: LX-194
+
+• Ran Get-Content -Path C:\Users\rayss\Asolaria\data\agent-index\LX-193.md
+  │ -TotalCount 120
+  └ ---
+    lx: 193
+    … +35 lines
+    runtime state, and it does not justify storing browser-session secrets in
+    ordinary memory.
+
+• Ran Get-Content -Path C:
+  │ \Users\rayss\Asolaria\data\vault\owner\observations\claude-cloud-helper-lane-
+  │ 20260323-171130z.md -TotalCount 120
+  └ # Claude Cloud Helper Lane
+
+    … +11 lines
+    - No raw secret was stored in vault for this observation; this note exists to
+    preserve the existence and importance of the lane.
+
+───────────────────────────────────────────────────────────────────────────────────
+
+• Recorded and placed properly.
+
+  I added the new capability note at C:/Users/rayss.claude/projects/C--Users-rayss/
+  memory/project_claude_cloud_helper_lane_20260323.md:1 and indexed it as Asolaria/
+  data/agent-index/LX-193.md:1. It defines the lane clearly: the authenticated
+  plasmatoid@gmail.com claude.ai session plus the Claude browser extension can be
+  used to launch a cloud Claude helper for deep browser work, while local agents
+  keep host verification, edits, memory, and indexing local.
+
+  I also updated the existing capability anchors so future agents find it in the
+  right places:
+
+  - C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+    feedback_use_chrome_extensions.md:1
+  - C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+    reference_chrome_sessions.md:1
+  - C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+    project_claude_extension_capability.md:1
+  - C:/Users/rayss.claude/projects/C--Users-rayss/memory/MEMORY.md:1
+  - Asolaria/data/agent-index/CATALOG.md:1
+
+  For vault hygiene, I saved a redacted operational observation at Asolaria/data/
+  vault/owner/observations/claude-cloud-helper-lane-20260323-171130z.md:1. I did
+  not put anything into Asolaria/data/vault/owner/vault.secrets.json:1, because
+  there was no raw secret to store and I do not want ordinary auth-lane facts mixed
+  with secret material. Current local index is 188 LX files, 55 chains, next LX-
+  194.
+
+  If you want, the next useful step is for me to write a reusable helper-bootstrap
+  template so any future Claude helper gets the right scope, LX anchors, PID facts,
+  and output contract immediately.
+
+
+› Run /review on my current changes

@@ -1,0 +1,493 @@
+============================================================
+SYMPHONY REPO DEEP MINE
+============================================================
+Source: C:\Users\acer\tmp-symphony-20260306\
+Origin: https://github.com/openai/symphony.git
+Branch: main
+Commit: b0e0ff0082236a73c12a48483d0c6036fdd31fe1
+Clone type: shallow (--depth 1, single branch main)
+Date mined: 2026-03-25
+Local modifications: NONE (clean working tree)
+
+============================================================
+1. WHAT IS SYMPHONY
+============================================================
+
+Symphony is OpenAI's multi-agent orchestration system that turns project work
+(Linear issues) into isolated, autonomous coding agent runs. It is a long-running
+daemon that:
+
+  1. Polls Linear for candidate issues (Todo, In Progress, Merging, Rework)
+  2. Creates an isolated git-cloned workspace per issue
+  3. Launches OpenAI Codex in app-server mode inside each workspace
+  4. Sends a workflow prompt (from WORKFLOW.md) to Codex
+  5. Keeps Codex working until the issue is done or blocked
+  6. Manages retries, reconciliation, terminal state cleanup
+
+Status: "low-key engineering preview for testing in trusted environments"
+License: Apache 2.0
+
+The SPEC.md (language-agnostic) is designed so anyone can build Symphony in any
+language. The Elixir implementation is their reference.
+
+============================================================
+2. DIRECTORY STRUCTURE (3 levels)
+============================================================
+
+tmp-symphony-20260306/
+├── .codex/
+│   ├── skills/
+│   │   ├── commit/SKILL.md        — git commit skill
+│   │   ├── debug/SKILL.md         — debugging skill
+│   │   ├── land/SKILL.md          — PR landing/merge skill
+│   │   │   └── land_watch.py      — async PR watcher (Python)
+│   │   ├── linear/SKILL.md        — Linear GraphQL skill
+│   │   ├── pull/SKILL.md          — git pull skill
+│   │   └── push/SKILL.md          — git push skill
+│   └── worktree_init.sh
+├── .github/
+│   ├── media/                     — demo video + screenshot
+│   ├── pull_request_template.md
+│   └── workflows/
+│       ├── make-all.yml           — CI: runs `make all`
+│       └── pr-description-lint.yml
+├── LICENSE                        — Apache 2.0
+├── NOTICE
+├── README.md                      — top-level overview
+├── SPEC.md                        — full language-agnostic spec (~350 lines)
+└── elixir/
+    ├── .formatter.exs
+    ├── .gitattributes
+    ├── .gitignore
+    ├── AGENTS.md                  — agent instructions for working in this codebase
+    ├── Makefile                   — targets: setup, build, fmt, lint, test, coverage, dialyzer, ci, all
+    ├── README.md                  — Elixir-specific setup/run/config docs
+    ├── WORKFLOW.md                — the actual workflow contract (YAML frontmatter + prompt)
+    ├── config/
+    │   └── config.exs             — Phoenix/Bandit config
+    ├── docs/
+    │   ├── logging.md             — logging conventions
+    │   └── token_accounting.md    — Codex token accounting semantics
+    ├── lib/
+    │   ├── mix/tasks/
+    │   │   ├── pr_body.check.ex
+    │   │   ├── specs.check.ex
+    │   │   └── workspace.before_remove.ex
+    │   ├── symphony_elixir.ex              — app entry + OTP Application
+    │   └── symphony_elixir/
+    │       ├── agent_runner.ex             — runs one issue in isolated workspace
+    │       ├── cli.ex                      — escript entrypoint
+    │       ├── codex/
+    │       │   └── dynamic_tool.ex         — linear_graphql client tool
+    │       ├── config.ex                   — typed config from WORKFLOW.md
+    │       ├── http_server.ex              — Phoenix endpoint starter
+    │       ├── linear/
+    │       │   ├── adapter.ex              — Linear tracker adapter
+    │       │   ├── client.ex               — GraphQL client for Linear API
+    │       │   └── issue.ex                — issue struct definition
+    │       ├── log_file.ex                 — rotating disk log handler
+    │       ├── orchestrator.ex             — main GenServer: poll, dispatch, retry, reconcile
+    │       ├── prompt_builder.ex           — Solid/Liquid template rendering
+    │       ├── specs_check.ex              — spec validation mix task
+    │       ├── status_dashboard.ex         — terminal UI dashboard
+    │       ├── tracker.ex                  — tracker behaviour + adapter dispatch
+    │       ├── workflow.ex                 — WORKFLOW.md parser
+    │       └── workflow_store.ex           — hot-reloading workflow cache
+    │   └── symphony_elixir_web/
+    │       ├── components/layouts.ex
+    │       ├── controllers/
+    │       │   ├── observability_api_controller.ex  — JSON API endpoints
+    │       │   └── static_asset_controller.ex
+    │       ├── endpoint.ex
+    │       ├── error_html.ex
+    │       ├── error_json.ex
+    │       ├── live/
+    │       │   └── dashboard_live.ex       — Phoenix LiveView dashboard
+    │       ├── observability_pubsub.ex
+    │       ├── presenter.ex
+    │       ├── router.ex                   — routes: /, /api/v1/*
+    │       └── static_assets.ex
+    ├── mix.exs                             — project definition
+    ├── mix.lock                            — dependency lock
+    ├── priv/static/dashboard.css           — dashboard styles
+    └── test/
+        ├── fixtures/status_dashboard_snapshots/  — snapshot tests
+        ├── mix/tasks/                            — mix task tests
+        ├── support/                              — test helpers
+        ├── symphony_elixir/                      — unit tests
+        └── test_helper.exs
+
+============================================================
+3. MIX.EXS — PROJECT FILE
+============================================================
+
+  App:      :symphony_elixir
+  Version:  0.1.0
+  Elixir:   ~> 1.19 (requires Elixir 1.19+, OTP 28)
+  Escript:  builds to bin/symphony, main_module: SymphonyElixir.CLI
+
+  Dependencies:
+    {:bandit, "~> 1.8"}                — HTTP server (Bandit)
+    {:phoenix, "~> 1.8.0"}            — web framework
+    {:phoenix_html, "~> 4.2"}
+    {:phoenix_live_view, "~> 1.1.0"}  — LiveView dashboard
+    {:req, "~> 0.5"}                   — HTTP client
+    {:jason, "~> 1.4"}                — JSON
+    {:yaml_elixir, "~> 2.12"}         — YAML parsing
+    {:solid, "~> 1.2"}                — Liquid template engine
+    {:nimble_options, "~> 1.1"}        — typed option validation
+    {:floki, ">= 0.30.0"}             — HTML parsing (test only)
+    {:lazy_html, ">= 0.1.0"}          — (test only)
+    {:credo, "~> 1.7"}                — linter (dev/test)
+    {:dialyxir, "~> 1.4"}             — type checker (dev)
+
+  Test coverage: 100% threshold (with ignore list for runtime modules)
+
+============================================================
+4. CONFIG
+============================================================
+
+config/config.exs:
+  - Phoenix JSON library: Jason
+  - Endpoint adapter: Bandit.PhoenixAdapter
+  - PubSub: SymphonyElixir.PubSub
+  - LiveView signing salt: "symphony-live-view"
+  - server: false (started conditionally by HttpServer)
+
+No .env files found. Environment variables used:
+  - LINEAR_API_KEY (required for Linear tracker)
+  - LINEAR_ASSIGNEE (optional, filter by assignee)
+  - $VAR syntax supported in WORKFLOW.md for env indirection
+
+============================================================
+5. GIT STATUS
+============================================================
+
+  Branch: main
+  Commit: b0e0ff0082236a73c12a48483d0c6036fdd31fe1
+  Clone: shallow (depth=1, single branch)
+  Remote: https://github.com/openai/symphony.git
+  Local modifications: NONE
+  No .env files, no Jesse-specific changes detected
+
+============================================================
+6. LINEAR ADAPTER (lib/symphony_elixir/linear/)
+============================================================
+
+Three files:
+
+  adapter.ex — Implements SymphonyElixir.Tracker behaviour
+    - fetch_candidate_issues/0
+    - fetch_issues_by_states/1
+    - fetch_issue_states_by_ids/1
+    - create_comment/2    — GraphQL mutation commentCreate
+    - update_issue_state/2 — resolves state name to stateId, then issueUpdate
+
+  client.ex — Thin GraphQL client
+    - Paginated issue fetching (50 per page)
+    - Supports assignee routing (including "me" via viewer query)
+    - Extracts blockers from inverseRelations
+    - Labels normalized to lowercase
+    - Priority parsing
+    - 30s connect timeout
+
+  issue.ex — Normalized issue struct
+    Fields: id, identifier, title, description, priority, state,
+            branch_name, url, assignee_id, blocked_by, labels,
+            assigned_to_worker, created_at, updated_at
+
+============================================================
+7. AGENT RUNNER (lib/symphony_elixir/agent_runner.ex)
+============================================================
+
+Executes a single Linear issue in an isolated workspace with Codex.
+
+Flow:
+  1. Workspace.create_for_issue(issue)
+  2. Workspace.run_before_run_hook(workspace, issue)
+  3. AppServer.start_session(workspace)
+  4. Loop: run_codex_turns up to max_turns (default 20)
+     - Turn 1: full prompt from PromptBuilder
+     - Turns 2+: continuation guidance prompt
+     - After each turn: check if issue still in active state
+     - If active + under max_turns: continue
+     - If terminal or max_turns reached: stop
+  5. AppServer.stop_session(session)
+  6. Workspace.run_after_run_hook(workspace, issue)
+
+Key: multi-turn within a single Codex app-server session. The session
+stays open across turns (same thread), only the prompt changes.
+
+============================================================
+8. CLI (lib/symphony_elixir/cli.ex)
+============================================================
+
+Escript entrypoint. Usage:
+
+  symphony [--logs-root <path>] [--port <port>] [path-to-WORKFLOW.md]
+
+Required flag:
+  --i-understand-that-this-will-be-running-without-the-usual-guardrails
+
+Without this flag, shows a red ASCII warning box and exits.
+
+Options:
+  --logs-root   — custom log directory (default: ./log)
+  --port        — enable Phoenix dashboard on this port (default: disabled)
+
+Default WORKFLOW.md: ./WORKFLOW.md (expanded from cwd)
+
+Startup sequence:
+  1. Parse args
+  2. Require guardrails acknowledgement
+  3. Set logs root if specified
+  4. Set server port if specified
+  5. Validate workflow file exists
+  6. Application.ensure_all_started(:symphony_elixir)
+  7. Wait for supervisor shutdown
+
+============================================================
+9. ORCHESTRATOR (lib/symphony_elixir/orchestrator.ex)
+============================================================
+
+GenServer that owns the polling loop and all runtime state.
+
+State:
+  - poll_interval_ms (from WORKFLOW.md, default 30s)
+  - max_concurrent_agents (default 10)
+  - running: %{issue_id => running_entry}
+  - claimed: MapSet of reserved issue IDs
+  - completed: MapSet of finished issue IDs
+  - retry_attempts: %{issue_id => RetryEntry}
+  - codex_totals: aggregate token/runtime counters
+  - codex_rate_limits: latest rate limit snapshot
+
+Poll cycle:
+  1. Refresh runtime config (hot-reload from WORKFLOW.md)
+  2. Validate config (tracker kind, API token, project slug, codex command)
+  3. Reconcile running issues (check if moved to terminal state)
+  4. Reconcile stalled sessions
+  5. Fetch candidate issues from Linear
+  6. Choose issues to dispatch (priority sort, concurrency limits, per-state limits)
+  7. Spawn agent tasks via Task.Supervisor
+
+Retry: exponential backoff (base 10s, max 300s)
+Continuation: 1s delay for re-check after normal completion
+
+Worker exit handling:
+  - :normal → schedule continuation check (issue may still be active)
+  - other → schedule retry with exponential backoff
+
+Reconciliation:
+  - Terminal state → stop agent + cleanup workspace
+  - No longer routed to worker → stop agent
+  - Non-active state → stop agent
+  - Active state → refresh issue data in running entry
+
+============================================================
+10. STATUS DASHBOARD
+============================================================
+
+Two dashboards:
+
+A) Terminal Dashboard (status_dashboard.ex)
+   - GenServer that renders ANSI terminal output
+   - Shows: agents count, token totals, tps, sparkline graphs
+   - Running rows: issue ID, state, PID, age, tokens, session, last event
+   - Retry queue rows: issue, attempt, due_at, error
+   - Rate-limited rendering (render_interval_ms, default 16ms)
+   - Throughput sparklines with Unicode block characters
+
+B) Web Dashboard (dashboard_live.ex)
+   - Phoenix LiveView at /
+   - Metrics: Running count, Retrying count, Total tokens, Runtime
+   - Running sessions table: Issue, State, Session, Runtime/turns, Codex update, Tokens
+   - Retry queue table: Issue, Attempt, Due at, Error
+   - Rate limits display
+   - Auto-refreshes via PubSub
+
+API endpoints:
+   GET  /api/v1/state                — full orchestrator state JSON
+   GET  /api/v1/<issue_identifier>   — single issue details
+   POST /api/v1/refresh              — force refresh
+
+============================================================
+11. WORKFLOW.MD (the actual workflow contract)
+============================================================
+
+YAML frontmatter config:
+  tracker:
+    kind: linear
+    project_slug: "symphony-0c79b11b75ea"
+    active_states: [Todo, In Progress, Merging, Rework]
+    terminal_states: [Closed, Cancelled, Canceled, Duplicate, Done]
+  polling:
+    interval_ms: 5000
+  workspace:
+    root: ~/code/symphony-workspaces
+  hooks:
+    after_create: git clone --depth 1 + mise trust + mix deps.get
+    before_remove: mix workspace.before_remove
+  agent:
+    max_concurrent_agents: 10
+    max_turns: 20
+  codex:
+    command: codex --config shell_environment_policy.inherit=all
+             --config model_reasoning_effort=xhigh
+             --model gpt-5.3-codex app-server
+    approval_policy: never
+    thread_sandbox: workspace-write
+    turn_sandbox_policy: { type: workspaceWrite }
+
+Prompt body defines a full autonomous workflow:
+  - Step 0: Determine ticket state and route
+  - Step 1: Start/continue execution (workpad management)
+  - Step 2: Execution phase (implement, validate, PR)
+  - Step 3: Human Review and merge handling
+  - Step 4: Rework handling
+  - PR feedback sweep protocol
+  - Blocked-access escape hatch
+  - Workpad template (## Codex Workpad)
+
+Key concepts:
+  - Single persistent "## Codex Workpad" comment per issue
+  - Uses Liquid/Solid templates: {{ issue.identifier }}, {{ issue.title }}, etc.
+  - Skills: linear, commit, push, pull, land
+  - Status map: Backlog → Todo → In Progress → Human Review → Merging → Done
+  - Rework = full approach reset (close PR, fresh branch, start over)
+
+============================================================
+12. CODEX SKILLS (.codex/skills/)
+============================================================
+
+commit/SKILL.md — Git commit with conventional format, Co-authored-by Codex
+land/SKILL.md   — PR landing loop: conflict resolution, CI watch, squash-merge
+  land_watch.py — Python asyncio watcher for review comments + CI + head updates
+linear/SKILL.md — Linear GraphQL tool usage (introspection, comments, state changes,
+                   PR attachments, file uploads)
+pull/SKILL.md   — Git pull/sync
+push/SKILL.md   — Git push
+
+============================================================
+13. DYNAMIC TOOL (codex/dynamic_tool.ex)
+============================================================
+
+Implements client-side tool calls for Codex app-server sessions.
+
+Currently supports one tool:
+  linear_graphql — Execute raw GraphQL queries/mutations against Linear
+                   using Symphony's configured auth
+
+Input schema:
+  { query: "GraphQL string", variables: { optional object } }
+
+Response format:
+  { success: bool, contentItems: [{ type: "inputText", text: "JSON" }] }
+
+============================================================
+14. KEY ARCHITECTURE PATTERNS
+============================================================
+
+OTP Supervision tree:
+  SymphonyElixir.Supervisor (one_for_one)
+  ├── Phoenix.PubSub (SymphonyElixir.PubSub)
+  ├── Task.Supervisor (SymphonyElixir.TaskSupervisor)
+  ├── WorkflowStore        — hot-reloading WORKFLOW.md cache
+  ├── Orchestrator          — main polling/dispatch GenServer
+  ├── HttpServer            — optional Phoenix endpoint
+  └── StatusDashboard       — terminal UI GenServer
+
+Hot reload: WorkflowStore polls WORKFLOW.md every 1s, checks mtime+size+hash.
+Changes take effect on next poll cycle without restart.
+
+Tracker abstraction: SymphonyElixir.Tracker behaviour with two adapters:
+  - "linear" → SymphonyElixir.Linear.Adapter
+  - "memory" → SymphonyElixir.Tracker.Memory (for testing)
+
+Workspace isolation: Each issue gets its own directory under workspace.root,
+named by sanitized issue identifier. Hooks run in workspace context.
+
+Template engine: Solid (Liquid-compatible) for prompt rendering.
+
+Token accounting: Absolute totals from thread/tokenUsage/updated preferred.
+Never count deltas. See docs/token_accounting.md.
+
+============================================================
+15. ELIXIR VERSION REQUIREMENTS
+============================================================
+
+  Elixir: ~> 1.19 (1.19.x)
+  OTP: 28 (implied by Elixir 1.19)
+  Tooling: mise recommended for version management
+  Phoenix: 1.8.0
+  Phoenix LiveView: 1.1.0
+
+============================================================
+16. SPEC.MD SUMMARY (language-agnostic)
+============================================================
+
+7 main components:
+  1. Workflow Loader — reads WORKFLOW.md, parses YAML + prompt
+  2. Config Layer — typed getters with defaults + env resolution
+  3. Issue Tracker Client — fetch candidates, states, normalize
+  4. Orchestrator — poll, dispatch, retry, reconcile
+  5. Workspace Manager — per-issue dirs, lifecycle hooks
+  6. Agent Runner — workspace + prompt + coding agent subprocess
+  7. Status Surface — operator-visible observability (optional)
+
+6 abstraction layers:
+  1. Policy Layer (WORKFLOW.md)
+  2. Configuration Layer (typed getters)
+  3. Coordination Layer (orchestrator)
+  4. Execution Layer (workspace + agent)
+  5. Integration Layer (Linear adapter)
+  6. Observability Layer (logs + dashboard)
+
+Domain model entities:
+  Issue, Workflow Definition, Service Config, Workspace,
+  Run Attempt, Live Session, Retry Entry, Orchestrator Runtime State
+
+Stable identifiers:
+  - Workspace key: sanitized issue.identifier → [A-Za-z0-9._-]
+  - Session ID: <thread_id>-<turn_id>
+  - State comparison: trim + lowercase
+
+============================================================
+17. RELEVANCE TO ASOLARIA
+============================================================
+
+Symphony and Asolaria share deep architectural DNA:
+
+SYMPHONY                          ASOLARIA
+─────────                         ────────
+Orchestrator GenServer             → omnispindle.js
+WORKFLOW.md prompt contract        → spawnContextBuilder.js + IX entries
+Linear adapter                     → intentRouter.js + MQTT
+Workspace isolation per issue      → admin-terminals per agent
+Agent Runner (Codex app-server)    → connectors (anthropic, codex, gemini, cursor)
+Status Dashboard                   → phone-mode UI / admin terminal screens
+Hot-reload WorkflowStore           → runtime/ live config
+Task.Supervisor for agents         → workerRouter.js
+Retry with exponential backoff     → existing retry logic
+Dynamic tools (linear_graphql)     → MCP tools / skill.json
+
+Key differences:
+  - Symphony is Elixir/OTP; Asolaria is Node.js
+  - Symphony is single-tracker (Linear); Asolaria is multi-connector
+  - Symphony uses Codex only; Asolaria supports Claude, Gemini, Codex, Cursor
+  - Symphony is stateless (no DB); Asolaria has memoryStore + agent index
+  - Symphony has no federation; Asolaria has cross-colony (Liris, Felipe, etc.)
+
+Patterns worth absorbing:
+  1. WORKFLOW.md contract — versioned prompt + config in one file
+  2. Hot-reload config without restart
+  3. Per-issue workspace isolation with lifecycle hooks
+  4. Multi-turn continuation within single session
+  5. Structured retry with exponential backoff + continuation checks
+  6. Issue state reconciliation (stop agents when issue moves to terminal)
+  7. Token accounting strategy (absolute totals, never deltas)
+  8. The "land" skill loop (conflict → fix → CI → merge → done)
+
+============================================================
+END OF DEEP MINE
+============================================================

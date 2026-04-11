@@ -1,0 +1,551 @@
+EZ Protect API vs Page Shape Audit
+===================================
+Generated: 2026-03-25
+Scope: D:\projects\QDD\ebacmap-master\apps\web-ebacmap
+
+Framework note: The Endpoint class in src/common/core/Endpoint.ts calls
+res.ok(result.value) which sends the use case return value as-is (no
+wrapping). One exception: if result.value.created is truthy, it calls
+res.created(result.value.url) which returns HTTP 201 with an empty body
+and a Location header.
+
+
+================================================================================
+1. /api/ez-protect/events  -->  results.tsx
+================================================================================
+
+API ROUTE: src/pages/api/ez-protect/events.ts
+  UseCase: ListEzProtectEventsUseCase
+  Repo method: ezProtectRepo.listNormalizedEvents(filters)
+  Response type: PaginatedEvents (from repos/EzProtectRepo.ts)
+
+API RESPONSE SHAPE:
+  {
+    events: EzProtectNormalizedEvent[],   // array of 29+ field objects
+    total: number,
+    page: number,
+    limit: number,
+    totalPages: number
+  }
+
+  Each event in the array has (from docToNormalized):
+    id, eventVersion, sourceSystem, transportMode, organizationId,
+    facilityId, deviceSerialNumber, deviceModel, assayCode, assayName,
+    lotNumber, rollNumber, resultState, completedAt, ingestedAt,
+    moduleSlot, operatorId, operatorGroup, sampleId, truckId,
+    assayFamily, resultValue, resultUnit, readingValue, controlLineValid,
+    temperatureC, pmStatus, calibrationStatus, lockout, supervisorOverride,
+    stripLot, stripRoll, stripExpiration, startedAt, rawPayload,
+    normalizationWarnings, locationId, clientId
+
+PAGE: src/pages/ez-protect/results.tsx
+  Expected response type (local interface):
+    EzProtectEventsResponse {
+      events: EzProtectEvent[],
+      total: number,
+      page: number,
+      limit: number,
+      totalPages: number
+    }
+
+  Fields read from each event:
+    id, completedAt, deviceSerialNumber, assayName, sampleId,
+    resultState, operatorGroup, facilityId
+
+  Fields read from response root: events, total, page (via totalPages calc)
+
+VERDICT: MATCH
+  All fields the page reads exist in the API response. The page's local
+  EzProtectEvent interface is a subset of EzProtectNormalizedEvent.
+  No mismatches.
+
+
+================================================================================
+2. /api/ez-protect/event/[id]  -->  results/[id].tsx
+================================================================================
+
+API ROUTE: src/pages/api/ez-protect/event/[id].ts
+  UseCase: GetEzProtectEventUseCase
+  Repo method: ezProtectRepo.getEventById(id, clientId)
+  Response type: EzProtectNormalizedEvent
+
+API RESPONSE SHAPE:
+  Single EzProtectNormalizedEvent object (same 29+ fields as above).
+  NOTE: No "id" in the EzProtectNormalizedEvent TypeScript interface,
+        but docToNormalized() DOES add "id" from doc._id.
+
+PAGE: src/pages/ez-protect/results/[id].tsx
+  Expected type (local interface EzProtectEventDetail):
+    id, deviceSerialNumber, deviceModel, moduleSlot, assayCode,
+    assayName, assayFamily, resultState, resultValue, resultUnit,
+    readingValue, controlLineValid, temperatureC, pmStatus,
+    calibrationStatus, stripLot, stripRoll, stripExpiration,
+    operatorId, operatorGroup, sampleId, truckId, startedAt,
+    completedAt, ingestedAt, sourceSystem, transportMode,
+    organizationId, facilityId
+
+  All fields declared as string in the page interface.
+
+VERDICT: MATCH (with type coercion notes)
+  All field names align. The page declares every field as "string" but the
+  API returns some as number|boolean|null (moduleSlot: number|null,
+  resultValue: number|null, readingValue: number|null,
+  controlLineValid: boolean|null, temperatureC: number|null,
+  lockout: boolean|null). The page's display() helper handles null/undefined
+  gracefully by showing "-". React will coerce numbers/booleans to strings
+  in JSX, so this works at runtime.
+
+  No field name mismatches.
+
+
+================================================================================
+3. /api/ez-protect/dashboard  -->  index.tsx (FacilityDashboard component)
+================================================================================
+
+API ROUTE: src/pages/api/ez-protect/dashboard.ts
+  UseCase: GetEzProtectDashboardUseCase
+  Repo method: ezProtectRepo.getDashboardSummary(locationId, clientId)
+  Response type: EzProtectDashboardSummary
+
+API RESPONSE SHAPE:
+  {
+    locationId: string,
+    generatedAt: string,
+    totalEvents: number,
+    latestOccurredAt?: string,
+    windows: EzProtectWindowSummary[]
+  }
+
+  EzProtectWindowSummary:
+    {
+      windowDays: number,      // 1, 7, 14, or 30
+      totalEvents: number,
+      byResultState: Record<string, number>
+    }
+
+PAGE: src/pages/ez-protect/index.tsx (FacilityDashboard component)
+  Types as: EzProtectDashboardResponse (imported from use case)
+  Fields read:
+    dashboard.totalEvents
+    dashboard.latestOccurredAt
+    dashboard.windows  (iterates, reads w.windowDays, w.totalEvents,
+                        w.byResultState via WindowCard component)
+
+VERDICT: MATCH
+  All fields the page reads are present in the API response.
+
+
+================================================================================
+4. /api/ez-protect/dashboard-corporate  -->  index.tsx (CorporateDashboard)
+================================================================================
+
+API ROUTE: src/pages/api/ez-protect/dashboard-corporate.ts
+  UseCase: GetCorporateDashboardUseCase
+  Repo method: ezProtectRepo.getCorporateDashboard(clientId)
+  Response type: EzProtectCorporateDashboard
+
+API RESPONSE SHAPE:
+  {
+    clientId: string,
+    generatedAt: string,
+    totalEvents: number,
+    totalDevices: number,
+    alertCount: number,
+    positiveRate: number,
+    connectedDevices24h: number,
+    disconnectedDevices: number,
+    windows: EzProtectWindowSummary[],
+    byFacility: Record<string, {
+      facilityId: string,
+      totalEvents: number,
+      positiveCount: number,
+      invalidCount: number,
+      byResultState: Record<string, number>
+    }>,
+    errorCategories: {
+      procedural: number,
+      equipment: number,
+      unknown: number
+    },
+    byLotRoll: Array<{
+      lotNumber: string | null,
+      rollNumber: string | null,
+      totalEvents: number,
+      positiveCount: number,
+      invalidCount: number
+    }>,
+    pmTesting: {
+      tested: number,
+      passed: number,
+      failed: number,
+      notTested: number
+    }
+  }
+
+PAGE: src/pages/ez-protect/index.tsx (CorporateDashboard component)
+  Local interface CorporateDashboardData mirrors the above exactly.
+  Fields read:
+    dashboard.totalEvents, dashboard.totalDevices, dashboard.alertCount,
+    dashboard.positiveRate, dashboard.connectedDevices24h,
+    dashboard.disconnectedDevices, dashboard.windows,
+    dashboard.byFacility (iterates values: facilityId, totalEvents,
+      positiveCount, invalidCount, byResultState),
+    dashboard.errorCategories.procedural/.equipment/.unknown,
+    dashboard.byLotRoll (lotNumber, rollNumber, totalEvents,
+      positiveCount, invalidCount),
+    dashboard.pmTesting (tested, passed, failed, notTested)
+
+VERDICT: MATCH
+  Page interface CorporateDashboardData exactly mirrors
+  EzProtectCorporateDashboard. byLotRoll and pmTesting are marked
+  optional in the page interface (with ?), matching server behavior.
+
+
+================================================================================
+5. /api/ez-protect/dashboard-facility  -->  facility.tsx
+================================================================================
+
+API ROUTE: src/pages/api/ez-protect/dashboard-facility.ts
+  UseCase: GetEzProtectDashboardUseCase  (SAME as /dashboard)
+  Repo method: ezProtectRepo.getDashboardSummary(locationId, clientId)
+  Response type: EzProtectDashboardSummary
+
+API RESPONSE SHAPE (same as /dashboard):
+  {
+    locationId: string,
+    generatedAt: string,
+    totalEvents: number,
+    latestOccurredAt?: string,
+    windows: EzProtectWindowSummary[]
+      -> { windowDays, totalEvents, byResultState }
+  }
+
+PAGE: src/pages/ez-protect/facility.tsx
+  Local interface FacilityDashboardResponse:
+    {
+      devices: DeviceStatus[],
+      positives: PositiveBreakdown,
+      invalids: InvalidSummary[],
+      errors: ErrorEntry[],
+      pmTests: PmTestEntry[],
+      windows: WindowSummary[]
+    }
+
+  Fields the page reads:
+    dashboard.devices         (iterates: deviceSerialNumber, online,
+                               operatorId, lastSeenAt)
+    dashboard.positives       (initialPositive, presumptivePositive,
+                               productPositive)
+    dashboard.invalids        (deviceSerialNumber, operatorId,
+                               count1Day, count7Day, count14Day)
+    dashboard.errors          (errorCode, category, lotNumber,
+                               rollNumber, count)
+    dashboard.pmTests         (date, deviceSerialNumber, operatorId, count)
+    dashboard.windows         (windowDays, totalEvents, positiveCount,
+                               invalidCount, errorCount)
+
+VERDICT: *** CRITICAL MISMATCH ***
+
+  The API returns EzProtectDashboardSummary:
+    { locationId, generatedAt, totalEvents, latestOccurredAt, windows }
+
+  But the page expects FacilityDashboardResponse:
+    { devices, positives, invalids, errors, pmTests, windows }
+
+  Specific mismatches:
+    a) Page expects "devices" array       --> API does NOT return this
+    b) Page expects "positives" object    --> API does NOT return this
+    c) Page expects "invalids" array      --> API does NOT return this
+    d) Page expects "errors" array        --> API does NOT return this
+    e) Page expects "pmTests" array       --> API does NOT return this
+    f) Page expects WindowSummary with fields: positiveCount,
+       invalidCount, errorCount           --> API WindowSummary has only:
+       windowDays, totalEvents, byResultState (no positiveCount etc.)
+    g) API returns locationId, generatedAt, totalEvents,
+       latestOccurredAt                   --> Page does NOT read any of these
+
+  Root cause: facility.tsx was built expecting a dedicated facility
+  dashboard shape (likely designed before the API was implemented or
+  copy-pasted from a mockup), but the API endpoint reuses the same
+  GetEzProtectDashboardUseCase as /dashboard, which returns the simpler
+  EzProtectDashboardSummary structure.
+
+  Impact: The facility.tsx page will render with all empty/zero data.
+  dashboard.devices will be undefined, .length will throw. The page
+  will likely show "No devices found" and zero values everywhere.
+
+
+================================================================================
+6. /api/ez-protect/devices  -->  devices.tsx
+================================================================================
+
+API ROUTE: src/pages/api/ez-protect/devices.ts
+  UseCase: GetDeviceHealthUseCase
+  Repo method: ezProtectRepo.getDevices(filter)
+  Response type: DeviceInfo[]
+
+API RESPONSE SHAPE:
+  Array of DeviceInfo objects (returned directly, NOT wrapped):
+  [
+    {
+      deviceSerialNumber: string,
+      deviceModel: string,
+      lastSeenAt: string,
+      status: "online" | "offline" | "error",
+      lastControlStatus: string | undefined,
+      lastCalibrationStatus: string | undefined,
+      lastPmStatus: string | undefined,
+      facilityId: string,
+      locationId: string,
+      totalEvents: number
+    },
+    ...
+  ]
+
+PAGE: src/pages/ez-protect/devices.tsx
+  Expected response type:
+    EzProtectDevicesResponse {
+      devices: EzProtectDevice[]
+    }
+
+  The page reads: data.devices (array), then for each:
+    device.id, device.deviceSerialNumber, device.deviceModel,
+    device.lastSeenAt, device.status, device.calibrationStatus,
+    device.pmStatus, device.totalEvents, device.facilityId
+
+VERDICT: *** MISMATCH ***
+
+  a) WRAPPING: Page expects { devices: [...] } but API returns bare
+     array [...]. The page reads data.devices which will be undefined
+     when data is a plain array.
+
+     Impact: filteredDevices will be empty. Page shows "No devices found."
+
+  b) MISSING FIELD "id": Page reads device.id for the React key prop.
+     API does NOT return "id" — it uses deviceSerialNumber as the
+     aggregation _id. The key will be undefined.
+
+  c) FIELD NAME: Page reads "calibrationStatus" but API returns
+     "lastCalibrationStatus". Page reads "pmStatus" but API returns
+     "lastPmStatus".
+
+     Impact: Calibration and PM Status columns will show "undefined".
+
+  d) EXTRA API FIELD: API returns "lastControlStatus" which the page
+     does not display.
+
+
+================================================================================
+7. /api/ez-protect/alert-history  -->  alerts.tsx (Alert History section)
+================================================================================
+
+API ROUTE: src/pages/api/ez-protect/alert-history.ts
+  UseCase: ListAlertHistoryUseCase
+  Repo: models.EzProtectAlertHistoryModel.find(query).lean()
+  Response type: any (explicit)
+
+API RESPONSE SHAPE:
+  {
+    alerts: <raw Mongoose docs>[],   // NOTE: key is "alerts"
+    total: number,
+    page: number,
+    limit: number,
+    totalPages: number
+  }
+
+  Each alert doc has whatever fields the EzProtectAlertHistoryModel
+  schema defines (likely: _id, clientId, locationId, sentAt, alertName,
+  triggerType, channel, recipients, message, acknowledged, etc.)
+
+PAGE: src/pages/ez-protect/alerts.tsx (Alert History section)
+  Expected response type:
+    AlertHistoryResponse {
+      history: AlertHistoryEntry[],  // NOTE: key is "history"
+      total: number
+    }
+
+  Each AlertHistoryEntry:
+    { id, date, alertName, trigger, channel, recipients, message,
+      acknowledged }
+
+  Fields read:
+    historyData.history (array)
+    historyData.total
+    For each entry: entry.id, entry.date, entry.alertName, entry.trigger,
+      entry.channel, entry.recipients.join(', '), entry.message,
+      entry.acknowledged
+
+VERDICT: *** MISMATCH ***
+
+  a) ARRAY KEY: API returns "alerts" but page reads "history".
+     historyData.history will be undefined. Page shows "No alert history."
+
+  b) FIELD NAME "date" vs "sentAt": API returns raw Mongoose docs with
+     "sentAt" timestamp, page expects "date".
+
+  c) FIELD NAME "trigger" vs "triggerType": API returns "triggerType",
+     page expects "trigger".
+
+  d) FIELD NAME "id" vs "_id": Raw Mongoose .lean() docs have "_id"
+     (ObjectId), page expects "id" (string).
+
+  e) MISSING "page"/"limit"/"totalPages": Page only expects "total"
+     in AlertHistoryResponse but API returns all four pagination fields.
+     Not a breaking issue, just unused fields.
+
+
+================================================================================
+8. /api/ez-protect/alerts (GET)  -->  alerts.tsx (Alert Rules section)
+================================================================================
+
+API ROUTE: src/pages/api/ez-protect/alerts/index.ts (GET handler)
+  UseCase: ListAlertRulesUseCase
+  Repo: models.EzProtectAlertRuleModel.find(query).lean()
+  Response type: any
+
+API RESPONSE SHAPE:
+  Raw array of Mongoose lean docs (returned directly from Result.ok(rules)):
+  [
+    {
+      _id: ObjectId,
+      clientId: string,
+      locationId: string,
+      name: string,
+      description: string,
+      enabled: boolean,
+      isDefault: boolean,
+      triggerType: string,
+      triggerConfig: object,
+      channel: string,
+      recipients: string[],
+      notifyFacilityContacts: boolean,
+      faqLinks: string[],
+      videoLinks: string[],
+      createdBy: string,
+      createdAt: Date,
+      updatedAt: Date,
+      __v: number
+    },
+    ...
+  ]
+
+PAGE: src/pages/ez-protect/alerts.tsx (Alert Rules section)
+  Expected response type:
+    AlertRulesResponse {
+      rules: AlertRule[]
+    }
+
+  Each AlertRule:
+    { id, name, triggerType, triggerConfig, channel, recipients,
+      faqLink, videoLink, enabled, isDefault }
+
+  Fields read:
+    rulesData.rules (array)
+    For each rule: rule.id, rule.name, rule.triggerType, rule.channel,
+      rule.enabled, rule.isDefault
+
+VERDICT: *** MISMATCH ***
+
+  a) WRAPPING: API returns bare array [...] but page expects
+     { rules: [...] }. rulesData.rules will be undefined.
+     Page shows "No alert rules configured yet."
+
+  b) FIELD NAME "id" vs "_id": Raw lean docs have "_id", page
+     expects "id". React key will be undefined.
+
+  c) FIELD NAME: Page interface has "faqLink" (singular string) but
+     API returns "faqLinks" (array of strings). Same for "videoLink"
+     vs "videoLinks".
+
+
+================================================================================
+8b. /api/ez-protect/alerts (POST)  -->  alerts.tsx (NewRuleForm)
+================================================================================
+
+API ROUTE: src/pages/api/ez-protect/alerts/index.ts (POST handler)
+  UseCase: CreateAlertRuleUseCase
+  Response: { created: true, url: `/api/ez-protect/alerts/${rule._id}` }
+
+  IMPORTANT: In Endpoint.ts line 355-356:
+    if (response && response.created) {
+      return res.created(response.url);
+    }
+  This means the Endpoint framework intercepts { created: true, url: ... }
+  and calls res.created(url) which returns HTTP 201 with EMPTY BODY and
+  a Location header.
+
+PAGE: src/pages/ez-protect/alerts.tsx (NewRuleForm)
+  Sends POST to /api/ez-protect/alerts.
+  Checks: if (result && result !== false) { ... onCreated() }
+
+VERDICT: POTENTIAL ISSUE
+  The POST returns HTTP 201 with empty body. fetchJson will likely
+  return null/undefined or throw depending on implementation. The page
+  checks "result && result !== false" which may fail on null, causing
+  the error message "Failed to create alert rule" even on success.
+
+  However, this depends on fetchJson's behavior with empty 201 responses.
+  If fetchJson returns truthy for 2xx status, it works. If it tries to
+  parse JSON from empty body, it may throw.
+
+
+================================================================================
+SUMMARY OF ALL MISMATCHES
+================================================================================
+
+ENDPOINT                         PAGE             STATUS
+---------------------------------------------------------------------------
+/api/ez-protect/events           results.tsx      OK - match
+/api/ez-protect/event/[id]       results/[id].tsx OK - match (type coercion)
+/api/ez-protect/dashboard        index.tsx        OK - match
+/api/ez-protect/dashboard-corp.  index.tsx        OK - match
+/api/ez-protect/dashboard-fac.   facility.tsx     CRITICAL MISMATCH
+/api/ez-protect/devices          devices.tsx      MISMATCH
+/api/ez-protect/alert-history    alerts.tsx       MISMATCH
+/api/ez-protect/alerts (GET)     alerts.tsx       MISMATCH
+/api/ez-protect/alerts (POST)    alerts.tsx       POTENTIAL ISSUE
+
+CRITICAL ISSUES (will cause visible bugs / blank pages):
+
+  1. facility.tsx: Entire page is built for a response shape that does
+     not exist. The API reuses GetEzProtectDashboardUseCase which returns
+     {locationId, generatedAt, totalEvents, latestOccurredAt, windows}
+     but the page expects {devices, positives, invalids, errors, pmTests,
+     windows}. Every section will be empty or crash.
+
+  2. devices.tsx: API returns DeviceInfo[] (bare array) but page expects
+     {devices: DeviceInfo[]}. Also field name mismatches:
+     calibrationStatus vs lastCalibrationStatus,
+     pmStatus vs lastPmStatus, id vs (missing).
+
+  3. alerts.tsx (Rules): API returns AlertRule[] (bare array) but page
+     expects {rules: AlertRule[]}. Also _id vs id, faqLink vs faqLinks.
+
+  4. alerts.tsx (History): API returns {alerts: [...]} but page reads
+     {history: [...]}. Also field renames: date/sentAt, trigger/triggerType,
+     id/_id.
+
+
+RECOMMENDED FIXES (priority order):
+
+  1. facility.tsx: Either create a dedicated GetFacilityDashboardUseCase
+     that returns the expected shape (devices, positives, invalids, errors,
+     pmTests, windows with positiveCount/invalidCount/errorCount), OR
+     rewrite facility.tsx to use the EzProtectDashboardSummary shape.
+
+  2. devices.tsx: Either wrap the API response as {devices: result} in
+     the use case, OR change the page to read the bare array. Fix field
+     names: lastCalibrationStatus -> calibrationStatus, lastPmStatus ->
+     pmStatus. Add "id" field to DeviceInfo (could use deviceSerialNumber).
+
+  3. alerts GET: Either wrap as {rules: result} in the use case, OR
+     change page to read bare array. Map _id to id. Rename faqLink(s).
+
+  4. alert-history: Rename response key "alerts" to "history", OR change
+     page to read "alerts". Map sentAt->date, triggerType->trigger,
+     _id->id.
+
+  5. alerts POST: Verify fetchJson handles empty 201 responses correctly.
+     Consider returning {created: true} without the URL to avoid the
+     Endpoint framework's res.created() interception, or adjust the
+     framework check.

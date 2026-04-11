@@ -1,0 +1,138 @@
+===============================================================
+  FALCON PHONE ADB INVENTORY — 2026-03-25
+  READ-ONLY SCAN — Nothing was pushed or installed
+===============================================================
+
+DEVICE
+  Model:           SM-S721U1 (Samsung Galaxy S24 FE / S25)
+  Codename:        Falcon
+  Android:         16
+  Connection:      WiFi ADB — 192.168.15.64:5555
+  ADB Version:     36.0.2-14143358
+
+BATTERY
+  Level:           66%
+  Status:          Discharging (status 3)
+  USB powered:     true (charging inactive — USB data only?)
+  Health:          Good (2)
+  Voltage:         3925 mV
+
+STORAGE
+  Total:           ~224 GB
+  Used:            ~111 GB (50%)
+  Free:            ~112 GB
+
+MEMORY
+  Total RAM:       ~7.1 GB
+  Available:       ~2.4 GB
+  Free:            ~402 MB
+
+===============================================================
+  INSTALLED PACKAGES (relevant)
+===============================================================
+  com.termux              — Termux terminal emulator
+  com.termux.api          — Termux:API (battery, SMS, camera, etc.)
+  com.jessebrown.asolaria — Asolaria native app (custom)
+  com.whatsapp            — WhatsApp personal
+  com.whatsapp.w4b        — WhatsApp Business
+
+===============================================================
+  TERMUX HOME (/data/data/com.termux/files/home/)
+===============================================================
+  Accessible via:  adb shell run-as com.termux
+
+  Files/dirs:
+    CLAUDE.md               — Falcon identity card (super_admin)
+    asolaria/               — Contains: adb_marker2, hello.txt
+    dasein/                 — (empty dir)
+    downloads/              — AGENTS.md, certs, architecture cards
+    english-teacher/        — index.html (side project?)
+    fix_tmp.sh
+    list_images.sh
+    mqtt_agent.log          — MQTT agent log (see status below)
+    node_modules/           — npm packages
+    package-lock.json
+    package.json            — deps: mqtt ^5.15.0
+    phone_mqtt_agent.js     — Colony MQTT presence agent
+    tmp/                    — node-compile-cache
+
+  CLAUDE.md identity:
+    Role:            super_admin (highest privilege)
+    Colony:          Asolaria sovereign swarm
+    Asolaria server: http://127.0.0.1:4781 (via ADB reverse bridge)
+    MQTT broker:     mqtt://127.0.0.1:18883 (TCP) / 18884 (WS)
+    Bridge relay:    http://127.0.0.1:8788
+    LAN MQTT:        mqtt://192.168.1.6:18886 (Rayssa)
+    Auth:            Claude MAX OAuth (plasmatoid@gmail.com)
+    Gemini:          API key in .bashrc
+    MCP endpoint:    http://127.0.0.1:4781/mcp
+
+  phone_mqtt_agent.js:
+    Broker:          mqtt://127.0.0.1:18883
+    Client ID:       jesse_phone
+    Viewer:          falcon
+    Role:            super_master
+    Capabilities:    termux, node, python, adb
+    Publishes:       asolaria/nodes/jesse_phone/runtime/presence (retained)
+    Subscribes:      asolaria/nodes/jesse_phone/command/#, asolaria/broadcast/#
+    Heartbeat:       every 30s
+
+  mqtt_agent.log (last 20 lines — UNHEALTHY):
+    Pattern: connack timeout → brief connect → keepalive timeout → repeat
+    Last successful connect message: "Connected to colony broker as jesse_phone"
+    Predominantly: "[MQTT] Error: connack timeout" spam
+    Diagnosis: ADB reverse bridge to 127.0.0.1:18883 is either not
+               forwarded or MQTT broker on host is not running/reachable.
+
+===============================================================
+  PORT FORWARDING
+===============================================================
+  Active forwards:   NONE (adb forward --list returned empty)
+  Note: No ADB forward or reverse tunnels are currently active.
+        This explains why the MQTT agent can't reach the broker.
+
+===============================================================
+  /sdcard SCAN
+===============================================================
+  /sdcard/Asolaria/    — DOES NOT EXIST (no shared-storage Asolaria dir)
+  /sdcard/WhatsApp/    — NOT ACCESSIBLE (scoped storage, Android 16)
+  /sdcard/Download/    — 266 files (PDFs, APKs, zips, docs)
+
+  Notable in Downloads:
+    Asolaria-Public-20260219-191509.zip
+    Asolaria-Public-20260219-191542.zip
+    Asolaria-Public-20260222-164348.zip
+    Asolaria-Public-20260225-135740.zip
+    APKPure_v3.20.52_apkpure.com.apk
+    Bank statements (multiple months)
+    Various PDFs, .docx files
+
+  Termux downloads/ folder:
+    AGENTS.md
+    Jesse Daniel (plasma) - Chrome.lnk
+    MongoDBCompass.lnk
+    asolaria-local (1).cer
+    asolaria-local (2).cer
+    asolaria-mobile-architecture-card-20260303.md
+    asolaria-system-card-20260303.md
+
+===============================================================
+  SUMMARY / ACTION ITEMS
+===============================================================
+  [OK]    ADB connected over WiFi, device authorized
+  [OK]    Termux installed with node, mqtt, Asolaria identity
+  [OK]    Asolaria native app installed (com.jessebrown.asolaria)
+  [OK]    WhatsApp + WhatsApp Business installed
+  [OK]    Termux:API available for device sensors
+  [OK]    50% storage free (~112 GB)
+  [WARN]  Battery at 66%, discharging
+  [FAIL]  No ADB port forwards active — MQTT bridge is DOWN
+  [FAIL]  MQTT agent log shows persistent connack/keepalive timeouts
+  [FAIL]  No /sdcard/Asolaria/ directory for shared-storage exchange
+  [FAIL]  WhatsApp dir not accessible (Android 16 scoped storage)
+  [INFO]  LAN MQTT to Rayssa (192.168.1.6:18886) — not tested
+
+  To restore MQTT bridge, run on host:
+    adb reverse tcp:18883 tcp:18883
+    adb reverse tcp:4781 tcp:4781
+    adb reverse tcp:8788 tcp:8788

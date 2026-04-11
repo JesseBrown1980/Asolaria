@@ -1,0 +1,108 @@
+config = '''
+{
+  "signature": 16044164491585077,
+  "ram_encode": [
+    {
+      "name": "hevc_qsv",
+      "format": "H265",
+      "priority": 0,
+      "hwdevice": "AV_HWDEVICE_TYPE_NONE"
+    },
+    {
+      "name": "h264_qsv",
+      "format": "H264",
+      "priority": 0,
+      "hwdevice": "AV_HWDEVICE_TYPE_NONE"
+    }
+  ],
+  "ram_decode": [
+    {
+      "name": "hevc",
+      "format": "H265",
+      "priority": 0,
+      "hwdevice": "AV_HWDEVICE_TYPE_D3D11VA"
+    },
+    {
+      "name": "h264",
+      "format": "H264",
+      "priority": 0,
+      "hwdevice": "AV_HWDEVICE_TYPE_D3D11VA"
+    },
+    {
+      "name": "h264",
+      "format": "H264",
+      "priority": 3,
+      "hwdevice": "AV_HWDEVICE_TYPE_NONE"
+    },
+    {
+      "name": "hevc",
+      "format": "H265",
+      "priority": 3,
+      "hwdevice": "AV_HWDEVICE_TYPE_NONE"
+    }
+  ],
+  "vram_encode": [
+    {
+      "driver": "MFX",
+      "luid": 56460,
+      "api": "API_DX11",
+      "data_format": "H265"
+    },
+    {
+      "driver": "MFX",
+      "luid": 56460,
+      "api": "API_DX11",
+      "data_format": "H264"
+    },
+    {
+      "driver": "FFMPEG",
+      "luid": 56460,
+      "api": "API_DX11",
+      "data_format": "H265"
+    },
+    {
+      "driver": "FFMPEG",
+      "luid": 56460,
+      "api": "API_DX11",
+      "data_format": "H264"
+    }
+  ],
+  "vram_decode": [
+    {
+      "driver": "MFX",
+      "luid": 56460,
+      "api": "API_DX11",
+      "data_format": "H264"
+    },
+    {
+      "driver": "FFMPEG",
+      "luid": 56460,
+      "api": "API_DX11",
+      "data_format": "H264"
+    },
+    {
+      "driver": "FFMPEG",
+      "luid": 57230,
+      "api": "API_DX11",
+      "data_format": "H264"
+    },
+    {
+      "driver": "MFX",
+      "luid": 56460,
+      "api": "API_DX11",
+      "data_format": "H265"
+    },
+    {
+      "driver": "FFMPEG",
+      "luid": 56460,
+      "api": "API_DX11",
+      "data_format": "H265"
+    },
+    {
+      "driver": "FFMPEG",
+      "luid": 57230,
+      "api": "API_DX11",
+      "data_format": "H265"
+    }
+  ]
+}'''

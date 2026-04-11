@@ -1,0 +1,223 @@
+{
+  "id": "phone.mode.desktop.control",
+  "title": "Phone Mode Desktop Control Interface",
+  "description": "Phone Link (phone-mode.html) — bidirectional desktop mirror/control surface served by Asolaria. Shows live desktop screenshots on phone Chrome with click-to-control, voice chat, approvals inbox, WhatsApp bridge, and more. Viewer name is set dynamically from the ?viewer= URL parameter.",
+  "version": "0.1.0",
+  "risk": "high",
+  "permissions": [
+    "desktop.capture",
+    "desktop.control",
+    "mobile.auth"
+  ],
+  "tags": [
+    "phone",
+    "mobile",
+    "desktop",
+    "mirror",
+    "control",
+    "voice",
+    "whatsapp",
+    "approvals"
+  ],
+  "discoveredAt": "2026-03-14T21:30:00.000Z",
+  "source": "session-research",
+  "files": {
+    "html": "public/phone-mode.html",
+    "js": "public/phone-mode.js",
+    "relatedConsole": "public/mobile-console.html",
+    "relatedApprovals": "public/mobile-approvals.html"
+  },
+  "apiEndpoints": {
+    "screenCapture": {
+      "method": "POST",
+      "path": "/api/mobile/screen/capture",
+      "auth": "requireMobileAuth",
+      "note": "Captures desktop screenshot for serving to phone"
+    },
+    "screenImage": {
+      "method": "GET",
+      "path": "/api/mobile/screen/image",
+      "auth": "requireMobileAuth",
+      "note": "Serves the latest captured desktop image"
+    },
+    "screenStatus": {
+      "method": "GET",
+      "path": "/api/mobile/screen/status",
+      "auth": "requireMobileAuth",
+      "note": "Returns capture state, display info, errors"
+    },
+    "screenDisplays": {
+      "method": "GET",
+      "path": "/api/mobile/screen/displays",
+      "auth": "requireMobileAuth",
+      "note": "Lists available desktop displays"
+    },
+    "controlArm": {
+      "method": "POST",
+      "path": "/api/mobile/control/arm",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority",
+      "note": "Arms click-to-control for 90 seconds"
+    },
+    "controlDisarm": {
+      "method": "POST",
+      "path": "/api/mobile/control/disarm",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority"
+    },
+    "controlClick": {
+      "method": "POST",
+      "path": "/api/mobile/control/click",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority",
+      "note": "Sends click at x,y coordinates to desktop"
+    },
+    "controlScroll": {
+      "method": "POST",
+      "path": "/api/mobile/control/scroll",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority"
+    },
+    "controlType": {
+      "method": "POST",
+      "path": "/api/mobile/control/type",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority",
+      "note": "Types text on desktop from phone"
+    },
+    "controlKey": {
+      "method": "POST",
+      "path": "/api/mobile/control/key",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority",
+      "note": "Sends keypress to desktop (ENTER, ESC, etc.)"
+    },
+    "windowsList": {
+      "method": "GET",
+      "path": "/api/mobile/windows",
+      "auth": "requireMobileAuth"
+    },
+    "windowsFocus": {
+      "method": "POST",
+      "path": "/api/mobile/windows/focus",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority"
+    },
+    "windowsAction": {
+      "method": "POST",
+      "path": "/api/mobile/windows/action",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority"
+    },
+    "session": {
+      "method": "GET",
+      "path": "/api/mobile/session",
+      "auth": "requireMobileAuth"
+    },
+    "inbox": {
+      "method": "GET",
+      "path": "/api/mobile/inbox",
+      "auth": "requireMobileAuth"
+    },
+    "approvals": {
+      "method": "GET",
+      "path": "/api/mobile/approvals",
+      "auth": "requireMobileAuth"
+    },
+    "powerShutdown": {
+      "method": "POST",
+      "path": "/api/power/shutdown",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority",
+      "note": "Remote shutdown of desktop from phone"
+    },
+    "powerRestart": {
+      "method": "POST",
+      "path": "/api/power/restart",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority"
+    },
+    "powerWol": {
+      "method": "POST",
+      "path": "/api/power/wol/send",
+      "auth": "requireMobileAuth + requireMobileDirectControlEnabled + requireDesktopSuperMasterAuthority",
+      "note": "Wake-on-LAN to turn on desktop from phone"
+    }
+  },
+  "uiFeatures": [
+    {
+      "id": "F01",
+      "name": "Live Mirror",
+      "description": "Interactive desktop screenshot with click-to-control + read-only shadow workspace"
+    },
+    {
+      "id": "F02",
+      "name": "Quick Controls",
+      "description": "Back/Home/Recent/Enter/Power buttons, scroll, type text on phone"
+    },
+    {
+      "id": "F03",
+      "name": "Pro Mirror (scrcpy)",
+      "description": "Low-latency desktop mirror window via scrcpy with configurable FPS/bitrate"
+    },
+    {
+      "id": "F04",
+      "name": "Voice Chat",
+      "description": "Push-to-talk and auto voice with Asolaria brain, TTS playback"
+    },
+    {
+      "id": "F05",
+      "name": "Text Chat",
+      "description": "Type messages to Asolaria with RouteLLM/Deep Agent/Gemini Edge routing"
+    },
+    {
+      "id": "F06",
+      "name": "Urgent Inbox",
+      "description": "Approvals, active tasks, priority notes for fast phone triage"
+    },
+    {
+      "id": "F07",
+      "name": "WhatsApp Bridge",
+      "description": "Send WhatsApp messages, voice clips via Twilio or linked device mode"
+    },
+    {
+      "id": "F08",
+      "name": "Meeting Captions",
+      "description": "Real-time transcription from tab/window/screen audio or microphone"
+    },
+    {
+      "id": "F09",
+      "name": "Gemini Relay",
+      "description": "Bridge Gemini Live output into Asolaria for deeper processing"
+    },
+    {
+      "id": "F10",
+      "name": "NotebookLM Shortcuts",
+      "description": "Ask NotebookLM and check status directly from phone interface"
+    },
+    {
+      "id": "F11",
+      "name": "Wake Word",
+      "description": "'Hello Asolaria' foreground listener that routes to Gemini edge path"
+    },
+    {
+      "id": "F12",
+      "name": "Interface Levels",
+      "description": "Talk (voice/chat only), Control (mirror + controls), Admin (full access)"
+    },
+    {
+      "id": "F13",
+      "name": "Power Controls",
+      "description": "Shutdown, restart, abort, Wake-on-LAN from phone"
+    }
+  ],
+  "connectors": {
+    "desktopCapture": "src/connectors/desktopCaptureConnector.js",
+    "desktopControl": "src/connectors/desktopControlConnector.js",
+    "desktopDisplay": "src/connectors/desktopDisplayConnector.js",
+    "phoneMirror": "src/connectors/phoneMirrorConnector.js",
+    "phoneProMirror": "src/connectors/phoneProMirrorConnector.js",
+    "screenshot": "src/connectors/screenshotConnector.js"
+  },
+  "securityModel": {
+    "authLayers": [
+      "requireMobileAuth (token-based mobile session)",
+      "requireMobileDirectControlEnabled (policy flag)",
+      "requireDesktopSuperMasterAuthority (elevated privilege for control actions)"
+    ],
+    "armDisarmPattern": "Control must be explicitly armed (90s timeout) before click/type/key actions are allowed",
+    "observerMode": "Shadow workspace is read-only visual verification"
+  },
+  "ixRef": "—",
+  "pidRegistry": {}
+}

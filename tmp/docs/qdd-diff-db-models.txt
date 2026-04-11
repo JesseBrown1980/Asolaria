@@ -1,0 +1,386 @@
+QDD ebacmap-master — DB Models Diff Analysis
+==============================================
+Date: 2026-03-25
+Analyst: Gaia (Claude Opus 4.6)
+Branch: feature/ez-protect-admin-monorepo
+Scope: libs/db/src/models/ (all changed files)
+
+Files changed: 20 model files
+ORM: Mongoose (MongoDB)
+
+======================================================================
+CHANGE CATEGORY 1: defaultValue → default
+======================================================================
+Files affected (15):
+  - BlackoutDate.ts    (isDeleted)
+  - Capa.ts            (isDeleted)
+  - Category.ts        (isDeleted)
+  - Client.ts          (numLocations, isDeleted, imported, ssoEnabled, forceSSO)
+  - FacilityMap.ts     (isDeleted)
+  - Location.ts        (isDeleted)
+  - Organism.ts        (isDeleted)
+  - PendingTestResult.ts (isDeleted)
+  - Product.ts         (isLocationSpecific, isDeleted, isActive, isAssociateUser)
+  - Site.ts            (isComposite, active, isDeleted)
+  - SiteGroup.ts       (isDeleted)
+  - SwabSchedule.ts    (endDate, isDeleted, useGroups, randomize, repeatRandomized, pendingChanges)
+  - TestDefinition.ts  (isDeleted)
+  - TestResult.ts      (isDeleted)
+  - TestResultRead.ts  (isDeleted)
+  - User.ts            (auAdmin, isPrimaryCompanyAdmin, isOperator)
+  - Zone.ts            (isDeleted)
+
+VERDICT: CRITICAL FIX — NOT RISKY, MANDATORY
+
+Analysis:
+  `defaultValue` is NOT a valid Mongoose schema option. Mongoose ignores it silently.
+  The correct Mongoose option is `default`.
+
+  This means that BEFORE this change:
+  - Every `defaultValue: false` field had NO default at all
+  - New documents saved WITHOUT explicitly setting isDeleted, ssoEnabled, etc.
+    would have those fields as `undefined` (absent from the document), not `false`
+  - Queries like `{ isDeleted: false }` would NOT match documents where isDeleted
+    was never set, because undefined !== false
+  - This is likely a long-standing bug masked by application code always setting
+    these fields explicitly, or by strict:false allowing the save anyway
+
+  AFTER this change:
+  - New documents will correctly get `false` (or the specified value) if the field
+    is omitted during creation
+  - Existing documents in the database are NOT affected (they already have whatever
+    value was set at creation time)
+
+  Risk assessment:
+  - Could this break existing queries?  NO — it can only HELP. Queries for
+    `{ isDeleted: false }` will now match new documents that previously would have
+    been missed (undefined instead of false).
+  - Could this change data behavior?  YES, beneficially. New documents will now
+    have proper defaults. Old documents are unchanged.
+  - Could this cause runtime errors?  NO.
+  - Edge case: If any code relies on isDeleted being ABSENT (undefined) for new
+    records, that code would break. But this would be a bug in that code.
+
+  SPECIFIC HIGH-VALUE FIXES:
+  - Client.numLocations: was defaultValue:1 (broken), now default:1
+    New clients created without numLocations will now get 1 instead of undefined.
+  - Product.isActive: was defaultValue:true (broken), now default:true
+    New products will now default to active instead of undefined.
+  - Site.active: was defaultValue:true (broken), now default:true
+    New sites will now default to active instead of undefined.
+  - SwabSchedule.endDate: was defaultValue:'oneYear' (broken), now default:'oneYear'
+    New schedules will now get correct default end date.
+
+======================================================================
+CHANGE CATEGORY 2: autoValue → default
+======================================================================
+Files affected (3):
+  - ActivityLog.ts     (date field)
+  - Migration.ts       (date field)
+  - Stats.ts           (date field)
+
+Also in TestDefinition.ts:
+  - qualitativeTarget  (autoValue → default: 'negative')
+  - quantitativeTarget (autoValue → default: 0.0)
+  - quantitativeLimit  (autoValue → default: 999999.99)
+
+VERDICT: CRITICAL FIX — SAFE
+
+Analysis:
+  `autoValue` is a SimpleSchema/Meteor concept, NOT a Mongoose feature.
+  Mongoose ignores `autoValue` entirely. The old code:
+
+    autoValue: function() {
+      if (this.operator === null && !this.isSet) {
+        return new Date();
+      }
+      return undefined;
+    }
+
+  ...was completely dead code in Mongoose. It never executed.
+  The `this.operator` and `this.isSet` are SimpleSchema context properties
+  that don't exist in Mongoose schemas.
+
+  This confirms the codebase was migrated from Meteor/SimpleSchema to
+  Mongoose at some point, and these vestiges were never cleaned up.
+
+  AFTER this change:
+  - `default: () => new Date()` is proper Mongoose syntax
+  - ActivityLog, Migration, Stats will now get automatic date values
+  - TestDefinition qualitativeTarget will default to 'negative' (was broken)
+  - TestDefinition quantitativeTarget will default to 0.0 (was broken)
+  - TestDefinition quantitativeLimit will default to 999999.99 (was broken)
+
+  Risk assessment:
+  - Could break queries?  NO — only affects new inserts.
+  - Changed data behavior?  YES — new records now get correct defaults.
+    PREVIOUSLY: date fields on ActivityLog/Stats/Migration were undefined
+    unless application code set them. NOW: they auto-populate.
+  - Runtime errors?  NO.
+
+  NOTE: TestDefinition also lost `decimal: true` on quantitativeTarget and
+  quantitativeLimit. In Mongoose, `decimal: true` is not a standard option
+  (Mongoose uses Schema.Types.Decimal128 for true decimal). The Number type
+  in Mongoose already stores as double. So removing `decimal: true` has
+  NO effect — it was already ignored.
+
+======================================================================
+CHANGE CATEGORY 3: optional:true removal
+======================================================================
+Files affected (4):
+  - PendingTestResult.ts  (resultValue, quantitativeValue, subType, rating,
+                           coaUrl, sampleId, finalRating)
+  - Site.ts               (vectorId, parentSite, zoneCode, novalumID)
+  - TestResult.ts         (operationalTiming, uniqueLabAnalysisCode,
+                           resultValue, quantitativeValue, subType, rating,
+                           coaUrl, sampleId, finalRating)
+  - TestResultRead.ts     (uniqueLabAnalysisCode, quantitativeTarget,
+                           quantitativeLimit, nonconformanceStatus,
+                           operationalTiming, resultValue, uniqueLabAnalysisCode,
+                           quantitativeValue, subType, rating, coaUrl, sampleId,
+                           finalRating, isComposite, sampleMonth, activity)
+
+VERDICT: SAFE CLEANUP — NO BEHAVIOR CHANGE
+
+Analysis:
+  `optional: true` is a SimpleSchema concept, NOT Mongoose.
+  In Mongoose, fields are optional by default unless `required: true` is set.
+  Mongoose ignores the `optional` property entirely.
+
+  This means:
+  - BEFORE: `optional: true` was dead metadata, ignored by Mongoose
+  - AFTER: Same behavior — fields remain optional (no `required: true` added)
+
+  Risk assessment:
+  - Could break queries?  NO.
+  - Changed data behavior?  NO.
+  - Runtime errors?  NO.
+
+======================================================================
+CHANGE CATEGORY 4: allowedValues → enum
+======================================================================
+Files affected (3):
+  - PendingTestResult.ts  qualitativeValue:
+      allowedValues: ['positive','negative','presumptive','absence','presence']
+      → enum: ['positive','negative','presumptive','absence','presence']
+  - TestDefinition.ts  resultType:
+      allowedValues: ['quantitative','qualitative']
+      → enum: ['quantitative','qualitative']
+    qualitativeTarget:
+      allowedValues: ['positive','negative']
+      → enum: ['positive','negative']
+  - TestResult.ts  qualitativeValue:
+      allowedValues: ['positive','negative','presumptive']
+      → enum: ['positive','negative','presumptive']
+  - TestResultRead.ts  qualitativeValue:
+      allowedValues: ['positive','negative','presumptive']
+      → enum: ['positive','negative','presumptive']
+
+VERDICT: CRITICAL FIX — LOW RISK BUT BEHAVIOR CHANGE
+
+Analysis:
+  `allowedValues` is SimpleSchema, NOT Mongoose. Mongoose ignores it.
+  `enum` IS the correct Mongoose validation keyword.
+
+  BEFORE this change:
+  - NO validation was enforced on these fields. Any string value could be saved.
+  - A qualitativeValue of "maybe" or "POSITIVE" (wrong case) would save without
+    error.
+
+  AFTER this change:
+  - Mongoose will reject documents where these fields contain values outside
+    the enum list.
+  - A ValidationError will be thrown on .save() or .create() if the value is
+    not in the list.
+
+  Risk assessment:
+  - Could break queries?  NO — queries are unaffected by enum validation.
+  - Changed data behavior?  YES — validation is now ENFORCED.
+  - Could cause runtime errors?  YES — THIS IS THE ONE CATEGORY THAT COULD.
+
+  SPECIFIC RISKS:
+  1. If any existing code path saves a TestResult with qualitativeValue
+     not in ['positive','negative','presumptive'], it will now throw.
+  2. If any code saves TestDefinition.resultType with a value other than
+     'quantitative' or 'qualitative', it will now throw.
+  3. If any FTP import or external data pipeline writes unexpected values to
+     qualitativeValue, those writes will now fail.
+  4. Case sensitivity: 'Positive' will NOT match 'positive'. If upstream
+     systems send mixed case, saves will fail.
+
+  MITIGATION:
+  - All the enum values look like they match the existing application constants
+  - The PendingTestResult enum includes 'absence' and 'presence' which the
+    TestResult enum does NOT — this is intentional (PendingTestResult accepts
+    a broader range before finalization)
+  - If strict:false is on the parent schema, enum violations would still
+    throw (enum is field-level validation, not schema-level strictness)
+
+  RECOMMENDED TESTING:
+  - Grep codebase for any place qualitativeValue or resultType is set
+  - Verify all values match the enum exactly (case-sensitive)
+  - Check FTP import pipelines for value normalization
+
+======================================================================
+CHANGE CATEGORY 5: strict:false removal from EzProtect models
+======================================================================
+Files affected (4):
+  - EzProtectAlert.ts       (removed strict:false)
+  - EzProtectAlertHistory.ts (removed strict:false)
+  - EzProtectEvent.ts       (removed strict:false)
+  - EzProtectMsaConfig.ts   (removed strict:false)
+
+VERDICT: SAFE — CORRECT DESIGN DECISION
+
+Analysis:
+  `strict: false` tells Mongoose to save any field passed to the document,
+  even if it's not defined in the schema. With `strict: true` (the default),
+  Mongoose silently strips unknown fields.
+
+  The EzProtect models are NEW models (not legacy). They were apparently
+  created with strict:false copied from existing legacy models.
+
+  Why removing strict:false is CORRECT for new models:
+  - These schemas are fully defined with all needed fields
+  - strict:true prevents accidental field pollution from API payloads
+  - It's a security improvement — prevents NoSQL injection via extra fields
+  - EzProtectEvent has rawPayload (Schema.Types.Mixed) for any extra data
+
+  Why the EXISTING models keep strict:false:
+  - Legacy models may have data in MongoDB with fields not in the schema
+  - Removing strict:false from legacy models would silently drop those
+    fields on save (data loss risk)
+  - The 25 legacy models that keep strict:false are correct to keep it
+
+  Risk assessment:
+  - Could break queries?  NO.
+  - Changed data behavior?  YES — unknown fields on EzProtect documents
+    will now be silently stripped instead of saved.
+  - Runtime errors?  NO — Mongoose strips silently, doesn't throw.
+  - Edge case: If any code saves extra fields to EzProtect documents
+    (e.g., middleware adding metadata), those fields will now be dropped.
+    But since these are new models, this is unlikely.
+
+======================================================================
+CHANGE CATEGORY 6: EzProtectEvent — locationId/clientId now required
+======================================================================
+Diff:
+  - locationId: { type: ObjectId, ref: 'Location' }
+  + locationId: { type: ObjectId, ref: 'Location', required: true }
+  - clientId: { type: ObjectId, ref: 'Client' }
+  + clientId: { type: ObjectId, ref: 'Client', required: true }
+
+Also added new index:
+  + EzProtectEventSchema.index({ clientId: 1, locationId: 1, ingestedAt: -1 });
+
+VERDICT: MODERATE RISK — VERIFY INGESTION PIPELINE
+
+Analysis:
+  Making locationId and clientId required means every EzProtectEvent
+  MUST have these fields at save time, or Mongoose throws ValidationError.
+
+  Risk assessment:
+  - The ingestion pipeline (RouteMsaResult) must resolve the eBacMap
+    locationId and clientId BEFORE saving. If resolution fails or is
+    deferred, the save will now throw.
+  - If events are ingested in a "raw" state before eBacMap linkage,
+    this will break.
+  - The TypeScript interface already marks these as optional
+    (locationId?: Types.ObjectId, clientId?: Types.ObjectId) which
+    CONFLICTS with the schema's required:true. This should be fixed
+    in the interface to remove the `?`.
+
+  RECOMMENDED: Verify that the MSA ingestion route always has
+  locationId and clientId resolved before calling .save().
+
+======================================================================
+CHANGE CATEGORY 7: Bug fix — TestDefinition organism ref
+======================================================================
+Diff:
+  - ref: 'Organisms'
+  + ref: 'Organism'
+
+VERDICT: CRITICAL BUG FIX — SAFE
+
+Analysis:
+  The model name is 'Organism' (singular). The old ref 'Organisms' (plural)
+  would cause .populate('organism') to fail silently or throw, depending
+  on Mongoose version. This is a clear typo fix.
+
+  No model named 'Organisms' exists. This was broken.
+
+======================================================================
+CHANGE CATEGORY 8: Bug fix — Notification clientId ref
+======================================================================
+Diff:
+  - clientId: { type: ObjectId, ref: 'TestDefinition' }
+  + clientId: { type: ObjectId, ref: 'Client' }
+
+VERDICT: CRITICAL BUG FIX — SAFE
+
+Analysis:
+  clientId was referencing 'TestDefinition' instead of 'Client'. This is
+  clearly wrong — clientId should reference the Client model. Any code
+  doing .populate('clientId') on a Notification would have gotten a
+  TestDefinition document instead of a Client, or failed entirely.
+
+  This was a copy-paste bug. Fix is correct and safe.
+
+======================================================================
+CHANGE CATEGORY 9: TestDefinition — LEGACY comments added
+======================================================================
+Added documentation comments:
+  + // LEGACY: organismId duplicates organism ref below — do not remove without audit
+  + // LEGACY: categoryId duplicates category ref below — do not remove without audit
+
+VERDICT: SAFE — documentation only, no behavior change.
+
+======================================================================
+SUMMARY — RISK MATRIX
+======================================================================
+
+| Change                    | Risk   | Could Break? | Runtime Error? |
+|---------------------------|--------|--------------|----------------|
+| defaultValue → default    | NONE   | No           | No             |
+| autoValue → default       | NONE   | No           | No             |
+| optional:true removal     | NONE   | No           | No             |
+| allowedValues → enum      | LOW    | Possible     | YES if bad data|
+| strict:false removal (EzP)| LOW    | Unlikely     | No             |
+| EzP locationId required   | MEDIUM | Possible     | YES if missing |
+| EzP clientId required     | MEDIUM | Possible     | YES if missing |
+| Organism ref typo fix     | NONE   | No (fixes)   | No             |
+| Notification ref fix      | NONE   | No (fixes)   | No             |
+| LEGACY comments           | NONE   | No           | No             |
+| New composite index       | NONE   | No           | No             |
+
+======================================================================
+OVERALL ASSESSMENT
+======================================================================
+
+The diff is overwhelmingly SAFE and consists mostly of CRITICAL BUG FIXES.
+
+The codebase was clearly migrated from Meteor/SimpleSchema to Mongoose at
+some point in the past, and many SimpleSchema-specific keywords were left
+behind as dead code:
+  - `defaultValue` (should be `default`)        — ~20 broken defaults
+  - `autoValue`    (should be `default`)         — ~6 broken auto-values
+  - `optional`     (should be nothing)           — ~25 dead annotations
+  - `allowedValues`(should be `enum`)            — ~5 broken validations
+  - `decimal`      (should be Decimal128 or nothing) — 2 dead annotations
+
+None of these were functioning. The migration fixes ACTIVATE functionality
+that was always intended but never worked in Mongoose.
+
+The two items requiring verification before deploy:
+1. enum activation — grep for all writes to qualitativeValue and resultType
+   to confirm values match the enum lists exactly
+2. EzProtectEvent required fields — confirm ingestion pipeline always
+   provides locationId and clientId
+
+The two bug fixes (Organism ref typo, Notification clientId ref) should
+be deployed immediately — they fix populate() calls that were silently
+broken.
+
+======================================================================
+END OF ANALYSIS
+======================================================================

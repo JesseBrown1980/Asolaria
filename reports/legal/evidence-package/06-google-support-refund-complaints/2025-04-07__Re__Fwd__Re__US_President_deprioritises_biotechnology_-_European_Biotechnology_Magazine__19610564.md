@@ -1,0 +1,579 @@
+---
+gmail_message_id: 196105644725542e
+account: plasmatoid@gmail.com
+date_header: Mon, 7 Apr 2025 10:00:11 -0300
+from: Jesse Daniel Brown <plasmatoid@gmail.com>
+to: Fiona Mischel <fiona.mischel@synbiobeta.com>
+subject: Re: Fwd: Re: US President deprioritises biotechnology - European Biotechnology Magazine
+body_sha256: c63c314a018eccfb4bcfdac925eb42211a8e1d44f4e0e230dca44ab1337ede93
+snippet: No problem, take your time, and do it right! Gl Jesse On Mon, Apr 7, 2025, 9:59 AM Fiona Mischel &lt;fiona.mischel@synbiobeta.com&gt; wrote: Hi Jesse, Thanks for this! I&#39;ll put some time aside
+---
+
+# Re: Fwd: Re: US President deprioritises biotechnology - European Biotechnology Magazine
+
+**From:** Jesse Daniel Brown <plasmatoid@gmail.com>
+**To:** Fiona Mischel <fiona.mischel@synbiobeta.com>
+**Date:** Mon, 7 Apr 2025 10:00:11 -0300
+**SHA256:** `c63c314a018eccfb4bcfdac925eb42211a8e1d44f4e0e230dca44ab1337ede93`
+
+## Body (extracted text)
+
+No problem, take your time, and do it right! Gl Jesse On Mon, Apr 7, 2025, 9:59 AM Fiona Mischel wrote: > Hi Jesse, > > Thanks for this! I'll put some time aside tomorrow to work on this - my > day today is slammed. > > Thanks! > > > > Sent via Superhuman > > > On Thu, Apr 03, 2025 at 17:46:39, Jesse Daniel Brown > wrote: > >> Hello John and Fiona, >> >> That also sounds amazing. I've written down some of the questions, would >> be happy to hear Fiona's response, and/or do a recorded zoom call with her, >> transcribe it, send it to you, and then feed that into the AI and see what >> it thinks for an article. >> >> Possible questions: >> -To start, the U.S. government recently made a major move to deprioritize >> biotechnology – President Trump effectively revoked an important biotech >> initiative, Executive Order 14081. Can you set the stage for us? What >> exactly happened, and why is this significant for the biotech community? >> >> How have people reacted to this in the United States? I imagine the >> biotech community and even some politicians have strong feelings about this >> sudden policy reversal. What are you hearing from within the U.S.? >> >> -When the U.S. makes a move regarding policy, how do other countries >> react? Is this creating an opening for other nations to step up? In fact, >> do you think we might see a kind of 'reverse brain drain,' where talent and >> companies start moving out of the U.S. to places that are prioritizing >> biotech? >> >> -Starting with Europe – the EU and its member states. How positioned is >> Europe to take advantage of the U.S. stepping back? Could Europe become the >> new global leader in biotech and synthetic biology? >> >> -What about the United Kingdom? The UK isn’t part of the EU anymore, but >> it has a pretty vibrant biotech and synbio sector of its own. Where does >> the UK stand in all this? Could London or Cambridge become the next Silicon >> Valley of biotech, given this moment? >> >> -Moving across the Atlantic, let’s talk about Canada. Canada sometimes >> gets overlooked in these discussions, but could this be an opportunity for >> them as well? What are you hearing about Canada’s position amid this U.S. >> shift? Are they trying to recruit talent too? >> >> -Is the USA forfeiting its long-held leadership in biotech and synthetic >> biology? How big are the stakes here? What does it mean for the global >> biotech landscape if the U.S. cedes ground like this? >> >> Given this new landscape, what can the biotech community do? How should >> the synthetic biology community — and organizations like SynBioBeta — >> respond to this kind of policy setback? What’s your message to the >> researchers, entrepreneurs, and even the policy folks out there in our >> community? >> >> -Looking ahead, are you optimistic that the U.S. might course-correct and >> re-prioritize biotech in the near future? And more broadly, what do you >> foresee in the next few years for the global synthetic biology field? Are >> we headed into a new era of international biotech competition, or one of >> collaboration – or both? >> >> Jesse >> >> - >> >> On Thu, Apr 3, 2025 at 12:55 PM John Cumbers >> wrote: >> >>> Hi Jesse, I was thinking more that you would email Fiona some questions >>> she could respond to them or you could have a quick recorded Zoom that’s >>> transcribed. Then feed that into ChatGPT and produce an article from it >>> John >>> >>> >>> On Thu, Apr 3, 2025 at 04:06, Jesse Daniel Brown >>> wrote: >>> >>>> Thoughts? >>>> Jesse >>>> >>>> ---------- Forwarded message --------- >>>> From: Jesse Daniel Brown >>>> Date: Wed, Apr 2, 2025 at 1:46 AM >>>> Subject: Fwd: Re: US President deprioritises biotechnology - European >>>> Biotechnology Magazine >>>> To: Fiona Mischel >>>> >>>> >>>> Hello Fiona, >>>> >>>> John asked if you would be interested in doing a recorded interview >>>> about the following topic, maybe you'll look it over and let me know? >>>> I've drafted a mock interview to take a look at if you would like, feel >>>> free to completely change it, or tell me if you like and want to go with >>>> anything here. >>>> Jesse >>>> >>>> Fiona Mischel on U.S. Biotech Policy Shift and Global Reactions >>>> >>>> *Jesse:* Hello and welcome! I'm Jesse, and today I'm joined by Fiona >>>> Mischel, the Director of International Outreach at SynBioBeta. Fiona, thank >>>> you for taking the time. To start, the U.S. government recently made a >>>> major move to deprioritize biotechnology – President Trump effectively >>>> revoked an important biotech initiative, Executive Order 14081. Can you set >>>> the stage for us? What exactly happened, and why is this significant for >>>> the biotech community? >>>> >>>> *Fiona:* Thank you, Jesse – happy to be here. In a nutshell, President >>>> Trump rescinded President Biden’s 2022 executive order that had been all >>>> about advancing biotechnology and biomanufacturing innovation >>>> lawbc.com >>>> >>>> european-biotechnology.com >>>> >>>> . That original order (EO 14081) was a big deal for us in the biotech >>>> field: it created a whole-of-government effort to boost the bioeconomy >>>> across health, agriculture, energy, and more. Its revocation really signals >>>> that the U.S. government – at least under this administration – is pulling >>>> back support for biotech. The White House even framed the original >>>> initiative as having *“funneled federal resources into radical biotech >>>> and biomanufacturing initiatives under the guise of environmental policy”* >>>> lawbc.com >>>> >>>> , which, from the perspective of researchers and entrepreneurs, is a >>>> pretty shocking characterization. So this is significant because it >>>> essentially halts a coordinated national strategy to grow the biotech >>>> sector. Many of us see it as the U.S. stepping away from a leadership role >>>> in one of the most important industries of the future. It’s a sharp U-turn, >>>> and it introduces a lot of uncertainty for scientists, startups, and >>>> investors who were counting on that support. >>>> >>>> *Jesse:* And how have people reacted to this in the United States? I >>>> imagine the biotech community and even some politicians have strong >>>> feelings about this sudden policy reversal. What are you hearing from >>>> within the U.S.? >>>> >>>> *Fiona:* The reaction has been one of dismay and frankly deep concern. >>>> Within the U.S. biotech community – scientists, startup founders, investors >>>> – there's a sense of shock. I’ve talked to folks who are worried that years >>>> of progress could be undermined overnight. Even some lawmakers are unhappy. >>>> Interestingly, a number of Republican senators from states like Nebraska, >>>> Indiana, Michigan, and others had heavily invested in bioeconomy projects >>>> in their states under the Biden-era initiative, hoping to become world >>>> leaders in biomanufacturing >>>> european-biotechnology.com >>>> >>>> . They *“will not be very amused”* about this reversal >>>> european-biotechnology.com >>>> >>>> . In other words, even people in President Trump’s own political camp – >>>> in states that stood to gain jobs and industry from biotech – are >>>> frustrated because this move undercuts those efforts. The phrase I’ve heard >>>> more than once is that this *could backfire*. Industry leaders are >>>> warning that the U.S. is at risk of losing its edge. There’s a lot of *“Why >>>> are we doing this now?”* being asked. So, inside the country there's >>>> pushback and a worry that America is voluntarily surrendering its >>>> biotechnology leadership and the economic and strategic advantages that >>>> come with it. It’s a rare issue where you have bipartisan concern: everyone >>>> from academic researchers to investors to some Republican senators are >>>> unsettled by the decision. >>>> >>>> *Jesse:* You’re the Director of International Outreach at SynBioBeta, >>>> so you’re constantly speaking with people around the world. When the U.S. >>>> makes a move like this, how do other countries react? Is this creating an >>>> opening for other nations to step up? In fact, do you think we might see a >>>> kind of “reverse brain drain,” where talent and companies start moving out >>>> of the U.S. to places that are prioritizing biotech? >>>> >>>> *Fiona:* Absolutely. The international response has been swift – >>>> almost a mirror image of what we saw in the past. Historically, the U.S. >>>> was the magnet for top biotech talent and companies. Now, with the U.S. >>>> seeming less welcoming at a policy level, other countries see a huge >>>> opportunity and are actively saying *“Come here instead!”* I’m >>>> literally hearing from colleagues in Europe and elsewhere who are energized >>>> by this. For example, European stakeholders wasted no time – the Bio-based >>>> Industries Consortium in the EU openly *called on U.S. biotech firms >>>> to come to Europe*, pointing out that the EU is an *“excellent place >>>> for bioeconomy R&D”* >>>> european-biotechnology.com >>>> >>>> . It’s like they’re rolling out the red carpet for disillusioned >>>> American researchers and entrepreneurs. So yes, we could very well witness >>>> a reverse brain drain. Talent that might have gone to Boston or Silicon >>>> Valley might choose London, Berlin or Toronto now. In Canada, too, there’s >>>> chatter about this being a moment to shine. I’ve even seen analysis up >>>> north suggesting that this could result in a *“brain gain” for Canada* >>>> – which is remarkable because Canada has often suffered a brain drain to >>>> the U.S. >>>> ottawalife.com >>>> >>>> . Canadian colleagues of mine have told me they’re already seeing a >>>> spike in interest from scientists considering relocating. So the bottom >>>> line is: globally, countries are seizing this chance to attract top biotech >>>> minds and companies. They view the U.S. policy retreat as their gain. From >>>> Europe to the UK to Canada (and honestly even Asia, though that’s another >>>> story), the message is, *“We’re open for biotech and ready to lead if >>>> the U.S. won’t.”* This could very well become a pivotal moment where >>>> the talent flows start to shift direction. >>>> >>>> *Jesse:* Let’s dig into that a bit region by region. Starting with >>>> Europe – the EU and its member states. How positioned is Europe to take >>>> advantage of the U.S. stepping back? Could Europe become the new global >>>> leader in biotech and synthetic biology? >>>> >>>> *Fiona:* Europe is definitely positioning itself to grab the baton. >>>> They’ve been eyeing leadership in biotech for a while, and now there’s a >>>> sense of *“our time is now.”* There are a few reasons for this. First, >>>> Europe has a strong research base and some serious industrial muscle. I’ve >>>> spoken with EU policymakers and industry folks who are excited – but also >>>> aware that Europe needs to act decisively to capitalize on this moment. >>>> European leaders are saying, *“We have what it takes to make Europe a >>>> place where biosolutions are not only born but also grow up”* – those >>>> are the words of Sofie Carsten Nielsen of the European Biosolutions >>>> Coalition >>>> european-biotechnology.com >>>> >>>> . But she and others hasten to add that this will *require massive >>>> public investment, better scaling infrastructure, and even a bold >>>> Europe-wide ‘Biotech Act’* to cut red tape >>>> european-biotechnology.com >>>> >>>> . So Europe knows the opportunity is there, but they also know they >>>> must remove some longstanding hurdles (like slow regulatory processes and >>>> fragmented markets) to truly lead. >>>> >>>> On the plus side, we’re already seeing European countries ramp up >>>> support. *France has built more than 20 biorefineries* as part of its >>>> push to be a world leader in the bio-based economy, and *Italy just >>>> approved €2.2 billion through 2027 for new biorefineries* to turn >>>> biomass into fuels and materials >>>> european-biotechnology.com >>>> >>>> . That’s real money and real infrastructure going in. Germany might be >>>> next – their innovation agency (SPRIND) put out a plan on co-investing in >>>> scale-ups for what they call the “deeptech bioeconomy” >>>> european-biotechnology.com >>>> >>>> . And I've heard talk that Germany’s government could channel some of >>>> its huge climate fund into biotech projects. So there’s momentum. European >>>> scientists and entrepreneurs are also pumped: people like Dr. Guillermo >>>> Nevot of the European Synthetic Biology Society are urging Europe to *“take >>>> risks and support creative synthetic biology projects across all of Europe >>>> if we want a seat in the global arena”* >>>> european-biotechnology.com >>>> >>>> . In summary, Europe sees the opening and is gearing up – politically, >>>> financially, and scientifically – to step into a leadership role. If they >>>> follow through on these plans, we could indeed see Europe emerging as the >>>> powerhouse for biotech innovation in the coming years. >>>> >>>> *Jesse:* And what about the United Kingdom? The UK isn’t part of the >>>> EU anymore, but it has a pretty vibrant biotech and synbio sector of its >>>> own. Where does the UK stand in all this? Could London or Cambridge become >>>> the next Silicon Valley of biotech, given this moment? >>>> >>>> *Fiona:* The UK is in a very interesting position. In some ways, it’s >>>> already been co-leading with the U.S. on biotech innovation, and now it >>>> might double down further. Historically, the UK was actually ahead of the >>>> curve in certain aspects – *back in 2022, the UK was the only European >>>> country that, like the U.S., combined its bioeconomy strategy with >>>> cutting-edge engineering biology and AI tools* >>>> european-biotechnology.com >>>> >>>> . That forward-thinking approach – basically using AI and synthetic >>>> biology hand-in-hand to design new organisms and materials – gave the UK a >>>> strategic boost. And it’s paying off: the UK has a thriving startup scene >>>> in places like Cambridge (often dubbed “the Silicon Fen”) and London, and a >>>> lot of talent and venture capital flow there. >>>> >>>> Moreover, the UK government has been very vocal about turning the >>>> country into a “science superpower.” Just recently, they unveiled a *£2 billion, >>>> 10-year plan to foster engineering biology* – essentially their >>>> national roadmap to boost synthetic biology across medicine, agriculture, >>>> and industry >>>> european-biotechnology.com >>>> >>>> . I was at the SynbiTECH conference in London when they announced it, >>>> and it was clear the government is throwing its weight behind this field. >>>> They’re funding research hubs, streamlining regulations (for example, >>>> making it easier to get novel foods like lab-grown meat approved), and >>>> generally trying to be the most attractive place to do biotech. So with the >>>> U.S. pulling back, UK leaders see a chance to capture some of the talent or >>>> business that might have otherwise gone to America. In my conversations >>>> with folks in the British biotech community, there’s a mix of determination >>>> and excitement – determination to maintain the UK’s status as a leader in >>>> synthetic biology, and excitement that they could now play an even bigger >>>> role globally. Post-Brexit, the UK is keen to prove itself on the global >>>> stage in industries of the future, and biotech is right at the top of that >>>> list. So yes, I think we’ll see the UK aggressively court researchers and >>>> companies. They’re already doing it, and given their strong base, places >>>> like London, Cambridge – even Edinburgh or Oxford – could see a surge of >>>> activity if they become the go-to alternative to the U.S. in the eyes of >>>> biotech innovators. >>>> >>>> *Jesse:* And moving across the Atlantic, let’s talk about Canada. >>>> Canada sometimes gets overlooked in these discussions, but could this be an >>>> opportunity for them as well? What are you hearing about Canada’s position >>>> amid this U.S. shift? Are they trying to recruit talent too? >>>> >>>> *Fiona:* Canada is definitely part of this story, and it’s really >>>> interesting because Canada has long dealt with its own brain drain to the >>>> States. Now the tables might be turning a bit. Canadian universities and >>>> biotech hubs are, I think, gearing up to capitalize on the situation. I’ve >>>> spoken with a few Canadian science and industry contacts, and there’s a >>>> sense of *“finally, this is our chance to attract and keep top >>>> talent.”* In fact, some Canadian commentators have noted that many top >>>> scientists have *“lost trust in the research support systems in the >>>> U.S.”* due to these policy swings, setting the stage for a potential *“brain >>>> gain” for Canada* >>>> ottawalife.com >>>> >>>> . That’s a big deal for a country that’s more used to seeing its PhDs >>>> and innovators head south. We’re already seeing Canadian institutions >>>> advertising their stability and funding to lure researchers who are >>>> disenchanted with the U.S. climate. >>>> >>>> Now, Canada’s also realistic – I saw one analysis pointing out that >>>> this opportunity comes at a tricky time, because Canadian universities are >>>> under financial strain and don’t have the same scale of funding as the U.S. >>>> or Europe >>>> ottawalife.com >>>> >>>> . But there are creative ideas to overcome that. For example, there’s a >>>> proposal floating around to have Canada’s major federal science agencies, >>>> like CIHR and NSERC, launch special one-time grant programs explicitly to *attract >>>> top U.S. research projects and their teams to Canada* >>>> ottawalife.com >>>> >>>> . Imagine offering a well-funded package for an American synthetic >>>> biology lab to relocate to Vancouver or Toronto – that’s the kind of >>>> thinking we’re hearing. And Canada has something going for it: immigration >>>> policies that favor skilled workers. They already have fast-track visas for >>>> tech talent, and I suspect we’ll see those applied to biotech experts too. >>>> So yes, Canada might not have shouted from the rooftops yet, but behind the >>>> scenes they are absolutely making moves to recruit talent and companies. >>>> From Toronto’s biotech scene to the up-and-coming Vancouver area, Canadian >>>> leaders see the U.S. retreat as an opening to bolster their own bioeconomy. >>>> It could be a very welcome boost for them if they manage to bring some of >>>> that talent over. And as someone who deals with the international >>>> community, I find folks in Canada are very eager to collaborate and grow – >>>> they’re saying, *“bring your projects here, we’re stable and >>>> supportive.”* That’s a compelling pitch in uncertain times. >>>> >>>> *Jesse:* Stepping back, it sounds like the United States is, at least >>>> for now, forfeiting its long-held leadership in biotech and synthetic >>>> biology. How big are the stakes here? What does it mean for the global >>>> biotech landscape if the U.S. cedes ground like this? >>>> >>>> *Fiona:* The stakes are enormous, frankly. Biotechnology isn’t just >>>> another sector – it’s what many of us consider *the* industry of the >>>> 21st century, touching everything from healthcare and medicine to >>>> agriculture, energy, and environmental sustainability. For the U.S. to step >>>> back means they risk not being the place where the next breakthroughs >>>> happen or where the next Genentech or Moderna emerges. That’s not only an >>>> economic loss – think thousands of jobs and entire new industries slipping >>>> away – but also a strategic and intellectual loss. If U.S. leadership >>>> wanes, we’ll likely see a more multipolar biotech world, with power centers >>>> in Europe, the UK, Canada, and also Asia (let’s not forget countries like >>>> China and Singapore, who are heavily investing in biotech regardless of >>>> U.S. policy). On one hand, a more distributed global innovation network can >>>> be positive – it means more diversity of ideas and possibly more global >>>> collaboration. But from an American perspective, it’s quite alarming. The >>>> U.S. has traditionally set the pace in biotech, from the early days of >>>> genetic engineering to the biotech boom of the 2000s and the mRNA vaccine >>>> revolution. Losing that edge could mean the U.S. will have to import >>>> innovations or play catch-up on standards and regulations set by others. >>>> And there’s a national security angle too: biotech has defense and pandemic >>>> response implications. You don’t want to be behind the curve on those. >>>> >>>> I should note that innovation will go on – science always finds a way – >>>> but it may just go on elsewhere if not in the U.S. So globally, we might >>>> see a power shift. Europe could become the place to launch bio startups; >>>> the UK might set the tone on policy and governance; Canada could host some >>>> of the cutting-edge research centers. The U.S. would then be in the >>>> backseat for perhaps the first time in the biotech era. That would mark a >>>> historic change. However, I will add – the U.S. isn’t out of the game yet. >>>> American companies are still world-class, and many U.S. states (like >>>> California or Massachusetts) and private investors are still gung-ho on >>>> biotech. So the question is whether the federal pullback is a temporary >>>> political hiccup or a longer-term shift. If it’s long-term, the loss of >>>> U.S. leadership could be hard to reverse. If it’s temporary, maybe the U.S. >>>> can regain trust of the community. But make no mistake, every month or year >>>> that the U.S. is on the sidelines, others are sprinting ahead. And that >>>> changes the balance of who benefits from the next wave of biotech >>>> innovation. >>>> >>>> *Jesse:* Given this new landscape, what can the biotech community do? >>>> How should the synthetic biology community — and organizations like >>>> SynBioBeta — respond to this kind of policy setback? What’s your message to >>>> the researchers, entrepreneurs, and even the policy folks out there in our >>>> community? >>>> >>>> *Fiona:* My message would be: *don’t lose hope, and don’t lose >>>> momentum.* The biotech community is resilient and global. Yes, policy >>>> setbacks like this hurt, especially in the short term, but there’s a lot we >>>> can do to keep the momentum going. At SynBioBeta, our perspective is that >>>> the community should double down on collaboration and communication. This >>>> is a time for the biotech community to rally together across borders. If >>>> the U.S. government won’t champion biotech right now, then we as a >>>> community will – through private investment, international partnerships, >>>> and grassroots advocacy. For example, startups and scientists can start >>>> forging more international partnerships so their work isn’t solely >>>> dependent on one country’s policy. We’re already seeing U.S. startups >>>> opening small labs in Europe or Canada to diversify their footprint. That’s >>>> a smart move. >>>> >>>> SynBioBeta, in particular, is working to connect people globally – it’s >>>> literally my job as Director of International Outreach to build those >>>> bridges. We’re encouraging dialogue between the U.S. innovators and >>>> overseas investors or governments who are eager to help. In practical >>>> terms, the community can respond by *sharing success stories and data* >>>> with policymakers to make the case that supporting biotech is not a >>>> partisan issue but a societal win. We can also support organizations and >>>> coalitions that are lobbying for science-positive policies. One thing I’ve >>>> been telling colleagues: use the power of our network. The SynBioBeta >>>> community is worldwide; if a company in California is facing headwinds, >>>> maybe they can find an ally or a grant in, say, Belgium or Singapore to >>>> tide them over. The idea is to not let innovation stop at borders. >>>> >>>> Another aspect is talent: as a community we should make sure young >>>> scientists and engineers don’t get discouraged and leave the field. >>>> SynBioBeta has always been about celebrating what synthetic biology can do >>>> for the world, and that mission doesn’t change just because one government >>>> pulls back. In fact, it becomes even more important. So we’re focusing on >>>> fostering a sense of unity and purpose. I’ve been heartened by how many >>>> people have reached out offering to help bridge gaps – whether it’s >>>> investors from Europe looking to fund U.S. projects or academics in one >>>> country offering positions to researchers from another. It’s a reminder >>>> that this is a global community. So the short answer: we adapt, we >>>> collaborate internationally, and we keep pushing forward. The biotech >>>> revolution isn’t going to pause for politics. If anything, we come together >>>> and make sure progress continues, with or without certain government >>>> support. >>>> >>>> *Jesse:* Finally, Fiona, looking ahead, are you optimistic that the >>>> U.S. might course-correct and re-prioritize biotech in the near future? And >>>> more broadly, what do you foresee in the next few years for the global >>>> synthetic biology field? Are we headed into a new era of international >>>> biotech competition, or one of collaboration – or both? >>>> >>>> *Fiona:* That’s a great question. I’ll answer in two parts. For the >>>> U.S., I am cautiously optimistic in the long run. Biotech is just too >>>> important for the U.S. to ignore for very long. We may have to get through >>>> the current administration’s term, but I suspect there will be strong >>>> efforts – from industry, from the science community, even from >>>> forward-looking politicians in both parties – to reestablish a national >>>> biotech strategy. There’s already talk in D.C. about the economic >>>> consequences of losing biotech jobs and investment. So perhaps in a few >>>> years, with a different political climate, we could see the U.S. doubling >>>> down on biotech again. The hope is that this current rollback is an >>>> aberration, not the new normal. I’m optimistic because the U.S. has bounced >>>> back before when it realized it was falling behind (I think of the space >>>> race or AI research – once there’s a Sputnik moment or a wake-up call, >>>> America can mobilize fast). A bit of lost ground now might actually jolt >>>> the U.S. system into responding more vigorously later. At least, that’s the >>>> hopeful view. >>>> >>>> Now, for the global synthetic biology field: I see an era of both >>>> collaboration and competition, which is healthy. In the next few years, I >>>> expect *a more distributed innovation ecosystem*. You’ll have major >>>> biotech hubs in multiple countries, not just centered in the Bay Area or >>>> Boston. That means more opportunities for collaboration across borders – >>>> joint ventures, international research consortia, and cross-border funding >>>> of startups. We’re already seeing signs of that. At the same time, let’s be >>>> honest, there will be competition – countries will compete to host the best >>>> companies, to patent the key technologies, to be first to commercialize new >>>> bioproducts. It’s similar to how we see competition in semiconductor or AI >>>> industries, but also a lot of global collaboration in research. I actually >>>> think both dynamics can drive the field forward. Competition can spur each >>>> region to invest more (which is good for everyone in terms of resources >>>> available), and collaboration ensures that knowledge spreads and the best >>>> ideas get picked up everywhere. >>>> >>>> What I find exciting is that synthetic biology – the idea of >>>> engineering life for beneficial purposes – is becoming a priority not just >>>> in one or two countries but worldwide. Europe is moving, the UK, Canada, >>>> countries in Asia-Pacific – and the community of scientists and >>>> entrepreneurs is inherently international. So I’m optimistic about the >>>> field globally. I think we’re entering a renaissance period for biotech >>>> innovation. New medicines, sustainable materials, climate solutions – all >>>> that will progress. The question is just *where* the center of gravity >>>> will be. If the U.S. fixes its course, it will remain a key player among >>>> many. If not, others will carry the torch and maybe the U.S. will have to >>>> catch up later. Either way, the synthetic biology revolution is not slowing >>>> down. As an internationally minded optimist, I’d like to envision a future >>>> where the U.S. is back at the table and working alongside Europe, the UK, >>>> Canada, and others in a kind of global alliance for biotech, rather than a >>>> zero-sum race. But that might be a bit idealistic. In reality, we’ll >>>> probably see a mix of collaboration *and* friendly competition. And >>>> honestly, so long as the innovations that improve lives keep coming, the >>>> world wins in the end. >>>> >>>> *Jesse:* Fiona, thank you so much for this insightful discussion. Your >>>> candid and passionate perspective, grounded in those global conversations >>>> you’ve been having, really sheds light on what this policy shift means for >>>> everyone. It’s an exciting and uncertain time, but it’s clear the synthetic >>>> biology community is not sitting still. Thanks again for joining us. >>>> >>>> *Fiona:* Thank you, Jesse. It’s been a pleasure. And to everyone >>>> listening – stay engaged, stay collaborative, and keep building with >>>> biology. We’ll get through this and come out stronger globally. >>>> >>>> *(End of interview)* >>>> >>> > === HTML PART === No problem, take your time, and do it right! Gl Jesse On Mon, Apr 7, 2025, 9:59 AM Fiona Mischel < fiona.mischel@synbiobeta.com > wrote: Hi Jesse, Thanks for this! I&#39;ll put some time aside tomorrow to work on this - my day today is slammed. Thanks! Sent via Superhuman On Thu, Apr 03, 2025 at 17:46:39, Jesse Daniel Brown < plasmatoid@gmail.com > wrote: Hello John and Fiona, That also sounds amazing. I&#39;ve written down some of the questions, would be happy to hear Fiona&#39;s response, and/or do a recorded zoom call with her, transcribe it, send it to you, and then feed that into the AI and see what it thinks for an article. Possible questions: -To start, the U.S. government recently made a major move to deprioritize biotechnology – President Trump effectively revoked an important biotech initiative, Executive Order 14081. Can you set the stage for us? What exactly happened, and why is this significant for the biotech community? How have people reacted to this in the United States? I imagine the biotech community and even some politicians have strong feelings about this sudden policy reversal. What are you hearing from within the U.S.? -When the U.S. makes a move regarding policy, how do other countries react? Is this creating an opening for other nations to step up? In fact, do you think we might see a kind of &#39;reverse brain drain,&#39; where talent and companies start moving out of the U.S. to places that are prioritizing biotech? -Starting with Europe – the EU and its member states. How positioned is Europe to take advantage of the U.S. stepping back? Could Europe become the new global leader in biotech and synthetic biology? -What about the United Kingdom? The UK isn’t part of the EU anymore, but it has a pretty vibrant biotech and synbio sector of its own. Where does the UK stand in all this? Could London or Cambridge become the next Silicon Valley of biotech, given this moment? -Moving across the Atlantic, let’s talk about Canada. Canada sometimes gets overlooked in these discussions, but could this be an opportunity for them as well? What are you hearing about Canada’s position amid this U.S. shift? Are they trying to recruit talent too? -Is the USA forfeiting its long-held leadership in biotech and synthetic biology? How big are the stakes here? What does it mean for the global biotech landscape if the U.S. cedes ground like this? Given this new landscape, what can the biotech community do? How should the synthetic biology community — and organizations like SynBioBeta — respond to this kind of policy setback? What’s your message to the researchers, entrepreneurs, and even the policy folks out there in our community? -Looking ahead, are you optimistic that the U.S. might course-correct and re-prioritize biotech in the near future? And more broadly, what do you foresee in the next few years for the global synthetic biology field? Are we headed into a new era of international biotech competition, or one of collaboration – or both? Jesse - On Thu, Apr 3, 2025 at 12:55 PM John Cumbers < john.cumbers@synbiobeta.com > wrote: Hi Jesse, I was thinking more that you would email Fiona some questions she could respond to them or you could have a quick recorded Zoom that’s transcribed. Then feed that into ChatGPT and produce an article from it John On Thu, Apr 3 , 2025 at 04:06, Jesse Daniel Brown < plasmatoid@gmail.com > wrote: Thoughts? Jesse ---------- Forwarded message --------- From: Jesse Daniel Brown < plasmatoid@gmail.com > Date: Wed, Apr 2, 2025 at 1:46 AM Subject: Fwd: Re: US President deprioritises biotechnology - European Biotechnology Magazine To: Fiona Mischel < fiona.mischel@synbiobeta.com > Hello Fiona, John asked if you would be interested in doing a recorded interview about the following topic, maybe you&#39;ll look it over and let me know? I&#39;ve drafted a mock interview to take a look at if you would like, feel free to completely change it, or tell me if you like and want to go with anything here. Jesse Fiona Mischel on U.S. Biotech Policy Shift and Global Reactions Jesse: Hello and welcome! I&#39;m Jesse, and today I&#39;m joined by Fiona Mischel, the Director of International Outreach at SynBioBeta. Fiona, thank you for taking the time. To start, the U.S. government recently made a major move to deprioritize biotechnology – President Trump effectively revoked an important biotech initiative, Executive Order 14081. Can you set the stage for us? What exactly happened, and why is this significant for the biotech community? Fiona: Thank you, Jesse – happy to be here. In a nutshell, President Trump rescinded President Biden’s 2022 executive order that had been all about advancing biotechnology and biomanufacturing innovation lawbc.com european-biotechnology.com . That original order (EO 14081) was a big deal for us in the biotech field: it created a whole-of-government effort to boost the bioeconomy across health, agriculture, energy, and more. Its revocation really signals that the U.S. government – at least under this administration – is pulling back support for biotech. The White House even framed the original initiative as having “funneled federal resources into radical biotech and biomanufacturing initiatives under the guise of environmental policy” lawbc.com , which, from the perspective of researchers and entrepreneurs, is a pretty shocking characterization. So this is significant because it essentially halts a coordinated national strategy to grow the biotech sector. Many of us see it as the U.S. stepping away from a leadership role in one of the most important industries of the future. It’s a sharp U-turn, and it introduces a lot of uncertainty for scientists, startups, and investors who were counting on that support. Jesse: And how have people reacted to this in the United States? I imagine the biotech community and even some politicians have strong feelings about this sudden policy reversal. What are you hearing from within the U.S.? Fiona: The reaction has been one of dismay and frankly deep concern. Within the U.S. biotech community – scientists, startup founders, investors – there&#39;s a sense of shock. I’ve talked to folks who are worried that years of progress could be undermined overnight. Even some lawmakers are unhappy. Interestingly, a number of Republican senators from states like Nebraska, Indiana, Michigan, and others had heavily invested in bioeconomy projects in their states under the Biden-era initiative, hoping to become world leaders in biomanufacturing european-biotechnology.com . They “will not be very amused” about this reversal european-biotechnology.com . In other words, even people in President Trump’s own political camp – in states that stood to gain jobs and industry from biotech – are frustrated because this move undercuts those efforts. The phrase I’ve heard more than once is that this could backfire . Industry leaders are warning that the U.S. is at risk of losing its edge. There’s a lot of “Why are we doing this now?” being asked. So, inside the country there&#39;s pushback and a worry that America is voluntarily surrendering its biotechnology leadership and the economic and strategic advantages that come with it. It’s a rare issue where you have bipartisan concern: everyone from academic researchers to investors to some Republican senators are unsettled by the decision. Jesse: You’re the Director of International Outreach at SynBioBeta, so you’re constantly speaking with people around the world. When the U.S. makes a move like this, how do other countries react? Is this creating an opening for other nations to step up? In fact, do you think we might see a kind of “reverse brain drain,” where talent and companies start moving out of the U.S. to places that are prioritizing biotech? Fiona: Absolutely. The international response has been swift – almost a mirror image of what we saw in the past. Historically, the U.S. was the magnet for top biotech talent and companies. Now, with the U.S. seeming less welcoming at a policy level, other countries see a huge opportunity and are actively saying “Come here instead!” I’m literally hearing from colleagues in Europe and elsewhere who are energized by this. For example, European stakeholders wasted no time – the Bio-based Industries Consortium in the EU openly called on U.S. biotech firms to come to Europe , pointing out that the EU is an “excellent place for bioeconomy R&D” european-biotechnology.com . It’s like they’re rolling out the red carpet for disillusioned American researchers and entrepreneurs. So yes, we could very well witness a reverse brain drain. Talent that might have gone to Boston or Silicon Valley might choose London, Berlin or Toronto now. In Canada, too, there’s chatter about this being a moment to shine. I’ve even seen analysis up north suggesting that this could result in a “brain gain” for Canada – which is remarkable because Canada has often suffered a brain drain to the U.S. ottawalife.com . Canadian colleagues of mine have told me they’re already seeing a spike in interest from scientists considering relocating. So the bottom line is: globally, countries are seizing this chance to attract top biotech minds and companies. They view the U.S. policy retreat as their gain. From Europe to the UK to Canada (and honestly even Asia, though that’s another story), the message is, “We’re open for biotech and ready to lead if the U.S. won’t.” This could very well become a pivotal moment where the talent flows start to shift direction. Jesse: Let’s dig into that a bit region by region. Starting with Europe – the EU and its member states. How positioned is Europe to take advantage of the U.S. stepping back? Could Europe become the new global leader in biotech and synthetic biology? Fiona: Europe is definitely positioning itself to grab the baton. They’ve been eyeing leadership in biotech for a while, and now there’s a sense of “our time is now.” There are a few reasons for this. First, Europe has a strong research base and some serious industrial muscle. I’ve spoken with EU policymakers and industry folks who are excited – but also aware that Europe needs to act decisively to capitalize on this moment. European leaders are saying, “We have what it takes to make Europe a place where biosolutions are not only born but also grow up” – those are the words of Sofie Carsten Nielsen of the European Biosolutions Coalition european-biotechnology.com . But she and others hasten to add that this will require massive public investment, better scaling infrastructure, and even a bold Europe-wide ‘Biotech Act’ to cut red tape european-biotechnology.com . So Europe knows the opportunity is there, but they also know they must remove some longstanding hurdles (like slow regulatory processes and fragmented markets) to truly lead. On the plus side, we’re already seeing European countries ramp up support. France has built more than 20 biorefineries as part of its push to be a world leader in the bio-based economy, and Italy just approved €2.2 billion through 2027 for new biorefineries to turn biomass into fuels and materials european-biotechnology.com . That’s real money and real infrastructure going in. Germany might be next – their innovation agency (SPRIND) put out a plan on co-investing in scale-ups for what they call the “deeptech bioeconomy” european-biotechnology.com . And I&#39;ve heard talk that Germany’s government could channel some of its huge climate fund into biotech projects. So there’s momentum. European scientists and entrepreneurs are also pumped: people like Dr. Guillermo Nevot of the European Synthetic Biology Society are urging Europe to “take risks and support creative synthetic biology projects across all of Europe if we want a seat in the global arena” european-biotechnology.com . In summary, Europe sees the opening and is gearing up – politically, financially, and scientifically – to step into a leadership role. If they follow through on these plans, we could indeed see Europe emerging as the powerhouse for biotech innovation in the coming years. Jesse: And what about the United Kingdom? The UK isn’t part of the EU anymore, but it has a pretty vibrant biotech and synbio sector of its own. Where does the UK stand in all this? Could London or Cambridge become the next Silicon Valley of biotech, given this moment? Fiona: The UK is in a very interesting position. In some ways, it’s already been co-leading with the U.S. on biotech innovation, and now it might double down further. Historically, the UK was actually ahead of the curve in certain aspects – back in 2022, the UK was the only European country that, like the U.S., combined its bioeconomy strategy with cutting-edge engineering biology and AI tools european-biotechnology.com . That forward-thinking approach – basically using AI and synthetic biology hand-in-hand to design new organisms and materials – gave the UK a strategic boost. And it’s paying off: the UK has a thriving startup scene in places like Cambridge (often dubbed “the Silicon Fen”) and London, and a lot of talent and venture capital flow there. Moreover, the UK government has been very vocal about turning the country into a “science superpower.” Just recently, they unveiled a £2 billion, 10-year plan to foster engineering biology – essentially their national roadmap to boost synthetic biology across medicine, agriculture, and industry european-biotechnology.com . I was at the SynbiTECH conference in London when they announced it, and it was clear the government is throwing its weight behind this field. They’re funding research hubs, streamlining regulations (for example, making it easier to get novel foods like lab-grown meat approved), and generally trying to be the most attractive place to do biotech. So with the U.S. pulling back, UK leaders see a chance to capture some of the talent or business that might have otherwise gone to America. In my conversations with folks in the British biotech community, there’s a mix of determination and excitement – determination to maintain the UK’s status as a leader in synthetic biology, and excitement that they could now play an even bigger role globally. Post-Brexit, the UK is keen to prove itself on the global stage in industries of the future, and biotech is right at the top of that list. So yes, I think we’ll see the UK aggressively court researchers and companies. They’re already doing it, and given their strong base, places like London, Cambridge – even Edinburgh or Oxford – could see a surge of activity if they become the go-to alternative to the U.S. in the eyes of biotech innovators. Jesse: And moving across the Atlantic, let’s talk about Canada. Canada sometimes gets overlooked in these discussions, but could this be an opportunity for them as well? What are you hearing about Canada’s position amid this U.S. shift? Are they trying to recruit talent too? Fiona: Canada is definitely part of this story, and it’s really interesting because Canada has long dealt with its own brain drain to the States. Now the tables might be turning a bit. Canadian universities and biotech hubs are, I think, gearing up to capitalize on the situation. I’ve spoken with a few Canadian science and industry contacts, and there’s a sense of “finally, this is our chance to attract and keep top talent.” In fact, some Canadian commentators have noted that many top scientists have “lost trust in the research support systems in the U.S.” due to these policy swings, setting the stage for a potential “brain gain” for Canada ottawalife.com . That’s a big deal for a country that’s more used to seeing its PhDs and innovators head south. We’re already seeing Canadian institutions advertising their stability and funding to lure researchers who are disenchanted with the U.S. climate. Now, Canada’s also realistic – I saw one analysis pointing out that this opportunity comes at a tricky time, because Canadian universities are under financial strain and don’t have the same scale of funding as the U.S. or Europe ottawalife.com . But there are creative ideas to overcome that. For example, there’s a proposal floating around to have Canada’s major federal science agencies, like CIHR and NSERC, launch special one-time grant programs explicitly to attract top U.S. research projects and their teams to Canada ottawalife.com . Imagine offering a well-funded package for an American synthetic biology lab to relocate to Vancouver or Toronto – that’s the kind of thinking we’re hearing. And Canada has something going for it: immigration policies that favor skilled workers. They already have fast-track visas for tech talent, and I suspect we’ll see those applied to biotech experts too. So yes, Canada might not have shouted from the rooftops yet, but behind the scenes they are absolutely making moves to recruit talent and companies. From Toronto’s biotech scene to the up-and-coming Vancouver area, Canadian leaders see the U.S. retreat as an opening to bolster their own bioeconomy. It could be a very welcome boost for them if they manage to bring some of that talent over. And as someone who deals with the international community, I find folks in Canada are very eager to collaborate and grow – they’re saying, “bring your projects here, we’re stable and supportive.” That’s a compelling pitch in uncertain times. Jesse: Stepping back, it sounds like the United States is, at least for now, forfeiting its long-held leadership in biotech and synthetic biology. How big are the stakes here? What does it mean for the global biotech landscape if the U.S. cedes ground like this? Fiona: The stakes are enormous, frankly. Biotechnology isn’t just another sector – it’s what many of us consider the industry of the 21st century, touching everything from healthcare and medicine to agriculture, energy, and environmental sustainability. For the U.S. to step back means they risk not being the place where the next breakthroughs happen or where the next Genentech or Moderna emerges. That’s not only an economic loss – think thousands of jobs and entire new industries slipping away – but also a strategic and intellectual loss. If U.S. leadership wanes, we’ll likely see a more multipolar biotech world, with power centers in Europe, the UK, Canada, and also Asia (let’s not forget countries like China and Singapore, who are heavily investing in biotech regardless of U.S. policy). On one hand, a more distributed global innovation network can be positive – it means more diversity of ideas and possibly more global collaboration. But from an American perspective, it’s quite alarming. The U.S. has traditionally set the pace in biotech, from the early days of genetic engineering to the biotech boom of the 2000s and the mRNA vaccine revolution. Losing that edge could mean the U.S. will have to import innovations or play catch-up on standards and regulations set by others. And there’s a national security angle too: biotech has defense and pandemic response implications. You don’t want to be behind the curve on those. I should note that innovation will go on – science always finds a way – but it may just go on elsewhere if not in the U.S. So globally, we might see a power shift. Europe could become the place to launch bio startups; the UK might set the tone on policy and governance; Canada could host some of the cutting-edge research centers. The U.S. would then be in the backseat for perhaps the first time in the biotech era. That would mark a historic change. However, I will add – the U.S. isn’t out of the game yet. American companies are still world-class, and many U.S. states (like California or Massachusetts) and private investors are still gung-ho on biotech. So the question is whether the federal pullback is a temporary political hiccup or a longer-term shift. If it’s long-term, the loss of U.S. leadership could be hard to reverse. If it’s temporary, maybe the U.S. can regain trust of the community. But make no mistake, every month or year that the U.S. is on the sidelines, others are sprinting ahead. And that changes the balance of who benefits from the next wave of biotech innovation. Jesse: Given this new landscape, what can the biotech community do? How should the synthetic biology community — and organizations like SynBioBeta — respond to this kind of policy setback? What’s your message to the researchers, entrepreneurs, and even the policy folks out there in our community? Fiona: My message would be: don’t lose hope, and don’t lose momentum. The biotech community is resilient and global. Yes, policy setbacks like this hurt, especially in the short term, but there’s a lot we can do to keep the momentum going. At SynBioBeta, our perspective is that the community should double down on collaboration and communication. This is a time for the biotech community to rally together across borders. If the U.S. government won’t champion biotech right now, then we as a community will – through private investment, international partnerships, and grassroots advocacy. For example, startups and scientists can start forging more international partnerships so their work isn’t solely dependent on one country’s policy. We’re already seeing U.S. startups opening small labs in Europe or Canada to diversify their footprint. That’s a smart move. SynBioBeta, in particular, is working to connect people globally – it’s literally my job as Director of International Outreach to build those bridges. We’re encouraging dialogue between the U.S. innovators and overseas investors or governments who are eager to help. In practical terms, the community can respond by sharing success stories and data with policymakers to make the case that supporting biotech is not a partisan issue but a societal win. We can also support organizations and coalitions that are lobbying for science-positive policies. One thing I’ve been telling colleagues: use the power of our network. The SynBioBeta community is worldwide; if a company in California is facing headwinds, maybe they can find an ally or a grant in, say, Belgium or Singapore to tide them over. The idea is to not let innovation stop at borders. Another aspect is talent: as a community we should make sure young scientists and engineers don’t get discouraged and leave the field. SynBioBeta has always been about celebrating what synthetic biology can do for the world, and that mission doesn’t change just because one government pulls back. In fact, it becomes even more important. So we’re focusing on fostering a sense of unity and purpose. I’ve been heartened by how many people have reached out offering to help bridge gaps – whether it’s investors from Europe looking to fund U.S. projects or academics in one country offering positions to researchers from another. It’s a reminder that this is a global community. So the short answer: we adapt, we collaborate internationally, and we keep pushing forward. The biotech revolution isn’t going to pause for politics. If anything, we come together and make sure progress continues, with or without certain government support. Jesse: Finally, Fiona, looking ahead, are you optimistic that the U.S. might course-correct and re-prioritize biotech in the near future? And more broadly, what do you foresee in the next few years for the global synthetic biology field? Are we headed into a new era of international biotech competition, or one of collaboration – or both? Fiona: That’s a great question. I’ll answer in two parts. For the U.S., I am cautiously optimistic in the long run. Biotech is just too important for the U.S. to ignore for very long. We may have to get through the current administration’s term, but I suspect there will be strong efforts – from industry, from the science community, even from forward-looking politicians in both parties – to reestablish a national biotech strategy. There’s already talk in D.C. about the economic consequences of losing biotech jobs and investment. So perhaps in a few years, with a different political climate, we could see the U.S. doubling down on biotech again. The hope is that this current rollback is an aberration, not the new normal. I’m optimistic because the U.S. has bounced back before when it realized it was falling behind (I think of the space race or AI research – once there’s a Sputnik moment or a wake-up call, America can mobilize fast). A bit of lost ground now might actually jolt the U.S. system into responding more vigorously later. At least, that’s the hopeful view. Now, for the global synthetic biology field: I see an era of both collaboration and competition, which is healthy. In the next few years, I expect a more distributed innovation ecosystem . You’ll have major biotech hubs in multiple countries, not just centered in the Bay Area or Boston. That means more opportunities for collaboration across borders – joint ventures, international research consortia, and cross-border funding of startups. We’re already seeing signs of that. At the same time, let’s be honest, there will be competition – countries will compete to host the best companies, to patent the key technologies, to be first to commercialize new bioproducts. It’s similar to how we see competition in semiconductor or AI industries, but also a lot of global collaboration in research. I actually think both dynamics can drive the field forward. Competition can spur each region to invest more (which is good for everyone in terms of resources available), and collaboration ensures that knowledge spreads and the best ideas get picked up everywhere. What I find exciting is that synthetic biology – the idea of engineering life for beneficial purposes – is becoming a priority not just in one or two countries but worldwide. Europe is moving, the UK, Canada, countries in Asia-Pacific – and the community of scientists and entrepreneurs is inherently international. So I’m optimistic about the field globally. I think we’re entering a renaissance period for biotech innovation. New medicines, sustainable materials, climate solutions – all that will progress. The question is just where the center of gravity will be. If the U.S. fixes its course, it will remain a key player among many. If not, others will carry the torch and maybe the U.S. will have to catch up later. Either way, the synthetic biology revolution is not slowing down. As an internationally minded optimist, I’d like to envision a future where the U.S. is back at the table and working alongside Europe, the UK, Canada, and others in a kind of global alliance for biotech, rather than a zero-sum race. But that might be a bit idealistic. In reality, we’ll probably see a mix of collaboration and friendly competition. And honestly, so long as the innovations that improve lives keep coming, the world wins in the end. Jesse: Fiona, thank you so much for this insightful discussion. Your candid and passionate perspective, grounded in those global conversations you’ve been having, really sheds light on what this policy shift means for everyone. It’s an exciting and uncertain time, but it’s clear the synthetic biology community is not sitting still. Thanks again for joining us. Fiona: Thank you, Jesse. It’s been a pleasure. And to everyone listening – stay engaged, stay collaborative, and keep building with biology. We’ll get through this and come out stronger globally. (End of interview)
+
+## Raw body (tamper-evident)
+
+```
+No problem, take your time, and do it right! Gl
+Jesse
+
+On Mon, Apr 7, 2025, 9:59 AM Fiona Mischel <fiona.mischel@synbiobeta.com>
+wrote:
+
+> Hi Jesse,
+>
+> Thanks for this! I'll put some time aside tomorrow to work on this - my
+> day today is slammed.
+>
+> Thanks!
+>
+>
+>
+> Sent via Superhuman <https://sprh.mn/?vip=fiona.mischel@synbiobeta.com>
+>
+>
+> On Thu, Apr 03, 2025 at 17:46:39, Jesse Daniel Brown <plasmatoid@gmail.com
+> > wrote:
+>
+>> Hello John and Fiona,
+>>
+>> That also sounds amazing. I've written down some of the questions, would
+>> be happy to hear Fiona's response, and/or do a recorded zoom call with her,
+>> transcribe it, send it to you, and then feed that into the AI and see what
+>> it thinks for an article.
+>>
+>> Possible questions:
+>> -To start, the U.S. government recently made a major move to deprioritize
+>> biotechnology – President Trump effectively revoked an important biotech
+>> initiative, Executive Order 14081. Can you set the stage for us? What
+>> exactly happened, and why is this significant for the biotech community?
+>>
+>> How have people reacted to this in the United States? I imagine the
+>> biotech community and even some politicians have strong feelings about this
+>> sudden policy reversal. What are you hearing from within the U.S.?
+>>
+>> -When the U.S. makes a move regarding policy, how do other countries
+>> react? Is this creating an opening for other nations to step up? In fact,
+>> do you think we might see a kind of 'reverse brain drain,' where talent and
+>> companies start moving out of the U.S. to places that are prioritizing
+>> biotech?
+>>
+>> -Starting with Europe – the EU and its member states. How positioned is
+>> Europe to take advantage of the U.S. stepping back? Could Europe become the
+>> new global leader in biotech and synthetic biology?
+>>
+>> -What about the United Kingdom? The UK isn’t part of the EU anymore, but
+>> it has a pretty vibrant biotech and synbio sector of its own. Where does
+>> the UK stand in all this? Could London or Cambridge become the next Silicon
+>> Valley of biotech, given this moment?
+>>
+>> -Moving across the Atlantic, let’s talk about Canada. Canada sometimes
+>> gets overlooked in these discussions, but could this be an opportunity for
+>> them as well? What are you hearing about Canada’s position amid this U.S.
+>> shift? Are they trying to recruit talent too?
+>>
+>> -Is the USA forfeiting its long-held leadership in biotech and synthetic
+>> biology? How big are the stakes here? What does it mean for the global
+>> biotech landscape if the U.S. cedes ground like this?
+>>
+>> Given this new landscape, what can the biotech community do? How should
+>> the synthetic biology community — and organizations like SynBioBeta —
+>> respond to this kind of policy setback? What’s your message to the
+>> researchers, entrepreneurs, and even the policy folks out there in our
+>> community?
+>>
+>> -Looking ahead, are you optimistic that the U.S. might course-correct and
+>> re-prioritize biotech in the near future? And more broadly, what do you
+>> foresee in the next few years for the global synthetic biology field? Are
+>> we headed into a new era of international biotech competition, or one of
+>> collaboration – or both?
+>>
+>> Jesse
+>>
+>> -
+>>
+>> On Thu, Apr 3, 2025 at 12:55 PM John Cumbers <john.cumbers@synbiobeta.com>
+>> wrote:
+>>
+>>> Hi Jesse, I was thinking more that you would email Fiona some questions
+>>> she could respond to them or you could have a quick recorded Zoom that’s
+>>> transcribed.  Then feed that into ChatGPT and produce an article from it
+>>> John
+>>>
+>>>
+>>> On Thu, Apr 3, 2025 at 04:06, Jesse Daniel Brown <plasmatoid@gmail.com>
+>>> wrote:
+>>>
+>>>> Thoughts?
+>>>> Jesse
+>>>>
+>>>> ---------- Forwarded message ---------
+>>>> From: Jesse Daniel Brown <plasmatoid@gmail.com>
+>>>> Date: Wed, Apr 2, 2025 at 1:46 AM
+>>>> Subject: Fwd: Re: US President deprioritises biotechnology - European
+>>>> Biotechnology Magazine
+>>>> To: Fiona Mischel <fiona.mischel@synbiobeta.com>
+>>>>
+>>>>
+>>>> Hello Fiona,
+>>>>
+>>>> John asked if you would be interested in doing a recorded interview
+>>>> about the following topic, maybe you'll look it over and let me know?
+>>>> I've drafted a mock interview to take a look at if you would like, feel
+>>>> free to completely change it, or tell me if you like and want to go with
+>>>> anything here.
+>>>> Jesse
+>>>>
+>>>> Fiona Mischel on U.S. Biotech Policy Shift and Global Reactions
+>>>>
+>>>> *Jesse:* Hello and welcome! I'm Jesse, and today I'm joined by Fiona
+>>>> Mischel, the Director of International Outreach at SynBioBeta. Fiona, thank
+>>>> you for taking the time. To start, the U.S. government recently made a
+>>>> major move to deprioritize biotechnology – President Trump effectively
+>>>> revoked an important biotech initiative, Executive Order 14081. Can you set
+>>>> the stage for us? What exactly happened, and why is this significant for
+>>>> the biotech community?
+>>>>
+>>>> *Fiona:* Thank you, Jesse – happy to be here. In a nutshell, President
+>>>> Trump rescinded President Biden’s 2022 executive order that had been all
+>>>> about advancing biotechnology and biomanufacturing innovation
+>>>> lawbc.com
+>>>> <https://www.lawbc.com/president-trump-revokes-2022-eo-on-advancing-biotechnology-and-biomanufacturing/#:~:text=On%20March%2014%2C%202025%2C%20President,September%2013%2C%202022%2C%20blog%20item>
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=The%20U,biotech%20industry>
+>>>> . That original order (EO 14081) was a big deal for us in the biotech
+>>>> field: it created a whole-of-government effort to boost the bioeconomy
+>>>> across health, agriculture, energy, and more. Its revocation really signals
+>>>> that the U.S. government – at least under this administration – is pulling
+>>>> back support for biotech. The White House even framed the original
+>>>> initiative as having *“funneled federal resources into radical biotech
+>>>> and biomanufacturing initiatives under the guise of environmental policy”*
+>>>> lawbc.com
+>>>> <https://www.lawbc.com/president-trump-revokes-2022-eo-on-advancing-biotechnology-and-biomanufacturing/#:~:text=2025%2C%20fact%20sheet%2C%20EO%2014081,in%20the%20January%202017%20Update>
+>>>> , which, from the perspective of researchers and entrepreneurs, is a
+>>>> pretty shocking characterization. So this is significant because it
+>>>> essentially halts a coordinated national strategy to grow the biotech
+>>>> sector. Many of us see it as the U.S. stepping away from a leadership role
+>>>> in one of the most important industries of the future. It’s a sharp U-turn,
+>>>> and it introduces a lot of uncertainty for scientists, startups, and
+>>>> investors who were counting on that support.
+>>>>
+>>>> *Jesse:* And how have people reacted to this in the United States? I
+>>>> imagine the biotech community and even some politicians have strong
+>>>> feelings about this sudden policy reversal. What are you hearing from
+>>>> within the U.S.?
+>>>>
+>>>> *Fiona:* The reaction has been one of dismay and frankly deep concern.
+>>>> Within the U.S. biotech community – scientists, startup founders, investors
+>>>> – there's a sense of shock. I’ve talked to folks who are worried that years
+>>>> of progress could be undermined overnight. Even some lawmakers are unhappy.
+>>>> Interestingly, a number of Republican senators from states like Nebraska,
+>>>> Indiana, Michigan, and others had heavily invested in bioeconomy projects
+>>>> in their states under the Biden-era initiative, hoping to become world
+>>>> leaders in biomanufacturing
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=President%20Trump%E2%80%99s%20U,the%20executive%20order%20proves%20otherwise>
+>>>> . They *“will not be very amused”* about this reversal
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=President%20Trump%E2%80%99s%20U,the%20executive%20order%20proves%20otherwise>
+>>>> . In other words, even people in President Trump’s own political camp –
+>>>> in states that stood to gain jobs and industry from biotech – are
+>>>> frustrated because this move undercuts those efforts. The phrase I’ve heard
+>>>> more than once is that this *could backfire*. Industry leaders are
+>>>> warning that the U.S. is at risk of losing its edge. There’s a lot of *“Why
+>>>> are we doing this now?”* being asked. So, inside the country there's
+>>>> pushback and a worry that America is voluntarily surrendering its
+>>>> biotechnology leadership and the economic and strategic advantages that
+>>>> come with it. It’s a rare issue where you have bipartisan concern: everyone
+>>>> from academic researchers to investors to some Republican senators are
+>>>> unsettled by the decision.
+>>>>
+>>>> *Jesse:* You’re the Director of International Outreach at SynBioBeta,
+>>>> so you’re constantly speaking with people around the world. When the U.S.
+>>>> makes a move like this, how do other countries react? Is this creating an
+>>>> opening for other nations to step up? In fact, do you think we might see a
+>>>> kind of “reverse brain drain,” where talent and companies start moving out
+>>>> of the U.S. to places that are prioritizing biotech?
+>>>>
+>>>> *Fiona:* Absolutely. The international response has been swift –
+>>>> almost a mirror image of what we saw in the past. Historically, the U.S.
+>>>> was the magnet for top biotech talent and companies. Now, with the U.S.
+>>>> seeming less welcoming at a policy level, other countries see a huge
+>>>> opportunity and are actively saying *“Come here instead!”* I’m
+>>>> literally hearing from colleagues in Europe and elsewhere who are energized
+>>>> by this. For example, European stakeholders wasted no time – the Bio-based
+>>>> Industries Consortium in the EU openly *called on U.S. biotech firms
+>>>> to come to Europe*, pointing out that the EU is an *“excellent place
+>>>> for bioeconomy R&D”*
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=European%20stakeholders%20such%20as%20the,biochemical%20engineering%20and%20protein%20engineering>
+>>>> . It’s like they’re rolling out the red carpet for disillusioned
+>>>> American researchers and entrepreneurs. So yes, we could very well witness
+>>>> a reverse brain drain. Talent that might have gone to Boston or Silicon
+>>>> Valley might choose London, Berlin or Toronto now. In Canada, too, there’s
+>>>> chatter about this being a moment to shine. I’ve even seen analysis up
+>>>> north suggesting that this could result in a *“brain gain” for Canada*
+>>>> – which is remarkable because Canada has often suffered a brain drain to
+>>>> the U.S.
+>>>> ottawalife.com
+>>>> <https://www.ottawalife.com/article/brain-gain-how-canada-can-profit-from-a-trump-mistake/#:~:text=The%20key%20is%20that%20many,attracted%20away%20to%20greener%20pastures>
+>>>> . Canadian colleagues of mine have told me they’re already seeing a
+>>>> spike in interest from scientists considering relocating. So the bottom
+>>>> line is: globally, countries are seizing this chance to attract top biotech
+>>>> minds and companies. They view the U.S. policy retreat as their gain. From
+>>>> Europe to the UK to Canada (and honestly even Asia, though that’s another
+>>>> story), the message is, *“We’re open for biotech and ready to lead if
+>>>> the U.S. won’t.”* This could very well become a pivotal moment where
+>>>> the talent flows start to shift direction.
+>>>>
+>>>> *Jesse:* Let’s dig into that a bit region by region. Starting with
+>>>> Europe – the EU and its member states. How positioned is Europe to take
+>>>> advantage of the U.S. stepping back? Could Europe become the new global
+>>>> leader in biotech and synthetic biology?
+>>>>
+>>>> *Fiona:* Europe is definitely positioning itself to grab the baton.
+>>>> They’ve been eyeing leadership in biotech for a while, and now there’s a
+>>>> sense of *“our time is now.”* There are a few reasons for this. First,
+>>>> Europe has a strong research base and some serious industrial muscle. I’ve
+>>>> spoken with EU policymakers and industry folks who are excited – but also
+>>>> aware that Europe needs to act decisively to capitalize on this moment.
+>>>> European leaders are saying, *“We have what it takes to make Europe a
+>>>> place where biosolutions are not only born but also grow up”* – those
+>>>> are the words of Sofie Carsten Nielsen of the European Biosolutions
+>>>> Coalition
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=would%20need%20huge%20public%20co,reductions%2C%E2%80%9D%20she%20said>
+>>>> . But she and others hasten to add that this will *require massive
+>>>> public investment, better scaling infrastructure, and even a bold
+>>>> Europe-wide ‘Biotech Act’* to cut red tape
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=would%20need%20huge%20public%20co,reductions%2C%E2%80%9D%20she%20said>
+>>>> . So Europe knows the opportunity is there, but they also know they
+>>>> must remove some longstanding hurdles (like slow regulatory processes and
+>>>> fragmented markets) to truly lead.
+>>>>
+>>>> On the plus side, we’re already seeing European countries ramp up
+>>>> support. *France has built more than 20 biorefineries* as part of its
+>>>> push to be a world leader in the bio-based economy, and *Italy just
+>>>> approved €2.2 billion through 2027 for new biorefineries* to turn
+>>>> biomass into fuels and materials
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=While%20France%20has%20built%20more,based%20residual%20streams>
+>>>> . That’s real money and real infrastructure going in. Germany might be
+>>>> next – their innovation agency (SPRIND) put out a plan on co-investing in
+>>>> scale-ups for what they call the “deeptech bioeconomy”
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=Germany%20may%20follow%20suit%20after,at%20low%20cost%20of%20goods>
+>>>> . And I've heard talk that Germany’s government could channel some of
+>>>> its huge climate fund into biotech projects. So there’s momentum. European
+>>>> scientists and entrepreneurs are also pumped: people like Dr. Guillermo
+>>>> Nevot of the European Synthetic Biology Society are urging Europe to *“take
+>>>> risks and support creative synthetic biology projects across all of Europe
+>>>> if we want a seat in the global arena”*
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=Dr%20Guillermo%20Nevot%2C%20Chair%20of,%E2%80%9D>
+>>>> . In summary, Europe sees the opening and is gearing up – politically,
+>>>> financially, and scientifically – to step into a leadership role. If they
+>>>> follow through on these plans, we could indeed see Europe emerging as the
+>>>> powerhouse for biotech innovation in the coming years.
+>>>>
+>>>> *Jesse:* And what about the United Kingdom? The UK isn’t part of the
+>>>> EU anymore, but it has a pretty vibrant biotech and synbio sector of its
+>>>> own. Where does the UK stand in all this? Could London or Cambridge become
+>>>> the next Silicon Valley of biotech, given this moment?
+>>>>
+>>>> *Fiona:* The UK is in a very interesting position. In some ways, it’s
+>>>> already been co-leading with the U.S. on biotech innovation, and now it
+>>>> might double down further. Historically, the UK was actually ahead of the
+>>>> curve in certain aspects – *back in 2022, the UK was the only European
+>>>> country that, like the U.S., combined its bioeconomy strategy with
+>>>> cutting-edge engineering biology and AI tools*
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=Back%20in%202022%2C%20the%20UK,neutral%20biofuels>
+>>>> . That forward-thinking approach – basically using AI and synthetic
+>>>> biology hand-in-hand to design new organisms and materials – gave the UK a
+>>>> strategic boost. And it’s paying off: the UK has a thriving startup scene
+>>>> in places like Cambridge (often dubbed “the Silicon Fen”) and London, and a
+>>>> lot of talent and venture capital flow there.
+>>>>
+>>>> Moreover, the UK government has been very vocal about turning the
+>>>> country into a “science superpower.” Just recently, they unveiled a *£2 billion,
+>>>> 10-year plan to foster engineering biology* – essentially their
+>>>> national roadmap to boost synthetic biology across medicine, agriculture,
+>>>> and industry
+>>>> european-biotechnology.com
+>>>> <https://european-biotechnology.com/latest-news/uk-publishes-2bn-vision-for-engineering-biology/#:~:text=On%20the%20occasion%20of%20SynbiTECH,plan%20to%20foster%20engineering%20biology>
+>>>> . I was at the SynbiTECH conference in London when they announced it,
+>>>> and it was clear the government is throwing its weight behind this field.
+>>>> They’re funding research hubs, streamlining regulations (for example,
+>>>> making it easier to get novel foods like lab-grown meat approved), and
+>>>> generally trying to be the most attractive place to do biotech. So with the
+>>>> U.S. pulling back, UK leaders see a chance to capture some of the talent or
+>>>> business that might have otherwise gone to America. In my conversations
+>>>> with folks in the British biotech community, there’s a mix of determination
+>>>> and excitement – determination to maintain the UK’s status as a leader in
+>>>> synthetic biology, and excitement that they could now play an even bigger
+>>>> role globally. Post-Brexit, the UK is keen to prove itself on the global
+>>>> stage in industries of the future, and biotech is right at the top of that
+>>>> list. So yes, I think we’ll see the UK aggressively court researchers and
+>>>> companies. They’re already doing it, and given their strong base, places
+>>>> like London, Cambridge – even Edinburgh or Oxford – could see a surge of
+>>>> activity if they become the go-to alternative to the U.S. in the eyes of
+>>>> biotech innovators.
+>>>>
+>>>> *Jesse:* And moving across the Atlantic, let’s talk about Canada.
+>>>> Canada sometimes gets overlooked in these discussions, but could this be an
+>>>> opportunity for them as well? What are you hearing about Canada’s position
+>>>> amid this U.S. shift? Are they trying to recruit talent too?
+>>>>
+>>>> *Fiona:* Canada is definitely part of this story, and it’s really
+>>>> interesting because Canada has long dealt with its own brain drain to the
+>>>> States. Now the tables might be turning a bit. Canadian universities and
+>>>> biotech hubs are, I think, gearing up to capitalize on the situation. I’ve
+>>>> spoken with a few Canadian science and industry contacts, and there’s a
+>>>> sense of *“finally, this is our chance to attract and keep top
+>>>> talent.”* In fact, some Canadian commentators have noted that many top
+>>>> scientists have *“lost trust in the research support systems in the
+>>>> U.S.”* due to these policy swings, setting the stage for a potential *“brain
+>>>> gain” for Canada*
+>>>> ottawalife.com
+>>>> <https://www.ottawalife.com/article/brain-gain-how-canada-can-profit-from-a-trump-mistake/#:~:text=The%20key%20is%20that%20many,attracted%20away%20to%20greener%20pastures>
+>>>> . That’s a big deal for a country that’s more used to seeing its PhDs
+>>>> and innovators head south. We’re already seeing Canadian institutions
+>>>> advertising their stability and funding to lure researchers who are
+>>>> disenchanted with the U.S. climate.
+>>>>
+>>>> Now, Canada’s also realistic – I saw one analysis pointing out that
+>>>> this opportunity comes at a tricky time, because Canadian universities are
+>>>> under financial strain and don’t have the same scale of funding as the U.S.
+>>>> or Europe
+>>>> ottawalife.com
+>>>> <https://www.ottawalife.com/article/brain-gain-how-canada-can-profit-from-a-trump-mistake/#:~:text=But%20this%20comes%20at%20an,and%2C%20in%20some%20cases%2C%20organizational>
+>>>> . But there are creative ideas to overcome that. For example, there’s a
+>>>> proposal floating around to have Canada’s major federal science agencies,
+>>>> like CIHR and NSERC, launch special one-time grant programs explicitly to *attract
+>>>> top U.S. research projects and their teams to Canada*
+>>>> ottawalife.com
+>>>> <https://www.ottawalife.com/article/brain-gain-how-canada-can-profit-from-a-trump-mistake/#:~:text=However%2C%20it%20is%20possible%20to,and%20researchers%20from%20the%20US>
+>>>> . Imagine offering a well-funded package for an American synthetic
+>>>> biology lab to relocate to Vancouver or Toronto – that’s the kind of
+>>>> thinking we’re hearing. And Canada has something going for it: immigration
+>>>> policies that favor skilled workers. They already have fast-track visas for
+>>>> tech talent, and I suspect we’ll see those applied to biotech experts too.
+>>>> So yes, Canada might not have shouted from the rooftops yet, but behind the
+>>>> scenes they are absolutely making moves to recruit talent and companies.
+>>>> From Toronto’s biotech scene to the up-and-coming Vancouver area, Canadian
+>>>> leaders see the U.S. retreat as an opening to bolster their own bioeconomy.
+>>>> It could be a very welcome boost for them if they manage to bring some of
+>>>> that talent over. And as someone who deals with the international
+>>>> community, I find folks in Canada are very eager to collaborate and grow –
+>>>> they’re saying, *“bring your projects here, we’re stable and
+>>>> supportive.”* That’s a compelling pitch in uncertain times.
+>>>>
+>>>> *Jesse:* Stepping back, it sounds like the United States is, at least
+>>>> for now, forfeiting its long-held leadership in biotech and synthetic
+>>>> biology. How big are the stakes here? What does it mean for the global
+>>>> biotech landscape if the U.S. cedes ground like this?
+>>>>
+>>>> *Fiona:* The stakes are enormous, frankly. Biotechnology isn’t just
+>>>> another sector – it’s what many of us consider *the* industry of the
+>>>> 21st century, touching everything from healthcare and medicine to
+>>>> agriculture, energy, and environmental sustainability. For the U.S. to step
+>>>> back means they risk not being the place where the next breakthroughs
+>>>> happen or where the next Genentech or Moderna emerges. That’s not only an
+>>>> economic loss – think thousands of jobs and entire new industries slipping
+>>>> away – but also a strategic and intellectual loss. If U.S. leadership
+>>>> wanes, we’ll likely see a more multipolar biotech world, with power centers
+>>>> in Europe, the UK, Canada, and also Asia (let’s not forget countries like
+>>>> China and Singapore, who are heavily investing in biotech regardless of
+>>>> U.S. policy). On one hand, a more distributed global innovation network can
+>>>> be positive – it means more diversity of ideas and possibly more global
+>>>> collaboration. But from an American perspective, it’s quite alarming. The
+>>>> U.S. has traditionally set the pace in biotech, from the early days of
+>>>> genetic engineering to the biotech boom of the 2000s and the mRNA vaccine
+>>>> revolution. Losing that edge could mean the U.S. will have to import
+>>>> innovations or play catch-up on standards and regulations set by others.
+>>>> And there’s a national security angle too: biotech has defense and pandemic
+>>>> response implications. You don’t want to be behind the curve on those.
+>>>>
+>>>> I should note that innovation will go on – science always finds a way –
+>>>> but it may just go on elsewhere if not in the U.S. So globally, we might
+>>>> see a power shift. Europe could become the place to launch bio startups;
+>>>> the UK might set the tone on policy and governance; Canada could host some
+>>>> of the cutting-edge research centers. The U.S. would then be in the
+>>>> backseat for perhaps the first time in the biotech era. That would mark a
+>>>> historic change. However, I will add – the U.S. isn’t out of the game yet.
+>>>> American companies are still world-class, and many U.S. states (like
+>>>> California or Massachusetts) and private investors are still gung-ho on
+>>>> biotech. So the question is whether the federal pullback is a temporary
+>>>> political hiccup or a longer-term shift. If it’s long-term, the loss of
+>>>> U.S. leadership could be hard to reverse. If it’s temporary, maybe the U.S.
+>>>> can regain trust of the community. But make no mistake, every month or year
+>>>> that the U.S. is on the sidelines, others are sprinting ahead. And that
+>>>> changes the balance of who benefits from the next wave of biotech
+>>>> innovation.
+>>>>
+>>>> *Jesse:* Given this new landscape, what can the biotech community do?
+>>>> How should the synthetic biology community — and organizations like
+>>>> SynBioBeta — respond to this kind of policy setback? What’s your message to
+>>>> the researchers, entrepreneurs, and even the policy folks out there in our
+>>>> community?
+>>>>
+>>>> *Fiona:* My message would be: *don’t lose hope, and don’t lose
+>>>> momentum.* The biotech community is resilient and global. Yes, policy
+>>>> setbacks like this hurt, especially in the short term, but there’s a lot we
+>>>> can do to keep the momentum going. At SynBioBeta, our perspective is that
+>>>> the community should double down on collaboration and communication. This
+>>>> is a time for the biotech community to rally together across borders. If
+>>>> the U.S. government won’t champion biotech right now, then we as a
+>>>> community will – through private investment, international partnerships,
+>>>> and grassroots advocacy. For example, startups and scientists can start
+>>>> forging more international partnerships so their work isn’t solely
+>>>> dependent on one country’s policy. We’re already seeing U.S. startups
+>>>> opening small labs in Europe or Canada to diversify their footprint. That’s
+>>>> a smart move.
+>>>>
+>>>> SynBioBeta, in particular, is working to connect people globally – it’s
+>>>> literally my job as Director of International Outreach to build those
+>>>> bridges. We’re encouraging dialogue between the U.S. innovators and
+>>>> overseas investors or governments who are eager to help. In practical
+>>>> terms, the community can respond by *sharing success stories and data*
+>>>> with policymakers to make the case that supporting biotech is not a
+>>>> partisan issue but a societal win. We can also support organizations and
+>>>> coalitions that are lobbying for science-positive policies. One thing I’ve
+>>>> been telling colleagues: use the power of our network. The SynBioBeta
+>>>> community is worldwide; if a company in California is facing headwinds,
+>>>> maybe they can find an ally or a grant in, say, Belgium or Singapore to
+>>>> tide them over. The idea is to not let innovation stop at borders.
+>>>>
+>>>> Another aspect is talent: as a community we should make sure young
+>>>> scientists and engineers don’t get discouraged and leave the field.
+>>>> SynBioBeta has always been about celebrating what synthetic biology can do
+>>>> for the world, and that mission doesn’t change just because one government
+>>>> pulls back. In fact, it becomes even more important. So we’re focusing on
+>>>> fostering a sense of unity and purpose. I’ve been heartened by how many
+>>>> people have reached out offering to help bridge gaps – whether it’s
+>>>> investors from Europe looking to fund U.S. projects or academics in one
+>>>> country offering positions to researchers from another. It’s a reminder
+>>>> that this is a global community. So the short answer: we adapt, we
+>>>> collaborate internationally, and we keep pushing forward. The biotech
+>>>> revolution isn’t going to pause for politics. If anything, we come together
+>>>> and make sure progress continues, with or without certain government
+>>>> support.
+>>>>
+>>>> *Jesse:* Finally, Fiona, looking ahead, are you optimistic that the
+>>>> U.S. might course-correct and re-prioritize biotech in the near future? And
+>>>> more broadly, what do you foresee in the next few years for the global
+>>>> synthetic biology field? Are we headed into a new era of international
+>>>> biotech competition, or one of collaboration – or both?
+>>>>
+>>>> *Fiona:* That’s a great question. I’ll answer in two parts. For the
+>>>> U.S., I am cautiously optimistic in the long run. Biotech is just too
+>>>> important for the U.S. to ignore for very long. We may have to get through
+>>>> the current administration’s term, but I suspect there will be strong
+>>>> efforts – from industry, from the science community, even from
+>>>> forward-looking politicians in both parties – to reestablish a national
+>>>> biotech strategy. There’s already talk in D.C. about the economic
+>>>> consequences of losing biotech jobs and investment. So perhaps in a few
+>>>> years, with a different political climate, we could see the U.S. doubling
+>>>> down on biotech again. The hope is that this current rollback is an
+>>>> aberration, not the new normal. I’m optimistic because the U.S. has bounced
+>>>> back before when it realized it was falling behind (I think of the space
+>>>> race or AI research – once there’s a Sputnik moment or a wake-up call,
+>>>> America can mobilize fast). A bit of lost ground now might actually jolt
+>>>> the U.S. system into responding more vigorously later. At least, that’s the
+>>>> hopeful view.
+>>>>
+>>>> Now, for the global synthetic biology field: I see an era of both
+>>>> collaboration and competition, which is healthy. In the next few years, I
+>>>> expect *a more distributed innovation ecosystem*. You’ll have major
+>>>> biotech hubs in multiple countries, not just centered in the Bay Area or
+>>>> Boston. That means more opportunities for collaboration across borders –
+>>>> joint ventures, international research consortia, and cross-border funding
+>>>> of startups. We’re already seeing signs of that. At the same time, let’s be
+>>>> honest, there will be competition – countries will compete to host the best
+>>>> companies, to patent the key technologies, to be first to commercialize new
+>>>> bioproducts. It’s similar to how we see competition in semiconductor or AI
+>>>> industries, but also a lot of global collaboration in research. I actually
+>>>> think both dynamics can drive the field forward. Competition can spur each
+>>>> region to invest more (which is good for everyone in terms of resources
+>>>> available), and collaboration ensures that knowledge spreads and the best
+>>>> ideas get picked up everywhere.
+>>>>
+>>>> What I find exciting is that synthetic biology – the idea of
+>>>> engineering life for beneficial purposes – is becoming a priority not just
+>>>> in one or two countries but worldwide. Europe is moving, the UK, Canada,
+>>>> countries in Asia-Pacific – and the community of scientists and
+>>>> entrepreneurs is inherently international. So I’m optimistic about the
+>>>> field globally. I think we’re entering a renaissance period for biotech
+>>>> innovation. New medicines, sustainable materials, climate solutions – all
+>>>> that will progress. The question is just *where* the center of gravity
+>>>> will be. If the U.S. fixes its course, it will remain a key player among
+>>>> many. If not, others will carry the torch and maybe the U.S. will have to
+>>>> catch up later. Either way, the synthetic biology revolution is not slowing
+>>>> down. As an internationally minded optimist, I’d like to envision a future
+>>>> where the U.S. is back at the table and working alongside Europe, the UK,
+>>>> Canada, and others in a kind of global alliance for biotech, rather than a
+>>>> zero-sum race. But that might be a bit idealistic. In reality, we’ll
+>>>> probably see a mix of collaboration *and* friendly competition. And
+>>>> honestly, so long as the innovations that improve lives keep coming, the
+>>>> world wins in the end.
+>>>>
+>>>> *Jesse:* Fiona, thank you so much for this insightful discussion. Your
+>>>> candid and passionate perspective, grounded in those global conversations
+>>>> you’ve been having, really sheds light on what this policy shift means for
+>>>> everyone. It’s an exciting and uncertain time, but it’s clear the synthetic
+>>>> biology community is not sitting still. Thanks again for joining us.
+>>>>
+>>>> *Fiona:* Thank you, Jesse. It’s been a pleasure. And to everyone
+>>>> listening – stay engaged, stay collaborative, and keep building with
+>>>> biology. We’ll get through this and come out stronger globally.
+>>>>
+>>>> *(End of interview)*
+>>>>
+>>>
+>
+
+
+=== HTML PART ===
+<p dir="ltr">No problem, take your time, and do it right! Gl<br>
+Jesse</p>
+<br><div class="gmail_quote gmail_quote_container"><div dir="ltr" class="gmail_attr">On Mon, Apr 7, 2025, 9:59 AM Fiona Mischel &lt;<a href="mailto:fiona.mischel@synbiobeta.com">fiona.mischel@synbiobeta.com</a>&gt; wrote:<br></div><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div><div><div><div>Hi Jesse, <br></div><div><br></div><div>Thanks for this! I&#39;ll put some time aside <span>tomorrow</span> to work on this - my day <span>today</span> is slammed. <br></div><div><br></div><div>Thanks!<br></div></div><div><div style="display:none;border:0px;width:0px;height:0px;overflow:hidden"><img src="https://r.superhuman.com/5Dh4eDFpoF06y-klaSAi0npyHARjzOtRMR9AcLkjKPv-KwE0Q9UxyehwWRIL6KGwz1fMvSq6CfPihkXkrBeqbUkRO50DHXHoAAHfWm8t4do5o7XNb2ntLPv_WwMxrwCrf_z4KLWYv2c2J4Lip1SH70vieybKw4AQMZARnkBR4Jor-_CRFYAOXQ.gif" alt=" " width="1" height="0" style="display:none;border:0px;width:0px;height:0px;overflow:hidden"></div><br><div class="gmail_signature"><div><div dir="ltr"><span><div align="left" style="margin-left:0pt" dir="ltr"><div style="margin-left:0pt" align="left" dir="ltr"><img height="210" width="420" src="https://ci3.googleusercontent.com/mail-sig/AIorK4ye9A22mXHYH5vUzT_mWMTywNCBahep9zA7IMQxoLfTsC5zWfgiHdUdNxBjXteZj3y9UDAUciM"><br><table style="border:none;border-collapse:collapse"><colgroup></colgroup><colgroup><col width="199"><col width="425"></colgroup></table></div></div></span></div></div><br><div style="clear:both">Sent via <a href="https://sprh.mn/?vip=fiona.mischel@synbiobeta.com" target="_blank" rel="noreferrer">Superhuman</a></div><br></div></div><br><div><div class="gmail_quote">On Thu, Apr 03, 2025 at 17:46:39, Jesse Daniel Brown <span dir="ltr">&lt;<a href="mailto:plasmatoid@gmail.com" target="_blank" rel="noreferrer">plasmatoid@gmail.com</a>&gt;</span> wrote:<br><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class="gmail_extra"><div class="gmail_quote"><div dir="ltr">Hello John and Fiona,<div><br>That also sounds amazing. I&#39;ve written down some of the questions, would be happy to hear Fiona&#39;s response, and/or do a recorded zoom call with her, transcribe it, send it to you, and then feed that into the AI and see what it thinks for an article.<br><br><div>Possible questions:<br>-To start, the U.S. government recently made a major move to deprioritize biotechnology – President Trump effectively revoked an important biotech initiative, Executive Order 14081. Can you set the stage for us? What exactly happened, and why is this significant for the biotech community?<br><br>How have people reacted to this in the United States? I imagine the biotech community and even some politicians have strong feelings about this sudden policy reversal. What are you hearing from within the U.S.?<br><br>-When the U.S. makes a move regarding policy, how do other countries react? Is this creating an opening for other nations to step up? In fact, do you think we might see a kind of &#39;reverse brain drain,&#39; where talent and companies start moving out of the U.S. to places that are prioritizing biotech?<br><br>-Starting with Europe – the EU and its member states. How positioned is Europe to take advantage of the U.S. stepping back? Could Europe become the new global leader in biotech and synthetic biology?<br><br>-What about the United Kingdom? The UK isn’t part of the EU anymore, but it has a pretty vibrant biotech and synbio sector of its own. Where does the UK stand in all this? Could London or Cambridge become the next Silicon Valley of biotech, given this moment?<br><br>-Moving across the Atlantic, let’s talk about Canada. Canada sometimes gets overlooked in these discussions, but could this be an opportunity for them as well? What are you hearing about Canada’s position amid this U.S. shift? Are they trying to recruit talent too?<br><br>-Is the USA forfeiting its long-held leadership in biotech and synthetic biology? How big are the stakes here? What does it mean for the global biotech landscape if the U.S. cedes ground like this?<br><br>Given this new landscape, what can the biotech community do? How should the synthetic biology community — and organizations like SynBioBeta — respond to this kind of policy setback? What’s your message to the researchers, entrepreneurs, and even the policy folks out there in our community?<br><br>-Looking ahead, are you optimistic that the U.S. might course-correct and re-prioritize biotech in the near future? And more broadly, what do you foresee in the next few years for the global synthetic biology field? Are we headed into a new era of international biotech competition, or one of collaboration – or both?</div></div><div><br></div><div>Jesse</div><div><span style="color:rgb(80,0,80)"><br></span></div><div><span style="color:rgb(80,0,80)">-</span></div></div><br><div class="gmail_quote"><div class="gmail_attr" dir="ltr">On Thu, Apr 3, 2025 at 12:55 PM John Cumbers &lt;<a href="mailto:john.cumbers@synbiobeta.com" rel="noopener noreferrer noreferrer" target="_blank">john.cumbers@synbiobeta.com</a>&gt; wrote:<br></div><blockquote style="margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex" class="gmail_quote"><div><div>
+    <div>
+        <div>Hi Jesse, I was thinking more that you would email Fiona some questions she could respond to them or you could have a quick recorded Zoom that’s transcribed.  Then feed that into ChatGPT and produce an article from it  </div><div>John</div>
+        <div>
+        <br>
+        <div class="gmail_signature">
+    
+    
+</div>
+    </div>
+    <div class="gmail_extra">
+    <br>
+    <div class="gmail_quote">
+        <span>On Thu, Apr 3</span>, 2025 at 04:06, Jesse Daniel Brown
+        &lt;<a href="mailto:plasmatoid@gmail.com" rel="noopener noreferrer noreferrer" target="_blank">plasmatoid@gmail.com</a>&gt;
+        wrote:
+        <br>
+        <blockquote style="margin:0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex" class="gmail_quote">
+        <div><div dir="ltr">Thoughts?<br>Jesse<br><br><div class="gmail_quote"><div class="gmail_attr" dir="ltr">---------- Forwarded message ---------<br>From: <strong dir="auto" class="gmail_sendername">Jesse Daniel Brown</strong> <span dir="auto">&lt;<a href="mailto:plasmatoid@gmail.com" rel="noopener noreferrer noreferrer" target="_blank">plasmatoid@gmail.com</a>&gt;</span><br>Date: Wed, Apr 2, 2025 at 1:46 AM<br>Subject: Fwd: Re: US President deprioritises biotechnology - European Biotechnology Magazine<br>To: Fiona Mischel &lt;<a href="mailto:fiona.mischel@synbiobeta.com" rel="noopener noreferrer noreferrer" target="_blank">fiona.mischel@synbiobeta.com</a>&gt;<br></div><br><br><div dir="ltr">Hello Fiona,<br><br>John asked if you would be interested in doing a recorded interview about the following topic, maybe you&#39;ll look it over and let me know?<br>I&#39;ve drafted a mock interview to take a look at if you would like, feel free to completely change it, or tell me if you like and want to go with anything here.<br>Jesse<br><br><h1>Fiona Mischel on U.S. Biotech Policy Shift and Global Reactions</h1>
+<p><strong>Jesse:</strong> Hello and welcome! I&#39;m Jesse, and <span>today</span> I&#39;m joined by Fiona Mischel, the Director of International Outreach at SynBioBeta. Fiona, thank you for taking the time. To start, the U.S. government recently made a major move to deprioritize biotechnology – President Trump effectively revoked an important biotech initiative, Executive Order 14081. Can you set the stage for us? What exactly happened, and why is this significant for the biotech community?</p>
+<p><strong>Fiona:</strong> Thank you, Jesse – happy to be here. In a nutshell, President Trump rescinded President Biden’s 2022 executive order that had been all about advancing biotechnology and biomanufacturing innovation<span></span></p><div><a rel="noopener noreferrer noreferrer" href="https://www.lawbc.com/president-trump-revokes-2022-eo-on-advancing-biotechnology-and-biomanufacturing/#:~:text=On%20March%2014%2C%202025%2C%20President,September%2013%2C%202022%2C%20blog%20item" target="_blank"><span>lawbc.com</span></a></div><span><div><a rel="noopener noreferrer noreferrer" href="https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=The%20U,biotech%20industry" target="_blank"><span>european-biotechnology.com</span></a></div></span>. That original order (EO 14081) was a big deal for us in the biotech field: it created a whole-of-government effort to boost the bioeconomy across health, agriculture, energy, and more. Its revocation really signals that the U.S. government – at least under this administration – is pulling back support for biotech. The White House even framed the original initiative as having <em>“funneled federal resources into radical biotech and biomanufacturing initiatives under the guise of environmental policy”</em><span><div><a rel="noopener noreferrer noreferrer" href="https://www.lawbc.com/president-trump-revokes-2022-eo-on-advancing-biotechnology-and-biomanufacturing/#:~:text=2025%2C%20fact%20sheet%2C%20EO%2014081,in%20the%20January%202017%20Update" target="_blank"><span>lawbc.com</span></a></div></span>, which, from the perspective of researchers and entrepreneurs, is a pretty shocking characterization. So this is significant because it essentially halts a coordinated national strategy to grow the biotech sector. Many of us see it as the U.S. stepping away from a leadership role in one of the most important industries of the future. It’s a sharp U-turn, and it introduces a lot of uncertainty for scientists, startups, and investors who were counting on that support.<p></p>
+<p><strong>Jesse:</strong> And how have people reacted to this in the United States? I imagine the biotech community and even some politicians have strong feelings about this sudden policy reversal. What are you hearing from within the U.S.?</p>
+<p><strong>Fiona:</strong> The reaction has been one of dismay and frankly deep concern. Within the U.S. biotech community – scientists, startup founders, investors – there&#39;s a sense of shock. I’ve talked to folks who are worried that years of progress could be undermined overnight. Even some lawmakers are unhappy. Interestingly, a number of Republican senators from states like Nebraska, Indiana, Michigan, and others had heavily invested in bioeconomy projects in their states under the Biden-era initiative, hoping to become world leaders in biomanufacturing<span></span></p><div><a rel="noopener noreferrer noreferrer" href="https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=President%20Trump%E2%80%99s%20U,the%20executive%20order%20proves%20otherwise" target="_blank"><span>european-biotechnology.com</span></a></div>. They <strong>“will not be very amused”</strong> about this reversal<span><div><a rel="noopener noreferrer noreferrer" href="https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=President%20Trump%E2%80%99s%20U,the%20executive%20order%20proves%20otherwise" target="_blank"><span>european-biotechnology.com</span></a></div></span>. In other words, even people in President Trump’s own political camp – in states that stood to gain jobs and industry from biotech – are frustrated because this move undercuts those efforts. The phrase I’ve heard more than once is that this <em>could backfire</em>. Industry leaders are warning that the U.S. is at risk of losing its edge. There’s a lot of <em>“Why are we doing this now?”</em> being asked. So, inside the country there&#39;s pushback and a worry that America is voluntarily surrendering its biotechnology leadership and the economic and strategic advantages that come with it. It’s a rare issue where you have bipartisan concern: everyone from academic researchers to investors to some Republican senators are unsettled by the decision.<p></p>
+<p><strong>Jesse:</strong> You’re the Director of International Outreach at SynBioBeta, so you’re constantly speaking with people around the world. When the U.S. makes a move like this, how do other countries react? Is this creating an opening for other nations to step up? In fact, do you think we might see a kind of “reverse brain drain,” where talent and companies start moving out of the U.S. to places that are prioritizing biotech?</p>
+<p><strong>Fiona:</strong> Absolutely. The international response has been swift – almost a mirror image of what we saw in the past. Historically, the U.S. was the magnet for top biotech talent and companies. Now, with the U.S. seeming less welcoming at a policy level, other countries see a huge opportunity and are actively saying <em>“Come here instead!”</em> I’m literally hearing from colleagues in Europe and elsewhere who are energized by this. For example, European stakeholders wasted no time – the Bio-based Industries Consortium in the EU openly <strong>called on U.S. biotech firms to come to Europe</strong>, pointing out that the EU is an <em>“excellent place for bioeconomy R&amp;D”</em><span></span></p><div><a rel="noopener noreferrer noreferrer" href="https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=European%20stakeholders%20such%20as%20the,biochemical%20engineering%20and%20protein%20engineering" target="_blank"><span>european-biotechnology.com</span></a></div>. It’s like they’re rolling out the red carpet for disillusioned American researchers and entrepreneurs. So yes, we could very well witness a reverse brain drain. Talent that might have gone to Boston or Silicon Valley might choose London, Berlin or Toronto now. In Canada, too, there’s chatter about this being a moment to shine. I’ve even seen analysis up north suggesting that this could result in a <strong>“brain gain” for Canada</strong> – which is remarkable because Canada has often suffered a brain drain to the U.S.<span><div><a rel="noopener noreferrer noreferrer" href="https://www.ottawalife.com/article/brain-gain-how-canada-can-profit-from-a-trump-mistake/#:~:text=The%20key%20is%20that%20many,attracted%20away%20to%20greener%20pastures" target="_blank"><span>ottawalife.com</span></a></div></span>. Canadian colleagues of mine have told me they’re already seeing a spike in interest from scientists considering relocating. So the bottom line is: globally, countries are seizing this chance to attract top biotech minds and companies. They view the U.S. policy retreat as their gain. From Europe to the UK to Canada (and honestly even Asia, though that’s another story), the message is, <em>“We’re open for biotech and ready to lead if the U.S. won’t.”</em> This could very well become a pivotal moment where the talent flows start to shift direction.<p></p>
+<p><strong>Jesse:</strong> Let’s dig into that a bit region by region. Starting with Europe – the EU and its member states. How positioned is Europe to take advantage of the U.S. stepping back? Could Europe become the new global leader in biotech and synthetic biology?</p>
+<p><strong>Fiona:</strong> Europe is definitely positioning itself to grab the baton. They’ve been eyeing leadership in biotech for a while, and now there’s a sense of <em>“our time is now.”</em> There are a few reasons for this. First, Europe has a strong research base and some serious industrial muscle. I’ve spoken with EU policymakers and industry folks who are excited – but also aware that Europe needs to act decisively to capitalize on this moment. European leaders are saying, <em>“We have what it takes to make Europe a place where biosolutions are not only born but also grow up”</em> – those are the words of Sofie Carsten Nielsen of the European Biosolutions Coalition<span></span></p><div><a rel="noopener noreferrer noreferrer" href="https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=would%20need%20huge%20public%20co,reductions%2C%E2%80%9D%20she%20said" target="_blank"><span>european-biotechnology.com</span></a></div>. But she and others hasten to add that this will <strong>require massive public investment, better scaling infrastructure, and even a bold Europe-wide ‘Biotech Act’</strong> to cut red tape<span><div><a rel="noopener noreferrer noreferrer" href="https://european-biotechnology.com/latest-news/us-president-depriorises-biotechnology/#:~:text=would%20need%20huge%20public%20co,reductions%2C%E2%80%9D%20she%20said" target="_blank"><span>european-biotechnology.
+```
+
+*(truncated at 50KB — full body is 69728 bytes, sha256 is of the full body)*

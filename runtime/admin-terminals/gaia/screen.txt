@@ -1,0 +1,15 @@
+╭────────────────────────────────────────────────────╮
+│ >_ OpenAI Codex (v0.118.0)                         │
+│                                                    │
+│ model:     gpt-5.4 xhigh   fast   /model to change │
+│ directory: ~                                       │
+╰────────────────────────────────────────────────────╯
+
+  Tip: New Try the Codex App, now available on Windows, with 2x rate limits unt
+  il April 2nd. Run 'codex app' or visit
+  https://chatgpt.com/codex?app-landing-page=true
+
+
+› Run /review on my current changes
+
+  gpt-5.4 xhigh fast · 100% left · ~

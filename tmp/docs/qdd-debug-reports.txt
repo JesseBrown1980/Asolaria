@@ -1,0 +1,215 @@
+QDD /reports Page Debug — 2026-03-25
+======================================
+
+PROBLEM: /reports page shows "No reports found" despite 15 seeded documents.
+
+=== 1. WHAT THE PAGE CALLS ===
+
+File: apps/web-ebacmap/src/pages/reports/index.tsx
+
+The page calls paginateReports() from services/reports.ts, which hits:
+
+  GET /api/reports?limit=10&offset=0&location={locationId}&accessType=personal,facility
+
+The SWR key is:
+  `/api/reports?${new URLSearchParams({ limit, offset, location: location.id, accessType })}`
+
+It REQUIRES location.id to be truthy (line 76-77). If location is null/undefined,
+it passes null to useService and no request is made at all.
+
+Expected response shape (ReportPaginateResponse):
+  {
+    reports: ReportView[],   // <-- array of report objects
+    total: number,
+    limit: number,
+    offset: number,
+    sort?: string
+  }
+
+The page reads: data?.reports (line 250) and data?.total (line 251).
+Each report must have: id, name, createdBy, updatedAt, access (for display).
+
+
+=== 2. THE API ROUTE ===
+
+File: apps/web-ebacmap/src/pages/api/reports/index.ts
+
+GET handler: listReportsEndpoint
+  - requiresLocation() — the request MUST include a location param
+  - useAccessControl: Report/View permission required
+  - Validates: location (required string), limit, offset, accessType, etc.
+  - Delegates to: ListReportsUseCase
+
+
+=== 3. THE USE CASE (ListReports) ===
+
+File: apps/web-ebacmap/src/modules/reports/use-cases/ListReports/UseCase.ts
+
+Key logic:
+  1. Checks user has Report/View permission for that location
+  2. Sets query['client'] = new ObjectId(user.clientId)  <-- CRITICAL
+  3. If location !== 'global': sets query['location'] = location
+  4. Calls reportRepo.search({...query, location, accessType, userId})
+
+
+=== 4. THE REPO (search method) ===
+
+File: apps/web-ebacmap/src/modules/reports/repos/ReportRepo.ts, line 370
+
+search() builds a MongoDB query with these conditions:
+  - query.client = ObjectId(user.clientId)  <-- always set by use case
+  - query.dashboardOnly = false             <-- always set (line 513/516)
+  - query.reportType = { $ne: 'ebacmap' }   <-- always set (line 517)
+  - Complex $or for location + access type matching
+
+For a non-global location with accessType="personal,facility":
+  $or: [
+    { location: ObjectId(loc), access: 'facility' },
+    { location: { $in: [ObjectId(loc)] }, access: 'facility' },
+    { location: ObjectId(loc), access: { $exists: false }, userId: { $exists: false } },
+    { location: { $in: [ObjectId(loc)] }, access: { $exists: false }, userId: { $exists: false } },
+    { location: ObjectId(loc), userId: ObjectId(user), access: 'personal' },
+    { location: ObjectId(loc), userId: ObjectId(user), access: { $exists: false } }
+  ]
+
+
+=== 5. ROOT CAUSE ANALYSIS — SEEDED DATA vs EXPECTED SCHEMA ===
+
+Seeded fields:
+  { title, type, status, clientId, locationId, createdBy, description, data, createdAt, updatedAt }
+
+Expected DB fields (from Mongoose schema, Report.ts in libs/db):
+  { name, client, location, userId, createdBy, access, reportType, sections,
+    showOnDashboard, dashboardOnly, filters, sort, ... }
+
+*** FIELD MISMATCHES (THIS IS THE BUG): ***
+
+  SEEDED FIELD    EXPECTED FIELD    NOTES
+  -----------     --------------    -----
+  title           name              Reports use "name" not "title"
+  type            reportType        Must be: 'legacy'|'multi'|'single'|'ebacmap'
+  status          (no field)        Reports have no status field
+  clientId        client            Must be ObjectId, field is "client" not "clientId"
+  locationId      location          Must be ObjectId, field is "location" not "locationId"
+  description     (no field)        Reports have no description field
+  data            (no field)        Reports use sections/filters/chartData, not generic "data"
+
+*** MISSING REQUIRED FIELDS: ***
+  - dashboardOnly    (defaults to false in schema, BUT the query explicitly filters on it)
+  - showOnDashboard  (Boolean, used in queries)
+  - reportType       (used in query: { $ne: 'ebacmap' }. If missing, won't match filter)
+  - access           (used in $or query. If missing AND userId missing, backward compat kicks in)
+  - sections         (array, needed for display)
+
+*** WHY ZERO RESULTS: ***
+
+The search() query requires ALL of:
+  1. client = ObjectId(user.clientId)  — seeded as "clientId" not "client" → NO MATCH
+  2. dashboardOnly = false             — not set in seed → treated as undefined → NO MATCH
+  3. reportType != 'ebacmap'           — seeded as "type" not "reportType" → field missing,
+                                         but $ne 'ebacmap' on undefined passes, so this is OK
+  4. location $or conditions           — seeded as "locationId" not "location" → NO MATCH
+
+Bugs #1 and #4 alone are enough to return zero results.
+
+
+=== 6. CORRECT SEED DOCUMENT FORMAT ===
+
+To match the schema, seed documents should look like:
+
+{
+  name: "Monthly Trend Report",           // NOT "title"
+  client: ObjectId("..."),                 // NOT "clientId", must be ObjectId
+  location: ObjectId("69c41938d84980e337ac77cf"),  // NOT "locationId", must be ObjectId
+  // OR for multi-location: location: [ObjectId("..."), ObjectId("...")]
+  // OR omit for global reports
+  access: "facility",                      // "personal" | "facility" | "global"
+  reportType: "single",                    // "legacy" | "single" | "multi" | "ebacmap"
+  showOnDashboard: false,
+  dashboardOnly: false,                    // CRITICAL — query filters on this
+  isDefault: false,
+  individualSites: false,
+  byZone: false,
+  createdBy: "John Doe",                  // display name string
+  userId: ObjectId("..."),                 // ObjectId of the creating user (for personal reports)
+  sections: [{                             // at least one section for new reports
+    title: "",
+    filters: {
+      interval: "month",
+      type: "month",
+      dataType: "fixed",
+      rollingInterval: "ninetyDay",
+      conditions: [],
+      includeVectorSites: false,
+      dateRange: { type: "month" }
+    },
+    charts: [{
+      module: "TrendChart",
+      limitLines: []
+    }],
+    notes: ""
+  }],
+  createdAt: new Date(),
+  updatedAt: new Date()
+}
+
+
+=== 7. /reports/new?type=single — WHAT IT NEEDS ===
+
+File: apps/web-ebacmap/src/pages/reports/new.tsx
+
+Requirements to render:
+  - User must be authenticated (useUser hook)
+  - Location must be selected (useBetween(useLocation))
+  - User needs Report/View permission
+  - Query param: type=single → creates one default section with DEFAULT_SELECTED_FILTERS
+  - On save, calls createReport() with:
+    { name, client: location.clientId, location: location.id, showOnDashboard: false,
+      reportType: 'single', access: (from modal), sections: [...] }
+  - Validates: name required (max 80 chars), location required, at least 1 section,
+    each section needs at least 1 chart with a module selected
+  - SaveReportTypeModal lets user pick access type: personal/facility/global
+
+
+=== 8. FIX PLAN ===
+
+Option A — Re-seed with correct field names:
+  1. Drop the 15 incorrectly-seeded documents
+  2. Re-insert with correct fields: name (not title), client (not clientId),
+     location (not locationId), reportType (not type), dashboardOnly: false,
+     access: "facility", sections with proper structure
+
+Option B — Quick MongoDB rename (if you just want to verify):
+  db.reports.updateMany({}, {
+    $rename: { "title": "name", "clientId": "client", "locationId": "location", "type": "reportType" },
+    $set: { dashboardOnly: false, showOnDashboard: false, access: "facility", isDefault: false }
+  });
+  // Then convert client/location string IDs to ObjectIds if they were stored as strings
+
+NOTE: "client" and "location" MUST be ObjectId types, not strings. The repo does
+new ObjectId(location) comparisons. String values will never match.
+
+
+=== 9. API TEST COMMAND ===
+
+To test with dev bypass cookie against locationId=69c41938d84980e337ac77cf:
+
+  curl -b "next-auth.session-token=<DEV_SESSION_TOKEN>" \
+    "http://localhost:3000/api/reports?limit=10&offset=0&location=69c41938d84980e337ac77cf&accessType=personal,facility"
+
+Expected response if working: { reports: [...], total: N, limit: 10, offset: 0 }
+Expected response if broken:  { reports: [], total: 0, limit: 10, offset: 0 }
+
+
+=== KEY FILES ===
+
+Page:       D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\reports\index.tsx
+API route:  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\reports\index.ts
+Service:    D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\services\reports.ts
+Use case:   D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\reports\use-cases\ListReports\UseCase.ts
+Repo:       D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\reports\repos\ReportRepo.ts
+Domain:     D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\reports\domain\Report.ts
+DB schema:  D:\projects\QDD\ebacmap-master\libs\db\src\models\Report.ts
+Types:      D:\projects\QDD\ebacmap-master\libs\types\src\lib\Views.ts (ReportView interface, line 447)
+Types:      D:\projects\QDD\ebacmap-master\libs\types\src\lib\Report.ts (ReportType/AccessType enums)
+New page:   D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\reports\new.tsx

@@ -1,0 +1,99 @@
+PHONE DOWNLOAD INVENTORY — 2026-03-25
+======================================
+Device: 192.168.15.64:5555 (Jesse's phone via ADB)
+Source: /sdcard/Download/
+Target: C:\Users\acer\Asolaria\tmp\docs\phone-downloads\
+
+PULLED FILES: 53 total
+========================
+
+=== ASOLARIA ZIP EXPORTS (4 files, 6.69 MB) ===
+Asolaria-Public-20260219-191509.zip    2,784,512 bytes  2026-02-19
+Asolaria-Public-20260219-191542.zip    2,784,552 bytes  2026-02-19
+Asolaria-Public-20260222-164348.zip      540,449 bytes  2026-02-22
+Asolaria-Public-20260225-135740.zip      577,949 bytes  2026-02-25
+
+=== ASOLARIA CONFIG/AUTH (6 files) ===
+asolaria-codex-auth.json                 4,316 bytes  2026-02-18  (Codex auth credentials)
+asolaria-codex-config.toml                 877 bytes  2026-02-16  (Codex config)
+asolaria-codex-phone-config.toml           157 bytes  2026-02-21  (Phone-specific Codex config)
+asolaria-leveldb-000003.log                  0 bytes  2026-02-21  (Empty LevelDB log)
+asolaria-local-ca.cer                      779 bytes  2026-03-14  (Local CA certificate)
+asolaria-ui.xml                          5,371 bytes  2026-02-16  (UI layout dump)
+
+=== AGENT-BRIDGE (3 files) ===
+agent-bridge/phone_agent.py             12,080 bytes  2026-02-22  (Phone agent Python script)
+agent-bridge/termux-start-agent.sh         326 bytes  2026-02-22  (Termux startup shell script)
+agent-bridge/README.md                   3,287 bytes  2026-02-22  (Agent bridge documentation)
+
+=== ASOLARIA SCREENSHOTS (28 PNG files, ~8.5 MB) ===
+asolaria-screen.png                     99,961 bytes  2026-02-15
+asolaria-screen2.png                   377,058 bytes  2026-02-15
+asolaria-screen3.png                   353,870 bytes  2026-02-16
+asolaria-screen4.png                   325,632 bytes  2026-02-16
+asolaria-scroll-debug-before.png       262,610 bytes  2026-02-20
+asolaria-termux-after-sshd.png         278,845 bytes  2026-02-16
+asolaria-termux-after-sshd2.png        277,174 bytes  2026-02-16
+asolaria-termux-after-sshd3.png        264,694 bytes  2026-02-16
+asolaria-termux-check.png              276,832 bytes  2026-02-16
+asolaria-termux-check2.png             209,491 bytes  2026-02-16
+asolaria-termux-check3.png             298,862 bytes  2026-02-16
+asolaria-termux-debug.png              314,649 bytes  2026-02-16
+asolaria-termux-debug2.png             279,121 bytes  2026-02-16
+asolaria-termux-final-clean.png        272,001 bytes  2026-02-16
+asolaria-termux-final.png              264,563 bytes  2026-02-16
+asolaria-termux-final2.png             213,492 bytes  2026-02-16
+asolaria-termux-final3.png             310,538 bytes  2026-02-16
+asolaria-termux-final4.png             222,549 bytes  2026-02-16
+asolaria-termux-final5.png             215,499 bytes  2026-02-16
+asolaria-termux-final6.png             308,121 bytes  2026-02-16
+asolaria-termux-final7.png             317,468 bytes  2026-02-16
+asolaria-termux-final8.png             316,589 bytes  2026-02-16
+asolaria-termux-postprefs.png          278,154 bytes  2026-02-16
+asolaria-testpush-after.png            347,549 bytes  2026-02-16
+asolaria-testpush-after2a.png          351,625 bytes  2026-02-16
+asolaria-testpush-after2b.png          351,625 bytes  2026-02-16
+asolaria-testpush-after3a.png          339,841 bytes  2026-02-16
+asolaria-testpush-after3b.png          341,407 bytes  2026-02-16
+asolaria-testpush-after4.png           334,933 bytes  2026-02-16
+asolaria-testpush-before.png           328,369 bytes  2026-02-16
+asolaria-top-final.png                 325,906 bytes  2026-02-16
+
+=== OTHER DEBUG/DIAGNOSTIC FILES (12 files) ===
+phone-screen-now.png                    33,458 bytes  2026-02-21
+gemini-live-error.png                   72,810 bytes  2026-03-05
+tmp_clipboardedge_try.png              229,444 bytes  2026-03-05
+tmp-ui-gemini.xml                       32,836 bytes  2026-03-05
+tmp-ui-gemini2.xml                       5,539 bytes  2026-03-05
+tmp-ui-gemini3.xml                      32,836 bytes  2026-03-05
+tmp-ui-gemini-live-check.xml             5,539 bytes  2026-03-05
+tmp-ui-gemini-live-retry.xml             5,539 bytes  2026-03-05
+window_dump.xml                         11,066 bytes  2026-02-21
+window_dump_after_back.xml              31,599 bytes  2026-02-21
+NL2XSync_2025-06-12.log               128,597 bytes  2025-06-12
+NU_6271023223_01NOV2025_24NOV2025.csv    3,699 bytes  2025-11-25
+
+=== NOT PULLED (on phone but not Asolaria-related) ===
+~213 other files in /sdcard/Download/ including:
+- Bank statements (Capital One, Nubank, various months)
+- Legal documents (CFPB packets, court filings, NDA)
+- APK files (F-Droid, Company Portal, APKPure)
+- Academic papers (GNN, neuroscience, physics)
+- Personal documents (invoices, receipts, immigration)
+- Audio files (mp3, wav)
+- Video recordings (mp4)
+- Codex.dmg (151 MB, macOS installer)
+
+=== WHATSAPP STATUS ===
+/sdcard/WhatsApp/Media/ — NOT ACCESSIBLE (permission denied or not present)
+/sdcard/Documents/WhatsApp/ — EMPTY
+/sdcard/WhatsApp/Databases/ — NOT ACCESSIBLE
+
+=== ASOLARIA APP STORAGE ===
+/sdcard/Android/data/com.jessebrown.asolaria/ — NOT FOUND (no dedicated app package)
+
+=== SUBFOLDERS CHECKED ===
+/sdcard/Download/agent-bridge/ — 4 files (pulled 3, skipped .env.example per security policy)
+/sdcard/Download/01/ — 5 PDF files (Gmail exports, receipts — not Asolaria-related)
+/sdcard/Download/Daisy/ — subfolder (not checked, likely personal)
+/sdcard/Download/Folder 1/ — subfolder (not checked)

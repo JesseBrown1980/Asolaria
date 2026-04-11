@@ -1,0 +1,253 @@
+CURSOR AI WORKSPACE DATA INVENTORY
+Generated: 2026-03-25
+===================================
+
+## 1. ROAMING APPDATA (C:\Users\acer\AppData\Roaming\Cursor\)
+
+Top-level contents:
+  Backups/
+  Cache/
+  CachedConfigurations/
+  CachedData/
+  CachedExtensionVSIXs/
+  CachedProfilesData/
+  Code Cache/
+  Crashpad/
+  DIPS/
+  DawnGraphiteCache/
+  DawnWebGPUCache/
+  FIREWALL_FIX_INSTRUCTIONS.txt  (firewall fix notes for Cursor.exe)
+  GPUCache/
+  Local State
+  Local Storage/   (LevelDB — binary, not directly readable)
+  Network/
+  Partitions/
+  Preferences
+  Service Worker/
+  Session Storage/  (LevelDB — binary, not directly readable)
+  Shared Dictionary/
+  SharedStorage/
+  User/             <<< MAIN DATA DIRECTORY
+  WebStorage/
+  blob_storage/
+  languagepacks.json
+  logs/
+  machineid
+  sentry/
+
+### User/ subdirectory:
+  History/           — 321 edit-history directories (file version snapshots)
+  globalStorage/     — Extension data + global state.vscdb
+  keybindings.json
+  settings.json
+  snippets/
+  workspaceStorage/  — 17 workspace folders (see Section 4)
+
+
+## 2. DOT-CURSOR (C:\Users\acer\.cursor\)
+
+Contents:
+  ai-tracking/         <<< AI USAGE TRACKING DB
+  argv.json
+  browser-logs/        (empty directory — no browser log files found)
+  extensions/
+  ide_state.json       (recently viewed files — last active: ai_healthcare_project)
+  mcp.json             (MCP server config: codacy, google_wiki, MCP_DOCKER)
+  projects/            (per-project MCP tool caches and assets)
+  skills-cursor/       (5 built-in skills: create-skill, update-cursor-settings,
+                         create-subagent, create-rule, migrate-to-skills)
+  worktrees/
+
+### ai-tracking/ contents:
+  ai-code-tracking.db  — SQLite database, 11.1 MB, last modified 2026-03-06
+                          This is the PRIMARY AI interaction tracking database.
+                          Contains code tracking data (could not query tables
+                          due to sqlite3 permission restrictions).
+
+### projects/ contents:
+  c-Users-acer-ai-healthcare-project/
+    assets/  (1 image asset cached from workspaceStorage)
+  C-Users-acer-AppData-Local-Temp-48de7488.../
+    mcps/cursor-ide-browser/  (browser MCP tool definitions)
+  C-Users-acer-AppData-Local-Temp-c8cd6e00.../
+    mcps/cursor-ide-browser/  (35+ browser automation tools)
+    mcps/user-google_wiki/    (4 Google wiki tools)
+    mcps/user-codacy/         (4 code analysis tools)
+    mcps/user-MCP_DOCKER/     (40+ tools: browser, SingleStore, notebooks, etc.)
+
+
+## 3. AI-TRACKING DATABASE (HIGHEST VALUE)
+
+Path: C:\Users\acer\.cursor\ai-tracking\ai-code-tracking.db
+Type: SQLite
+Size: 11,608,064 bytes (11.1 MB)
+Modified: 2026-03-06 09:18
+
+STATUS: This is the primary store for Cursor AI interaction tracking.
+        Could not query schema/tables due to sandbox restrictions on sqlite3.
+        RECOMMENDATION: Run manually:
+          sqlite3 "C:\Users\acer\.cursor\ai-tracking\ai-code-tracking.db" ".tables"
+          sqlite3 "C:\Users\acer\.cursor\ai-tracking\ai-code-tracking.db" ".schema"
+          sqlite3 "C:\Users\acer\.cursor\ai-tracking\ai-code-tracking.db" "SELECT COUNT(*) FROM <table>"
+
+
+## 4. WORKSPACE STORAGE — ALL 17 WORKSPACES
+
+Base: C:\Users\acer\AppData\Roaming\Cursor\User\workspaceStorage\
+
+Each workspace has:
+  - workspace.json (project path mapping)
+  - state.vscdb (workspace state database, VSCode format)
+  - anysphere.cursor-retrieval/ (code index for AI context)
+    - embeddable_files.txt (file list Cursor indexed)
+    - high_level_folder_description.txt (AI-generated project summary)
+
+ID                                | Project Path                                                    | Has Retrieval | Has Browser Ext | Has Images
+---                               | ---                                                             | ---           | ---             | ---
+3b3e5d685ed1230dec6068375fc815cf   | C:\Users\acer\ai_healthcare_project                             | YES           | YES             | YES (102 images)
+0122759cdfd844de8bf94e803fd91773   | C:\                                                             | YES           | NO              | YES (6 images)
+d01356e14e70c039b8141ab98b4fd88c   | C:\Users\acer\OneDrive\Documentos\Code                          | YES           | NO              | NO
+c1732d356d7382addd941307981a79e9   | C:\Users\acer\OneDrive\Documentos\Code\python                   | YES           | NO              | NO
+d7bf797f65a8e2f046bd657eea26e86f   | ..\Documents\GitHub\Upfirst-OAuth-restapi                       | YES           | NO              | NO
+24ca370b70af09396b6689e8a4cfbc24   | D:\cisco\ldm-clc-react-ui\ldm-clc-react-ui                      | YES           | NO              | NO
+92ba651ad136bf512ed1debf9e3d1094   | D:\cisco\ldm-clc-react-ui\mce-nextgen-ui\mce-nextgen-ui         | YES           | NO              | NO
+b01bd2580e1ed75e077645ccbf3bad16   | D:\projects\ebacmap                                             | YES           | NO              | NO
+6f80e7664a0f7b8b4de86a4c69df91c1   | D:\projects\test                                                | YES           | NO              | NO
+2b7491c0564b924a04aca8d5bb3f5e11   | ..\ODDBALL\Oddball_Test                                         | YES           | NO              | NO
+a4ca8ca38fefb1fdddced18c9d8491dc   | ..\ODDBALL\Oddball_Test (1)                                     | YES           | NO              | NO
+5ad04ecbad61e94d64b260ca53ce6b2d   | D:\projects\test\Everyrealm-AWS-CDK                             | YES           | NO              | NO
+3bf258187f9b2754d3b66a04ad0db939   | D:\projects\QDD\ebacmap                                        | YES           | NO              | NO
+71ed49eaec29c0edcf9c125a36c8cc17   | D:\projects\test\spinutech-poker-evaluator                      | YES           | NO              | NO
+445b06bbff4af8f58b7194e59efd2d57   | D:\projects\test\schedule-manager                               | YES           | NO              | NO
+f561ca3496d254f7f7ee7790d632517d   | ..\Downloads\java-1.8.0-openjdk-...                             | YES           | NO              | NO
+1771515902086                      | (no workspace.json — transient)                                 | state.vscdb   | NO              | NO
+
+
+## 5. AI_HEALTHCARE WORKSPACE DEEP DIVE (3b3e5d685ed1230dec6068375fc815cf)
+
+This is the ONLY workspace with all three data types:
+
+### a) anysphere.cursor-retrieval/
+  - embeddable_files.txt: Full indexed file list of ai_healthcare_project
+  - high_level_folder_description.txt: AI-generated project summary (timestamp: 1769963265876)
+  Files indexed include: backend/, react_frontend/, mobile/, docs/, audit-logs/,
+  windows_build/, alembic/, .github/workflows/, compliance_keys.json, etc.
+
+### b) anysphere.cursor-browser-extension/
+  Full embedded Chromium browser session data:
+  - browser-session/Default/ — Complete browser profile
+    - Login Data (sqlite — credentials store)
+    - Local Storage/ (LevelDB)
+    - Code Cache/ (JS/WASM cache)
+    - GPUCache/, ShaderCache/, DawnWebGPUCache/
+    - Extension State/, Extension Rules/, Extension Scripts/
+    - shared_proto_db/ (protobuf storage)
+    - Segmentation Platform/ (3 sub-databases)
+    - Safe Browsing Network/
+    - Site Characteristics Database/
+    - Various commerce/tracking LevelDBs (chrome_cart_db, parcel_tracking_db, etc.)
+  - optimization_guide_model_store/ (TFLite ML models for optimization — 9 models)
+  - Crashpad/ (crash reporting data)
+
+### c) images/ — 102 PNG files
+  - 91 unnamed images (image-UUID.png format) — likely screenshots shared in AI conversations
+  - 11 named screenshots from 2026-01-04 (Screenshot 2026-01-04 005546.png through 005828.png)
+    These appear to be duplicated with different UUIDs (5 unique timestamps, ~2 copies each)
+  - Date range suggests heavy usage around early January 2026
+
+### d) state.vscdb — workspace state (binary VSCode database)
+
+
+## 6. C:\ ROOT WORKSPACE (0122759cdfd844de8bf94e803fd91773)
+
+  - images/ — 6 PNG files
+    - 5 Screenshots from 2026-01-04 (same timestamps as ai_healthcare)
+    - 1 named file: "the whole site is a fake conversation of me-e4145912....png"
+      This filename is notable — suggests investigation of a fake conversation site
+
+
+## 7. FILE EDIT HISTORY (C:\Users\acer\AppData\Roaming\Cursor\User\History\)
+
+321 directories, each tracking edits to a specific file.
+Each directory contains:
+  - entries.json (edit timeline with timestamps and source annotations)
+  - Multiple versioned file snapshots (random 4-char names)
+
+Key files tracked (from entries.json sampling):
+  - SyncClient.ts (QDD/ebacmap serial-server) — 12 versions, May 2025
+  - llm_engine.py (Gemini antigravity conversations) — 9 versions, Feb 2026
+    Source annotations include "Undo Create Diff", "Undo Chain Diff", "Undo Accept Diff"
+    — these indicate AI-assisted code generation that was partially accepted/rejected
+  - settings.json (Cursor user settings) — 9 versions, Jan 2025 through Mar 2026
+
+This is NOT conversation history but IS a record of AI-assisted code changes
+(the "Undo Accept Diff" / "Undo Chain Diff" sources prove AI agent involvement).
+
+
+## 8. STATE DATABASES (state.vscdb files)
+
+17 workspace-level state.vscdb files + 1 global:
+  - C:\Users\acer\AppData\Roaming\Cursor\User\globalStorage\state.vscdb (global state)
+  - One per workspace (17 total)
+
+Format: VSCode binary database (.vscdb)
+Contains: Workspace state, open editors, panel state, possibly chat state.
+RECOMMENDATION: These may contain conversation data stored as JSON blobs.
+  Try: sqlite3 <path>/state.vscdb ".tables" and ".schema" to check.
+
+
+## 9. LOCAL/SESSION STORAGE (LevelDB)
+
+Local Storage: C:\Users\acer\AppData\Roaming\Cursor\Local Storage\leveldb\
+Session Storage: C:\Users\acer\AppData\Roaming\Cursor\Session Storage\
+
+Both are LevelDB databases (binary format, not directly readable as text).
+These MAY contain conversation/chat history as Cursor stores chat state
+in the VS Code storage layer.
+
+RECOMMENDATION: Use a LevelDB reader tool to extract contents.
+
+
+## 10. GLOBAL STORAGE EXTENSIONS
+
+C:\Users\acer\AppData\Roaming\Cursor\User\globalStorage\
+  - state.vscdb (global settings database)
+  - ms-edgedevtools.vscode-edge-devtools/ (Edge DevTools extension with full node_modules)
+  - github.copilot-chat/ (Copilot Chat debug command files)
+    - debugCommand/copilotDebugCommand.js
+    - debugCommand/copilot-debug.ps1
+    - debugCommand/copilot-debug.bat
+
+
+## 11. MCP SERVER CONFIGURATION
+
+Path: C:\Users\acer\.cursor\mcp.json
+Active MCP servers:
+  1. codacy — Code analysis via npx @codacy/codacy-mcp@latest
+  2. google_wiki — Custom Google Docs wiki (pointed at Asolaria localhost:4781)
+  3. MCP_DOCKER — Docker MCP gateway (SingleStore, Playwright browser, library docs)
+
+
+## SUMMARY — WHERE CONVERSATION HISTORY LIKELY LIVES
+
+CONFIRMED DATA:
+  1. ai-code-tracking.db (11.1 MB) — Primary AI tracking database, needs sqlite3 query
+  2. state.vscdb files (18 total) — May contain chat state as JSON blobs
+  3. Local Storage LevelDB — May contain conversation data
+  4. Session Storage LevelDB — May contain active session chat data
+  5. 102 images in ai_healthcare workspace — Screenshots shared during AI conversations
+  6. 321 file edit history dirs — Records of AI-assisted edits (with accept/reject tracking)
+
+WHAT IS MISSING:
+  - No plaintext conversation logs found anywhere
+  - No dedicated chat history database found (Cursor may store this server-side)
+  - No .sqlite or .sqlite3 files found in workspaceStorage
+  - browser-logs/ directory is empty
+
+NEXT STEPS TO EXTRACT:
+  1. Query ai-code-tracking.db with sqlite3 to get table schema and row counts
+  2. Query state.vscdb files (they are SQLite) to check for chat/conversation tables
+  3. Use LevelDB tools on Local Storage and Session Storage
+  4. Check if Cursor stores conversations server-side (API-based, not local)
+  5. The 102 images in ai_healthcare workspace could be viewed to understand
+     what was being discussed in those AI sessions (screenshots from 2026-01-04)

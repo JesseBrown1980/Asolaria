@@ -1,0 +1,190 @@
+QDD eBacMap — Reports Module Test Coverage Audit
+=================================================
+Date: 2026-03-25
+Module: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\reports\
+
+EXISTING TEST FILES
+-------------------
+NONE. Zero test files found in the entire reports module.
+Searched patterns: *.test.*, *.spec.*, *.unit.*, *.int.*
+Also searched project-wide for any test file referencing "report" — none found.
+
+MODULE INVENTORY
+----------------
+
+Use Cases (18 total, 0 tested):
+  1. AccessTemporaryDownloadLink  — no test
+  2. CreateReport                 — no test
+  3. CreateReportTemplate         — no test
+  4. DeleteReport                 — no test
+  5. DeleteReportRelatedNotifications — no test
+  6. DeleteReportTemplate         — no test
+  7. DownloadEBacMapPDF           — no test
+  8. DownloadReportPDF            — no test
+  9. DuplicateReport              — no test
+ 10. GetFilters                   — no test
+ 11. GetReport                    — no test
+ 12. GetReportTemplate            — no test
+ 13. ListDefaultReports           — no test
+ 14. ListReportTemplates          — no test
+ 15. ListReports                  — no test
+ 16. SaveReportToDashboard        — no test
+ 17. UpdateReport                 — no test
+ 18. UpdateReportChartData        — no test
+
+Domain Objects (15 total, 0 tested):
+  1. Report (AggregateRoot)       — no test
+  2. ReportDateRange (ValueObject) — no test  ** HIGH PRIORITY: has date logic, overlap, expiring **
+  3. ReportDateRangeType (EnumVO) — no test
+  4. ReportFilter (ValueObject)   — no test
+  5. ReportInterval (EnumVO)      — no test
+  6. ReportNotification (ValueObject) — no test
+  7. ReportNotificationType (EnumVO) — no test
+  8. ReportSection                — no test
+  9. ReportView                   — no test
+ 10. FilterCondition (ValueObject) — no test  ** HIGH PRIORITY: nested rules, recursive mapping **
+ 11. FilterOperatorValue (EnumVO) — no test
+ 12. FilterRuleFieldValue (EnumVO)— no test
+ 13. ChartConfig                  — no test
+ 14. ChartModuleValue (EnumVO)    — no test
+ 15. GroupByValue                 — no test
+
+Services (1 total, 0 tested):
+  1. ReportService                — no test  ** HIGH PRIORITY: chart generation, PDF, grouping logic **
+
+Repos (2 total, 0 tested):
+  1. ReportRepo                   — no test
+  2. ReportTemplateRepo           — no test
+
+Utils (1 total, 0 tested):
+  1. ReportBuilder                — no test  ** HIGH PRIORITY: complex chart/date/grouping logic **
+
+Schema Validation (1 total, 0 tested):
+  1. schema.ts (yup schemas)      — no test
+
+API Routes:
+  No dedicated report route file found in standard routes/ directories.
+  Routes are likely registered via use-case index.ts barrel exports + framework wiring.
+
+TESTS THAT SHOULD EXIST (priority order)
+-----------------------------------------
+
+=== CRITICAL (domain logic, pure functions, easy to test) ===
+
+1. ReportDateRange.test.ts
+   - build() with valid type/start/end
+   - build() rejects end before start
+   - build() rejects invalid type
+   - isWithin returns true when current date is in range
+   - isWithin returns false when outside range
+   - isExpiring detects ranges ending within 30 days
+   - overlaps() between two bounded ranges
+   - overlaps() when one range is unbounded
+   - overlaps() two unbounded ranges (same day)
+   - equals() with matching and non-matching ranges
+
+2. FilterCondition.test.ts
+   - build() with simple rules (field, operator, value)
+   - build() with nested conditions (recursive and/or groups)
+   - toDb() maps rules correctly to DB format
+   - toDb() handles array values (MongoIdentifier[])
+   - rejects invalid field values
+   - rejects invalid operator values
+
+3. ReportNotification.test.ts
+   - build() with all optional IDs
+   - build() with invalid MongoIdentifier rejects
+   - build() with partial props
+
+4. Report.test.ts (AggregateRoot)
+   - create() with minimum valid config
+   - create() with full config (sections, filters, notifications)
+   - update() modifies report fields
+   - delete() emits ReportDeletedEvent
+   - validation of required fields (name, client, reportType)
+
+=== HIGH (business logic, more complex setup) ===
+
+5. ReportBuilder.test.ts
+   - sortResults() sorts by sampleDate ascending
+   - bar graph data generation
+   - date label calculation per interval (day/week/month/quarter/year)
+   - grouping functions (byZone, bySubcategory, byPlan, byResult, byEbacmapCode)
+   - result totals calculation
+   - filterOutNoResults
+   - addEndResult
+
+6. ReportService.test.ts
+   - getDatesForReport() returns correct date range
+   - getGroupings() builds correct grouping structure
+   - getResultTotals() computes totals
+   - groupByFacility/groupByPlan/groupBySite work correctly
+   - chart generation (node-chartist integration)
+   - PDF template rendering (pug)
+   - default report retrieval (legacy vs novalum)
+
+7. GetFilters.UseCase.test.ts
+   - returns categories, organisms, zones, sites, test definitions
+   - respects Novalum permission check
+   - handles locationClientId override
+   - maps response via dtos
+
+=== MEDIUM (CRUD use cases, need DB mocks) ===
+
+8.  CreateReport.UseCase.test.ts — valid creation, schema validation rejects
+9.  UpdateReport.UseCase.test.ts — update existing, not found error
+10. DeleteReport.UseCase.test.ts — delete existing, emits event, not found
+11. GetReport.UseCase.test.ts — found, not found, permission check
+12. ListReports.UseCase.test.ts — returns list, empty list, filtering
+13. DuplicateReport.UseCase.test.ts — duplicates with new name
+14. CreateReportTemplate.UseCase.test.ts — template creation
+15. DeleteReportTemplate.UseCase.test.ts — template deletion
+16. GetReportTemplate.UseCase.test.ts — template retrieval
+17. ListReportTemplates.UseCase.test.ts — template listing
+18. ListDefaultReports.UseCase.test.ts — default report loading
+19. SaveReportToDashboard.UseCase.test.ts — toggle dashboard flag
+20. UpdateReportChartData.UseCase.test.ts — chart data update
+21. DeleteReportRelatedNotifications.UseCase.test.ts — cascading delete
+
+=== LOWER (PDF/download, need more infra mocking) ===
+
+22. DownloadReportPDF.UseCase.test.ts
+    - generates JWT token, stores in ReportTokenModel
+    - calls generatePdfWithRetry with correct URL/options
+    - handles report not found
+    - handles PDF generation failure
+
+23. DownloadEBacMapPDF.UseCase.test.ts — eBacMap-specific PDF variant
+
+24. AccessTemporaryDownloadLink.UseCase.test.ts — temp link generation
+
+=== ENUM VALUE OBJECTS (low effort, good safety net) ===
+
+25. ReportInterval.test.ts — valid values: day/week/month/quarter/year
+26. ReportDateRangeType.test.ts — valid type values
+27. FilterOperatorValue.test.ts — valid operator values
+28. FilterRuleFieldValue.test.ts — valid field values
+29. ChartModuleValue.test.ts — valid module values
+30. ReportNotificationType.test.ts — valid: non-conforming/presumptive/positive/trend
+
+=== SCHEMA VALIDATION ===
+
+31. schema.test.ts
+    - reportTypeSchema accepts legacy/multi/single/ebacmap, rejects other
+    - accessTypeSchema accepts personal/facility/global
+    - chartConfigSchema validates module, groupBy, limitLines
+    - sectionSchema validates filters and charts array
+
+SUMMARY
+-------
+Total source files in reports module: 63
+Total test files: 0
+Test coverage: 0%
+Recommended minimum tests to add: 31 test files (above)
+Estimated tests if all written: ~150-200 individual test cases
+
+Priority recommendation:
+  Phase 1 — Domain value objects (#1-4, #25-30): Pure logic, zero DB deps. ~40 tests.
+  Phase 2 — ReportBuilder + ReportService (#5-6): Core business logic. ~30 tests.
+  Phase 3 — Use cases (#7-24): Need DB/service mocks. ~80 tests.
+  Phase 4 — Schema validation (#31): Quick yup assertion tests. ~15 tests.

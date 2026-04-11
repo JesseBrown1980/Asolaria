@@ -1,0 +1,131 @@
+================================================================
+MEETING TRANSCRIPT SEARCH — Sentry, Deployment, Env Vars, Brian
+Searched: 2026-03-25
+Status: READ-ONLY AUDIT
+================================================================
+
+SEARCH TERMS: sentry, DSN, deploy, staging, env, mongodb, digital ocean,
+              brian, credential, secret, connection string, database url, api key
+
+FILES SEARCHED (8):
+  1. Client_Check-in_Weekly_Status_Transcript.txt
+  2. Document_meeting_for_dev_2026-02-04.txt
+  3. Edit Locking - Ticket-by-ticket Meeting Transcript.txt
+  4. 26-02-17_1-1_Meeting_Transcript.txt
+  5. 26_02_17_Sprint_Demo_Planning_Transcript.txt
+  6. US1072_30_Minute_Screen_Share_Transcript.txt
+  7. CHARM_EZP.txt
+  8. Charm_EZ_Module_Review_Notes_for_Natalie.txt
+
+================================================================
+RESULT: NO SENTRY, DSN, MONGODB, OR DIGITALOCEAN CREDENTIALS FOUND
+================================================================
+
+None of the 8 transcripts contain:
+  - Sentry mentions or DSN values
+  - MongoDB connection strings or credentials
+  - DigitalOcean access tokens or droplet details
+  - Brian sharing credentials or secrets verbally
+  - Staging URLs or deployment endpoints
+
+================================================================
+MATCHES FOUND (generic "deploy"/"env" hits only — no credentials)
+================================================================
+
+FILE 1: Client_Check-in_Weekly_Status_Transcript.txt
+------------------------------------------------------
+3 matches — all generic usage of "environment" and "deployment":
+
+  Line 38: "...validating the CareTend payload contract for patient
+           document uploads in this tenant/environment..."
+  Line 49: "Ticket #1082: Finish Azure resource configuration and
+           confirm deployment readiness."
+  Line 70: "Confirm the mandated CareTend endpoint for patient-visible
+           attachments in this environment."
+
+  Context: Weekly status update about Azure/CareTend tickets.
+  No credentials, no Sentry, no Brian.
+
+FILE 2: Document_meeting_for_dev_2026-02-04.txt
+------------------------------------------------------
+4 matches — feature flag discussion uses "deploy" and "environment":
+
+  Line 20: "We can deploy code safely first, then enable the feature
+           when we're ready"
+  Line 22: "Safer releases without 'all or nothing' deployments"
+  Line 28: "Deploy behind a flag -> validate -> enable in QA -> enable
+           in Prod."
+  Line 31: "3. Environment separation — Dev can be ON while QA/Prod
+           stays OFF until sign-off."
+
+  Context: Feature flag methodology presentation. Generic dev practices.
+  No credentials, no Sentry, no Brian.
+
+FILE 3: Edit Locking - Ticket-by-ticket Meeting Transcript.txt
+------------------------------------------------------
+  ZERO matches. Pure edit-locking design discussion.
+
+FILE 4: 26-02-17_1-1_Meeting_Transcript.txt
+------------------------------------------------------
+  ZERO matches. 1:1 status update about DMS tickets and PR reviews.
+  No credentials, no Sentry, no Brian.
+
+FILE 5: 26_02_17_Sprint_Demo_Planning_Transcript.txt
+------------------------------------------------------
+1 match — generic "environment":
+
+  Line 14: "The configuration supports environment-based toggling and
+           controlled rollout."
+
+  Context: Sprint demo script for feature flags. No credentials.
+
+FILE 6: US1072_30_Minute_Screen_Share_Transcript.txt
+------------------------------------------------------
+1 match — generic "environment":
+
+  Line 136: "This allows environment-level tuning without code changes."
+
+  Context: Screen-share walkthrough of US1072 background job config.
+  No credentials.
+
+FILE 7: CHARM_EZP.txt
+------------------------------------------------------
+4 matches — all generic "deployment"/"environmental":
+
+  Line 9: "...full QA/UAT with production deployment."
+  Line 46: "Error categorization (procedural, equipment, environmental)"
+  Line 113: "Phase 6 - QA, UAT, Production Deployment & Post-Launch
+            Monitoring"
+  Line 118: "...deployed to production with monitoring... unified
+            eBacMap environment."
+  Line 122: "Deploy system to production"
+
+  Context: Charm EZ Protect proposal phases. No credentials.
+
+FILE 8: Charm_EZ_Module_Review_Notes_for_Natalie.txt
+------------------------------------------------------
+  ZERO matches. Review notes for proposal language. No credentials.
+
+================================================================
+CROSS-REFERENCE: Where Brian/DigitalOcean/MongoDB ARE mentioned
+================================================================
+
+These transcripts do NOT contain the info. The following IX entries
+DO reference Brian + DigitalOcean (from agent-index, not meetings):
+
+  IX-361: "Brian's ACTUAL blockers were upstream: DigitalOcean access"
+          "remaining 11% is blocked on Brian's DigitalOcean access"
+  IX-362: "Ebac map stuff is on digital ocean, in emails, across messages"
+  IX-368: "EZ Protect: 89% done, needs Brian's visual testing + DO access"
+  IX-377: "For QDD: connection string from DigitalOcean (Brian has credentials)"
+  LX-150: "EZ Protect Blockers: 1. DigitalOcean access"
+
+CONCLUSION: Brian has never shared Sentry DSN, MongoDB connection
+strings, or DigitalOcean credentials in any of these 8 transcripts.
+The credentials remain with Brian and have not been transcribed into
+any meeting document in this collection. The blockers documented in
+IX-361/IX-377 confirm Brian holds credentials that Jesse does not have.
+
+Vault entry "credentials.ebacmap.staging" exists but contains no
+DigitalOcean-specific naming (see digitalocean-inventory.txt).
+================================================================

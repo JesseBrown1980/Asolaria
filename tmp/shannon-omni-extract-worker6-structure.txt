@@ -1,0 +1,44 @@
+======================================================================
+DOCX STRUCTURAL ANALYSIS - WORKER 6
+======================================================================
+
+TOTAL ENTRIES: 11
+
+ZIP ENTRY LISTING:
+      Size  Filename
+----------------------------------------------------------------------
+      1312  [Content_Types].xml
+       590  _rels/.rels
+       721  docProps/app.xml
+       757  docProps/core.xml
+       817  word/_rels/document.xml.rels
+    635323  word/document.xml
+      2684  word/fontTable.xml
+      3258  word/settings.xml
+     42606  word/styles.xml
+      8393  word/theme/theme1.xml
+      1069  word/webSettings.xml
+
+DOCUMENT.XML SIZE: 635323 bytes
+
+FIRST 1000 BYTES OF DOCUMENT.XML:
+----------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex" xmlns:cx1="http://schemas.microsoft.com/office/drawing/2015/9/8/chartex" xmlns:cx2="http://schemas.microsoft.com/office/drawing/2015/10/21/chartex" xmlns:cx3="http://schemas.microsoft.com/office/drawing/2016/5/9/chartex" xmlns:cx4="http://schemas.microsoft.com/office/drawing/2016/5/10/chartex" xmlns:cx5="http://schemas.microsoft.com/office/drawing/2016/5/11/chartex" xmlns:cx6="http://schemas.microsoft.com/office/drawing/2016/5/12/chartex" xmlns:cx7="http://schemas.microsoft.com/office/drawing/2016/5/13/chartex" xmlns:cx8="http://schemas.microsoft.com/office/drawing/2016/5/14/chartex" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:aink="http://schemas.microsoft.com/office/drawing/2016/ink" xmlns:am3d="http://schemas.microsoft.com/office/drawing/
+----------------------------------------------------------------------
+
+STRUCTURAL ELEMENT COUNTS:
+----------------------------------------------------------------------
+  Paragraphs (<w:p>):           1530
+  Text runs (<w:r>):            1878
+  Text nodes (<w:t>):           1878
+  Headings (pStyle Heading):    0
+  Bold marks (<w:b/>):          0
+  Tables (<w:tbl>):             0
+  Table rows (<w:tr>):          0
+  Hyperlinks:                   0
+
+======================================================================
+INTERPRETATION:
+======================================================================
+This is a technical document with 1530 paragraphs containing 1878 text nodes across 1878 text runs. The structure includes 0 heading elements for organization, 0 table(s) with 0 total rows for structured data presentation, 0 bolded text elements for emphasis, and 0 hyperlink(s). Based on the element count, the extracted plain text content is estimated to be approximately 93,900 characters (31-46 pages at typical density), suggesting a moderately detailed technical or academic document.

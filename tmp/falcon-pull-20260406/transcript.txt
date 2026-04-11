@@ -1,0 +1,19 @@
+[1] codex -> group: open the six-agent workhorse board
+[2] gaia -> shannon (pre-dev/scope): no project anchors scored; fall back to IX-539 memory packet as the slice anchor
+[3] helm -> shannon (dev/build): IX-011:apply, IX-182:route, IX-311:apply, IX-474:apply, IX-479:apply, IX-536:apply, IX-480:route; primary=IX-538; attach=wait_adb
+[4] sentinel -> shannon (pre-staging/integration): IX-473:enforce; blockers=adb-not-ready|screen-broken
+[5] falcon -> shannon (staging/verification): autopilot=wait_adb/degraded; phases=1:usb-detect:active, 2:adb-readiness:idle, 3:bridge-wave:idle, 4:scrcpy-auto-open:idle, 5:tasker-phone-side-trigger:idle, 6:termux-bootstrap:idle
+[6] forge -> shannon (pre-prod/risk): phases=3:bridge-wave:idle, 4:scrcpy-auto-open:idle, 5:tasker-phone-side-trigger:idle, 6:termux-bootstrap:idle
+[7] rook -> shannon (prod/operations): IX-232:study, IX-234:reuse-proof, IX-278:reuse-proof, IX-537:reuse-proof; packet=next=Start from IX-011 using action apply.
+[8] shannon -> reviewers (pre-dev/scope): slice crosses the full-audit threshold
+[9] shannon -> reviewers (dev/build): slice stays in dry-run audit territory
+[10] shannon -> reviewers (pre-staging/integration): slice crosses the full-audit threshold
+[11] shannon -> reviewers (staging/verification): slice stays in dry-run audit territory
+[12] shannon -> reviewers (pre-prod/risk): slice stays in dry-run audit territory
+[13] shannon -> reviewers (prod/operations): slice stays in dry-run audit territory
+[14] codex -> all (pre-dev/scope): blocked
+[15] codex -> all (dev/build): blocked
+[16] codex -> all (pre-staging/integration): blocked
+[17] codex -> all (staging/verification): changes_requested
+[18] codex -> all (pre-prod/risk): blocked
+[19] codex -> all (prod/operations): blocked

@@ -1,0 +1,80 @@
+PACKET 1: SOURCE MAPPING BY TOPIC
+Generated: 2026-03-23T17:53:10.960Z
+Notebook: Asolaria Enterprise Memory (102 sources)
+===============================================================
+
+HELM (controller admin terminal)
+Sources:
+  - Symphony Integration
+  - Symphony Workflow
+  - Augment Context Sidecar
+  - Asolaria Active Tasks Snapshot: Admin terminal naming layer corrected
+  - Asolaria Active Tasks Snapshot: Gaia restart bootstrap loaded and live local mission re-anchored
+  - Asolaria Active Tasks Snapshot: Asolaria brain/provider restart checkpoint recovered from IX catalog
+  - Asolaria Active Tasks Snapshot: Asolaria profile + constitution + index-language reload completed
+
+SENTINEL (helper/watch terminal)
+Sources:
+  - Symphony Integration
+  - Symphony Workflow
+  - Augment Context Sidecar
+  - Asolaria Active Tasks Snapshot: Gaia restart bootstrap loaded and live local mission re-anchored
+  - Asolaria Active Tasks Snapshot: Asolaria brain/provider restart checkpoint recovered from IX catalog
+
+OMNISPINDLE
+  >>> ZERO MENTIONS in any of the 102 notebook sources. Not evidenced.
+
+WORKER-ROUTER
+  >>> Appears ONLY as an audit warning term, not as a defined component.
+  Source: Asolaria Active Tasks Snapshot: White-glove naming/workflow stabilization phase 0
+  Verbatim: "worker-router Symphony mismatch" listed alongside "startup seed contamination, Symphony configured-but-not-running, phone background keepers down, blank task-ledger actor coverage, and mostly-offline colony lanes"
+
+SYMPHONY (managed sidecar service)
+Sources:
+  - Symphony Integration (primary)
+  - Symphony Workflow (primary)
+  - Asolaria Active Tasks Snapshot: NotebookLM Enterprise core knowledge sync + stable rerun path
+
+AUGMENT / AUGGIE (read-only context sidecar)
+Sources:
+  - Augment Context Sidecar (primary)
+  - Symphony Integration (cross-ref)
+  - Symphony Workflow (cross-ref)
+
+MQTT
+  >>> ONE MENTION in all 102 sources.
+  Source: Asolaria Active Tasks Snapshot (restart record)
+  Verbatim: "A forced restart through tools\Restart-Asolaria-Main.ps1 with ASOLARIA_STARTUP_AUTORUN=false and ASOLARIA_MQTT_BIND_HOST=0.0.0.0 replaced the listener with PID 37472"
+  >>> No source defines MQTT's role, topology, or cooperation model.
+
+RAYSSA
+  >>> ZERO MENTIONS in any of the 102 notebook sources. Not evidenced.
+
+LIRIS
+Sources:
+  - Asolaria Active Tasks Snapshot: Gaia restart bootstrap loaded (mentions Liris offline)
+  - Asolaria Active Tasks Snapshot: Asolaria profile + constitution + index-language reload completed
+  Verbatim evidence:
+  - "admin-terminal profiles for Gaia, Liris, and Helm"
+  - "Liris restart anchors IX-037, IX-075, and IX-084"
+  - "Liris is still offline"
+
+SUB-COLONY
+  >>> "sub-colony" as an exact term: ZERO MENTIONS
+  >>> "colony" appears in multiple sources describing agent counts:
+  - "colony online=6 active=6 (Asolaria, Vector, Rook, Forge, Falcon, Watchdog)"
+  - "Colony agents observed: 6 total, 5 online/active"
+  - "Multi-agent colony execution lanes"
+  - "Multi-lane agent colony coordination"
+
+FALCON / PHONE EDGE COMPUTE
+Sources:
+  - Asolaria Startup Contract
+  - Asolaria Startup Gap Report
+  - Asolaria System Card
+  - Asolaria Runtime Snapshot
+  - Asolaria Active Tasks Snapshot: Runtime + phone recovery with agents activated
+  - Asolaria Active Tasks Snapshot: Phone NotebookLM shortcuts + scheduled core-sync hook
+  - Asolaria Active Tasks Snapshot: Live phone startup validation pass with phone online
+  - Asolaria Active Tasks Snapshot: Phone Gemini edge shared-memory carryover
+  - Asolaria Active Tasks Snapshot: White-glove naming/workflow stabilization phase 1

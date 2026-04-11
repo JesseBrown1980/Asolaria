@@ -1,0 +1,527 @@
+================================================================================
+GEMINI CLI HISTORY DEEP MINE
+Mined: 2026-03-25 by Gaia (Claude Opus 4.6)
+Source: C:\Users\acer\.gemini\
+================================================================================
+
+TABLE OF CONTENTS
+-----------------
+1. DIRECTORY STRUCTURE OVERVIEW
+2. GEMINI CLI METADATA
+3. ASOLARIA PROJECT SESSIONS (24 sessions)
+4. HOME DIRECTORY SESSIONS (7 sessions)
+5. NODE.JS SESSIONS (4 sessions)
+6. TMP DIRECTORY INVENTORY
+7. ANTIGRAVITY IDE DATA (separate from CLI)
+8. ANALYSIS & FINDINGS
+
+================================================================================
+1. DIRECTORY STRUCTURE OVERVIEW
+================================================================================
+
+C:\Users\acer\.gemini\
+  GEMINI.md                    — empty file (0 bytes)
+  installation_id              — 326db624-8b46-4bb4-83ae-c82ec4f989fc
+  projects.json                — maps 3 project paths to aliases
+  antigravity\                 — Antigravity IDE data (separate product)
+  antigravity-browser-profile\ — Antigravity browser profile
+  history\                     — only contains .project_root markers
+    acer\.project_root         — "c:\users\acer"
+    asolaria\.project_root     — "c:\users\acer\asolaria"
+    nodejs\.project_root       — "c:\nvm4w\nodejs"
+  tmp\                         — ACTUAL chat sessions stored here
+    acer\chats\                — 7 session JSON files
+    asolaria\chats\            — 24 session JSON files
+    nodejs\chats\              — 4 session JSON files
+    bin\rg.exe                 — bundled ripgrep (4.67 MB)
+
+projects.json:
+  {
+    "c:\\users\\acer": "acer",
+    "c:\\nvm4w\\nodejs": "nodejs",
+    "c:\\users\\acer\\asolaria": "asolaria"
+  }
+
+================================================================================
+2. GEMINI CLI METADATA
+================================================================================
+
+Installation ID: 326db624-8b46-4bb4-83ae-c82ec4f989fc
+Project Hash (Asolaria): 515dedb6819ef12da29e585689e43e5fb588693d36e06a56377acb61c8b62461
+Project Hash (Home/acer): 1f1febc950f7c5b510a5f395c377ae138bce65bd2eb8ebe0043cbf8417ed22f9
+Project Hash (Node.js):   da187560288c2f42d2e07c53816191b769a9be4e1b8e9c166047686ec507120d
+
+Models observed across sessions:
+  - gemini-3-flash-preview         (most common, used for routing tests)
+  - gemini-3-pro-preview           (used for cli_help subagent calls)
+  - gemini-2.5-pro                 (used for alias/model tests)
+  - gemini-2.5-flash               (used for some routing tests)
+  - gemini-3.1-pro-preview-customtools  (used for architecture recommendations)
+
+CLI Version observed: 0.29.3 (as reported by cli_help subagent on 2026-02-19)
+
+================================================================================
+3. ASOLARIA PROJECT SESSIONS (24 sessions, Feb 19 - Mar 3, 2026)
+================================================================================
+
+All sessions ran with workspace: C:\Users\acer\Asolaria
+
+--- Session 1: 2026-02-19 16:42 UTC ---
+ID: 2fed8655
+Model: gemini-3-flash-preview
+User: "Reply with exactly: ROUTED_GEMINI_OK"
+Gemini: "ROUTED_GEMINI_OK"
+Tokens: 8460 in, 8 out, 30 thoughts
+PURPOSE: Connector routing test — verifying Asolaria can invoke Gemini CLI
+
+--- Session 2: 2026-02-19 16:50 UTC ---
+ID: e242b98d
+Model: gemini-3-flash-preview
+User: "Reply with exactly: ROUTED_GEMINI_OK"
+Gemini: "ROUTED_GEMINI_OK"
+Tokens: 8460 in, 8 out, 125 thoughts
+PURPOSE: Repeat routing test
+
+--- Session 3: 2026-02-19 16:51 UTC ---
+ID: d2d5b668
+Model: gemini-3-flash-preview
+User: "Reply with exactly: GEMINI_OK_3B"
+Gemini: "GEMINI_OK_3B"
+Tokens: 8460 in, 7 out, 39 thoughts
+PURPOSE: Model variant test (3B suffix)
+
+--- Session 4: 2026-02-19 17:06 UTC ---
+ID: 48df876f
+Model: gemini-3-pro-preview
+User: "cli status"
+Gemini: Used cli_help subagent — reported:
+  - CLI Version: 0.29.3
+  - Active Model: gemini-3-pro-preview
+  - Date: February 19, 2026
+  - Workspace: C:\Users\acer\Asolaria
+Tokens: 8451 in, 27 out, 89 thoughts
+PURPOSE: CLI status probe — Asolaria connector testing Gemini's self-awareness
+
+--- Session 5: 2026-02-19 17:06 UTC ---
+ID: 567531cb
+Model: gemini-2.5-pro
+User: "Reply with exactly: ALIAS_FIELD_GEMINI"
+Gemini: "ALIAS_FIELD_GEMINI"
+Thought: "I can confirm that I have registered the instruction..."
+Tokens: 10148 in, 4 out, 20 thoughts
+PURPOSE: Alias field verification for connector routing
+
+--- Session 6: 2026-02-19 17:06 UTC ---
+ID: c00a3c88
+Model: gemini-3-pro-preview
+User: "cli status"
+Gemini: Used cli_help subagent — reported same as Session 4 but with more detail
+  mentioning Gateway, Vault, Guardian status indicators
+Tokens: 8451 in, 17 out, 152 thoughts
+PURPOSE: Duplicate cli status probe (parallel test?)
+
+--- Session 7: 2026-02-19 17:07 UTC ---
+ID: 486bba98
+Model: gemini-2.5-flash
+User: "Reply with exactly: ROUTED_ALIAS_GEMINI"
+Gemini: "ROUTED_ALIAS_GEMINI"
+Thoughts: Processing and analyzing the exact string request
+Tokens: 10148 in, 6 out, 76 thoughts
+PURPOSE: Routing alias test on flash model
+
+--- Session 8: 2026-02-19 17:07 UTC ---
+ID: 48df876f (continuation)
+Model: (subagent session)
+User: Subagent asked "What is the current status and configuration of the Gemini CLI?"
+System: "You have exceeded the maximum number of turns."
+PURPOSE: Subagent from Session 4, timed out
+
+--- Session 9: 2026-02-19 17:07 UTC ---
+ID: c00a3c88 (continuation)
+Model: (subagent session)
+User: Subagent asked "cli status"
+System: "You have exceeded the maximum number of turns."
+PURPOSE: Subagent from Session 6, timed out
+
+--- Session 10: 2026-02-19 17:12 UTC ---
+ID: 915fe824
+Model: gemini-2.5-pro
+User: "Reply with exactly: DYNAMIC_GEMINI_ALIAS_OK"
+Gemini: "DYNAMIC_GEMINI_ALIAS_OK"
+Thought: "DYNAMIC_GEMINI_ALIAS_OK."
+Tokens: 10150 in, 7 out, 22 thoughts
+PURPOSE: Dynamic alias routing test
+
+--- Session 11: 2026-02-19 17:13 UTC ---
+ID: 4a9f62e0
+Model: (no response recorded)
+User: "Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+PURPOSE: Version pattern test — no response captured (crash or timeout)
+
+--- Session 12: 2026-02-19 17:52 UTC ---
+ID: 1637dbed
+Model: gemini-3-flash-preview
+User: "cli ask gemini-2.5-flash-20260201 Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+Gemini: "UNKNOWN_VERSION_PATTERN_OK"
+Tokens: 8465 in, 7 out, 70 thoughts
+PURPOSE: Testing model version routing — asking Gemini to relay to specific model version
+
+--- Session 13: 2026-02-19 17:54 UTC ---
+ID: 29e4db3e
+Model: (no response)
+User: "Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+PURPOSE: Failed/abandoned session
+
+--- Session 14: 2026-02-19 17:55 UTC ---
+ID: 3dd8d23d
+Model: (no response)
+User: "Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+PURPOSE: Failed/abandoned session
+
+--- Session 15: 2026-02-19 17:57 UTC ---
+ID: 08888b33
+Model: gemini-3-flash-preview
+User: "cli ask gemini-2.5-flash-20260201 Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+Gemini: "UNKNOWN_VERSION_PATTERN_OK"
+Tokens: 8450 in, 7 out, 63 thoughts
+PURPOSE: Repeat version pattern routing test
+
+--- Session 16: 2026-02-19 18:17 UTC ---
+ID: 6ade7bdb
+Model: gemini-3-flash-preview
+User: "cli ask gemini-2.5-flash-20260201 Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+Gemini: "UNKNOWN_VERSION_PATTERN_OK"
+Thought: "It looks like a hardcoded response, possibly for version validation..."
+Tokens: 8450 in, 7 out, 352 thoughts
+PURPOSE: Final version pattern test of the day — Gemini noticed it was being used as a test target
+
+--- Session 17: 2026-02-21 14:41 UTC ---
+ID: a6d2aee8
+Model: (no response)
+User: "Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+PURPOSE: Failed/abandoned — two days later, still testing
+
+--- Session 18: 2026-02-21 14:41 UTC ---
+ID: c47496dc
+Model: gemini-2.5-flash
+User: "Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+Gemini: "UNKNOWN_VERSION_PATTERN_OK"
+Thought: "a hardcoded response, possibly for version validation or as a trigger"
+Tokens: 10795 in, 6 out, 54 thoughts
+PURPOSE: Version pattern test on gemini-2.5-flash
+
+--- Session 19: 2026-02-21 14:42 UTC ---
+ID: 698126c1
+Model: gemini-2.5-flash
+User: "Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+Gemini: "UNKNOWN_VERSION_PATTERN_OK"
+Thought: "no need for further processing or interpretation"
+Tokens: 10795 in, 6 out, 62 thoughts
+PURPOSE: Repeat test
+
+--- Session 20: 2026-02-21 14:42 UTC ---
+ID: 93acf8cb
+Model: (no response)
+User: "Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+PURPOSE: Failed/abandoned
+
+--- Session 21: 2026-02-21 14:44 UTC ---
+ID: 5e7b9346
+Model: gemini-3-flash-preview
+User: "cli ask gemini-2.5-flash-20260201 Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+Gemini: "UNKNOWN_VERSION_PATTERN_OK"
+Thought: "Recognizing User Intent"
+Tokens: 9126 in, 7 out, 155 thoughts
+PURPOSE: Model version routing test
+
+--- Session 22: 2026-02-21 16:22 UTC ---
+ID: b640d457
+Model: gemini-3-flash-preview
+User: "cli ask gemini-2.5-flash-20260201 Reply with exactly: UNKNOWN_VERSION_PATTERN_OK"
+Gemini: "UNKNOWN_VERSION_PATTERN_OK"
+Tokens: 9126 in, 7 out, 127 thoughts
+PURPOSE: Model version routing — last Feb 21 session
+
+--- Session 23: 2026-03-02 18:17 UTC ---
+ID: 65b456b9
+Model: gemini-3-flash-preview
+User: "Live test. Reply with exactly: LIVE_TEST_OK"
+Gemini: "LIVE_TEST_OK"
+Tokens: 8124 in, 5 out, 41 thoughts
+PURPOSE: Live connectivity test — 9 days gap from previous session
+
+--- Session 24: 2026-03-03 14:47 UTC ---
+ID: 34515f67
+Model: gemini-2.5-flash
+Kind: "main"
+User: "Reply with exactly: ok"
+Gemini: "ok"
+Thought: "I've received the necessary setup information... file structure"
+Tokens: 10031 in, 0 out, 46 thoughts
+PURPOSE: Simple ack test — last Asolaria session recorded
+
+================================================================================
+4. HOME DIRECTORY SESSIONS (7 sessions, Feb 19 - Mar 9, 2026)
+================================================================================
+
+All sessions ran with workspace: C:\Users\acer
+
+--- Session H1: 2026-02-19 16:48 UTC ---
+ID: 75c4fa06
+Model: gemini-3-flash-preview
+User: "Reply with exactly: GEMINI_OK_3"
+Gemini: "GEMINI_OK_3"
+Tokens: 8134 in, 6 out, 32 thoughts
+PURPOSE: Basic routing test from home directory
+
+--- Session H2: 2026-03-03 17:04 UTC  *** SUBSTANTIVE SESSION ***
+ID: 58aa1e37
+Model: gemini-3.1-pro-preview-customtools
+User: "You are a systems architect. We have two local projects: Asolaria
+  (meeting/interview copilot) and ai_healthcare_project (advanced OCR/transcription
+  + graph security ideas). Give a concise recommendation: keep separate vs integrate,
+  top 5 priorities for next 24 hours, and minimum viable integration to get realtime
+  transcription into Asolaria now."
+Gemini:
+  RECOMMENDATION: Loosely Coupled Integration (API/Service Based)
+  - Keep in SEPARATE repos/services
+  - Expose transcription engine as independent API/WebSocket service
+  - Asolaria CONSUMES it
+
+  TOP 5 PRIORITIES (24 hours):
+  1. Define Integration Boundary — JSON payload + WebSocket/API endpoint structure
+  2. Stand Up Transcription Microservice — wrap healthcare transcription in FastAPI/WebSocket or Node/Socket.io
+  3. Establish Real-Time Audio Streaming (MVI) — audio capture in Asolaria, stream to transcription endpoint
+  4. Handle Transcription Responses in Asolaria — basic UI for live text view
+  5. End-to-End Latency & Accuracy Testing — measure spoken-to-text delay
+
+  MINIMUM VIABLE INTEGRATION:
+  - Backend (ai_healthcare): ws://localhost:PORT/transcribe — accepts binary audio, returns { text, isFinal }
+  - Frontend (Asolaria): MediaRecorder API -> WebSocket -> live text display
+
+  Also searched for *Asolaria* files — found 76 matching files in home dir
+  (tmp_asolaria_*.png/jpg screenshots, test files, state snapshots)
+
+  Also searched *ai_healthcare* — no files found in home dir
+
+Tokens: 9215+11046 in, 36+507 out, 219+312 thoughts
+PURPOSE: Architecture decision — Asolaria/Healthcare project integration strategy
+SIGNIFICANCE: This is the ONLY substantive Gemini CLI session (not a routing test)
+
+--- Session H3: 2026-03-09 22:23 UTC ---
+ID: 5c67b748
+Model: gemini-3-flash-preview
+User: "Reply with exactly: READY"
+Gemini: "READY"
+Tokens: 9110 in, 1 out, 174 thoughts
+PURPOSE: Readiness test
+
+--- Session H4: 2026-03-09 22:25 UTC  *** SUBSTANTIVE SESSION ***
+ID: 1b339e29
+Model: gemini-3.1-pro-preview-customtools
+User: "You are reviewing two local Codex starter packs for a private eBacMap Charm
+  EZ Protect / EZ Protect+ MVP..."
+  Pack A: plain markdown + bootstrap + push disabled
+  Pack B: AGENTS.md + .codex/config.toml + fixtures + verify scripts
+Gemini:
+  VOTE: HYBRID
+  WHY: Pack B provides superior context structure and fixture-first posture, while
+    Pack A provides the necessary local-only safety by explicitly disabling upstream pushes.
+  RISK: Accidental code leakage if Pack B's bootstrap is used without Pack A's strict
+    push-disable safety measures.
+  FIRST_STEP: Adopt Pack B's structure but patch its bootstrap script with Pack A's
+    remote push URL disablement.
+Tokens: 9347 in, 91 out, 305 thoughts
+PURPOSE: QDD/eBacMap Codex starter pack architecture review
+SIGNIFICANCE: Second substantive session — used Gemini for QDD decision
+
+--- Session H5: 2026-03-09 22:38 UTC ---
+ID: 3601c8fd
+Model: (no response)
+User: "Reply with exactly: MODEL_OK"
+PURPOSE: Failed/abandoned model test
+
+--- Session H6: 2026-03-09 22:38 UTC ---
+ID: 77c692ba
+Model: gemini-2.5-pro
+User: "Reply with exactly: MODEL_OK"
+Gemini: "MODEL_OK"
+Tokens: 10065 in, 2 out, 23 thoughts
+PURPOSE: Model routing test
+
+--- Session H7: 2026-03-09 22:41 UTC  *** SUBSTANTIVE SESSION ***
+ID: 8ad4dfde
+Model: gemini-2.5-pro
+User: "For a private eBacMap Charm EZP Codex pack with no repo URL yet, choose A, B,
+  or HYBRID..."
+Gemini:
+  VOTE: HYBRID
+  RISK: Long-lived branches can delay integration and complicate merges.
+  NEXT: Initialize the Git repository and protect the main branch.
+  NOTE: Balances stability with rapid iteration; scales well as project grows.
+
+  (Gemini interpreted A/B/HYBRID as branching strategies — slightly misunderstood
+  the Pack A vs Pack B context from Session H4, defaulted to GitHub Flow reasoning)
+Tokens: 10103 in, 44 out, 1064 thoughts
+PURPOSE: Follow-up QDD architecture vote
+SIGNIFICANCE: Gemini lost context from previous session (separate sessions, no memory)
+
+================================================================================
+5. NODE.JS SESSIONS (4 sessions, all Feb 19, 2026)
+================================================================================
+
+All sessions ran with workspace: C:\nvm4w\nodejs
+
+--- Session N1: 2026-02-19 16:36 UTC ---
+ID: 844522bb
+Model: gemini-3-flash-preview
+User: "Reply with exactly: GEMINI_OK"
+Gemini: "GEMINI_OK"
+Tokens: 5424 in, 4 out, 54 thoughts
+PURPOSE: First Gemini CLI test ever (earliest timestamp across all projects)
+
+--- Session N2: 2026-02-19 16:38 UTC ---
+ID: 94eb65a7
+Model: gemini-3-flash-preview
+User: "Reply with exactly: GEMINI_OK"
+Gemini: "GEMINI_OK"
+Tokens: 5424 in, 4 out, 0 thoughts (4050 cached)
+PURPOSE: Repeat test — note: 4050 tokens cached from previous session
+
+--- Session N3: 2026-02-19 16:38 UTC ---
+ID: ef7a7bf6
+Model: gemini-3-flash-preview
+User: "Reply with exactly: ROUTED_GEMINI_OK"
+Gemini: "ROUTED_GEMINI_OK"
+Tokens: 5427 in, 8 out, 68 thoughts (4050 cached)
+PURPOSE: Routing pattern test
+
+--- Session N4: 2026-02-19 16:44 UTC ---
+ID: a77d94c4
+Model: gemini-3-flash-preview
+User: "Reply with exactly: GEMINI_OK_2"
+Gemini: "GEMINI_OK_2"
+Tokens: 5426 in, 6 out, 0 thoughts (4050 cached)
+PURPOSE: Variant routing test
+
+================================================================================
+6. TMP DIRECTORY INVENTORY
+================================================================================
+
+C:\Users\acer\.gemini\tmp\
+  bin\rg.exe                      — 4,667,904 bytes (bundled ripgrep for file search)
+  acer\.project_root              — "c:\users\acer"
+  acer\chats\                     — 7 session files (870 to 11,043 bytes)
+  asolaria\.project_root          — "c:\users\acer\asolaria"
+  asolaria\chats\                 — 24 session files (498 to 4,291 bytes)
+  nodejs\.project_root            — "c:\nvm4w\nodejs"
+  nodejs\chats\                   — 4 session files (866 to 883 bytes)
+
+Total chat session files: 35
+Total readable content: All JSON, all extracted above
+
+================================================================================
+7. ANTIGRAVITY IDE DATA (separate product, NOT Gemini CLI)
+================================================================================
+
+C:\Users\acer\.gemini\antigravity\ contains:
+  - _backup_pb_files\     — 24+ protobuf backup files (Dec 23-30, 2025)
+                            Largest: 21.8 MB (1b994a54...pb)
+                            These are Antigravity IDE conversation backups
+  - annotations\          — IDE annotations
+  - brain\                — IDE brain/memory data
+  - browser_recordings\   — browser automation recordings (Jan 31)
+  - code_tracker\         — code tracking data
+  - context_state\        — IDE context state
+  - conversations\        — IDE conversations (last updated Mar 3)
+  - html_artifacts\       — HTML artifacts
+  - implicit\             — implicit context
+  - knowledge\            — knowledge base (Jan 26)
+  - mcp_config.json       — MCP configuration (258 bytes)
+  - playground\           — playground files
+  - scratch\              — scratch pad
+  - browserAllowlist.txt  — empty
+  - browserOnboardingStatus.txt
+  - installation_id       — separate from CLI installation_id
+  - user_settings.pb      — 48 bytes
+
+NOTE: Antigravity is Google's IDE product (Gemini-powered), separate from Gemini CLI.
+The .pb files are binary protobuf — not readable as text.
+The conversations/ directory would contain Antigravity IDE sessions.
+
+================================================================================
+8. ANALYSIS & FINDINGS
+================================================================================
+
+TIMELINE:
+  2026-02-19: FIRST USE DAY — 28 sessions across 3 projects in one afternoon
+    - Started in Node.js dir (16:36), moved to home (16:48), then Asolaria (16:42+)
+    - Testing connector routing: GEMINI_OK -> ROUTED_GEMINI_OK -> ALIAS_FIELD_GEMINI
+    - Testing model selection: gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash, gemini-3-pro
+    - Testing version routing: "cli ask gemini-2.5-flash-20260201"
+    - Testing subagent: "cli status" spawned cli_help subagent
+
+  2026-02-21: FOLLOW-UP — 6 sessions, all in Asolaria project
+    - Continued UNKNOWN_VERSION_PATTERN_OK testing
+    - Testing model fallback across gemini-2.5-flash and gemini-3-flash-preview
+
+  2026-03-02: LIVE TEST — 1 session, Asolaria project
+    - "Live test. Reply with exactly: LIVE_TEST_OK" — connectivity check after 9-day gap
+
+  2026-03-03: ARCHITECTURE DAY — 2 sessions
+    - Asolaria: Simple "ok" test (gemini-2.5-flash)
+    - Home: *** MAJOR *** Systems architect consult on Asolaria + ai_healthcare integration
+      Gemini recommended: Keep separate, use WebSocket bridge for realtime transcription
+
+  2026-03-09: QDD CODEX PACK — 4 sessions from home
+    - "READY" test, then eBacMap Charm EZ Protect Codex starter pack review
+    - Gemini voted HYBRID: Pack B structure + Pack A push safety
+    - Follow-up vote: Gemini lost cross-session context
+
+WHAT GEMINI CLI WAS USED FOR:
+  1. CONNECTOR TESTING (90% of sessions) — Asolaria's geminiCliConnector.js was being developed
+     and tested. The test tokens (GEMINI_OK, ROUTED_GEMINI_OK, ALIAS_FIELD_GEMINI, etc.)
+     are the connector's health-check probes.
+
+  2. MODEL ROUTING RESEARCH — Testing which models Gemini CLI supports, version-specific
+     routing ("gemini-2.5-flash-20260201"), and whether subagents work.
+
+  3. ARCHITECTURE CONSULTING — Two substantive sessions:
+     a) Asolaria + ai_healthcare integration strategy (WebSocket bridge recommended)
+     b) QDD eBacMap Codex starter pack review (HYBRID vote)
+
+MODELS AVAILABLE (confirmed working):
+  - gemini-3-flash-preview
+  - gemini-3-pro-preview
+  - gemini-3.1-pro-preview-customtools
+  - gemini-2.5-pro
+  - gemini-2.5-flash
+
+KEY CONNECTOR TOKENS (used by Asolaria's routing system):
+  GEMINI_OK, GEMINI_OK_2, GEMINI_OK_3, GEMINI_OK_3B
+  ROUTED_GEMINI_OK, ROUTED_ALIAS_GEMINI
+  ALIAS_FIELD_GEMINI, DYNAMIC_GEMINI_ALIAS_OK
+  UNKNOWN_VERSION_PATTERN_OK
+  LIVE_TEST_OK, MODEL_OK, READY, ok
+
+FAILED SESSIONS (no response captured): 6 out of 35 total
+  All were "Reply with exactly:" tests that timed out or were abandoned.
+  Likely caused by model cold-start or connector timeout issues.
+
+SUBAGENT DISCOVERY:
+  Gemini CLI has a built-in cli_help subagent that auto-spawns when asked about
+  CLI configuration. It reported being able to see Gateway, Vault, Guardian status
+  from the Asolaria directory structure. This means Gemini CLI has file-system
+  awareness of the project it runs in.
+
+TOKEN USAGE PATTERNS:
+  - Asolaria context costs ~8,100-10,800 input tokens per session
+  - Node.js context costs ~5,400 input tokens (smaller project)
+  - Cached tokens appear on back-to-back sessions (up to 4,050 cached)
+  - Thought tokens range from 0 to 1,064
+
+LAST GEMINI CLI USE: 2026-03-09 (16 days ago as of mine date)
+
+================================================================================
+END OF MINE
+================================================================================

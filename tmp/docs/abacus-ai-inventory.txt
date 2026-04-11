@@ -1,0 +1,200 @@
+========================================================================
+ABACUS AI INVENTORY — Jesse's Machine (acer)
+Scanned: 2026-03-25
+========================================================================
+
+1. FILESYSTEM ARTIFACTS (C:\Users\acer\)
+------------------------------------------------------------------------
+
+  a) C:\Users\acer\.abacusai\
+     - config.json (24 bytes) — contains: {"allow-editing": []}
+     - Created: 2026-03-07
+
+  b) C:\Users\acer\.abacusai-chromium-profile\
+     - Empty directory (Abacus managed browser profile slot)
+     - Created: 2026-03-07
+
+  c) C:\Users\acer\abacus-ai-cli-1.106.2807.tgz
+     - CLI tarball, 55 KB
+     - Downloaded: 2026-03-07
+
+2. DOWNLOADS (C:\Users\acer\Downloads\)
+------------------------------------------------------------------------
+
+  a) AbacusAISetup-x64-1.106.2807.exe
+     - Desktop installer, 420 MB (x64)
+     - Downloaded: 2026-03-07
+
+  b) abacus-ai-cli-1.106.2807.tgz
+     - CLI tarball (copy of the one at home root), 55 KB
+
+  c) abacus_ai_cli_pkg\
+     - Extracted CLI package directory
+     - Contains: package/README.md, package/package.json, package/dist/index.js (166 KB)
+
+3. APPDATA LOCATIONS (expected install paths per abacusConnector.js)
+------------------------------------------------------------------------
+   Note: AppData recursive search timed out / was denied.
+   The connector code references these paths:
+
+  a) %LOCALAPPDATA%\Programs\AbacusAI\         (desktop app install)
+  b) %LOCALAPPDATA%\Programs\AbacusAI Listener\ (listener app install)
+  c) %APPDATA%\AbacusAI\                       (desktop user data)
+  d) %APPDATA%\AbacusAI Listener\              (listener user data)
+
+   Status: Could not verify presence — needs manual check.
+
+4. ASOLARIA VAULT
+------------------------------------------------------------------------
+
+  Vault entry: integrations.abacus
+    - Namespace: owner
+    - Created: 2026-03-07T23:21:37.651Z
+    - Updated: 2026-03-07T23:21:37.651Z (never updated since creation)
+    - Meta: app=Asolaria, component=abacus-integration, updatedBy=api
+    - Path: C:\Users\acer\Asolaria\data\vault\owner\vault.secrets.json
+
+5. ASOLARIA CODEBASE — CORE FILES
+------------------------------------------------------------------------
+
+  a) src\connectors\abacusConnector.js
+     - THE main connector. ~700+ lines.
+     - Default app URL: https://apps.abacus.ai/chatllm/?appId=7560d5f36
+     - Manages: config, browser surface, desktop app, CLI probe,
+       work packets, operating strategy, worker lane
+     - Runtime data dir: data\integrations\abacus\ (currently empty/absent)
+     - Packet dir: data\integrations\abacus\packets\
+     - CLI probe status: data\integrations\abacus\cli-probe-status.json
+
+  b) server.js
+     - Lazy-loads abacusConnector (line 233)
+     - 15 Abacus API routes registered (lines 3571-3584)
+     - Worker runtime integration with Abacus status/strategy
+     - Abacus listed as integration in super-swarm participants
+     - Functions exported: ~20 abacus-related functions
+
+  c) routes\integrationsRemaining.js
+     - Full Abacus CRUD routes:
+       POST /abacus/config, /abacus/open, /abacus/desktop/open,
+       /abacus/handoff, /abacus/packets/:id/open, /abacus/packets/:id/scan,
+       /abacus/packets/:id/response, /abacus/packets/:id/import,
+       /abacus/cli/probe
+
+  d) routes\integrationStatus.js
+     - GET /abacus/status, /abacus/strategy, /abacus/presets, /abacus/packets
+
+  e) routes\integrationOps.js
+     - GET /abacus/packets/:id
+
+  f) routes\workerRuntime.js
+     - GET /api/worker-runtime/abacus
+     - Cached payload with 10s TTL
+
+6. ASOLARIA CODEBASE — UI FILES
+------------------------------------------------------------------------
+
+  a) public\abacus-worker.html — Abacus Worker UI page
+  b) public\abacus-worker.js  — Client-side JS for worker page
+  c) public\app.js — References Abacus in main cockpit UI
+  d) public\worker-runtime.js — Worker runtime client references
+  e) public\storage-migration.js — References Abacus in migration logic
+
+7. ASOLARIA CODEBASE — TOOL MANIFESTS
+------------------------------------------------------------------------
+
+  a) tools-manifests\abacusConnector\abacusConnector.invoke.schema.json
+     - Generic invocation wrapper schema for MCP/tool use
+
+8. ASOLARIA CODEBASE — TOOLING & DIAGNOSTICS
+------------------------------------------------------------------------
+
+  a) tools\snapshot-asolaria.js — Checks abacus integration status in system snapshots
+  b) tools\SymphonyBootstrapWorkspace.js — Probes abacus status/strategy at workspace boot
+  c) tools\Test-Asolaria-NamingWorkflowIntegrity.ps1 — Validates abacus in naming workflow tests
+  d) tools\Set-Asolaria-GeminiControlMode.ps1 — Lists abacus as super-swarm participant
+  e) tools\Start-Asolaria-OneButton.ps1 — Mentions Abacus as delegation surface (not startup memory)
+  f) tools\build_openai_board_pdfs.py — References abacus as worker lane
+
+9. ASOLARIA CODEBASE — WORKTREE COPIES
+------------------------------------------------------------------------
+   Two worktrees contain full copies of the above files:
+   - .claude\worktrees\agent-a09f5c02\  (+ dist\public-release\ copy)
+   - .claude\worktrees\agent-aa4d287c\  (+ dist\public-release\ copy)
+
+10. ASOLARIA API ROUTES SUMMARY (15 endpoints)
+------------------------------------------------------------------------
+   GET  /api/integrations/abacus/status
+   GET  /api/integrations/abacus/strategy
+   GET  /api/integrations/abacus/presets
+   GET  /api/integrations/abacus/packets
+   GET  /api/integrations/abacus/packets/:id
+   POST /api/integrations/abacus/config
+   POST /api/integrations/abacus/open
+   POST /api/integrations/abacus/desktop/open
+   POST /api/integrations/abacus/handoff
+   POST /api/integrations/abacus/packets/:id/open
+   POST /api/integrations/abacus/packets/:id/scan
+   POST /api/integrations/abacus/packets/:id/response
+   POST /api/integrations/abacus/packets/:id/import
+   POST /api/integrations/abacus/cli/probe
+   GET  /api/worker-runtime/abacus
+
+11. PLAYWRIGHT CAPTURES
+------------------------------------------------------------------------
+   - .playwright-cli\page-2026-03-12T03-09-02-681Z.yml — Shows "Abacus Worker" link in Asolaria cockpit
+   - .playwright-cli\page-2026-03-12T02-38-33-769Z.yml — Same
+
+12. REPORTS & RESEARCH MENTIONING ABACUS
+------------------------------------------------------------------------
+   - reports\asolaria-snapshot-*.json / .md (multiple snapshots from 2026-03-09 through latest)
+   - reports\admin-terminal-*-profile-latest.md (helm, sentinel)
+   - reports\admin-terminal-identities-latest.md
+   - reports\codex-state-freeze-latest.md
+   - reports\asolaria-startup-compliance-packet-*.md
+   - research\asolaria-state-of-the-world-20260314.md
+   - research\architectural-debt-brief.md
+   - research\agent-profiles-registry.md
+   - docs\SYMPHONY_HELPER_SURFACES.md
+   - docs\adr\ADR-0004-connector-manifest-registry.md
+
+13. TEXT DOCUMENTS (tmp\docs\) MENTIONING ABACUS
+------------------------------------------------------------------------
+   - WhatsApp Chat with Rayssa.txt
+   - asolaria-formal-docs-summary.txt
+   - Stage 2.txt
+   - Jesse an Dan first conversations on Facebook...txt
+   - I think you will need this.txt
+   - Asolaria Systems Engineering Assessment.txt
+   - Alright pull the Edge GNN paper from downloads.txt
+   - Liris comment Natural 20 and open claw...txt
+   - 05_raw_verbatim_evidence.txt (asolaria_shared_processing)
+   - liris-comment-natural20-openclaw-artifacts-potential-extracted.txt
+
+14. BROWSER BOOKMARKS
+------------------------------------------------------------------------
+   Could not verify — AppData search was blocked by permissions.
+   Manual check recommended in Chrome/Edge bookmark files.
+
+15. .codex DIRECTORY
+------------------------------------------------------------------------
+   Search was blocked by permissions. Manual check of C:\Users\acer\.codex\
+   recommended.
+
+========================================================================
+KEY FACTS
+========================================================================
+
+- Abacus AI version: 1.106.2807 (both CLI and desktop installer)
+- Installed date: 2026-03-07 (all artifacts are from this date)
+- Vault entry created: 2026-03-07T23:21:37Z (same day)
+- Default ChatLLM app: https://apps.abacus.ai/chatllm/?appId=7560d5f36
+- Integration status: Configured in vault, full API surface built,
+  but CLI print mode flagged as unreliable (desktop/browser-only worker)
+- Runtime data directory (data\integrations\abacus\) appears to be
+  absent or empty — no packets have been created yet
+- Abacus is listed as a super-swarm participant alongside:
+  local_codex, symphony, gemini_api, augment_context
+
+========================================================================
+END OF INVENTORY
+========================================================================

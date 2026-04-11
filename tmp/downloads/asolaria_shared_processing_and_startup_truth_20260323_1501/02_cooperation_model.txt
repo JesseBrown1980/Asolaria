@@ -1,0 +1,129 @@
+PACKET 2: HOW THESE SYSTEMS WERE SUPPOSED TO COOPERATE
+Generated: 2026-03-23T17:53:59.160Z
+Source: NotebookLM deep extraction from 102 sources
+===============================================================
+
+DESIGN INTENT vs IMPLEMENTED REALITY
+===============================================================
+
+1. JESSE'S HOST (The Control Plane)
+   Design: Central Asolaria Supervisor with elevated permissions. Sole control plane
+   for orchestration, policy enforcement, safety gates, task routing.
+   At startup: start elevated -> read task context -> build task queue -> spawn workers
+   -> run identity handshake gates -> dispatch tasks.
+   
+   Reality: Supervisor architecture is canonical and functional. However:
+   - Worker spawning is NOT enforced (High severity gap)
+   - Identity handshakes are NOT enforced
+   - Privilege separation NOT enforced (startup scripts run elevated)
+   Classification: PARTIAL - architecture exists, enforcement does not
+
+2. RAYSSA
+   Design: NOT EVIDENCED. Zero mentions in 102 sources.
+   Reality: Not evidenced by notebook sources.
+   Classification: NOT EVIDENCED
+
+3. LIRIS / SUB-COLONY
+   Design: Liris is an agent with restart anchors (IX-037, IX-075, IX-084) in the
+   agent-index language. Admin-terminal profile exists alongside Gaia and Helm.
+   Colony operates via "relay-backed messaging room and heartbeats."
+   
+   Reality: "Liris is still offline" as of March 19, 2026.
+   Colony telemetry shows online=1/6, active=1/6 (degraded).
+   Classification: MOSTLY CONCEPTUAL in current state
+
+4. FALCON / PHONE EDGE COMPUTE
+   Design: Phone worker for phone-side execution and mobile workflow tasks.
+   Operates with normal permissions, strictly scoped inside phone execution context.
+   Spawn order: USB -> Wi-Fi/VPN/local -> tunnel/cellular fallback.
+   Mandatory identity handshake before task dispatch.
+   Phone Gemini lane builds prompt memory from Asolaria shared memory + notebook context,
+   records phone-edge turns back into shared memory.
+   Routing: local network (192.168.x.x:5443), allowPublicInternet=false.
+   
+   Reality: Design is canonical but worker spawning/privilege separation not enforced.
+   Phone bridge keeper and tunnel monitor intermittently down.
+   Classification: PARTIAL / FEDERATED / LANE-BASED
+
+5. SYMPHONY
+   Design: Managed sidecar service (NOT external model provider).
+   When SUPER_SWARM enabled for QDD: long-running issue lane ONLY.
+   Does not replace controller authority. Direct repo writes stay on local Codex lane.
+   Helm may query/configure/start/stop Symphony. Sentinel uses Symphony status to
+   detect drift, stale issue queues, controller packet mismatch.
+   Dependencies: local checkout, WORKFLOW.md, LINEAR_API_KEY, Codex app-server, Elixir+mise.
+   
+   Reality: "configured-but-not-running" (process.running=false).
+   Active "worker-router Symphony mismatch" audit warning.
+   Classification: PARTIAL - configured and launchable but not running
+
+6. AUGMENT / AUGGIE
+   Design: Intentionally narrow read-only context sidecar for codebase-retrieval.
+   NOT a brain provider. Two modes: local_cli (local Auggie CLI) and remote_mcp
+   (locked to read-only codebase-retrieval with read_only + never approval).
+   Helm uses as read-only indexing/retrieval sidecar while coordinating QDD.
+   Sentinel uses to detect stale assumptions, conflicting restart packets, scope drift.
+   Even in SUPER_SWARM mode: stays read-only, must not replace local Codex or controller.
+   
+   Reality: Architecturally enforced as read-only. Auggie CLI now optional.
+   Classification: REAL AND IMPLEMENTED
+
+7. MQTT
+   Design: NOT EVIDENCED beyond one config parameter.
+   Only evidence: ASOLARIA_MQTT_BIND_HOST=0.0.0.0 in restart script.
+   No source defines its role, topology, or interaction with other components.
+   
+   Reality: Config exists. Function unknown from sources.
+   Classification: NOT EVIDENCED (only a bind parameter observed)
+
+8. CLOUD SERVICES
+   - GCP/Vertex AI: Cloud fallback lane (gemini-2.5-flash). Real and implemented.
+   - Google API lane: gemini-2.0-flash. Real and implemented.
+   - Vertex Live: App-managed real-time voice interaction. Real and implemented.
+   - NotebookLM Enterprise: Long-form project-knowledge layer. Real and implemented.
+   - Cloudflare: Quick tunnel for Augment remote_mcp mode. Partial.
+
+SHARED PROCESSING CLASSIFICATION
+===============================================================
+(1) REAL AND IMPLEMENTED:
+  - Augment as read-only sidecar (architecturally enforced)
+  - GCP/Vertex AI cloud fallback lane
+  - NotebookLM Enterprise knowledge sync (idempotent)
+  - /api/health/fast lightweight probe
+  - MCP context compression (~98-99% savings)
+  - Asolaria shared memory (low-latency multi-turn phone/live memory)
+
+(2) PARTIAL / FEDERATED / LANE-BASED:
+  - Worker spawning (designed but not enforced)
+  - Identity handshakes (designed but not enforced)  
+  - Symphony long-running issue lane (configured but not running)
+  - Colony lanes (mostly offline, 1/6 online)
+  - Falcon phone edge compute (canonical design, intermittent services)
+
+(3) MOSTLY CONCEPTUAL:
+  - Liris agent (defined in index, offline since at least March 19)
+  - Rayssa (zero evidence)
+  - Omnispindle (zero evidence)
+  - MQTT coordination role (only a bind parameter, no topology)
+  - Full multi-agent colony cooperation (colony degraded)
+
+LANE CLASSIFICATION
+===============================================================
+CONTROL PLANE:
+  Jesse host / Asolaria Supervisor (elevated, sole orchestrator)
+
+COORDINATION TRANSPORT:
+  Colony relay-backed messaging room + heartbeats (partial)
+  MQTT (config parameter only, role undefined)
+
+READ-ONLY SIDECARS:
+  Augment/Auggie (enforced read-only codebase-retrieval)
+
+LONG-RUNNING ISSUE LANES:
+  Symphony (configured, not running; designed for QDD SUPER_SWARM)
+
+REAL COMPUTE/OFFLOAD LANES:
+  Falcon phone edge compute (partial, intermittent)
+  GCP/Vertex AI cloud fallback (real)
+  Google API lane / gemini-2.0-flash (real)
+  QDD Monorepo / EZ Protect (real compute within monorepo)

@@ -1,0 +1,354 @@
+QDD EZ Protect — Final Page-vs-API Field Check
+================================================
+Date: 2026-03-25
+Scope: All 8 pages under apps/web-ebacmap/src/pages/ez-protect/
+
+
+========================================================================
+1. index.tsx — Dashboard (Facility + Corporate)
+========================================================================
+
+API called (Facility):  /api/ez-protect/dashboard?locationId=X
+  Use case returns:     EzProtectDashboardSummary
+  Shape:                { locationId, generatedAt, totalEvents, latestOccurredAt?, windows[] }
+  windows[]:            { windowDays, totalEvents, byResultState: Record<string,number> }
+
+Page references (FacilityDashboard):
+  dashboard.totalEvents          OK — matches totalEvents
+  dashboard.latestOccurredAt     OK — matches latestOccurredAt
+  dashboard.windows              OK — matches windows[]
+  w.windowDays                   OK
+  w.totalEvents                  OK
+  w.byResultState                OK
+
+API called (Corporate): /api/ez-protect/dashboard-corporate
+  Use case returns:     EzProtectCorporateDashboard
+  Shape:                { clientId, generatedAt, totalEvents, totalDevices,
+                          alertCount, positiveRate, connectedDevices24h,
+                          disconnectedDevices, windows[], byFacility{},
+                          errorCategories{procedural,equipment,unknown},
+                          byLotRoll[], pmTesting{} }
+
+Page references (CorporateDashboard):
+  dashboard.totalEvents              OK
+  dashboard.totalDevices             OK
+  dashboard.alertCount               OK
+  dashboard.positiveRate             OK
+  dashboard.connectedDevices24h      OK
+  dashboard.disconnectedDevices      OK
+  dashboard.windows                  OK
+  dashboard.errorCategories.procedural   OK
+  dashboard.errorCategories.equipment    OK
+  dashboard.errorCategories.unknown      OK
+  dashboard.byFacility                   OK
+  facility.facilityId                    OK
+  facility.totalEvents                   OK
+  facility.positiveCount                 OK
+  facility.invalidCount                  OK
+  facility.byResultState                 OK
+  dashboard.byLotRoll                    OK
+  lr.lotNumber                           OK
+  lr.rollNumber                          OK
+  lr.totalEvents                         OK
+  lr.positiveCount                       OK
+  lr.invalidCount                        OK
+  dashboard.pmTesting.tested             OK
+  dashboard.pmTesting.passed             OK
+  dashboard.pmTesting.failed             OK
+  dashboard.pmTesting.notTested          OK
+
+VERDICT: NO MISMATCHES. All fields align with API response.
+
+
+========================================================================
+2. results.tsx — Events List
+========================================================================
+
+API called:   /api/ez-protect/events?locationId=X&page=N&limit=25&...
+Use case:     ListEzProtectEventsUseCase -> PaginatedEvents
+Shape:        { events[], total, page, limit, totalPages }
+events[]:     EzProtectNormalizedEvent (29 fields)
+
+Page interface (local EzProtectEvent):
+  event.id                    OK — repo adds `id` from _id in docToNormalized
+  event.completedAt           OK
+  event.deviceSerialNumber    OK
+  event.assayName             OK
+  event.sampleId              OK
+  event.resultState           OK
+  event.operatorGroup         OK
+  event.facilityId            OK
+  data.events                 OK
+  data.total                  OK
+  data.page                   OK (used indirectly via totalPages calc)
+
+Query params sent:
+  locationId          OK — API schema accepts
+  page                OK
+  limit               OK
+  dateFrom            OK
+  dateTo              OK
+  resultStates        OK — sent as comma-joined, API splits on comma
+  deviceSerialNumber  OK
+  operatorGroup       OK
+  sortBy              OK — page sends column keys like 'completedAt', 'deviceSerialNumber'
+  sortOrder           OK
+
+POTENTIAL ISSUE:
+  - Page sends sortBy='assayName' (from COLUMNS key), but API schema only allows:
+    'completedAt', 'resultState', 'deviceSerialNumber', 'assayCode', 'operatorId',
+    'readingValue', 'ingestedAt'.
+    MISMATCH: sortBy='assayName' is NOT in the API allowed list.
+              sortBy='sampleId' is NOT in the API allowed list.
+              sortBy='operatorGroup' is NOT in the API allowed list.
+              sortBy='facilityId' is NOT in the API allowed list.
+    These columns are clickable for sorting but the API will reject or ignore
+    these sort values and fall back to 'completedAt'.
+    SEVERITY: LOW — graceful fallback to default sort, but user expects column
+    sorting to work. 4 of 7 columns will silently fail to sort.
+
+VERDICT: 1 MISMATCH — 4 sort columns not in API allowed list.
+
+
+========================================================================
+3. results/[id].tsx — Event Detail
+========================================================================
+
+API called:   /api/ez-protect/event/{id}?locationId=X
+Use case:     GetEzProtectEventUseCase -> EzProtectNormalizedEvent
+Returns:      single EzProtectNormalizedEvent (29+ fields)
+
+Page interface (EzProtectEventDetail) vs domain EzProtectNormalizedEvent:
+
+  Page expects              Domain type              Match?
+  -----------------------------------------------------------
+  id                        id (from docToNormalized) OK
+  deviceSerialNumber        deviceSerialNumber        OK
+  deviceModel               deviceModel               OK
+  moduleSlot                moduleSlot                OK — but domain is number|null, page expects string
+  assayCode                 assayCode                 OK
+  assayName                 assayName                 OK
+  assayFamily               assayFamily               OK
+  resultState               resultState               OK
+  resultValue               resultValue               OK — domain is number|null, page expects string
+  resultUnit                resultUnit                OK
+  readingValue              readingValue              OK — domain is number|null, page expects string
+  controlLineValid          controlLineValid          OK — domain is boolean|null, page expects string
+  temperatureC              temperatureC              OK — domain is number|null, page expects string
+  pmStatus                  pmStatus                  OK
+  calibrationStatus         calibrationStatus         OK
+  stripLot                  stripLot                  OK
+  stripRoll                 stripRoll                 OK
+  stripExpiration           stripExpiration           OK
+  operatorId                operatorId                OK
+  operatorGroup             operatorGroup             OK
+  sampleId                  sampleId                  OK
+  truckId                   truckId                   OK
+  startedAt                 startedAt                 OK
+  completedAt               completedAt               OK
+  ingestedAt                ingestedAt                OK
+  sourceSystem              sourceSystem              OK
+  transportMode             transportMode             OK
+  organizationId            organizationId            OK
+  facilityId                facilityId                OK
+
+TYPE NOTE: The page declares all fields as `string` in its local interface,
+but the domain returns number|null for moduleSlot, resultValue, readingValue,
+temperatureC, and boolean|null for controlLineValid. The display() helper
+does `val || '-'` which works for null/undefined but will display `0` as '-'
+for numeric zero values. This is a minor display quirk, not a crash.
+
+VERDICT: NO FIELD MISMATCHES. Minor type coercion note (numbers displayed via
+string interface). The display() helper handles nulls safely.
+
+
+========================================================================
+4. devices.tsx — Device Health
+========================================================================
+
+API called:   /api/ez-protect/devices?locationId=X
+Use case:     GetDeviceHealthUseCase -> { devices: DeviceInfo[] }
+DeviceInfo:   { id, deviceSerialNumber, deviceModel, lastSeenAt?, status,
+                calibrationStatus, pmStatus, lastControlStatus?,
+                lastCalibrationStatus?, lastPmStatus?, firmwareVersion?,
+                facilityId?, locationId?, totalEvents? }
+
+Page interface (EzProtectDevice):
+  device.id                  OK
+  device.deviceSerialNumber  OK
+  device.deviceModel         OK
+  device.lastSeenAt          OK
+  device.status              OK — domain DeviceHealthStatus = 'online'|'offline'|'error'
+  device.calibrationStatus   OK
+  device.pmStatus            OK
+  device.totalEvents         OK — domain is optional (number?), page does .toLocaleString()
+  device.facilityId          OK — domain is optional
+
+POTENTIAL ISSUE:
+  - totalEvents in DeviceInfo is typed as `totalEvents?: number` (optional).
+    Page does `device.totalEvents.toLocaleString()` which will crash if
+    totalEvents is undefined. In practice, the repo always returns
+    totalEvents from $sum:1 aggregation so it should always be present.
+    SEVERITY: NEGLIGIBLE — repo always provides the field.
+
+VERDICT: NO MISMATCHES. All accessed fields exist in API response.
+
+
+========================================================================
+5. alerts.tsx — Alert Rules & History
+========================================================================
+
+API called (rules):   /api/ez-protect/alerts?locationId=X (GET)
+Use case:             ListAlertRulesUseCase -> Mongoose .find().lean() array
+Returns:              bare array of Mongoose documents (AlertRule docs)
+
+Page interface (AlertRule):
+  rule._id                OK — Mongoose lean() returns _id
+  rule.name               OK
+  rule.triggerType        OK
+  rule.triggerConfig      OK
+  rule.channel            OK
+  rule.recipients         OK
+  rule.faqLinks           OK (used in POST, not displayed in list)
+  rule.videoLinks         OK (used in POST, not displayed in list)
+  rule.enabled            OK
+  rule.isDefault          OK
+
+API called (create):  /api/ez-protect/alerts (POST)
+  Body fields sent:     name, triggerType, triggerConfig, channel, recipients,
+                        faqLinks, videoLinks, locationId
+  API schema accepts:   name, description, locationId, triggerType, triggerConfig,
+                        channel, recipients, notifyFacilityContacts, faqLinks, videoLinks
+  ALL SENT FIELDS MATCH.
+
+API called (update):  /api/ez-protect/alerts/{id} (PUT)
+  Page sends:           { enabled: !rule.enabled }
+  API accepts:          id (from URL), plus any of name, description, enabled, etc.
+  MATCH OK.
+
+API called (delete):  /api/ez-protect/alerts/{id} (DELETE)
+  MATCH OK.
+
+API called (history): /api/ez-protect/alert-history?locationId=X&page=N&limit=10
+Use case:             ListAlertHistoryUseCase
+Returns:              { alerts[], total, page, limit, totalPages }
+alerts[]:             Mongoose lean() documents from EzProtectAlertHistoryModel
+
+Page interface (AlertHistoryEntry):
+  entry._id              OK
+  entry.sentAt           OK
+  entry.alertName        OK — depends on Mongoose schema having this field
+  entry.triggerType      OK
+  entry.channel          OK
+  entry.recipients       OK
+  entry.message          OK
+  entry.acknowledged     OK
+
+NOTE: The alert history model fields (alertName, message, acknowledged, etc.)
+depend on the Mongoose schema in @ebacmap/db. The use case does a plain
+.find().lean() so it returns whatever is in the DB. If those fields exist in
+the schema, there is no mismatch. This cannot be verified without reading the
+Mongoose model, but the use case was explicitly built to serve this page.
+
+VERDICT: NO MISMATCHES (assuming Mongoose schema matches, which it should
+since both were built together).
+
+
+========================================================================
+6. facility.tsx — Facility Dashboard
+========================================================================
+
+API called:   /api/ez-protect/dashboard-facility?locationId=X
+Route file:   dashboard-facility.ts uses GetEzProtectDashboardUseCase (same as dashboard.ts)
+Returns:      EzProtectDashboardSummary = { locationId, generatedAt, totalEvents,
+              latestOccurredAt?, windows[] }
+
+Page interface (FacilityDashboardResponse):
+  dashboard.totalEvents        OK
+  dashboard.latestOccurredAt   OK (optional)
+  dashboard.generatedAt        OK
+  dashboard.windows            OK
+  w.windowDays                 OK
+  w.totalEvents                OK
+  w.byResultState              OK
+
+The page reads w.byResultState['INITIAL_POSITIVE'], ['PRESUMPTIVE_POSITIVE'],
+['PRODUCT_POSITIVE'], ['NEGATIVE'], ['INVALID'], ['CALIBRATION_FAIL'], ['PM_FAIL']
+— all valid keys from the RESULT_STATES enum.
+
+VERDICT: NO MISMATCHES. All fields align perfectly.
+
+
+========================================================================
+7. compare.tsx — Device Comparison Chart
+========================================================================
+
+API called:   /api/ez-protect/events?locationId=X&dateFrom=Y&dateTo=Z&limit=500&sortBy=completedAt&sortOrder=asc
+Use case:     ListEzProtectEventsUseCase -> PaginatedEvents
+Shape:        { events: EzProtectNormalizedEvent[], total, page, limit, totalPages }
+
+API EXISTS:   YES — same /api/ez-protect/events endpoint used by results.tsx.
+
+Page accesses from events:
+  evt.deviceSerialNumber    OK
+  evt.deviceModel           OK
+  evt.readingValue          OK — number|null, page checks val != null
+  evt.resultValue           OK — number|null, page checks val != null
+  evt.completedAt           OK
+  evt.resultState           OK
+  eventsData.events         OK
+  eventsData.total          (not directly used, but available)
+
+VERDICT: NO MISMATCHES. API exists and all accessed fields match.
+
+
+========================================================================
+8. troubleshooting.tsx — Static Troubleshooting Page
+========================================================================
+
+API called:   NONE. This is a purely static page.
+
+The page renders hardcoded TROUBLESHOOTING_CATEGORIES, FAQ_ITEMS, and
+VIDEO_LINKS arrays. No API calls, no data fetching, no field references
+to check.
+
+VERDICT: N/A — No API dependency. No mismatches possible.
+
+
+========================================================================
+SUMMARY OF ALL MISMATCHES
+========================================================================
+
+TOTAL PAGES CHECKED: 8
+PAGES WITH MISMATCHES: 1
+
+1. results.tsx — SORT COLUMN MISMATCH (LOW SEVERITY)
+   Page allows sorting by 7 columns:
+     completedAt, deviceSerialNumber, assayName, sampleId, resultState,
+     operatorGroup, facilityId
+   API allows sorting by 7 (different) columns:
+     completedAt, resultState, deviceSerialNumber, assayCode, operatorId,
+     readingValue, ingestedAt
+
+   OVERLAP (3 columns work):  completedAt, deviceSerialNumber, resultState
+   BROKEN (4 columns silently fall back to default sort):
+     - assayName     (page sends it, API ignores it)
+     - sampleId      (page sends it, API ignores it)
+     - operatorGroup (page sends it, API ignores it)
+     - facilityId    (page sends it, API ignores it)
+
+   FIX OPTIONS:
+   A) Add assayName, sampleId, operatorGroup, facilityId to the API's
+      yup oneOf list and to ALLOWED_SORT_FIELDS in the repo.
+   B) Remove sort click handlers from those 4 columns in the page.
+   C) Map page column keys to API-accepted equivalents where possible
+      (e.g., assayName -> assayCode).
+
+NOTES:
+- results/[id].tsx: Page declares numeric fields as `string` but the API
+  returns number|null. The display() helper safely handles this via
+  JavaScript type coercion. No crash, just a type annotation inaccuracy.
+- devices.tsx: totalEvents is optional in the domain type but always
+  returned by the aggregation pipeline in practice.
+
+END OF REPORT

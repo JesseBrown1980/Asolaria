@@ -1,0 +1,80 @@
+.NET / AWS / React Engineer – Interview Preparation Guide
+Role Summary
+This role focuses on building and modernising pharmacy benefit management (PBM) adjudication systems using a cloud-native AWS architecture. 
+The engineer will work across backend microservices (.NET / C#), serverless AWS services, and React front-end components. 
+The platform processes high‑volume pharmacy claims and requires scalable, reliable, and secure engineering practices aligned with healthcare standards such as HIPAA.
+Core Technologies To Review
+Backend
+• .NET / C#
+• Microservices architecture
+• REST APIs
+• Event-driven architecture
+Frontend
+• React.js
+• Component-based architecture
+• API integration
+AWS / Cloud
+• Lambda
+• API Gateway
+• DynamoDB
+• RDS Cluster
+• S3
+• Kinesis / Firehose
+• Glue
+• SQS
+• SNS
+• EventBridge
+Key Technical Topics Likely To Be Discussed
+1. .NET Microservices
+- Designing scalable .NET services
+- Dependency injection and clean architecture
+- API design and versioning
+2. AWS Serverless Architecture
+- When to use Lambda vs container-based services
+- Designing event-driven workflows using SQS, SNS, and EventBridge
+- Building resilient serverless applications
+3. Data & Event Processing
+- Using Kinesis or Firehose for streaming pipelines
+- ETL pipelines with AWS Glue
+- Choosing between DynamoDB and RDS
+4. Front-End Integration
+- React component design
+- Connecting frontend applications to APIs
+5. CI/CD and Platform Reliability
+- Deployment pipelines
+- Monitoring and logging in cloud environments
+- Ensuring reliability in distributed systems
+Domain Knowledge (PBM & Adjudication)
+Candidates should understand or be able to discuss:
+• High‑volume transaction systems
+• Real-time claims processing
+• Adjudication workflows in healthcare or insurance
+• Secure handling of sensitive healthcare data
+• Compliance considerations such as HIPAA
+Even if direct PBM experience is limited, candidates should demonstrate experience working on systems that process large volumes of real-time transactions.
+Example Technical Questions
+Backend / Architecture
+• How would you design a scalable microservice in .NET?
+• How would you break apart a monolithic system into microservices?
+• How do you handle API versioning and backwards compatibility?
+AWS / Cloud
+• How would you design a serverless architecture using Lambda and API Gateway?
+• When would you use SQS vs SNS vs EventBridge?
+• How do you ensure reliability in event-driven systems?
+Data
+• When would you choose DynamoDB over RDS?
+• How would you design a streaming pipeline using Kinesis?
+Frontend
+• How do you structure React applications for maintainability?
+• How do you handle state management in complex UIs?
+Behavioural Questions To Prepare For
+• Tell us about a project where you migrated a system to the cloud.
+• Describe a time you worked in a fast-moving or autonomous environment.
+• How do you approach debugging distributed systems?
+• Describe a situation where you had to improve system reliability or performance.
+Questions The Candidate Can Ask
+• What stage is the PBM platform modernisation currently in?
+• How large is the engineering team working on this platform?
+• What parts of the adjudication system are being rebuilt vs modernised?
+• How are deployments and CI/CD handled today?
+• What does success look like in the first 3–6 months?

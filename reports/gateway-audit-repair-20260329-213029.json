@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "repairedAt": "2026-03-30T00:30:31.445Z",
+  "backupDir": "C:\\Users\\acer\\Asolaria\\data\\backups\\gateway-audit-repair-20260329-213029",
+  "backupGatewayPath": "C:\\Users\\acer\\Asolaria\\data\\backups\\gateway-audit-repair-20260329-213029\\gateway-audit.original.ndjson",
+  "backupRequestPath": "",
+  "gatewayAuditPath": "C:\\Users\\acer\\Asolaria\\data\\gateway-audit.ndjson",
+  "requestAttributionPath": "C:\\Users\\acer\\Asolaria\\data\\request-attribution.ndjson",
+  "originalLineCount": 47382,
+  "rebuiltGatewayEntryCount": 47382,
+  "requestAttributionCount": 46172,
+  "requestAttributionFileLineCount": 46172,
+  "firstMixedLine": 1146,
+  "lastHash": "6052ee80ed34b4c932806781252a53264b3d0bf9220cb8f8d3cf3e35795b4ea0",
+  "pid": "gaia-20260329-jesse-system-restart",
+  "profile": "gaia"
+}

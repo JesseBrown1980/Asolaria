@@ -1,0 +1,125 @@
+QDD Report Detail Page Crash — Debug Findings
+==============================================
+Date: 2026-03-25
+
+URL that crashed: http://localhost:3000/reports/69c4446d6ffb66267d094562
+
+1. API TEST
+-----------
+  curl status for /api/reports/69c4446d6ffb66267d094562: 403 (auth required)
+  With valid session: would return 404 (report does not exist in DB)
+
+2. DOES THE REPORT EXIST?
+--------------------------
+  NO. Report ID 69c4446d6ffb66267d094562 does NOT exist in MongoDB.
+  db.reports.findOne({_id: ObjectId('69c4446d6ffb66267d094562')}) => null
+
+3. ERROR FLOW ANALYSIS
+-----------------------
+  The page [id].tsx (apps/web-ebacmap/src/pages/reports/[id].tsx) has two
+  error handling layers:
+
+  Layer 1 — In-page error handler (line 167-218):
+    Checks `reportError` from useService/SWR. If error has `.status === 404`,
+    shows "Report not found". If `.status === 500`, shows "Failed to load
+    report data". Otherwise shows generic "An error occurred while loading
+    this report".
+
+  Layer 2 — Sentry ErrorBoundary in _app.tsx (line 114-123):
+    Shows "An error has occurred. Please refresh the page."
+    This catches unhandled React render crashes.
+
+  THE PROBLEM: fetchJson (src/utils/fetchJson.ts) swallows most API errors:
+    - On 500: returns false (line 114)
+    - On thrown ResponseError: catch block (line 143) shows alert, returns false (line 159)
+    - SWR receives data=false, never sets error
+    - report?.id is undefined (false?.id), page shows <Loading /> forever
+    - OR: if report is falsy but not undefined, accessing report.sections
+      in the render path can crash, triggering the Sentry ErrorBoundary
+
+  The user sees "An error has occurred" from the Sentry boundary, NOT the
+  in-page error handler at line 167. This means either:
+    a) fetchJson returns false, SWR has data=false (truthy!), report=false,
+       and report.sections crashes on render, OR
+    b) The ResponseError thrown by fetchJson propagates to SWR as error but
+       lacks a .status property (it has .response.status instead), and some
+       other render path crashes
+
+  ROOT CAUSE: The report ID does not exist. The page doesn't gracefully
+  handle 404s because fetchJson swallows the error before SWR can set it.
+
+4. ALL REPORT IDs IN THE DATABASE
+----------------------------------
+  Total: 2941 reports (2931 legacy + 10 seeded)
+
+  WORKING SEEDED REPORTS (have proper sections.filters + reportType):
+    /reports/69c45d8d66ceb0dfe218bfdb — Monthly Pathogen Overview (multi, 3 sections)
+    /reports/69c45d8d66ceb0dfe218bfdc — Weekly Zone Compliance (single, 1 section)
+    /reports/69c45d8d66ceb0dfe218bfdd — Quarterly Indicator Organisms (multi, 2 sections)
+    /reports/69c45d8d66ceb0dfe218bfde — Rolling 7-Day Environmental (single, 1 section)
+    /reports/69c45d8d66ceb0dfe218bfdf — Annual Executive Dashboard (multi, 2 sections)
+    /reports/69c45fe7d0d246c5f93060ee — Site Performance Breakdown (single, 1 section)
+    /reports/69c45fe7d0d246c5f93060ef — Zone Comparison Dashboard (multi, 2 sections)
+    /reports/69c45fe7d0d246c5f93060f0 — Daily Pass Rate Monitor (single, 1 section)
+    /reports/69c45fe7d0d246c5f93060f1 — Scatter Analysis — All Organisms (multi, 2 sections)
+    /reports/69c45fe7d0d246c5f93060f2 — Success Rate Year-over-Year (single, 1 section)
+
+  LEGACY REPORTS (2931): reportType=undefined, sections.filters=MISSING
+    These will crash ReportSection because section.filters is undefined.
+    ReportSection line 142: `const sectionFilters = section.filters ?? DEFAULT_SELECTED_FILTERS`
+    This falls back OK, but getDatesForReport({...sectionFilters.dateRange})
+    receives {type: undefined} which may produce bad dates.
+
+5. SEED SCRIPT FIX APPLIED
+----------------------------
+  File: D:/projects/QDD/ebacmap-master/scripts/seed-reports-complete.js
+
+  Changed all 5 report IDs from `new ObjectId()` (random) to deterministic:
+    Report 1: aaa000000000000000000001 — Monthly Pathogen Overview
+    Report 2: aaa000000000000000000002 — Weekly Zone Compliance
+    Report 3: aaa000000000000000000003 — Quarterly Indicator Organisms
+    Report 4: aaa000000000000000000004 — Rolling 7-Day Environmental
+    Report 5: aaa000000000000000000005 — Annual Executive Dashboard
+
+  After re-running: `node scripts/seed-reports-complete.js`
+  URLs will be predictable:
+    http://localhost:3000/reports/aaa000000000000000000001
+    http://localhost:3000/reports/aaa000000000000000000002
+    http://localhost:3000/reports/aaa000000000000000000003
+    http://localhost:3000/reports/aaa000000000000000000004
+    http://localhost:3000/reports/aaa000000000000000000005
+
+  The sections already have complete filters config with:
+    - interval, dateRange.type, dataType, rollingInterval
+    - includeVectorSites, conditions (with category/zone/organism rules)
+    - All fields that ReportSection, FilterDrawer, and
+      CustomReportRenderer expect
+
+6. REMAINING ISSUES (not fixed here)
+--------------------------------------
+  a) fetchJson swallows errors — SWR never gets to set error state, so
+     the nice in-page error handler (lines 167-218) never triggers. The
+     Sentry ErrorBoundary catches the crash instead, showing a generic
+     unhelpful message. Fix: fetchJson should re-throw for SWR to catch,
+     or getReport should handle fetchJson returning false.
+
+  b) 2931 legacy reports have no sections.filters and no reportType.
+     Opening any of them may crash or show empty charts. These are from
+     the old report schema before the sections migration.
+
+  c) The ResponseError class has .response (the full Response object)
+     but the [id].tsx checks (reportError as any)?.status — it should
+     check .response?.status instead.
+
+FILES EXAMINED
+--------------
+  apps/web-ebacmap/src/pages/reports/[id].tsx      — report detail page
+  apps/web-ebacmap/src/pages/_app.tsx               — Sentry ErrorBoundary
+  apps/web-ebacmap/src/pages/_error.js              — Next.js error page
+  apps/web-ebacmap/src/hooks/useService.ts          — SWR wrapper
+  apps/web-ebacmap/src/utils/fetchJson.ts           — HTTP client (swallows errors)
+  apps/web-ebacmap/src/services/reports.ts           — report API service
+  apps/web-ebacmap/src/components/CustomReports/ReportSection.tsx — section renderer
+  apps/web-ebacmap/src/modules/reports/use-cases/GetReport/UseCase.ts — API handler
+  scripts/seed-reports-complete.js                   — FIXED: deterministic IDs
+  scripts/seed-reports-data.js                       — reference data seeder

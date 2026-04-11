@@ -1,0 +1,28 @@
+1:1 Meeting Transcript – Feb 17
+Attendee: Jesse Brown
+Role: Lead Developer / DevOps
+Time: 2:00 PM – 2:30 PM
+Opening:
+Hi, thanks for making time. I’ll give a quick update on how the week’s going, what I shipped, what’s next, and where I could use your support.
+ I wanted to walk through how the past week has gone, cover the main items I’ve completed, what I’m currently focused on, and then discuss a few areas where I could use alignment or support from you.
+Overall, the week has been busy but productive. I’ve been splitting time between hands-on development, development planning, PR reviews and coordination work to keep things moving smoothly across the team.
+Weekly Overview & Completed Work:
+Starting with delivery work, the biggest milestone I completed was ticket #1043 for the Notification Service development plan. I finished the plan itself and also reviewed and refined the supporting documentation so it clearly outlines scope, assumptions, dependencies, and next steps. My goal here was to make sure the implementation team can move forward without ambiguity or rework.
+Earlier in the week, I wrapped up work related to ticket #1072 for the background job that uploads AlayaCare Nursing Notes to Care10. That included resolving review comments, fixing merge conflicts, and opening the final PR. This ticket had a few tricky parts around stability and sequencing, but it’s now in a good state.
+In parallel, I completed ticket #1122, which involved fixing the change date logic used in the Nursing Notes background job and some issues for Monday.FillSchedule table.  After the initial completion, I also addressed a follow-up PR issue today to make sure the logic behaves correctly in real execution scenarios and edge cases.
+Throughout the week, I also reviewed several PRs from the team. A lot of my focus there was on background jobs, date handling, and general robustness to avoid regressions or production issues later.
+Current Focus & Next Steps
+Looking ahead, my immediate focus is on meetings and coordination today, as well as reviewing and triaging new incoming tickets so we can set priorities early.
+And I will focus on new tickets for Document Management System you created.
+I’ll also continue acting as a primary reviewer for PRs, particularly those related to background jobs, infrastructure, and cross-cutting changes, since that’s helped catch issues early and reduce back-and-forth later.
+Support Needed:
+First, I’d like to confirm the priority order for new DMS tickets. I can start initial triage, but I want to make sure my recommendations align with your expectations and broader goals.
+1089 - DMS - Document Search/List Endpoint.
+1088 - DMS - Download Document Endpoint
+1086 - DMS - Upload Endpoint
+1083 - DMS - Health check endpoint
+1082 - DMS - Configure Azure Resources
+1081 - DMS - Create Database Tables
+Second, if you have specific expectations for development plans — such as level of detail, timelines, or risk sections — I’d appreciate guidance so I can standardize that format going forward.
+Closing:
+Anything you’d like me to adjust in focus this week or keep an eye on?

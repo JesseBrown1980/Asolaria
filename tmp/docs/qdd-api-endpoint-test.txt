@@ -1,0 +1,343 @@
+=== DEV BYPASS ===
+Status: 200
+Cookie: ebacmapv3=Fe26.2*1*763d35d5841dc37e2db625aca29556c33af32e69319e9cedb1a16d2c64e1b6d6*VW2X5TVhTucbDxX3utaV_w*mjg8fItZg9B0T...
+
+Using cookie: YES
+
+
+=== EVENTS LIST ===
+Path: /api/ez-protect/events?locationId=69c41938d84980e337ac77cf&page=1&limit=10
+Status: 200
+Response:
+{
+  "events": [
+    {
+      "id": "69c42817238048400fc80925",
+      "eventVersion": 1,
+      "sourceSystem": "seed-script",
+      "organizationId": "69c41938d84980e337ac77cd",
+      "facilityId": "69c41938d84980e337ac77cf",
+      "deviceSerialNumber": "SN-1002",
+      "deviceModel": "3M MDS",
+      "assayCode": "ASY-002",
+      "assayName": "Listeria spp.",
+      "lotNumber": "LOT-2028-08",
+      "rollNumber": "ROLL-012",
+      "resultState": "UNKNOWN",
+      "completedAt": "2026-03-25T14:16:43.500Z",
+      "ingestedAt": "2026-03-25T14:17:43.500Z",
+      "moduleSlot": "Slot 4",
+      "operatorId": "mgarcia",
+      "operatorGroup": "Shift 2",
+      "sampleId": "SAM-10211",
+      "readingValue": 324.47,
+      "controlLineValid": true,
+      "temperatureC": 35.6,
+      "pmStatus": "PASS",
+      "calibrationStatus": "PASS",
+      "locationId": "69c41938d84980e337ac77cf",
+      "clientId": "69c41938d84980e337ac77cd"
+    },
+    {
+      "id": "69c42817238048400fc808a1",
+      "eventVersion": 1,
+      "sourceSystem": "seed-script",
+      "organizationId": "69c41938d84980e337ac77cd",
+      "facilityId": "69c41938d84980e337ac77cf",
+      "deviceSerialNumber": "SN-3005",
+      "deviceModel": "3M Petrifilm",
+      "assayCode": "ASY-005",
+      "assayName": "APC Total",
+      "lotNumber": "LOT-2025-08",
+      "rollNumber": "ROLL-020",
+      "resultState": "INVALID",
+      "completedAt": "2026-03-25T13:50:58.967Z",
+      "ingestedAt": "2026-03-25T13:51:58.967Z",
+      "moduleSlot": "Slot 4
+... (truncated)
+
+>>> Found event ID: 69c42817238048400fc80925
+
+=== EVENTS BY DEVICE SERIAL ===
+Path: /api/ez-protect/events?locationId=69c41938d84980e337ac77cf&deviceSerialNumber=SN-001
+Status: 200
+Response:
+{
+  "events": [],
+  "total": 0,
+  "page": 1,
+  "limit": 50,
+  "totalPages": 0
+}
+
+=== SINGLE EVENT (id=69c42817238048400fc80925) ===
+Path: /api/ez-protect/event/69c42817238048400fc80925
+Status: 200
+Response:
+{
+  "id": "69c42817238048400fc80925",
+  "eventVersion": 1,
+  "sourceSystem": "seed-script",
+  "organizationId": "69c41938d84980e337ac77cd",
+  "facilityId": "69c41938d84980e337ac77cf",
+  "deviceSerialNumber": "SN-1002",
+  "deviceModel": "3M MDS",
+  "assayCode": "ASY-002",
+  "assayName": "Listeria spp.",
+  "lotNumber": "LOT-2028-08",
+  "rollNumber": "ROLL-012",
+  "resultState": "UNKNOWN",
+  "completedAt": "2026-03-25T14:16:43.500Z",
+  "ingestedAt": "2026-03-25T14:17:43.500Z",
+  "moduleSlot": "Slot 4",
+  "operatorId": "mgarcia",
+  "operatorGroup": "Shift 2",
+  "sampleId": "SAM-10211",
+  "readingValue": 324.47,
+  "controlLineValid": true,
+  "temperatureC": 35.6,
+  "pmStatus": "PASS",
+  "calibrationStatus": "PASS",
+  "locationId": "69c41938d84980e337ac77cf",
+  "clientId": "69c41938d84980e337ac77cd"
+}
+
+=== DASHBOARD ===
+Path: /api/ez-protect/dashboard?locationId=69c41938d84980e337ac77cf
+Status: 200
+Response:
+{
+  "locationId": "69c41938d84980e337ac77cf",
+  "generatedAt": "2026-03-25T18:24:02.070Z",
+  "totalEvents": 150,
+  "latestOccurredAt": "2026-03-25T14:16:43.500Z",
+  "windows": [
+    {
+      "windowDays": 1,
+      "totalEvents": 4,
+      "byResultState": {
+        "UNKNOWN": 1,
+        "INVALID": 1,
+        "NEGATIVE": 1,
+        "CALIBRATION_FAIL": 1
+      }
+    },
+    {
+      "windowDays": 7,
+      "totalEvents": 32,
+      "byResultState": {
+        "UNKNOWN": 5,
+        "INVALID": 2,
+        "NEGATIVE": 10,
+        "CALIBRATION_FAIL": 3,
+        "PRESUMPTIVE_POSITIVE": 4,
+        "PRODUCT_POSITIVE": 2,
+        "INITIAL_POSITIVE": 3,
+        "PM_FAIL": 3
+      }
+    },
+    {
+      "windowDays": 14,
+      "totalEvents": 74,
+      "byResultState": {
+        "UNKNOWN": 9,
+        "INVALID": 7,
+        "NEGATIVE": 25,
+        "CALIBRATION_FAIL": 7,
+        "PRESUMPTIVE_POSITIVE": 7,
+        "PRODUCT_POSITIVE": 5,
+        "INITIAL_POSITIVE": 6,
+        "PM_FAIL": 8
+      }
+    },
+    {
+      "windowDays": 30,
+      "totalEvents": 150,
+      "byResultState": {
+        "UNKNOWN": 12,
+        "INVALID": 11,
+        "NEGATIVE": 58,
+        "CALIBRATION_FAIL": 14,
+        "PRESUMPTIVE_POSITIVE": 14,
+        "PRODUCT_POSITIVE": 9,
+        "INITIAL_POSITIVE": 15,
+        "PM_FAIL": 17
+      }
+    }
+  ]
+}
+
+=== DASHBOARD CORPORATE ===
+Path: /api/ez-protect/dashboard-corporate
+Status: 200
+Response:
+{
+  "clientId": "69c41938d84980e337ac77cd",
+  "generatedAt": "2026-03-25T18:24:04.824Z",
+  "totalEvents": 0,
+  "totalDevices": 0,
+  "alertCount": 80,
+  "positiveRate": 0,
+  "connectedDevices24h": 0,
+  "disconnectedDevices": 0,
+  "windows": [
+    {
+      "windowDays": 1,
+      "totalEvents": 0,
+      "byResultState": {}
+    },
+    {
+      "windowDays": 7,
+      "totalEvents": 0,
+      "byResultState": {}
+    },
+    {
+      "windowDays": 14,
+      "totalEvents": 0,
+      "byResultState": {}
+    },
+    {
+      "windowDays": 30,
+      "totalEvents": 0,
+      "byResultState": {}
+    }
+  ],
+  "byFacility": {},
+  "errorCategories": {
+    "procedural": 0,
+    "equipment": 0,
+    "unknown": 0
+  },
+  "byLotRoll": [],
+  "pmTesting": {
+    "tested": 0,
+    "passed": 0,
+    "failed": 0,
+    "notTested": 0
+  }
+}
+
+=== DASHBOARD FACILITY ===
+Path: /api/ez-protect/dashboard-facility?locationId=69c41938d84980e337ac77cf
+Status: 200
+Response:
+{
+  "locationId": "69c41938d84980e337ac77cf",
+  "generatedAt": "2026-03-25T18:24:05.797Z",
+  "totalEvents": 150,
+  "latestOccurredAt": "2026-03-25T14:16:43.500Z",
+  "windows": [
+    {
+      "windowDays": 1,
+      "totalEvents": 4,
+      "byResultState": {
+        "UNKNOWN": 1,
+        "INVALID": 1,
+        "NEGATIVE": 1,
+        "CALIBRATION_FAIL": 1
+      }
+    },
+    {
+      "windowDays": 7,
+      "totalEvents": 32,
+      "byResultState": {
+        "UNKNOWN": 5,
+        "INVALID": 2,
+        "NEGATIVE": 10,
+        "CALIBRATION_FAIL": 3,
+        "PRESUMPTIVE_POSITIVE": 4,
+        "PRODUCT_POSITIVE": 2,
+        "INITIAL_POSITIVE": 3,
+        "PM_FAIL": 3
+      }
+    },
+    {
+      "windowDays": 14,
+      "totalEvents": 74,
+      "byResultState": {
+        "UNKNOWN": 9,
+        "INVALID": 7,
+        "NEGATIVE": 25,
+        "CALIBRATION_FAIL": 7,
+        "PRESUMPTIVE_POSITIVE": 7,
+        "PRODUCT_POSITIVE": 5,
+        "INITIAL_POSITIVE": 6,
+        "PM_FAIL": 8
+      }
+    },
+    {
+      "windowDays": 30,
+      "totalEvents": 150,
+      "byResultState": {
+        "UNKNOWN": 12,
+        "INVALID": 11,
+        "NEGATIVE": 58,
+        "CALIBRATION_FAIL": 14,
+        "PRESUMPTIVE_POSITIVE": 14,
+        "PRODUCT_POSITIVE": 9,
+        "INITIAL_POSITIVE": 15,
+        "PM_FAIL": 17
+      }
+    }
+  ]
+}
+
+=== DEVICES ===
+Path: /api/ez-protect/devices?locationId=69c41938d84980e337ac77cf
+Status: 200
+Response:
+[]
+
+=== ALERT HISTORY ===
+Path: /api/ez-protect/alert-history?locationId=69c41938d84980e337ac77cf&page=1&limit=10
+Status: 200
+Response:
+{
+  "alerts": [
+    {
+      "_id": "69c42817238048400fc80985",
+      "clientId": "69c41938d84980e337ac77cd",
+      "locationId": "69c41938d84980e337ac77cf",
+      "alertRuleId": null,
+      "alertRuleName": "Positive Detection Alert",
+      "triggerType": "result_state",
+      "channel": "email",
+      "message": "Alert triggered: Positive Detection Alert — Device SN-1001 at 2026-03-25T18:23",
+      "recipients": [
+        "dev@ebacmap.local"
+      ],
+      "deviceSerialNumber": "SN-1001",
+      "resultState": "NEGATIVE",
+      "sentAt": "2026-03-25T18:23:19.024Z",
+      "createdAt": "2026-03-25T18:23:19.024Z",
+      "updatedAt": "2026-03-25T18:23:19.024Z"
+    },
+    {
+      "_id": "69c42817238048400fc80986",
+      "clientId": "69c41938d84980e337ac77cd",
+      "locationId": "69c41938d84980e337ac77cf",
+      "alertRuleId": null,
+      "alertRuleName": "Device Offline Monitor",
+      "triggerType": "device_offline",
+      "channel": "dashboard",
+      "message": "Alert triggered: Device Offline Monitor — Device SN-1002 at 2026-03-25T17:23",
+      "recipients": [],
+      "deviceSerialNumber": "SN-1002",
+      "resultState": "NEGATIVE",
+      "sentAt": "2026-03-25T17:23:19.024Z",
+      "createdAt": "2026-03-25T17:23:19.024Z",
+      "updatedAt": "2026-03-25T17:23:19.024Z"
+    },
+    {
+      "_id": "69c42817238048400fc80987",
+      "clientId": "69c41938d84980e337ac77cd",
+      "locationId": "69c41938d84980e337ac77cf",
+      "alertRuleId": null,
+      "alertRuleName": "High Reading 
+... (truncated)
+
+=== ALERTS ===
+Path: /api/ez-protect/alerts?locationId=69c41938d84980e337ac77cf
+Status: 200
+Response:
+[]

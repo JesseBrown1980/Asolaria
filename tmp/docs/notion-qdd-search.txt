@@ -1,0 +1,42 @@
+Notion QDD Search Results — 2026-03-25
+========================================
+
+STATUS: NOTION MCP NOT CONFIGURED — NO SEARCHES POSSIBLE
+
+The Notion MCP integration is NOT currently enabled in this Claude Code session.
+Available MCP integrations: Slack, Gmail, Linear, Browser (Playwright), Docker MCP catalog.
+Notion exists in the MCP catalog as "notion" and "notion-remote" but neither is installed.
+
+To enable Notion MCP, one of these must be configured:
+  1. "notion" — Official Notion MCP Server (requires: notion.internal_integration_token)
+  2. "notion-remote" — Manage projects, create documentation, organize information
+
+PLANNED SEARCHES (NOT EXECUTED — NO NOTION ACCESS):
+  1. "sentry"
+  2. "ebacmap"
+  3. "QDD"
+  4. "brian"
+  5. "charm sciences"
+  6. "deploy"
+  7. "staging environment"
+
+NEXT STEPS:
+  - Obtain a Notion internal integration token
+  - Run: mcp-add with name="notion" and provide the token as a secret
+  - Re-run this search task once Notion MCP is live
+
+EXISTING LOCAL QDD/CHARM DOCS FOUND IN tmp/docs/:
+  - CHARM_EZP.txt / CHARM_EZP (1).txt / CHARM_EZP (2).txt
+  - CharmDevice_Outputs.txt / CharmDevice_Outputs (1).txt
+  - Charm_EZ_Module_Review_Notes_for_Natalie.txt (3 copies)
+  - ebacmap-qdd-inventory.txt
+  - PQ_Bid_Proposal_V2.txt / V4 / V4_Change_Log / V4_MVP_Revised
+  - MomsMeals_GenesysChat_Implementation_Summary.txt
+
+CODEX NOTION SKILL WRAPPERS (reference only, no API access):
+  - codex-ref-notion-research-documentation
+  - codex-ref-notion-meeting-intelligence
+  - codex-ref-notion-knowledge-capture
+  - codex-ref-notion-spec-to-implementation
+
+END OF REPORT

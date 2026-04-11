@@ -1,0 +1,206 @@
+EZ Protect Frontend Module Scan — 2026-03-25
+=============================================
+Path: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\ez-protect\
+
+FILE INVENTORY (17 files)
+-------------------------
+domain/EzProtectEvent.ts           — Domain model (152 lines)
+repos/EzProtectRepo.ts             — Repository / MongoDB queries (632 lines)
+repos/EzProtectRepo.unit.ts        — Domain unit tests (50 lines)
+repos/index.ts                     — Barrel export + singleton (5 lines)
+use-cases/ExportEvents/UseCase.ts  — CSV export (64 lines)
+use-cases/GenerateEzProtectReport/UseCase.ts — PDF/CSV report generation (405 lines)
+use-cases/GetCorporateDashboard/UseCase.ts — Corporate dashboard (36 lines)
+use-cases/GetDeviceHealth/UseCase.ts — Device health list (34 lines)
+use-cases/GetEzProtectDashboard/index.ts — Barrel (6 lines)
+use-cases/GetEzProtectDashboard/UseCase.ts — Facility dashboard (32 lines)
+use-cases/GetEzProtectDashboard/route.int.ts — Integration test (117 lines)
+use-cases/GetEzProtectEvent/UseCase.ts — Single event lookup (34 lines)
+use-cases/ListAlertHistory/UseCase.ts — Alert history pagination (48 lines)
+use-cases/ListEzProtectEvents/UseCase.ts — Paginated event listing (58 lines)
+use-cases/ManageAlertRules/UseCase.ts — CRUD for alert rules (138 lines)
+use-cases/RouteMsaResult/UseCase.ts — MSA routing to Charm support (170 lines)
+use-cases/SyncToLims/UseCase.ts    — LIMS sync scaffold (42 lines)
+
+=============================================================================
+DOMAIN MODEL (EzProtectEvent.ts)
+=============================================================================
+- 29-field EzProtectNormalizedEvent interface (aligned with codex CANONICAL_DOMAIN_MODEL.md)
+- Dashboard windows: 1, 7, 14, 30 days
+- Plan tiers: 'ez-protect', 'ez-protect-plus'
+- 8 ResultStates: NEGATIVE, INITIAL_POSITIVE, PRESUMPTIVE_POSITIVE, PRODUCT_POSITIVE,
+  INVALID, CALIBRATION_FAIL, PM_FAIL, UNKNOWN
+- 2 SourceSystems: CHARM_EZP, CHARM_EZP_PLUS
+- 6 TransportModes: api, ethernet, wifi, cellular, usb, mock
+- DeviceInfo interface with health status (online/offline/error)
+- categorizeError() helper: maps result states to procedural/equipment/unknown
+- No TODOs/FIXMEs in domain model — looks solid
+
+=============================================================================
+REPOSITORY (EzProtectRepo.ts)
+=============================================================================
+- Depends on: @ebacmap/db models, date-fns subHours
+- 4 Mongoose models used:
+    EzProtectEventModel       — confirmed in libs/db/src/models/index.ts
+    EzProtectAlertHistoryModel — confirmed
+    EzProtectAlertRuleModel   — confirmed
+    EzProtectMsaConfigModel   — confirmed
+- Methods:
+    listNormalizedEvents()    — paginated, filtered, sorted (7 allowed sort fields)
+    getEventById()            — by _id + clientId
+    getDashboardSummary()     — facility-scoped, 4 windows
+    getCorporateDashboard()   — client-scoped, MongoDB $facet aggregation
+    getDevices()              — device health via aggregation pipeline
+    upsertEvent()             — dedup by deviceSerialNumber+completedAt+sampleId
+- No TODOs/FIXMEs
+
+=============================================================================
+USE CASES
+=============================================================================
+
+ExportEvents — CLEAN
+  - CSV export, max 50K events
+  - 30 columns in export header
+  - Uses ezProtectRepo.listNormalizedEvents
+
+GenerateEzProtectReport — CLEAN
+  - 4 report types: daily_summary, weekly_trend, device_health, compliance_audit
+  - PDF via @ebacmap/utils/pdf generatePdfWithRetry (confirmed exists at libs/utils/src/lib/pdf.ts)
+  - CSV fallback
+  - Builds full HTML with inline CSS for Playwright PDF rendering
+  - Device health section and compliance section for specific report types
+  - No TODOs
+
+GetCorporateDashboard — CLEAN
+  - Thin wrapper around repo.getCorporateDashboard
+
+GetDeviceHealth — CLEAN
+  - Thin wrapper around repo.getDevices
+
+GetEzProtectDashboard — CLEAN
+  - Thin wrapper around repo.getDashboardSummary
+  - Has integration test (route.int.ts) with 4 test cases
+
+GetEzProtectEvent — CLEAN
+  - Single event by ID
+
+ListAlertHistory — CLEAN
+  - Paginated alert history query
+  - Uses EzProtectAlertHistoryModel directly (not through repo)
+
+ListEzProtectEvents — CLEAN
+  - Full filter passthrough to repo
+
+ManageAlertRules — CLEAN
+  - 4 use cases in one file: List, Create, Update, Delete
+  - Uses EzProtectAlertRuleModel directly
+  - Delete protects default rules (isDefault: false guard)
+  - CreateAlertRule stores faqLinks and videoLinks arrays
+
+RouteMsaResult — WARNING (see findings below)
+  - MSA = Master Service Agreement with Charm for remote troubleshooting
+  - Anonymizes events before sending (strips operator, sample, PII)
+  - Sends via Postmark email (POSTMARK_TEMPLATES.resultEntry = template 26579769, confirmed)
+  - Logs audit trail to EzProtectAlertHistoryModel
+  - WARNING: No API route wires this use case (see FINDING #3)
+
+SyncToLims — BLOCKED
+  - TODO on line 32: "Queue the LIMS sync job when specs are available"
+  - BLOCKED comment: "LIMS API specs TBD (see codex pack OPEN_QUESTIONS.md #4)"
+  - Returns scaffold response only, no actual sync
+  - WARNING: No API route wires this use case either
+
+=============================================================================
+EXTERNAL DEPENDENCIES — ALL VERIFIED
+=============================================================================
+@ebacmap/common   — Result, UseCase, UseCaseContext, POSTMARK_TEMPLATES, sendEmail, ValidationError
+@ebacmap/db       — models (4 EzProtect models confirmed in index)
+@ebacmap/utils/pdf — generatePdfWithRetry (confirmed at libs/utils/src/lib/pdf.ts)
+@ebacmap/types    — PermissionActionValue, UserRoleValue (used in integration test)
+@/common/UnauthorizedError — confirmed
+@/common/NotFoundError     — confirmed at apps/web-ebacmap/src/common/NotFoundError.ts
+date-fns          — subHours, format
+
+=============================================================================
+API ROUTES (pages/api/ez-protect/) — 11 routes wired
+=============================================================================
+dashboard.ts           → GetEzProtectDashboardUseCase
+dashboard-facility.ts  → GetEzProtectDashboardUseCase
+dashboard-corporate.ts → GetCorporateDashboardUseCase
+events.ts              → ListEzProtectEventsUseCase
+event/[id].ts          → GetEzProtectEventUseCase
+devices.ts             → GetDeviceHealthUseCase
+export.ts              → ExportEventsUseCase
+reports/generate.ts    → GenerateEzProtectReportUseCase
+alerts/index.ts        → ListAlertRulesUseCase, CreateAlertRuleUseCase
+alerts/[id].ts         → UpdateAlertRuleUseCase, DeleteAlertRuleUseCase
+alert-history.ts       → ListAlertHistoryUseCase
+ingest.ts              → (separate ingestion endpoint, imports RESULT_STATES)
+
+UI PAGES (pages/ez-protect/) — 7 pages
+index.tsx, results.tsx, results/[id].tsx, facility.tsx,
+devices.tsx, compare.tsx, alerts.tsx, troubleshooting.tsx
+
+=============================================================================
+FINDINGS
+=============================================================================
+
+FINDING #1 — TODO: SyncToLims is a stub
+  File: use-cases/SyncToLims/UseCase.ts:32
+  Status: BLOCKED — "LIMS API specs TBD (see codex pack OPEN_QUESTIONS.md #4)"
+  Impact: Low — scaffold returns { queued: true } but does nothing.
+  No API route wires it. No page calls it. Dead code until LIMS specs arrive.
+
+FINDING #2 — BLOCKED: SyncToLims has no API route
+  File: use-cases/SyncToLims/UseCase.ts
+  No file under pages/api/ez-protect/ imports syncToLimsUseCase.
+  When LIMS specs arrive, a route needs to be created.
+
+FINDING #3 — RouteMsaResult has no API route
+  File: use-cases/RouteMsaResult/UseCase.ts
+  No file under pages/api/ez-protect/ imports routeMsaResultUseCase.
+  This use case exists but is never callable from the frontend.
+  Likely intended to be triggered server-side (e.g., from queue-server's
+  EvaluateEzProtectAlerts), but NO frontend route exposes it.
+  Impact: Medium — MSA routing works only if triggered internally.
+
+FINDING #4 — ListAlertHistory bypasses repo pattern
+  File: use-cases/ListAlertHistory/UseCase.ts
+  Accesses models.EzProtectAlertHistoryModel directly instead of going
+  through EzProtectRepo. Same for ManageAlertRules with EzProtectAlertRuleModel.
+  Not a bug, but inconsistent with other use-cases that go through the repo.
+
+FINDING #5 — Integration test uses @ts-nocheck
+  File: use-cases/GetEzProtectDashboard/route.int.ts:1
+  Full @ts-nocheck suppression. Likely due to test factory typing issues.
+  Not blocking but means type errors in that test file would be silenced.
+
+FINDING #6 — Duplicate CSV logic
+  ExportEvents/UseCase.ts and GenerateEzProtectReport/UseCase.ts both have
+  nearly identical CSV generation logic (same headers minus 'ingestedAt' in
+  the report version). Could be refactored into a shared helper.
+
+FINDING #7 — categorizeError unused parameters
+  File: domain/EzProtectEvent.ts:141-142
+  categorizeError() accepts calibrationStatus and pmStatus parameters but
+  never uses them in the function body. The result state alone drives the
+  categorization. These params could be removed or the function could be
+  enhanced to use them.
+
+FINDING #8 — No missing code references detected
+  All imports resolve to existing files. All Mongoose models are registered.
+  All shared package exports (@ebacmap/common, @ebacmap/db, @ebacmap/utils/pdf)
+  are confirmed present.
+
+=============================================================================
+SUMMARY
+=============================================================================
+Total files: 17
+Total LOC: ~1,848 (estimated)
+TODOs: 1 (SyncToLims:32)
+BLOCKEDs: 1 (SyncToLims — LIMS API specs)
+Missing routes: 2 (SyncToLims, RouteMsaResult)
+Type safety gaps: 1 (@ts-nocheck in integration test)
+Code duplication: 1 (CSV generation in 2 places)
+Unused function params: 1 (categorizeError)
+Missing imports/broken refs: 0

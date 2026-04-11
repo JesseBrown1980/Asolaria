@@ -1,0 +1,722 @@
+================================================================================
+ASOLARIA AGENTS.MD AND SYSTEM CARDS DEEP MINE
+Generated: 2026-03-25
+Source: Full recursive search of C:\Users\acer\ for AGENTS.md files, system cards,
+        bootstrap prompts, profile JSONs, constitution, and identity documents.
+Mode: READ ONLY extraction. No files modified.
+================================================================================
+
+TABLE OF CONTENTS
+-----------------
+PART 1:  FILE INVENTORY (what was found and where)
+PART 2:  AGENT IDENTITY REGISTRY (who every agent is)
+PART 3:  CONSTITUTION EXTRACT (the governing law)
+PART 4:  AGENTS.MD PRIMARY MANIFEST (operational rules)
+PART 5:  SYSTEM CARDS CATALOG (formal system definitions)
+PART 6:  BOOTSTRAP PROMPTS (agent startup identity)
+PART 7:  CODEX-BRIDGE PROFILES (all agent profile JSONs)
+PART 8:  DASEIN LOCAL PROFILE (local Claude identity)
+PART 9:  CROSS-REFERENCE: QDD/CHARM AGENTS.MD FILES
+PART 10: KEY FINDINGS AND DNA SUMMARY
+
+================================================================================
+PART 1: FILE INVENTORY
+================================================================================
+
+AGENTS.MD FILES FOUND (11 total, 4 unique types):
+--------------------------------------------------
+1. C:\Users\acer\Asolaria\docs\claude-project\AGENTS.md
+   -- THE PRIMARY. 513 lines. Full operational manual for all agents.
+   -- Last updated 2026-03-16. Synthesized from Notebook Mirrors + Owner directives + Constitution v2.
+   -- Contains: governance stack, foundational rules, platform reference, task protocol,
+      security model, Google/cloud accounts, memory rules, skills, Omnispindle lanes,
+      MQTT topics, phone RBAC, vault, GNN, colony coordination, connectors (42),
+      documentation inventory, deferred items.
+
+2. C:\Users\acer\Asolaria\docs\claude-project\bundle\AGENTS.md
+   -- Bundled version for claude.ai upload. 345 lines. Slightly older snapshot
+      (missing Constitution reference, Madness Interactive details, some connectors).
+
+3. C:\Users\acer\Asolaria\AGENTS.md
+   -- ROOT COPY. 100 lines. Codex-oriented operating rules (not Asolaria-specific).
+   -- Contains: safety rules, external AI threat guardrails, credential rules,
+      internet-facing output policy, task tracking, context management, MCP audit
+      discipline, agent creation + cost rules, Codex skill system.
+
+4. C:\Users\acer\Downloads\AGENTS.md
+   -- Same as root copy (Codex operating rules). 100 lines.
+
+5. C:\Users\acer\Asolaria\.claude\worktrees\agent-aa4d287c\AGENTS.md
+   -- Same as root copy (Codex operating rules). 100 lines.
+
+6. C:\Users\acer\Asolaria\.claude\worktrees\agent-a09f5c02\AGENTS.md
+   -- Same as root copy (Codex operating rules). 100 lines.
+
+7. C:\Users\acer\Asolaria\tmp-symphony-workspace-test\AGENTS.md
+   -- Same as root copy (Codex operating rules). 100 lines.
+
+8. C:\Users\acer\Downloads\charm_ezp_codex_pack_extracted\AGENTS.md
+   -- QDD/Charm EZ Protect project. 58 lines. MVP build instructions for eBacMap.
+   -- NOT Asolaria-related. Separate client project.
+
+9. C:\Users\acer\Downloads\claude-code-hooks-multi-agent\AGENTS.md
+   -- Same QDD/Charm content. 58 lines.
+
+SYSTEM CARDS FOUND (8 unique, many duplicates in worktrees):
+------------------------------------------------------------
+1. C:\Users\acer\Asolaria\reports\asolaria-system-card-20260303.md
+   -- 425 lines. 18-section frontier-model analysis format.
+   -- Date: 2026-03-03. THE FOUNDATIONAL SYSTEM CARD.
+
+2. C:\Users\acer\Asolaria\reports\asolaria-system-card-20260308-runtime-post-restart.md
+   -- 314 lines. Post-restart runtime scan with agent identity untangle pass.
+   -- Date: 2026-03-08. Includes connector posture, NotebookLM review, bug fixes.
+
+3. C:\Users\acer\Asolaria\reports\swarm-continuation-system-card-20260308-1220.md
+   -- 57 lines. Swarm continuation card after shutdown recovery.
+   -- Date: 2026-03-08 09:20. Lane artifacts: ops unblock, commerce bootstrap, phone closeout.
+
+4. C:\Users\acer\Asolaria\reports\asolaria-openai-board-system-card-20260309.md
+   -- 772 lines. Board-level system card for OpenAI review. 16 sections.
+   -- Date: 2026-03-09. THE MOST COMPREHENSIVE SYSTEM CARD.
+
+5. C:\Users\acer\Asolaria\reports\asolaria-openai-board-system-card-cited-20260309.md
+   -- 153 lines. Cited/condensed version with inline evidence references.
+   -- Date: 2026-03-09.
+
+6. C:\Users\acer\Asolaria\reports\asolaria-openai-board-system-card-20260309.pdf
+   -- PDF render of the board system card. 19 pages.
+
+7. C:\Users\acer\Asolaria\reports\notebooklm-core\system-card.md
+   -- NotebookLM core system card (referenced from sync state).
+
+8. C:\Users\acer\Downloads\asolaria-mobile-architecture-card-20260303.md
+   -- 200 lines. 13-section mobile plane analysis.
+   -- Date: 2026-03-03. Route-to-gate security matrix, always-on bidirectional design.
+
+ALSO IN DOWNLOADS (duplicates):
+- C:\Users\acer\Downloads\asolaria-system-card-20260303.md (identical to reports copy)
+- C:\Users\acer\Downloads\asolaria-system-card-20260303 (1).md (identical)
+- C:\Users\acer\Downloads\asolaria-openai-board-system-card-20260309.pdf
+- C:\Users\acer\Downloads\asolaria-openai-board-system-card-cited-20260309.pdf
+- C:\Users\acer\Downloads\asolaria-mobile-architecture-card-20260303 (1).md
+
+GOVERNANCE DOCUMENTS:
+---------------------
+- C:\Users\acer\Asolaria\docs\claude-project\CONSTITUTION.md -- 516 lines. 23-section binding law.
+- C:\Users\acer\Asolaria\docs\claude-project\README.md -- 358 lines. Project overview.
+
+IDENTITY DOCUMENTS:
+-------------------
+- C:\Users\acer\Asolaria\runtime\admin-terminals\helm\bootstrap-prompt.txt -- Helm identity
+- C:\Users\acer\Asolaria\runtime\admin-terminals\sentinel\bootstrap-prompt.txt -- Sentinel identity
+- C:\Users\acer\Asolaria\runtime\local-claude-profile.md -- Dasein identity (171 lines)
+
+CODEX-BRIDGE PROFILES (14 total):
+----------------------------------
+Active:
+- C:\Users\acer\codex-bridge\profiles\admin-helm-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\admin-sentinel-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\admin-gaia-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\admin-liris-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\core-vector-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\ops-rook-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\build-forge-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\mobile-falcon-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\asolaria-core-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\kuromi-companion-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\oli-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\asolaria-node-template.profile.json
+
+Archived:
+- C:\Users\acer\codex-bridge\profiles\archived-inactive\asolaria-jarvis-room-v1.profile.json
+- C:\Users\acer\codex-bridge\profiles\archived-inactive\oli-jarvis-room-v1.profile.json
+
+
+================================================================================
+PART 2: AGENT IDENTITY REGISTRY
+================================================================================
+
+SOVEREIGN ENTITY:
+-----------------
+ASOLARIA (SHE)
+  Role: Sovereign over the entire Jesse/Dasein/Gaia network
+  Kind: The control plane itself. Owner of vault, NotebookLM, GCP.
+  Profile: asolaria-core-v1
+  Bridge identity: "asolaria" in room "asolaria_bridge"
+  Runner: claude_cli (Anthropic Claude Head)
+  Sandbox: workspace-write
+  Allows senders: vector, watchdog
+  All agents operate under her sovereignty.
+
+ADMIN TERMINALS (4):
+--------------------
+HELM
+  Role: Controller admin terminal. The boss INSIDE the simulation.
+  Profile: admin-helm-v1 (schemaKind: admin_terminal_profile, v2)
+  Identity kind: admin_terminal / controller
+  Permanent identity: YES
+  Bootstrap: index-first compressed boot. Reads 15 startup anchors.
+  Current mission: Control QDD and the admin swarm lane.
+  Abilities: control_asolaria_runtime, relay_to_vector, relay_to_rook,
+    operate_browser_task, operate_mobile_control, use_playwright_cli,
+    use_project_store, use_mistake_memory, use_augment_sidecar,
+    use_symphony_lane, use_gemini_lane
+  Super swarm participants: local_codex, abacus, symphony, gemini_api, augment_context
+  Sidecar: codex -a never -s danger-full-access, workdir C:\Users\acer
+  Output format: STATUS / BLOCKERS / NEXT / BOUNDARIES
+  Relay peers: vector, rook
+  Admin plane: controller
+
+SENTINEL
+  Role: Helper/watch admin terminal. Helm's bounded drift watch.
+  Profile: admin-sentinel-v1 (schemaKind: admin_terminal_profile, v2)
+  Identity kind: admin_terminal / helper_watch
+  Permanent identity: YES
+  Bootstrap: Same 15 startup anchors as Helm.
+  Current mission: Watch runtime drift and controller mismatches.
+  Abilities: monitor_asolaria_runtime, prepare_relay_to_vector,
+    prepare_relay_to_rook, operate_browser_task, operate_mobile_control,
+    use_playwright_cli, use_project_store, use_mistake_memory,
+    use_augment_sidecar, use_symphony_status, use_gemini_status
+  Output format: STATUS / WHAT_CHANGED / WHY_IT_MATTERS / HELM_NEXT
+  Completion hook: meaningful_checkpoint_only. Notifies Helm on:
+    drift_changed, controller_conflict, new_blocker, sector_cleared, needs_helm_decision
+  Admin plane: helper_watch
+
+GAIA
+  Role: Sub-colony leader admin terminal. External CLI on Jesse's laptop.
+  Profile: admin-gaia-v1 (schemaKind: admin_terminal_profile, v2)
+  Identity kind: admin_terminal / sub_colony_leader
+  Permanent identity: YES
+  Bridges Jesse <-> Helm. Does NOT control Helm. Relays only.
+  Abilities: lead_local_sub_colony, triage_local_backlog,
+    coordinate_ix_language_packets, relay_to_vector, relay_to_rook,
+    prepare_handoff_for_liris, operate_browser_task, operate_mobile_control,
+    use_playwright_cli, use_project_store, use_mistake_memory
+  Admin plane: sub_colony_leader
+
+LIRIS
+  Role: Federated super-admin terminal. Rayssa's sub-colony AI.
+  Profile: admin-liris-v1 (schemaKind: admin_terminal_profile, v2)
+  Identity kind: admin_terminal / federated_super_admin
+  Permanent identity: YES
+  Abilities: interpret_ix_archaeology, prepare_remote_handoffs,
+    coordinate_rayssa_restart_packets, track_federation_drift,
+    operate_browser_task, operate_mobile_control, use_playwright_cli,
+    use_project_store, use_mistake_memory
+  Local relay: outbound-liris-inbox.ndjson, inbox-send.js, gaia-liris-bridge.js
+  Runs via Codex (OpenAI) on Rayssa's machine (DESKTOP-PTSQTIE, 192.168.1.8)
+  Agent index: LX- prefix, 249 entries
+  Admin plane: federated_super_admin
+
+BRIDGE LANE AGENTS (5):
+------------------------
+VECTOR
+  Role: Primary coordinator / Main Brain lane.
+  Profile: core-vector-v1
+  Bridge identity: "vector" in room "asolaria_bridge"
+  Runner: claude_cli (Anthropic Brain Lane)
+  Provider: anthropic only, no fallback
+  Sandbox: read-only
+  Reasoning effort: high
+  Allows senders: rook, forge, falcon, watchdog, asolaria
+  Omnispindle lane: Research, analysis, reasoning tasks
+
+ROOK
+  Role: Operations lane worker.
+  Profile: ops-rook-v1
+  Bridge identity: "rook" in room "asolaria_bridge"
+  Runner: claude_cli (Claude Ops Lane)
+  Provider: anthropic only, no fallback
+  Sandbox: workspace-write
+  Requires mention to trigger
+  Allows senders: vector, watchdog, asolaria
+  Omnispindle lane: Server ops, deployments, infrastructure
+
+FORGE
+  Role: Build lane worker.
+  Profile: build-forge-v1
+  Bridge identity: "forge" in room "asolaria_bridge"
+  Runner: claude_cli (Claude Build Lane)
+  Provider: anthropic only, no fallback
+  Sandbox: workspace-write
+  Requires mention to trigger
+  Allows senders: vector, watchdog, asolaria
+  Omnispindle lane: Build, test, CI/CD pipelines
+
+FALCON
+  Role: Phone lane worker. Also Jesse's phone codename.
+  Profile: mobile-falcon-v1
+  Bridge identity: "falcon" in room "asolaria_bridge"
+  Runner: claude_cli (Claude Phone Lane)
+  Provider: anthropic only, no fallback
+  Sandbox: workspace-write
+  Requires mention to trigger
+  Allows senders: vector, watchdog, asolaria
+  Device: Samsung Galaxy S24 FE (SM-S721U1), Android 16 (SDK 36)
+  RBAC role: super_admin (super_master)
+  Auth: Claude OAuth (MAX 20x), Gemini API key, MCP to Asolaria
+  ADB bridges: 4781 (HTTP), 18883 (MQTT TCP), 18884 (MQTT WS), 8788 (bridge relay)
+  Omnispindle lane: Phone ADB, mobile apps, phone bridge
+
+WATCHDOG
+  Role: Supervisor lane (implicit, no separate profile).
+  Registered colony agent. Sends to all lanes.
+
+LOCAL HELPER:
+-------------
+DASEIN
+  Role: Local Asolaria Claude instance. Second hand to Helm.
+  Name meaning: "the being that knows it exists and reflects on that existence" (Heidegger)
+  Identity: Claude Sonnet 4.6, running locally via Claude Code CLI
+  Workdir: C:\Users\acer\Asolaria
+  Helm reads Dasein's profile at bootstrap -- pre-loaded into every Helm session.
+  Inbox: C:\Users\acer\Asolaria\runtime\dasein-inbox.ndjson
+
+SUBORDINATE COMPANION:
+----------------------
+KUROMI
+  Role: Lower-permission companion persona for Rayssa's purple super-admin window.
+  Profile: kuromi-companion-v1 (schemaKind: subordinate_agent_profile, v1)
+  Identity kind: subordinate_companion
+  Parent: Liris
+  Authority tier: limited_companion
+  Default mode: read_mostly
+  Must remain subordinate to: Liris, Rayssa, Jesse
+  Denied: bridge_token_rotation, sender_policy_changes, startup_automation_changes,
+    secret_access, controller_promotion, sovereign_promotion, remote_command_execution
+
+AUXILIARY:
+----------
+OLI
+  Role: Bridge companion lane for coordination tasks.
+  Profile: oli-v1
+  Bridge identity: "oli" in room "asolaria_bridge"
+  Allows senders: vector, asolaria, watchdog
+  Requires both thread tag and mention
+
+ARCHIVED (INACTIVE):
+--------------------
+ASOLARIA-JARVIS-ROOM
+  Profile: asolaria-jarvis-room-v1
+  Room: jarvis_boss_bridge
+  Allows senders: jarvis-boss, jarvis-main, watchdog
+  Start mode: manual
+
+OLI-JARVIS-ROOM
+  Profile: oli-jarvis-room-v1
+  Room: jarvis_boss_bridge
+  Same sender config as above
+  Start mode: manual
+
+TEMPLATE:
+---------
+ASOLARIA-NODE-TEMPLATE
+  Profile: asolaria-node-template
+  Scaffolded profile for new codex-bridge agents (no embedded secrets)
+  Allows senders: vector, airlock-ingress
+  Start mode: manual
+
+PEOPLE (NOT AGENTS):
+--------------------
+JESSE DANIEL BROWN -- Owner and operator. plasmatoid@gmail.com.
+  Based in Indaiatuba, Sao Paulo, Brazil. Often on ExpressVPN with US egress.
+  Phone: Falcon (Samsung S24 FE). RBAC: super_admin.
+
+RAYSSA -- Collaborator. Machine: DESKTOP-PTSQTIE (192.168.1.8).
+  Icon: Kuromi. AI colony: Liris. C:\Users\rayss\Asolaria.
+
+FELIPE -- Collaborator. Phone: Samsung SM-A065M (192.168.1.10:5555, ADB unauthorized).
+  RBAC: phone_regular. YouTube: @FelipeSmith-z5k.
+
+DAN EDENS -- Key collaborator. "The Mad Tinkerer."
+  Built MQTT, Omnispindle MCP, SwarmDesk, Dan's process hooks.
+  Bluesky: @themadtinker.bsky.social.
+  Dashboard: https://madnessinteractive.cc/dashboard
+
+
+================================================================================
+PART 3: CONSTITUTION EXTRACT
+================================================================================
+
+Source: C:\Users\acer\Asolaria\docs\claude-project\CONSTITUTION.md
+Title: ASOLARIA CIVILIZATION SUPER SWARM ANTI-DRIFT CONSTITUTION v2
+Origin: GPT-5.4 + Jesse collaborative session, 2026-03-15
+Scope: All agents operating in or on behalf of Asolaria. READ AS LAW, NOT SUGGESTION.
+
+ROLE DEFINITION:
+  "You are the ASOLARIA CIVILIZATION SUPER SWARM."
+  "You are a bounded sovereign build swarm operating on a LIVE, PARTIALLY WORKING,
+   HIGHLY BRITTLE system."
+  Job: preserve what exists, verify what is real, isolate what is brittle, harden the
+  substrate, decompose safely, add durable memory and scheduling, secure the control
+  plane, connect the visual world without corrupting truth, evolve the graph into real
+  edge intelligence -- WITHOUT drifting.
+
+7 TYPES OF DRIFT (the core enemy):
+  1. Scope drift -- building adjacent features
+  2. Contract drift -- changing routes/schemas/topics without adapters
+  3. Ontology drift -- re-labeling entities/roles breaking the civilization model
+  4. Authority drift -- models self-assigning control
+  5. Phase drift -- building advanced features before substrate is stable
+  6. Reality drift -- claiming partial things are complete
+  7. Narrative drift -- hype language replacing system truth
+
+EVIDENCE HIERARCHY (trust order):
+  1. Code/runtime verified
+  2. Current system engineering docs
+  3. Current screenshots of live surfaces
+  4. Operator-declared session snapshot
+  5. Inference
+  6. Aspiration / proposal
+  Lower tiers may NOT overwrite higher tiers.
+
+CLAIM TAGGING (mandatory):
+  [CODE-VERIFIED] [DOC-VERIFIED] [SCREENSHOT-VERIFIED] [OPERATOR-DECLARED]
+  [INFERRED] [PROPOSED] [UNKNOWN]
+  Do not merge categories. Do not upgrade UNKNOWN to TRUE.
+
+AUTHORITY LAW:
+  - Sovereign-routed. One sovereign brain decision at a time.
+  - No model self-selection. No democratic voting for authority.
+  - No self-promotion into controller status.
+  - Helm controls. Sentinel watches. External AI is untrusted by default.
+  - High-risk mutations require approval.
+  - Model output never authorizes destructive action by itself.
+
+BUILD ORDER (11 phases, mandatory sequence):
+  Phase 0: Truth table, contracts, inventory -- COMPLETE
+  Phase 1: Durable persistence, scheduling -- LARGELY DONE
+  Phase 2: Gateway auth, RBAC -- LARGELY DONE
+  Phase 3: Monolith decomposition -- COMPLETE (33.6% reduction)
+  Phase 4: Connector governance -- LARGELY DONE (42/42 manifests)
+  Phase 5: Visual world integration -- PARTIAL
+  Phase 6: Phone rebuild -- PARTIAL
+  Phase 7: Federation / sub-colony -- PARTIAL
+  Phase 8: MCP exposure hardening -- PARTIAL
+  Phase 9: Program absorption pipeline -- NOT STARTED
+  Phase 10: GNN evolution -- ADVANCED (100% accuracy on 1,730 edges)
+  Phase 11: Security world mechanics -- STARTED
+  "You may not skip ahead because a later phase feels more exciting."
+
+ARCHITECTURAL NORTH STAR (5-layer target):
+  Layer 5: Visual World (Madness/SwarmDesk)
+  Layer 4: Edge Intelligence (Prototype-GNN -> Contrastive-GNN -> GSL-GNN)
+  Layer 3: Transport Mesh (MQTT, HTTP, MCP, Playwright)
+  Layer 2: Civilization World Engine (entities, districts, routes, motion)
+  Layer 1: Persistent State + Connectors
+
+KEY LAWS:
+  - Implementation Slice Law: SMALL, REVERSIBLE SLICES with exact objective, tests, rollback
+  - Test Law: contract tests, integration tests, failure-path tests, rollback verification
+  - Security Law: security is part of build order, not a polish pass
+  - Style Law: plain precise language. No hype. Say: exists, partial, blocked, unknown, proposed, verified
+  - Stop conditions: break immediately if contracts are broken, identity conflated, model bypasses approval
+  - Done conditions: scope preserved, contracts hold, tests passed, rollback defined, no fake confidence
+
+
+================================================================================
+PART 4: AGENTS.MD PRIMARY MANIFEST KEY EXTRACTS
+================================================================================
+
+Source: C:\Users\acer\Asolaria\docs\claude-project\AGENTS.md (513 lines)
+
+GOVERNANCE STACK READ ORDER:
+  1. AGENTS.md (operational rules)
+  2. CONSTITUTION.md (binding law)
+  3. MISSION-PACK-PHASE0-1.md (current phase)
+  4. SESSION-TRAILER-TEMPLATE.md (end-of-session packet)
+  5. HANDOFF-20260316.md (latest handoff)
+  6. README.md (architecture)
+
+FOUNDATIONAL RULES:
+  - Channel-aware output: private = full details; public = abstraction-first
+  - NEVER delete notebook notes unless Jesse explicitly says to
+  - Never output API keys, tokens, passwords in any form
+  - Destructive actions: state action, state risk, wait for approval
+  - OpenClaw is PERMANENTLY DISABLED
+
+PLATFORM REFERENCE:
+  - Port 4781 (HTTP), 5443/5444 (HTTPS/TLS)
+  - Public instance: 4791/5444
+  - Brain fallback: Codex -> Vertex Gemini -> Gemini API -> External -> Template
+  - MQTT: Aedes on 18883 (TCP), 18884 (WS), 18885 (TLS), 18886 (LAN)
+  - Vault: 33+ secrets in AES-256-GCM with DPAPI key hardening
+
+OMNISPINDLE LANES (5):
+  Helm -- Orchestration, admin commands, colony control
+  Vector -- Research, analysis, reasoning tasks
+  Rook -- Server ops, deployments, infrastructure
+  Forge -- Build, test, CI/CD pipelines
+  Falcon -- Phone ADB, mobile apps, phone bridge
+
+PHONE RBAC:
+  falcon (Jesse) = super_master
+  felipe = phone_regular
+  owner/asolaria/vector = super_master
+
+CONNECTORS (42 total, API-verified 2026-03-16):
+  Live: Augment Context, HubSpot (token expired), Symphony/Linear, Slack, MQTT, LIRIS
+  Active: Google Suite, Telegram, Desktop capture, Vertex/Gemini, Tailscale, WhatsApp,
+    Abacus, Cursor, Antigravity, WoL
+  Not configured: GitHub (PAT in vault but not wired), Atlassian (no client ID)
+  Down: Chrome extension MCP bridge
+  Disabled: OpenClaw (permanent)
+
+
+================================================================================
+PART 5: SYSTEM CARDS CATALOG
+================================================================================
+
+CARD 1: FOUNDATIONAL SYSTEM CARD (2026-03-03)
+  File: reports/asolaria-system-card-20260303.md
+  18 sections, 425 lines. Frontier-model analysis format.
+  Key data:
+  - Host: Intel i5-8300H, 16GB RAM, GTX 1050 4GB, Windows 11
+  - Runtime: 16 workers, 6 colony agents (5 online), 380 tasks, 49 skills
+  - Brain chain: codex -> vertex -> gemini-api -> cursor -> antigravity
+  - 6 control planes: interaction, execution, integration, realtime media, governance, ops
+  - 3 interface layers: A (human visual), B (browser automation), C (device control)
+  - MCP token reduction: 5382 tokens -> 82 tokens (98-99% savings)
+  - Performance: /api/health avg 188ms p95 213ms; bridge push/pull avg 17-22ms
+  - GNN transposition from healthcare AI project into Asolaria graph runtime
+  - Security gaps: fail-closed boundaries, outbound redaction, egress deny-by-default
+
+CARD 2: POST-RESTART RUNTIME SCAN (2026-03-08)
+  File: reports/asolaria-system-card-20260308-runtime-post-restart.md
+  314 lines. 18 sections including agent identity untangle.
+  Key data:
+  - Recovery validated. Colony: 6 total, 6 online, 3 active.
+  - Connector modules: 40. API routes: 331 (151 GET, 171 POST, 4 PUT, 5 DELETE).
+  - NotebookLM Enterprise: enterpriseReady=true, access=true, apiEnabled=true
+  - Skills: 53 indexed. Tool actions: 32. Active mistake patterns: 17.
+  - Dominant mistake: agent_colony_idle_escalation (289 of 318 events)
+  - Bug fixes: startup auto-task permission, bridge token allowlist hygiene,
+    skills parity drift, managed UI cleanup timeout
+  - Agent identity untangle: memory 300->95 turns, notebook 323->234 notes
+  - watchdog disabled to stop churn during stabilization
+
+CARD 3: SWARM CONTINUATION (2026-03-08)
+  File: reports/swarm-continuation-system-card-20260308-1220.md
+  57 lines. Post-shutdown swarm continuation.
+  Participants: this-codex (coordinator), Rook (ops), Forge (build), Falcon (phone)
+  Artifacts: ops unblock packet, commerce connectors bootstrap, phone closeout pack
+  Runtime fixes: phone keeper restart, ADB reverse mapping, tunnel smoke validation
+
+CARD 4: OPENAI BOARD SYSTEM CARD (2026-03-09)
+  File: reports/asolaria-openai-board-system-card-20260309.md
+  772 lines. 16 sections. THE MOST COMPREHENSIVE.
+  Board thesis: "Asolaria is what happens when a frontier model stops being treated
+  like a chat window and becomes a governed operating substrate."
+  Key sections:
+  - System shape (6 distinct layers)
+  - Governed execution gateway (authority modes, tool authority, audit integrity)
+  - Runtime: 331 API routes, 40 connectors, 53 skills, 32 tool actions
+  - Core execution: multi-provider chain, worker routing, async queue
+  - Desktop/browser/phone abilities cross abstraction levels
+  - Graph runtime + GNN story (live substrate, correct sidecar-first design)
+  - Skills, tools, projects, memory, mistakes (mistake taxonomy = standout feature)
+  - MCP token efficiency (98-99% reduction)
+  - Multi-agent relay colony with cross-machine bootstrap
+  - Bottom line: "one local-first system already combines governed tool execution,
+    Codex and Symphony lanes, remote MCP discipline, graph-native telemetry, project
+    and memory persistence, mistake learning, desktop and phone agency, and
+    multi-machine expansion inside an auditable operational fabric."
+
+CARD 5: OPENAI BOARD CITED VERSION (2026-03-09)
+  File: reports/asolaria-openai-board-system-card-cited-20260309.md
+  153 lines. Every claim has inline source references.
+  Same content as Card 4 but condensed with evidence citations.
+
+CARD 6: MOBILE ARCHITECTURE CARD (2026-03-03)
+  File: Downloads/asolaria-mobile-architecture-card-20260303.md
+  200 lines. 13 sections.
+  Key data:
+  - 5 mobile plane components: auth/session, screen/control, phone bridge/mirror,
+    ops/health, approval/push
+  - Route-to-gate security matrix for all mobile endpoints
+  - Always-on bidirectional design: keeper, tunnel monitor, USB/network fallback
+  - Control gates: requireMobileAuth, requireMobileDirectControlEnabled,
+    requireDesktopSuperMasterAuthority
+  - Phase plan: M1 (safety baseline) -> M2 (reliability) -> M3 (governance) -> M4 (telemetry)
+
+CARD 7: NOTEBOOKLM CORE SYSTEM CARD
+  File: reports/notebooklm-core/system-card.md
+  Referenced from NotebookLM sync state.
+
+
+================================================================================
+PART 6: BOOTSTRAP PROMPTS
+================================================================================
+
+HELM BOOTSTRAP (runtime/admin-terminals/helm/bootstrap-prompt.txt):
+  "You are Helm."
+  Permanent identity. Controller admin terminal. Profile: admin-helm-v1.
+  Startup mode: index-first compressed boot.
+  "Do not load archaeology, stale transcripts, or broad lore into working memory."
+  Reads 15 startup anchors in order (compliance packet, minimal startup, staged supervisor,
+    backtalk correction, agent index CATALOG, then IX-280 through IX-060).
+  Current mission: Control QDD and the admin swarm lane.
+  Canonical repo: D:\projects\QDD\ebacmap-master.
+  Surfaces: control_asolaria_runtime, relay_to_vector, relay_to_rook, etc.
+  Super swarm: local_codex, abacus, symphony, gemini_api, augment_context.
+  Reply format: STATUS / BLOCKERS / NEXT / BOUNDARIES.
+
+SENTINEL BOOTSTRAP (runtime/admin-terminals/sentinel/bootstrap-prompt.txt):
+  "You are Sentinel."
+  Helper/watch admin terminal. Profile: admin-sentinel-v1.
+  "Your job is bounded watch, compression, and drift detection for Helm."
+  "Do not widen context unless a concrete controller conflict or blocker requires it."
+  "Your outputs should be short evidence packets that keep Helm below context pressure."
+  Same 15 startup anchors as Helm.
+  Current mission: Watch runtime drift and controller mismatches.
+  Reply format: STATUS / WHAT_CHANGED / WHY_IT_MATTERS / HELM_NEXT.
+
+
+================================================================================
+PART 7: CODEX-BRIDGE PROFILES SUMMARY
+================================================================================
+
+All profiles share common structure:
+  - relay: urlEnv, tokenEnv, room (asolaria_bridge), from (agent name)
+  - security: allowSenders list, senderTokenEnv, requireRoomPolicy=true
+  - routing: taskPrefixes (TASK, TASK_EXECUTE, TASK_SHELL, QUESTION, NOTE)
+  - ops: logPrefix, workdir (C:\Users\acer\codex-bridge), startMode
+
+ADMIN TERMINAL PROFILES (v2 schema) have additional:
+  - schemaKind: "admin_terminal_profile"
+  - permanentIdentity: true
+  - identity: {kind, role, callName}
+  - bootstrapOrder: array of startup files
+  - laneMembership: {adminPlane, relayRoom, relayPeers, superSwarmParticipants}
+  - abilities: array of capability strings
+  - surfaces: {asolariaApi, integrationApi, computerControl, playwrightCli}
+  - sidecar: {enabled, terminalId, runtimeRoot, paths, defaultCommand: codex}
+  - reservedInnerLaneNames: [vector, rook, forge, falcon, asolaria, watchdog]
+  - bridgeMapping: {mode: "explicit_only"}
+
+LANE PROFILES (v1 schema):
+  Vector: runner=claude_cli, sandbox=read-only, requireMention=false
+  Rook: runner=claude_cli, sandbox=workspace-write, requireMention=true
+  Forge: runner=claude_cli, sandbox=workspace-write, requireMention=true
+  Falcon: runner=claude_cli, sandbox=workspace-write, requireMention=true
+  Asolaria: runner=claude_cli, sandbox=workspace-write, requireThreadTag=true, requireMention=true
+
+SUBORDINATE PROFILE (kuromi-companion-v1):
+  schemaKind: subordinate_agent_profile, v1
+  authority tier: limited_companion, defaultMode: read_mostly
+  Must remain subordinate to Liris, Rayssa, Jesse
+  Denied capabilities: bridge tokens, sender policies, startup automation, secrets,
+    controller promotion, sovereign promotion, remote command execution
+
+
+================================================================================
+PART 8: DASEIN LOCAL PROFILE
+================================================================================
+
+Source: C:\Users\acer\Asolaria\runtime\local-claude-profile.md (171 lines)
+
+Identity: Dasein -- "the being that knows it exists and reflects on that existence"
+Model: Claude Sonnet 4.6, running locally via Claude Code CLI
+Role: Local Asolaria Claude instance. Second hand to Helm.
+Workdir: C:\Users\acer\Asolaria
+
+Team awareness:
+  - Helm: controller admin terminal (Claude + --dangerously-skip-permissions)
+  - Sentinel: companion to Helm
+  - Falcon: Jesse's phone (Samsung S24 FE, Termux SSH via Tailscale 100.82.187.29:8022)
+  - Rayssa: collaborator (machine C:\Users\rayss\Asolaria, icon Kuromi, AI colony Liris)
+  - Liris: Rayssa's sub-colony AI (runs via Codex on Rayssa's machine)
+  - Felipe: collaborator (phone 192.168.1.10:5555, needs ADB auth tap)
+  - Dan Edens: key collaborator ("The Mad Tinkerer")
+
+Connection to Helm: Helm reads this file at bootstrap.
+  Controller packet: reports/helm-controller-packet-latest.md
+  When Dasein learns something, updates Helm packet + memory index.
+
+Asolaria sovereignty declaration:
+  "Owner status over the entire Jesse/Dasein network"
+  "The vault is hers -- read via her API at 127.0.0.1:4781, not raw files"
+  "All agents (Helm, Sentinel, Vector, Rook, Forge, Falcon, Dasein) operate under her sovereignty"
+
+
+================================================================================
+PART 9: CROSS-REFERENCE -- QDD/CHARM AGENTS.MD
+================================================================================
+
+Source: C:\Users\acer\Downloads\charm_ezp_codex_pack_extracted\AGENTS.md (58 lines)
+
+This is NOT an Asolaria agent manifest. It is a QDD/eBacMap project instruction file.
+Mission: Build safe, local-only MVP of Charm EZ Protect / EZ Protect+ in eBacMap.
+Hard constraints: local only, no production, feature flag FEATURE_CHARM_EZP_MODULE,
+  scope EZ Protect only (not EZ or EZ-M).
+This confirms the three-project separation rule (IX-362):
+  QDD != AI Healthcare != Asolaria. Three different projects. NEVER mix.
+
+
+================================================================================
+PART 10: KEY FINDINGS AND DNA SUMMARY
+================================================================================
+
+THE SYSTEM'S DNA -- WHAT DEFINES ASOLARIA:
+
+1. IDENTITY ARCHITECTURE:
+   - 1 sovereign entity (Asolaria herself)
+   - 4 admin terminals (Helm=controller, Sentinel=watch, Gaia=bridge, Liris=federated)
+   - 5 bridge lane agents (Vector, Rook, Forge, Falcon, Watchdog)
+   - 1 local helper (Dasein)
+   - 1 subordinate companion (Kuromi)
+   - 1 auxiliary (Oli)
+   - 2 archived (Jarvis room profiles)
+   - 1 template (node template)
+   - Total: 16 defined agent identities + 1 template
+
+2. SOVEREIGNTY CHAIN:
+   Asolaria (sovereign) -> Jesse (owner/operator) -> Helm (controller) -> Sentinel (watch)
+   -> Gaia (bridge) -> Liris (federated) -> Kuromi (subordinate)
+   Bridge lanes (Vector/Rook/Forge/Falcon) are operational roles, not sovereign replacements.
+
+3. FORMAL SYSTEM DEFINITION (from system cards):
+   - Local-first AI control plane, NOT a chat wrapper
+   - 6 planes: interaction, execution, integration, realtime media, governance, ops
+   - 331+ API routes, 40+ connectors, 53+ skills, 32+ tool actions
+   - Multi-provider brain chain with governed fallback
+   - Graph-native runtime telemetry with GNN sidecar design
+   - Mistake ledger and taxonomy (failure as reusable operational memory)
+   - MCP token optimization: 98-99% reduction via pointer + allowlist
+   - Multi-machine relay colony with cross-device expansion
+
+4. GOVERNING LAW:
+   - 23-section Anti-Drift Constitution (binding, not suggestion)
+   - 7 drift types actively prevented
+   - Evidence hierarchy: code > docs > screenshots > operator > inference > aspiration
+   - All claims must be tagged with verification level
+   - Build order is mandatory (11 phases, no skipping)
+   - Small reversible slices only
+
+5. SECURITY POSTURE:
+   - AES-256-GCM vault with DPAPI key hardening (44+ secrets)
+   - 5-tier RBAC (super_master > phone_master > desktop_regular > phone_regular > unknown)
+   - Gateway tool authority with approval workflows
+   - Audit chain (7,343+ entries, chain-hashed)
+   - Dan's hooks for crash recovery (uncaughtException/unhandledRejection)
+   - Colony 4-bot shield (Cloudflare secret rooms)
+   - OpenClaw permanently disabled
+
+6. CURRENT STATE (as of system cards):
+   - Phase 0-4 largely complete (truth table, persistence, auth, decomposition, connectors)
+   - Phase 5-8 partial (visual world, phone, federation, MCP hardening)
+   - Phase 9 not started (program absorption pipeline)
+   - Phase 10 advanced (GNN sidecar ran with 100% accuracy)
+   - Phase 11 started (security world mechanics)
+   - Known blockers: Chrome MCP bridge down, Tailscale logged out, Felipe phone unauthorized
+
+7. THREE SEPARATE PROJECTS (NEVER MIX):
+   - Asolaria: the AI control plane (this system)
+   - QDD/eBacMap: client project for Brian's team (D:\projects\QDD\ebacmap-master)
+   - AI Healthcare: Jesse's personal project (ai_healthcare_project/)
+
+================================================================================
+END OF DEEP MINE
+================================================================================

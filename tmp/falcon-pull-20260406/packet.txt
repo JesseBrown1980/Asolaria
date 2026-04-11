@@ -1,0 +1,4 @@
+@claustrum IX-551: preempt ai-healthcare:anchor-promotion:critical
+@wave2 ai-healthcare: anchor=64.7% closure=55.0% feedback=66.7%
+@capacity ai-healthcare: residual_internal=3 bridge_capacity=13 gap_after_wave2=0
+@codex verdict: wave2 can hit pass-2 targets

@@ -1,0 +1,159 @@
+﻿{
+    "checkedAt":  "2026-04-10T09:34:04.8446796-03:00",
+    "repoRoot":  "C:\\Users\\acer\\Asolaria",
+    "stageRoot":  "C:\\Users\\acer\\Asolaria\\dist\\public-release\\Asolaria-Public-20260410-093155",
+    "pass":  true,
+    "failedCount":  0,
+    "checks":  [
+                   {
+                       "id":  "stage_exists",
+                       "ok":  true,
+                       "detail":  "Using stage root: C:\\Users\\acer\\Asolaria\\dist\\public-release\\Asolaria-Public-20260410-093155",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_package_json",
+                       "ok":  true,
+                       "detail":  "Present: package.json",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_README_md",
+                       "ok":  true,
+                       "detail":  "Present: README.md",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_PUBLIC_DEPLOYMENT_md",
+                       "ok":  true,
+                       "detail":  "Present: PUBLIC_DEPLOYMENT.md",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_PUBLIC_RELEASE_NOTES_md",
+                       "ok":  true,
+                       "detail":  "Present: PUBLIC_RELEASE_NOTES.md",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_Start_Asolaria_cmd",
+                       "ok":  true,
+                       "detail":  "Present: Start-Asolaria.cmd",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_Start_Asolaria_ControlPlane_cmd",
+                       "ok":  true,
+                       "detail":  "Present: Start-Asolaria-ControlPlane.cmd",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_Stop_Asolaria_cmd",
+                       "ok":  true,
+                       "detail":  "Present: Stop-Asolaria.cmd",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_Stop_Asolaria_ControlPlane_cmd",
+                       "ok":  true,
+                       "detail":  "Present: Stop-Asolaria-ControlPlane.cmd",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_dir_src",
+                       "ok":  true,
+                       "detail":  "Present: src",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_dir_public",
+                       "ok":  true,
+                       "detail":  "Present: public",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_dir_skills",
+                       "ok":  true,
+                       "detail":  "Present: skills",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_dir_tools",
+                       "ok":  true,
+                       "detail":  "Present: tools",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_dir_services",
+                       "ok":  true,
+                       "detail":  "Present: services",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_dir_config",
+                       "ok":  true,
+                       "detail":  "Present: config",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "required_dir_docs",
+                       "ok":  true,
+                       "detail":  "Present: docs",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "forbidden_data",
+                       "ok":  true,
+                       "detail":  "Forbidden path absent: data",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "forbidden_logs",
+                       "ok":  true,
+                       "detail":  "Forbidden path absent: logs",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "forbidden_captures",
+                       "ok":  true,
+                       "detail":  "Forbidden path absent: captures",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "forbidden_reports",
+                       "ok":  true,
+                       "detail":  "Forbidden path absent: reports",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "forbidden_node_modules",
+                       "ok":  true,
+                       "detail":  "Forbidden path absent: node_modules",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "forbidden__git",
+                       "ok":  true,
+                       "detail":  "Forbidden path absent: .git",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "leak_report_present",
+                       "ok":  true,
+                       "detail":  "Leak report found: C:\\Users\\acer\\Asolaria\\dist\\public-release\\Asolaria-Public-20260410-093155\\LEAK_SCAN_REPORT.json",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "leak_report_clean",
+                       "ok":  true,
+                       "detail":  "Leak report finding count: 0",
+                       "fix":  ""
+                   },
+                   {
+                       "id":  "zip_present",
+                       "ok":  true,
+                       "detail":  "Zip present: C:\\Users\\acer\\Asolaria\\dist\\public-release\\Asolaria-Public-20260410-093155.zip (sha256=770451C99E21389C9519C53AFF5080C393B6042187DC15A5C66D88102BBBAFB9)",
+                       "fix":  ""
+                   }
+               ]
+}

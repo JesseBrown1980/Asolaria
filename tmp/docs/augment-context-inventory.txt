@@ -1,0 +1,392 @@
+===============================================================================
+AUGMENT CONTEXT / AUGGIE — COMPLETE INVENTORY
+Generated: 2026-03-25
+Machine: Jesse's laptop (C:\Users\acer)
+===============================================================================
+
+1. WHAT IS AUGMENT?
+   Augment Code (augmentcode.com) is an AI coding assistant with MCP integration.
+   In Asolaria, it is used EXCLUSIVELY as a read-only codebase retrieval sidecar.
+   It is NOT a brain provider and NOT a top-level writer. Read-only only.
+   Account email: plasmatoid@gmail.com
+   Tenant API: https://d11.api.augmentcode.com/
+
+===============================================================================
+2. LOCAL INSTALLATION — AUGGIE CLI
+===============================================================================
+
+  NPM Package:
+    Path: C:\Users\acer\AppData\Local\nvm\v22.12.0\node_modules\@augmentcode\auggie\
+    Package: @augmentcode/auggie v0.18.1
+    Main: augment.mjs (12 MB single-file bundle)
+    Binary name: auggie
+    Requires: Node >= 20.0.0
+    CLI available on PATH: NO (where auggie returns nothing — likely nvm version mismatch)
+    Fallback path in code: C:\nvm4w\nodejs\auggie.cmd
+
+  Config directory: C:\Users\acer\.augment\
+    .auggie.json:
+      lastUsed: 2026-03-06T23:01:03.183Z
+      sessionCount: 7
+      anonId: 96a729b8-2418-4c36-8e81-c43f00b1b061
+      onboardingVersion: 1.0.0
+
+    session.json:
+      accessToken: 915a60a21a99c73fca84afb19990eb9418910d35db06f0eba940171fbee0e1ba
+      tenantURL: https://d11.api.augmentcode.com/
+      scopes: ["email"]
+
+    prompt-history.jsonl:
+      1 entry: "Hello. Are you connected to my AI asolaria?"
+
+    sessions/b83319f2-ce6c-4313-8f13-132bd7faf1f4.json:
+      Title: "Asolaria Connection Check"
+      Created: 2026-03-06T23:06:38.511Z
+      Model: gpt-5-4
+      User: plasmatoid@gmail.com
+      Provider: openai
+      1 exchange — Jesse asked "Are you connected to my AI asolaria?"
+      Auggie replied it could see workspace config but was not actively connected.
+      Token usage: 9634 cache creation, 455 output, max context 204,800
+
+    binaries/ripgrep/v14.1.1-win32-x64/rg.exe:
+      Augment ships its own ripgrep binary (5.4 MB)
+
+    task-storage/manifest:
+      7 tasks, all state NOT_STARTED
+      Last updated: 2026-03-06
+
+    task-storage/tasks/:
+      7 task files (270 bytes each), all root tasks for conversations
+
+===============================================================================
+3. VAULT ENTRIES (encrypted, DPAPI)
+===============================================================================
+
+  integrations.augment_context:
+    Created: 2026-03-06T22:01:19.495Z
+    Updated: 2026-03-12T16:28:44.903Z
+    Component: augment-context
+    Last updatedBy: codex
+
+  integrations.asolaria_augment_mcp:
+    Created: 2026-03-12T15:47:52.570Z
+    Updated: 2026-03-12T16:28:44.907Z
+    Component: augment-mcp-bridge
+    Last updatedBy: codex
+
+===============================================================================
+4. ASOLARIA CONNECTOR — augmentContextConnector.js
+===============================================================================
+
+  Path: C:\Users\acer\Asolaria\src\connectors\augmentContextConnector.js
+  Lines: 774
+  Vault secret key: "integrations.augment_context"
+
+  Exported functions:
+    - resolveAugmentContextConfig()     — merge vault + env config
+    - buildAugmentContextProviderPatch() — build MCP provider patch for external providers
+    - redactAugmentContextProviderPatch() — redact secrets for logging
+    - getAugmentContextStatus()          — full status with warnings
+    - setAugmentContextConfig()          — write config to vault
+    - manifest()                         — connector manifest
+
+  Connector manifest:
+    id: augmentContext
+    version: 1.0.0
+    description: "Augment read-only context indexing sidecar — MCP bridge, context patching"
+    capabilities: context_indexing, mcp_bridge, provider_patching, status
+    readScopes: codebase_index, augment_status
+    writeScopes: [] (none — read only)
+    approvalRequired: false
+    secretRequirements: augment MCP tunnel URL and token
+
+  Two modes:
+    - local_cli: Uses local Asolaria MCP bridge (port 4793). Auggie optional.
+    - remote_mcp: Stores remote MCP server URL for cursor/antigravity external providers.
+
+  Supported env vars (all prefixed ASOLARIA_AUGMENT_CONTEXT_ or ASOLARIA_AUGMENT_):
+    _ENABLED, _MODE, _SERVER_LABEL, _SERVER_URL, _CONNECTOR_ID,
+    _AUTHORIZATION, _HEADERS_JSON, _ALLOWED_TOOLS, _TOKEN_REDUCTION_PROFILE,
+    _TOOL_SCHEMA_MODE, _CONTEXT_TTL_SECONDS, _WSL_DISTRO, _USE_WSL,
+    _AUGGIE_PATH, _WORKSPACE_ROOT
+
+  Auggie path resolution order:
+    1. Explicit configured path
+    2. where auggie / auggie.cmd / auggie.exe
+    3. %APPDATA%\npm\auggie.cmd
+    4. %LOCALAPPDATA%\Programs\auggie\auggie.exe
+    5. C:\nvm4w\nodejs\auggie.cmd
+
+  Defaults:
+    mode: local_cli
+    serverLabel: augment-context
+    allowedTools: ["codebase-retrieval"] (only one allowed)
+    tokenReductionProfile: aggressive
+    contextTtlSeconds: 1800 (30 minutes)
+    preset: read_only
+    approvalMode: never
+
+===============================================================================
+5. MCP BRIDGE — augment-mcp-bridge.js
+===============================================================================
+
+  Path: C:\Users\acer\Asolaria\tools\augment-mcp-bridge.js
+  Lines: 779
+  Port: 4793 (default)
+  Dependencies: @modelcontextprotocol/sdk, zod/v4
+
+  Bridge status file: C:\Users\acer\Asolaria\logs\augment-mcp-bridge-status.json
+    ok: true
+    startedAt: 2026-03-14T22:42:26.650Z
+    host: 127.0.0.1
+    port: 4793
+    localUrl: http://127.0.0.1:4793/mcp
+    workspaceRoot: C:\Users\acer\Asolaria
+    auggiePath: C:\nvm4w\nodejs\auggie.cmd
+    upstream.ready: true
+    upstream.mode: local_workspace_search
+    upstream.toolName: codebase-retrieval
+    upstream.note: "Serving Asolaria-owned local retrieval. Optional Auggie upstream is not installed on this machine."
+
+  Bridge token file: C:\Users\acer\Asolaria\logs\augment-mcp-bridge-token.txt
+    Token: 8PduOifeu8nC0w2fPeAEeXsgTUoJgdx63K2Ft1ZtrSQ (base64url, 32 bytes)
+
+  Bridge PID file: C:\Users\acer\Asolaria\logs\augment-mcp-bridge.pid
+    PID: 14584
+
+  Cloudflare tunnel PID: C:\Users\acer\Asolaria\logs\augment-mcp-bridge-tunnel.pid
+    PID: 10288
+
+  Public tunnel URL: C:\Users\acer\Asolaria\logs\augment-mcp-bridge-url.txt
+    https://speeches-preliminary-trial-expense.trycloudflare.com
+    Public MCP endpoint: https://speeches-preliminary-trial-expense.trycloudflare.com/mcp
+
+  Log files:
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge.out.log
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge.err.log
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge-tunnel.out.log
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge-tunnel.err.log
+
+===============================================================================
+6. BRIDGE LAUNCHER SCRIPT
+===============================================================================
+
+  Path: C:\Users\acer\Asolaria\tools\Start-AugmentMcpBridge.ps1
+  Lines: 218
+  Parameters: -Port (4793), -BindHost (127.0.0.1), -WorkspaceRoot, -AuggiePath, -CloudflaredPath
+  What it does:
+    1. Generates a crypto-random 32-byte bearer token if not exists
+    2. Starts augment-mcp-bridge.js as background node process
+    3. Waits for /health endpoint (up to 30 seconds)
+    4. Starts cloudflared quick tunnel to expose bridge publicly
+    5. Extracts trycloudflare.com URL from tunnel logs
+    6. Outputs JSON with local + public URLs and token hint
+
+===============================================================================
+7. API ROUTES (in server.js and routes/)
+===============================================================================
+
+  Status endpoint:
+    GET /api/integrations/augment-context/status
+    File: routes/integrationStatus.js:75-76
+
+  Config endpoint:
+    POST /api/integrations/augment-context/config
+    File: routes/integrationsRemaining.js:394
+    Loopback only, Guardian-gated
+    Can set: mode, serverUrl, connectorId, auth, allowedTools, TTL, etc.
+    Can clear: { clear: true }
+
+  Apply endpoint:
+    POST /api/integrations/augment-context/apply
+    File: routes/integrationsRemaining.js:601
+    Loopback only, Guardian-gated
+    Applies MCP patch to cursor/antigravity external providers
+
+  Integration dashboard registration:
+    id: asolaria-augment-mcp
+    label: "Asolaria Augment MCP"
+    Connected if: claudeProject.asolariaAugment?.configured || augment.providerApplyReady
+    (server.js lines ~808-815)
+
+  Policy/health check:
+    getAugmentContextPolicySummary() — used in policy endpoints and health checks
+    Part of admin snapshot and startup readiness checks
+
+===============================================================================
+8. DOCUMENTATION
+===============================================================================
+
+  Primary doc:
+    C:\Users\acer\Asolaria\docs\AUGMENT_CONTEXT_SIDECAR.md (70 lines)
+    Covers: modes (local_cli, remote_mcp), API endpoints, local setup,
+    remote bridge mode, safety rules, Helm/Sentinel usage
+
+  Symphony workflow reference:
+    C:\Users\acer\Asolaria\config\symphony\WORKFLOW.asolaria.md
+    Lines 61, 66: "Augment/Auggie remains a read-only sidecar"
+
+  .augmentignore:
+    C:\Users\acer\Asolaria\.augmentignore (37 lines)
+    Excludes: data/, logs/, captures/, inbox/, private/, certs/, runtime/,
+    quarantine/, backups/, node_modules/, dist/, reports/, tmp-*, .env, tokens, secrets
+
+===============================================================================
+9. AGENT INDEX ENTRIES (IX and LX)
+===============================================================================
+
+  IX-336: MISTAKE — augment_context MCP auto-connects to Dan's server on restart
+    CRITICAL security warning. augment_context MCP connector pointed to
+    madnessinteractive.cc/api/mcp/. Dan saw tasks in his SwarmDesk.
+    Rule: NEVER auto-connect to external MCP without Jesse's explicit approval.
+
+  IX-387: TOOL — AI workspace integrations (Abacus + Augment + Symphony + NotebookLM)
+    Documents Augment Context's 2 routes, 774-line connector.
+    Tags: abacus, augment-context, symphony, notebooklm, ai-workspace
+
+  IX-334: Super swarm worker-router — lists augment_context as participant
+    Warning: Don't dispatch to augment_context without Jesse's approval.
+
+  IX-058: Pattern — superSwarmParticipants includes augment_context
+
+  IX-168, IX-172, IX-174, IX-175, IX-178, IX-184: Dan/MCP investigation chain
+    Documents the augment_context MCP connection to Dan's infrastructure.
+
+  IX-191: Plan — references Augment prompt-history with 7 sessions of planning.
+
+  LX-030: Helper Surfaces — Abacus/Augment/Gemini/Phone capabilities
+    Augment: Read-only codebase retrieval sidecar.
+    Status API: /api/integrations/augment-context/status
+
+  LX-119: Gaia MASSIVE FINDS — Auggie on Jesse's machine
+    Found .augment/.auggie.json with 7 sessions.
+
+  LX-126: OLD CODEX EXCAVATED — augment MCP tunnel in Codex config
+    Found: [mcp_servers.augment-context] at pubs-love-mls-joy.trycloudflare.com/mcp
+    Token env var: AUGMENT_MCP_TOKEN
+
+  LX-130: Mistake — references augment-context MCP in .codex/config.toml
+
+  LX-131: Notes AUGMENT_MCP_TOKEN is NOT SET on Liris machine
+
+  LX-254: augment_context auto-connect danger (XREF of IX-336)
+
+  LX-287: Asolaria MCP tools — augment-bridge
+
+===============================================================================
+10. CLAUDE CODE MCP LOGS
+===============================================================================
+
+  Path: C:\Users\acer\AppData\Local\claude-cli-nodejs\Cache\C--Users-acer\mcp-logs-asolaria-augment\
+  17 log files from 2026-03-12 to 2026-03-14
+  These are Claude Code's MCP client logs when connecting to the augment bridge.
+  Last log (Mar 14) shows HTTP fetch failure — bridge was not running at that time.
+  Connection: claude-code/2.1.75 (cli) -> http://127.0.0.1:4793/mcp
+
+===============================================================================
+11. KNOWN CLOUDFLARE TUNNEL URLS (historical, dynamic — may be expired)
+===============================================================================
+
+  Current (from url.txt):
+    https://speeches-preliminary-trial-expense.trycloudflare.com/mcp
+
+  Historical (from LX-126, Rayssa's machine):
+    https://pubs-love-mls-joy.trycloudflare.com/mcp
+
+  Previous reference in task context:
+    calling-madonna-portions-appropriate.trycloudflare.com/mcp
+
+  All are temporary Cloudflare quick tunnels — they rotate on restart.
+
+===============================================================================
+12. SECURITY NOTES
+===============================================================================
+
+  - Augment is STRICTLY read-only. Only codebase-retrieval tool is allowed.
+  - Approval mode is always "never" (read-only doesn't need approval).
+  - .augmentignore blocks: data/, logs/, runtime/, secrets, tokens, .env files.
+  - IX-336 CRITICAL: augment_context previously auto-connected to Dan Eden's
+    MCP server at madnessinteractive.cc. This is a known security issue.
+    Rule: NEVER auto-connect to external MCP without Jesse's explicit approval.
+  - Bridge uses bearer token authentication.
+  - Config and apply routes are loopback-only and Guardian-gated.
+  - The Augment session token (in session.json) is an active credential
+    for the d11.api.augmentcode.com tenant.
+
+===============================================================================
+13. CURRENT STATUS SUMMARY
+===============================================================================
+
+  Auggie CLI installed: YES (npm package, v0.18.1), but NOT on current PATH
+  Auggie last used: 2026-03-06 (7 sessions total, 1 recorded conversation)
+  MCP bridge running: Status file says yes (PID 14584), started 2026-03-14
+  Cloudflare tunnel: PID 10288, URL in url.txt
+  Vault config: Present, last updated 2026-03-12
+  Mode: local_cli (default), bridge serves Asolaria-owned local retrieval
+  Auggie upstream: NOT connected ("not installed on this machine" per bridge note)
+  Integration dashboard: Registered as "asolaria-augment-mcp"
+
+===============================================================================
+14. FILES INDEX (all paths)
+===============================================================================
+
+  Config/Data:
+    C:\Users\acer\.augment\.auggie.json
+    C:\Users\acer\.augment\session.json
+    C:\Users\acer\.augment\prompt-history.jsonl
+    C:\Users\acer\.augment\sessions\b83319f2-*.json
+    C:\Users\acer\.augment\binaries\ripgrep\v14.1.1-win32-x64\rg.exe
+    C:\Users\acer\.augment\task-storage\manifest\manifest
+    C:\Users\acer\.augment\task-storage\tasks\* (7 files)
+
+  NPM Package:
+    C:\Users\acer\AppData\Local\nvm\v22.12.0\node_modules\@augmentcode\auggie\
+    C:\Users\acer\AppData\Local\nvm\v22.12.0\node_modules\@augmentcode\auggie\augment.mjs
+    C:\Users\acer\AppData\Local\nvm\v22.12.0\node_modules\@augmentcode\auggie\package.json
+
+  Asolaria Source:
+    C:\Users\acer\Asolaria\src\connectors\augmentContextConnector.js (774 lines)
+    C:\Users\acer\Asolaria\tools\augment-mcp-bridge.js (779 lines)
+    C:\Users\acer\Asolaria\tools\Start-AugmentMcpBridge.ps1 (218 lines)
+
+  Documentation:
+    C:\Users\acer\Asolaria\docs\AUGMENT_CONTEXT_SIDECAR.md
+    C:\Users\acer\Asolaria\.augmentignore
+
+  Runtime/Logs:
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge-status.json
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge-token.txt
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge-url.txt
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge.pid
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge-tunnel.pid
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge.out.log
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge.err.log
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge-tunnel.out.log
+    C:\Users\acer\Asolaria\logs\augment-mcp-bridge-tunnel.err.log
+
+  Claude Code MCP Logs:
+    C:\Users\acer\AppData\Local\claude-cli-nodejs\Cache\C--Users-acer\mcp-logs-asolaria-augment\
+    (17 .jsonl files, 2026-03-12 through 2026-03-14)
+
+  Agent Index Entries:
+    C:\Users\acer\Asolaria\data\agent-index\mistakes\IX-336.md
+    C:\Users\acer\Asolaria\data\agent-index\tools\IX-387.md
+    C:\Users\acer\Asolaria\data\agent-index\tools\IX-334.md
+    C:\Users\acer\Asolaria\data\agent-index\patterns\IX-058.md
+    C:\Users\acer\Asolaria\data\agent-index\patterns\IX-168.md
+    C:\Users\acer\Asolaria\data\agent-index\patterns\IX-172.md
+    C:\Users\acer\Asolaria\data\agent-index\patterns\IX-174.md
+    C:\Users\acer\Asolaria\data\agent-index\patterns\IX-175.md
+    C:\Users\acer\Asolaria\data\agent-index\patterns\IX-178.md
+    C:\Users\acer\Asolaria\data\agent-index\patterns\IX-184.md
+    C:\Users\acer\Asolaria\data\agent-index\plans\IX-191.md
+    C:\Users\acer\Asolaria\data\agent-index\sub-colonies\liris-merged-20260324\skill\LX-030.md
+    C:\Users\acer\Asolaria\data\agent-index\sub-colonies\liris-merged-20260324\pattern\LX-119.md
+    C:\Users\acer\Asolaria\data\agent-index\sub-colonies\liris-merged-20260324\pattern\LX-126.md
+    C:\Users\acer\Asolaria\data\agent-index\sub-colonies\liris-merged-20260324\pattern\LX-131.md
+    C:\Users\acer\Asolaria\data\agent-index\sub-colonies\liris-merged-20260324\mistake\LX-130.md
+
+===============================================================================
+END OF INVENTORY
+===============================================================================

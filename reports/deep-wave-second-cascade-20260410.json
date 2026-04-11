@@ -1,0 +1,162 @@
+{
+  "generatedAt": "2026-04-10",
+  "scope": {
+    "drives": [
+      "C:\\",
+      "D:\\",
+      "E:\\"
+    ],
+    "roots": [
+      "C:\\Users\\acer\\Asolaria",
+      "D:\\Asolaria-RECOVERED",
+      "D:\\asolaria-state",
+      "E:\\runtime",
+      "E:\\sovereignty"
+    ],
+    "mode": "defensive_inventory_only"
+  },
+  "liveNetwork": {
+    "defaultRoute": {
+      "adapter": "Wi-Fi",
+      "ipv4": "192.168.15.189",
+      "cidr": "192.168.15.0/24",
+      "gateway": "192.168.15.1"
+    },
+    "ethernet": {
+      "ipv4": "192.168.100.1",
+      "gateway": ""
+    },
+    "neighbors": [
+      "192.168.15.9"
+    ]
+  },
+  "listeners": [
+    {
+      "port": 4781,
+      "owner": "Asolaria main runtime",
+      "command": "C:\\Users\\acer\\Asolaria\\server.js"
+    },
+    {
+      "port": 4782,
+      "owner": "Asolaria main runtime",
+      "command": "C:\\Users\\acer\\Asolaria\\server.js"
+    },
+    {
+      "port": 4791,
+      "owner": "Asolaria public/gateway runtime",
+      "command": "server.js"
+    },
+    {
+      "port": 4913,
+      "owner": "agent keyboard",
+      "command": "tools/agent-keyboard.js"
+    },
+    {
+      "port": 5037,
+      "owner": "ADB server",
+      "command": "adb -L tcp:5037 fork-server server"
+    },
+    {
+      "port": 8765,
+      "owner": "Cross-device bridge",
+      "command": "pc_server.py"
+    },
+    {
+      "port": 18883,
+      "owner": "MQTT broker",
+      "command": "services/mqtt-broker/server.mjs"
+    },
+    {
+      "port": 18884,
+      "owner": "MQTT broker",
+      "command": "services/mqtt-broker/server.mjs"
+    },
+    {
+      "port": 18885,
+      "owner": "MQTT broker",
+      "command": "services/mqtt-broker/server.mjs"
+    }
+  ],
+  "devices": {
+    "adbAttached": false,
+    "usbSerial": "COM10",
+    "novalumRegistry": "C:\\Users\\acer\\Asolaria\\data\\device-registry\\novalum-unit-001.json",
+    "novalumSyncTarget": "192.168.1.43",
+    "phoneBluetoothSurface": "Jesse's S24 FE",
+    "badUsbNode": "USB\\VID_0000&PID_0002"
+  },
+  "namedSurfaces": {
+    "falcon": {
+      "startupProfile": "E:\\runtime\\leader-startup-profiles\\instant-startup\\falcon.json",
+      "startupPacket": "E:\\runtime\\leader-startup-profiles\\instant-startup\\falcon.txt",
+      "subBiosPacket": "E:\\runtime\\asolaria-sub-bios-vote\\falcon-packet.txt",
+      "activeUsbAdbLaneNow": false
+    },
+    "omnispindle": {
+      "path": "C:\\Users\\acer\\Asolaria\\src\\omnispindle.js",
+      "lanes": [
+        "helm",
+        "vector",
+        "rook",
+        "forge",
+        "falcon"
+      ]
+    },
+    "gnn": {
+      "livePrimitive": "C:\\Users\\acer\\Asolaria\\src\\gnnConstructionWatcher.js",
+      "trainingExport": "C:\\Users\\acer\\Asolaria\\src\\gnnDataExport.js"
+    },
+    "hyperlanguage": {
+      "map24D": "E:\\runtime\\federation-rehydration-batch-v1\\ROSE-ORACLE-BOOTSTRAP-BUNDLE-2026-04-09\\payload\\hilbert-omni-24D.json",
+      "map35D": "E:\\runtime\\federation-rehydration-batch-v1\\ROSE-ORACLE-BOOTSTRAP-BUNDLE-2026-04-09\\payload\\hilbert-omni-35D.json",
+      "mode": "35D_plus_omnidimensional_black_hole"
+    }
+  },
+  "modelRegistry": {
+    "defaultModelsPath": "C:\\Users\\acer\\Asolaria\\data\\settings.external-default-models.json",
+    "observedModelsPath": "C:\\Users\\acer\\Asolaria\\data\\settings.external-observed-models.json",
+    "defaultModelsEmpty": true,
+    "observedModels": [
+      "gemini-2.5-flash"
+    ]
+  },
+  "validation100B": {
+    "canonEvidence": [
+      "C:\\Users\\acer\\Asolaria\\data\\omnidirectional-calendar.ndjson",
+      "E:\\runtime\\federation-rehydration-batch-v1\\ROSE-ORACLE-BOOTSTRAP-BUNDLE-2026-04-09\\payload\\MEMORY.md",
+      "E:\\runtime\\federation-rehydration-batch-v1\\ROSE-ORACLE-BOOTSTRAP-BUNDLE-2026-04-09\\payload\\feedback_msys_pid_namespace_mismatch.md",
+      "C:\\Users\\acer\\Asolaria\\reports\\asolaria-asi-paper\\skeleton-v8-R3-walkback-CANONICAL.md"
+    ],
+    "claims": {
+      "totalVerifiedOps": "200e9",
+      "shadowRealComplete": true,
+      "shadowSectorsComplete": true,
+      "w2ParallelSafeOnWindows": false,
+      "w3ParallelSafeOnWindows": true
+    },
+    "missingFromActiveAppTree": [
+      "C:\\Users\\acer\\Asolaria\\tools\\gnn-100B-shadow-real.js",
+      "C:\\Users\\acer\\Asolaria\\tools\\gnn-100B-shadow-sectors.js",
+      "C:\\Users\\acer\\Asolaria\\reports\\gnn-100B-shadow-real-20260406-022828\\manifest.txt",
+      "C:\\Users\\acer\\Asolaria\\reports\\gnn-100B-shadow-real-20260406-022828\\run.log"
+    ]
+  },
+  "shadowRoots": [
+    "E:\\runtime\\asolaria-shadow-comms",
+    "E:\\runtime\\language-flywheel",
+    "E:\\runtime\\gnn-silicon-heartbeat",
+    "E:\\runtime\\_tmp2-flywheel",
+    "E:\\runtime\\s22-gnn-attachment",
+    "D:\\Asolaria-RECOVERED",
+    "D:\\asolaria-state"
+  ],
+  "publishability": {
+    "appBundlePublishable": true,
+    "appBundlePath": "C:\\Users\\acer\\Asolaria\\dist\\public-release\\Asolaria-Public-20260410-093155",
+    "zipPath": "C:\\Users\\acer\\Asolaria\\dist\\public-release\\Asolaria-Public-20260410-093155.zip",
+    "verifierReportPath": "C:\\Users\\acer\\Asolaria\\reports\\release-demo\\publishable-release-report.json",
+    "verifierPass": true,
+    "leakFindings": 0,
+    "fullRuntimePublishableAsOnePublicDrop": false
+  }
+}

@@ -1,0 +1,23 @@
+PQ Bid Proposal – V4 to MVP Revision Summary
+Phase 1
+Removed wireframes and visual design.
+Reduced hours from ~80 to 40–50.
+Reason: UI will follow existing STI Labs styling; focus is functional documentation.
+Phase 3
+Removed reusable test plan templates and auto-population logic.
+Reframed as manual spreadsheet-style entry.
+Reduced hours from 160–200 to 110–140.
+Reason: Client requested removal of automation; MVP prioritizes flexibility over intelligence.
+Phase 4
+Removed forecasting and analytics language.
+Reduced scope to basic tracking.
+Reduced hours from ~120 to 70–90.
+Reason: Scheduling visibility only; no optimization in MVP.
+Phase 5
+Renamed from 'Financials & Invoicing' to 'Invoicing Integration (QuickBooks)'.
+Removed invoice UI and reporting.
+Reduced hours to 25–30.
+Reason: Existing QuickBooks integration reused.
+Overall
+Adjusted total project estimate to ~380–420 hours.
+Reason: Align scope with MVP budget while preserving core value.

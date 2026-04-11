@@ -1,0 +1,167 @@
+#!/usr/bin/env node
+/**
+ * generate-summary-pdf.js — Portuguese-language summary PDF for Dr. Carlos
+ * Uses playwright Chromium to render HTML → PDF.
+ */
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+const { chromium } = require('playwright');
+
+const ROOT = 'C:/Users/acer/Asolaria';
+const OUT = path.join(ROOT, 'reports/legal/evidence-package-summary.pdf');
+const PKG_DIR = path.join(ROOT, 'reports/legal/evidence-package');
+
+(async () => {
+  const manifest = JSON.parse(fs.readFileSync(path.join(PKG_DIR, '99-master-manifest.json'), 'utf8'));
+  const zipPath = path.join(ROOT, 'reports/legal/evidence-package.zip');
+  const zipStats = fs.statSync(zipPath);
+  const zipSha = crypto.createHash('sha256').update(fs.readFileSync(zipPath)).digest('hex');
+
+  const totalRowsFromCsv = (() => {
+    const csvPath = path.join(PKG_DIR, '01-all-google-purchases.csv');
+    if (!fs.existsSync(csvPath)) return 0;
+    const lines = fs.readFileSync(csvPath, 'utf8').split('\n').filter(l => l.length > 0);
+    return Math.max(0, lines.length - 1);
+  })();
+  const riseRows = (() => {
+    const p = path.join(PKG_DIR, '02-rise-of-kings-subset.csv');
+    if (!fs.existsSync(p)) return 0;
+    const lines = fs.readFileSync(p, 'utf8').split('\n').filter(l => l.length > 0);
+    return Math.max(0, lines.length - 1);
+  })();
+
+  const html = `<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Relatório de Evidências — Jesse Daniel Brown vs Google (Caso Rise of Kings)</title>
+<style>
+  body { font-family: "Segoe UI", Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 20px; color: #222; line-height: 1.5; }
+  h1 { color: #b22; border-bottom: 2px solid #b22; padding-bottom: 8px; }
+  h2 { color: #b22; margin-top: 24px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+  h3 { color: #444; margin-top: 16px; }
+  .meta { background: #f6f6f6; padding: 12px; border-left: 4px solid #b22; margin: 16px 0; font-size: 0.9em; }
+  .sha { font-family: "Courier New", monospace; font-size: 0.75em; word-break: break-all; background: #fafafa; padding: 4px; display: inline-block; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.9em; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+  th { background: #eee; }
+  .warn { background: #fff4e0; border-left: 4px solid #e80; padding: 10px; margin: 12px 0; font-size: 0.9em; }
+  .footer { margin-top: 40px; font-size: 0.8em; color: #666; border-top: 1px solid #ddd; padding-top: 10px; }
+</style>
+</head>
+<body>
+
+<h1>Relatório de Evidências Digitais</h1>
+<p><strong>Caso:</strong> Jesse Daniel Brown vs Google Brasil Internet Ltda. &mdash; Alegações de cobranças não autorizadas através do aplicativo <em>Rise of Kings</em> (desenvolvedor: OneMt; distribuidor: Flexion Mobile Ltd)</p>
+<p><strong>Destinatário:</strong> Dr. Carlos Henrique Bitencourt de Castro Magalhães (AASP)</p>
+<p><strong>Gerado em:</strong> ${new Date().toLocaleString('pt-BR')}</p>
+
+<div class="meta">
+<strong>Este é um relatório-resumo.</strong> O pacote completo de evidências está no arquivo <code>evidence-package.zip</code> anexo, contendo <strong>${manifest.total_files} arquivos</strong> (${(manifest.total_bytes/1024/1024).toFixed(1)} MB descompactado, ${(zipStats.size/1024/1024).toFixed(1)} MB compactado).
+</div>
+
+<h2>Sumário Executivo</h2>
+
+<table>
+  <tr><th>Categoria</th><th>Quantidade</th></tr>
+  <tr><td>Recibos de compras Google (CSV completo)</td><td>${totalRowsFromCsv} linhas</td></tr>
+  <tr><td>Recibos/menções relacionados a Rise of Kings (subconjunto CSV)</td><td>${riseRows} linhas</td></tr>
+  <tr><td>Correspondência com OneMt (desenvolvedor do jogo)</td><td>${manifest.categories['plasmatoid@gmail.com']?.onemt ?? 0} + ${manifest.categories['jessebrown.soft1980@gmail.com']?.onemt ?? 0} mensagens</td></tr>
+  <tr><td>Correspondência com Flexion Mobile (distribuidor)</td><td>${manifest.categories['plasmatoid@gmail.com']?.flexion ?? 0} + ${manifest.categories['jessebrown.soft1980@gmail.com']?.flexion ?? 0} mensagens</td></tr>
+  <tr><td>Correspondência legal (advogado e caso)</td><td>${manifest.categories['plasmatoid@gmail.com']?.legal ?? 0} + ${manifest.categories['jessebrown.soft1980@gmail.com']?.legal ?? 0} mensagens</td></tr>
+  <tr><td>Reclamações/reembolsos Google Support</td><td>${manifest.categories['plasmatoid@gmail.com']?.support ?? 0} + ${manifest.categories['jessebrown.soft1980@gmail.com']?.support ?? 0} mensagens</td></tr>
+  <tr><td><strong>Total de arquivos no pacote</strong></td><td><strong>${manifest.total_files}</strong></td></tr>
+</table>
+
+<h2>Contas Google verificadas</h2>
+<p><strong>Acessíveis (com OAuth válido):</strong></p>
+<ul>
+  <li>plasmatoid@gmail.com &mdash; 8.197 mensagens totais</li>
+  <li>jessebrown.soft1980@gmail.com &mdash; 25.352 mensagens totais</li>
+</ul>
+
+<p><strong>Não acessíveis (tokens OAuth expirados, requer reautenticação):</strong></p>
+<ul>
+  <li>jesse@jbrowndevelopmentllc.com</li>
+  <li>plasmatoid@jbrowndevelopmentllc.com</li>
+</ul>
+
+<h2>Estrutura do pacote</h2>
+<table>
+  <tr><th>Arquivo/Pasta</th><th>Descrição</th></tr>
+  <tr><td><code>00-README.md</code></td><td>Documentação geral do pacote</td></tr>
+  <tr><td><code>01-all-google-purchases.csv</code></td><td>CSV completo com todas as compras Google encontradas (order_id, data, produto, preço, hash SHA-256, etc.)</td></tr>
+  <tr><td><code>02-rise-of-kings-subset.csv</code></td><td>Subconjunto do CSV filtrando linhas relacionadas a Rise of Kings/OneMt/Lilith</td></tr>
+  <tr><td><code>03-onemt-correspondence/</code></td><td>Correspondência por e-mail com OneMt (desenvolvedor)</td></tr>
+  <tr><td><code>04-flexion-mobile-correspondence/</code></td><td>Correspondência com Flexion Mobile Ltd (distribuidor)</td></tr>
+  <tr><td><code>05-legal-case-correspondence/</code></td><td>Correspondência legal relacionada ao caso</td></tr>
+  <tr><td><code>06-google-support-refund-complaints/</code></td><td>Pedidos de reembolso e reclamações Google Support</td></tr>
+  <tr><td><code>99-master-manifest.json</code></td><td>Manifest SHA-256 de cada arquivo (tamper-evidence)</td></tr>
+</table>
+
+<h2>Integridade dos dados</h2>
+<p>Cada arquivo individual no pacote tem um hash SHA-256 registrado no <code>99-master-manifest.json</code>. Cada e-mail incluído também tem o SHA-256 do corpo original calculado dentro do próprio arquivo Markdown (<code>body_sha256</code> no frontmatter). Qualquer modificação posterior a qualquer arquivo quebra a cadeia de hashes e é detectável.</p>
+
+<div class="meta">
+<strong>Hash do arquivo ZIP:</strong><br>
+<span class="sha">${zipSha}</span><br>
+<strong>Hash do manifest-mestre:</strong><br>
+<span class="sha">${manifest.files['99-master-manifest.json'] ? '(referenciar 99-master-manifest.json)' : 'calculado pós-geração'}</span>
+</div>
+
+<h2>Observações honestas (caveats)</h2>
+<div class="warn">
+<ol>
+  <li><strong>Este pacote contém APENAS o que está acessível via Gmail API hoje.</strong> Não é um registro completo de todas as compras Rise of Kings &mdash; recibos mais antigos podem ter sido excluídos ou arquivados manualmente ao longo dos anos.</li>
+  <li><strong>As duas contas jbrowndevelopmentllc.com têm tokens OAuth expirados.</strong> Podem conter evidências adicionais relevantes. Requer reautenticação via navegador.</li>
+  <li><strong>Recibos específicos de compras in-app do Rise of Kings parecem NÃO estar no Gmail.</strong> A OneMt/Flexion Mobile pode nunca ter enviado recibos por e-mail para este endereço, OU os recibos foram excluídos. <strong>Recomenda-se fortemente solicitar o Google Takeout (exportação "Google Play" &gt; "Order History")</strong> como fonte autoritativa: <code>takeout.google.com</code>.</li>
+  <li>Os hashes SHA-256 nos arquivos são fingerprints tamper-evident; servem como prova de integridade dos arquivos de evidência, não como prova de autenticidade dos e-mails originais (essa cadeia vem do próprio Google via Gmail API, que pode ser auditado separadamente via Google Takeout).</li>
+</ol>
+</div>
+
+<h2>Próximos passos recomendados</h2>
+<ol>
+  <li>Revisar <code>01-all-google-purchases.csv</code> para o padrão completo de compras Google</li>
+  <li>Revisar <code>02-rise-of-kings-subset.csv</code> para referências específicas ao Rise of Kings</li>
+  <li>Revisar <code>05-legal-case-correspondence/</code> para o estado anterior do caso + correspondência com o advogado</li>
+  <li>Revisar <code>06-google-support-refund-complaints/</code> para evidências de solicitações de reembolso e respostas do Google</li>
+  <li>Solicitar <strong>Google Takeout &mdash; Google Play &mdash; Order History</strong> como fonte autoritativa adicional</li>
+  <li>Reautenticar as duas contas jbrowndevelopmentllc.com para verificação adicional</li>
+</ol>
+
+<div class="footer">
+<p>Pacote gerado pelo sistema Asolaria-ASI sob autorização verbal de Jesse Daniel Brown em 2026-04-07. Destinado EXCLUSIVAMENTE para uso pelo Sr. Brown e seu representante legal. Não distribuir a terceiros sem autorização explícita.</p>
+<p>Para verificar a integridade do pacote, execute <code>shasum -a 256 evidence-package.zip</code> e compare com o hash acima.</p>
+</div>
+
+</body>
+</html>
+`;
+
+  const tmpHtml = path.join(ROOT, 'reports/legal/evidence-package-summary.tmp.html');
+  fs.writeFileSync(tmpHtml, html);
+
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage();
+  await page.goto('file://' + tmpHtml.replace(/\\/g, '/'));
+  await page.pdf({
+    path: OUT,
+    format: 'A4',
+    margin: { top: '15mm', right: '15mm', bottom: '15mm', left: '15mm' },
+    printBackground: true
+  });
+  await browser.close();
+
+  const pdfBuf = fs.readFileSync(OUT);
+  const pdfSha = crypto.createHash('sha256').update(pdfBuf).digest('hex');
+
+  console.log(JSON.stringify({
+    ok: true,
+    pdf: OUT,
+    size: pdfBuf.length,
+    sha256: pdfSha,
+    html_tmp: tmpHtml
+  }, null, 2));
+})().catch(e => { console.error('PDF gen failed:', e.message); process.exit(1); });

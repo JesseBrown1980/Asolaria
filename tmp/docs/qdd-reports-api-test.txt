@@ -1,0 +1,200 @@
+QDD Reports API Endpoint Test — 2026-03-25
+=============================================
+
+Base URL: http://localhost:3000
+Auth: /api/auth/dev-bypass (iron-session cookie "ebacmapv3")
+Dev user: charm-dev@quickdrawdevelopment.com (company_admin)
+Location: 69c41938d84980e337ac77cf ("Test Facility")
+Client:   69c41938d84980e337ac77cd ("Charm Sciences (Dev)")
+
+=== ENDPOINT TEST RESULTS ===
+
+1. GET /api/auth/dev-bypass
+   STATUS: 200 OK
+   RESPONSE: {"ok":true,"message":"Session set. Navigate to /ez-protect now.","user":"charm-dev@quickdrawdevelopment.com"}
+   NOTES: Sets iron-session cookie. All subsequent calls use this cookie.
+
+2. GET /api/reports (no location param)
+   STATUS: 400 (validation error)
+   RESPONSE: {"message":"Invalid","errors":["location is a required field"]}
+   NOTES: Correct — location is required per yup schema.
+
+3. GET /api/reports?location=69c41938d84980e337ac77cf&limit=5&offset=0
+   STATUS: 200 OK
+   RESPONSE: 2 reports returned. Both named "Bend", types "single".
+     - Report 1: id=69c442c98d2a10ab251316d5, access=personal, 3 charts (ScatterGraph, BarGraph, SummaryTable)
+     - Report 2: id=69c442c98d2a10ab251316d1, access=facility, 2 charts (ScatterGraph, BarGraph)
+   PAGINATION: {"limit":5,"offset":0,"total":2,"sort":"_id:-1"}
+   NOTES: Working correctly. Supports params: limit, offset, sort, accessType, showOnDashboard, dashboardOnly, location (required).
+
+4. GET /api/reports/dashboard?location=69c41938d84980e337ac77cf
+   STATUS: 200 OK
+   RESPONSE: [] (empty array)
+   NOTES: No default/dashboard reports configured. Endpoint works.
+
+5. GET /api/reports/filters?locationId=69c41938d84980e337ac77cf&clientId=69c41938d84980e337ac77cd
+   STATUS: 500 Internal Server Error
+   RESPONSE: {"error":{}}
+   NOTES: Server-side error. Likely cause: MongoIdentifier.build() or one of the service
+          calls (categoryService, organismService, siteService, testDefinitionService)
+          fails because the seeded test data lacks categories/organisms/sites/zones
+          collections. The error is serialized as empty object (non-enumerable Error props).
+
+6. GET /api/reports/user?locationId=69c41938d84980e337ac77cf
+   STATUS: 200 OK
+   RESPONSE: {"dashboardReports":[]}
+   NOTES: Returns user's dashboard report IDs. Working correctly, just empty.
+
+7. GET /api/filters?clientId=69c41938d84980e337ac77cd&locationId=69c41938d84980e337ac77cf&plans=false&maps=false
+   STATUS: 500 Internal Server Error
+   RESPONSE: {"error":{}}
+   NOTES: Same 500 as /api/reports/filters. This is the endpoint FilterDrawer actually calls.
+          Root cause is same: missing seed data in categories/organisms/sites/zones/testDefinitions.
+
+=== ENDPOINT SUMMARY ===
+
+  Endpoint                    Method   Status   Working?
+  ─────────────────────────── ──────── ──────── ────────
+  /api/auth/dev-bypass        GET      200      YES
+  /api/reports                GET      200      YES (requires ?location=)
+  /api/reports                POST     —        Not tested (create)
+  /api/reports/dashboard      GET      200      YES
+  /api/reports/filters        GET      500      NO — missing seed data
+  /api/reports/user           GET      200      YES
+  /api/filters                GET      500      NO — missing seed data
+
+=== /reports/new?type=single PAGE ANALYSIS ===
+
+Source: apps/web-ebacmap/src/pages/reports/new.tsx
+
+Query params:
+  - type: "single" | "compound" | "ebacmap" — determines report type
+  - template: optional template ID — loads pre-filled sections via getReportTemplate()
+
+Required hooks/context:
+  - useLocation() — current selected location (id + clientId)
+  - useUser() — current user for permission check
+  - withPermissions({ domain: Report, action: View }) — gate
+
+Report data structure (what gets POSTed to /api/reports):
+  {
+    name: string (max 80 chars, required),
+    client: location.clientId,
+    location: location.id,
+    showOnDashboard: false,
+    reportType: "single" | "multi" | "ebacmap",
+    access: "personal" | "facility" | "global",
+    sections: [{
+      title: string,
+      filters: {
+        interval, type (chartType), dataType, rollingInterval,
+        conditions: [], facilityMapId, dateRange
+      },
+      charts: [{ module, groupBy?, limitLines, ... }],
+      notes?: string (max 200 chars)
+    }]
+  }
+
+Components used:
+  - ReportSectionCard — wraps FilterDrawer + ReportBuilder + chart selection
+  - FilterDrawer — fetches /api/filters?clientId=X&locationId=X&plans=bool&maps=bool
+  - SaveReportTypeModal — visibility selector (personal/facility/global)
+
+=== DATA SOURCES NEEDED FOR /reports/new FORM TO RENDER ===
+
+The FilterDrawer (inside ReportSectionCard) fetches /api/filters which needs:
+
+  Collection              Used For                      Seeded?
+  ─────────────────────── ───────────────────────────── ───────
+  categories              Filter by test category       NO (500)
+  organisms               Filter by organism            NO (500)
+  zones                   Filter by zone                NO (500)
+  sites                   Filter by site/location       NO (500)
+  testDefinitions         Filter by test type           NO (500)
+  plans                   Novalum plan filter (if perm) NO (500)
+  surfaceTypes            Novalum surface filter        NO (500)
+  facilityMaps            Map-based chart config        UNKNOWN
+
+The /api/reports/filters endpoint (GetReportFiltersUseCase) queries:
+  - categoryService.listCategories(clientId)
+  - organismService.listOrganisms(clientId)
+  - siteService.listZones(clientId)
+  - siteService.listSites(clientId, locationId)
+  - testDefinitionService.listTestDefinitions(clientId)
+  - SurfaceTypeModel.find({clientId, locationId}) — only if Novalum permission
+  - PlanModel.find({clientId, locationId}) — only if Novalum permission
+
+Expected response shape (ReportFiltersResponse):
+  {
+    categories: CategoryViewWithOrganisms[],
+    organisms: OrganismView[],
+    zones: ZoneView[],
+    sites: SiteLocationView[],
+    testDefinitions: TestDefinitionView[],
+    plans?: PlanView[],
+    surfaceTypes?: SurfaceTypeView[]
+  }
+
+=== WHAT NEEDS TO BE SEEDED FOR THE FORM TO WORK ===
+
+At minimum, the DB needs for clientId 69c41938d84980e337ac77cd:
+  1. At least 1 category (with organisms array)
+  2. At least 1 organism
+  3. At least 1 zone
+  4. At least 1 site linked to locationId 69c41938d84980e337ac77cf
+  5. At least 1 test definition
+
+Optional (Novalum features):
+  6. Surface types for the location
+  7. Plans for the location
+  8. Facility maps for map-based charts
+
+=== ADDITIONAL OBSERVATIONS ===
+
+- The /api/categories and /api/organisms endpoints also return 500 with
+  "$skip: null" errors — pagination params need defaults.
+  Error: "invalid argument to $skip stage: Expected a number in: $skip: null"
+  This means even direct category/organism listing is broken without offset param.
+
+- The dev-bypass user has full permissions including Novalum and EZ Protect.
+
+- Report types: "single" (one section), "multi/compound" (multiple sortable sections),
+  "ebacmap" (facility map based). The UI only offers single and compound via dropdown.
+
+- Chart modules available: ScatterGraph, BarGraph, SummaryTable (seen in existing reports).
+  The ChartSelectionModal likely has more options.
+
+- The reports list page (/reports/) uses paginateReports() which calls
+  GET /api/reports with location, limit, offset, accessType params. This works.
+
+- Dashboard reports (shown on main dashboard) are managed via:
+  PUT /api/reports/dashboard with {id, showOnDashboard: true/false}
+  Max widgets controlled by MAX_DASHBOARD_WIDGETS constant.
+
+=== FILE PATHS (KEY) ===
+
+API routes:
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\reports\index.ts
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\reports\dashboard.ts
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\reports\filters.ts
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\reports\user.ts
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\auth\dev-bypass.ts
+
+Pages:
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\reports\new.tsx
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\reports\index.tsx
+
+Services:
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\services\reports.ts
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\services\filters.ts
+
+Use cases:
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\reports\use-cases\GetFilters\UseCase.ts
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\reports\use-cases\GetFilters\types.ts
+
+Components:
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\components\Report\ReportSectionCard.tsx
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\components\Filter\FilterDrawer.tsx
+
+Auth/Session:
+  D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\hooks\session.ts

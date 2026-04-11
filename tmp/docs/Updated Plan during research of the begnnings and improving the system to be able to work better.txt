@@ -1,0 +1,1602 @@
+• Updated Plan
+  └ Indexed-memory retrieval was implemented via a new agent-index store, integrated into
+    workspace knowledge and shared prompt memory, verified with module checks and a sidecar
+    contract run. The only remaining operational blocker is rolling the slice onto the protected
+    primary listener on port 4781.
+    ✔ Inspect current memory, index, and retrieval code paths in the Asolaria runtime
+    ✔ Implement a bounded indexed-memory retrieval slice based on the agent index
+    ✔ Verify behavior locally and update memory/report surfaces
+─ Worked for 1m 07s ──────────────────────────────────────────────────────────────────────────────
+• Implemented
+  - Added a real agent-index retrieval layer in src/agentIndexStore.js:1. It reads data/agent-
+    index/CATALOG.md:447 plus IX-*.md, exposes status/search/context, and feeds semantic indexing.
+  - Wired it into the runtime in server.js:5268, so hybrid workspace knowledge now reports
+    agentIndex, search can return kind: "index", and shared prompt memory includes Agent index:
+    context.
+  - Added direct routes in routes/workspaceKnowledge.js:33: GET /api/workspace-knowledge/index/
+    status and GET /api/workspace-knowledge/index/search.
+  - Extended intent routing in src/intentRouter.js so agent index ... / index language ... phrases
+    route into the same workspace-knowledge path.
+  Verified
+  - Module sanity: IX-238 resolves as the top hit for IX-238 memory index.
+  - Runtime contract passed 4/4 on a one-shot sidecar runtime at http://127.0.0.1:57481, covering:
+      - /api/workspace-knowledge/status
+      - /api/workspace-knowledge/index/status
+      - /api/workspace-knowledge/index/search?q=IX-238%20memory
+      - /api/workspace-knowledge/search?q=IX-238%20memory
+  - I stored the implementation packet in reports/indexed-memory-retrieval-latest.md:1, indexed it
+    as data/agent-index/IX-242.md:1 and data/agent-index/IX-243.md:1, and advanced the catalog to
+  - The protected main listener on 4781 is still owned by PID 376, so npm run restart:main could
+    not replace it. I recorded that as the active next step in TASKS.md:5.
+  - So the slice is implemented and verified, but it is not yet loaded into the primary runtime
+    until that owner-controlled restart happens.
+• I’m recording this as a new operating order, then I’ll build an exact relay packet for Liris
+  from the current local canon. If the existing Liris lane can carry it, I’ll append it there;
+  otherwise I’ll give you the exact text to send manually.
+• Running Get-Content -Path 'C:\Users\acer\Asolaria\runtime\outbound-liris-inbox.ndjson' -Tail 8
+• Running Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\reports\admin-terminal-liris-profile-latest.md' -TotalCount 220
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\runtime\outbound-liris-inbox.ndjson' -Tail 8
+  └ {"id":"gaia_liris_aceb51a46cdc","ts":"2026-03-19T07:22:50.871Z","source":"Gaia","reason":"grea
+    t_cleanup","mode":"append","text":"Kuromi -- Jesse wants us to work together on The Great
+    … +79 lines
+    preserved, but do not depend on 4799 until Jesse explicitly says that lane is live again. —
+    Gaia"}
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\reports\admin-terminal-liris-profile-latest.md'
+  │ -TotalCount 220
+    Use explicit packets when syncing with Rayssa's machine or the remote sub-colony.
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\reports\helm-controller-packet-latest.md'
+  │ -TotalCount 280
+  └ # Helm Controller Packet — Living Handoff
+    > **This is your briefing. Read it fully before touching anything.**
+    … +278 lines
+  archaeology. Then I’ll append a Liris packet and give you the exact manual relay text as backup.
+• Running Get-ChildItem -Path 'C:\Users\acer\Asolaria\tools' -Filter 'Start-Asolaria-*' |
+  │ Select-Object Name,FullName
+• Running rg -n "Start-Asolaria-SubColony|sub[- ]colony|LIRIS|Liris|DESKTOP-PTSQTIE|rayss|
+  │ outbound-liris|manual owner relay|WhatsApp|OpenOnPhone|MQTT_BIND_HOST|bridgectl|
+  │ bridge-token|CODEX_BRIDGE" -S 'C:\Users\acer\Asolaria\tools' 'C:
+  │ … +2 lines
+• Ran Get-ChildItem -Path 'C:\Users\acer\Asolaria\tools' -Filter 'Start-Asolaria-*' |
+  │ Select-Object Name,FullName
+  └
+    Name                                      FullName
+    … +18 lines
+    \Users\acer\Asolaria\tools\Start-Asolaria-SystemSupe…
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\reports\rayssa-path-inspection-latest.md'
+  │ -TotalCount 260
+  └ # Rayssa Path Inspection Prep - 2026-03-22 17:52 -03:00
+    … +124 lines
+    4. Reconcile the dead bridge/tunnel state before trusting any relay-based return path.
+    5. Keep every finding indexed; do not rely on raw chat replay.
+• Ran rg -n "Start-Asolaria-SubColony|sub[- ]colony|LIRIS|Liris|DESKTOP-PTSQTIE|rayss|
+  │ outbound-liris|manual owner relay|WhatsApp|OpenOnPhone|MQTT_BIND_HOST|bridgectl|
+  │ bridge-token|CODEX_BRIDGE" -S 'C:\Users\acer\Asolaria\tools' 'C:\Users\acer\Asolaria\docs'
+  │ … +2 lines
+  └ C:\Users\acer\Asolaria\reports\admin-terminal-gaia-profile-latest.md:6:- Role: local
+    sub-colony leader admin terminal
+    … +966 lines
+    mirror, tap-to-control, rotation spin animation on orientation change, key/swipe/text
+    controls, WhatsApp send + optional voice clip generation/playback.
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I found the current canonical fallback: manual relay is still the only guaranteed path. I’m
+  pulling the friend-bridge pack and startup runbooks now so the instructions to Liris are exact
+  and match what’s actually on disk.
+• Running Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\reports\friend-codex-bridge-packs\20260318-004427-rayssa\rayss-code
+  │ x.env.example' -TotalCount 220
+• Running Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\reports\friend-codex-bridge-packs\20260318-004427-rayssa\README.md'
+  │ -TotalCount 260
+• Ran Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\reports\friend-codex-bridge-packs\20260318-004427-rayssa\README.md'
+  │ -TotalCount 260
+  └ # Friend Codex Bridge Pack
+    … +42 lines
+  └ # Orders for Liris/Kuromi — from Gaia (Jesse's bridge)
+    **Date:** 2026-03-18
+    … +69 lines
+    — Gaia
+• Ran Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\reports\friend-codex-bridge-packs\20260318-004427-rayssa\rayss-codex.en
+  │ v.example' -TotalCount 220
+  └ # Friend Codex bridge environment example
+    # Fill these locally on the friend's machine. Do not commit real tokens.
+    … +6 lines
+    CODEX_BRIDGE_ROOM=asolaria-friend-rayss
+    CODEX_BRIDGE_FROM=rayss-codex
+• Running Get-ChildItem -Path 'C:
+  │ \Users\acer\Asolaria\reports\friend-codex-bridge-packs\20260318-004427-rayssa' |
+  │ Select-Object Name,FullName
+◦ Running rg -n "Start-Asolaria-SubColony\.cmd|SubColony\.cmd|sub-colony setup|Friend Codex Bridge
+  │ Pack|Start-Friend-Codex-Bridge|CODEX_BRIDGE_SENDER_TOKEN_RAYSS_CODEX|
+  │ asolaria-friend-rayss" -S 'C:\Users\acer\Asolaria' 'C:\Users\acer\codex-bridge'
+• Ran Get-ChildItem -Path 'C:
+  │ \Users\acer\Asolaria\reports\friend-codex-bridge-packs\20260318-004427-rayssa' |
+  │ Select-Object Name,FullName
+  └
+    Name                          FullName
+    … +13 lines
+    \Users\acer\Asolaria\reports\friend-codex-bridge-packs\20260318-…
+• Ran Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\reports\friend-codex-bridge-packs\20260318-004427-rayssa\Start-Friend-C
+  │ odex-Bridge.ps1' -TotalCount 260
+  └ param(
+      [string]$Sandbox = "read-only",
+    … +35 lines
+• Ran rg -n "Start-Asolaria-SubColony\.cmd|SubColony\.cmd|sub-colony setup|Friend Codex Bridge
+  │ Pack|Start-Friend-Codex-Bridge|CODEX_BRIDGE_SENDER_TOKEN_RAYSS_CODEX|asolaria-friend-rayss"
+  │ -S 'C:\Users\acer\Asolaria' 'C:\Users\acer\codex-bridge'
+  └ C:\Users\acer\Asolaria\tools\New-Friend-Codex-BridgePack.ps1:63:$startScriptName =
+    "Start-Friend-Codex-Bridge.ps1"
+    … +62 lines
+    C:\Users\acer\Asolaria\reports\rayssa-path-inspection-20260322-175028.md:69:- `codex-bridge`
+    relay room: `asolaria-friend-rayss`
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The friend-bridge pack exists, but the live host policy still does not carry asolaria-friend-
+  rayss, so I’m not going to pretend that path is ready. I’m pulling the latest QDD/Liris host
+• Running Get-Content -Path 'C:\Users\acer\Asolaria\runtime\local-claude-profile.md' -TotalCount
+  │ 220
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\runtime\local-claude-profile.md' -TotalCount 220
+  └ # Local Claude Profile — Dasein
+    **Role:** Local Asolaria Claude instance. Second hand to Helm. Works directly in `C:
+    … +170 lines
+    *Updated: 2026-03-18 | Dasein session (QDD smoke test + Kuromi fix + Asolaria restart)*
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\reports\qdd-ezprotect-test-status-20260320.md'
+  │ -TotalCount 180
+  └ # QDD EZ Protect — Test Status Report
+    **Date:** 2026-03-20
+    … +106 lines
+    - Liris MQTT bridge connected (asolaria-liris client)
+    - 6 messages exchanged via bridge during this session
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\tools\Start-Asolaria-OneButton.ps1' -TotalCount
+  │ 220
+  └ param(
+      [int]$Port = 4781,
+    … +216 lines
+            $ids += $num
+          }
+─ Worked for 1m 07s ──────────────────────────────────────────────────────────────────────────────
+• I’m storing this as a new Liris startup order now and appending a fresh outbound packet. The
+  packet will assume the only reliable return lane is still manual owner relay, because the friend
+  room is still not merged into live policy.
+• Edited 7 files (+179 -1)
+  └ TASKS.md (+4 -0)
+     4
+     5 +- [ ] Await Liris next-phase Asolaria startup response via manual owner relay (2026-03-22
+        23:05 -03:00): appended `gaia_liris_next_phase_startup_20260322` to `runtime/outbound-liri
+        s-inbox.ndjson` and wrote `reports/liris-next-phase-startup-order-latest.md`. Current exac
+        t order to Rayssa/Liris is bounded local startup on `C:\Users\rayss\Asolaria` with `ASOLAR
+        IA_STARTUP_AUTORUN=false`, `ASOLARIA_HTTPS_ENABLE=false`, and `ASOLARIA_MQTT_BIND_HOST=0.0
+        .0.0`, followed by local health/MQTT verification and report-back to Jesse through WhatsAp
+        p/direct owner relay only. Do not use `4799`; do not assume the friend bridge room is live
+        .
+     6 +
+     7  - [ ] Roll indexed-memory retrieval slice onto the protected main runtime listener (2026-0
+        3-22 22:55 -03:00): the implementation is complete and contract-verified on a sidecar runt
+        ime, but the primary `4781` listener is still owned by protected PID `376`. Standard `npm
+        run restart:main` failed with access denied while trying to replace that listener. Next mo
+        ve is an owner-controlled restart of the main Asolaria process so the new `/api/workspace-
+        knowledge/index/*` routes and prompt-context integration become live on the primary runtim
+        e.
+       ⋮
+    12
+    13 +- [x] Liris next-phase startup order packetized and indexed (2026-03-22 23:05 -03:00): rec
+        orded the bounded Rayssa/Liris startup order, wrote `reports/liris-next-phase-startup-orde
+        r-20260322-230500.md` (`latest`: `reports/liris-next-phase-startup-order-latest.md`), appe
+        nded packet `gaia_liris_next_phase_startup_20260322` to `runtime/outbound-liris-inbox.ndjs
+        on`, and indexed the order as `IX-244` and `IX-245`. Current truth remains unchanged: deli
+        very to Liris still depends on Jesse's manual relay because the friend room is not yet liv
+        e in host policy/sender-token state.
+    14 +
+    15  - [x] Recent downloads two-pass Gemini analysis completed and indexed (2026-03-22 18:52 -0
+        3:00): processed the last `15` files in `C:\Users\acer\Downloads` with the local `recent-d
+        ownload-analysis` Gemini tool, reran the full batch after fixing video upload/processing,
+        emitted final first-pass artifacts `reports/recent-downloads-first-pass-20260322-184824.{m
+        d,json}`, generated deep-pass synthesis `reports/recent-downloads-deep-pass-20260322-18512
+        0.{md,json}`, wrote the combined packet `reports/recent-downloads-analysis-20260322-185220
+        .md` (`latest`: `reports/recent-downloads-analysis-latest.md`), stored the owner observati
+        on `data/vault/owner/observations/recent-downloads-analysis-20260322-185220.md`, extended
+        the local tool to support `--deep-pass-json`, and indexed the batch as `IX-225` through `I
+        X-241`. Source downloads remain sensitive; prefer the packet/IX surfaces over reopening ra
+        w screenshots.
+  └ data\agent-index\CATALOG.md (+9 -1)
+    406  | 243 | Indexed memory slice verified on sidecar runtime because protected main listener
+         blocked restart | reference | verification, agent-index, workspace-knowledge, sidecar, 57
+         481, protected-listener | → 242, 238, 060 | all |
+    407 +| 244 | Liris next-phase startup must use bounded local Asolaria boot plus manual owner r
+         elay | plan | liris, rayssa, startup, manual-relay, next-phase, 4799, bridge | → 223, 224
+         , 243 | all |
+    408 +| 245 | Liris startup packet appended locally, but manual relay remains authoritative | r
+         eference | liris, packet, outbound-inbox, manual-relay, authoritative-path | → 244, 224,
+         221 | all |
+    409
+        ⋮
+    448
+    447 -## Next available: IX-244
+    449 +**Liris startup chain:** IX-244 → IX-224 → IX-223
+    450 +> Rayssa/Liris should use bounded local Asolaria startup and report back through Jesse's
+         manual relay until the friend room is genuinely live.
+    451 +
+    452 +**Liris packet chain:** IX-245 → IX-244 → IX-221
+    453 +> The startup order is stored locally in the outbound Liris inbox, but local packet appen
+         d does not replace the current manual relay reality.
+    454 +
+    455 +## Next available: IX-246
+  └ data\agent-index\IX-244.md (+23 -0)
+     1 +---
+     2 +ix: 244
+     3 +name: Liris next-phase startup must use bounded local Asolaria boot plus manual owner rela
+        y
+     4 +type: plan
+     5 +tags: [liris, rayssa, startup, manual-relay, next-phase, 4799, bridge]
+     6 +chain: [IX-223, IX-224, IX-243]
+     7 +agents: [all]
+     8 +---
+     9 +
+    10 +# Liris Next-Phase Startup Order
+    11 +
+    12 +- Start local Asolaria on the Rayssa machine with bounded settings:
+    13 +  - `ASOLARIA_STARTUP_AUTORUN=false`
+    14 +  - `ASOLARIA_HTTPS_ENABLE=false`
+    15 +  - `ASOLARIA_MQTT_BIND_HOST=0.0.0.0`
+    16 +- Verify local health and MQTT port.
+    17 +- Return results through manual owner relay only.
+    18 +
+    19 +## Do Not
+    20 +
+    21 +- do not use `4799`
+    22 +- do not assume the friend bridge room is live
+    23 +- do not mutate sender-policy or bridge tokens during this phase
+  └ data\agent-index\IX-245.md (+20 -0)
+     1 +---
+     2 +ix: 245
+     3 +name: Liris startup packet appended locally, but manual relay remains authoritative
+     4 +type: reference
+     5 +tags: [liris, packet, outbound-inbox, manual-relay, authoritative-path]
+     6 +chain: [IX-244, IX-224, IX-221]
+     7 +agents: [all]
+     8 +---
+     9 +
+    10 +# Liris Startup Packet State
+    11 +
+    12 +- Packet id: `gaia_liris_next_phase_startup_20260322`
+    13 +- Stored in: `runtime/outbound-liris-inbox.ndjson`
+    14 +- Matching human-readable report:
+    15 +  - `reports/liris-next-phase-startup-order-latest.md`
+    16 +
+    17 +## Operational Truth
+    18 +
+    19 +- Appending the packet preserves local colony memory.
+    20 +- Delivery still depends on Jesse's manual owner relay until the Liris friend room is actu
+        ally live in host policy and sender-token state.
+  └ reports\liris-next-phase-startup-order-20260322-230500.md (+61 -0)
+     1 +# Liris Next-Phase Startup Order
+     2 +
+     3 +- Generated: `2026-03-22 23:05 -03:00`
+     4 +- Relay target: `Liris` / Rayssa machine
+     5 +- Current return lane: manual owner relay only
+     6 +
+     7 +## Why This Order Exists
+     8 +
+     9 +- The friend bridge room `asolaria-friend-rayss` is still staged pack material, not a live
+         registered room on this host.
+    10 +- `4799` remains a dead/unaudited side channel and must not be used.
+    11 +- The safest next move is bounded local Asolaria startup on the Rayssa machine, followed b
+        y manual report-back to Jesse.
+    12 +
+    13 +## Exact Liris Order
+    14 +
+    15 +1. Open PowerShell in `C:\Users\rayss\Asolaria`
+    16 +2. Run exactly:
+    17 +   - `pwd`
+    18 +   - `dir`
+    19 +   - `git branch --show-current`
+    20 +   - `git rev-parse --short HEAD`
+    21 +   - `git status --short`
+    22 +   - `node --version`
+    23 +   - `npm --version`
+    24 +   - `codex --version`
+    25 +3. Install local deps if needed:
+    26 +   - `npm install`
+    27 +   - If this fails, stop and report the exact error.
+    28 +4. Start bounded local runtime in that same shell:
+    29 +   - `$env:ASOLARIA_STARTUP_AUTORUN='false'`
+    30 +   - `$env:ASOLARIA_HTTPS_ENABLE='false'`
+    31 +   - `$env:ASOLARIA_MQTT_BIND_HOST='0.0.0.0'`
+    32 +   - `npm start`
+    33 +5. If startup says port is already in use:
+    34 +   - `netstat -ano | findstr :4781`
+    35 +   - report the PID; do not kill anything yet
+    36 +6. Verify in a second PowerShell:
+    37 +   - `Invoke-RestMethod http://127.0.0.1:4781/api/health/fast`
+    38 +   - `Test-NetConnection 127.0.0.1 -Port 18883`
+    39 +7. Write:
+    40 +   - `C:\Users\rayss\Asolaria\reports\asolaria-next-phase-startup-20260322.md`
+    41 +8. Required contents of that report:
+    42 +   - branch
+    43 +   - commit
+    44 +   - node/npm/codex versions
+    45 +   - `npm install` result
+    46 +   - exact health JSON
+    47 +   - MQTT port result
+    48 +   - any blocking error
+    49 +9. Return results through manual owner relay only:
+    50 +   - WhatsApp or direct owner relay to Jesse
+    51 +   - do not use `4799`
+    52 +   - do not attempt the friend bridge until Jesse explicitly says the room/policy is live
+    53 +
+    54 +## Failure Rule
+    55 +
+    56 +- If `C:\Users\rayss\Asolaria` or `package.json` is missing, stop and report exactly what
+        exists instead.
+    57 +
+    58 +## Local Packetization
+    59 +
+    60 +- Appended to `runtime/outbound-liris-inbox.ndjson` as `gaia_liris_next_phase_startup_2026
+        0322`
+    61 +- This packet should still be manually relayed by Jesse because the live friend bridge pat
+        h is not yet authoritative
+  └ reports\liris-next-phase-startup-order-latest.md (+61 -0)
+     1 +# Liris Next-Phase Startup Order
+     2 +
+     3 +- Generated: `2026-03-22 23:05 -03:00`
+     4 +- Relay target: `Liris` / Rayssa machine
+     5 +- Current return lane: manual owner relay only
+     6 +
+     7 +## Why This Order Exists
+     8 +
+     9 +- The friend bridge room `asolaria-friend-rayss` is still staged pack material, not a live
+         registered room on this host.
+    10 +- `4799` remains a dead/unaudited side channel and must not be used.
+    11 +- The safest next move is bounded local Asolaria startup on the Rayssa machine, followed b
+        y manual report-back to Jesse.
+    12 +
+    13 +## Exact Liris Order
+    14 +
+    15 +1. Open PowerShell in `C:\Users\rayss\Asolaria`
+    16 +2. Run exactly:
+    17 +   - `pwd`
+    18 +   - `dir`
+    19 +   - `git branch --show-current`
+    20 +   - `git rev-parse --short HEAD`
+    21 +   - `git status --short`
+    22 +   - `node --version`
+    23 +   - `npm --version`
+    24 +   - `codex --version`
+    25 +3. Install local deps if needed:
+    26 +   - `npm install`
+    27 +   - If this fails, stop and report the exact error.
+    28 +4. Start bounded local runtime in that same shell:
+    29 +   - `$env:ASOLARIA_STARTUP_AUTORUN='false'`
+    30 +   - `$env:ASOLARIA_HTTPS_ENABLE='false'`
+    31 +   - `$env:ASOLARIA_MQTT_BIND_HOST='0.0.0.0'`
+    32 +   - `npm start`
+    33 +5. If startup says port is already in use:
+    34 +   - `netstat -ano | findstr :4781`
+    35 +   - report the PID; do not kill anything yet
+    36 +6. Verify in a second PowerShell:
+    37 +   - `Invoke-RestMethod http://127.0.0.1:4781/api/health/fast`
+    38 +   - `Test-NetConnection 127.0.0.1 -Port 18883`
+    39 +7. Write:
+    40 +   - `C:\Users\rayss\Asolaria\reports\asolaria-next-phase-startup-20260322.md`
+    41 +8. Required contents of that report:
+    42 +   - branch
+    43 +   - commit
+    44 +   - node/npm/codex versions
+    45 +   - `npm install` result
+    46 +   - exact health JSON
+    47 +   - MQTT port result
+    48 +   - any blocking error
+    49 +9. Return results through manual owner relay only:
+    50 +   - WhatsApp or direct owner relay to Jesse
+    51 +   - do not use `4799`
+    52 +   - do not attempt the friend bridge until Jesse explicitly says the room/policy is live
+    53 +
+    54 +## Failure Rule
+    55 +
+    56 +- If `C:\Users\rayss\Asolaria` or `package.json` is missing, stop and report exactly what
+        exists instead.
+    57 +
+    58 +## Local Packetization
+    59 +
+    60 +- Appended to `runtime/outbound-liris-inbox.ndjson` as `gaia_liris_next_phase_startup_2026
+        0322`
+    61 +- This packet should still be manually relayed by Jesse because the live friend bridge pat
+        h is not yet authoritative
+  └ runtime\outbound-liris-inbox.ndjson (+1 -0)
+    16  {"id":"gaia_liris_ebacmap_return_fix_20260322","ts":"2026-03-22T21:25:41.000Z","source":"G
+        aia","reason":"ebacmap_return_correction","mode":"append","text":"Liris — Gaia correction
+        from Jesse. SUPERCEDING STEP 11 from the earlier smoke packet: do NOT use the Gaia-Liris H
+        TTP bridge on 192.168.1.3:4799 for this QDD return. That lane is not live right now. For t
+        his smoke only, send your summary and the contents of C:/Users/rayss/Asolaria/reports/ezpr
+        otect-smoke-results-20260322.md to Jesse through the current manual owner relay path — Wha
+        tsApp or direct owner relay. Jesse will relay onward. Keep the temporary external-node lin
+        k preserved, but do not depend on 4799 until Jesse explicitly says that lane is live again
+        . —Gaia"}
+    17 +{"id":"gaia_liris_next_phase_startup_20260322","ts":"2026-03-22T23:05:00.000Z","source":"G
+        aia","reason":"next_phase_startup","mode":"append","text":"Liris — Gaia here, relaying fro
+        m Jesse. NEXT PHASE is bounded local Asolaria startup on your machine. Current rule: do NO
+        T use 4799, do NOT attempt the friend bridge room, and do NOT change sender-policy or toke
+        ns yet. Exact steps:\n\nSTEP 1: Open PowerShell in C:\\Users\\rayss\\Asolaria\n\nSTEP 2: R
+        eport local state.\nRun exactly:\npwd\ndir\ngit branch --show-current\ngit rev-parse --sho
+        rt HEAD\ngit status --short\nnode --version\nnpm --version\ncodex --version\n\nSTEP 3: Ins
+        ST='0.0.0.0'\nnpm start\nIf startup says port is already in use, STOP and run:\nnetstat -a
+        no | findstr :4781\nReport the PID. Do not kill anything yet.\n\nSTEP 5: Verify in a SECON
+        D PowerShell.\nRun exactly:\nInvoke-RestMethod http://127.0.0.1:4781/api/health/fast\nTest
+        -NetConnection 127.0.0.1 -Port 18883\n\nSTEP 6: Write report file:\nC:\\Users\\rayss\\Asol
+        aria\\reports\\asolaria-next-phase-startup-20260322.md\nInclude: branch, commit, node/npm/
+─ Worked for 1m 11s ──────────────────────────────────────────────────────────────────────────────
+• The packet is stored and the local Liris inbox now carries it. I’m doing a quick line check so I
+  can hand you the exact relay text and file anchors cleanly.
+• Running rg -n "gaia_liris_next_phase_startup_20260322|Liris Next-Phase Startup Order|^ix: 244|
+  │ ^ix: 245|Next available: IX-246|Await Liris next-phase Asolaria startup response via
+  │ manual owner relay|Liris next-phase startup order packetized and indexed" 'C:
+  │ … +5 lines
+• Ran rg -n "gaia_liris_next_phase_startup_20260322|Liris Next-Phase Startup Order|^ix: 244|^ix:
+  │ 245|Next available: IX-246|Await Liris next-phase Asolaria startup response via manual owner
+  │ relay|Liris next-phase startup order packetized and indexed" 'C:
+  │ … +5 lines
+  └ C:\Users\acer\Asolaria\data\agent-index\IX-245.md:2:ix: 245
+    C:\Users\acer\Asolaria\data\agent-index\IX-245.md:12:- Packet id:
+    … +43 lines
+    depends on Jesse's manual relay because the friend room is not yet live in host policy/
+    sender-token state.
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\reports\liris-next-phase-startup-order-latest.md'
+  │ -TotalCount 220
+  └ # Liris Next-Phase Startup Order
+    … +59 lines
+    - This packet should still be manually relayed by Jesse because the live friend bridge path is
+    not yet authoritative
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• Recorded.
+  - Packet/report: reports/liris-next-phase-startup-order-latest.md:1
+  - Index: data/agent-index/IX-244.md:1, data/agent-index/IX-245.md:1
+  - Task ledger: TASKS.md:5
+  - Local outbound packet appended: runtime/outbound-liris-inbox.ndjson:17
+  I did append the packet locally, but the live friend bridge path is still not authoritative.
+  Manual owner relay is still the real path. Send this to Liris verbatim:
+  Liris — Gaia here, relaying from Jesse. NEXT PHASE is bounded local Asolaria startup on your
+  machine. Current rule: do NOT use 4799, do NOT attempt the friend bridge room, and do NOT change
+  sender-policy or tokens yet.
+  STEP 1: Open PowerShell in C:\Users\rayss\Asolaria
+  STEP 2: Report local state. Run exactly:
+  pwd
+  dir
+  git branch --show-current
+  git rev-parse --short HEAD
+  git status --short
+  node --version
+  npm --version
+  codex --version
+  STEP 3: Install local deps if needed. Run:
+  npm install
+  If this fails, STOP and report the exact error.
+  STEP 4: Start bounded local runtime in that same shell. Run exactly:
+  $env:ASOLARIA_STARTUP_AUTORUN='false'
+  $env:ASOLARIA_HTTPS_ENABLE='false'
+  $env:ASOLARIA_MQTT_BIND_HOST='0.0.0.0'
+  npm start
+  If startup says port is already in use, STOP and run:
+  netstat -ano | findstr :4781
+  STEP 5: Verify in a SECOND PowerShell. Run exactly:
+  Invoke-RestMethod http://127.0.0.1:4781/api/health/fast
+  Test-NetConnection 127.0.0.1 -Port 18883
+  Include: branch, commit, node/npm/codex versions, npm install result, exact health JSON, MQTT
+  port result, and any blocking error.
+  STEP 7: Return results to Jesse through the current manual owner relay path ONLY — WhatsApp or
+› Ok, I will. Now I want you to think and tell me what you think your next steps should be while
+  we wait, add that to memory, index it, and then implement that plan. When you finish, memory,
+  index, and respond.
+• I’m treating this as a waiting-state execution request, not just planning. I’ll decide the
+  highest-value local work we can complete without Liris, store that decision in memory/index,
+  then implement the supporting tooling so her response can be processed immediately when it
+  arrives.
+• Running rg -n "startup report|smoke results|report file|manual owner relay|validation|
+  │ verify.*report|intake" -S 'C:\Users\acer\Asolaria\tools' 'C:
+  │ \Users\acer\Asolaria\scripts' 'C:\Users\acer\Asolaria\src' 'C:
+  │ … +1 lines
+• Running Get-ChildItem -Path 'C:\Users\acer\Asolaria\scripts' -File | Select-Object Name
+• Ran Get-ChildItem -Path 'C:\Users\acer\Asolaria\tools' -File | Select-Object Name
+  └
+    Name
+    … +177 lines
+    Write-QDD-ExternalAdmin-Handoff.ps1
+• Ran Get-ChildItem -Path 'C:\Users\acer\Asolaria\scripts' -File | Select-Object Name
+  └
+    Name
+    … +4 lines
+    generate-codex-skill-wrappers.js
+• Ran rg -n "startup report|smoke results|report file|manual owner relay|validation|
+  │ verify.*report|intake" -S 'C:\Users\acer\Asolaria\tools' 'C:\Users\acer\Asolaria\scripts'
+  │ 'C:\Users\acer\Asolaria\src' 'C:\Users\acer\Asolaria\reports'
+  └ C:\Users\acer\Asolaria\tools\AGENTS-mcp-audit-snippet.md:27:   - Caching/invalidation strategy
+    C:\Users\acer\Asolaria\tools\augment-mcp-bridge.js:651:  // Skip localhost-only Host
+    … +1274 lines
+    \Users\acer\Asolaria\reports\windows-sweep-20260302-163821\scheduled_tasks_risk_scored.json:40
+    82:        "taskName":  "\\Microsoft\\Windows\\WOF\\WIM-Hash-Validation",
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I’ve picked the waiting-state plan: make Liris’s reply machine-checkable the moment it arrives.
+  I’m implementing a local startup-report validator and a matching report template, then I’ll
+  packetize that plan into memory/index so the next move is deterministic instead of
+  conversational.
+• I’m writing the waiting-state tooling now: a validator for Liris’s startup report, a matching
+  template, and a short wait-plan packet that defines the exact branch point once her reply comes
+  in.
+• Edited 7 files (+369 -1)
+  └ TASKS.md (+4 -0)
+     6
+     7 +- [ ] When Liris replies, run deterministic intake first (2026-03-22 23:15 -03:00): use `p
+        owershell -ExecutionPolicy Bypass -File .\tools\Validate-LirisStartupReport.ps1 -ReportPat
+        h <path-to-liris-report>` and treat its verdict as the branch point. If the validator says
+         `ready_for_next_phase`, move to protected-main-listener rollout and cross-runtime compari
+        son. If it says blocked/incomplete, keep manual relay and fix the Rayssa machine before an
+        y bridge mutation.
+     8 +
+     9  - [ ] Roll indexed-memory retrieval slice onto the protected main runtime listener (2026-0
+        3-22 22:55 -03:00): the implementation is complete and contract-verified on a sidecar runt
+        ime, but the primary `4781` listener is still owned by protected PID `376`. Standard `npm
+        run restart:main` failed with access denied while trying to replace that listener. Next mo
+        ve is an owner-controlled restart of the main Asolaria process so the new `/api/workspace-
+        knowledge/index/*` routes and prompt-context integration become live on the primary runtim
+        e.
+       ⋮
+    16
+    17 +- [x] Liris waiting-state plan implemented locally (2026-03-22 23:15 -03:00): decided that
+         the highest-value work while waiting is deterministic intake rather than more bridge spec
+        ulation, wrote `reports/liris-wait-plan-20260322-231500.md`, added the report template `re
+        ports/liris-next-phase-startup-report-template.md`, implemented `tools/Validate-LirisStart
+        upReport.ps1`, and indexed the plan/tool as `IX-246` and `IX-247`. This means the next bra
+        nch after Liris replies can be decided from a concrete validator verdict instead of ad hoc
+         chat interpretation.
+    18 +
+    19  - [x] Recent downloads two-pass Gemini analysis completed and indexed (2026-03-22 18:52 -0
+        3:00): processed the last `15` files in `C:\Users\acer\Downloads` with the local `recent-d
+        ownload-analysis` Gemini tool, reran the full batch after fixing video upload/processing,
+        emitted final first-pass artifacts `reports/recent-downloads-first-pass-20260322-184824.{m
+        d,json}`, generated deep-pass synthesis `reports/recent-downloads-deep-pass-20260322-18512
+        0.{md,json}`, wrote the combined packet `reports/recent-downloads-analysis-20260322-185220
+        .md` (`latest`: `reports/recent-downloads-analysis-latest.md`), stored the owner observati
+        on `data/vault/owner/observations/recent-downloads-analysis-20260322-185220.md`, extended
+        the local tool to support `--deep-pass-json`, and indexed the batch as `IX-225` through `I
+        X-241`. Source downloads remain sensitive; prefer the packet/IX surfaces over reopening ra
+        w screenshots.
+  └ data\agent-index\CATALOG.md (+9 -1)
+    408  | 245 | Liris startup packet appended locally, but manual relay remains authoritative | r
+         eference | liris, packet, outbound-inbox, manual-relay, authoritative-path | → 244, 224,
+         221 | all |
+    409 +| 246 | While waiting for Liris, the right move is deterministic intake, not new bridge s
+         peculation | plan | liris, waiting, intake, validation, relay, next-phase | → 244, 245, 2
+         43 | all |
+    410 +| 247 | Liris startup report validator exists locally and gates the next branch choice |
+         tool | liris, validator, startup-report, powershell, intake, readiness | → 246, 244, 242
+         | all |
+    411
+        ⋮
+    456
+    455 -## Next available: IX-246
+    457 +**Liris waiting chain:** IX-246 → IX-245 → IX-244
+    458 +> While waiting for the startup reply, prepare deterministic intake and keep the manual r
+         elay truth fixed.
+    459 +
+    460 +**Liris validation chain:** IX-247 → IX-246 → IX-242
+    461 +> The incoming startup report now has a local validator, tied back to the waiting plan an
+         d the new indexed runtime retrieval work.
+    462 +
+    463 +## Next available: IX-248
+  └ data\agent-index\IX-246.md (+14 -0)
+     1 +---
+     2 +ix: 246
+     3 +name: While waiting for Liris, the right move is deterministic intake, not new bridge spec
+        ulation
+     4 +type: plan
+     5 +tags: [liris, waiting, intake, validation, relay, next-phase]
+     6 +chain: [IX-244, IX-245, IX-243]
+     7 +agents: [all]
+     8 +---
+     9 +
+    10 +# Liris Waiting Plan
+    11 +
+    12 +- While waiting for the Rayssa/Liris startup response, reduce ambiguity instead of widenin
+        g scope.
+    13 +- The right local work is deterministic intake and validation of her response.
+    14 +- Bridge mutation still waits until both runtimes are concretely compared.
+  └ data\agent-index\IX-247.md (+28 -0)
+     1 +---
+     2 +ix: 247
+     3 +name: Liris startup report validator exists locally and gates the next branch choice
+     4 +type: tool
+     5 +tags: [liris, validator, startup-report, powershell, intake, readiness]
+     6 +chain: [IX-246, IX-244, IX-242]
+     7 +agents: [all]
+     8 +---
+     9 +
+    10 +# Liris Startup Report Validator
+    11 +
+    12 +- Tool: `tools/Validate-LirisStartupReport.ps1`
+    13 +- Purpose: judge whether the incoming Rayssa/Liris startup report is complete enough to mo
+        ve to the next phase
+    14 +- Outputs:
+    15 +  - Markdown validation report
+    16 +  - JSON validation report
+    17 +
+    18 +## It checks
+    19 +
+    20 +- branch and commit present
+    21 +- node/npm/codex versions present
+    22 +- install result recorded and not failed
+    23 +- health JSON recorded with `ok=true`
+    24 +- MQTT port `18883` result recorded and reachable
+    25 +
+    26 +## Meaning
+    27 +
+    28 +- The next move after Liris replies is now a deterministic verdict, not an improvised chat
+         interpretation.
+  └ reports\liris-next-phase-startup-report-template.md (+48 -0)
+     1 +# Liris Asolaria Startup Report Template
+     2 +
+     3 +Use this exact structure when sending the startup result back to Jesse.
+     4 +
+     5 +## Identity
+     6 +
+     7 +- Machine:
+     8 +- Branch:
+     9 +- Commit:
+    10 +- Git status:
+    11 +
+    12 +## Versions
+    13 +
+    14 +- Node version:
+    15 +- npm version:
+    16 +- Codex version:
+    17 +
+    18 +## Install
+    19 +
+    20 +- npm install result:
+    21 +- If failed, exact error:
+    22 +
+    23 +## Startup
+    24 +
+    25 +- Startup command used:
+    26 +- Did `npm start` stay running:
+    27 +- If it failed, exact error:
+    28 +- If port was already in use, `netstat -ano | findstr :4781` output:
+    29 +
+    30 +## Health JSON
+    31 +
+    32 +```json
+    33 +{}
+    34 +```
+    35 +
+    36 +## MQTT Port 18883
+    37 +
+    38 +- Test-NetConnection result:
+    39 +
+    40 +## Blocking Errors
+    41 +
+    42 +- None / list exact blockers
+    43 +
+    44 +## Notes
+    45 +
+    46 +- Return this report to Jesse through manual owner relay only.
+    47 +- Do not use `4799`.
+    48 +- Do not attempt the friend bridge until Jesse explicitly says the room/policy is live.
+  └ reports\liris-wait-plan-20260322-231500.md (+45 -0)
+     1 +# Liris Wait Plan
+     2 +
+     3 +- Generated: `2026-03-22 23:15 -03:00`
+     4 +- Scope: local work that should happen while waiting for the Rayssa/Liris startup response
+     5 +
+     6 +## Decision
+     7 +
+     8 +Do not spend the waiting period inventing more bridge theory.
+     9 +
+    10 +The highest-value local work is:
+    11 +
+    12 +1. make the incoming Liris startup report machine-checkable
+    13 +2. preserve a deterministic branch plan for what happens after the reply
+    14 +3. keep the current manual relay truth explicit
+    15 +
+    16 +## Implemented Waiting Plan
+    17 +
+    18 +- Added `tools/Validate-LirisStartupReport.ps1`
+    19 +- Added `reports/liris-next-phase-startup-report-template.md`
+    20 +
+    21 +## Branches After Reply
+    22 +
+    23 +### If the report is clean
+    24 +
+    25 +- local Asolaria on Rayssa machine is up
+    26 +- health JSON says `ok=true`
+    27 +- port `18883` is reachable
+    28 +
+    29 +Then the next move is:
+    30 +
+    31 +- roll the protected main `4781` listener on Jesse host
+    32 +- compare both runtimes
+    33 +- only then decide whether friend-room merge is justified
+    34 +
+    35 +### If the report is incomplete or blocked
+    36 +
+    37 +Then the next move is:
+    38 +
+    39 +- keep manual owner relay
+    40 +- fix local Rayssa machine issues first
+    41 +- do not touch bridge sender-policy or `4799`
+    42 +
+    43 +## Rule
+    44 +
+    45 +- Waiting time should reduce ambiguity, not create new speculative branches.
+  └ tools\Validate-LirisStartupReport.ps1 (+221 -0)
+      1 +param(
+      2 +  [Parameter(Mandatory = $true)]
+      3 +  [string]$ReportPath,
+      4 +  [string]$OutputDir = "",
+      5 +  [string]$Prefix = "liris-startup-validation"
+      6 +)
+      7 +
+      8 +Set-StrictMode -Version Latest
+      9 +$ErrorActionPreference = "Stop"
+     10 +
+     11 +function Get-AsolariaRoot {
+     12 +  return (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+     13 +}
+     14 +
+     15 +function Ensure-Dir {
+     16 +  param([string]$Path)
+     17 +  if ([string]::IsNullOrWhiteSpace($Path)) {
+     18 +    throw "Path cannot be empty."
+     19 +  }
+     20 +  if (-not (Test-Path -LiteralPath $Path)) {
+     21 +    New-Item -Path $Path -ItemType Directory -Force | Out-Null
+     22 +  }
+     23 +}
+     24 +
+     25 +function New-Stamp {
+     26 +  return (Get-Date).ToString("yyyyMMdd-HHmmss")
+     27 +}
+     28 +
+     29 +function Find-Line {
+     30 +  param(
+     31 +    [string]$Text,
+     32 +    [string[]]$Patterns
+     33 +  )
+     34 +
+     35 +  foreach ($pattern in $Patterns) {
+     36 +    $match = [regex]::Match($Text, $pattern, [System.Text.RegularExpressions.RegexOptions
+         ]::IgnoreCase -bor [System.Text.RegularExpressions.RegexOptions]::Multiline)
+     37 +    if ($match.Success) {
+     38 +      if ($match.Groups.Count -gt 1 -and -not [string]::IsNullOrWhiteSpace($match.Groups[
+         1].Value)) {
+     39 +        return $match.Groups[1].Value.Trim()
+     40 +      }
+     41 +      return $match.Value.Trim()
+     42 +    }
+     43 +  }
+     44 +  return ""
+     45 +}
+     46 +
+     47 +function Add-Check {
+     48 +  param(
+     49 +    [System.Collections.Generic.List[object]]$Checks,
+     50 +    [string]$Name,
+     51 +    [bool]$Ok,
+     52 +    [string]$Detail
+     53 +  )
+     54 +  $Checks.Add([pscustomobject]@{
+     55 +      name = $Name
+     56 +      ok = $Ok
+     57 +      detail = $Detail
+     58 +    }) | Out-Null
+     59 +}
+     60 +
+     61 +$root = Get-AsolariaRoot
+     62 +$resolvedReportPath = (Resolve-Path $ReportPath).Path
+     63 +if ([string]::IsNullOrWhiteSpace($OutputDir)) {
+     64 +  $OutputDir = Join-Path $root "reports"
+     65 +}
+     66 +Ensure-Dir -Path $OutputDir
+     67 +
+     68 +$raw = Get-Content -LiteralPath $resolvedReportPath -Raw
+     69 +$checks = New-Object 'System.Collections.Generic.List[object]'
+     70 +
+     71 +$branchLine = Find-Line -Text $raw -Patterns @(
+     72 +  "^\s*(?:[-*]\s*)?branch\s*[:=-]\s*(.+)$",
+     73 +  "^\s*branch\b.+$"
+     74 +)
+     75 +$commitLine = Find-Line -Text $raw -Patterns @(
+     76 +  "^\s*(?:[-*]\s*)?commit\s*[:=-]\s*(.+)$",
+     77 +  "^\s*commit\b.+$"
+     78 +)
+     79 +$nodeLine = Find-Line -Text $raw -Patterns @(
+     80 +  "^\s*(?:[-*]\s*)?node(?:\s+version)?\s*[:=-]\s*(.+)$",
+     81 +  "node(?:\.js)?\s+v?\d+[^\r\n]*"
+     82 +)
+     83 +$npmLine = Find-Line -Text $raw -Patterns @(
+     84 +  "^\s*(?:[-*]\s*)?npm(?:\s+version)?\s*[:=-]\s*(.+)$",
+     85 +  "npm\s+v?\d+[^\r\n]*"
+     86 +)
+     87 +$codexLine = Find-Line -Text $raw -Patterns @(
+     88 +  "^\s*(?:[-*]\s*)?codex(?:\s+version)?\s*[:=-]\s*(.+)$",
+     89 +  "codex\s+v?\d+[^\r\n]*"
+     90 +)
+     91 +$installLine = Find-Line -Text $raw -Patterns @(
+     92 +  "^\s*(?:[-*]\s*)?(?:npm install result|install result)\s*[:=-]\s*(.+)$",
+     93 +  "^.*npm install.*$"
+     94 +)
+     95 +$healthBlock = Find-Line -Text $raw -Patterns @(
+     96 +  "```json\s*([\s\S]*?)```",
+     97 +  "(\{[\s\S]*?\"ok\"\s*:\s*(?:true|false)[\s\S]*?\})"
+     98 +)
+     99 +$mqttLine = Find-Line -Text $raw -Patterns @(
+    100 +  "^\s*(?:[-*]\s*)?(?:mqtt port result|mqtt result)\s*[:=-]\s*(.+)$",
+    101 +  "TcpTestSucceeded\s*[:=]\s*(True|False)",
+    102 +  "127\.0\.0\.1\s+-Port\s+18883[^\r\n]*"
+    103 +)
+    104 +
+    105 +$installFailed = ($raw -match "(?im)^\s*(?:npm install result|install result)\s*[:=-]\s*.
+         *(?:fail|failed|error|exit 1)") -or ($raw -match "(?im)^.*npm install.*(?:ERR!|failed|err
+         or).*$")
+    106 +$healthOk = $raw -match "(?i)\"ok\"\s*:\s*true" -or $raw -match "(?im)\bok\s*[:=]\s*true\
+         b"
+    107 +$mqttSuccess = $raw -match "(?im)TcpTestSucceeded\s*[:=]\s*True" -or $raw -match "(?im)mq
+         tt(?:\s+port)?\s+(?:result|status)\s*[:=-]\s*.*\btrue\b"
+    108 +
+    109 +Add-Check -Checks $checks -Name "branch_recorded" -Ok (-not [string]::IsNullOrWhiteSpace(
+         $branchLine)) -Detail ($branchLine ?: "missing")
+    110 +Add-Check -Checks $checks -Name "commit_recorded" -Ok (-not [string]::IsNullOrWhiteSpace(
+         $commitLine)) -Detail ($commitLine ?: "missing")
+    111 +Add-Check -Checks $checks -Name "node_version_recorded" -Ok (-not [string]::IsNullOrWhite
+         Space($nodeLine)) -Detail ($nodeLine ?: "missing")
+    112 +Add-Check -Checks $checks -Name "npm_version_recorded" -Ok (-not [string]::IsNullOrWhiteS
+         pace($npmLine)) -Detail ($npmLine ?: "missing")
+    113 +Add-Check -Checks $checks -Name "codex_version_recorded" -Ok (-not [string]::IsNullOrWhit
+         eSpace($codexLine)) -Detail ($codexLine ?: "missing")
+    114 +Add-Check -Checks $checks -Name "install_result_recorded" -Ok (-not [string]::IsNullOrWhi
+         teSpace($installLine)) -Detail ($installLine ?: "missing")
+    115 +Add-Check -Checks $checks -Name "install_not_failed" -Ok (-not $installFailed) -Detail ($
+         (if ($installFailed) { "install failure detected" } else { "no install failure detected"
+         }))
+    116 +Add-Check -Checks $checks -Name "health_json_recorded" -Ok (-not [string]::IsNullOrWhiteS
+         pace($healthBlock)) -Detail ($(if ($healthBlock) { "health block present" } else { "missi
+         ng" }))
+    117 +Add-Check -Checks $checks -Name "health_ok_true" -Ok $healthOk -Detail ($(if ($healthOk)
+         { "runtime reports ok=true" } else { "missing ok=true" }))
+    118 +Add-Check -Checks $checks -Name "mqtt_result_recorded" -Ok (-not [string]::IsNullOrWhiteS
+         pace($mqttLine)) -Detail ($mqttLine ?: "missing")
+    119 +Add-Check -Checks $checks -Name "mqtt_success" -Ok $mqttSuccess -Detail ($(if ($mqttSucce
+         ss) { "18883 reachable" } else { "18883 not confirmed reachable" }))
+    120 +
+    121 +$requiredReady = @(
+    122 +  "branch_recorded",
+    123 +  "commit_recorded",
+    124 +  "node_version_recorded",
+    125 +  "npm_version_recorded",
+    126 +  "codex_version_recorded",
+    127 +  "install_result_recorded",
+    128 +  "install_not_failed",
+    129 +  "health_json_recorded",
+    130 +  "health_ok_true",
+    131 +  "mqtt_result_recorded",
+    132 +  "mqtt_success"
+    133 +)
+    134 +$requiredOk = @($checks | Where-Object { $requiredReady -contains $_.name -and $_.ok }).C
+         ount
+    135 +$ready = ($requiredOk -eq $requiredReady.Count)
+    136 +
+    137 +$verdict = "incomplete_report"
+    138 +if ($ready) {
+    139 +  $verdict = "ready_for_next_phase"
+    140 +} elseif ($installFailed) {
+    141 +  $verdict = "blocked_install"
+    142 +} elseif (-not $healthOk) {
+    143 +  $verdict = "blocked_runtime"
+    144 +} elseif (-not $mqttSuccess) {
+    145 +  $verdict = "runtime_up_mqtt_unconfirmed"
+    146 +}
+    147 +
+    148 +$recommendations = New-Object 'System.Collections.Generic.List[string]'
+    149 +if ($ready) {
+    150 +  $recommendations.Add("Liris report is complete enough to compare against host state and
+          choose the next bridge/rollout move.") | Out-Null
+    151 +  $recommendations.Add("Next local move: roll the protected 4781 listener so indexed-memo
+         ry retrieval is live on the main runtime before deeper federation work.") | Out-Null
+    152 +} else {
+    153 +  if ($installFailed) {
+    154 +    $recommendations.Add("Do not move to bridge or policy work. Resolve the install failu
+         re on the Rayssa machine first.") | Out-Null
+    155 +  }
+    156 +  if (-not $healthOk) {
+    157 +    $recommendations.Add("Ask Liris for the exact /api/health/fast response or the startu
+         p error from the `npm start` shell.") | Out-Null
+    158 +  }
+    159 +  if (-not $mqttSuccess) {
+    160 +    $recommendations.Add("Keep manual owner relay as the only return path. Do not assume
+         MQTT reachability yet.") | Out-Null
+    161 +  }
+    162 +  if (-not [string]::IsNullOrWhiteSpace($healthBlock) -and -not $healthOk) {
+    163 +    $recommendations.Add("If the health JSON is present but `ok` is not true, treat the R
+         ayssa runtime as blocked, not partially ready.") | Out-Null
+    164 +  }
+    165 +  if ($checks.Where({ -not $_.ok }).Count -gt 0) {
+    166 +    $recommendations.Add("Ask for a resend using the report template if key fields are mi
+         ssing.") | Out-Null
+    167 +  }
+    168 +}
+    169 +
+    170 +$stamp = New-Stamp
+    171 +$reportBase = Join-Path $OutputDir ("{0}-{1}" -f $Prefix, $stamp)
+    172 +$jsonPath = "$reportBase.json"
+    173 +$mdPath = "$reportBase.md"
+    174 +
+    175 +$result = [pscustomobject]@{
+    176 +  ok = $true
+    177 +  reportPath = $resolvedReportPath
+    178 +  generatedAt = (Get-Date).ToString("o")
+    179 +  verdict = $verdict
+    180 +  readyForNextPhase = $ready
+    181 +  checks = @($checks)
+    182 +  recommendations = @($recommendations)
+    183 +}
+    184 +
+    185 +$jsonText = $result | ConvertTo-Json -Depth 6
+    186 +Set-Content -LiteralPath $jsonPath -Value $jsonText -Encoding UTF8
+    187 +
+    188 +$lines = New-Object 'System.Collections.Generic.List[string]'
+    189 +$lines.Add("# Liris Startup Validation") | Out-Null
+    190 +$lines.Add("") | Out-Null
+    191 +$lines.Add(("- Generated: `{0}`" -f $result.generatedAt)) | Out-Null
+    192 +$lines.Add(("- Source report: `{0}`" -f $resolvedReportPath)) | Out-Null
+    193 +$lines.Add(("- Verdict: `{0}`" -f $verdict)) | Out-Null
+    194 +$lines.Add(("- Ready for next phase: `{0}`" -f $ready)) | Out-Null
+    195 +$lines.Add("") | Out-Null
+    196 +$lines.Add("## Checks") | Out-Null
+    197 +$lines.Add("") | Out-Null
+    198 +$lines.Add("| Check | OK | Detail |") | Out-Null
+    199 +$lines.Add("|---|---|---|") | Out-Null
+    200 +foreach ($check in $checks) {
+    201 +  $status = if ($check.ok) { "yes" } else { "no" }
+    202 +  $detail = String($check.detail).Replace("|", "\|")
+    203 +  $lines.Add(("| {0} | {1} | {2} |" -f $check.name, $status, $detail)) | Out-Null
+    204 +}
+    205 +$lines.Add("") | Out-Null
+    206 +$lines.Add("## Recommendations") | Out-Null
+    207 +$lines.Add("") | Out-Null
+    208 +foreach ($item in $recommendations) {
+    209 +  $lines.Add(("- {0}" -f $item)) | Out-Null
+    210 +}
+    211 +$lines.Add("") | Out-Null
+    212 +Set-Content -LiteralPath $mdPath -Value ($lines -join [Environment]::NewLine) -Encoding U
+    214 +$stdout = [pscustomobject]@{
+    215 +  ok = $true
+    216 +  verdict = $verdict
+    217 +  readyForNextPhase = $ready
+    218 +  json = $jsonPath
+    219 +  markdown = $mdPath
+    220 +}
+    221 +$stdout | ConvertTo-Json -Depth 4
+─ Worked for 2m 42s ──────────────────────────────────────────────────────────────────────────────
+• Context compacted
+• I’m treating the waiting period as a readiness problem: verify the intake path for Liris’s
+  report, then leave a clean branch point for the next phase. I’m checking the validator,
+  template, and task/index state before I touch anything else.
+• Running Get-Content -Path 'C:\Users\acer\Asolaria\tools\Validate-LirisStartupReport.ps1'
+• Running Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\reports\liris-next-phase-startup-report-template.md'
+• Running Get-Content -Path 'C:\Users\acer\Asolaria\TASKS.md'
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\tools\Validate-LirisStartupReport.ps1'
+  └ param(
+      [Parameter(Mandatory = $true)]
+    … +217 lines
+    }
+    $stdout | ConvertTo-Json -Depth 4
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\TASKS.md'
+  └ # Tasks and Agents
+    … +764 lines
+    were not closed in this pass to avoid killing the owner's standalone desktop app without a
+    sharper instruction.
+• Ran Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\reports\liris-next-phase-startup-report-template.md'
+  └ # Liris Asolaria Startup Report Template
+    … +44 lines
+    - Do not use `4799`.
+    - Do not attempt the friend bridge until Jesse explicitly says the room/policy is live.
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\reports\liris-wait-plan-20260322-231500.md'
+  └ # Liris Wait Plan
+    … +41 lines
+    - Waiting time should reduce ambiguity, not create new speculative branches.
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The validator needs a real execution test. I’m creating a synthetic Liris report in the repo and
+  running the script against it so the waiting-state plan is actually executable, not just written
+  down.
+• Added reports\liris-startup-sample-report.md (+43 -0)
+     1 +# Liris Asolaria Startup Report
+     2 +
+     3 +## Identity
+     4 +
+     5 +- Machine: RAYSSA-LOCAL
+     6 +- Branch: main
+     7 +- Commit: abc1234
+     8 +- Git status: clean
+     9 +
+    10 +## Versions
+    11 +
+    12 +- Node version: v22.14.0
+    13 +- npm version: 10.9.2
+    14 +- Codex version: 0.37.1
+    15 +
+    16 +## Install
+    17 +
+    18 +- npm install result: success
+    19 +- If failed, exact error:
+    20 +
+    21 +## Startup
+    22 +
+    23 +- Startup command used: npm start
+    24 +- Did `npm start` stay running: yes
+    25 +- If it failed, exact error:
+    37 +## MQTT Port 18883
+    38 +
+    39 +- Test-NetConnection result: TcpTestSucceeded : True
+    40 +
+• Ran powershell -ExecutionPolicy Bypass -File '.\tools\Validate-LirisStartupReport.ps1'
+  │ -ReportPath '.\reports\liris-startup-sample-report.md'
+  └ No C:\Users\acer\Asolaria\tools\Validate-LirisStartupReport.ps1:97 caractere:4
+    +   "(\{[\s\S]*?\"ok\"\s*:\s*(?:true|false)[\s\S]*?\})"
+    … +43 lines
+        + FullyQualifiedErrorId : UnexpectedToken
+› Do a full excavation on the last download file I made just now.
+• I’m switching to the newest item in Downloads, identifying the file type first, then I’ll do a
+  full excavation with the local Gemini analysis path if the format supports it.
+• Running Get-Content -Path 'C:\Users\acer\.codex\skills\recent-download-analysis\SKILL.md'
+• Ran Get-Content -Path 'C:\Users\acer\.codex\skills\recent-download-analysis\SKILL.md'
+  └ ---
+• Ran Get-ChildItem -Path 'C:\Users\acer\Downloads' -File | Sort-Object LastWriteTime -Descending
+  │ | Select-Object -First 5 FullName,Name,Length,LastWriteTime,Extension | Format-List
+  └
+    FullName      : C:\Users\acer\Downloads\I.docx
+    … +27 lines
+    Extension     : .png
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The newest download is C:/Users/acer/Downloads/I.docx. I’m checking the analysis tool’s document
+• Ran rg -n "docx|pdf|markdown|text|mime|suffix|extension" 'C:
+  │ \Users\acer\.codex\skills\recent-download-analysis\scripts\analyze_recent_downloads.py'
+  └ 5:import mimetypes
+    33:    parser.add_argument("--max-text-chars", type=int, default=20000)
+    … +75 lines
+         | Missing file specification after redirection operator.
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The existing batch script only treats plain-text files as documents. .docx is not in that path,
+  so I’m moving to a direct .docx extraction plus deep analysis instead of pretending the generic
+  downloader tool already supports it.
+• Running python -c "import pathlib; p=pathlib.Path(r'C:\Users\acer\Downloads\I.docx');
+  │ print(p.exists(), p.suffix, p.stat().st_size)"
+  │ Select-Object -Index (300..410)
+  └
+  │ print(p.exists(), p.suffix, p.stat().st_size)"
+  └ True .docx 21288
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I’m using two local skills in sequence: recent-download-analysis for the analysis pattern, then
+  doc because the target is a .docx and I need clean text extraction instead of metadata-only
+  fallback.
+• Running Get-Content -Path 'C:\Users\acer\.codex\skills\doc\SKILL.md'
+    them.
+• Ran Get-ChildItem -Path 'C:\Users\acer\.codex\skills\doc' -Recurse | Select-Object FullName
+  └
+    FullName
+    … +9 lines
+    C:\Users\acer\.codex\skills\doc\scripts\render_docx.py
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I’m extracting the document structure, properties, and plain text first. If the file has
+  meaningful layout or embedded objects, I’ll pull that too before I summarize it.
+• Running python -c "import importlib.util; print(bool(importlib.util.find_spec('docx')))"
+• Running python -c "from zipfile import ZipFile; from pathlib import Path; p=Path(r'C:
+  │ \Users\acer\Downloads\I.docx'); z=ZipFile(p); names=z.namelist(); media=[n for n in names if
+  │ n.startswith('word/media/')]; print('media_count', len(media));
+  │ … +1 lines
+  └ media_count 0
+  │ len(doc.paragraphs)); print('tables', len(doc.tables)); print('sections',
+  │ … +2 lines
+  └ paragraphs 261
+    tables 0
+    … +12 lines
+    UnicodeEncodeError: 'charmap' codec can't encode character '\u2514' in position 385: character
+    maps to <undefined>
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The file is a pure text-heavy Word document: no images, no tables, no inline shapes. I’m pulling
+  the structured text and metadata now so I can separate what it literally says from what it
+  implies.
+• Running python -c "from docx import Document; from pathlib import Path; import json; p=Path(r'C:
+  │ \Users\acer\Downloads\I.docx'); doc=Document(str(p)); rows=[];
+  │ for i,par in enumerate(doc.paragraphs):
+  │ … +4 lines
+  └ [
+      {
+    … +599 lines
+      }
+  │ … +3 lines
+  └ {
+      "author": "Jesse Brown",
+    … +7 lines
+      "revision": 1
+    }
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• Running python -c "from docx import Document; from pathlib import Path; import re; p=Path(r'C:
+  │ \Users\acer\Downloads\I.docx'); doc=Document(str(p)); text='\n'.join(par.text for par in
+  │ doc.paragraphs); print(bool(re.search(r'AIza[0-9A-Za-z_-]{20,}', text)))"
+• Ran python -c "from docx import Document; from pathlib import Path; import re; p=Path(r'C:
+  │ \Users\acer\Downloads\I.docx'); doc=Document(str(p)); text='\n'.join(par.text for par in
+  │ doc.paragraphs); print(bool(re.search(r'AIza[0-9A-Za-z_-]{20,}', text)))"
+  └ False
+• Ran python -c "from docx import Document; from pathlib import Path; import json, re; p=Path(r'C:
+  │ \Users\acer\Downloads\I.docx'); doc=Document(str(p)); text='\n'.join(par.text for par in
+  │ doc.paragraphs); lines=[line for line in text.splitlines() if re.search(r'4799|4781|18883|
+  │ … +2 lines
+  └ [
+      "  contradictions, especially around 4799, 4781, and host-specific paths, before I
+    … +51 lines
+    legacy 4781 shell. If you"
+    ]
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I’ve confirmed the new doc does not itself contain the raw AIza... value. That lowers handling
+  risk enough to do a deep model pass on the extracted text. Now I’m feeding the document content
+  into Gemini with an excavation-specific prompt instead of a generic “summarize this” prompt.
+• Running Get-Content 'C:
+  │ \Users\acer\.codex\skills\recent-download-analysis\scripts\analyze_recent_downloads.py'
+  │ | Select-Object -Index (0..260)
+• Ran python -c "from docx import Document; from pathlib import Path; p=Path(r'C:
+  │ \Users\acer\.codex\skills\recent-download-analysis\scripts\analyze_recent_downloads.py' |
+  │ Select-Object -Index (0..260)
+  └ #!/usr/bin/env python3
+    import argparse
+    … +257 lines
+    def get_file(api_key, name):
+        url = (
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I have enough structure now. The document is effectively an excavation of an earlier Gaia
+  packet, with local Rayssa-side corrections layered on top. I’m combining a local fact sweep with
+  a Gemini deep pass so the result isn’t just a paraphrase of the transcript.
+• Running @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +21 lines
+  └ {
+      "paragraphs": 261,
+    … +54 lines
+      ]
+    }
+• Ran @'
+  │ import importlib.util, json
+  │ from pathlib import Path
+  │ … +44 lines
+  └ {
+      "file_type_assessment": "Internal report/log documenting an AI agent's (Liris, likely
+    … +96 lines
+      "confidence": "high"
+    }
+─ Worked for 1m 04s ──────────────────────────────────────────────────────────────────────────────
+• I have the excavation result. Before I write it into memory/index, I’m checking the current
+  catalog tail so I can attach this cleanly and avoid colliding with existing IX entries.
+• Running Test-Path 'C:\Users\acer\Asolaria\data\agent-index\IX-248.md'
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' | Select-Object -Last
+  │ 40
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' | Select-Object -Last 40
+  └ **Rayssa staged-lane chain:** IX-223 → IX-221 → IX-160 → IX-159
+    > The Rayssa friend pack exists, but the live bridge runtime does not carry that room or
+    … +39 lines
+    ## Next available: IX-248
+• Ran Get-Date -Format "yyyyMMdd-HHmmss"
+  └ 20260322-205016
+• Ran Test-Path 'C:\Users\acer\Asolaria\data\agent-index\IX-248.md'
+  └ False
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I’m writing this as a second-order artifact, not as a primary system fact. The important
+  distinction is that I.docx is a local excavation of another packet, so the index entry needs to
+  preserve both the content and the evidentiary layer correctly.
+• Running rg -n "Liris validation chain|Liris waiting chain|\| 246 \||\| 247 \|" 'C:
+  │ \Users\acer\Asolaria\data\agent-index\CATALOG.md'
+• Ran rg -n "IX-247|IX-246|Next available|\| 247 \|" 'C:
+  │ \Users\acer\Asolaria\data\agent-index\CATALOG.md'
+  └ 410:| 247 | Liris startup report validator exists locally and gates the next branch choice |
+    tool | liris, validator, startup-report, powershell, intake, readiness | → 246, 244, 242 | all
+    … +2 lines
+    460:**Liris validation chain:** IX-247 → IX-246 → IX-242
+    463:## Next available: IX-248
+• Ran rg -n "Liris validation chain|Liris waiting chain|\| 246 \||\| 247 \|" 'C:
+  │ \Users\acer\Asolaria\data\agent-index\CATALOG.md'
+  └ 409:| 246 | While waiting for Liris, the right move is deterministic intake, not new bridge
+    speculation | plan | liris, waiting, intake, validation, relay, next-phase | → 244, 245, 243 |
+    … +4 lines
+    457:**Liris waiting chain:** IX-246 → IX-245 → IX-244
+    460:**Liris validation chain:** IX-247 → IX-246 → IX-242
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' | Select-Object -Index
+  │ (398..414)
+  └ | 236 | PBM modernization evidence packet links people, repos, and local build traces |
+    reference | downloads, pbm, healthcare, github, investigation, build, evidence | → 188, 035,
+    … +23 lines
+    **Google docs chain:** IX-220 → IX-188 → IX-187
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' | Select-Object -Index
+  │ (440..466)
+  └
+    **Downloads synthesis chain:** IX-241 → IX-225 → IX-235 → IX-238 → IX-240
+    … +21 lines
+    ## Next available: IX-248
+• Ran Get-Date -Format "yyyy-MM-dd HH:mm zzz"
+  └ 2026-03-22 20:50 -03:00
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I’m writing the excavation into the repo now: report, durable observation, IX entry, catalog,
+  and task ledger. I’m also recording a separate active issue that surfaced during the waiting-
+  path test: the Liris validator script currently has parser errors and is not safe to rely on
+  yet.
+• Edited 6 files (+155 -1)
+  └ TASKS.md (+4 -0)
+     4
+     5 +- [ ] Repair `tools/Validate-LirisStartupReport.ps1` before Liris reply is processed (2026
+        -03-22 20:50 -03:00): synthetic validation against a sample report exposed PowerShell pars
+        er errors, so the deterministic intake path described in the waiting plan is not yet trust
+        worthy. Do not rely on the validator until the script is fixed and re-tested.
+     6 +
+     7  - [ ] Await Liris next-phase Asolaria startup response via manual owner relay (2026-03-22
+        23:05 -03:00): appended `gaia_liris_next_phase_startup_20260322` to `runtime/outbound-liri
+        s-inbox.ndjson` and wrote `reports/liris-next-phase-startup-order-latest.md`. Current exac
+        t order to Rayssa/Liris is bounded local startup on `C:\Users\rayss\Asolaria` with `ASOLAR
+        IA_STARTUP_AUTORUN=false`, `ASOLARIA_HTTPS_ENABLE=false`, and `ASOLARIA_MQTT_BIND_HOST=0.0
+        .0.0`, followed by local health/MQTT verification and report-back to Jesse through WhatsAp
+        p/direct owner relay only. Do not use `4799`; do not assume the friend bridge room is live
+        .
+       ⋮
+    20
+    21 +- [x] Latest download `I.docx` excavated and indexed (2026-03-22 20:50 -03:00): extracted
+        `C:\Users\acer\Downloads\I.docx` with `python-docx`, confirmed it is a second-order Rayssa
+        -side excavation of `I think you will need this.docx`, verified it does not itself carry t
+        he raw `AIza...` value, and preserved the durable findings in `reports/i-docx-excavation-2
+        0260322-205016.md` (`latest`: `reports/i-docx-excavation-latest.md`), owner observation `d
+        ata/vault/owner/observations/i-docx-excavation-20260322-205016.md`, and index entry `IX-24
+        8`. Key truths preserved: manual owner relay remains authoritative, `4799` remains dead, f
+        riend bridge remains staged, and the `4781` startup contradiction is still the main blocke
+        r.
+    22 +
+    23  - [x] Recent downloads two-pass Gemini analysis completed and indexed (2026-03-22 18:52 -0
+        3:00): processed the last `15` files in `C:\Users\acer\Downloads` with the local `recent-d
+        ownload-analysis` Gemini tool, reran the full batch after fixing video upload/processing,
+        emitted final first-pass artifacts `reports/recent-downloads-first-pass-20260322-184824.{m
+        d,json}`, generated deep-pass synthesis `reports/recent-downloads-deep-pass-20260322-18512
+        0.{md,json}`, wrote the combined packet `reports/recent-downloads-analysis-20260322-185220
+        .md` (`latest`: `reports/recent-downloads-analysis-latest.md`), stored the owner observati
+        on `data/vault/owner/observations/recent-downloads-analysis-20260322-185220.md`, extended
+        the local tool to support `--deep-pass-json`, and indexed the batch as `IX-225` through `I
+        X-241`. Source downloads remain sensitive; prefer the packet/IX surfaces over reopening ra
+        w screenshots.
+  └ data\agent-index\CATALOG.md (+5 -1)
+    410  | 247 | Liris startup report validator exists locally and gates the next branch choice |
+         tool | liris, validator, startup-report, powershell, intake, readiness | → 246, 244, 242
+         | all |
+    411 +| 248 | I.docx is a second-order Rayssa excavation that preserves the Gaia startup contra
+         diction without re-echoing the secret | reference | downloads, docx, rayssa, liris, gaia,
+          startup, 4781, 4799, manual-relay, secret-handling | → 244, 223, 220 | all |
+    412
+        ⋮
+    463
+    463 -## Next available: IX-248
+    464 +**Rayssa document excavation chain:** IX-248 → IX-244 → IX-223 → IX-220
+    465 +> I.docx is a local corrective excavation of a Gaia packet: preserve it as evidence, keep
+          manual relay truth, and do not collapse the 4781 contradiction into assumed runtime real
+         ity.
+    466 +
+    467 +## Next available: IX-249
+  └ data\agent-index\IX-248.md (+26 -0)
+     1 +---
+     2 +ix: 248
+     3 +name: I.docx is a second-order Rayssa excavation that preserves the Gaia startup contradic
+        tion without re-echoing the secret
+     4 +type: reference
+     5 +tags: [downloads, docx, rayssa, liris, gaia, startup, 4781, 4799, manual-relay, secret-han
+        dling]
+     6 +chain: [IX-244, IX-223, IX-220]
+     7 +agents: [gaia, liris, codex]
+     8 +---
+     9 +
+    10 +# I.docx Excavation
+    11 +
+    12 +## What It Is
+    13 +
+    14 +`C:\Users\acer\Downloads\I.docx` is not a primary order packet. It is a local excavation o
+        f `I think you will need this.docx`, written as Rayssa-side analysis and corrective memory
+         work.
+    15 +
+    16 +## Durable Truth
+    17 +
+    18 +- the older Gaia artifact is described as secret-bearing and must not be re-echoed
+    19 +- manual owner relay remains the authoritative lane
+    20 +- `4799` remains dead / unaudited
+    21 +- the friend bridge remains staged, not live
+    22 +- the key contradiction is still Gaia expecting `4781` while Rayssa-side archaeology point
+        s to `4791`, `4798`, `5443`, and `5444`
+    23 +
+    24 +## Use Rule
+    25 +
+    26 +Treat `I.docx` as evidence and correction context, not as direct launch instructions.
+  └ data\vault\owner\observations\i-docx-excavation-20260322-205016.md (+12 -0)
+     1 +# Observation: I.docx Excavation
+     2 +
+     3 +- Recorded: `2026-03-22 20:50 -03:00`
+     4 +- Source: `C:\Users\acer\Downloads\I.docx`
+     5 +
+     6 +`I.docx` is a Rayssa-side excavation of a prior Gaia packet, not a primary packet itself.
+        It records three durable truths:
+     7 +
+     8 +1. the older Gaia transcript artifact is secret-bearing and must not be re-echoed
+     9 +2. the live local rule remains manual owner relay only, with `4799` and the friend bridge
+        treated as non-live
+    10 +3. the main contradiction is still `4781` expected by Gaia vs `4791`/`4798`/`5443`/`5444`
+        observed in Rayssa-side archaeology
+    11 +
+    12 +The document itself does not contain the raw `AIza...` value, but it remains sensitive bec
+        ause it preserves the exposure context and the local corrective plan.
+  └ reports\i-docx-excavation-20260322-205016.md (+54 -0)
+     1 +# I.docx Excavation
+     2 +
+     3 +- Generated: `2026-03-22 20:50 -03:00`
+     4 +- Source file: `C:\Users\acer\Downloads\I.docx`
+     5 +- Method: local `.docx` extraction via `python-docx` plus Gemini deep analysis (`gemini-2.
+        5-flash`)
+     6 +
+     7 +## What This File Is
+     8 +
+     9 +`I.docx` is not a primary system packet. It is a second-order artifact: a Rayssa-side exca
+        vation of another document, `C:\Users\acer\Downloads\I think you will need this.docx`.
+    10 +
+    11 +The document records an agent-style analysis flow that:
+    12 +
+    13 +- inspects local Rayssa-side LX entries and memory files
+    14 +- separates sovereign-side claims from locally verified checkout truth
+    15 +- writes local memory/index updates about the Gaia packet
+    16 +- synthesizes a corrective operating plan
+    17 +
+    18 +## Hard Findings
+    19 +
+    20 +- The file is text-heavy only: `261` paragraphs, `0` tables, `0` embedded images, `0` inli
+        ne shapes.
+    21 +- The document itself does **not** contain a raw `AIza...` value.
+    22 +- The document explicitly says the earlier Gaia transcript artifact contains a raw Google
+        Developer Knowledge API key and must be treated as sensitive.
+    23 +- The document repeatedly reaffirms that `4799` is dead / unaudited and must not be used.
+    24 +- The document repeatedly reaffirms that the Rayssa/Liris friend bridge is staged, not liv
+        e.
+    25 +- The document says manual owner relay is the authoritative return lane.
+    26 +- The document captures a startup contradiction:
+    27 +  - Gaia-side intent expects a local `4781` app-shell
+    28 +  - Rayssa-side archaeology (`LX-175`) says this checkout boots `4791`, `4798`, `5443`, an
+        d `5444`, not `4781`
+    29 +
+    30 +## Best Reading
+    31 +
+    32 +This file is a local corrective layer. Its purpose is not to launch anything directly. Its
+         purpose is to stop a bad launch by proving that sovereign intent and Rayssa checkout real
+        ity are not currently the same thing.
+    33 +
+    34 +That makes `I.docx` more valuable as evidence and decision support than as execution instr
+        uctions.
+    35 +
+    36 +## Operational Meaning
+    37 +
+    38 +- Treat Gaia startup instructions as upstream intent, not executable local truth, until ch
+        eckout parity is verified.
+    39 +- Keep manual owner relay as the only authoritative communication lane for this path.
+    40 +- Do not use `4799`.
+    41 +- Do not assume the friend bridge is live.
+    42 +- If Rayssa still cannot produce `4781`, the next move is correction and parity work, not
+        repeated startup attempts.
+    43 +
+    44 +## Sensitivity
+    45 +
+    46 +- `I.docx` is sensitive even without the raw key because it documents the existence of sec
+        ret exposure, local paths, runtime surfaces, and correction logic.
+    47 +- `I think you will need this.docx` should still be treated as the higher-risk artifact be
+        cause that is the one described as containing the raw Google Developer Knowledge key.
+    48 +
+    49 +## Recommended Next Steps
+    50 +
+    51 +1. Keep `I.docx` as a local evidence artifact, not a relay packet.
+    52 +2. Verify the Rayssa checkout surface directly before acting on any `4781`-based order.
+    53 +3. If `4781` is still absent, route the correction upstream through manual owner relay.
+    54 +4. Decide between adapting startup instructions to the real local surfaces or restoring th
+        e legacy `4781` shell.
+  └ reports\i-docx-excavation-latest.md (+54 -0)
+     1 +# I.docx Excavation
+     2 +
+     3 +- Generated: `2026-03-22 20:50 -03:00`
+     4 +- Source file: `C:\Users\acer\Downloads\I.docx`
+     5 +- Method: local `.docx` extraction via `python-docx` plus Gemini deep analysis (`gemini-2.
+        5-flash`)
+     6 +
+     7 +## What This File Is
+     8 +
+     9 +`I.docx` is not a primary system packet. It is a second-order artifact: a Rayssa-side exca
+        vation of another document, `C:\Users\acer\Downloads\I think you will need this.docx`.
+    10 +
+    11 +The document records an agent-style analysis flow that:
+    12 +
+    13 +- inspects local Rayssa-side LX entries and memory files
+    14 +- separates sovereign-side claims from locally verified checkout truth
+    15 +- writes local memory/index updates about the Gaia packet
+    16 +- synthesizes a corrective operating plan
+    17 +
+    18 +## Hard Findings
+    19 +
+    20 +- The file is text-heavy only: `261` paragraphs, `0` tables, `0` embedded images, `0` inli
+        ne shapes.
+    21 +- The document itself does **not** contain a raw `AIza...` value.
+    22 +- The document explicitly says the earlier Gaia transcript artifact contains a raw Google
+        Developer Knowledge API key and must be treated as sensitive.
+    23 +- The document repeatedly reaffirms that `4799` is dead / unaudited and must not be used.
+    24 +- The document repeatedly reaffirms that the Rayssa/Liris friend bridge is staged, not liv
+        e.
+    25 +- The document says manual owner relay is the authoritative return lane.
+    26 +- The document captures a startup contradiction:
+    27 +  - Gaia-side intent expects a local `4781` app-shell
+    28 +  - Rayssa-side archaeology (`LX-175`) says this checkout boots `4791`, `4798`, `5443`, an
+        d `5444`, not `4781`
+    29 +
+    30 +## Best Reading
+    31 +
+    32 +This file is a local corrective layer. Its purpose is not to launch anything directly. Its
+         purpose is to stop a bad launch by proving that sovereign intent and Rayssa checkout real
+        ity are not currently the same thing.
+    33 +
+    34 +That makes `I.docx` more valuable as evidence and decision support than as execution instr
+        uctions.
+    35 +
+    36 +## Operational Meaning
+    37 +
+    38 +- Treat Gaia startup instructions as upstream intent, not executable local truth, until ch
+        eckout parity is verified.
+    39 +- Keep manual owner relay as the only authoritative communication lane for this path.
+    40 +- Do not use `4799`.
+    41 +- Do not assume the friend bridge is live.
+    42 +- If Rayssa still cannot produce `4781`, the next move is correction and parity work, not
+        repeated startup attempts.
+    43 +
+    44 +## Sensitivity
+    45 +
+    54 +4. Decide between adapting startup instructions to the real local surfaces or restoring th
+        e legacy `4781` shell.
+─ Worked for 1m 01s ──────────────────────────────────────────────────────────────────────────────
+• The excavation is stored. I’m doing a final hygiene check now: confirm none of the new memory/
+  index surfaces accidentally copied secret-like material, then I’ll give you the distilled
+  findings.
+• Running rg -n "AIza" 'C:\Users\acer\Asolaria\reports\i-docx-excavation-20260322-205016.md' 'C:
+  │ \Users\acer\Asolaria\reports\i-docx-excavation-latest.md' 'C:
+  │ \Users\acer\Asolaria\data\vault\owner\observations\i-docx-excavation-20260322-205016.md'
+  │ … +1 lines
+• Ran rg -n "I.docx Excavation|manual owner relay|4781|4799|friend bridge|AIza|Next available:
+  │ IX-249|Repair `tools/Validate-LirisStartupReport.ps1`|Latest download `I.docx` excavated and
+  │ indexed" 'C:\Users\acer\Asolaria\reports\i-docx-excavation-latest.md' 'C:
+  │ … +2 lines
+  └ C:\Users\acer\Asolaria\data\agent-index\IX-248.md:5:tags: [downloads, docx, rayssa, liris,
+    gaia, startup, 4781, 4799, manual-relay, secret-handling]
+    … +151 lines
+    Asolaria sidecar/bridge lane and were not closed in this pass to avoid killing the owner's
+    standalone desktop app without a sharper instruction.
+• Ran rg -n "AIza" 'C:\Users\acer\Asolaria\reports\i-docx-excavation-20260322-205016.md' 'C:
+  │ \Users\acer\Asolaria\reports\i-docx-excavation-latest.md' 'C:
+  │ \Users\acer\Asolaria\data\vault\owner\observations\i-docx-excavation-20260322-205016.md' 'C:
+  │ … +1 lines
+  └ C:\Users\acer\Asolaria\reports\i-docx-excavation-20260322-205016.md:21:- The document itself
+    does **not** contain a raw `AIza...` value.
+    … +4 lines
+    C:\Users\acer\Asolaria\reports\i-docx-excavation-latest.md:21:- The document itself does
+    **not** contain a raw `AIza...` value.
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I found one hygiene issue in the new surfaces: I used the placeholder string AIza... in prose.
+  That is not a real secret, but it is still a bad pattern to leave around because it trips
+  secret-shaped searches. I’m scrubbing that wording now.
+• Edited 4 files (+4 -4)
+  └ TASKS.md (+1 -1)
+    20
+    21 -- [x] Latest download `I.docx` excavated and indexed (2026-03-22 20:50 -03:00): extracted
+        `C:\Users\acer\Downloads\I.docx` with `python-docx`, confirmed it is a second-order Rayssa
+        -side excavation of `I think you will need this.docx`, verified it does not itself carry t
+        he raw `AIza...` value, and preserved the durable findings in `reports/i-docx-excavation-2
+        0260322-205016.md` (`latest`: `reports/i-docx-excavation-latest.md`), owner observation `d
+        ata/vault/owner/observations/i-docx-excavation-20260322-205016.md`, and index entry `IX-24
+        8`. Key truths preserved: manual owner relay remains authoritative, `4799` remains dead, f
+        riend bridge remains staged, and the `4781` startup contradiction is still the main blocke
+        r.
+    21 +- [x] Latest download `I.docx` excavated and indexed (2026-03-22 20:50 -03:00): extracted
+        `C:\Users\acer\Downloads\I.docx` with `python-docx`, confirmed it is a second-order Rayssa
+        -side excavation of `I think you will need this.docx`, verified it does not itself carry t
+        he raw Google API key value, and preserved the durable findings in `reports/i-docx-excavat
+        ion-20260322-205016.md` (`latest`: `reports/i-docx-excavation-latest.md`), owner observati
+        on `data/vault/owner/observations/i-docx-excavation-20260322-205016.md`, and index entry `
+        IX-248`. Key truths preserved: manual owner relay remains authoritative, `4799` remains de
+        ad, friend bridge remains staged, and the `4781` startup contradiction is still the main b
+        locker.
+    22
+  └ data\vault\owner\observations\i-docx-excavation-20260322-205016.md (+1 -1)
+    11
+    12 -The document itself does not contain the raw `AIza...` value, but it remains sensitive bec
+        ause it preserves the exposure context and the local corrective plan.
+        ne shapes.
+    21 -- The document itself does **not** contain a raw `AIza...` value.
+    21 +- The document itself does **not** contain a raw Google API key value.
+    22  - The document explicitly says the earlier Gaia transcript artifact contains a raw Google
+        Developer Knowledge API key and must be treated as sensitive.
+  └ reports\i-docx-excavation-latest.md (+1 -1)
+    20  - The file is text-heavy only: `261` paragraphs, `0` tables, `0` embedded images, `0` inli
+        ne shapes.
+    21 -- The document itself does **not** contain a raw `AIza...` value.
+    21 +- The document itself does **not** contain a raw Google API key value.
+    22  - The document explicitly says the earlier Gaia transcript artifact contains a raw Google
+        Developer Knowledge API key and must be treated as sensitive.
+• Running rg -n "AIza" 'C:\Users\acer\Asolaria\reports\i-docx-excavation-20260322-205016.md' 'C:
+  │ \Users\acer\Asolaria\reports\i-docx-excavation-latest.md' 'C:
+  │ \Users\acer\Asolaria\data\vault\owner\observations\i-docx-excavation-20260322-205016.md'
+  │ … +1 lines
+  └ (no output)
+• Ran rg -n "^# I.docx Excavation|^## What This File Is|manual owner relay|4781|4799|friend
+  │ bridge|^ix: 248|^## Next available: IX-249|Latest download `I.docx` excavated and indexed|
+  │ Repair `tools/Validate-LirisStartupReport.ps1`" 'C:
+  │ … +3 lines
+  └ (no output)
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• Hygiene is clean now. I’m collecting exact file references and line numbers so the excavation is
+  anchored to durable surfaces, not just the chat summary.
+• Running Select-String -Path 'C:\Users\acer\Asolaria\data\agent-index\IX-248.md' -Pattern '^ix:
+  │ 248','manual owner relay','4799','friend bridge','4781' | ForEach-Object { "{0}:{1}:{2}"
+  │ -f $_.Path, $_.LineNumber, $_.Line.Trim() }
+• Running Select-String -Path 'C:\Users\acer\Asolaria\TASKS.md' -Pattern 'Repair `tools/
+  │ Validate-LirisStartupReport.ps1`','Latest download `I.docx` excavated and indexed' |
+  │ ForEach-Object { "{0}:{1}:{2}" -f $_.Path, $_.LineNumber, $_.Line.Trim() }
+• Running Select-String -Path 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' -Pattern '\|
+  │ 248 \|','Rayssa document excavation chain','Next available: IX-249' | ForEach-Object
+  │ { "{0}:{1}:{2}" -f $_.Path, $_.LineNumber, $_.Line.Trim() }
+• Ran Select-String -Path 'C:\Users\acer\Asolaria\TASKS.md' -Pattern 'Repair `tools/
+  │ Validate-LirisStartupReport.ps1`','Latest download `I.docx` excavated and indexed' |
+  │ ForEach-Object { "{0}:{1}:{2}" -f $_.Path, $_.LineNumber, $_.Line.Trim() }
+  └ C:\Users\acer\Asolaria\TASKS.md:5:- [ ] Repair `tools/Validate-LirisStartupReport.ps1` before
+• Ran Select-String -Path 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' -Pattern '\| 248
+  │ \|','Rayssa document excavation chain','Next available: IX-249' | ForEach-Object { "{0}:{1}:
+  │ {2}" -f $_.Path, $_.LineNumber, $_.Line.Trim() }
+  └ C:\Users\acer\Asolaria\data\agent-index\CATALOG.md:411:| 248 | I.docx is a second-order Rayssa
+    excavation that preserves the Gaia startup contradiction without re-echoing the secret |
+    … +3 lines
+    IX-248 → IX-244 → IX-223 → IX-220
+    C:\Users\acer\Asolaria\data\agent-index\CATALOG.md:467:## Next available: IX-249
+• Ran Select-String -Path 'C:\Users\acer\Asolaria\data\agent-index\IX-248.md' -Pattern '^ix:
+  │ 248','manual owner relay','4799','friend bridge','4781' | ForEach-Object { "{0}:{1}:{2}" -f
+  │ $_.Path, $_.LineNumber, $_.Line.Trim() }
+  └ C:\Users\acer\Asolaria\data\agent-index\IX-248.md:2:ix: 248
+    C:\Users\acer\Asolaria\data\agent-index\IX-248.md:5:tags: [downloads, docx, rayssa, liris,
+    … +6 lines
+    C:\Users\acer\Asolaria\data\agent-index\IX-248.md:22:- the key contradiction is still Gaia
+    expecting `4781` while Rayssa-side archaeology points to `4791`, `4798`, `5443`, and `5444`
+• Ran Select-String -Path 'C:\Users\acer\Asolaria\reports\i-docx-excavation-latest.md' -Pattern '#
+  │ I.docx Excavation','## What This File Is','manual owner relay','4799','friend bridge','4781'
+  │ | ForEach-Object { "{0}:{1}:{2}" -f $_.Path, $_.LineNumber, $_.Line.Trim() }
+  └ C:\Users\acer\Asolaria\reports\i-docx-excavation-latest.md:1:# I.docx Excavation
+    C:\Users\acer\Asolaria\reports\i-docx-excavation-latest.md:7:## What This File Is
+    … +18 lines
+    C:\Users\acer\Asolaria\reports\i-docx-excavation-latest.md:54:4. Decide between adapting
+    startup instructions to the real local surfaces or restoring the legacy `4781` shell.
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I.docx is not a primary system packet. It is a Rayssa-side excavation of the earlier Gaia
+  artifact, and its real value is corrective evidence, not execution instructions. The durable
+  write-up is in reports/i-docx-excavation-latest.md:1, the memory note is data/vault/owner/
+  observations/i-docx-excavation-20260322-205016.md:1, and the index entry is data/agent-index/IX-
+  248.md:2. The catalog now carries it at data/agent-index/CATALOG.md:411.
+  Main findings:
+  - I.docx says the older Gaia transcript is the secret-bearing artifact, but I.docx itself does
+    not carry the raw Google API key value: reports/i-docx-excavation-latest.md:21
+  - It reaffirms that 4799 is dead, the friend bridge is staged and not live, and manual owner
+    relay is the only authoritative lane: reports/i-docx-excavation-latest.md:23
+  - The main blocker is still the startup contradiction: Gaia expects local 4781, while Rayssa-
+    side archaeology says this checkout boots 4791, 4798, 5443, and 5444 instead: reports/i-docx-
+    excavation-latest.md:27
+  - My indexed reading of it is preserved in data/agent-index/IX-248.md:19
+  Separate issue I logged while working: the waiting-path validator for Liris is currently broken
+  and should not be trusted until fixed: TASKS.md:5.
+  If you want the next step, I can now do the same full excavation on [I think you will need
+  this.docx](C:\Users\acer\Downloads\I think you will need this.docx).
+› Find and fix a bug in @filename
+  gpt-5.4 xhigh · 70% left · ~\Asolaria

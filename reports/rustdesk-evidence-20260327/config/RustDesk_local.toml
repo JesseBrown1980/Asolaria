@@ -1,0 +1,15 @@
+remote_id = ''
+kb_layout_type = ''
+size = [
+    0,
+    0,
+    0,
+    0,
+]
+fav = []
+
+[options]
+
+[ui_flutter]
+peer-tab-index = '3'
+peer-sorting = 'Remote ID'

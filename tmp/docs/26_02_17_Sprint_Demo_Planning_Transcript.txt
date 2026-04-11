@@ -1,0 +1,58 @@
+Sprint Demo & Planning – Transcript
+
+Hi everyone,
+
+I’ll walk through what was completed during this sprint and clarify the current status of each item.
+
+As of now, all development work assigned to me in this sprint is completed. 
+The only item currently active is the Notification Service Development Plan, 
+which is finished and under review.
+
+Ticket 751 – Configure Feature Flag POC
+
+The Feature Flag proof of concept has been completed.
+The configuration supports environment-based toggling and controlled rollout.
+Build issues and merge conflicts were resolved.
+This ticket was finished.
+Ticket 1072 – Background Job: Upload AlayaCare Nursing Notes to Care 10
+
+This ticket implemented the background job to upload AlayaCare nursing notes to Care 10.
+The logic is complete, integration flow implemented, PR comments addressed,
+and merge conflicts resolved.
+This ticket was currently completed.
+
+Ticket 1122 – Change Date in Nursing Notes Background Job
+
+This ticket was related to adjusting how the date is handled in the Nursing Notes background job.
+The changes were implemented and fixed some issues for Monday.FillSchedule table.
+This ticket was completed.
+
+
+Ticket 1043 – Notification Service Development Plan
+
+The development plan for the Notification Service is complete and currently in Review. I sent a documentation for this ticket.
+
+The proposed architecture includes:
+- Listening to system events
+- Creating in-app notifications
+- Creating email notifications
+- Respecting user preferences
+- Using queue + retry mechanisms
+- Supporting audit logging
+- Being multi-tenant safe
+- Allowing gradual rollout via feature flags
+
+ I made a documentation for it.
+There is no open development work remaining on this item until feedback is received.
+
+Current Status Summary:
+- 1122 → Completed
+- 751 → Completed
+- 1072 → Completed
+- 1043 → Development Plan completed, currently in Review
+
+For the next sprint, I am ready to:
+- Address feedback from tickets currently in reviewing
+- Take on new prioritized work
+
+That concludes my update.

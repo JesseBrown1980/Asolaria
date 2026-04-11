@@ -1,0 +1,247 @@
+============================================================
+WARP TERMINAL INVENTORY — Jesse's Machine
+Scanned: 2026-03-25
+============================================================
+
+SUMMARY
+-------
+Warp version: v0.2026.03.04.08.20.stable_03 (Stable channel)
+Pending update: v0.2026.03.18.08.24.stable_01 (installer in Temp)
+Installed: 2026-03-12, last updated: 2026-03-13
+Last session: 2026-03-22
+User ID: x8ppSm0hcqZV9t7HRiLFh6Hfgsp1
+Agent Mode entered: 307+ times (counter from logs)
+AI conversations stored: at least 4 (restored on last boot)
+AI blocks restored: 876 (on last boot 2026-03-19)
+MCP servers configured: 5 (GitHub, Linear, Playwright, Context7, Notion)
+OS: Windows 11 (26200)
+
+TOTAL SIZES
+-----------
+Data directory:   122 MB  (C:\Users\acer\AppData\Local\warp\)
+Install directory: 294 MB  (C:\Users\acer\AppData\Local\Programs\Warp\)
+Temp installers:   159 MB  (two .exe in AppData\Local\Temp\)
+GRAND TOTAL:      ~575 MB
+
+============================================================
+LOCATION 1: C:\Users\acer\AppData\Local\warp\Warp\  (DATA)
+============================================================
+Status: EXISTS — 122 MB
+
+Directory Structure:
+  warp/Warp/
+  ├── cache/
+  │   └── 3be4b155808b0130              (4.1 KB, GPU shader cache)
+  ├── data/
+  │   ├── codebase_index_snapshots/     (empty)
+  │   ├── logs/
+  │   │   ├── mcp/                      (7 MCP server log files)
+  │   │   ├── warp.log                  (0 bytes, current empty)
+  │   │   ├── warp.log.old.0            (75 KB, session 2026-03-19)
+  │   │   ├── warp.log.old.1            (110 KB, session 2026-03-19)
+  │   │   ├── warp.log.old.2            (0 bytes)
+  │   │   ├── warp.log.old.3            (4.6 MB, session 2026-03-14)
+  │   │   ├── warp.log.old.4            (0 bytes)
+  │   │   ├── warp-minidump.log         (0 bytes)
+  │   │   ├── warp_network.log          (88 KB, API calls/telemetry)
+  │   │   └── warp_update.log.reported  (21 KB, install log)
+  │   ├── dev.warp.Warp-User            (encrypted, user profile/auth)
+  │   ├── dev.warp.Warp-TemplatableMcpCredentials  (encrypted, MCP creds)
+  │   ├── warp.lock                     (lock file)
+  │   ├── warp.sqlite                   (89 MB *** PRIMARY DATA STORE ***)
+  │   ├── warp.sqlite-shm               (64 KB)
+  │   └── warp.sqlite-wal               (28 MB)
+
+File Counts by Type:
+  .sqlite:  1 file  (89 MB — this is THE command history + AI chat database)
+  .log:     14 files (logs + MCP logs, ~5 MB total)
+  no-ext:   4 files  (lock, cache, encrypted credential stores)
+  .sqlite-*: 2 files (WAL and SHM, 28 MB)
+
+============================================================
+LOCATION 2: C:\Users\acer\AppData\Local\Programs\Warp\  (INSTALL)
+============================================================
+Status: EXISTS — 294 MB
+
+Directory Structure:
+  Programs/Warp/
+  ├── bin/
+  │   └── oz.cmd                        (Oz CLI wrapper → warp.exe)
+  ├── resources/
+  │   └── skills/
+  │       ├── .gitkeep
+  │       ├── create-skill/             (skill creator templates)
+  │       │   ├── SKILL.md
+  │       │   ├── LICENSE.txt
+  │       │   ├── references/
+  │       │   │   ├── output-patterns.md
+  │       │   │   └── workflows.md
+  │       │   └── scripts/
+  │       │       ├── init_skill.py
+  │       │       ├── package_skill.py
+  │       │       └── quick_validate.py
+  │       ├── figma/
+  │       │   ├── generate-figma-design/SKILL.md
+  │       │   └── pull-figma-content/SKILL.md
+  │       └── oz-platform/
+  │           ├── SKILL.md              (Oz cloud agent platform docs)
+  │           └── references/
+  │               └── third-party-clis.md
+  ├── x64/
+  │   └── OpenConsole.exe
+  ├── warp.exe                          (main binary)
+  ├── conpty.dll
+  ├── dxcompiler.dll
+  ├── dxil.dll
+  ├── icon.ico
+  ├── msvcp140.dll
+  ├── pwsh.ps1
+  ├── vcruntime140.dll
+  ├── vcruntime140_1.dll
+  ├── unins000.dat
+  └── unins000.exe
+
+File Counts by Type:
+  .exe:  3 files (warp.exe, OpenConsole.exe, unins000.exe)
+  .dll:  5 files (conpty, dxcompiler, dxil, msvcp140, vcruntime140x2)
+  .md:   6 files (skill docs)
+  .py:   3 files (skill scripts)
+  .cmd:  1 file  (oz.cmd CLI wrapper)
+  Other: 4 files (ico, ps1, dat, gitkeep)
+
+============================================================
+LOCATION 3: C:\Users\acer\AppData\Roaming\Warp\
+============================================================
+Status: NOT FOUND
+
+============================================================
+LOCATION 4: C:\Users\acer\.warp\
+============================================================
+Status: NOT FOUND
+
+============================================================
+LOCATION 5: C:\Users\acer\AppData\Local\dev.warp.Warp\
+============================================================
+Status: NOT FOUND (app uses "warp/Warp" path instead)
+
+============================================================
+LOCATION 6: AppData recursive search for "warp"
+============================================================
+Directories found:
+  C:\Users\acer\AppData\Local\Programs\Warp\       (install, covered above)
+  C:\Users\acer\AppData\Local\warp\                 (data, covered above)
+  C:\Users\acer\AppData\Local\warp\Warp\            (subdir)
+
+Files found outside main dirs:
+  C:\Users\acer\AppData\Local\Temp\.tmpv0.2026.03.04.08.20.stable_03-WarpSetup.exe  (79 MB)
+  C:\Users\acer\AppData\Local\Temp\.tmpv0.2026.03.18.08.24.stable_01-WarpSetup.exe  (80 MB)
+
+============================================================
+LOCATION 7: C:\Users\acer\Downloads\
+============================================================
+Status: No warp-related files found
+
+============================================================
+LOCATION 8: Program Files / Program Files (x86)
+============================================================
+Status: NOT FOUND (installed per-user under AppData\Local\Programs)
+
+============================================================
+KEY DATA STORES — WHAT'S INSIDE
+============================================================
+
+1. COMMAND HISTORY + AI CHAT DATABASE
+   Path: C:\Users\acer\AppData\Local\warp\Warp\data\warp.sqlite
+   Size: 89 MB + 28 MB WAL = ~117 MB total
+   Format: SQLite 3.x (version 3.49.1), WAL mode, UTF-8
+   Contains: ALL command history, AI conversations, block outputs,
+             session recordings, cloud sync metadata, preferences
+   Note: This is the SINGLE SOURCE OF TRUTH for all Warp data.
+         SQLite3 needed to query tables (not available in current shell).
+         The database stores at least 876 AI blocks across 4+ conversations.
+
+2. AI CONVERSATIONS (from logs)
+   Known conversation IDs:
+     - fcf4dbe7-6646-44fb-a6a5-a2c36fdaac2c  (active on 2026-03-19)
+     - 3798899b-24af-4fd8-a716-a500d79bd639  (active since 2026-03-14)
+     - 1c978287-3c60-4747-93bc-d088ddc0e45b  (active on 2026-03-19)
+     - e5089496-1f50-4e12-9e81-926f9d4d6665  (active on 2026-03-19)
+   Cloud sync: enabled (1 cloud metadata entry synced)
+   Privacy: Warp Drive privacy preferences configured
+
+3. MCP SERVER LOGS (AI tool usage)
+   Path: C:\Users\acer\AppData\Local\warp\Warp\data\logs\mcp\
+   7 log files, 305 KB total:
+     a) 6a91772c — minimal (173 bytes, just header)
+     b) 861c79bd — GitHub MCP Server (79 KB, Streaming HTTP)
+     c) 97562604 — Notion MCP v1.2.0 (54 KB, Streaming HTTP)
+     d) c675f78a — GitHub MCP Server (112 KB, Streaming HTTP)
+     e) c77a9fdd — Linear MCP v1.0.0 (29 KB, legacy SSE)
+     f) d51d776d — Context7 v2.1.4 (6.4 KB, stdio)
+     g) dc5d1465 — Playwright v0.0.68 (16 KB, stdio)
+
+4. NETWORK/API LOG
+   Path: C:\Users\acer\AppData\Local\warp\Warp\data\logs\warp_network.log
+   Size: 88 KB
+   Contains: GraphQL API calls to app.warp.dev, telemetry to RudderStack,
+             request limit queries, usage tracking
+
+5. ENCRYPTED CREDENTIAL STORES
+   - dev.warp.Warp-User — encrypted user profile/auth token
+   - dev.warp.Warp-TemplatableMcpCredentials — encrypted MCP API keys
+   Note: Logs show "Failed to read API keys from secure storage: File I/O error"
+         and "Failed to read MCP credentials from secure storage: File I/O error"
+         on every startup — credentials may be stored in Windows Credential Manager
+         rather than these files.
+
+6. BUNDLED SKILLS (in install dir)
+   - create-skill: Templates and scripts for creating Warp skills
+   - figma: Figma design generation and content pulling
+   - oz-platform: Oz cloud agent platform (spawn, schedule, manage cloud agents)
+
+============================================================
+SESSION HISTORY HIGHLIGHTS (from logs)
+============================================================
+
+- First install: ~2026-03-12 (installer timestamp)
+- Update to current version: 2026-03-13 17:36
+- Earliest logged session: 2026-03-14 13:19 (log.old.3)
+- Latest logged session: 2026-03-22 15:11 (network log)
+- Agent Mode usage: entered 307+ times by 2026-03-19
+- Shell: PowerShell (reads PSReadLine history)
+- Shell history source: C:\Users\acer\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+- Codebase indexing: was active (snapshots expired/discarded for "C:\\")
+- Cloud conversations: synced with Warp Drive
+
+============================================================
+NOTABLE ERRORS/ISSUES
+============================================================
+
+- Secure storage failures on every startup (API keys + MCP credentials)
+- DNS errors when offline ("Este host nao e conhecido" = "This host is not known")
+- Figma skill parse error (missing SKILL.md at figma/ level, only in subdirs)
+- WAL recovery on startup (recovered 88-493 frames, normal for unclean shutdown)
+
+============================================================
+TO EXTRACT MORE DATA
+============================================================
+
+The 89 MB SQLite database (warp.sqlite) is the goldmine. To query it:
+
+  sqlite3 "C:\Users\acer\AppData\Local\warp\Warp\data\warp.sqlite" ".tables"
+  sqlite3 "C:\Users\acer\AppData\Local\warp\Warp\data\warp.sqlite" ".schema"
+
+This would reveal tables for:
+  - Command history (all terminal commands ever run)
+  - AI chat conversations (all prompts and responses)
+  - Block outputs (captured command outputs)
+  - Session data (session recordings/metadata)
+  - Workflows (saved workflows)
+  - Codebase index data
+
+sqlite3 is not available in the current shell environment.
+Install it or use Python's sqlite3 module to extract data.
+
+============================================================
+END OF INVENTORY
+============================================================

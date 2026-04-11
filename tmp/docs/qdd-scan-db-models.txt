@@ -1,0 +1,725 @@
+QDD / eBacMap — Database Models Deep Scan
+==========================================
+Date: 2026-03-25
+Source: D:\projects\QDD\ebacmap-master\libs\db\src\models\
+Total Model Files: 52 (51 model files + 1 index.ts)
+Registered Mongoose Models: 46
+
+================================================================================
+PART 1: ALL MODELS — SCHEMA SUMMARY
+================================================================================
+
+1. ActivityLog
+   Fields: date, locationId(ref:Location), parentId, action, userId(ref:User),
+           userName, type, activity, changes(Object), clientId(ref:Client)
+   Indexes: { name: 'text' }
+   Options: strict:false, NO timestamps
+   Required: none
+
+2. AdminActivityLog
+   Fields: timestamp, userId(ref:User), userName, userEmail, action(enum),
+           entityType(enum), entityId, entityName, changes(Mixed),
+           environment, clientId(ref:Client), description, ipAddress
+   Indexes: timestamp:-1, userId:1, environment:1, clientId:1,
+            {entityType:1, entityId:1}, {environment:1, timestamp:-1}
+   Options: timestamps:true, strict:false
+   Required: timestamp, userId, userName, userEmail, action, entityType, environment
+
+3. AssignedAction (interface only, no schema registration — embedded in Capa)
+
+4. AssociateUserRequest
+   Fields: userId(ref:User), approverEmail, approverId(ref:User), status,
+           location(ref:Location), subscriptionId(ref:Subscription)
+   Indexes: none
+   Options: timestamps:true, strict:false
+   Required: none
+
+5. BlackoutDate
+   Fields: clientId(ref:Client), locationId(ref:Location), blackoutDate, isDeleted
+   Indexes: none
+   Options: timestamps:true, strict:false
+   Required: none
+
+6. Capa
+   Fields: incidentDate, clientId(ref:Client), logNumber, creator(ref:User),
+           otherDescription, source, location(ref:Location), testResult[ref:TestResult],
+           primaryTestResult(ref:TestResult), zone(ref:Zone), testDefinition(ref:TestDefinition),
+           organism(ref:Organism), category(ref:Category), site(ref:Site),
+           surfaceType, channel, logs[] (nested correctiveAction/investigation/
+           preventiveAction/review/reopen), notes, supportingDocs[], closeDate,
+           status, isDeleted, 14x AssignedAction arrays,
+           effectivenessVerificationDescription
+   Indexes: none
+   Options: timestamps:true, strict:false
+   Required: none
+
+7. Category
+   Fields: name, active, clientId(ref:Client), organisms[ref:Organism], isDeleted
+   Indexes: { name: 'text' }
+   Options: timestamps:true, strict:true (no strict:false)
+   Required: none
+
+8. Channel
+   Fields: clientId(ref:Client), locationId(ref:Location), name, channelID,
+           testDefinitionId(ref:TestDefinition), synced, limit, background,
+           correction, isDeleted
+   Indexes: none
+   Options: timestamps:true, strict:false
+   Required: none
+
+9. Client
+   Fields: name, phone, address, city, state, zip, country, status,
+           numLocations, numMaps, lastActivity, ssoConfig{entryPoint,cert},
+           isDeleted, imported, stripeCustomerId, approvedDomains[],
+           purchases[ref:Purchase], addons[ref:Purchase], ssoEnabled, forceSSO,
+           lastUserLogin, lastSubscriptionAmount
+   Indexes: { name: 'text' }
+   Options: timestamps:true, strict:false
+   Required: none
+
+10. ClientNote
+    Fields: clientId(ref:Client), authorId(ref:User), content
+    Indexes: { clientId:1, createdAt:-1 }
+    Options: timestamps:true, strict:true
+    Required: clientId, content
+
+11. CorrectiveNote
+    Fields: clientId(ref:Client), text, index, isDeleted, synced
+    Indexes: text field has its own index with collation
+    Options: timestamps:true, strict:false
+    Required: none
+
+12. EzProtectAlert (EzProtectAlertRule)
+    Fields: clientId(ref:Client), locationId(ref:Location), name, description,
+            enabled, isDefault, triggerType(enum), triggerConfig{resultStates[],
+            thresholdField, thresholdOperator(enum), thresholdValue,
+            offlineMinutes, cronExpression}, channel(enum), recipients[],
+            notifyFacilityContacts, faqLinks[], videoLinks[], createdBy(ref:User)
+    Indexes: {clientId:1, locationId:1}, {triggerType:1, enabled:1}
+    Options: timestamps:true, strict:false
+    Required: clientId, name, triggerType
+
+13. EzProtectAlertHistory
+    Fields: alertRuleId(ref:EzProtectAlertRule), clientId(ref:Client),
+            locationId(ref:Location), eventId(ref:EzProtectEvent), alertName,
+            triggerType, channel, recipients[], message, sentAt,
+            acknowledged, acknowledgedAt, acknowledgedBy(ref:User)
+    Indexes: {clientId:1, sentAt:-1}, {alertRuleId:1, sentAt:-1},
+             {locationId:1, sentAt:-1}
+    Options: timestamps:true, strict:false
+    Required: alertRuleId, clientId, alertName, triggerType, channel, message, sentAt
+
+14. EzProtectEvent
+    Fields: eventVersion, sourceSystem(enum), transportMode(enum),
+            organizationId, facilityId, deviceSerialNumber, deviceModel,
+            assayCode, assayName, assayFamily, lotNumber, rollNumber,
+            resultState(enum:8 values), resultValue, resultUnit, readingValue,
+            controlLineValid, temperatureC, pmStatus, calibrationStatus,
+            lockout, supervisorOverride, stripLot, stripRoll, stripExpiration,
+            moduleSlot, operatorId, operatorGroup, sampleId, truckId,
+            startedAt, completedAt, ingestedAt, rawPayload(Mixed),
+            normalizationWarnings[], locationId(ref:Location), clientId(ref:Client)
+    Indexes: UNIQUE{deviceSerialNumber:1, completedAt:1, sampleId:1},
+             {locationId:1, completedAt:-1}, {clientId:1, completedAt:-1},
+             {organizationId:1, completedAt:-1}, {deviceSerialNumber:1, completedAt:-1},
+             {resultState:1}, {facilityId:1, completedAt:-1}, {operatorGroup:1}
+    Options: timestamps:true, strict:false
+    Required: sourceSystem, organizationId, facilityId, deviceSerialNumber,
+              deviceModel, assayCode, assayName, resultState, completedAt
+
+15. EzProtectMsaConfig
+    Fields: clientId(ref:Client, unique), enabled, shareInvalidAlerts,
+            shareCalibrationAlerts, sharePmAlerts, charmContactEmail,
+            anonymizeData, acceptedAt, acceptedBy(ref:User)
+    Indexes: {clientId:1} unique
+    Options: timestamps:true, strict:false
+    Required: clientId
+
+16. FacilityMap
+    Fields: clientId(ref:Client), locationId(ref:Location), title, filename,
+            container, awskey, mimetype, size, url, markers[], isDeleted
+    Indexes: none
+    Options: timestamps:true, strict:true
+    Required: none
+
+17. FieldMapping
+    Fields: clientId(ref:Client), userId(ref:User), locationId(ref:Location),
+            type(default:'import'), mapping(Object)
+    Indexes: none
+    Options: timestamps:true, strict:true
+    Required: none
+
+18. FtpExportLog
+    Fields: locationId(ref:Location), exportedResults[], filename, format,
+            status, isDeleted
+    Indexes: none
+    Options: timestamps:true, strict:false
+    Required: none
+
+19. FtpImportLog
+    Fields: locationId(ref:Location), importedResults[ref:TestResult],
+            validResults[], invalidResults[], filename, isDeleted
+    Indexes: none
+    Options: timestamps:true, strict:false
+    Required: none
+
+20. Location
+    Fields: name, slug, active, paymentMethodId, tourEnabled, tourScript,
+            address, city, state, zip, clientId(ref:Client),
+            ftpLocation{...}, exportFtpLocation{...},
+            subscriptionFeatures{facilityMaps,sampleScheduler,capa,novalum,
+            ezProtect,detailPhotos,tours,users,reports,ebacmap,testResults,
+            autoDisable}, isDeleted, subscriptionStartDate, subscriptionEndDate
+    Indexes: { name: 'text' }
+    Options: timestamps:true, strict:false
+    Required: none
+
+21. Migration
+    Fields: date, clientId(ref:Client), users[][], sites[][], testResults[][],
+            testDefinitions[][], categories[][], organisms[][], locations[][],
+            facilityMaps[][], activityLogs[][]
+    Indexes: { name: 'text' }
+    Options: strict:true (default), NO timestamps
+    Required: none
+
+22. Notification
+    Fields: active, type, clientId(ref:TestDefinition!!), locationId(ref:Location),
+            recipients[ref:User], interval, intervalTarget, targetType, targetId,
+            notificationTime, notificationTimeZone, weekdays[], lastSentAt, isPrevious
+    Indexes: none
+    Options: timestamps:true, strict:true
+    Required: none
+
+23. Organism
+    Fields: name, clientId(ref:Client), isDeleted
+    Indexes: { name: 'text' }
+    Options: timestamps:true, strict:true
+    Required: none
+
+24. PendingTestResult
+    Fields: client(ref:Client), user(ref:User), location(ref:Location),
+            sampleDate, enteredDate, category(ref:Category), site(ref:Site),
+            parentSiteId(ref:Site), zone(ref:Zone), ebacmapCode, siteDescription,
+            testDefinition(ref:TestDefinition), resultType, resultValue,
+            qualitativeValue, quantitativeValue, subType, rating, coaUrl,
+            sampleId, finalRating, capa(ref:Capa), nonconformanceStatus,
+            testNum, retest, planId, surfaceType, surfaceTypeId(ref:SurfaceType),
+            planName, limit, overrideLocation, unitSerial, correctiveNote,
+            channel, misc, scheduledDateId(ref:ScheduledDate), isDeleted,
+            image{}, syncData
+    Indexes: { name: 'text' }
+    Options: timestamps:true, strict:false
+    Required: none
+
+25. Plan
+    Fields: clientId(ref:Client), locationId(ref:Location),
+            entries[{channelId,channelName,surfaceTypeId,surfaceType,siteId,
+            testDefinitionId,zoneCode,siteDescription,limit,testNum}],
+            planID, name, isDeleted, synced, isDefault
+    Indexes: name with collation
+    Options: timestamps:true, strict:false
+    Required: none
+
+26. Product
+    Fields: name, price, type, billingInterval, plan, isLocationSpecific,
+            permissionField, isDeleted, isActive, isAssociateUser,
+            permissions[], additionalData(Object)
+    Indexes: { name: 'text' }
+    Options: timestamps:true, strict:true
+    Required: none
+
+27. Purchase
+    Fields: clientId(ref:Client), paymentId, paymentVendor, paymentMethodId,
+            poNumber, amount, subtotal, tax, purchaseDate, product(ref:Product),
+            description
+    Indexes: none
+    Options: timestamps:true, strict:true
+    Required: none
+
+28. Queue
+    Fields: _id, name, env, useCase, payload(Mixed), retryFrom, retriedJobId,
+            statuses[{status,timestamp,nextReevaluation,error}], lastStatus,
+            retries, shouldRetry, nextRunAt, lockedAt, version
+    Indexes: none
+    Options: timestamps:true, strict:true
+    Required: none
+
+29. QueueLog
+    Fields: date, useCase, status, payload, stats
+    Indexes: { name: 'text' }
+    Options: strict:false, NO timestamps
+    Required: useCase, status
+
+30. RateLimit
+    Fields: expires, ip, count
+    Indexes: none (TTL index missing!)
+    Options: strict:true, NO timestamps
+    Required: none
+
+31. Report
+    Fields: name, client(ref:Client), location(Mixed), userId(ref:User),
+            createdBy, access(enum), reportType(enum), sections[],
+            showOnDashboard, facilityMapId, filters{...complex...}, sort,
+            dashboardOnly, isDefault, individualSites, byZone,
+            notifications[], charts[], chartData
+    Indexes: { name: 'text' }, {client:1, location:1},
+             {client:1, location:1, dashboardOnly:1}
+    Options: timestamps:true, strict:false, minimize:false
+    Required: none
+
+32. ReportTemplate
+    Fields: name, client(ref:Client), location(ref:Location),
+            reportType(enum), sections[], facilityMapId(ref:FacilityMap),
+            facilities[ref:Location], global, userId(ref:User)
+    Indexes: { name: 'text' }, {client:1, userId:1}, {client:1, global:1},
+             {facilities:1}, {userId:1}
+    Options: timestamps:true, strict:false
+    Required: none
+
+33. ReportToken
+    Fields: token, report
+    Indexes: { token: 'text' }
+    Options: timestamps:true, strict:true
+    Required: none
+
+34. Site
+    Fields: client(ref:Client), location(ref:Location), zone(ref:Zone),
+            siteId, description, image{}, isComposite, vectorId, parentSite(ref:Site),
+            zoneCode, active, novalumID, limit, synced, isDeleted
+    Indexes: siteId with collation
+    Options: timestamps:true, strict:true
+    Required: none
+
+35. SiteGroup
+    Fields: client(ref:Client), location(ref:Location), name, sites[ref:Site],
+            isDeleted
+    Indexes: none
+    Options: timestamps:true, strict:true
+    Required: none
+
+36. Stats (Stat)
+    Fields: date, action, userId(ref:User), data(Object), clientId(ref:Client)
+    Indexes: none
+    Options: strict:true, NO timestamps
+    Required: none
+
+37. Subscription
+    Fields: clientId(ref:Client), productId(ref:Product), purchaseId(ref:Purchase),
+            locationId(ref:Location), transactionId, renewalPrice, status, amount,
+            start, end, lastFour, brand, paymentMethodId, approverEmail
+    Indexes: {clientId:1, _id:1}, {locationId:1, _id:1},
+             {purchaseId:1, _id:1}, {productId:1, _id:1}
+    Options: timestamps:true, strict:false
+    Required: none
+
+38. SurfaceType
+    Fields: locationId(ref:Location), clientId(ref:Client), synced, surfaceID,
+            name, limit, isDeleted
+    Indexes: name with collation
+    Options: timestamps:true, strict:false
+    Required: none
+
+39. SwabSchedule
+    Fields: clientId(ref:Client), locationId(ref:Location),
+            testDefinitionId[ref:TestDefinition], planId(ref:Plan),
+            operationType, frequency, scheduleType, endDate, startDate,
+            interval, isDeleted, useGroups, randomize, repeatRandomized,
+            groupId(ref:SiteGroup), siteId[ref:Site], name, type,
+            customEndDate, samplesPerDay, nonConformanceId(ref:TestResult),
+            days[], operationTypes[], endAfter, pendingApproval, color,
+            repeat, repeatUntil, notify, intervalCount, frequencyNum,
+            sampleCount, sitesPerDay, confirmScheduleMismatch,
+            pendingChanges, dates[]{...complex nested...}
+    Indexes: none
+    Options: timestamps:true, strict:false
+    Required: none
+
+40. TemporaryDownloadLink
+    Fields: token, reportId(ref:Report), reportData(Mixed), expiresAt, used
+    Indexes: token(unique), expiresAt(TTL)
+    Options: timestamps:true, strict:true
+    Required: token, reportId, reportData, expiresAt
+
+41. TestDefinition
+    Fields: name, clientId(ref:Client), organismId(ref:Organism),
+            categoryId(ref:Category), category(ref:Category),
+            organism(ref:'Organisms'!!), subTest, resultType, qualitativeTarget,
+            quantitativeTarget, quantitativeLimit, isDeleted, rulesEnabled,
+            rules{samplesPerDay,days[],operationTypes[],endAfter,requireApproval},
+            uniqueLabAnalysisCode
+    Indexes: { name: 'text' }
+    Options: timestamps:true, strict:false
+    Required: none
+
+42. TestResult
+    Fields: client(ref:Client), user(ref:User), sampleDate, enteredDate,
+            operationalTiming, uniqueLabAnalysisCode, category(ref:Category),
+            location(ref:Location), site(ref:Site), parentSiteId(ref:Site),
+            zone(ref:Zone), ebacmapCode, siteDescription,
+            testDefinition(ref:TestDefinition), resultType, resultValue,
+            qualitativeValue, quantitativeValue, subType, rating, coaUrl,
+            sampleId, finalRating, capa(ref:Capa), scheduledTestId,
+            nonconformanceStatus, testNum, retest, planId, limit,
+            surfaceType, surfaceTypeId(ref:SurfaceType), planName,
+            overrideLocation, correctiveNote, unitSerial, channel, misc,
+            image{}, syncData, operator1, operator2, isDeleted
+    Indexes: { name: 'text' }
+    Options: timestamps:true, strict:false
+    Required: none
+
+43. TestResultRead (read-optimized view)
+    Fields: Denormalized document with embedded client, user, site, parentSite,
+            location, zone, testDefinition, category, organism, plan,
+            surfaceType, capa objects. Plus all test result scalar fields
+            and embedded activityLogs[].
+    Indexes: none
+    Options: strict:true, NO timestamps (has explicit createdAt/updatedAt)
+    Required: none
+
+44. Tour
+    Fields: clientId(ref:Client), locationId(ref:Location), title, image{},
+            markers[], nodes[]{panorama{}, thumbnail{}, name, caption,
+            links[], markers[], panoData}
+    Indexes: none
+    Options: timestamps:true, strict:false
+    Required: none
+
+45. Unit
+    Fields: clientId(ref:Client), locationId(ref:Location), serial, name,
+            plans[ref:Plan], correctiveNotes[ref:CorrectiveNote], macAddress,
+            firmwareVersion, numPlans, numSurfaces, numChannels, numLocations,
+            numAssays, lastSyncDate, timeZone, lastAssayIndex, isDeleted, hasUpdates
+    Indexes: serial, name (both with collation)
+    Options: timestamps:true, strict:false
+    Required: none
+
+46. UnitLog
+    Fields: unitId(ref:Unit), logs[{message, timestamp, args}], isDeleted
+    Indexes: none
+    Options: timestamps:true, strict:false
+    Required: none
+
+47. UploadedFile (interface only, no schema registration — embedded in Capa)
+
+48. UserNotification
+    Fields: subject, message, userId(ref:User), reportId(ref:Report),
+            testResultId(ref:TestResult), swabScheduleId(ref:SwabSchedule),
+            capaId(ref:Capa), read
+    Indexes: {userId:1}
+    Options: timestamps:true, strict:true
+    Required: none
+
+49. Zone
+    Fields: name, clientId(ref:Client), isDeleted
+    Indexes: { name: 'text' }
+    Options: timestamps:true, strict:true
+    Required: none
+
+50. User
+    Fields: client(ref:Client), email, firstName, lastName, role, status,
+            resetPasswordToken, resetPasswordExpires, resetPasswordSent, hash,
+            salt, numLogins, permissions[]{location(ref:Location),
+            17 permission sub-objects including ezProtect}, paymentMethods[],
+            dashboardReports[ref:Report], pushSubscriptions[], lastActivity,
+            lastLogin, auAdmin, isPrimaryCompanyAdmin, phone, isOperator,
+            tableHeaders[], tableLimit, ssExportHeaders[],
+            ssExportHeadersOrdered[], environments[]
+    Indexes: { firstName:'text', lastName:'text', email:'text', phone:'text' }
+    Options: timestamps:true, strict:false
+    Required: none
+
+
+================================================================================
+PART 2: ISSUES FOUND
+================================================================================
+
+CRITICAL ISSUES
+---------------
+
+[C-01] Notification.clientId references WRONG model
+  File: Notification.ts line 33
+  Schema says: ref: 'TestDefinition'
+  Should be: ref: 'Client'
+  Impact: Any .populate('clientId') on Notification will pull a TestDefinition
+          instead of a Client. The interface correctly says clientId: Types.ObjectId
+          but the ref is wrong.
+
+[C-02] TestDefinition.organism references non-existent collection 'Organisms'
+  File: TestDefinition.ts line 54
+  Schema says: ref: 'Organisms' (plural)
+  Should be: ref: 'Organism' (singular)
+  Impact: .populate('organism') on TestDefinition will fail silently or throw.
+          Note: organismId (line 40) correctly references 'Organism'.
+
+[C-03] Duplicate category/organism fields in TestDefinition
+  File: TestDefinition.ts lines 39-54
+  There are both `categoryId` (ref:Category) and `category` (ref:Category),
+  and both `organismId` (ref:Organism) and `organism` (ref:'Organisms').
+  This is confusing and the 'organism' variant has the wrong ref.
+  Impact: Code may use either field inconsistently. Should consolidate.
+
+[C-04] defaultValue vs default — Mongoose ignores 'defaultValue'
+  Affects: Client.ts (numLocations, isDeleted, imported, ssoEnabled, forceSSO)
+           Location.ts (isDeleted)
+           Site.ts (isComposite, active, isDeleted)
+           Category.ts (isDeleted)
+           Organism.ts (isDeleted)
+           Product.ts (isLocationSpecific, isDeleted, isActive, isAssociateUser)
+           SiteGroup.ts (isDeleted)
+           FacilityMap.ts (isDeleted)
+           BlackoutDate.ts (isDeleted)
+           TestDefinition.ts (isDeleted)
+           TestResult.ts (isDeleted)
+           TestResultRead.ts (isDeleted)
+           PendingTestResult.ts (isDeleted)
+           Capa.ts (isDeleted)
+           SwabSchedule.ts (endDate, isDeleted, useGroups, randomize,
+                           repeatRandomized, pendingChanges)
+  Mongoose uses `default`, not `defaultValue`. These defaults are silently
+  ignored, meaning new documents will NOT get these default values.
+  This is the single most pervasive bug across the codebase.
+
+[C-05] optional / allowedValues / decimal — non-Mongoose schema keywords
+  Affects: TestResult.ts, PendingTestResult.ts, TestDefinition.ts,
+           TestResultRead.ts, Site.ts, ActivityLog.ts, Stats.ts
+  Mongoose does not recognize `optional`, `allowedValues`, or `decimal`
+  as schema type options. These are likely leftovers from a SimpleSchema/
+  Meteor migration and are silently ignored.
+  - `optional: true` does NOT make the field optional (it already is by default)
+  - `allowedValues` does NOT validate — use `enum` instead
+  - `decimal: true` does NOT enforce decimal — use mongoose-float or Decimal128
+
+[C-06] autoValue functions — non-Mongoose pattern
+  Affects: ActivityLog.ts (date), Migration.ts (date), Stats.ts (date),
+           TestDefinition.ts (qualitativeTarget, quantitativeTarget, quantitativeLimit)
+  Mongoose does not have `autoValue`. These functions are never called.
+  Use `default` for defaults, or pre-save middleware for computed values.
+
+
+HIGH ISSUES
+-----------
+
+[H-01] EzProtectEvent unique index includes nullable sampleId
+  File: EzProtectEvent.ts line 161-164
+  The unique composite index {deviceSerialNumber, completedAt, sampleId}
+  is NOT sparse. If two events from the same device at the same time both
+  have null sampleId, only one can be stored. This is documented as
+  intentional but may cause silent data loss for batch readings.
+
+[H-02] No indexes on many high-traffic query patterns
+  - Capa: no index on clientId, location, or status — queries will table-scan
+  - SwabSchedule: no index on clientId+locationId — O(n) scan for schedule lists
+  - TestResult: only text index on 'name' (which doesn't exist in schema!)
+    Missing: {client:1, location:1, sampleDate:-1} for the primary query path
+  - PendingTestResult: only text index on 'name' (doesn't exist!)
+    Missing: {client:1, location:1} at minimum
+  - Channel: no indexes at all
+  - FtpImportLog / FtpExportLog: no index on locationId
+  - Queue: no indexes — needs {nextRunAt:1, lastStatus:1} for job polling
+
+[H-03] Text indexes on non-existent 'name' field
+  - ActivityLog: index on { name: 'text' } but schema has no 'name' field
+  - QueueLog: index on { name: 'text' } but schema has no 'name' field
+  - Migration: index on { name: 'text' } but schema has no 'name' field
+  - TestResult: index on { name: 'text' } but schema has no 'name' field
+  - PendingTestResult: index on { name: 'text' } but schema has no 'name' field
+  These indexes exist but match nothing — wasted storage and write overhead.
+
+[H-04] RateLimit model has no TTL index
+  File: RateLimit.ts
+  The 'expires' field exists but there is no TTL index to auto-delete expired
+  rate limit entries. The collection will grow unbounded.
+
+[H-05] strict:false on most schemas is a risk
+  28 of 46 schemas use strict:false. This means any arbitrary field can be
+  written to the database. Potential for:
+  - Schema drift (fields in DB not in code)
+  - Injection of unexpected fields via API
+  - Difficulty in schema migration
+  Notable: ALL EzProtect models use strict:false despite being new code.
+
+[H-06] User model has no index on client field
+  File: User.ts
+  The most common query pattern is "find users by client" but there is no
+  index on {client:1}. Only a compound text index on name/email fields.
+
+[H-07] Location model has no index on clientId
+  File: Location.ts line 156-157
+  The clientId+_id unique index is commented out. Only a text index on name
+  exists. "Find locations by client" will table-scan.
+
+[H-08] TestResultRead has NO indexes at all
+  File: TestResultRead.ts
+  This is a read-optimized denormalized view but has zero indexes.
+  Missing at minimum: {client._id:1, sampleDate:-1} and
+  {location._id:1, sampleDate:-1}.
+
+
+MEDIUM ISSUES
+-------------
+
+[M-01] EzProtectEvent.clientId and locationId are optional
+  Both are typed as optional in the schema (no 'required'). However, use cases
+  always set them during ingestion. If ingestion code changes, events could be
+  stored without client/location linkage, breaking all dashboard queries.
+  Recommend: add required:true to both fields.
+
+[M-02] EzProtectAlertHistory stores alertName as a string copy
+  If the alert rule name is updated, the history retains the old name.
+  This is likely intentional for audit purposes but should be documented.
+
+[M-03] Tour marker positions have inconsistent types
+  File: Tour.ts
+  - Root markers: position.yaw is String, position.pitch is String
+  - Node markers: same String types
+  - Node links: position.yaw is Number, position.pitch is Number
+  - Interface: yaw:number, pitch:number everywhere
+  The schema stores strings but the interface expects numbers.
+
+[M-04] Capa AssignedAction uses 'require' instead of 'required'
+  File: Capa.ts line 117
+  `require: true` is not valid Mongoose. Should be `required: true`.
+  The assignedUserId field will accept null values despite the intent.
+
+[M-05] Client model missing subscriptionFeatures in schema
+  File: Client.ts
+  The DbClientSubscriptionFeatures interface includes ezProtect, testDefinitions,
+  autoDisable, ssoEnabled, and many other feature flags. But the schema (line 70-131)
+  does NOT define subscriptionFeatures at all. These are only saved because
+  strict:false is set. If strict were ever changed to true, all feature flags
+  would be silently dropped on save.
+
+[M-06] Location subscriptionFeatures.autoDisable is at wrong nesting level
+  File: Location.ts line 141
+  autoDisable is inside subscriptionFeatures in the schema, but in the
+  DbLocation interface (line 50), autoDisable is a top-level field.
+  Type mismatch between interface and schema.
+
+[M-07] Queue model defines _id in schema
+  File: Queue.ts line 32
+  Explicitly defining _id: Schema.Types.ObjectId can cause issues with
+  Mongoose's built-in _id handling. Usually unnecessary.
+
+[M-08] ReportToken stores report as String, not ObjectId ref
+  File: ReportToken.ts
+  The report field is a plain String, not an ObjectId reference. Cannot
+  use .populate() and no referential integrity.
+
+[M-09] ActivityLog 'option' typo
+  File: ActivityLog.ts line 56
+  `option: true` should be `optional: true` (which itself is not valid
+  Mongoose — should be removed entirely since all fields are optional by default).
+
+
+================================================================================
+PART 3: EzProtect USE CASE CROSS-REFERENCE
+================================================================================
+
+EzProtect Models are used by these consumers:
+
+EzProtectEvent:
+  - EzProtectRepo.listNormalizedEvents() — queries by locationId, clientId,
+    facilityId, deviceSerialNumber, operatorGroup, resultState, completedAt
+    INDEX COVERAGE: all have matching indexes EXCEPT operatorGroup (has index)
+    and facilityId (has index). Good coverage.
+  - EzProtectRepo.getDashboardSummary() — queries {locationId, clientId,
+    completedAt >= 30d ago}. Uses {locationId:1, completedAt:-1} index. OK.
+  - EzProtectRepo.getCorporateDashboard() — aggregation pipeline on
+    {clientId, completedAt >= 30d ago}. Uses {clientId:1, completedAt:-1}. OK.
+  - EzProtectRepo.getDevices() — aggregation grouping by deviceSerialNumber.
+    Uses {deviceSerialNumber:1, completedAt:-1} index. OK.
+  - EzProtectRepo.upsertEvent() — findOneAndUpdate on the unique index
+    {deviceSerialNumber, completedAt, sampleId}. OK.
+  - ProcessEzProtectFileUseCase — same upsert pattern. OK.
+  - EvaluateEzProtectAlertsUseCase — queries {clientId, locationId,
+    ingestedAt >= 5min ago}. NO INDEX on ingestedAt! Will scan all events
+    for that client+location. Needs: {clientId:1, locationId:1, ingestedAt:-1}
+  - SyncEzProtectToLimsUseCase — queries by {_id: $in, clientId}. Uses _id
+    index. OK.
+
+EzProtectAlertRule:
+  - ProcessEzProtectFileUseCase — countDocuments {clientId, locationId, isDefault}
+    Partially covered by {clientId:1, locationId:1} index. OK.
+  - EvaluateEzProtectAlertsUseCase — find {clientId, enabled, locationId $or null}
+    Uses {triggerType:1, enabled:1}? No — that index doesn't cover clientId first.
+    Should have {clientId:1, enabled:1} index for this query.
+  - ManageAlertRules — CRUD by clientId, locationId. Covered by existing index.
+
+EzProtectAlertHistory:
+  - EvaluateEzProtectAlertsUseCase — findOne {alertRuleId, locationId, sentAt}
+    Covered by {alertRuleId:1, sentAt:-1} index. OK.
+  - EzProtectRepo.getCorporateDashboard — countDocuments {clientId, sentAt}
+    Covered by {clientId:1, sentAt:-1} index. OK.
+
+EzProtectMsaConfig:
+  - No direct use cases found querying this model in the scanned code.
+    Only referenced in model registration. May be used in admin UI or
+    future MSA workflow. The unique index on clientId is correct.
+
+
+================================================================================
+PART 4: MISSING INDEX RECOMMENDATIONS (PRIORITY ORDER)
+================================================================================
+
+1. EzProtectEvent: {clientId:1, locationId:1, ingestedAt:-1}
+   — EvaluateEzProtectAlerts queries recent events by ingestedAt with no coverage
+
+2. TestResult: {client:1, location:1, sampleDate:-1}
+   — Primary query path for the entire application
+
+3. TestResult: {location:1, sampleDate:-1}
+   — Location-scoped views
+
+4. Capa: {clientId:1, location:1, status:1}
+   — CAPA list/filter queries
+
+5. SwabSchedule: {clientId:1, locationId:1}
+   — Schedule listing
+
+6. Queue: {lastStatus:1, nextRunAt:1, lockedAt:1}
+   — Job polling
+
+7. User: {client:1}
+   — User listing by company
+
+8. Location: {clientId:1}
+   — Location listing by client
+
+9. PendingTestResult: {client:1, location:1}
+   — Pending results listing
+
+10. RateLimit: {expires:1} with TTL
+    — Auto-cleanup
+
+
+================================================================================
+PART 5: SUMMARY
+================================================================================
+
+Total models: 46 registered + 2 interface-only (AssignedAction, UploadedFile)
+EzProtect models: 4 (Event, AlertRule, AlertHistory, MsaConfig)
+
+Critical bugs: 6
+  - Notification.clientId wrong ref (C-01)
+  - TestDefinition.organism wrong ref (C-02)
+  - Duplicate category/organism fields (C-03)
+  - 'defaultValue' used instead of 'default' across 16+ models (C-04)
+  - Non-Mongoose keywords silently ignored (C-05)
+  - autoValue functions never called (C-06)
+
+High issues: 8
+  - Missing indexes on high-traffic paths (H-02)
+  - Text indexes on non-existent fields (H-03)
+  - No TTL on RateLimit (H-04)
+  - strict:false overuse (H-05)
+  - No client index on User/Location (H-06, H-07)
+  - No indexes on TestResultRead (H-08)
+
+Medium issues: 9
+
+EzProtect-specific:
+  - Well-designed schemas with proper enums and validation
+  - Good index coverage for primary query paths
+  - One missing index for alert evaluation (ingestedAt)
+  - clientId/locationId should be required on EzProtectEvent
+  - MsaConfig model has no active consumers

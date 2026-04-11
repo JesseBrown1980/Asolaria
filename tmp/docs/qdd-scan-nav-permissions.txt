@@ -1,0 +1,274 @@
+QDD eBacMap — EZ Protect Navigation & Permissions Scan
+======================================================
+Date: 2026-03-25
+Scope: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\
+
+================================================================================
+1. NAVIGATION ITEMS (navItems.tsx)
+================================================================================
+
+File: src/components/Layout/navItems.tsx
+
+EZ Protect nav entries (lines 322-357):
+
+  /ez-protect              — parent, icon DeveloperModeIcon, hasChildren:true
+  /ez-protect/results      — child
+  /ez-protect/devices      — child
+  /ez-protect/alerts       — child
+  /ez-protect/troubleshooting — child
+
+All entries use:
+  permissionDomain: PermissionDomainValue.EzProtect
+  action: PermissionActionValue.View
+
+i18n labels in src/messages/en.json (lines 46-50):
+  Navigation.ezProtect = "EZ Protect"
+  Navigation.ezProtectResults = "Results"
+  Navigation.ezProtectDevices = "Devices"
+  Navigation.ezProtectAlerts = "Alerts"
+  Navigation.ezProtectTroubleshooting = "Troubleshooting"
+
+NOTE: The icon is DeveloperModeIcon — same icon as Novalum. Minor UX issue;
+should probably use a unique icon (e.g. SecurityIcon or VerifiedUserIcon).
+
+================================================================================
+2. PERMISSION DOMAIN ENUM
+================================================================================
+
+File: libs/types/src/lib/Permissions.ts
+
+  enum PermissionDomainValue {
+    ...
+    EzProtect = 'ezProtect',   // line 22
+    ...
+  }
+
+  enum PermissionActionValue {
+    Manage = 'manage',
+    View   = 'view',
+    NoAccess = 'noaccess'
+  }
+
+================================================================================
+3. DEFAULT PERMISSIONS BY ROLE (buildDefaultForRole)
+================================================================================
+
+File: libs/types/src/lib/Users.ts
+
+  ALL roles default ezProtect to 'noaccess':
+    CompanyAdmin      -> ezProtect: { action: 'noaccess' }
+    FacilityAdmin     -> ezProtect: { action: 'noaccess' }
+    User              -> ezProtect: { action: 'noaccess' }
+    RestrictedUser    -> ezProtect: { action: 'noaccess' }
+    RestrictedUserAdmin -> ezProtect: { action: 'noaccess' }
+    (default fallback)  -> ezProtect: { action: 'noaccess' }
+
+This means EZ Protect is OPT-IN only. An admin must explicitly grant
+ezProtect: { action: 'view' } or 'manage' per user per location.
+
+================================================================================
+4. NAV FILTER (filterByAccess.ts)
+================================================================================
+
+File: src/hooks/filterByAccess.ts
+
+Flow:
+  1. buildNavItems(t) creates all routes
+  2. getNavItems(user, location, t) calls filterByAccess(user, navItems, location)
+  3. filterByAccess checks hasPermission(user, locationId, domain, action)
+     for every item with permissionDomain set
+  4. For restricted_user: ADDITIONALLY filters to a hardcoded whitelist:
+       restrictedUserNavItems = ['/', '/sample-scheduler', ..., '/admin/billing']
+
+GAP: /ez-protect is NOT in the restrictedUserNavItems whitelist.
+     Even if a restricted_user is explicitly granted ezProtect:view,
+     the nav entry will be FILTERED OUT by the whitelist on line 134.
+     This is CORRECT behavior (restricted_user should not see EZ Protect).
+
+================================================================================
+5. PERMISSIONS UTILITY (permissions.ts)
+================================================================================
+
+File: src/utils/permissions.ts
+
+hasPermission(user, locationId, domain, action, resource?, resourceId?):
+  - Looks up user.permissions[] for matching locationId
+  - Checks the permission domain property (e.g. perm.ezProtect.action)
+  - 'manage' grants both manage and view
+  - 'view' grants view only
+
+NOTE: ezProtect is typed as OPTIONAL in UserPermissionView (line 20):
+    ezProtect?: PermissionView;
+  If the property is missing from a permission record, hasOwnProperty returns
+  false -> returns false. This is safe but different from other domains like
+  'reports' which are required.
+
+GLOBAL FALLBACK ISSUE (lines 97-113):
+  When locationId='global' and no permission record matches, there is a
+  hardcoded fallback for company_admin/facility_admin that grants access to:
+    reports, categories, organisms, zones, users, testResults, billing
+  There is a special check for 'novalum' (line 110-112).
+
+  GAP: There is NO global fallback for 'ezProtect'.
+  If a company_admin has no explicit global permission record with
+  ezProtect:view, they will NOT see EZ Protect in the nav when viewing
+  the global/corporate scope. This is likely INTENTIONAL (opt-in module),
+  but it means the corporate dashboard at /ez-protect requires an explicit
+  global permission grant.
+
+================================================================================
+6. EZ PROTECT ENTITLEMENT LOGIC (utils/ezProtect.ts)
+================================================================================
+
+File: src/utils/ezProtect.ts
+
+Three exported functions:
+
+  isEzProtectRolloutEnabled():
+    Returns true if NEXT_PUBLIC_FEATURE_CHARM_EZP_MODULE='true'
+                  OR FEATURE_CHARM_EZP_MODULE='true'
+    NOTE: This function is DEFINED but NOT USED in any page or nav logic.
+    The module access is purely permission-backed (see below).
+
+  hasEzProtectEntitlement(user, location):
+    1. Checks facility-specific permission: hasPermission(user, locationId,
+       EzProtect, View)
+    2. Falls back to global permission: hasPermission(user, 'global',
+       EzProtect, View)
+    Returns true if either passes.
+
+  isEzProtectModuleEnabled(user, location):
+    Simply delegates to hasEzProtectEntitlement(user, location).
+    The rollout flag is intentionally NOT gating access (comment on line 56-58
+    explains: "The rollout flag is still useful for evidence/planning, but it
+    must not imply reachability on its own").
+
+================================================================================
+7. FEATURE FLAGS
+================================================================================
+
+Flag names (NOT "CHARM_EZ_PROTECT_*" — actual names are):
+  - NEXT_PUBLIC_FEATURE_CHARM_EZP_MODULE  (client-side)
+  - FEATURE_CHARM_EZP_MODULE             (server-side)
+
+Both checked in isEzProtectRolloutEnabled() but this function is currently
+UNUSED in production code paths. It exists only in tests and as dead code.
+
+No .env file found in apps/web-ebacmap/ to verify current flag values.
+
+Source systems used in data ingestion:
+  - 'CHARM_EZP'
+  - 'CHARM_EZP_PLUS'
+  Defined in: src/modules/ez-protect/domain/EzProtectEvent.ts (line 27)
+              apps/queue-server/src/utils/ezProtectParser.ts (line 20)
+
+================================================================================
+8. PAGE-LEVEL GUARDS
+================================================================================
+
+Every EZ Protect page uses DUAL guards:
+
+  a) withPermissions({ domain: EzProtect, action: View }) — redirects to /
+     if user lacks permission
+  b) isEzProtectModuleEnabled(user, location) — used to conditionally render
+     content (shows disabled/no-access state if false)
+
+Pages with both guards:
+  /ez-protect/index.tsx        — withPermissions + isEzProtectModuleEnabled
+  /ez-protect/results.tsx      — withPermissions + isEzProtectModuleEnabled
+  /ez-protect/results/[id].tsx — withPermissions + isEzProtectModuleEnabled
+  /ez-protect/devices.tsx      — withPermissions + isEzProtectModuleEnabled
+  /ez-protect/alerts.tsx       — withPermissions + isEzProtectModuleEnabled
+  /ez-protect/troubleshooting.tsx — withPermissions + isEzProtectModuleEnabled
+  /ez-protect/compare.tsx      — withPermissions + isEzProtectModuleEnabled
+  /ez-protect/facility.tsx     — withPermissions + isEzProtectModuleEnabled
+
+================================================================================
+9. API-LEVEL GUARDS
+================================================================================
+
+All API routes use Endpoint.useAccessControl({ domain: EzProtect, action: ... }):
+
+  GET  /api/ez-protect/dashboard          — View
+  GET  /api/ez-protect/dashboard-corporate — View
+  GET  /api/ez-protect/dashboard-facility  — View
+  GET  /api/ez-protect/events             — View
+  GET  /api/ez-protect/event/[id]         — View
+  GET  /api/ez-protect/devices            — View
+  GET  /api/ez-protect/export             — View
+  GET  /api/ez-protect/alert-history      — View
+  GET  /api/ez-protect/alerts             — View
+  POST /api/ez-protect/alerts             — Manage
+  PUT  /api/ez-protect/alerts/[id]        — Manage (assumed, uses [id])
+  DEL  /api/ez-protect/alerts/[id]        — Manage (assumed, uses [id])
+  POST /api/ez-protect/ingest             — Manage
+  POST /api/ez-protect/reports/generate   — View
+
+================================================================================
+10. PAGES NOT IN NAV
+================================================================================
+
+These EZ Protect pages exist but have NO nav item entry:
+  /ez-protect/compare.tsx     — accessible via in-page links only
+  /ez-protect/facility.tsx    — accessible via in-page links only
+  /ez-protect/results/[id].tsx — dynamic route, detail view
+
+This is normal (detail/comparison views don't need nav entries).
+
+================================================================================
+11. UNIT TESTS
+================================================================================
+
+File: src/utils/ezProtect.unit.ts
+
+Tests verify:
+  - Rollout flag detection from either env var
+  - Facility-specific entitlement grants
+  - Global fallback when facility has no local grant
+  - Rollout flag does NOT bypass permission checks
+
+================================================================================
+12. IDENTIFIED GAPS & ISSUES
+================================================================================
+
+GAP-1: DEAD ROLLOUT FLAG
+  isEzProtectRolloutEnabled() is defined and tested but NEVER called in
+  production code. isEzProtectModuleEnabled() skips it entirely. The flag
+  env vars NEXT_PUBLIC_FEATURE_CHARM_EZP_MODULE / FEATURE_CHARM_EZP_MODULE
+  have zero runtime effect. Either remove the dead code or wire it back in
+  if planned for future gating.
+
+GAP-2: DUPLICATE ICON
+  EZ Protect uses DeveloperModeIcon, same as Novalum. Users with both
+  modules enabled see two identical icons in the sidebar.
+
+GAP-3: OPTIONAL TYPING ON ezProtect PERMISSION
+  In permissions.ts UserPermissionView, ezProtect is typed as optional
+  (ezProtect?: PermissionView). If a legacy permission record lacks the
+  property entirely, hasPermission falls through to hasOwnProperty=false
+  and returns false. This is safe but means older records created before
+  EzProtect was added will silently deny. No migration concern flagged,
+  but worth verifying existing prod data includes the field.
+
+GAP-4: NO GLOBAL ADMIN SHORTCUT
+  Unlike novalum (which has a special global check at line 110-112 in
+  permissions.ts), ezProtect has no such shortcut. Company/facility admins
+  MUST have an explicit global permission record with ezProtect:view to
+  see the corporate dashboard. If this is intentional, fine. If not, add
+  a parallel check.
+
+GAP-5: INGEST API REQUIRES 'manage' BUT NO NAV DISTINCTION
+  The /api/ez-protect/ingest endpoint requires Manage-level permission,
+  but the nav only checks for View. Users who can see EZ Protect in nav
+  but only have 'view' permission will get API errors if they try to
+  ingest data. The UI should either hide ingest controls for view-only
+  users or surface a clear error.
+
+GAP-6: NO .env DEFAULTS FOUND
+  No .env or .env.example file in web-ebacmap to document expected values
+  for NEXT_PUBLIC_FEATURE_CHARM_EZP_MODULE. New developers won't know
+  this flag exists.
+
+================================================================================
+END OF SCAN
+================================================================================

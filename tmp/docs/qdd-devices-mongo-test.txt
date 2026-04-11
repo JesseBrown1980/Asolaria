@@ -1,0 +1,23 @@
+QDD Devices MongoDB Aggregation Test
+Date: 2026-03-25
+DB: mongodb://localhost:27017/ebacmap-local-test
+Collection: ezprotectevents
+clientId: 69c41938d84980e337ac77cd (ObjectId)
+locationId: 69c41938d84980e337ac77cf (ObjectId)
+
+=== With ObjectId match: 10 devices found ===
+{"_id":"SN-1002","totalEvents":10,"deviceModel":"3M MDS","lastSeenAt":"2026-03-25T14:16:43.500Z"}
+{"_id":"SN-3005","totalEvents":10,"deviceModel":"3M Petrifilm","lastSeenAt":"2026-03-25T13:50:58.967Z"}
+{"_id":"SN-3004","totalEvents":20,"deviceModel":"PathogenDx FoodX","lastSeenAt":"2026-03-25T06:28:45.825Z"}
+{"_id":"SN-1001","totalEvents":20,"deviceModel":"PathogenDx EnviroX","lastSeenAt":"2026-03-25T05:58:08.660Z"}
+{"_id":"SN-1003","totalEvents":20,"deviceModel":"Hygiena InSite","lastSeenAt":"2026-03-24T12:30:58.434Z"}
+{"_id":"SN-3002","totalEvents":20,"deviceModel":"3M MDS","lastSeenAt":"2026-03-23T19:19:54.873Z"}
+{"_id":"SN-2001","totalEvents":10,"deviceModel":"PathogenDx FoodX","lastSeenAt":"2026-03-23T11:28:14.316Z"}
+{"_id":"SN-3003","totalEvents":10,"deviceModel":"Hygiena InSite","lastSeenAt":"2026-03-23T05:19:10.915Z"}
+{"_id":"SN-2002","totalEvents":20,"deviceModel":"3M Petrifilm","lastSeenAt":"2026-03-22T17:38:16.598Z"}
+{"_id":"SN-3001","totalEvents":10,"deviceModel":"PathogenDx EnviroX","lastSeenAt":"2026-03-22T16:05:11.240Z"}
+
+=== With string IDs match: 0 devices found ===
+(clientId/locationId are stored as ObjectId in MongoDB, not strings)
+
+Total events across all devices: 150

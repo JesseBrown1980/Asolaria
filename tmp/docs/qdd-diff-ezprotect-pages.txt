@@ -1,0 +1,526 @@
+diff --git a/apps/web-ebacmap/src/pages/ez-protect/alerts.tsx b/apps/web-ebacmap/src/pages/ez-protect/alerts.tsx
+index 63e1fee3c..e54611728 100644
+--- a/apps/web-ebacmap/src/pages/ez-protect/alerts.tsx
++++ b/apps/web-ebacmap/src/pages/ez-protect/alerts.tsx
+@@ -53,7 +53,9 @@ const TRIGGER_TYPES = [
+   { value: 'result_state', label: 'Result State Change' },
+   { value: 'threshold', label: 'Threshold Exceeded' },
+   { value: 'device_offline', label: 'Device Offline' },
+-  { value: 'calibration_due', label: 'Calibration Due' },
++  { value: 'calibration_failure', label: 'Calibration Failure' },
++  { value: 'control_failure', label: 'Control Failure' },
++  { value: 'pm_failure', label: 'PM Failure' },
+ ];
+ 
+ const RESULT_STATES = [
+@@ -64,7 +66,7 @@ const RESULT_STATES = [
+   'Error',
+ ];
+ 
+-const CHANNEL_OPTIONS = ['email', 'sms', 'in-app'];
++const CHANNEL_OPTIONS = ['email', 'sms', 'dashboard', 'both'];
+ 
+ /* ------------------------------------------------------------------ */
+ /*  New Rule Form                                                      */
+@@ -311,7 +313,7 @@ export default function EzProtectAlertsPage() {
+   const moduleEnabled = isEzProtectModuleEnabled(user, location);
+ 
+   /* Alert history pagination */
+-  const [historyOffset, setHistoryOffset] = useState(0);
++  const [historyPage, setHistoryPage] = useState(1);
+   const historyLimit = 10;
+ 
+   /* Permission gates */
+@@ -336,7 +338,7 @@ export default function EzProtectAlertsPage() {
+ 
+   const historyUrl =
+     moduleEnabled && location?.id && location.id !== 'global'
+-      ? `/api/ez-protect/alert-history?locationId=${location.id}&offset=${historyOffset}&limit=${historyLimit}`
++      ? `/api/ez-protect/alert-history?locationId=${location.id}&page=${historyPage}&limit=${historyLimit}`
+       : null;
+ 
+   const { data: historyData, isLoading: historyLoading, mutate: mutateHistory } =
+@@ -619,25 +621,25 @@ export default function EzProtectAlertsPage() {
+                               }}
+                             >
+                               <span>
+-                                Showing {historyOffset + 1} -{' '}
++                                Showing {(historyPage - 1) * historyLimit + 1} -{' '}
+                                 {Math.min(
+-                                  historyOffset + historyLimit,
++                                  historyPage * historyLimit,
+                                   historyData.total
+                                 )}{' '}
+                                 of {historyData.total}
+                               </span>
+                               <div>
+                                 <button
+-                                  disabled={historyOffset === 0}
++                                  disabled={historyPage <= 1}
+                                   onClick={() =>
+-                                    setHistoryOffset((prev) =>
+-                                      Math.max(0, prev - historyLimit)
++                                    setHistoryPage((prev) =>
++                                      Math.max(1, prev - 1)
+                                     )
+                                   }
+                                   style={{
+                                     marginRight: '0.5rem',
+                                     cursor:
+-                                      historyOffset === 0
++                                      historyPage <= 1
+                                         ? 'not-allowed'
+                                         : 'pointer',
+                                   }}
+@@ -646,17 +648,17 @@ export default function EzProtectAlertsPage() {
+                                 </button>
+                                 <button
+                                   disabled={
+-                                    historyOffset + historyLimit >=
++                                    historyPage * historyLimit >=
+                                     historyData.total
+                                   }
+                                   onClick={() =>
+-                                    setHistoryOffset(
+-                                      (prev) => prev + historyLimit
++                                    setHistoryPage(
++                                      (prev) => prev + 1
+                                     )
+                                   }
+                                   style={{
+                                     cursor:
+-                                      historyOffset + historyLimit >=
++                                      historyPage * historyLimit >=
+                                       historyData.total
+                                         ? 'not-allowed'
+                                         : 'pointer',
+diff --git a/apps/web-ebacmap/src/pages/ez-protect/devices.tsx b/apps/web-ebacmap/src/pages/ez-protect/devices.tsx
+index 3424cf7f2..1378ce840 100644
+--- a/apps/web-ebacmap/src/pages/ez-protect/devices.tsx
++++ b/apps/web-ebacmap/src/pages/ez-protect/devices.tsx
+@@ -21,14 +21,14 @@ type DeviceStatus = 'online' | 'offline' | 'error';
+ 
+ interface EzProtectDevice {
+   id: string;
+-  serialNumber: string;
+-  model: string;
++  deviceSerialNumber: string;
++  deviceModel: string;
+   lastSeenAt: string;
+   status: DeviceStatus;
+   calibrationStatus: string;
+   pmStatus: string;
+   totalEvents: number;
+-  facility: string;
++  facilityId: string;
+ }
+ 
+ interface EzProtectDevicesResponse {
+@@ -47,14 +47,14 @@ const STATUS_OPTIONS: { value: DeviceStatus | 'all'; label: string }[] = [
+ ];
+ 
+ const COLUMNS: { key: string; label: string }[] = [
+-  { key: 'serialNumber', label: 'Serial Number' },
+-  { key: 'model', label: 'Model' },
++  { key: 'deviceSerialNumber', label: 'Serial Number' },
++  { key: 'deviceModel', label: 'Model' },
+   { key: 'lastSeenAt', label: 'Last Seen' },
+   { key: 'status', label: 'Status' },
+   { key: 'calibrationStatus', label: 'Calibration' },
+   { key: 'pmStatus', label: 'PM Status' },
+   { key: 'totalEvents', label: 'Total Events' },
+-  { key: 'facility', label: 'Facility' },
++  { key: 'facilityId', label: 'Facility' },
+ ];
+ 
+ /* ------------------------------------------------------------------ */
+@@ -290,7 +290,7 @@ export default function EzProtectDevicesPage() {
+                           {filteredDevices.map((device) => (
+                             <tr
+                               key={device.id}
+-                              onClick={() => handleDeviceClick(device.serialNumber)}
++                              onClick={() => handleDeviceClick(device.deviceSerialNumber)}
+                               style={{
+                                 cursor: 'pointer',
+                                 borderBottom: '1px solid #f3f4f6',
+@@ -303,10 +303,10 @@ export default function EzProtectDevicesPage() {
+                               }}
+                             >
+                               <td style={{ padding: '0.6rem 0.5rem', fontSize: '0.85rem', fontWeight: 500 }}>
+-                                {device.serialNumber}
++                                {device.deviceSerialNumber}
+                               </td>
+                               <td style={{ padding: '0.6rem 0.5rem', fontSize: '0.85rem' }}>
+-                                {device.model}
++                                {device.deviceModel}
+                               </td>
+                               <td style={{ padding: '0.6rem 0.5rem', fontSize: '0.85rem' }}>
+                                 {formatDate(device.lastSeenAt)}
+@@ -348,7 +348,7 @@ export default function EzProtectDevicesPage() {
+                                 {device.totalEvents.toLocaleString()}
+                               </td>
+                               <td style={{ padding: '0.6rem 0.5rem', fontSize: '0.85rem' }}>
+-                                {device.facility}
++                                {device.facilityId}
+                               </td>
+                             </tr>
+                           ))}
+diff --git a/apps/web-ebacmap/src/pages/ez-protect/facility.tsx b/apps/web-ebacmap/src/pages/ez-protect/facility.tsx
+index c17ea7410..c6ffec156 100644
+--- a/apps/web-ebacmap/src/pages/ez-protect/facility.tsx
++++ b/apps/web-ebacmap/src/pages/ez-protect/facility.tsx
+@@ -15,10 +15,10 @@ import { useState } from 'react';
+ // --- Types -------------------------------------------------------------------
+ 
+ interface DeviceStatus {
+-  serialNumber: string;
++  deviceSerialNumber: string;
+   online: boolean;
+   lastSeenAt: string | null;
+-  operator: string | null;
++  operatorId: string | null;
+ }
+ 
+ interface PositiveBreakdown {
+@@ -28,8 +28,8 @@ interface PositiveBreakdown {
+ }
+ 
+ interface InvalidSummary {
+-  serialNumber: string;
+-  operator: string;
++  deviceSerialNumber: string;
++  operatorId: string;
+   count1Day: number;
+   count7Day: number;
+   count14Day: number;
+@@ -44,8 +44,8 @@ interface ErrorEntry {
+ }
+ 
+ interface PmTestEntry {
+-  serialNumber: string;
+-  operator: string;
++  deviceSerialNumber: string;
++  operatorId: string;
+   date: string;
+   count: number;
+ }
+@@ -100,7 +100,7 @@ export default function EzProtectFacilityPage() {
+ 
+   const dashboardUrl =
+     moduleEnabled && location?.id && location.id !== 'global'
+-      ? `/api/ez-protect/devices?locationId=${location.id}`
++      ? `/api/ez-protect/dashboard-facility?locationId=${location.id}`
+       : null;
+ 
+   const { data: dashboard, isLoading, error } =
+@@ -161,16 +161,16 @@ export default function EzProtectFacilityPage() {
+                             </thead>
+                             <tbody>
+                               {dashboard.devices.map((device) => (
+-                                <tr key={device.serialNumber}>
++                                <tr key={device.deviceSerialNumber}>
+                                   <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>
+-                                    {device.serialNumber}
++                                    {device.deviceSerialNumber}
+                                   </td>
+                                   <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>
+                                     <span style={statusDot(device.online)} />
+                                     {device.online ? 'Online' : 'Offline'}
+                                   </td>
+                                   <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>
+-                                    {device.operator ?? '—'}
++                                    {device.operatorId ?? '—'}
+                                   </td>
+                                   <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>
+                                     {device.lastSeenAt
+@@ -254,9 +254,9 @@ export default function EzProtectFacilityPage() {
+                               </thead>
+                               <tbody>
+                                 {dashboard.invalids.map((inv) => (
+-                                  <tr key={`${inv.serialNumber}-${inv.operator}`}>
+-                                    <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>{inv.serialNumber}</td>
+-                                    <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>{inv.operator}</td>
++                                  <tr key={`${inv.deviceSerialNumber}-${inv.operatorId}`}>
++                                    <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>{inv.deviceSerialNumber}</td>
++                                    <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>{inv.operatorId}</td>
+                                     <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0', textAlign: 'right' }}>{inv.count1Day}</td>
+                                     <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0', textAlign: 'right' }}>{inv.count7Day}</td>
+                                     <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0', textAlign: 'right' }}>{inv.count14Day}</td>
+@@ -393,10 +393,10 @@ export default function EzProtectFacilityPage() {
+                               </thead>
+                               <tbody>
+                                 {dashboard.pmTests.map((pm, idx) => (
+-                                  <tr key={`${pm.serialNumber}-${pm.date}-${idx}`}>
++                                  <tr key={`${pm.deviceSerialNumber}-${pm.date}-${idx}`}>
+                                     <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>{pm.date}</td>
+-                                    <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>{pm.serialNumber}</td>
+-                                    <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>{pm.operator}</td>
++                                    <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>{pm.deviceSerialNumber}</td>
++                                    <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0' }}>{pm.operatorId}</td>
+                                     <td style={{ padding: '6px 8px', borderBottom: '1px solid #f0f0f0', textAlign: 'right' }}>{pm.count}</td>
+                                   </tr>
+                                 ))}
+diff --git a/apps/web-ebacmap/src/pages/ez-protect/results.tsx b/apps/web-ebacmap/src/pages/ez-protect/results.tsx
+index bef86bdb9..b20a1da2e 100644
+--- a/apps/web-ebacmap/src/pages/ez-protect/results.tsx
++++ b/apps/web-ebacmap/src/pages/ez-protect/results.tsx
+@@ -19,20 +19,21 @@ import React, { useState, useCallback, useMemo } from 'react';
+ 
+ interface EzProtectEvent {
+   id: string;
+-  occurredAt: string;
+-  deviceSerial: string;
++  completedAt: string;
++  deviceSerialNumber: string;
+   assayName: string;
+   sampleId: string;
+   resultState: string;
+   operatorGroup: string;
+-  facilityName: string;
++  facilityId: string;
+ }
+ 
+ interface EzProtectEventsResponse {
+   events: EzProtectEvent[];
+   total: number;
+   page: number;
+-  pageSize: number;
++  limit: number;
++  totalPages: number;
+ }
+ 
+ type SortDir = 'asc' | 'desc';
+@@ -49,21 +50,24 @@ interface SortState {
+ const PAGE_SIZE = 25;
+ 
+ const RESULT_STATES = [
+-  'Positive',
+-  'Negative',
+-  'Invalid',
+-  'Error',
+-  'Indeterminate',
++  'NEGATIVE',
++  'INITIAL_POSITIVE',
++  'PRESUMPTIVE_POSITIVE',
++  'PRODUCT_POSITIVE',
++  'INVALID',
++  'CALIBRATION_FAIL',
++  'PM_FAIL',
++  'UNKNOWN',
+ ];
+ 
+ const COLUMNS: { key: string; label: string }[] = [
+-  { key: 'occurredAt', label: 'Date' },
+-  { key: 'deviceSerial', label: 'Device' },
++  { key: 'completedAt', label: 'Date' },
++  { key: 'deviceSerialNumber', label: 'Device' },
+   { key: 'assayName', label: 'Assay' },
+   { key: 'sampleId', label: 'Sample' },
+   { key: 'resultState', label: 'Result State' },
+   { key: 'operatorGroup', label: 'Operator' },
+-  { key: 'facilityName', label: 'Facility' },
++  { key: 'facilityId', label: 'Facility' },
+ ];
+ 
+ /* ------------------------------------------------------------------ */
+@@ -83,17 +87,31 @@ const buildQueryString = (params: Record<string, string | number | string[] | un
+   return qs.toString();
+ };
+ 
++const RESULT_STATE_LABELS: Record<string, string> = {
++  NEGATIVE: 'Negative',
++  INITIAL_POSITIVE: 'Initial Positive',
++  PRESUMPTIVE_POSITIVE: 'Presumptive Positive',
++  PRODUCT_POSITIVE: 'Product Positive',
++  INVALID: 'Invalid',
++  CALIBRATION_FAIL: 'Calibration Fail',
++  PM_FAIL: 'PM Fail',
++  UNKNOWN: 'Unknown',
++};
++
+ const resultStateColor = (state: string): string => {
+-  switch (state.toLowerCase()) {
+-    case 'positive':
++  switch (state) {
++    case 'INITIAL_POSITIVE':
++    case 'PRESUMPTIVE_POSITIVE':
++    case 'PRODUCT_POSITIVE':
+       return '#dc2626';
+-    case 'negative':
++    case 'NEGATIVE':
+       return '#16a34a';
+-    case 'invalid':
++    case 'INVALID':
+       return '#d97706';
+-    case 'error':
++    case 'CALIBRATION_FAIL':
++    case 'PM_FAIL':
+       return '#991b1b';
+-    case 'indeterminate':
++    case 'UNKNOWN':
+       return '#6b7280';
+     default:
+       return '#374151';
+@@ -130,7 +148,7 @@ export default function EzProtectResultsPage() {
+   const [selectedStates, setSelectedStates] = useState<string[]>([]);
+   const [deviceFilter, setDeviceFilter] = useState('');
+   const [operatorFilter, setOperatorFilter] = useState('');
+-  const [sort, setSort] = useState<SortState>({ column: 'occurredAt', dir: 'desc' });
++  const [sort, setSort] = useState<SortState>({ column: 'completedAt', dir: 'desc' });
+ 
+   /* -- Build URL --------------------------------------------------- */
+   const eventsUrl = useMemo(() => {
+@@ -138,14 +156,14 @@ export default function EzProtectResultsPage() {
+     const qs = buildQueryString({
+       locationId: location.id,
+       page,
+-      pageSize: PAGE_SIZE,
++      limit: PAGE_SIZE,
+       dateFrom: dateFrom || undefined,
+       dateTo: dateTo || undefined,
+-      resultState: selectedStates.length ? selectedStates : undefined,
+-      device: deviceFilter || undefined,
++      resultStates: selectedStates.length ? selectedStates : undefined,
++      deviceSerialNumber: deviceFilter || undefined,
+       operatorGroup: operatorFilter || undefined,
+       sortBy: sort.column,
+-      sortDir: sort.dir,
++      sortOrder: sort.dir,
+     });
+     return `/api/ez-protect/events?${qs}`;
+   }, [moduleEnabled, location?.id, page, dateFrom, dateTo, selectedStates, deviceFilter, operatorFilter, sort]);
+@@ -189,11 +207,11 @@ export default function EzProtectResultsPage() {
+       locationId: location.id,
+       dateFrom: dateFrom || undefined,
+       dateTo: dateTo || undefined,
+-      resultState: selectedStates.length ? selectedStates : undefined,
+-      device: deviceFilter || undefined,
++      resultStates: selectedStates.length ? selectedStates : undefined,
++      deviceSerialNumber: deviceFilter || undefined,
+       operatorGroup: operatorFilter || undefined,
+       sortBy: sort.column,
+-      sortDir: sort.dir,
++      sortOrder: sort.dir,
+     });
+     window.open(`/api/ez-protect/export?${qs}`, '_blank');
+   }, [location?.id, dateFrom, dateTo, selectedStates, deviceFilter, operatorFilter, sort]);
+@@ -276,7 +294,7 @@ export default function EzProtectResultsPage() {
+                                     checked={selectedStates.includes(state)}
+                                     onChange={() => toggleState(state)}
+                                   />
+-                                  {state}
++                                  {RESULT_STATE_LABELS[state] || state}
+                                 </label>
+                               ))}
+                             </div>
+@@ -397,10 +415,10 @@ export default function EzProtectResultsPage() {
+                                 }}
+                               >
+                                 <td style={{ padding: '0.6rem 0.5rem', fontSize: '0.85rem' }}>
+-                                  {event.occurredAt ? new Date(event.occurredAt).toLocaleDateString() : '—'}
++                                  {event.completedAt ? new Date(event.completedAt).toLocaleDateString() : '—'}
+                                 </td>
+                                 <td style={{ padding: '0.6rem 0.5rem', fontSize: '0.85rem' }}>
+-                                  {event.deviceSerial}
++                                  {event.deviceSerialNumber}
+                                 </td>
+                                 <td style={{ padding: '0.6rem 0.5rem', fontSize: '0.85rem' }}>
+                                   {event.assayName}
+@@ -420,14 +438,14 @@ export default function EzProtectResultsPage() {
+                                       fontWeight: 500,
+                                     }}
+                                   >
+-                                    {event.resultState}
++                                    {RESULT_STATE_LABELS[event.resultState] || event.resultState}
+                                   </span>
+                                 </td>
+                                 <td style={{ padding: '0.6rem 0.5rem', fontSize: '0.85rem' }}>
+                                   {event.operatorGroup}
+                                 </td>
+                                 <td style={{ padding: '0.6rem 0.5rem', fontSize: '0.85rem' }}>
+-                                  {event.facilityName}
++                                  {event.facilityId}
+                                 </td>
+                               </tr>
+                             ))}
+diff --git a/apps/web-ebacmap/src/pages/ez-protect/results/[id].tsx b/apps/web-ebacmap/src/pages/ez-protect/results/[id].tsx
+index a8b4eaf6f..986ab8696 100644
+--- a/apps/web-ebacmap/src/pages/ez-protect/results/[id].tsx
++++ b/apps/web-ebacmap/src/pages/ez-protect/results/[id].tsx
+@@ -20,10 +20,9 @@ import React, { useCallback } from 'react';
+ interface EzProtectEventDetail {
+   id: string;
+   /* Device Info */
+-  deviceSerial: string;
++  deviceSerialNumber: string;
+   deviceModel: string;
+   moduleSlot: string;
+-  firmware: string;
+   /* Assay */
+   assayCode: string;
+   assayName: string;
+@@ -32,10 +31,10 @@ interface EzProtectEventDetail {
+   resultState: string;
+   resultValue: string;
+   resultUnit: string;
+-  reading: string;
+-  controlLine: string;
++  readingValue: string;
++  controlLineValid: string;
+   /* Environment */
+-  temperature: string;
++  temperatureC: string;
+   pmStatus: string;
+   calibrationStatus: string;
+   /* Strip */
+@@ -55,8 +54,8 @@ interface EzProtectEventDetail {
+   /* Source */
+   sourceSystem: string;
+   transportMode: string;
+-  organization: string;
+-  facility: string;
++  organizationId: string;
++  facilityId: string;
+ }
+ 
+ /* ------------------------------------------------------------------ */
+@@ -268,10 +267,9 @@ export default function EzProtectEventDetailPage() {
+ 
+                   {/* Device Info */}
+                   <Section title="Device Info">
+-                    <FieldRow label="Serial" value={display(event.deviceSerial)} />
++                    <FieldRow label="Serial" value={display(event.deviceSerialNumber)} />
+                     <FieldRow label="Model" value={display(event.deviceModel)} />
+                     <FieldRow label="Module Slot" value={display(event.moduleSlot)} />
+-                    <FieldRow label="Firmware" value={display(event.firmware)} />
+                   </Section>
+ 
+                   {/* Assay */}
+@@ -286,13 +284,13 @@ export default function EzProtectEventDetailPage() {
+                     <FieldRow label="State" value={display(event.resultState)} />
+                     <FieldRow label="Value" value={display(event.resultValue)} />
+                     <FieldRow label="Unit" value={display(event.resultUnit)} />
+-                    <FieldRow label="Reading" value={display(event.reading)} />
+-                    <FieldRow label="Control Line" value={display(event.controlLine)} />
++                    <FieldRow label="Reading" value={display(event.readingValue)} />
++                    <FieldRow label="Control Line" value={display(event.controlLineValid)} />
+                   </Section>
+ 
+                   {/* Environment */}
+                   <Section title="Environment">
+-                    <FieldRow label="Temperature" value={display(event.temperature)} />
++                    <FieldRow label="Temperature" value={display(event.temperatureC)} />
+                     <FieldRow label="PM Status" value={display(event.pmStatus)} />
+                     <FieldRow label="Calibration Status" value={display(event.calibrationStatus)} />
+                   </Section>
+@@ -327,8 +325,8 @@ export default function EzProtectEventDetailPage() {
+                   <Section title="Source">
+                     <FieldRow label="System" value={display(event.sourceSystem)} />
+                     <FieldRow label="Transport Mode" value={display(event.transportMode)} />
+-                    <FieldRow label="Organization" value={display(event.organization)} />
+-                    <FieldRow label="Facility" value={display(event.facility)} />
++                    <FieldRow label="Organization" value={display(event.organizationId)} />
++                    <FieldRow label="Facility" value={display(event.facilityId)} />
+                   </Section>
+                 </Grid>
+               )}

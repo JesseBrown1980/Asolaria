@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 3,
+  "generatedAt": "2026-03-25T00:00:00.000Z",
+  "profile": "prod",
+  "stage": "prod",
+  "sourceContract": "promoted-snapshot",
+  "promotedFromProfile": "staging",
+  "validated": true,
+  "validationErrors": [],
+  "buildMode": "promoted-snapshot",
+  "documentCount": 1,
+  "sourceCounts": {
+    "canonicalDocuments": 1,
+    "auxiliaryDocuments": 0
+  },
+  "documents": [
+    {
+      "id": "LX-998",
+      "prefix": "LX",
+      "number": "998",
+      "source": "canonical_lx",
+      "sourceKind": "canonical_lx",
+      "layer": "canonical",
+      "title": "Staging Gate Test",
+      "type": "pattern",
+      "tags": [
+        "staging"
+      ],
+      "chain": [],
+      "summary": "Synthetic canonical staging payload.",
+      "body": "This payload exists to exercise staging validation and search smoke.",
+      "updatedAt": "2026-03-25T00:00:00.000Z"
+    }
+  ],
+  "snapshotPath": "C:\\Users\\acer\\Asolaria\\.history\\prod\\unified-agent-index-snapshots\\compiled-unified-agent-index-20260325-000000000Z.json"
+}

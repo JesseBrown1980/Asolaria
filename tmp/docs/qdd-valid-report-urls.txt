@@ -1,0 +1,11 @@
+VALID REPORT URLs:
+  http://localhost:3000/reports/69c4446d6ffb66267d09455a — Environmental Monitoring Q1 (single)
+  http://localhost:3000/reports/69c4446d6ffb66267d09455b — Product Contact Trend (multi)
+  http://localhost:3000/reports/69c4446d6ffb66267d09455c — Monthly Corrective Actions (single)
+  http://localhost:3000/reports/69c4446d6ffb66267d09455d — Zone 1 Analysis (multi)
+  http://localhost:3000/reports/69c4446d6ffb66267d09455e — Equipment Audit Summary (single)
+  http://localhost:3000/reports/69c4446d6ffb66267d09455f — Listeria Investigation (multi)
+  http://localhost:3000/reports/69c4446d6ffb66267d094560 — Coliform Trend Report (single)
+  http://localhost:3000/reports/69c4446d6ffb66267d094561 — Weekly Swab Summary (multi)
+  http://localhost:3000/reports/69c4446d6ffb66267d094562 — Annual Review (single)
+  http://localhost:3000/reports/69c4446d6ffb66267d094563 — Facility Comparison (multi)

@@ -1,0 +1,20 @@
+{
+  "id": "whatsapp.adb.send",
+  "title": "Send WhatsApp Message via ADB",
+  "description": "Types a message into the active WhatsApp chat and taps send using ADB phone control. Requires USB-connected phone with WhatsApp open to the target chat.",
+  "version": "1.0.0",
+  "risk": "medium",
+  "permissions": [
+    "phone.adb"
+  ],
+  "tags": [
+    "whatsapp",
+    "adb",
+    "phone",
+    "comms",
+    "liris",
+    "gaia"
+  ],
+  "ixRef": "—",
+  "pidRegistry": {}
+}

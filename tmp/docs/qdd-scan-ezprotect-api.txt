@@ -1,0 +1,215 @@
+EZ Protect API Routes — Deep Security & Quality Scan
+=====================================================
+Date: 2026-03-25
+Scanner: Gaia (Claude Opus 4.6)
+Scope: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\ez-protect\
+Files scanned: 12
+
+=== FRAMEWORK BASELINE ===
+
+All routes use the Endpoint class (src/common/core/Endpoint.ts) which provides:
+  - Session-based auth via iron-session (withApiSession wrapper)
+  - Access control via verifyPermissionsUseCase when .useAccessControl() is called
+  - Yup schema validation when .useRequestSchema() is called
+  - Rate limiting when .useRateLimit() is called
+  - Sentry error tracking on all failures
+
+Auth flow: session.isLoggedIn -> hydrateUser() -> verifyPermissionsUseCase.execute()
+If useAccessControl is set and no user in session -> UnauthorizedError (401).
+
+=== ROUTE-BY-ROUTE ANALYSIS ===
+
+1. alert-history.ts (GET)
+   Auth: YES (View/EzProtect)
+   Validation: YES (locationId optional, page/limit with defaults)
+   Rate limit: NO
+   Issues: NONE - clean route.
+
+2. alerts/index.ts (GET + POST)
+   GET - Auth: YES (View/EzProtect), Validation: YES (locationId optional)
+   POST - Auth: YES (Manage/EzProtect), Validation: YES
+   Rate limit: NO
+   Issues:
+   [MEDIUM] triggerConfig validated as yup.object() with NO shape — accepts any JSON payload.
+             An attacker with Manage permission could store arbitrarily large/nested objects.
+   [LOW] recipients validated as yup.array().of(yup.string()) — no email/phone format check.
+         Could store garbage strings that break notification delivery silently.
+   [LOW] faqLinks/videoLinks are yup.string() arrays — no URL format validation.
+         Could be used to inject javascript: URIs if rendered unescaped in the UI.
+
+3. alerts/[id].ts (PUT + DELETE)
+   PUT - Auth: YES (Manage/EzProtect), Validation: YES
+   DELETE - Auth: YES (Manage/EzProtect), Validation: YES (id required)
+   Rate limit: NO
+   Issues:
+   [MEDIUM] Same triggerConfig problem as alerts/index.ts POST — yup.object() with no shape.
+   [LOW] Same recipients/faqLinks/videoLinks format issues as above.
+
+4. dashboard.ts (GET)
+   Auth: YES (View/EzProtect)
+   Validation: YES (locationId required)
+   Rate limit: NO
+   Issues: NONE
+
+5. dashboard-facility.ts (GET)
+   Auth: YES (View/EzProtect)
+   Validation: YES (locationId required)
+   Rate limit: NO
+   Issues:
+   [INFO] DUPLICATE — uses the exact same use case (GetEzProtectDashboard) as dashboard.ts.
+          Both require locationId. This looks like a redundant route.
+
+6. dashboard-corporate.ts (GET)
+   Auth: YES (View/EzProtect)
+   Validation: YES (clientId optional)
+   Rate limit: NO
+   Issues:
+   [MEDIUM] clientId is optional with NO fallback enforcement. If omitted, the use case
+            could potentially return data across ALL clients unless the use case itself
+            scopes to ctx.user.clientId internally. Needs use case verification.
+
+7. devices.ts (GET)
+   Auth: YES (View/EzProtect)
+   Validation: YES (locationId + clientId optional)
+   Rate limit: NO
+   Issues:
+   [MEDIUM] Both locationId and clientId are optional. Same risk as dashboard-corporate —
+            without at least one scope filter, could return cross-tenant device data
+            unless the use case enforces tenant isolation internally.
+
+8. event/[id].ts (GET)
+   Auth: YES (View/EzProtect)
+   Validation: YES (id required)
+   Rate limit: NO
+   Issues:
+   [HIGH] No tenant isolation at route level. The id comes from the URL path param.
+          If the use case does a simple findById(id) without checking that the event
+          belongs to the requesting user's client/locations, ANY authenticated user with
+          View/EzProtect could read ANY other client's event by guessing/enumerating IDs.
+          MUST verify the use case enforces ctx.user.clientId scoping.
+
+9. events.ts (GET)
+   Auth: YES (View/EzProtect)
+   Validation: YES (comprehensive schema with pagination, sorting, filters)
+   Rate limit: NO
+   Issues:
+   [LOW] dateFrom/dateTo are yup.string() with no date format validation.
+         Malformed dates could cause MongoDB query errors or unexpected behavior.
+   [LOW] resultStates is a comma-separated string — no validation that individual
+         values match the known RESULT_STATES enum. Invalid filter values would
+         silently return empty results.
+
+10. export.ts (GET)
+    Auth: YES (View/EzProtect)
+    Validation: YES (locationId, resultStates, dateFrom, dateTo all optional)
+    Rate limit: NO
+    Issues:
+    [HIGH] NO pagination or size limit. If all filters are optional and omitted,
+           this could export the ENTIRE events table as CSV. No rate limiting either.
+           A single request could generate a multi-GB response, causing memory exhaustion
+           or denial of service on the server.
+    [LOW] dateFrom/dateTo same string-without-format issue as events.ts.
+
+11. ingest.ts (POST)
+    Auth: YES (Manage/EzProtect)
+    Validation: YES (events array required, locationId required)
+    Rate limit: NO
+    Issues:
+    [HIGH] NO limit on events array size. An attacker with Manage permission could POST
+           millions of events in a single request, causing DB overload, memory exhaustion,
+           or a long-running synchronous loop that blocks the server.
+           The for-loop at line 57 processes events SEQUENTIALLY — no batching, no cap.
+    [HIGH] events validated as yup.array().of(yup.object()) — inner objects have ZERO
+           schema validation at the yup level. All field extraction uses unsafe casts
+           like `raw.deviceSerialNumber as string`. If deviceSerialNumber is an object
+           or array, it passes the !deviceSerialNumber check but creates garbage data.
+    [MEDIUM] rawPayload (line 99) stores the entire raw input object in MongoDB.
+             No size limit on individual event objects. Could be used to store arbitrary
+             large blobs in the database.
+    [MEDIUM] organizationId can be overridden per-event via raw.organizationId (line 73).
+             An authenticated user could write events attributed to a DIFFERENT organization.
+             The ctx.user.clientId is only used as fallback, not as enforcement.
+    [LOW] stripExpiration, startedAt, completedAt parsed with `new Date()` — no validation
+          that the string is actually a valid date. `new Date('garbage')` = Invalid Date
+          which gets stored in MongoDB.
+
+12. reports/generate.ts (GET)
+    Auth: YES (View/EzProtect)
+    Validation: YES (reportType + format required, dates optional)
+    Rate limit: NO
+    Issues:
+    [MEDIUM] No rate limiting on report generation. Reports (especially PDF) are typically
+             CPU/memory intensive. Rapid-fire requests could exhaust server resources.
+    [LOW] dateFrom/dateTo same string-without-format issue.
+
+=== CROSS-CUTTING ISSUES ===
+
+[HIGH] NO RATE LIMITING ON ANY ROUTE
+       Not a single EZ Protect route calls .useRateLimit(). The framework supports it
+       (Endpoint.useRateLimit exists) but it is never used. The ingest and export
+       endpoints are especially dangerous without rate limits.
+
+[HIGH] TENANT ISOLATION NOT ENFORCED AT ROUTE LEVEL
+       The Endpoint framework resolves permissions per-location via verifyPermissionsUseCase,
+       but for routes where locationId/clientId is OPTIONAL (dashboard-corporate, devices,
+       export, events), tenant scoping depends entirely on the use case implementation.
+       If any use case does a bare Model.find({}) without injecting ctx.user.clientId
+       into the query, it leaks cross-tenant data. This is an architectural gap — tenant
+       isolation should be enforced at the middleware layer, not left to each use case.
+
+[MEDIUM] DUPLICATE DASHBOARD ROUTES
+         dashboard.ts and dashboard-facility.ts both use GetEzProtectDashboard with
+         identical schemas (locationId required). One should be removed or they should
+         use different use cases.
+
+[MEDIUM] NO HTTP METHOD RESTRICTION ON UNREGISTERED METHODS
+         The Endpoint.register() only binds the specified method (get/post/put/delete).
+         The handler passed to next-connect should reject other methods with 405.
+         Verify that the handle() function from GlobalHandler sets up a default
+         onNoMatch handler. If not, unregistered methods return the default Next.js
+         404/200 instead of a proper 405 Method Not Allowed.
+
+[LOW] NO CONSISTENT DATE VALIDATION
+      Multiple routes accept dateFrom/dateTo as plain strings with no format enforcement.
+      Should use yup.date() or a .matches() regex for ISO 8601 format.
+
+[LOW] MISSING .notRequired() vs .nullable() CONFUSION
+      Several optional fields use .notRequired() which strips the field entirely,
+      vs .nullable() which allows explicit null. This could cause subtle bugs if
+      the use cases differentiate between undefined and null.
+
+=== PRIORITY FIX LIST ===
+
+P0 (Fix immediately):
+  1. ingest.ts — Add max array size: yup.array().of(yup.object()).max(1000).required()
+  2. ingest.ts — Validate inner event objects with a proper schema instead of yup.object()
+  3. ingest.ts — REMOVE raw.organizationId override; always use ctx.user.clientId
+  4. export.ts — Add mandatory date range or row limit to prevent full-table dump
+  5. event/[id].ts — Verify use case enforces tenant isolation; if not, add clientId filter
+
+P1 (Fix before production):
+  6. Add .useRateLimit() to ingest, export, and reports/generate endpoints
+  7. Audit all use cases for tenant isolation (clientId scoping in DB queries)
+  8. Validate triggerConfig shape in alerts create/update
+  9. Add URL format validation for faqLinks/videoLinks
+  10. Add date format validation across all dateFrom/dateTo fields
+
+P2 (Cleanup):
+  11. Remove duplicate dashboard-facility.ts or differentiate from dashboard.ts
+  12. Add email format validation for alert recipients
+  13. Add .nullable() where appropriate instead of relying on .notRequired()
+  14. Limit rawPayload storage size in ingest
+
+=== SUMMARY ===
+
+12 route files, 14 endpoints total (some files register multiple HTTP methods).
+All routes have auth + access control — no unauthenticated endpoints. Good.
+All routes have yup validation — no raw unvalidated input. Good baseline.
+
+Critical gaps: No rate limiting anywhere, weak tenant isolation at the route layer,
+the ingest endpoint accepts unbounded arrays with unvalidated inner schemas and allows
+organizationId spoofing, and the export endpoint has no size cap.
+
+The framework (Endpoint.ts) is well-designed and provides the right hooks. The issue
+is that the EZ Protect routes do not use all available protections (rate limiting,
+location requirement) and rely too heavily on use cases for tenant scoping.

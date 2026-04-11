@@ -1,0 +1,159 @@
+Gmail Search Results: Brian / Sentry / QDD / eBacMap / Credentials
+==================================================================
+Search date: 2026-03-25
+Account: plasmatoid@gmail.com
+Mode: READ ONLY — no emails sent
+
+SUMMARY: No emails found from Brian (Charm Sciences) about Sentry, QDD,
+eBacMap, credentials, or deployment access. Brian's credentials and project
+communications were NOT shared via Jesse's Gmail. They likely came through
+Slack, Linear, or direct handoff.
+
+==================================================================
+SEARCH 1: "sentry"
+Result: 1 message (NOT from Brian)
+------------------------------------------------------------------
+  Message ID: 19cd456b46c46956
+  Date: Mon, 9 Mar 2026 17:42:57 -0300
+  From: Jesse Daniel Brown <plasmatoid@gmail.com>
+  To: John Cumbers <john.cumbers@synbiobeta.com>
+  Label: SENT
+  Snippet: "John, I am sending you a board-facing package on Asolaria
+    for your presentation to the OpenAI board because I think it captures
+    something strategically important about where frontier-model systems are"
+  NOTE: This is Jesse's outbound email to John Cumbers about Asolaria.
+    The word "sentry" likely appears in the Asolaria system description
+    (Sentinel/Sentry agent), NOT related to Sentry.io error tracking.
+
+==================================================================
+SEARCH 2: "brian ebacmap"
+Result: 0 messages
+------------------------------------------------------------------
+  No emails found.
+
+==================================================================
+SEARCH 3: "brian charm"
+Result: 0 messages
+------------------------------------------------------------------
+  No emails found.
+
+==================================================================
+SEARCH 4: "SENTRY_DSN"
+Result: 0 messages
+------------------------------------------------------------------
+  No emails found. The SENTRY_DSN environment variable was never
+  shared via Gmail.
+
+==================================================================
+SEARCH 5: "brian deploy OR brian staging"
+Result: 1 message (NOT from QDD Brian)
+------------------------------------------------------------------
+  Message ID: 190b5ff58df8ad81
+  Date: Mon, 15 Jul 2024 07:45:28 -0300
+  From: Jesse Daniel Brown <plasmatoid@gmail.com>
+  To: brian@vaangroup.com
+  Label: SENT
+  Snippet: "Hi Brian This is Jesse and I am working as a software
+    engineer and looking for a new opportunity. I'd like to work for
+    your company Could I have an interview with you? Best regards Jesse"
+  NOTE: This is a cold outreach email to a different Brian at Vaan Group.
+    NOT related to QDD/Charm Sciences.
+
+==================================================================
+SEARCH 6: "digitalocean"
+Result: 0 messages
+------------------------------------------------------------------
+  No DigitalOcean credentials or communications found in Gmail.
+
+==================================================================
+SEARCH 7: "mongodb connection"
+Result: 1 message (NOT related to QDD)
+------------------------------------------------------------------
+  Message ID: 191ec1218aa67c50
+  Date: Fri, 13 Sep 2024 12:48:10 -0300
+  From: Jesse Daniel Brown <plasmatoid@gmail.com>
+  To: Glen Kutsovsky <glenk@h2partners.co>
+  Subject: Gllen update for Jesse
+  Label: SENT
+  Snippet: "Here's a detailed technical write-up focused on front-end
+    development in some of your recent projects using technologies like
+    Node.js, React, and others. Front-End Work: Technical Overview 1."
+  NOTE: This is a portfolio/technical write-up sent to Glen at H2 Partners.
+    The word "mongodb" appears in the technical description, NOT as credentials.
+
+==================================================================
+ADDITIONAL SEARCHES (broader)
+==================================================================
+
+SEARCH 8: "from:brian" (all emails FROM any Brian)
+Result: 2 messages — both from Dr. Biren "Brian" Prasad (JAIKE journal)
+------------------------------------------------------------------
+  a) Message ID: 19b162383de48c5c
+     Date: Fri, 12 Dec 2025 21:16:13 -0800
+     From: "Biren 'Brian' Prasad" <prasadbiren@gmail.com>
+     Subject: Re: Journal of Artificial Intelligence and Knowledge Engineering
+     Snippet: "Jesse: Why don't you try revising the manuscript to your
+       liking -- as much as possible then submit your revision..."
+     NOTE: Academic journal editor. NOT QDD-related.
+
+  b) Message ID: 194f140e8eef184d
+     Date: Mon, 10 Feb 2025 19:05:47 +0000
+     From: "Biren 'Brian' Prasad" <prasadbiren@gmail.com>
+     Subject: Re: Acceptance of Editorial Board Invitation - IJAIKE
+     Snippet: "Thanks Jesse: You are all set. Have a great day.
+       Dr. Biren (Brian) Prasad Editor-in-Chief..."
+     NOTE: Editorial board acceptance. NOT QDD-related.
+
+SEARCH 9: "QDD"
+Result: 0 messages
+------------------------------------------------------------------
+  No emails mentioning QDD at all.
+
+SEARCH 10: "ebacmap"
+Result: 0 messages
+------------------------------------------------------------------
+  No emails mentioning eBacMap at all.
+
+SEARCH 11: "charm sciences"
+Result: 0 messages
+------------------------------------------------------------------
+  No emails mentioning Charm Sciences at all.
+
+SEARCH 12: "from:brian sentry OR deploy OR credentials OR staging"
+Result: 0 messages
+------------------------------------------------------------------
+  No emails from any Brian about deployment, credentials, or Sentry.
+
+SEARCH 13: "deploy credentials OR staging credentials OR env variables"
+Result: 0 messages
+------------------------------------------------------------------
+  No credential-sharing emails found.
+
+SEARCH 14: "sentry DSN OR sentry credentials OR sentry config"
+Result: 1 message (same Asolaria/OpenAI board email as Search 1)
+------------------------------------------------------------------
+  Already documented above.
+
+==================================================================
+CONCLUSION
+==================================================================
+Brian (Charm Sciences / QDD) has NEVER communicated with Jesse via
+plasmatoid@gmail.com about:
+  - Sentry DSN or error tracking configuration
+  - eBacMap project details
+  - QDD project details
+  - Deployment or staging access
+  - DigitalOcean credentials
+  - MongoDB connection strings
+  - Any credentials whatsoever
+
+The only "Brian" who has emailed Jesse is Dr. Biren "Brian" Prasad,
+editor of the Int. Journal of AI and Knowledge Engineering (JAIKE),
+which is unrelated to QDD/Charm.
+
+LIKELY CHANNELS FOR QDD/BRIAN CREDENTIALS:
+  - Slack (Charm Sciences workspace)
+  - Linear (project management)
+  - Direct handoff (1:1 meeting, screen share)
+  - Separate work email (not plasmatoid@gmail.com)
+  - .env files shared via secure channel

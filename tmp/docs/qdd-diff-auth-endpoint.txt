@@ -1,0 +1,213 @@
+QDD EZ Protect Dashboard Auth/Endpoint Analysis
+=================================================
+Date: 2026-03-25
+Status: READ-ONLY analysis (no changes made)
+
+SYMPTOM: EZ Protect dashboard returns {"error":{}}
+
+ROOT CAUSE ANALYSIS
+-------------------
+
+The response {"error":{}} is produced ONLY by Controller.ts line 69-72:
+
+    fail(error: Error | string) {
+      return res.status(500).json({
+        error: typeof error === 'string' ? new Error(error) : error
+      });
+    }
+
+When JSON.stringify serializes an Error object, all properties (message, stack,
+name) are non-enumerable, so you get {}. This is a 500 response.
+
+This fail() path is reached via defaultErrorHandler's `default` case (Endpoint.ts
+line 128-131), which catches any error whose .name does NOT match the known set:
+NotFoundError, InactiveError, ValidationError, DuplicateEntityError,
+ForbiddenError, UnauthorizedError, BulkError.
+
+FLOW TRACE: EZ Protect Dashboard
+----------------------------------
+
+File: apps/web-ebacmap/src/pages/api/ez-protect/dashboard.ts
+
+  const endpoint = new Endpoint('get', getEzProtectDashboardUseCase)
+    .useAccessControl({ action: View, domain: EzProtect })
+    .useRequestSchema(yup.object({ locationId: yup.string().required() }))
+
+Endpoint.register() wraps the handler in:
+  1. next-connect with database middleware (GlobalHandler.ts)
+  2. withApiSession (iron-session v8 getIronSession)
+  3. Controller wrapper
+
+Execution flow (Endpoint.ts lines 264-375):
+  a) Session extraction (line 264-268):
+     - req.session always exists (iron-session v8 returns {} for empty session)
+     - session.isLoggedIn checked; if falsy, user = undefined
+
+  b) Schema validation (line 269-278):
+     - Validates locationId from query params
+     - If missing -> 422 {"message":"Invalid",...} (NOT the bug)
+
+  c) User hydration (line 281-286):
+     - ONLY runs if (accessControl || requireLocationAccess) AND user is truthy
+     - hydrateUser(user) looks up full DB user by session.user.id
+
+  d) Access control gate (line 295-298):
+     - If accessControl is set and !user -> UnauthorizedError
+     - BUT: UnauthorizedError class (common/UnauthorizedError.ts) sets
+       this.name = 'ForbiddenError' (MISNAMED CLASS - see bug #1)
+     - So this path returns 403 {"message":"Forbidden",...} not {"error":{}}
+
+  e) Use case execution (line 335-340):
+     - GetEzProtectDashboard.UseCase.ts checks if (!ctx.user)
+     - If no user -> Result.fail(new UnauthorizedError('User'))
+     - Again hits ForbiddenError path -> 403, NOT {"error":{}}
+
+CONCLUSION: The {"error":{}} 500 response comes from an UNCAUGHT EXCEPTION
+falling through to the catch block at Endpoint.ts line 373, then to
+defaultErrorHandler's default case -> res.fail(error).
+
+PRIMARY SUSPECT: hydrateUser() crash (Endpoint.ts line 54-107)
+---------------------------------------------------------------
+
+hydrateUser() does:
+    const user = await models.UserModel.findById(sessionUser.id);
+    ...
+    return { id: user!._id.toHexString(), ... }
+
+If session has isLoggedIn=true and session.user exists, BUT the user ID does NOT
+exist in the database (e.g. dev-bypass created a session with fake ObjectId
+'69c3ecbdecd240dd83e93d3d'), then:
+
+    models.UserModel.findById('69c3ecbdecd240dd83e93d3d') -> null
+    user!._id.toHexString() -> TypeError: Cannot read properties of null
+
+This TypeError has .name = 'TypeError', which does NOT match any known error
+type, so it falls to `default` -> res.fail(error) -> {"error":{}}.
+
+HOW TO VERIFY:
+  1. Check server logs for TypeError in hydrateUser
+  2. Check if the session user ID exists in MongoDB
+  3. The dev-bypass file uses hardcoded ID '69c3ecbdecd240dd83e93d3d' - if that
+     user doesn't exist in the DB, hydrateUser will crash
+
+ALTERNATIVE SUSPECT: Database connection failure
+-------------------------------------------------
+If the MongoDB connection is not established when the request arrives, the
+models.UserModel.findById() call could throw a MongoError or similar, which
+also would not match any known error name and would fall through to
+res.fail(error) -> {"error":{}}.
+
+SECONDARY ISSUES FOUND
+-----------------------
+
+BUG #1: Misnamed Error Class
+File: apps/web-ebacmap/src/common/UnauthorizedError.ts
+
+    export default class UnauthorizedError extends Error {
+      constructor(_resource: string) {
+        super('You are not authorized to access that area');
+        this.name = 'ForbiddenError';  // <-- WRONG: should be 'UnauthorizedError'
+      }
+    }
+
+This class is named UnauthorizedError but sets this.name = 'ForbiddenError'.
+Result: defaultErrorHandler routes it to res.forbidden() (403) instead of
+res.unauthorized() (401). This means the Endpoint's own guard at line 296-298
+(which should return 401 for no-session) actually returns 403.
+
+Note: access-control/VerifyPermissions/UseCase.ts has its OWN UnauthorizedError
+that correctly sets this.name = 'UnauthorizedError'. Two different classes with
+the same name, different behavior.
+
+BUG #2: iron-session.d.ts Type Augmentation is Dead Code
+File: apps/web-ebacmap/src/types/iron-session.d.ts
+
+    declare module 'iron-session' {
+      interface IronSessionData { ... }
+    }
+
+iron-session v8.0.1 does NOT export IronSessionData. The session type is
+IronSession<T>. This augmentation has NO effect. The session type is untyped
+at the TypeScript level, which means type safety for session.user is completely
+missing. The doubly-nested structure in the .d.ts (user.user) also doesn't
+match actual usage.
+
+BUG #3: mapUserToSession Returns Incomplete Shape
+File: apps/web-ebacmap/src/modules/users/dtos.ts
+
+    mapUserToSession returns: { id, name, role, clientId, email }
+
+But Endpoint.ts UserSessionTUser expects: { id, role, clientId, name, status, locations, email }
+
+Missing fields: status, locations. These are used by hydrateUser to look up the
+DB user (only needs .id), so this doesn't directly break anything, but it's a
+type mismatch that TypeScript can't catch because the session types are broken
+(see bug #2).
+
+FIX RECOMMENDATIONS
+--------------------
+
+1. IMMEDIATE FIX for {"error":{}}:
+   In hydrateUser (Endpoint.ts line 57), add a null check:
+
+     const user = await models.UserModel.findById(sessionUser.id);
+     if (!user) {
+       throw new UnauthorizedError('User not found');
+     }
+
+   This converts the crash into a proper 403/401 response instead of a 500.
+
+2. Fix UnauthorizedError class name:
+   In common/UnauthorizedError.ts, change:
+     this.name = 'ForbiddenError'  ->  this.name = 'UnauthorizedError'
+
+3. Fix defaultErrorHandler to serialize errors properly:
+   In the `default` case, use:
+     return res.status(500).json({ error: error.message || 'Internal error' });
+   instead of passing the raw Error object which serializes to {}.
+
+4. Fix iron-session.d.ts for v8 compatibility (lower priority)
+
+5. Ensure dev-bypass user IDs match actual MongoDB documents, OR add a
+   fallback in hydrateUser for missing users.
+
+SESSION USER LIFECYCLE (complete trace)
+----------------------------------------
+
+LOGIN:
+  Login UseCase -> Result.ok({ session: { isLoggedIn: true, user: mapUserToSession(user) } })
+  Endpoint line 343-346: req.session.user = response.session.user; req.session.isLoggedIn = true; req.session.save()
+  Cookie 'ebacmapv3' encrypted and sent to browser
+
+SUBSEQUENT REQUESTS:
+  withApiSession: req.session = await getIronSession(req, res, opts)
+  Endpoint line 264-268: session = req.session; user = session.isLoggedIn ? session.user : undefined
+  If accessControl: user = await hydrateUser(user) <-- CRASH POINT if user not in DB
+  useCaseContext = { user, ipAddress }
+  useCase.execute(req.body, useCaseContext)
+
+DEV-BYPASS:
+  Directly sets session.isLoggedIn = true, session.user = { hardcoded fake data }
+  Uses ID '69c3ecbdecd240dd83e93d3d' which likely does NOT exist in MongoDB
+  -> hydrateUser crashes -> {"error":{}}
+
+FILES EXAMINED
+--------------
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\common\core\Endpoint.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\common\core\Controller.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\common\GlobalHandler.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\common\UnauthorizedError.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\hooks\session.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\types\iron-session.d.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\users\dtos.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\users\use-cases\Login\UseCase.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\ez-protect\use-cases\GetEzProtectDashboard\UseCase.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\access-control\use-cases\VerifyPermissions\UseCase.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\ez-protect\dashboard.ts
+D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\auth\dev-bypass.ts
+D:\projects\QDD\ebacmap-master\libs\common\src\core\UseCase.ts
+D:\projects\QDD\ebacmap-master\libs\common\src\core\Result.ts
+D:\projects\QDD\ebacmap-master\node_modules\.pnpm\iron-session@8.0.1\node_modules\iron-session\dist\index.d.ts
+
+NOTE: git diff commands could not be run due to bash permission restrictions.
+Analysis was performed by reading source files directly.

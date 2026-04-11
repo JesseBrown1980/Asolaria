@@ -1,0 +1,70 @@
+PACKET 5: RAW VERBATIM EVIDENCE FROM NOTEBOOK SOURCES
+Generated: 2026-03-23
+Source: NotebookLM verbatim extraction from 102 sources
+===============================================================
+
+1. OMNISPINDLE
+Zero mentions found in any of the 102 notebook sources.
+
+2. MQTT (or mqtt)
+ONE mention:
+"A forced restart through tools\Restart-Asolaria-Main.ps1 with ASOLARIA_STARTUP_AUTORUN=false and ASOLARIA_MQTT_BIND_HOST=0.0.0.0 replaced the listener with PID 37472"
+Source: Asolaria Active Tasks Snapshot (restart record)
+
+3. RAYSSA
+Zero mentions found in any of the 102 notebook sources.
+
+4. LIRIS
+"Read set completed: AGENTS.md, docs/claude-project/CONSTITUTION.md, admin-terminal profiles for Gaia, Liris, and Helm, reports/admin-terminal-identities-latest.md, and the agent-index language entrypoint at data/agent-index/CATALOG.md with language-chain anchors IX-006, IX-052, IX-054, and IX-060, plus the Liris restart anchors IX-037, IX-075, and IX-084"
+Source: Asolaria Active Tasks Snapshot: Asolaria profile + constitution + index-language reload
+
+"Current runtime truth: GET /api/health/fast is ok=true, bridge relay and tunnel are healthy, brainPrimaryProvider=anthropic... Liris is still offline"
+Source: Asolaria Active Tasks Snapshot: Gaia restart bootstrap loaded
+
+5. WORKER-ROUTER
+Appears in audit warnings only:
+"startup seed contamination, Symphony configured-but-not-running, worker-router Symphony mismatch, phone background keepers down, blank task-ledger actor coverage, and mostly-offline colony lanes"
+Source: Asolaria Active Tasks Snapshot: White-glove naming/workflow stabilization phase 0
+
+The worker-router is not explicitly defined as a component in any source. Its mention indicates a routing mechanism between workers and Symphony that has a configuration mismatch.
+
+6. FALCON (phone worker references)
+"Falcon phone worker: Manages phone-side execution and mobile workflow tasks"
+"Operates with normal user permissions only on the host. Its control and privilege are strictly scoped only inside the phone execution context"
+"Spawn Falcon phone worker after a phone path is active"
+"Run identity handshake gate for Falcon (required before tasks)"
+"Add a startup orchestrator module that creates Vertex, Rook, Falcon sessions explicitly"
+Sources: Asolaria Startup Contract, Asolaria Startup Gap Report
+
+7. SYMPHONY (cooperation/lane assignment)
+"This Asolaria integration treats openai/symphony as a managed sidecar service, not as an external model provider."
+"Helm is the controller admin terminal. It may query, configure, start, and stop Symphony through Asolaria."
+"Sentinel is the helper/watch terminal. It uses Symphony status to detect drift, stale issue queues, or controller packet mismatch."
+"In QDD SUPER_SWARM mode, Symphony is the long-running issue lane only."
+"Direct repo writes still belong to the local Codex lane; Symphony should not silently replace controller authority."
+"Super-swarm coordination note: Helm is the controller admin terminal. Sentinel is the helper/watch terminal. If Asolaria SUPER_SWARM is enabled for qdd, Symphony participates as the long-running issue lane only. Augment/Auggie remains a read-only sidecar. Direct repo writes stay on the local Codex lane unless the controller explicitly routes otherwise."
+"Use helper surfaces deliberately: Augment/Auggie only as a read-only codebase retrieval sidecar."
+"The reference implementation from openai/symphony currently depends on: a local Symphony checkout, a valid WORKFLOW.md, LINEAR_API_KEY, Codex app-server support, the Elixir toolchain plus mise"
+Sources: Symphony Integration, Symphony Workflow
+
+8. HELM (what it should NOT load / should stay compressed)
+"super-admin terminal should remain status-only" (from external admin Codex review)
+"the restart packet cluster is stale on QDD branch/head and super-swarm canon (feature/ez-protect-admin-monorepo + fanout 3 / local_codex) versus live repo/runtime (chore/pnpm-10-upgrade + fanout 4 / claude_max), so the next Gaia move is to refresh those restart/control packets and keep /api/swarm/status latency under watch"
+"Do not spend another cycle re-porting code that is already in tree"
+"Helm may use Augment as a read-only indexing and retrieval sidecar while coordinating QDD"
+"Even in SUPER_SWARM mode, Augment stays read-only. It is not a top-level writer lane and it must not replace local Codex or controller decisions"
+"Do not reopen the queue-server SFTP slice unless Brian explicitly asks for deeper live-SFTP validation"
+"Do not revert the dirty monorepo worktree"
+"Do not continue EZ Protect implementation in the old repo"
+"Do not treat bridge ACKs as proof of engineering progress"
+"Do not resume implementation in the old repo"
+"Do not treat the pre-port checkpoint text as current state anymore"
+Sources: Augment Context Sidecar, Symphony Workflow, QDD Codex Restart Packet, QDD Monorepo EZ Protect Checkpoint, Asolaria Active Tasks Snapshots
+
+===============================================================
+COLONY VERBATIM EVIDENCE
+===============================================================
+"main Asolaria runtime was restored on PID 17664 and live health now reports colony online=6 active=6 (Asolaria, Vector, Rook, Forge, Falcon, Watchdog) with bridge/tunnel/watchdog all running."
+"Colony agents observed: 6 total, 5 online/active."
+"Multi-agent colony execution lanes."
+"Multi-lane agent colony coordination."

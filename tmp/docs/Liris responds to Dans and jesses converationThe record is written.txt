@@ -1,0 +1,75 @@
+The record is written. I’m doing a consistency pass now: actual LX file count, chain count, and then I’ll remove the
+  temporary extracted transcript so I don’t leave a loose plaintext copy behind.
+
+* Running $files = Get-ChildItem -Path 'C:\Users\rayss\Asolaria\data\agent-index' -Filter 'LX-*.md'; $types = foreach
+  │ ($f in $files) { $typeLine = Select-String -Path $f.FullName -Pattern '^type:\s*(.+)$' | Select-Object -First
+  │ 1; if ($typeLine) { $typeLine.Matches[0].Groups[1].Value.Trim() } else { '_missing_' } }; $types |
+  │ … +1 lines
+
+* Running $catalog = Get-Content -Path 'C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md'; $start = ($catalog |
+  │ Select-String '^## Chains$').LineNumber; $end = ($catalog | Select-String '^## Type Summary$').LineNumber; if
+  │ ($start -and $end) { $count = ($catalog[($start)..($end-2)] | Where-Object { $_ -match '^\*' }).Count;
+  │ … +1 lines
+
+* Ran $files = Get-ChildItem -Path 'C:\Users\rayss\Asolaria\data\agent-index' -Filter 'LX-*.md'; $types = foreach ($f in
+  │ $files) { $typeLine = Select-String -Path $f.FullName -Pattern '^type:\s*(.+)$' | Select-Object -First 1; if
+  │ ($typeLine) { $typeLine.Matches[0].Groups[1].Value.Trim() } else { '_missing_' } }; $types | Group-Object |
+  │ … +1 lines
+  └ identity=1
+    mistake=25
+
+* Ran $catalog = Get-Content -Path 'C:\Users\rayss\Asolaria\data\agent-index\CATALOG.md'; $start = ($catalog |
+  │ Select-String '^## Chains$').LineNumber; $end = ($catalog | Select-String '^## Type Summary$').LineNumber; if
+  │ ($start -and $end) { $count = ($catalog[($start)..($end-2)] | Where-Object { $_ -match '^\*' }).Count; 'CHAINS=' +
+  │ … +1 lines
+  └ CHAINS=45
+    MQTT truth realignment: 057 → 103 → 151 → 175 → 176
+    … +22 lines
+
+    ## Next available: LX-184
+
+* Ran Get-Content -Path 'C:
+  │ \Users\rayss\.claude\projects\C--Users-rayss\memory\project_jesse_dan_facebook_origins_20260322.md'; Write-Output
+  │ "`n===LX-181===`n"; Get-Content -Path 'C:\Users\rayss\Asolaria\data\agent-index\LX-181.md'; Write-Output
+  │ … +2 lines
+  └ ---
+    name: jesse-dan-facebook-origins-20260322
+    … +175 lines
+
+    It strengthens LX-120 and LX-151 with a direct conversational timeline instead of later synthesis alone.
+
+* Ran Remove-Item -Path 'C:\Users\rayss\docx_extract_facebook_jesse_dan_20260322.txt' -ErrorAction Stop; Write-Output
+  │ 'REMOVED=docx_extract_facebook_jesse_dan_20260322.txt'
+  └ REMOVED=docx_extract_facebook_jesse_dan_20260322.txt
+
+* Updated Plan
+  └ The Facebook transcript was read, distilled into durable history, indexed, and the catalog was corrected to match
+    the actual LX files on disk.
+    ✔ Extract and analyze the Facebook conversation artifact for dated, durable findings and sensitive material
+    ✔ Write a local memory note capturing the verified historical conclusions from the artifact
+    ✔ Add new LX index entries and update the catalog with any genuinely new history/security findings
+    □ Respond with a concise synthesis: what changed, what is verified, and what remains lore or unresolved
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+* Read and incorporated Downloads/
+  Jesse%20an%20Dan%20first%20conversations%20on%20Facebook%20Missing%20the%20stuff%20like%20phos%20and%20videos%20but%20
+  all%20available%20in%20facebook%20and%20downlaods.docx.
+
+  I wrote the memory note to C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+  project_jesse_dan_facebook_origins_20260322.md, indexed the durable findings in Asolaria/data/agent-index/LX-181.md,
+  Asolaria/data/agent-index/LX-182.md, and Asolaria/data/agent-index/LX-183.md, and corrected Asolaria/data/agent-index/
+  CATALOG.md plus C:/Users/rayss.claude/projects/C--Users-rayss/memory/MEMORY.md. The catalog now reflects the real on-
+  disk state: 178 LX files, 45 chains, next available LX-184. I also removed the temporary plaintext extraction after
+  indexing.
+
+  Key conclusions:
+
+  - Dan’s role is now direct transcript fact, not just later lore: from March 3 to March 20, 2026 he is visibly
+    contributing MQTT/MQTTX, Warp, Omnispindle/SwarmDesk workflow, and strong verification discipline.
+  - This artifact preserves the exact 18886 failure loop: docs were trusted, an agent repeated the docs as truth, live
+    files were edited, and the false result became new archaeology. That is now indexed as a mistake.
+  - It also dates the emergence of fast index language, instant agents, chain-linked profiles, and Dan’s framing of the
+    Constitution as a functional spec.
+  - The Omnispindle bearer line in this export appears truncated, so I treated the artifact as sensitive operational
+    archaeology, but not as a confirmed raw-secret leak like the earlier Gaia docx.

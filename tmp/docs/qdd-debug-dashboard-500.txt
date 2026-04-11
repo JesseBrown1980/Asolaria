@@ -1,0 +1,215 @@
+QDD EZ Protect Dashboard 500 Error — Root Cause Analysis
+========================================================
+Date: 2026-03-25
+
+SYMPTOM
+-------
+GET /api/ez-protect/dashboard?locationId=X returns:
+  {"error":{}}  (status 500)
+
+Session IS valid (api/auth/me returns 200).
+
+ROOT CAUSE
+----------
+The crash is in the access-control layer, NOT in the repo or use case.
+
+Flow through Endpoint.ts (lines 281-332):
+
+1. Session exists and user is logged in → user object is set (line 268)
+2. useAccessControl IS configured (domain: ezProtect, action: view) → line 282 is true
+3. user gets hydrated via hydrateUser() → line 285
+4. verifyPermissionsUseCase.execute() is called at line 318-324
+
+The problem is at VerifyPermissions UseCase.ts, lines 71-83:
+
+    } else if (
+      !location ||
+      !hasPermission(user, location, props.domain!, props.action!)
+    ) {
+      if (!location) { ... }
+      return Result.fail(new UnauthorizedError(props.domain));  // <-- LINE 83
+    }
+
+This returns Result.fail(new UnauthorizedError('ezProtect')).
+
+Back in Endpoint.ts line 325-327:
+    if (verifyPermissionResult.isFailure) {
+      return defaultErrorHandler(res, verifyPermissionResult.error);
+    }
+
+defaultErrorHandler (line 109-133) checks error.name:
+    case 'UnauthorizedError':
+      return res.unauthorized(error.message);  → should return 401
+
+BUT WAIT — there are TWO UnauthorizedError classes:
+  1. @/common/UnauthorizedError (imported at Endpoint.ts line 9)
+  2. The one DEFINED INSIDE VerifyPermissions/UseCase.ts (line 18-23)
+
+The VerifyPermissions UseCase uses its OWN locally-defined UnauthorizedError.
+Both set this.name = 'UnauthorizedError', so the error name IS correct.
+That means defaultErrorHandler SHOULD catch it as 'UnauthorizedError' and return 401.
+
+So the 401 path should work. Let me re-examine...
+
+ACTUAL ROOT CAUSE — hasPermission returns false
+------------------------------------------------
+The real issue is WHY hasPermission fails, leading to the 500.
+
+Looking at hasPermission() in utils/permissions.ts:
+
+1. getCurrentPermissions() finds the permission entry matching the locationId
+2. It checks currentPermission[domain] → domain is 'ezProtect'
+
+In UserPermissionView (permissions.ts line 20):
+    ezProtect?: PermissionView;    // <-- OPTIONAL
+
+In the hydrateUser function (Endpoint.ts line 96):
+    ezProtect: mapPermissionView(p.ezProtect),
+
+mapPermissionView (Endpoint.ts line 24-52):
+    const mapPermissionView = (p?: DbPermission): PermissionView => {
+      if (!p) {
+        return { action: 'noaccess' };
+      }
+      ...
+    };
+
+So if the user's DB record has NO ezProtect permission field at all, mapPermissionView
+returns { action: 'noaccess' }.
+
+hasPermission checks:
+    action === 'view' && (userStatus === 'view' || userStatus === 'manage')
+
+userStatus is 'noaccess' → returns FALSE.
+
+This causes VerifyPermissions to return Result.fail(new UnauthorizedError('ezProtect')).
+
+That should give a 401... but the response is {"error":{}} with status 500.
+
+THE ACTUAL 500 — Result.error is not an Error object
+-----------------------------------------------------
+Looking more carefully at the Result class from @ebacmap/common:
+
+When Result.fail() is called, verifyPermissionResult.isFailure is true.
+verifyPermissionResult.error should be the UnauthorizedError.
+
+But the response is {"error":{}} — that's the res.fail() format (Controller.ts line 69-72):
+    fail(error: Error | string) {
+      return res.status(500).json({
+        error: typeof error === 'string' ? new Error(error) : error
+      });
+    }
+
+JSON.stringify(new Error('ezProtect')) produces {} because Error properties
+(message, name, stack) are NOT enumerable. That's why the response is {"error":{}}.
+
+This means the code IS hitting res.fail(), not res.unauthorized().
+Something is throwing an actual exception (caught at line 373-376), NOT returning
+a Result.fail.
+
+THE THROW — hydrateUser crashes
+---------------------------------
+Look at hydrateUser() more carefully (Endpoint.ts lines 54-107):
+
+    const user: DbUser | null = await models.UserModel.findById(sessionUser.id);
+
+If this user was created as a mock/test user and exists in the session but NOT in
+MongoDB, then user is null.
+
+Line 69-78 all use user! (non-null assertion):
+    id: user!._id.toHexString(),        // CRASH: Cannot read properties of null
+    firstName: user!.firstName,
+    ...
+
+This throws a TypeError (not an UnauthorizedError), which gets caught by
+the catch block at line 373:
+    catch (error: Error | any) {
+      return defaultErrorHandler(res, error);
+    }
+
+defaultErrorHandler hits the default case (line 129-132):
+    default:
+      Sentry.captureException(error);
+      await Sentry.flush(2000);
+      return res.fail(error);     // ← 500 with {"error":{}}
+
+CONFIRMED ROOT CAUSE: The session user ID does not exist in MongoDB.
+hydrateUser() calls UserModel.findById(sessionUser.id), gets null,
+then crashes on user!._id.toHexString() → TypeError → 500.
+
+SECONDARY ISSUE: Even if the user DOES exist in MongoDB, if the user
+record was created without explicit ezProtect permissions, the permission
+check will fail with a 401 (which would show as {"message":"Unauthorized"}).
+
+FIXES NEEDED
+============
+
+FIX 1 — Immediate: Guard null user in hydrateUser (Endpoint.ts ~line 57)
+------------------------------------------------------------------------
+File: apps/web-ebacmap/src/common/core/Endpoint.ts
+After line 57, add:
+
+    if (!user) {
+      throw new UnauthorizedError('User not found');
+    }
+
+This converts the TypeError crash into a clean 401 Unauthorized.
+
+FIX 2 — The user needs ezProtect permissions in the DB
+------------------------------------------------------
+The session user must have ezProtect permission with action: 'view' or 'manage'
+for the target locationId. Either:
+
+a) Add ezProtect permissions to the user record in MongoDB:
+   db.users.updateOne(
+     { _id: ObjectId("<user-id>") },
+     { $set: { "permissions.$[elem].ezProtect": { action: "manage" } } },
+     { arrayFilters: [{ "elem.location": ObjectId("<location-id>") }] }
+   )
+
+b) Or if this is a company_admin role, they bypass ROLES_NEEDING_PERMISSION
+   entirely (company_admin is NOT in that list), so they'd pass through.
+   Check the user's role — if it's 'user' or 'facility_admin', they need
+   explicit ezProtect permissions.
+
+FIX 3 — Defensive: res.fail should serialize errors properly (Controller.ts)
+----------------------------------------------------------------------------
+File: apps/web-ebacmap/src/common/core/Controller.ts
+Line 70-72, change:
+
+    fail(error: Error | string) {
+      return res.status(500).json({
+        error: typeof error === 'string' ? new Error(error) : error
+      });
+    }
+
+To:
+
+    fail(error: Error | string) {
+      const msg = typeof error === 'string' ? error : (error?.message || 'Internal Server Error');
+      return res.status(500).json({
+        error: msg
+      });
+    }
+
+This ensures 500 errors always have a readable message instead of {}.
+
+DIAGNOSIS COMMAND
+-----------------
+To confirm which issue it is, check if the session user's ID exists in MongoDB:
+
+    db.users.findOne({ _id: ObjectId("<session-user-id>") })
+
+If null → Fix 1 is the primary issue (user not in DB).
+If exists → check their permissions array for ezProtect on the target location.
+If ezProtect is missing or action is 'noaccess' → Fix 2 is needed.
+
+SUMMARY
+-------
+Primary crash: hydrateUser() does UserModel.findById() which returns null for
+a session-only/mock user, then user!._id.toHexString() throws TypeError.
+TypeError hits the default error handler → res.fail(error) → JSON.stringify
+on an Error object produces {} → response is {"error":{}}, status 500.
+
+Three fixes: null guard in hydrateUser, add ezProtect permissions to user,
+and fix error serialization in Controller.fail().

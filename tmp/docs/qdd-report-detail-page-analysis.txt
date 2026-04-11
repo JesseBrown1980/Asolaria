@@ -1,0 +1,166 @@
+QDD Report Detail Page Analysis — [id].tsx
+==========================================
+File: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\reports\[id].tsx
+Analyzed: 2026-03-25
+
+=== COMPONENTS RENDERED ===
+
+Top-level page: ReportDetailPage (default export)
+
+1. <Loading /> — from @/components/Layout/Loading
+   - Shown when: isCheckingUser || !report?.id || isLoading
+   - This is the ONLY thing rendered until user, report, and loading all resolve.
+
+2. <Container> — layout wrapper
+
+3. <NotificationWarningBanner />
+   - Shown when: report.hasNotifications && isEditing
+   - From @/components/Reports/NotificationWarningBanner
+
+4. <Card> / <CardContent> — react-md card for the toolbar row
+   Contains:
+   - <LoadingButton> — PDF download button (loading state: isDownloadingPdf)
+   - <Button id="edit"> — navigates to /reports/edit/{id}
+   - <Button id="duplicate"> — only if report.access !== 'personal'
+   - <EditableInput> — inline-editable report name (center)
+   - <Button id="save"> — only if isEditing, wrapped in <RequiresPermission>
+
+5. <ReportSection> — THE MAIN CONTENT (one per section in report.sections[])
+   Props it needs:
+     - section: ReportSectionView (filters, charts, title, notes)
+     - clientId: report.client
+     - locationId: location?.id ?? ''
+     - showTitle: report.reportType === "multi"
+     - hasNovalumView: boolean (permission check)
+     - hasCapaView: boolean (permission check)
+     - isEbacMap: report.reportType === 'ebacmap'
+     - onSectionUpdate: callback
+
+   Internally, ReportSection:
+     - Renders <FilterDrawer> (filter controls)
+     - Renders <CustomReportRenderer> (charts/graphs)
+     - Makes its OWN SWR call to /api/test-results/ with filters
+     - Also calls paginateFacilityMaps() for facility maps
+
+=== API CALLS ===
+
+1. useService (SWR) — GET /api/reports/{id}
+   - Key: `/api/reports/${reportId}` (null if reportId is 'new' or undefined)
+   - Fetcher: getReport(reportId) -> fetchJson(`/api/reports/${id}`)
+   - Returns: ReportView object
+   - SWR retry: skips 404/500, max 10 retries, 5s interval
+
+2. Inside ReportSection — useService (SWR) — GET /api/test-results/
+   - Key: `/api/test-results/?limit=-1&offset=0&sort=_id:-1&location={locationId}&...filters`
+   - Fetcher: paginateTestResults({...})
+   - Only fires when locationId is truthy and no testResults prop passed
+   - Filters built from: buildTestResultFilters(selectedFilters)
+
+3. Inside ReportSection — paginateFacilityMaps()
+   - Called in useEffect on mount if no facilityMaps prop
+   - GET /api/facility-maps?limit=-1&offset=0&location={locationId}&clientId={clientId}
+
+4. handleSave — PUT /api/reports/{id}
+   - updateReport(updatedReport)
+   - Then getReport(report.id) to refetch
+
+5. handlePDFDownload — POST /api/reports/{id}/pdf
+   - downloadReportPDF(report.id, { report, timezone })
+   - Returns blob, saved with file-saver
+
+6. duplicateReport — POST /api/reports/{id}/duplicate
+   - Body: { locationId }
+   - On success, navigates to /reports/edit/{newReportId}
+
+=== DATA DEPENDENCIES ===
+
+The page needs ALL of these to render content (not just <Loading />):
+
+1. user — from useUser() hook (checks auth)
+2. location — from useBetween(useLocation) — stored in localStorage + cookies
+3. report — from SWR call to /api/reports/{id}
+4. reportId — from router.query.id (Next.js dynamic route)
+
+ReportSection additionally needs:
+5. test-results — SWR call to /api/test-results/
+6. facility maps — paginateFacilityMaps() call
+7. section.filters.dateRange — used to compute date range display
+
+=== WHITE SCREEN / INFINITE LOADING CAUSES ===
+
+HIGH RISK:
+1. location is undefined/null
+   - useLocation reads from localStorage. If no location saved and no cookie,
+     it tries user.locations[0]. If user has NO locations, location stays undefined.
+   - locationId becomes '' (empty string) -> ReportSection SWR key still fires
+     but API may return errors or empty data.
+   - The page itself does NOT gate on location being set. It gates on
+     isCheckingUser || !report?.id || isLoading. So location=undefined won't
+     cause Loading, but WILL cause broken downstream behavior (empty charts,
+     bad API calls).
+
+2. report API returns 404 or 500
+   - SWR skips retry on 404/500. report stays undefined.
+   - Gate: !report?.id -> shows <Loading /> forever = INFINITE LOADING.
+   - No error state shown to user. Just permanent spinner.
+
+3. reportId is undefined on first render
+   - Next.js router.query can be empty on first render (before hydration).
+   - SWR key becomes null -> no fetch. Then router updates, query.id appears,
+     SWR key changes, fetch fires. This is handled correctly (SWR null key = skip).
+   - But if router never populates id (bad URL), report stays undefined = infinite loading.
+
+4. section.filters is undefined/null
+   - ReportSection accesses section.filters.dateRange in useEffect (line 143-144).
+   - If a section has no filters property, this will CRASH (TypeError).
+   - Crash = white screen (unhandled exception in render tree).
+
+5. report.sections is undefined/null
+   - Line 268: report.sections!.map() — non-null assertion.
+   - If API returns report without sections array, this CRASHES = white screen.
+
+MEDIUM RISK:
+6. SWR infinite retry loop
+   - For non-404/500 errors (e.g., network timeout, 503), SWR retries up to 10 times
+     with 5s delay. During this time, isLoading stays true -> <Loading /> shown.
+   - Total worst case: 50 seconds of loading before giving up.
+
+7. test-results API slow or failing
+   - ReportSection shows <CircularProgress> while loading test results.
+   - If this hangs, individual sections show spinner but page chrome is visible.
+
+8. useBetween(useLocation) shared state
+   - useBetween makes useLocation a singleton across all components.
+   - If another component clears location, this page loses it mid-render.
+
+=== DOES IT DEPEND ON FILTERS API? ===
+
+The [id].tsx page itself does NOT call the filters API (getReportFilters).
+
+HOWEVER, ReportSection renders <FilterDrawer> which almost certainly calls
+the filters API internally to populate dropdown options (categories, organisms,
+tests, zones, plans, surface types, etc.).
+
+The report DETAIL page uses filters stored IN the report (section.filters).
+It does not need to fetch filter options to DISPLAY data. But:
+- If FilterDrawer fails to load filter options, the filter UI may break
+- The actual data fetch (test-results) uses the saved filters, not the filters API
+- So: filters API failure = broken filter dropdowns, but charts still render
+  with the saved filter values.
+
+CONCLUSION: The page does NOT depend on /api/reports/filters to render its
+main content. It depends on:
+  1. /api/reports/{id} — CRITICAL (no report = infinite loading)
+  2. /api/test-results/ — IMPORTANT (no data = empty charts)
+  3. /api/facility-maps — MINOR (only for ebacmap type)
+  4. user auth + location state — CRITICAL (no user = loading forever)
+
+=== SUMMARY OF FRAGILE POINTS ===
+
+- No error boundary or error UI: any crash = white screen
+- No timeout/fallback for report fetch: 404/500 = permanent loading
+- Non-null assertions on report.sections and section.filters = crash risk
+- location from localStorage is trusted without validation
+- Dead code on lines 262-289: the ternary checks !report then report,
+  but line 165 already returns <Loading /> if !report?.id, so the
+  !report branch (CircularProgress) is unreachable.

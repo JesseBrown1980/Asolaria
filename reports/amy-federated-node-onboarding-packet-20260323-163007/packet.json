@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-03-23 16:30:07 -03:00",
+  "host_scope": "amy_host_only",
+  "default_node_id": "amy",
+  "base_topic_required": "asolaria/nodes/amy",
+  "goal": "bounded_federated_node_under_jesse_sovereign_control",
+  "proves_if_successful": [
+    "local_node_readiness",
+    "bounded_compute_execution"
+  ],
+  "does_not_prove": [
+    "merged_ram",
+    "one_giant_computer",
+    "full_cross_host_pooled_compute"
+  ],
+  "required_files": [
+    "src/sharedComputeFabric.js",
+    "src/connectors/mqttConnector.js",
+    "src/remoteNodeRegistry.js",
+    "routes/sharedCompute.js",
+    "routes/federation.js",
+    "tests/contracts/shared-compute-fabric.test.js",
+    "tests/contracts/remote-node-registry-provenance.test.js"
+  ],
+  "verify_routes": [
+    "/api/health/fast",
+    "/api/integrations/mqtt/status",
+    "/api/shared-compute/status",
+    "/api/shared-compute/workers",
+    "/api/shared-compute/jobs",
+    "/api/federation/nodes"
+  ]
+}

@@ -1,0 +1,89 @@
+ContactOut Inventory — READ ONLY
+Generated: 2026-03-25
+============================================================
+
+1. CHROME EXTENSION
+   Extension ID: jjdemeiffadmmjhkbbpglgnlgeafomjo
+   Installed in: Default profile
+   Version: 5.16.8_0
+   Manifest title: "Browse to any Linkedin profile and click to use"
+   Content scripts target: linkedin.com/in/*, linkedin.com/sales*, linkedin.com/talent*, github.com/*
+   Auth callback: contactout.com/login/callback*, contactout.com/thanks
+   Path: C:\Users\acer\AppData\Local\Google\Chrome\User Data\Default\Extensions\jjdemeiffadmmjhkbbpglgnlgeafomjo\5.16.8_0\
+
+   Other Chrome profiles checked: Profile, Profile 10-14, Profile 16, Profile 20, Guest Profile
+   Status: Could not enumerate (bash permission denied for loop). Only Default confirmed.
+
+2. AGENT INDEX ENTRIES
+   IX-378 (tools/IX-378.md) — TOOL: ContactOut browser extension launcher (LinkedIn lead enrichment)
+     - Route: POST /api/integrations/contactout/open
+     - Parameters: url, profileDirectory, profileEmail, allProfiles, newWindow, appMode
+     - Integration mode: browser_extension (no API keys, no OAuth)
+     - Policy controls: enabled, freeOnly, extensionId, defaultUrl
+     - Chain: IX-358, IX-320, IX-316
+     - Agents: rook, forge, falcon
+
+   IX-379 (tools/IX-379.md) — NOT ContactOut (this is HubSpot CRM integration)
+
+3. SERVER.JS (server.js lines 2645-2706, 9372-9457)
+   Constants:
+     CONTACTOUT_EXTENSION_ID = "jjdemeiffadmmjhkbbpglgnlgeafomjo"
+     CONTACTOUT_DEFAULT_URL  = "https://contactout.com/login"
+     CONTACTOUT_LINKEDIN_URL = "https://www.linkedin.com/feed/"
+
+   contactOutPolicy object (lines 2696-2707):
+     enabled:                 ASOLARIA_CONTACTOUT_ENABLED (default: true)
+     freeOnly:                ASOLARIA_CONTACTOUT_FREE_ONLY (default: true)
+     defaultUrl:              ASOLARIA_CONTACTOUT_URL
+     linkedinUrl:             ASOLARIA_CONTACTOUT_LINKEDIN_URL
+     extensionId:             ASOLARIA_CONTACTOUT_EXTENSION_ID
+     profileEmail:            ASOLARIA_CONTACTOUT_PROFILE_EMAIL (default: "")
+     profileDirectory:        ASOLARIA_CONTACTOUT_PROFILE_DIRECTORY (default: "")
+     usePersistentProfile:    ASOLARIA_CONTACTOUT_USE_PERSISTENT_PROFILE (default: true)
+     allowRestrictedProfile:  ASOLARIA_CONTACTOUT_ALLOW_RESTRICTED_PROFILE (default: false)
+     chromeUserDataDir:       ASOLARIA_CONTACTOUT_USER_DATA_DIR (default: "")
+
+   Functions:
+     getContactOutProfileListing(policy)       — scans Chrome profiles for extension
+     getContactOutPolicySummary(policy)         — returns full status object
+     resolveContactOutLaunchTargets(input, policy) — resolves which Chrome profile(s) to launch
+
+   Exported at line 23746 and 23827-23834:
+     getContactOutPolicySummary, resolveContactOutLaunchTargets,
+     contactOutPolicy (in policy objects bundle)
+
+4. ROUTES
+   routes/integrationsRemaining.js:
+     POST /contactout/open (line 1958)
+       - Checks contactOutPolicy.enabled (403 if disabled)
+       - normalizeUrl() on target URL
+       - resolveContactOutLaunchTargets() picks Chrome profile(s)
+       - launchChromeUrl() spawns Chrome for each target
+       - Returns: { ok, opened, freeOnly, integrationMode, extensionId, launches[] }
+
+   routes/integrationStatus.js:
+     GET /contactout/status (line 167)
+       - Returns getContactOutPolicySummary()
+
+5. CONNECTORS
+   No dedicated contactout connector found in src/connectors/.
+   ContactOut is pure browser extension — no API connector needed.
+
+6. VAULT
+   Vault status: request timed out or server not running (port 4781 unreachable).
+   No ContactOut API keys expected (browser extension mode, no OAuth).
+
+7. DOWNLOADS
+   No contactout export files found in C:\Users\acer\Downloads\ (search timed out on large directory;
+   grep for contactout in agent-index also timed out due to volume).
+
+============================================================
+SUMMARY
+- ContactOut v5.16.8 is installed in Chrome Default profile
+- Asolaria has full integration: policy object, launch route, status endpoint
+- Integration mode: browser_extension (no API keys, no OAuth, no connector)
+- Policy defaults: enabled=true, freeOnly=true
+- Documented in IX-378
+- Route: POST /api/integrations/contactout/open
+- Status: GET /api/integrations/contactout/status
+- 11 env vars control behavior (all ASOLARIA_CONTACTOUT_* prefixed)

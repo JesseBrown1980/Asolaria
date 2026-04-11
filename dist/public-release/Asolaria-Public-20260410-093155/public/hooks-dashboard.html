@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#07111f" />
+  <title>Asolaria Hooks Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .hooks-page { min-height: 100vh; color: var(--ink); }
+    .hooks-shell { position: relative; max-width: 1440px; margin: 0 auto; padding: 20px; display: grid; gap: 16px; }
+    .hooks-panel {
+      border: 1px solid var(--line); border-radius: 18px;
+      background: linear-gradient(140deg, rgba(17, 29, 50, 0.9), rgba(11, 18, 31, 0.92));
+      box-shadow: var(--shadow-md); backdrop-filter: blur(12px); padding: 18px;
+    }
+    .hooks-hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr); gap: 18px; align-items: start; }
+    .hooks-title h1 { margin: 0; font-family: "Space Grotesk", "Sora", sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); letter-spacing: 0.02em; }
+    .hooks-title p { margin: 8px 0 0; color: var(--ink-muted); max-width: 68ch; line-height: 1.55; font-size: 0.9rem; }
+    .hooks-pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+    .hooks-pill {
+      padding: 8px 12px; font-size: 0.8rem; border: 1px solid var(--line); border-radius: 999px;
+      background: rgba(14, 24, 42, 0.78); color: var(--ink);
+    }
+    .hooks-pill.is-live { border-color: rgba(94, 245, 176, 0.42); color: #c9ffe5; }
+    .hooks-pill.is-warn { border-color: rgba(255, 188, 92, 0.46); color: #ffd7a8; }
+    .hooks-pill.is-muted { border-color: rgba(122, 151, 199, 0.25); color: var(--ink-muted); }
+    .hooks-metric-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .hooks-metric {
+      flex: 1 1 130px; min-width: 120px; padding: 14px 16px; border-radius: 16px;
+      background: rgba(15, 24, 43, 0.72); border: 1px solid rgba(122, 151, 199, 0.18);
+    }
+    .hooks-metric-label { display: block; font-size: 0.74rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .hooks-metric-value { display: block; margin-top: 8px; font-size: clamp(1.1rem, 1.8vw, 1.6rem); font-weight: 700; font-family: "Space Grotesk", "Sora", sans-serif; }
+    .hooks-side { display: grid; gap: 14px; }
+    .hooks-side h2 { margin: 0; font-family: "Space Grotesk", "Sora", sans-serif; font-size: 1rem; }
+    .hooks-guard-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .hooks-guard-card {
+      flex: 1 1 120px; min-width: 110px; padding: 12px 14px; border-radius: 14px;
+      background: rgba(15, 25, 45, 0.76); border: 1px solid rgba(122, 151, 199, 0.16);
+    }
+    .hooks-guard-card strong { display: block; font-size: 0.78rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .hooks-guard-card span { display: block; margin-top: 6px; font-size: 1.05rem; font-weight: 700; }
+    .hooks-guard-card span.is-blocked { color: #ffb3b3; }
+    .hooks-guard-card span.is-allowed { color: #b3ffd6; }
+    .hooks-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.55fr); gap: 16px; align-items: start; }
+    .hooks-feed-list { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; max-height: 640px; overflow-y: auto; }
+    .hooks-feed-item {
+      border-radius: 14px; border: 1px solid rgba(122, 151, 199, 0.16);
+      background: rgba(15, 25, 45, 0.7); padding: 12px 14px; cursor: pointer;
+      transition: transform 120ms ease, border-color 120ms ease;
+    }
+    .hooks-feed-item:hover { transform: translateY(-1px); border-color: rgba(39, 194, 255, 0.34); }
+    .hooks-feed-item.is-selected { border-color: rgba(255, 188, 92, 0.52); box-shadow: inset 0 0 0 1px rgba(255, 188, 92, 0.25); }
+    .hooks-feed-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .hooks-feed-header strong { font-size: 0.88rem; }
+    .hooks-feed-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; color: var(--ink-muted); font-size: 0.76rem; }
+    .hooks-event-badge {
+      display: inline-block; padding: 3px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .hooks-event-badge.is-session { background: rgba(94, 245, 176, 0.15); color: #c9ffe5; border: 1px solid rgba(94, 245, 176, 0.28); }
+    .hooks-event-badge.is-tool { background: rgba(39, 194, 255, 0.15); color: #b3e5ff; border: 1px solid rgba(39, 194, 255, 0.28); }
+    .hooks-event-badge.is-prompt { background: rgba(177, 130, 255, 0.15); color: #dbbfff; border: 1px solid rgba(177, 130, 255, 0.28); }
+    .hooks-event-badge.is-guard { background: rgba(255, 123, 123, 0.15); color: #ffd0d0; border: 1px solid rgba(255, 123, 123, 0.28); }
+    .hooks-event-badge.is-misc { background: rgba(122, 151, 199, 0.12); color: var(--ink-muted); border: 1px solid rgba(122, 151, 199, 0.2); }
+    .hooks-session-list { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .hooks-session-card {
+      border-radius: 14px; border: 1px solid rgba(122, 151, 199, 0.16);
+      background: rgba(15, 25, 45, 0.7); padding: 14px; cursor: pointer;
+      transition: transform 120ms ease, border-color 120ms ease;
+    }
+    .hooks-session-card:hover { transform: translateY(-1px); border-color: rgba(39, 194, 255, 0.34); }
+    .hooks-session-card.is-active { border-color: rgba(94, 245, 176, 0.35); }
+    .hooks-session-card.is-ended { border-color: rgba(122, 151, 199, 0.2); opacity: 0.75; }
+    .hooks-session-card h3 { margin: 0; font-size: 0.88rem; font-family: "Space Grotesk", "Sora", sans-serif; }
+    .hooks-session-card .hooks-session-meta { margin-top: 6px; color: var(--ink-muted); font-size: 0.76rem; display: flex; flex-wrap: wrap; gap: 8px; }
+    .hooks-detail pre {
+      margin: 14px 0 0; padding: 14px; max-height: 480px; overflow: auto; border-radius: 14px;
+      border: 1px solid rgba(122, 151, 199, 0.16); background: rgba(10, 17, 31, 0.88);
+      color: #d6e4ff; font-size: 0.76rem; line-height: 1.5; white-space: pre-wrap; word-break: break-word;
+    }
+    .hooks-link {
+      padding: 8px 12px; font-size: 0.8rem; border: 1px solid var(--line); border-radius: 999px;
+      background: rgba(14, 24, 42, 0.78); color: var(--ink); text-decoration: none;
+      transition: transform 140ms ease, border-color 140ms ease;
+    }
+    .hooks-link:hover { transform: translateY(-1px); border-color: rgba(39, 194, 255, 0.44); }
+    .hooks-link-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .hooks-empty { color: var(--ink-muted); font-size: 0.88rem; margin-top: 14px; }
+    @media (max-width: 1020px) { .hooks-hero, .hooks-main { grid-template-columns: 1fr; } }
+    @media (max-width: 720px) { .hooks-shell { padding: 14px; } .hooks-panel { border-radius: 16px; } }
+  </style>
+</head>
+<body class="hooks-page">
+  <div class="bg-layer"></div>
+  <main class="hooks-shell">
+    <section class="hooks-panel hooks-hero">
+      <div class="hooks-title">
+        <div class="hooks-pill-row">
+          <span id="liveState" class="hooks-pill">Connecting...</span>
+          <span id="lastUpdate" class="hooks-pill hooks-pill is-muted">—</span>
+        </div>
+        <h1>Hooks Dashboard</h1>
+        <p>Claude Code hook events, guard verdicts, and session tracking — all routed through Asolaria's local Hooks Connector.</p>
+        <div id="metricCards" class="hooks-metric-grid"></div>
+      </div>
+      <div class="hooks-side">
+        <div>
+          <h2>Guard Summary</h2>
+          <div id="guardCards" class="hooks-guard-grid"></div>
+        </div>
+        <div>
+          <h2>Event Types</h2>
+          <div id="typeCards" class="hooks-guard-grid"></div>
+        </div>
+        <div class="hooks-link-row">
+          <a class="hooks-link" href="/" target="_blank" rel="noreferrer">Open Asolaria</a>
+          <a class="hooks-link" href="/api/hooks/stats" target="_blank" rel="noreferrer">Stats JSON</a>
+          <a class="hooks-link" href="/api/hooks/dashboard" target="_blank" rel="noreferrer">Dashboard JSON</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hooks-main">
+      <div class="hooks-panel">
+        <h2 style="margin:0; font-family:'Space Grotesk','Sora',sans-serif; font-size:1rem;">Live Event Feed</h2>
+        <ul id="eventFeed" class="hooks-feed-list">
+          <li class="hooks-empty">Waiting for events...</li>
+        </ul>
+      </div>
+      <div>
+        <div class="hooks-panel">
+          <h2 style="margin:0; font-family:'Space Grotesk','Sora',sans-serif; font-size:1rem;">Sessions</h2>
+          <ul id="sessionList" class="hooks-session-list">
+            <li class="hooks-empty">No sessions yet</li>
+          </ul>
+        </div>
+        <div id="detailPanel" class="hooks-panel" style="margin-top:16px; display:none;">
+          <h2 style="margin:0; font-family:'Space Grotesk','Sora',sans-serif; font-size:1rem;">Event Detail</h2>
+          <pre id="detailPre">Select an event to inspect</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  (function () {
+    "use strict";
+    const POLL_MS = 3000;
+    const API = window.location.origin;
+    let lastEventAt = "";
+    let guardBlocked = 0;
+    let guardAllowed = 0;
+    let allEvents = [];
+
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => [...document.querySelectorAll(sel)];
+
+    function badgeClass(type) {
+      if (["SessionStart", "SessionEnd", "Stop"].includes(type)) return "is-session";
+      if (["PreToolUse", "PostToolUse", "PostToolUseFailure"].includes(type)) return "is-tool";
+      if (type === "UserPromptSubmit") return "is-prompt";
+      if (type === "PermissionRequest") return "is-guard";
+      return "is-misc";
+    }
+
+    function relTime(iso) {
+      if (!iso) return "—";
+      const d = new Date(iso);
+      const sec = Math.round((Date.now() - d.getTime()) / 1000);
+      if (sec < 5) return "just now";
+      if (sec < 60) return `${sec}s ago`;
+      if (sec < 3600) return `${Math.floor(sec / 60)}m ago`;
+      if (sec < 86400) return `${Math.floor(sec / 3600)}h ago`;
+      return d.toLocaleDateString();
+    }
+
+    function renderMetrics(stats) {
+      const el = $("#metricCards");
+      el.innerHTML = [
+        { label: "Total Events", value: stats.totalEvents || 0 },
+        { label: "Active Sessions", value: stats.activeSessions || 0 },
+        { label: "Total Sessions", value: stats.totalSessions || 0 },
+        { label: "Guard Blocked", value: guardBlocked },
+        { label: "Guard Allowed", value: guardAllowed },
+      ].map(m => `
+        <div class="hooks-metric">
+          <span class="hooks-metric-label">${m.label}</span>
+          <span class="hooks-metric-value">${m.value}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderTypeCards(byType) {
+      const el = $("#typeCards");
+      const entries = Object.entries(byType || {}).sort((a, b) => b[1] - a[1]);
+      if (!entries.length) { el.innerHTML = '<div class="hooks-empty">No events yet</div>'; return; }
+      el.innerHTML = entries.map(([type, count]) => `
+        <div class="hooks-guard-card">
+          <strong>${type}</strong>
+          <span>${count}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderGuardCards() {
+      const el = $("#guardCards");
+      el.innerHTML = `
+        <div class="hooks-guard-card"><strong>Blocked</strong><span class="is-blocked">${guardBlocked}</span></div>
+        <div class="hooks-guard-card"><strong>Allowed</strong><span class="is-allowed">${guardAllowed}</span></div>
+      `;
+    }
+
+    function renderEventFeed(events) {
+      const el = $("#eventFeed");
+      if (!events.length) { el.innerHTML = '<li class="hooks-empty">No events yet</li>'; return; }
+      el.innerHTML = events.slice(0, 80).map((ev, i) => `
+        <li class="hooks-feed-item" data-idx="${i}">
+          <div class="hooks-feed-header">
+            <strong><span class="hooks-event-badge ${badgeClass(ev.eventType)}">${ev.eventType}</span></strong>
+            <span style="color:var(--ink-muted); font-size:0.74rem;">${relTime(ev.at)}</span>
+          </div>
+          <div class="hooks-feed-meta">
+            <span>Session: ${ev.sessionId || "—"}</span>
+            ${ev.toolName ? `<span>Tool: ${ev.toolName}</span>` : ""}
+            <span>Source: ${ev.sourceApp || "—"}</span>
+          </div>
+        </li>
+      `).join("");
+      el.querySelectorAll(".hooks-feed-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          $$(".hooks-feed-item").forEach(i => i.classList.remove("is-selected"));
+          item.classList.add("is-selected");
+          const idx = Number(item.dataset.idx);
+          showDetail(events[idx]);
+        });
+      });
+    }
+
+    function renderSessions(sessions) {
+      const el = $("#sessionList");
+      if (!sessions.length) { el.innerHTML = '<li class="hooks-empty">No sessions</li>'; return; }
+      el.innerHTML = sessions.map(s => `
+        <li class="hooks-session-card ${s.status === "active" ? "is-active" : "is-ended"}">
+          <h3>${s.sessionId}</h3>
+          <div class="hooks-session-meta">
+            <span>${s.status}</span>
+            <span>${s.sourceApp || "—"}</span>
+            <span>Prompts: ${s.promptCount || 0}</span>
+            <span>Tools: ${s.toolUseCount || 0}</span>
+            <span>Started: ${relTime(s.startedAt)}</span>
+          </div>
+        </li>
+      `).join("");
+    }
+
+    function showDetail(ev) {
+      const panel = $("#detailPanel");
+      const pre = $("#detailPre");
+      panel.style.display = "block";
+      pre.textContent = JSON.stringify(ev, null, 2);
+    }
+
+    async function poll() {
+      try {
+        const statsResp = await fetch(`${API}/api/hooks/stats`);
+        const stats = await statsResp.json();
+        if (stats.ok) {
+          renderMetrics(stats);
+          renderTypeCards(stats.byType);
+          $("#liveState").className = "hooks-pill is-live";
+          $("#liveState").textContent = "Connected";
+          $("#lastUpdate").textContent = `Last event: ${relTime(stats.lastEventAt)}`;
+        }
+
+        const eventsUrl = lastEventAt
+          ? `${API}/api/hooks/events?limit=80&since=${encodeURIComponent(lastEventAt)}`
+          : `${API}/api/hooks/events?limit=80`;
+        const eventsResp = await fetch(eventsUrl);
+        const eventsData = await eventsResp.json();
+        if (eventsData.ok && eventsData.events.length) {
+          if (lastEventAt) {
+            allEvents = [...eventsData.events, ...allEvents].slice(0, 200);
+          } else {
+            allEvents = eventsData.events.slice(0, 200);
+          }
+          const newest = eventsData.events[0];
+          if (newest && newest.at > lastEventAt) lastEventAt = newest.at;
+          renderEventFeed(allEvents);
+        } else if (!lastEventAt && allEvents.length === 0) {
+          renderEventFeed([]);
+        }
+
+        const sessResp = await fetch(`${API}/api/hooks/sessions`);
+        const sessData = await sessResp.json();
+        if (sessData.ok) renderSessions(sessData.sessions || []);
+
+        renderGuardCards();
+      } catch (err) {
+        $("#liveState").className = "hooks-pill is-warn";
+        $("#liveState").textContent = "Disconnected";
+      }
+    }
+
+    poll();
+    setInterval(poll, POLL_MS);
+  })();
+  </script>
+</body>
+</html>

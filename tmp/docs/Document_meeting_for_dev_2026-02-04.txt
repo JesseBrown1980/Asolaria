@@ -1,0 +1,87 @@
+Meeting Transcript for All Dev
+We have three parts: Audit Logging, Feature Flagging, and the updated PR process. Audit Logging is led by the other team, so I’ll keep my comments there to clarifying questions. My main portion is Feature Flagging, and then I’ll help close with PR workflow alignment.
+Part 1: Audit Logging (not your section) - Xavior Theo
+Before we jump in — just to align on terminology:
+Audit logging is basically our “system black box”: a record of important actions like who did what, when, and where, especially around patient data, permissions, exports, and critical workflows.
+What I’ll be listening for in the demo:
+What actions are classified as “auditable” vs normal app logs
+Where audit logs live, and how we search them during incidents
+Retention and access rules (who can view, how long we keep)
+How we avoid logging sensitive data incorrectly
+Performance impact and whether it’s async / batched
+Two quick questions you might ask after the demo:
+“Do we have a minimum must-log list that every service follows?”
+“Do we have a consistent schema so logs are easy to query across systems?”
+(Then you hand back to the presenter.)
+Part 2: Feature Flagging (YOUR section)
+Alright — Feature Flagging is my part.
+I’m not going to deep-dive the implementation live today because we already covered that in the demo planning meeting. Instead, I’ll give a clear overview, the key use cases, and the strategies we should follow as a team. I also recorded a short demo video — I’ll drop it right after this meeting so anyone can watch it in 5 minutes.
+What it is (simple but solid)
+A feature flag is a remote on/off switch for code paths. We can deploy code safely first, then enable the feature when we’re ready — and disable instantly if something goes wrong.
+Why we’re doing it (practical reasons devs care about)
+Safer releases without “all or nothing” deployments
+Instant rollback without hotfix redeploy pressure
+Controlled testing per environment
+Easier coordination across FE, BE, and QA when features span multiple services
+The main use cases we should standardize
+1. Release gating
+Deploy behind a flag → validate → enable in QA → enable in Prod.
+2. Kill switch
+If a new feature causes errors or performance issues, we flip it off immediately.
+3. Environment separation
+Dev can be ON while QA/Prod stays OFF until sign-off.
+4. Risk isolation
+We can ship partial work safely when multiple PRs are needed to complete a feature.
+Strategies / rules of the road (this is the key)
+Here’s what will keep feature flags from becoming messy:
+Consistent naming convention
+	One style, predictable, searchable.
+Clear defaults
+	Prod default is usually OFF until confirmed.
+Safe fallback path
+	When the flag is OFF, the system must behave correctly, not “half work.”
+Ownership
+	Each flag should have an owner and a plan for when it’s removed.
+Cleanup policy
+	After a feature is fully launched and stable, remove the flag and the dead code path. 	Otherwise flags turn into permanent tech debt.
+“If someone asks…” quick answers
+Q: Will flags slow down performance?
+	Typically minimal. The bigger risk is bad usage: too many flags, nested flags, or flags t	hat change behavior in confusing ways. That’s why we keep simple conventions.
+Q: What if the flag service is down?
+	We design a safe default: fail closed or fail safe depending on the feature. Usually 	Prod should default to the stable path.
+Q: Do we need flags for everything?
+	No — only for risky or staged features, cross-team releases, or things that need 	rollback control.
+Close your section cleanly
+That’s the overview. I’ll share:
+the demo recording, and
+a short written summary with the conventions and use cases
+	right after this call.
+Part 3: PR Workflow (from yesterday meeting) - Nathan Millar
+Last part is the PR process we aligned on yesterday.
+We agreed on a simple workflow so PRs don’t get stuck and we always know who is reviewing what.
+New workflow
+When a developer creates a PR, Nathan will show the PR guidelines directly in the PR template (so the checklist is always there).
+When someone posts a PR in the Fingerprint Dev chat, that becomes the review trigger.
+Then one of the reviewers — Tim / Theo / Jesse — will decide who takes that PR.
+After assignment, someone replies in the chat confirming:
+	“I’ll review this PR.”
+	That way the author knows it’s being handled and nobody duplicates effort.
+Follow-up items still pending
+Two remaining items we still need to implement:
+Linting for both codebases
+The AI Code Review plugin (so we reduce manual review noise and make reviews faster)
+Close
+That’s it from my side. After this meeting I’ll share:
+Feature flag demo recording + summary document
+PR approval guideline list (things to look for before approving)
+Thanks everyone.
+Your prep checklist (only Parts 2 + 3)
+For Part 2 (Feature Flags) bring:
+Link to demo recording (ready to paste in chat)
+5 bullet summary of use cases + conventions
+One concrete example flag name + how it behaves across Dev/QA/Prod
+One “failure behavior” statement (what happens if config is unreachable)
+For Part 3 (PR process) bring:
+The exact “yesterday decision” bullets (who merges, who reviews, what’s required)
+SLA expectations (if agreed)
+Exception rules (hotfix, urgent, specialist code areas)

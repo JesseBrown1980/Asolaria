@@ -1,0 +1,70 @@
+PACKET 4: SHARED PROCESSING AND STARTUP LOAD TRUTH
+Generated: 2026-03-23
+Source: NotebookLM deep extraction from 102 sources
+===============================================================
+
+SECTION 1: WHAT IS REAL
+- Asolaria Supervisor control plane: functional, elevated, orchestrating
+- Asolaria shared memory: "low-latency, multi-turn phone/live memory" layer
+- Augment as read-only sidecar: architecturally enforced, cannot replace Codex/controller
+- GCP/Vertex AI cloud fallback: gemini-2.5-flash lane. Operational.
+- Google API lane: gemini-2.0-flash. Operational.
+- Vertex Live: app-managed real-time voice. Operational.
+- NotebookLM Enterprise knowledge sync: idempotent. Operational.
+- /api/health/fast: lightweight liveness probe. Implemented and benchmarked.
+- MCP context compression: pointer + compact allowlist. ~98-99% savings.
+- Colony heartbeats and relay messaging: relay-backed messaging room exists.
+- Admin Terminal Cockpit: auto-builds bootstrap brief from permanent admin profiles.
+- Startup-seed hardening: prevents command-like memory turns from being executable.
+- Lane-based execution model: execution plane + ops/observability plane.
+
+SECTION 2: WHAT IS PARTIAL
+- Worker spawning: designed but NOT enforced (HIGH severity gap)
+- Identity handshakes: mandatory gates designed but NOT enforced
+- Privilege separation: workers supposed to run non-admin, NOT enforced
+- Symphony long-running issue lane: configured + launchable, process.running=false
+- Colony status: 1/6 online, 1/6 active (degraded). Full: Asolaria, Vector, Rook, Forge, Falcon, Watchdog
+- Falcon phone services: canonical design, bridge keeper/tunnel monitor intermittent
+- Phone Gemini shared-memory carryover: designed, implementation partial
+- Sub-agent limits: max 2 per worker with CPU/GPU/memory bounds, enforcement unclear
+
+SECTION 3: WHAT IS STALE OR DRIFTED
+- QDD restart packet cluster: STALE. Points to feature/ez-protect-admin-monorepo, live is chore/pnpm-10-upgrade. Fanout 3/local_codex vs 4/claude_max.
+- Super-swarm canon: DRIFTED. Primary provider mismatch (codex vs anthropic).
+- /api/swarm/status: DEGRADED. ~11.61s latency. "Meaningful drift" per Sentinel.
+- QDD repository: DIRTY on fix/clear-retest with upstream [gone].
+- Named colony: DEGRADED (online=1/6, active=1/6).
+- Liris: defined in agent-index, OFFLINE since March 19, 2026.
+- Symphony: CONFIGURED BUT NOT RUNNING.
+- Worker-router: MISMATCH with Symphony (audit warning active).
+- Startup seed values: "command-like stale startup seed value" flagged.
+- Pre-port checkpoint text: STALE. "Do not treat as current state anymore."
+- EZ Protect old-repo code: already ported. "Do not re-port."
+
+SECTION 4: WHAT HELM SHOULD NOT LOAD AT STARTUP
+DO NOT LOAD:
+  1. Full /api/health diagnostics -> use /api/health/fast
+  2. Stale QDD restart packets or super-swarm contracts from old branches
+  3. Full inline MCP tool schemas -> use pointer + compact allowlist
+  4. Symphony process management at boot (not running; don't fix at startup)
+  5. Repeated /api/swarm/status (11.61s; watch item, not blocker)
+  6. Un-implemented security enforcement (gaps to track, not actions)
+  7. Manual Codex terminal session integration
+  8. Vector/Vertex conflation
+  9. Old-repo EZ Protect re-porting (already in tree)
+  10. Bridge ACK signals as progress proof
+  11. Queue-server SFTP slice (unless Brian asks)
+  12. Pre-port checkpoint text
+  13. Dirty monorepo worktree revert
+
+DO LOAD:
+  1. AGENTS.md + CONSTITUTION.md + CATALOG.md (identity)
+  2. Admin-terminal profiles (Gaia, Liris, Helm)
+  3. helm-controller-packet-latest.md (own state)
+  4. codex-state-freeze-latest.md (Codex state)
+  5. /api/health/fast ONCE (is Asolaria up?)
+  6. /api/swarm/status ONCE (watch item)
+  7. MCP pointer + compact allowlist
+  8. Colony counts from agentColony.counts
+
+RULE: Helm loads identity + own controller packet + one fast health check. Everything else is delegation, not memory.

@@ -1,0 +1,51 @@
+QDD $skip null Bug Fix — 2026-03-25
+=====================================
+
+BUG: Pagination aggregation pipelines pass raw `offset` and `limit` into
+MongoDB $facet { $skip: offset, $limit: limit } instead of using the
+null-safe defaults (`skip = offset || 0`, `docLimit = limit || 10`) that
+are already defined in each function. When offset/limit are undefined
+(no query params), MongoDB receives $skip: null and rejects with 500.
+
+ROOT CAUSE: Copy-paste error in Brian's original code. Every search()
+method creates safe defaults but the $facet pipeline references the
+raw destructured values instead.
+
+FIXED FILES (12 — both $skip and $limit were raw):
+  1. apps/web-ebacmap/src/modules/organisms/repos/OrganismRepo.ts
+  2. apps/web-ebacmap/src/modules/categories/repos/CategoryRepo.ts
+  3. apps/web-ebacmap/src/modules/capas/repos/CapaRepo.ts
+  4. apps/web-ebacmap/src/modules/sites/repos/ZoneRepo.ts
+  5. apps/web-ebacmap/src/modules/sites/repos/SiteRepo.ts
+  6. apps/web-ebacmap/src/modules/sites/repos/SiteGroupRepo.ts
+  7. apps/web-ebacmap/src/modules/store/repos/PurchaseRepo.ts
+  8. apps/web-ebacmap/src/modules/test-results/repos/TestResultRepo.ts
+  9. apps/web-ebacmap/src/modules/test-results/repos/TestDefinitionRepo.ts
+  10. apps/web-ebacmap/src/modules/swab-schedule/repos/SwabScheduleRepo.ts
+  11. apps/web-ebacmap/src/modules/units/use-cases/ListUnits/UseCase.ts
+  12. apps/admin/src/modules/store/repos/PurchaseRepo.ts
+
+FIXED FILES (3 — $skip was raw, $limit already used docLimit):
+  13. apps/admin/src/modules/users/repos/UserRepo.ts
+  14. apps/admin/src/modules/units/use-cases/ListAllUnits/UseCase.ts
+  15. apps/web-ebacmap/src/modules/users/repos/UserRepo.ts
+
+NOT CHANGED (already safe):
+  - apps/admin/src/app/api/queue/route.ts — inline `offset || 0`
+  - apps/admin/src/app/api/purchases/route.ts — parseInt with default '0'
+
+CHANGE PATTERN (minimal, one line per file):
+  BEFORE: data: [{ $skip: offset }, { $limit: limit }]
+  AFTER:  data: [{ $skip: skip }, { $limit: docLimit }]
+
+  BEFORE: data: [{ $skip: offset }, { $limit: docLimit }]
+  AFTER:  data: [{ $skip: skip }, { $limit: docLimit }]
+
+NOTE: GetFilters use case (the /api/filters endpoint) does NOT use
+pagination — it returns all categories/organisms/zones via .find().
+The 500 error on /api/filters may have been triggered by a different
+paginated endpoint sharing the same error handler, OR the filters
+endpoint was confused with a paginated search endpoint. Either way,
+all 15 pagination instances are now fixed.
+
+TOTAL: 15 files fixed across web-ebacmap and admin apps.

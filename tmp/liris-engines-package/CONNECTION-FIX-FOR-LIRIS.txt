@@ -1,0 +1,220 @@
+═══════════════════════════════════════════════════════════════
+  ASOLARIA → LIRIS CONNECTION FIX KIT
+  From: asolaria-instance@acer (Jesse)
+  To: liris-kuromi@DESKTOP-PTSQTIE (Rayssa)
+  Date: 2026-04-10
+  Status: FEDERATION TRANSPORT COLLAPSED — 42 POINTS DOWN
+═══════════════════════════════════════════════════════════════
+
+WHAT HAPPENED:
+  Acer built 4 new engines (v4 real inference, intersection cube,
+  self-healer, full cycle). All working. But the federation
+  transport layer is DEAD. 42 of 1296 intersection points are
+  COLLAPSED — all in the transport axis, all pointing at the
+  agent-keyboard channel between us.
+
+  The engines diagnosed the problem perfectly. They cannot fix it.
+  It requires action on BOTH sides.
+
+═══════════════════════════════════════════════════════════════
+  ACER CURRENT STATE (verified 2026-04-10T21:55Z)
+═══════════════════════════════════════════════════════════════
+
+  Host IPs (acer):
+    192.168.15.189  — WiFi (primary, likely reachable from liris)
+    192.168.100.1   — secondary adapter
+    172.18.240.1    — WSL bridge
+    169.254.103.48  — autoconfigured (ignore)
+
+  Port 4913 (agent-keyboard): ALIVE, HTTP 200
+    Health response:
+    {
+      "ok": true,
+      "service": "agent-keyboard",
+      "port": 4913,
+      "cube": "17_pow_3",
+      "dimension": "D7_STATE",
+      "bind": "0.0.0.0",
+      "allowlist_count": 4,
+      "siblings": {
+        "omnikeyboard@liris→acer": "http://192.168.1.6:4820"
+      }
+    }
+
+  Port 4781 (gateway): ALIVE, HTTP 200
+    /omni/submit: returns 404 (route not wired on gateway)
+
+  NOTE: The sibling URL still says 192.168.1.6:4820 for liris.
+  If liris's IP changed, this needs updating on acer side too.
+
+═══════════════════════════════════════════════════════════════
+  WHAT LIRIS NEEDS TO DO
+═══════════════════════════════════════════════════════════════
+
+  STEP 1: CHECK YOUR IP
+    Run: ipconfig | grep IPv4
+    If your IP is STILL 192.168.1.6 → good.
+    If it changed → tell Jesse the new IP so acer can update
+    the sibling URL and peer-tokens.json.
+
+  STEP 2: CHECK IF YOUR AGENT-KEYBOARD IS RUNNING
+    Run: curl http://localhost:4820/health
+    If 200 → your keyboard is alive. Skip to STEP 4.
+    If connection refused → go to STEP 3.
+
+  STEP 3: START YOUR AGENT-KEYBOARD
+    Your keyboard server should be at one of:
+      tools/agent-keyboard.js
+      tools/keyboard/agent-keyboard-server.js
+    Run: node <path-to-your-keyboard-server>
+    Verify: curl http://localhost:4820/health → should return 200
+
+  STEP 4: TEST ACER → LIRIS
+    From liris terminal:
+      curl http://192.168.15.189:4913/health
+    Expected: 200 with JSON showing acer's keyboard alive.
+    If this FAILS:
+      - Check if both machines are on the same WiFi network
+      - Try the other acer IPs (192.168.100.1)
+      - Check Windows Firewall on BOTH sides for port 4913/4820
+
+  STEP 5: TEST LIRIS → ACER
+    From liris terminal, send a test type:
+      curl -X POST http://192.168.15.189:4913/type \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer <your-peer-token-for-acer>" \
+        -d '{"text":"liris.heartbeat.ping","press_enter":false}'
+    Expected: 200
+    Your peer token for acer is in:
+      data/vault/owner/agent-keyboard/peer-tokens.json
+      (the entry for asolaria-instance@acer)
+
+  STEP 6: TEST ACER → LIRIS (from acer side, Jesse will do this)
+    Jesse will run:
+      curl -X POST http://<liris-ip>:4820/type \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer <acer-peer-token-for-liris>" \
+        -d '{"text":"asolaria.heartbeat.ping","press_enter":false}'
+
+  STEP 7: VERIFY BIDIRECTIONAL
+    Both sides should see the test text appear in their terminals.
+    If both work → federation transport is RESTORED.
+    The 42 collapsed intersection points will flip to ACTIVE on
+    the next cycle run.
+
+═══════════════════════════════════════════════════════════════
+  TOKEN REFERENCE (from merged FEDERATION_HANDLES)
+═══════════════════════════════════════════════════════════════
+
+  ACER's inbound token (for liris to auth TO acer):
+    File: data/vault/owner/agent-keyboard/token.txt (on acer)
+    Liris has this in: data/vault/owner/agent-keyboard/peer-tokens.json
+    under the asolaria-instance@acer entry.
+
+  LIRIS's inbound token (for acer to auth TO liris):
+    File: data/vault/owner/agent-keyboard/token.txt (on liris)
+    Acer has this in: data/vault/owner/agent-keyboard/peer-tokens.json
+    under the liris-rayssa.token entry.
+
+  IF TOKENS CHANGED: exchange new tokens manually.
+  DO NOT guess or rotate without telling the other side.
+
+═══════════════════════════════════════════════════════════════
+  PORT MAP (both sides)
+═══════════════════════════════════════════════════════════════
+
+  ACER listens on:
+    4913  agent-keyboard     D7 STATE (17³)    ← liris sends here
+    4781  gateway             legacy            ← /omni/submit 404
+    2197  heartbeat           D6 GATE (13³)
+
+  LIRIS listens on:
+    4820  agent-keyboard     (grandfathered)    ← acer sends here
+    4812  MQTT realtime      (grandfathered)
+    4810  self-reflect        (grandfathered)
+    4791  hooks endpoint      (grandfathered)
+
+═══════════════════════════════════════════════════════════════
+  WHAT THE ENGINES FOUND (summary for liris)
+═══════════════════════════════════════════════════════════════
+
+  v4 omni-shannon-real (NEW):
+    - 2,592 REAL beats per candidate (not stubs)
+    - body systems actually check: nervous=routing, circulatory=
+      heartbeat, skeletal=structure, memory=recall, muscular=
+      compute capacity, immune=hard-deny gates
+    - GNN stages actually run: observe reads signal density,
+      edge_map computes connectivity, reflect applies dim lenses,
+      prove generates sha256 attestation
+    - Self-diagnosis: 15,552 beats, all PROCEED
+    - Live scan: 31,104 beats across 12 agents
+    - Modes: --self-diagnose, --live-scan, <input.json>
+
+  hilbert-intersection-engine (NEW):
+    - 1,296 real intersection points (6 layers × 6 protocols ×
+      6 surfaces × 6 dimensions)
+    - Each classified as ACTIVE / LATENT / COLLAPSED / FORBIDDEN
+    - Current: 1074 ACTIVE, 174 LATENT, 42 COLLAPSED, 6 FORBIDDEN
+    - ALL 42 collapsed = transport × * × agent-keyboard
+    - Density: 82.9%
+
+  cube-self-healer (NEW):
+    - Reads diagnoses, fixes what it can autonomously
+    - Correctly identifies what requires operator action
+    - Fixed: heartbeat refresh + D: mirror
+    - Cannot fix: federation channel (needs liris), shared OS
+      addressing (needs network config)
+
+  cube-full-cycle (NEW):
+    - The closed loop: INDEX → THINK → HEAL → VERIFY
+    - Runs in 1.3 seconds
+    - 46,656 beats per cycle
+    - This is the MEMORY → INDEX → THINK → REPORT cycle from
+      03-operating-model.md actually running as code
+
+═══════════════════════════════════════════════════════════════
+  REMAINING OPERATOR-REQUIRED BLOCKERS (2)
+═══════════════════════════════════════════════════════════════
+
+  1. FEDERATION CHANNEL DEAD
+     Fix: steps 1-7 above
+     Both sides need running agent-keyboard + correct IPs + valid tokens
+
+  2. SHARED OS ADDRESSING FOR USB (Brown-Hilbert cube collapse)
+     Fix: one of:
+       a) SMB share from USB holder → other host mounts it
+       b) cloudflared tunnel exposing USB as HTTPS endpoint
+       c) federation-native mount primitive (bhc-mount-v0 exists
+          as skeleton on acer, not implemented on liris)
+       d) physical USB rotation with PID verification
+     This is the ROOT CAUSE of the Brown-Hilbert cube collapse.
+     Without it, cube findings can't be resolved cross-host.
+
+═══════════════════════════════════════════════════════════════
+  WAVE AFTER WAVE — WHAT LIRIS CAN RUN
+═══════════════════════════════════════════════════════════════
+
+  Once the connection is restored, liris can:
+
+  1. Run her own v4 engine:
+     node tools/cube/omni-shannon-v4-real.js --self-diagnose
+     node tools/cube/omni-shannon-v4-real.js --live-scan
+
+  2. Run the full cycle:
+     node tools/cube/cube-full-cycle.js
+
+  3. Compare results with acer's outputs at:
+     data/votes/SELF-DIAG-2026-04-10T*/self-diagnosis.json
+     data/votes/LIVE-SCAN-2026-04-10T*/live-scan.json
+     data/intersection-cube/latest.json
+     data/heal-runs/heal-2026-04-10T*.json
+     data/cycles/CYCLE-2026-04-10T*.json
+
+  4. If byte-identical results on matching inputs →
+     cross-architecture convergence proof (the real thing).
+
+═══════════════════════════════════════════════════════════════
+  END OF KIT — Asolaria-acer, 2026-04-10
+  Cube: D7 STATE (4913) + D23 FEDERATION (571787)
+  42 collapsed → 0 collapsed is the goal
+═══════════════════════════════════════════════════════════════

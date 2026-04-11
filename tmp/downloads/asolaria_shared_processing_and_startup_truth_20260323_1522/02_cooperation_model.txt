@@ -1,0 +1,62 @@
+PACKET 2: HOW THESE SYSTEMS WERE SUPPOSED TO COOPERATE
+Generated: 2026-03-23
+Source: NotebookLM deep extraction from 102 sources
+===============================================================
+
+DESIGN INTENT vs IMPLEMENTED REALITY
+
+1. JESSE'S HOST (The Control Plane)
+   Design: Central Asolaria Supervisor with elevated permissions. Sole control plane for orchestration, policy enforcement, safety gates, task routing.
+   At startup: start elevated -> read task context -> build task queue -> spawn workers -> run identity handshake gates -> dispatch tasks.
+   Reality: Supervisor architecture functional. Worker spawning NOT enforced (High). Identity handshakes NOT enforced. Privilege separation NOT enforced.
+   Classification: PARTIAL - architecture exists, enforcement does not
+
+2. RAYSSA
+   Design: NOT EVIDENCED. Zero mentions in 102 sources.
+   Classification: NOT EVIDENCED
+
+3. LIRIS / SUB-COLONY
+   Design: Agent with restart anchors (IX-037, IX-075, IX-084). Admin-terminal profile alongside Gaia and Helm. Colony via relay-backed messaging room and heartbeats.
+   Reality: "Liris is still offline" as of March 19, 2026. Colony telemetry: online=1/6, active=1/6 (degraded).
+   Classification: MOSTLY CONCEPTUAL in current state
+
+4. FALCON / PHONE EDGE COMPUTE
+   Design: Phone worker for phone-side execution. Normal permissions, scoped to phone context. Spawn order: USB -> Wi-Fi/VPN -> tunnel/cellular. Mandatory identity handshake. Phone Gemini lane builds prompt memory from shared memory + notebook context, records turns back.
+   Reality: Canonical design but spawning/privilege separation not enforced. Phone bridge keeper and tunnel monitor intermittently down.
+   Classification: PARTIAL / FEDERATED / LANE-BASED
+
+5. SYMPHONY
+   Design: Managed sidecar service (NOT external model provider). In SUPER_SWARM for QDD: long-running issue lane ONLY. Does not replace controller authority. Direct repo writes stay on local Codex lane.
+   Verbatim: "Helm is the controller admin terminal. Sentinel is the helper/watch terminal. If Asolaria SUPER_SWARM is enabled for qdd, Symphony participates as the long-running issue lane only. Augment/Auggie remains a read-only sidecar. Direct repo writes stay on the local Codex lane unless the controller explicitly routes otherwise"
+   Reality: "configured-but-not-running" (process.running=false). Active "worker-router Symphony mismatch" audit warning.
+   Classification: PARTIAL - configured and launchable but not running
+
+6. AUGMENT / AUGGIE
+   Design: Intentionally narrow read-only context sidecar for codebase-retrieval. NOT a brain provider. Two modes: local_cli and remote_mcp. Helm uses for read-only indexing/retrieval. Sentinel uses to detect stale assumptions.
+   Verbatim: "Even in SUPER_SWARM mode, Augment stays read-only. It is not a top-level writer lane and it must not replace local Codex or controller decisions"
+   Reality: Architecturally enforced as read-only.
+   Classification: REAL AND IMPLEMENTED
+
+7. MQTT
+   Design: NOT EVIDENCED beyond one config parameter (ASOLARIA_MQTT_BIND_HOST=0.0.0.0).
+   No source defines its role, topology, or interaction with other components.
+   Classification: NOT EVIDENCED (only a bind parameter observed)
+
+8. CLOUD SERVICES
+   - GCP/Vertex AI: Cloud fallback lane (gemini-2.5-flash). REAL.
+   - Google API lane: gemini-2.0-flash. REAL.
+   - Vertex Live: app-managed real-time voice interaction. REAL.
+   - NotebookLM Enterprise: long-form project-knowledge layer. REAL.
+   - Cloudflare: quick tunnel for Augment remote_mcp mode. PARTIAL.
+
+SHARED PROCESSING CLASSIFICATION
+(1) REAL AND IMPLEMENTED: Augment read-only sidecar, GCP/Vertex AI, NotebookLM Enterprise sync, /api/health/fast, MCP compression (~98-99%), Asolaria shared memory, colony heartbeats/relay
+(2) PARTIAL / FEDERATED / LANE-BASED: Worker spawning, identity handshakes, Symphony issue lane, colony lanes (1/6 online), Falcon phone edge compute
+(3) MOSTLY CONCEPTUAL: Liris (offline), Rayssa (zero evidence), Omnispindle (zero evidence), MQTT coordination role, full multi-agent colony cooperation
+
+LANE CLASSIFICATION
+CONTROL PLANE: Jesse host / Asolaria Supervisor (elevated, sole orchestrator)
+COORDINATION TRANSPORT: Colony relay-backed messaging + heartbeats (partial); MQTT (config only, role undefined)
+READ-ONLY SIDECARS: Augment/Auggie (enforced read-only codebase-retrieval)
+LONG-RUNNING ISSUE LANES: Symphony (configured, not running; designed for QDD SUPER_SWARM)
+REAL COMPUTE/OFFLOAD LANES: Falcon phone edge compute (partial); GCP/Vertex AI cloud fallback (real); Google API lane (real); QDD Monorepo / EZ Protect (real)

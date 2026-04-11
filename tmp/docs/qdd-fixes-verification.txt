@@ -1,0 +1,70 @@
+QDD Fixes Verification Report
+Date: 2026-03-25
+Source: D:\projects\QDD\ebacmap-master
+======================================================================
+
+1. SSO callback email verification — INTACT
+   File: apps/web-ebacmap/src/modules/users/use-cases/SsoCallback/UseCase.ts
+   Lines 59-61: Active code checks `email !== request.email` and returns
+   ValidationError if mismatch. Not commented out.
+
+2. Password reset expiration — INTACT
+   ResetPassword/UseCase.ts (line 30): Checks `user.props.passwordReset.expired`
+   and returns InvalidTokenError if true.
+   UserRepo.ts (line 633): findByResetPasswordToken query includes
+   `resetPasswordExpires: { $gt: Date.now() }` — expired tokens never found.
+   PasswordReset.ts (libs/domains): `get expired()` compares `new Date() > expiration`.
+   EXPIRATION_LENGTH = 7200000 (2 hours).
+
+3. Rate limiting — INTACT
+   - login.ts:  .useRateLimit(5, 60000)
+   - reset.ts:  .useRateLimit(5, 60000)
+   - sso.ts:    .useRateLimit(10, 60000)
+   - ingest.ts: .useRateLimit(100, 60000)
+   - forgot.ts: .useRateLimit(3, 60000) (bonus — also rate-limited)
+   Endpoint base class (Endpoint.ts) has useRateLimit() method wired to
+   rateLimiter middleware.
+
+4. forEach-async — INTACT
+   - Queue.ts: Uses `for (const job of stuckJobs)` in recoverStuckJobs (line 475).
+     No async forEach anywhere.
+   - index.ts: Uses `for (const env of environments)` throughout (lines 105, 122, 181).
+   - ImportTestResult/UseCase.ts: Critical loops use `for...of` (lines 643, 651).
+     Remaining .forEach calls (lines 609, 624) are synchronous — no await inside.
+   - CheckSwabsForCompletedTests/UseCase.ts: Critical loops use `for...of`
+     (lines 247, 254). Remaining .forEach (lines 218, 233) are synchronous.
+
+5. shouldLock — INTACT
+   Queue.ts line 142-145: Method is `async`. Called with `await` on line 227:
+   `if (!await this.shouldLock())`. Body is synchronous (just a length check),
+   but the await is harmless and correct.
+
+6. Queue race condition — INTACT
+   Queue.ts line 259: getNextJob uses `findOneAndUpdate` with atomic
+   find-and-lock pattern. Sets lockedAt in the same operation. No separate
+   find + update.
+
+7. DB connection close removed from queueJob — INTACT
+   Queue.ts queueJob() (lines 151-181): No closeDbConnection() call.
+   Connection close only happens in stopQueue() (line 138), which is correct.
+
+8. DomainEventBus timeout fix — INTACT
+   DomainEventBus.ts: dispatch() uses try/finally with runningEvents counter
+   (lines 53, 69). waitForEvents() (line 115) uses proper Date.now().valueOf()
+   comparison with configurable timeout. Handlers run via Promise.all with
+   individual try/catch per handler (lines 56-67).
+
+9. validate.ts typeof fix — INTACT
+   libs/common/src/core/validate.ts line 90: Uses `typeof value !== 'string'`
+   (correct typeof check, not broken comparison).
+   Line 97: Uses `typeof value?.length === 'undefined'` for isNotEmpty check.
+   Line 109: Uses `typeof validates.minLength === 'number'` guard.
+
+10. logging.ts date format fix — INTACT
+    libs/common/src/core/logging.ts line 12: Uses date-fns `dateFormat` with
+    pattern `'dd/MMM/yyyy:HH:mm:ss'` — proper CLF-style date format.
+    No raw Date.toString() or broken format strings.
+
+======================================================================
+SUMMARY: 10/10 INTACT — All Wave 1 and Wave 2 fixes are still in place.
+======================================================================

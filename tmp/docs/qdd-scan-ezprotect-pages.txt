@@ -1,0 +1,252 @@
+EZ Protect Pages Deep Scan Report
+===================================
+Scanned: 2026-03-25
+Scope: 7 page files + 1 dynamic route + 12 API route files
+
+Files scanned:
+  PAGES:
+    pages/ez-protect/index.tsx        (586 lines)
+    pages/ez-protect/alerts.tsx       (685 lines)
+    pages/ez-protect/compare.tsx      (1173 lines)
+    pages/ez-protect/devices.tsx      (368 lines)
+    pages/ez-protect/facility.tsx     (444 lines)
+    pages/ez-protect/results.tsx      (515 lines)
+    pages/ez-protect/results/[id].tsx (342 lines)
+    pages/ez-protect/troubleshooting.tsx (471 lines)
+
+  API ROUTES:
+    api/ez-protect/dashboard.ts
+    api/ez-protect/dashboard-corporate.ts
+    api/ez-protect/dashboard-facility.ts
+    api/ez-protect/devices.ts
+    api/ez-protect/events.ts
+    api/ez-protect/event/[id].ts
+    api/ez-protect/alerts/index.ts    (GET + POST)
+    api/ez-protect/alerts/[id].ts     (PUT + DELETE)
+    api/ez-protect/alert-history.ts
+    api/ez-protect/export.ts
+    api/ez-protect/ingest.ts          (POST)
+    api/ez-protect/reports/generate.ts
+
+
+=============================================================================
+CRITICAL ISSUES (will cause runtime errors or wrong behavior)
+=============================================================================
+
+1. QUERY PARAMETER MISMATCH: results.tsx -> events API
+   - results.tsx sends: pageSize, resultState (array), device, sortBy, sortDir
+   - API expects:       limit, resultStates (comma-separated string),
+                         deviceSerialNumber, sortBy, sortOrder
+   BROKEN PARAMS:
+     * "pageSize" should be "limit"     -> pagination will use API default (50)
+     * "resultState" should be "resultStates" -> filter by result state NEVER works
+     * "device" should be "deviceSerialNumber" -> device filter NEVER works
+     * "sortDir" should be "sortOrder"  -> sort direction NEVER applied
+
+2. QUERY PARAMETER MISMATCH: alerts.tsx -> alert-history API
+   - alerts.tsx sends: offset, limit
+   - API expects:      page, limit
+   BROKEN: The page uses offset-based pagination (0, 10, 20...) but the API
+   expects page-based (1, 2, 3...). Pagination is miscalculated. First page
+   sends offset=0 which gets treated as page default (1), so first page works
+   by accident, but subsequent pages send offset=10, offset=20 which are
+   nonsensical page numbers.
+
+3. CHANNEL VALUES MISMATCH: alerts.tsx -> alerts API
+   - alerts.tsx offers channels: ['email', 'sms', 'in-app']
+   - API schema accepts channels:      ['email', 'sms', 'dashboard', 'both']
+   BROKEN: Selecting "in-app" will fail yup validation. The API has no
+   'in-app' option. The page is missing 'dashboard' and 'both' options.
+
+4. TRIGGER TYPE MISMATCH: alerts.tsx -> alerts API
+   - alerts.tsx offers: ['result_state', 'threshold', 'device_offline', 'calibration_due']
+   - API accepts:       ['result_state', 'threshold', 'device_offline',
+                          'control_failure', 'pm_failure', 'calibration_failure', 'clock']
+   BROKEN: "calibration_due" will fail yup validation. Missing UI options for
+   control_failure, pm_failure, calibration_failure, and clock triggers.
+
+5. RESULT STATE MISMATCH: alerts.tsx + results.tsx vs domain model
+   - Pages use:  ['Positive', 'Negative', 'Inconclusive', 'Invalid', 'Error']
+     and results.tsx uses: ['Positive', 'Negative', 'Invalid', 'Error', 'Indeterminate']
+   - Domain model uses: ['NEGATIVE', 'INITIAL_POSITIVE', 'PRESUMPTIVE_POSITIVE',
+     'PRODUCT_POSITIVE', 'INVALID', 'CALIBRATION_FAIL', 'PM_FAIL', 'UNKNOWN']
+   BROKEN: The filter values sent to the API will never match any database
+   records. "Positive" != "INITIAL_POSITIVE", "Inconclusive" doesn't exist,
+   "Error" doesn't exist. The entire result-state filter is non-functional
+   on both alerts.tsx and results.tsx.
+
+6. FIELD NAME MISMATCH: results/[id].tsx vs domain model
+   The detail page renders fields that don't exist on EzProtectNormalizedEvent:
+     * event.firmware         -> domain has NO firmware field (only deviceModel)
+     * event.resultUnit       -> domain has resultUnit but it's rarely populated
+     * event.reading          -> domain uses "readingValue" not "reading"
+     * event.controlLine      -> domain uses "controlLineValid" (boolean) not a string
+     * event.temperature      -> domain uses "temperatureC" (number) not a string
+   These mismatches mean the detail page will show "-" for most fields even
+   when data exists.
+
+7. API FIELD MISMATCH: facility.tsx fetches from /api/ez-protect/devices
+   - facility.tsx defines FacilityDashboardResponse with: devices, positives,
+     invalids, errors, pmTests, windows
+   - But /api/ez-protect/devices routes to GetDeviceHealth use case which
+     returns device health data, NOT the facility dashboard shape
+   - There is a separate /api/ez-protect/dashboard-facility endpoint that
+     routes to GetEzProtectDashboard use case, which is the correct endpoint
+   BROKEN: facility.tsx fetches from the wrong API endpoint entirely.
+   The response shape won't match and the page will either error or show
+   nothing.
+
+
+=============================================================================
+SIGNIFICANT ISSUES (functional but incorrect/risky)
+=============================================================================
+
+8. useBetween(useLocation) called INSIDE render body on EVERY page
+   Every page does: `const useBetweenLocation = () => useBetween(useLocation);`
+   inside the component body. This creates a new function on every render.
+   useBetween is meant to share state between components, but wrapping it
+   in a lambda that's recreated each render defeats memoization. This should
+   be hoisted outside the component or wrapped in useMemo/useCallback.
+   Not a crash bug but causes unnecessary re-renders.
+
+9. withPermissions() called as a regular function, not a hook
+   Every page calls `withPermissions({...})` as a plain function call in
+   the render body. If withPermissions is a hook (the import path suggests
+   it is: @/hooks/withPermissions), it should follow hook rules. If it's
+   meant to redirect on permission failure, calling it mid-render after
+   other hooks is fine but unconventional. If it's a hook that uses other
+   hooks internally, calling it conditionally or after early returns (as in
+   devices.tsx line 131 AFTER useService) is a React hook rules violation.
+
+10. fetchJson error handling inconsistency: alerts.tsx
+    handleToggleEnabled and handleDelete call fetchJson then check
+    `if (!result || result === false)` — but fetchJson may throw on network
+    errors. The try/catch around it has empty catch blocks. If fetchJson
+    throws, the error is caught and an alert() shown, but on non-thrown
+    failure (e.g., returns undefined), the `result === false` check is
+    fragile because fetchJson may return an object with error info.
+
+11. HARDCODED VALUES: troubleshooting.tsx
+    - Video URLs point to https://videos.charm.com/... — these are
+      placeholder/fabricated URLs that likely don't exist
+    - Support email hardcoded as support@charm.com
+    - Support phone hardcoded as 978-687-9200
+    - Temperature ranges, shelf life specs, etc. are hardcoded
+    These should be configurable or at minimum verified against Charm's
+    actual support channels.
+
+12. HARDCODED VALUES: index.tsx
+    - "Last 30 days" subtitle is hardcoded text but the API may use
+      different window sizes
+    - RESULT_STATE_COLORS map is duplicated between index.tsx and compare.tsx
+      with slightly different color values (index uses #e6f4ea/#1e7e34 for
+      NEGATIVE, compare uses #4caf50)
+
+13. compare.tsx: hardcoded limit=500 for event fetch
+    Line 521: `limit: '500'` — if a facility has more than 500 events in
+    the date range, the comparison chart silently drops data. The page shows
+    a warning but doesn't offer pagination for the chart data.
+
+14. compare.tsx: DEFAULT_LINE_RANGES hardcoded thresholds
+    Line 71-75: Negative 0-0.3, Borderline 0.3-0.5, Positive 0.5-1.0
+    These thresholds are assay-specific. Different Charm strip types have
+    different cutoff values. Hardcoding these is misleading for facilities
+    using non-standard assays.
+
+
+=============================================================================
+MISSING ERROR HANDLING
+=============================================================================
+
+15. index.tsx: No error boundary around CorporateDashboard or FacilityDashboard
+    If dashboard.windows is undefined/null (API returns different shape),
+    the .map() call on line 226 will throw. Same for dashboard.byFacility
+    on line 197 — guarded with ?? {} but byLotRoll on line 277 uses
+    optional chaining inconsistently.
+
+16. results.tsx: No error handling for export
+    handleExport (line 186) calls window.open() — if the export API fails,
+    the user sees a browser tab with an error page. No feedback mechanism.
+
+17. results/[id].tsx: ID validation too strict
+    Line 174: `id && /^[a-f0-9]{24}$/i.test(rawId)` — only accepts MongoDB
+    ObjectId format. If the event system ever uses UUIDs or other ID formats,
+    this page breaks silently (shows "Event not found").
+
+18. facility.tsx: No null guard on dashboard.positives
+    If the API response doesn't include a `positives` field (which it won't
+    because it's hitting the wrong endpoint — see issue #7), accessing
+    dashboard.positives.initialPositive will throw a TypeError.
+
+19. alerts.tsx: mutateRules() and mutateHistory() after failed operations
+    In handleToggleEnabled (line 365) and handleDelete (line 389),
+    mutateRules() is called even when the operation might have partially
+    failed. SWR revalidation should only happen on confirmed success.
+    Actually looking closer, the return statements in catch blocks prevent
+    this — so this is correctly handled. Retracted.
+
+
+=============================================================================
+MISSING FEATURES / DEAD ROUTES
+=============================================================================
+
+20. API routes with NO corresponding page:
+    - /api/ez-protect/ingest          (POST) — no admin UI for manual ingest
+    - /api/ez-protect/reports/generate (GET)  — no reports page exists
+    - /api/ez-protect/export          (GET)  — used by results.tsx but
+      export query params differ from what results.tsx actually sends
+      (export API doesn't accept device, operatorGroup, sortBy, sortDir)
+
+21. dashboard-facility.ts API route exists but NO page calls it
+    The facility.tsx page calls /api/ez-protect/devices instead (issue #7).
+    The dashboard-facility route is identical to dashboard.ts — it's a
+    duplicate route pointing to the same use case (GetEzProtectDashboard).
+
+
+=============================================================================
+STYLE / MAINTENANCE ISSUES
+=============================================================================
+
+22. Massive inline styles everywhere
+    Every page uses inline style objects extensively. No CSS modules, no
+    styled-components, no Tailwind classes. Maintenance nightmare. Color
+    values duplicated across files (#c5221f, #e65100, #dc2626, etc.).
+
+23. RESULT_STATE_COLORS defined in 3 different places with different values:
+    - index.tsx: uses hex colors like #e6f4ea
+    - compare.tsx: uses hex colors like #4caf50
+    - results.tsx: uses a function resultStateColor() with different hex values
+    These should be unified into a shared constant.
+
+24. Type duplication
+    - WindowSummary defined separately in index.tsx and facility.tsx
+      with DIFFERENT fields (index has byResultState, facility has
+      positiveCount/invalidCount/errorCount)
+    - DeviceStatus defined as a type in devices.tsx AND as an interface
+      in facility.tsx with completely different shapes
+
+25. No loading/error states for useService when URL is null
+    Multiple pages set the service URL to null when moduleEnabled is false
+    or location is global. The useService hook presumably skips fetching,
+    but there's no explicit handling documented.
+
+
+=============================================================================
+SUMMARY: TOP 5 MUST-FIX
+=============================================================================
+
+1. results.tsx query params (pageSize->limit, resultState->resultStates,
+   device->deviceSerialNumber, sortDir->sortOrder) — ENTIRE results
+   filtering and pagination broken
+
+2. facility.tsx wrong API endpoint (/devices instead of /dashboard-facility)
+   — entire facility page renders wrong data or crashes
+
+3. Result state values mismatch across alerts.tsx and results.tsx vs domain
+   model — all result-state filtering is non-functional
+
+4. alerts.tsx channel/trigger type mismatches vs API schema — creating
+   "in-app" or "calibration_due" alerts will fail validation
+
+5. results/[id].tsx field name mismatches vs domain model — detail page
+   shows blanks for fields that have data under different names

@@ -1,0 +1,17 @@
+{
+  "serialNum": "8235",
+  "wifi_ssid": "Jesse",
+  "wifi_psk": "",
+  "wifi_auth": "0",
+  "wifi_band": "0",
+  "wifi_StaticIpAddr": "192.168.1.20",
+  "wifi_IpNetMask": "255.255.255.0",
+  "wifi_IpGateway": "192.168.1.1",
+  "bUseStaticSsidIpAddress": "0",
+  "securityMode": 0,
+  "uNetworkType": 1,
+  "sync_port": "443",
+  "sync_server": "192.168.1.43",
+  "wifi_DNS1": "208.67.220.220",
+  "wifi_DNS2": "208.67.222.222"
+}

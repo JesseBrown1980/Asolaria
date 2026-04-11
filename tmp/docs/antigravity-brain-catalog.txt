@@ -1,0 +1,164 @@
+================================================================================
+ANTIGRAVITY BRAIN SESSION CATALOG
+Source: C:\Users\acer\.gemini\antigravity\brain\
+Cataloged: 2026-03-25
+Total directories: 76 UUID + 1 tempmediaStorage
+Sessions with task.md: 37
+Sessions with other artifacts only: 3
+Empty sessions (no files): 36
+================================================================================
+
+=== SESSIONS WITH task.md (sorted by date) ===
+
+ #  | UUID                                     | Task Title                                                  | Files Present                              | Date (updatedAt)
+----|------------------------------------------|-------------------------------------------------------------|--------------------------------------------|------------------
+ 1  | 476c3515-b114-44dd-b61c-517de715ba94     | Initialize Vite React project                               | task, implementation_plan, walkthrough      | 2025-12-09
+ 2  | 61f2715c-1cf4-45dd-8368-9c02953f6467     | Refactor Internal Imports and Package Structure              | task, implementation_plan                   | 2025-12-23
+ 3  | 37698af1-9dcf-465c-b76c-462c755e0e5c     | Implement Anomaly Detection Service                         | task, implementation_plan, walkthrough      | 2025-12-23
+ 4  | 90102c21-a14b-4a23-a54c-32ec211c3581     | GNN Anomaly Detector Implementation                         | task, implementation_plan, handover         | 2025-12-24
+    |                                          |                                                             | IMAGES: 3x .webp, 5x .png (click_feedback) |
+ 5  | cd82daf5-707a-4904-a1ff-af5fbee777fd     | GNN Integration Project Tasks                               | task, implementation_plan, walkthrough      | 2025-12-24
+    |                                          |                                                             | IMAGES: 2x .webp, 19x .png (click_feedback)|
+ 6  | 6d2d4b8d-c64c-4a25-8abc-89e6220792ac     | System Scan and Documentation Audit                         | task, implementation_plan                   | 2025-12-24
+ 7  | 7aeceb95-f491-4dc7-acd9-cf33320b9822     | Documentation & Demonstration Task                          | task, implementation_plan, walkthrough      | 2025-12-24
+    |                                          |                                                             | IMAGES: 5x .webp, many .png (screenshots+  |
+    |                                          |                                                             | click_feedback, dashboard, patient analysis)|
+ 8  | 6481a5f4-5178-4be2-b486-fe65bb962707     | Debugging Session                                           | task, implementation_plan                   | 2025-12-24
+ 9  | d542ba13-89ed-4b71-ad66-37b5fbd1e01d     | Debugging Patient Analysis Flow                             | task                                        | 2025-12-24
+    |                                          |                                                             | IMAGES: 2x .webp, many .png (connection     |
+    |                                          |                                                             | refused, specialty dropdown, patient error)  |
+10  | b27b8734-3380-4f0b-bd4f-9c7625b2305c     | Debugging Patient Analysis Flow                             | task                                        | 2025-12-24
+11  | e42a6454-985f-4712-a640-754b7ed8f243     | Task Checking: Debugging Patient Analysis Flow              | task, implementation_plan                   | 2025-12-24
+12  | 12fa564c-759a-4b7e-87ec-0a6d9c651852     | Debug and Verify Patient Analysis Flow                      | task, implementation_plan                   | 2025-12-24
+    |                                          |                                                             | IMAGES: 1x .webp                            |
+13  | 5e44c400-3b3d-4e1b-9b1e-4f613ac780e6     | Running and Debugging Application                           | task, implementation_plan, walkthrough      | 2025-12-24
+    |                                          |                                                             | IMAGES: 1x .webp, 2x .png (click_feedback) |
+14  | 1b994a54-3593-4af3-af7a-9a7f2e496627     | Debugging Multi-Patient Dashboard                           | task, implementation_plan, walkthrough      | 2025-12-24
+    |                                          |                                                             | IMAGES: 6x .webp, many .png (settings,      |
+    |                                          |                                                             | dashboard, 422 error, analysis)             |
+15  | 92844762-80ea-4b31-b044-761323a1b259     | Investigate Multi-Patient Dashboard failure                  | task, implementation_plan, walkthrough      | 2025-12-25
+    |                                          |                                                             | IMAGES: 3x .webp (dashboard repro/verify)   |
+16  | 19340628-7be3-42ea-ad9a-59b8e0cc55e4     | System Fix Tasks (Remove Debug Code)                        | task, implementation_plan, walkthrough,     | 2025-12-25
+    |                                          |                                                             | system_examination                          |
+17  | 514df202-6489-49fd-8f9f-4da5c770603d     | System Re-Examination and Final Fixes                       | task, implementation_plan                   | 2025-12-25
+18  | b6fb5227-0871-4957-8d39-d842575ad6bd     | Live Application Debugging                                  | task, implementation_plan, walkthrough      | 2025-12-25
+19  | 00692eea-87af-4484-85b4-f1b06a829d4c     | Comparison with Original Repository - COMPLETE              | task                                        | 2025-12-25
+20  | 8f7c74d6-878c-4add-917b-8d0ed52b02c2     | AI Healthcare Project Fix                                   | task, implementation_plan                   | 2025-12-25
+21  | 54a77542-2a2d-482c-873e-7662cdc1a3ff     | Verify Development Environment                              | task, implementation_plan                   | 2025-12-26
+22  | 503d6a27-c58d-4ad1-97d2-e76e9b7dc4e4     | Project Cleanup and Restoration                             | task, implementation_plan                   | 2026-01-04
+    |                                          |                                                             | IMAGES: 4x .webp (UI smoke tests)           |
+23  | 3ab7fef0-1c7b-4ba8-aa26-13870e04d639     | Verify App and Code Quality                                 | task, implementation_plan                   | 2026-01-04
+24  | 74a05c5f-b311-4568-945b-c99fdea3b820     | System Verification and Testing                             | task, implementation_plan, walkthrough      | 2026-01-06
+25  | 7880f5ce-26e9-4b00-b75c-518ee33c1360     | Security Implementation & CI Fixes COMPLETE                 | task, implementation_plan, walkthrough      | 2026-01-08
+    |                                          |                                                             | IMAGES: 15x .webp (frontend, CI checks)     |
+26  | 78676e42-ac4b-4374-a4b4-255cfc3f176f     | Complete CI Verification and Plan Next Stage                | task, implementation_plan, walkthrough      | 2026-01-09
+27  | e0cb10e1-a5e9-448c-854f-dbe6e8bc3fe5     | Fix Remaining CI Test Failures                              | task                                        | 2026-01-09
+28  | 80912a08-eb6c-460e-9463-a76d7fe2db8b     | Merge Privacy Fixes & Clean GitHub Repo                     | task, implementation_plan, walkthrough      | 2026-01-10
+    |                                          |                                                             | IMAGES: 9x .webp (GitHub repo, PR, CI)      |
+29  | 469d482d-8e64-4f16-a251-f53aa91a932b     | Implement European (GDPR) Compliance                        | task, implementation_plan, walkthrough      | 2026-01-11
+30  | c2e5b3cd-8a7c-4924-bf36-e3f66778debf     | System Stability Verification                               | task, implementation_plan, walkthrough      | 2026-01-12
+31  | 8888eeea-cb2f-4f82-8d08-827ffb8d6bcb     | Multi-Task Execution Plan                                   | task, implementation_plan, walkthrough      | 2026-01-12
+    |                                          |                                                             | IMAGES: 1x .webp (GitHub verification)      |
+32  | c2434d80-9a21-465f-8a93-34de9d929900     | Fixing Remaining Test Failures                              | task, implementation_plan, walkthrough      | 2026-01-13
+33  | 83c8e800-1f4a-4a5b-b39d-995f47d1f36c     | System PATH and Windows Search Fix                          | task                                        | 2026-01-14
+34  | 7fffc83b-a7a1-47f2-9d36-a7f42777be71     | Master Plan: AI Healthcare Project Finalization              | task, implementation_plan                   | 2026-01-27
+35  | 28d333e5-9d74-448e-a4d5-e2ae705ac186     | Master Plan: AI Healthcare Project Finalization (Phase 1 OK)| task, implementation_plan, walkthrough      | 2026-02-01
+    |                                          |                                                             | IMAGES: 3x .webp (GitHub CI, localhost)      |
+36  | 75aa5826-4b89-41ea-ad62-c455410c61a9     | Phase 5: Global Improvement (Testing Coverage)              | task, implementation_plan, walkthrough      | 2026-02-01
+37  | 389e2b96-6ca0-4a8e-bb11-3b592f5acd38     | *** ASOLARIA SYSTEM SWEEP PLAN ***                          | task                                        | 2026-03-03
+    |                                          | [TRANSITION SESSION - Antigravity working on Asolaria]      |                                             |
+
+=== SESSIONS WITH OTHER ARTIFACTS ONLY (no task.md) ===
+
+ #  | UUID                                     | Title / Content                                             | Files Present                              | Date (updatedAt)
+----|------------------------------------------|-------------------------------------------------------------|--------------------------------------------|------------------
+38  | 006214b8-1d74-4d5c-8d3d-962542b1523f     | Agent Manager Implementation Plan                           | implementation_plan                        | 2026-01-11
+39  | 13f87e24-05f0-48a6-8e27-4095dd57f38d     | Development Environment Fix (corrupted venv, deps, tz fix)  | walkthrough                                | 2025-12-25
+40  | 47b76135-a851-42c6-ba80-592e0f48965a     | Project Status & Handover Report (2026-01-11)               | project_status_report                      | 2026-01-11
+    |                                          |                                                             | IMAGES: 1x .png (uploaded_image)            |
+
+=== SESSIONS WITH IMAGES ONLY (no markdown) ===
+
+ #  | UUID                                     | Content                                                     | Files Present                              | Date (estimated)
+----|------------------------------------------|-------------------------------------------------------------|--------------------------------------------|------------------
+41  | 02ce3179-2f76-4a7c-817b-cf09b5ba2ada     | [2 uploaded images, no text artifacts]                      | 2x .png (uploaded_image)                   | ~2026-01-04
+42  | 56486534-c3e0-48e5-b254-dc7f98a7e261     | [1 uploaded image, no text artifacts]                       | 1x .png (uploaded_image)                   | ~2026-01-04
+43  | d7ac0ac8-2107-4c98-89b4-960e4df94383     | [GitHub SSH key setup session]                              | 1x .webp (add_ssh_key_github)              | ~2026-01-10
+    |                                          |                                                             | 4x .png (click_feedback, github_confirm)    |
+44  | 4040950d-dce3-412b-86b6-676e7def6b83     | [4 media screenshots, no text artifacts]                    | 4x .png (media)                            | ~2026-02-20
+
+=== EMPTY SESSIONS (no files at all) ===
+
+004217ed-6ee1-4e28-abce-61054508a1f7    02ff2ae4-f03f-42c5-954b-c4b17614308b
+06552306-509a-4e1d-8437-eafcc1710c8e    0a6bd076-1cd3-4a1b-8f28-7ccffa4e92de
+0bd89293-b1ec-4e30-acde-7717c46bff42    153b3aa1-16ce-415d-a4b0-b94ad97f6546
+1600278d-a2a8-4469-8ccc-74c590c1f7b3    234f1972-0c1f-4d97-ade5-ba3cd75525d8
+2548aada-b2db-4e2a-94ac-1402124a51b5    26d78b66-349f-4822-b205-9f874b794602
+28d333e5... (see #35 above)              345c54d8-7a43-407f-a9d5-1752fae2081b
+39e642cd-db2e-44b6-96d8-ede2310e0cf9    4ac1fc7a-65d5-4e93-8703-b2d36d72c317
+4b328e6f-4934-495d-8fed-2b26cbec7fc9    4c4c3dd6-a90a-4304-835d-831a5dfd05f2
+4d5e309c-adba-401b-960f-f7578aa9feb0    58b82358-089c-4922-aaed-3cadd89db70b
+5c14563a-6ec1-4ef0-8a7f-1bbc34bb7c12    64aa7fe3-3483-4582-a993-01c2f2d391c7
+8e617400-6869-4791-bc63-7dcf0f65f03c    97e96b84-6d0f-4182-a60a-fa93b0baeadf
+a9bbb332-4e6c-4ee2-aa67-539d8a9a07ba    ab06ebe8-404d-4b20-b625-981e050c7da4
+af5f62c4-d590-46df-a0dd-e917413e2bad    b9bede96-5729-4b50-833a-58cfc3801c22
+cbbf761e-3391-41d3-9d1a-266159eab433    da4933ab-df64-44f3-80c0-cdb724173bee
+e1ea8ed8-412f-4239-8e15-c3881fec94db    f3f8500e-057f-4645-8d9f-af4814d9e202
+f9441583-6093-44d0-8fbd-d6265442398d    ff6215f5-cba6-4a0c-974a-45261b6d33fe
+
+(32 empty UUID directories total)
+
+================================================================================
+TIMELINE SUMMARY
+================================================================================
+
+2025-12-09  Session #1:  Vite React project init (earliest session)
+2025-12-23  Sessions #2-3:  Refactoring + Anomaly Detection Service
+2025-12-24  Sessions #4-14: GNN implementation, system docs, heavy debugging
+2025-12-25  Sessions #15-20: Dashboard fixes, system examination, code comparison
+2025-12-26  Session #21: Dev environment verification
+2026-01-04  Sessions #22-23: Project cleanup, code quality
+2026-01-06  Session #24: System verification
+2026-01-08  Session #25: Security + CI fixes (SOC 2)
+2026-01-09  Sessions #26-27: CI verification + remaining CI failures
+2026-01-10  Session #28: Privacy fixes, GitHub cleanup
+2026-01-11  Sessions #29, #38, #40: GDPR compliance, Agent Manager, handover
+2026-01-12  Sessions #30-31: Stability verification, multi-task
+2026-01-13  Session #32: Test failure fixes
+2026-01-14  Session #33: System PATH / Windows Search fix
+2026-01-27  Session #34: Master Plan for AI Healthcare finalization
+2026-02-01  Sessions #35-36: Master Plan Phase 1 done, Phase 5 testing coverage
+2026-03-03  Session #37: *** ASOLARIA SYSTEM SWEEP *** (transition point)
+
+================================================================================
+ASOLARIA TRANSITION SESSIONS
+================================================================================
+
+Only ONE session directly mentions Asolaria in its task.md:
+
+UUID: 389e2b96-6ca0-4a8e-bb11-3b592f5acd38
+Title: "Asolaria System Sweep Plan"
+Date: 2026-03-03
+Files: task.md only
+Summary: "Initial plan for the system sweep of Asolaria."
+
+This is the TRANSITION POINT where Antigravity (Gemini) pivoted from the
+AI Healthcare project to working directly on Asolaria. All 36 prior active
+sessions were AI Healthcare project work (GNN, patient analysis, CI/CD,
+GDPR compliance, security, debugging).
+
+================================================================================
+PROJECT BREAKDOWN (of the 37 sessions with task.md)
+================================================================================
+
+AI Healthcare / GNN:        36 sessions (97%)
+  - GNN Implementation:      4 sessions (#2-5)
+  - Patient Analysis Debug:  8 sessions (#8-15)
+  - System Fixes:            4 sessions (#6, #16-18)
+  - CI/CD & Security:        6 sessions (#25-28, #34-35)
+  - GDPR & Compliance:       2 sessions (#29, #36)
+  - Code Quality / Cleanup:  5 sessions (#19-24)
+  - Other (env, PATH, etc):  7 sessions (#1, #7, #30-33)
+
+Asolaria:                    1 session  (3%)
+  - System Sweep:            1 session (#37)

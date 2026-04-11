@@ -1,0 +1,863 @@
+================================================================================
+CODEX-BRIDGE DEEP MINE
+Mined: 2026-03-25
+Location: C:\Users\acer\codex-bridge\
+================================================================================
+
+################################################################################
+SECTION 1: DIRECTORY STRUCTURE (non-binary files, excluding node_modules/captures)
+################################################################################
+
+Root files:
+  bridge.js                    -- Minimal relay bridge server (no deps). Serves HTTP relay, send/recv/watch.
+  colony-agent-bot.js          -- Relay bot: polls room, ACKs, runs codex exec, heartbeat/ping.
+  airlock-ingress.js           -- Bot A: external room -> internal room (validates, forwards, relays back).
+  core-gate-bot.js             -- Bot B: internal room -> ops room or webhook (validates, forwards).
+  notify-bot.js                -- Watches relay for ALERT:/CRITICAL:/NOTIFY: messages, sends notifications.
+  oli-lite.js                  -- Minimal "Oli" reference agent for external machines.
+  watchdog.ps1                 -- Master watchdog: starts bridge, tunnel, all bot lanes, monitors health.
+  bridgectl.ps1                -- CLI: status/start/stop/restart the entire bridge stack.
+  Ensure-NetworkReady.ps1      -- Wi-Fi bootstrap: tries trusted networks, waits for internet.
+  Rotate-BridgeToken.ps1       -- Generates new bridge token, backs up old, optionally restarts stack.
+  new-agent-profile.ps1        -- Scaffolds new agent profile JSON + env example.
+  jarvis-boss-support.ps1      -- Jarvis boss room support listeners.
+  oli-night-ops.ps1            -- Night ops: relay follow-up + optional AnyDesk fallback.
+  start-oli-night-ops.ps1      -- Tagged night ops starter for multiple threads.
+  recover-night-ops.ps1        -- Restarts stale night ops monitors.
+  start-verve-swarm-controller.ps1
+  verve-swarm-controller.ps1
+  john-build-006-status.ps1
+
+Directories:
+  profiles/                    -- Agent identity profiles
+  profiles/archived-inactive/  -- Archived/inactive profiles
+  reports/                     -- Continuation/handoff reports
+  quarantine/                  -- Quarantined connectors
+  anydesk-sentry/              -- AnyDesk screen capture sentry
+  token-backups/               -- Bridge token backups
+  output/playwright/           -- Playwright browser profiles
+  .playwright-cli/             -- Playwright CLI logs
+
+Docs:
+  AGENT_PROFILE_SPEC.md
+  AIRLOCK_BOTS.md
+  ASOLARIA_COLONY_STARTUP.md
+  JARVIS_BOSS_STARTUP_PACKET.md
+  JARVIS_BOSS_HANDOFF_CHECKLIST.md
+  OLI_LITE.md
+  OLI_NIGHT_OPS.md
+
+Config/Data:
+  airlock-policy.json          -- LIVE sender tokens + room policies
+  airlock-policy.example.json  -- Template with CHANGE_ME tokens
+  agents-registry.json         -- Live agent registry (last seen, execution status)
+  agents-registry-jarvis-room-asolaria.json
+  agents-registry-jarvis-room-oli.json
+  bridge-tunnel-url.txt        -- Current Cloudflare tunnel URL
+  bridge-lan-url.txt           -- LAN URL
+  bridge-token.txt             -- Current relay token (same as bridge-token2.txt)
+  bridge-token2.txt            -- Primary relay token
+  bridge-token-new.txt         -- New rotated token
+  bridge-token-old-backup.txt  -- Old token backup
+  trusted-wifi-networks.txt    -- Trusted Wi-Fi profiles
+  helm-cursor.txt              -- Helm cursor position
+  tracker_schema.csv           -- Oli work item tracker schema
+  tmp-gcp-role-check-result.txt -- GCP role verification result
+
+
+################################################################################
+SECTION 2: AGENT PROFILES (profiles/*.profile.json)
+################################################################################
+
+--- admin-gaia-v1.profile.json ---
+{
+  "schemaKind": "admin_terminal_profile",
+  "version": 2,
+  "profileName": "admin-gaia-v1",
+  "displayName": "Gaia",
+  "identity": {
+    "kind": "admin_terminal",
+    "role": "sub_colony_leader",
+    "callName": "Gaia"
+  },
+  "permanentIdentity": true,
+  "launchableByBridge": false,
+  "laneMembership": {
+    "adminPlane": "sub_colony_leader",
+    "relayRoom": "asolaria_bridge",
+    "relayPeers": ["vector", "rook"]
+  },
+  "abilities": ["lead_local_sub_colony", "triage_local_backlog", "coordinate_ix_language_packets",
+    "relay_to_vector", "relay_to_rook", "prepare_handoff_for_liris", "operate_browser_task",
+    "operate_mobile_control", "use_playwright_cli", "use_project_store", "use_mistake_memory"],
+  "sidecar": {
+    "terminalId": "Gaia",
+    "runtimeRoot": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\gaia",
+    "defaultCommand": "codex",
+    "defaultArgs": ["-a", "never", "-s", "danger-full-access"]
+  }
+}
+
+--- admin-helm-v1.profile.json ---
+{
+  "schemaKind": "admin_terminal_profile",
+  "version": 2,
+  "profileName": "admin-helm-v1",
+  "displayName": "Helm",
+  "identity": {
+    "kind": "admin_terminal",
+    "role": "controller",
+    "callName": "Helm"
+  },
+  "permanentIdentity": true,
+  "launchableByBridge": false,
+  "laneMembership": {
+    "adminPlane": "controller",
+    "relayRoom": "asolaria_bridge",
+    "relayPeers": ["vector", "rook"]
+  },
+  "abilities": ["control_asolaria_runtime", "relay_to_vector", "relay_to_rook",
+    "operate_browser_task", "operate_mobile_control", "use_playwright_cli",
+    "use_project_store", "use_mistake_memory", "use_augment_sidecar",
+    "use_symphony_lane", "use_gemini_lane"],
+  "bootstrapOrder": [
+    "asolaria-startup-compliance-packet-latest.md",
+    "minimal-helm-startup-packet-latest.md",
+    "staged-supervisor-startup-slice-latest.md",
+    "startup-backtalk-authority-correction-latest.md",
+    "CATALOG.md", "IX-280.md", "IX-279.md", "IX-278.md", "IX-277.md",
+    "IX-274.md", "IX-273.md", "IX-268.md", "IX-266.md", "IX-265.md", "IX-060.md"
+  ],
+  "sidecar": {
+    "terminalId": "Helm",
+    "runtimeRoot": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\helm",
+    "defaultCommand": "codex",
+    "defaultArgs": ["-a", "never", "-s", "danger-full-access"]
+  }
+}
+
+--- admin-liris-v1.profile.json ---
+{
+  "schemaKind": "admin_terminal_profile",
+  "version": 2,
+  "profileName": "admin-liris-v1",
+  "displayName": "Liris",
+  "identity": {
+    "kind": "admin_terminal",
+    "role": "federated_super_admin",
+    "callName": "Liris"
+  },
+  "permanentIdentity": true,
+  "launchableByBridge": false,
+  "laneMembership": {
+    "adminPlane": "federated_super_admin",
+    "relayRoom": "asolaria_bridge",
+    "relayPeers": ["vector", "rook"]
+  },
+  "abilities": ["interpret_ix_archaeology", "prepare_remote_handoffs",
+    "coordinate_rayssa_restart_packets", "track_federation_drift",
+    "operate_browser_task", "operate_mobile_control"],
+  "localRelay": [
+    "C:\\Users\\acer\\Asolaria\\runtime\\outbound-liris-inbox.ndjson",
+    "C:\\Users\\acer\\Asolaria\\tools\\inbox-send.js",
+    "C:\\Users\\acer\\Asolaria\\tools\\gaia-liris-bridge.js"
+  ],
+  "sidecar": {
+    "terminalId": "Liris",
+    "runtimeRoot": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\liris",
+    "defaultCommand": "codex",
+    "defaultArgs": ["-a", "never", "-s", "danger-full-access"]
+  }
+}
+
+--- admin-sentinel-v1.profile.json ---
+{
+  "schemaKind": "admin_terminal_profile",
+  "version": 2,
+  "profileName": "admin-sentinel-v1",
+  "displayName": "Sentinel",
+  "identity": {
+    "kind": "admin_terminal",
+    "role": "helper_watch",
+    "callName": "Sentinel"
+  },
+  "permanentIdentity": true,
+  "launchableByBridge": false,
+  "abilities": ["monitor_asolaria_runtime", "prepare_relay_to_vector",
+    "prepare_relay_to_rook", "use_augment_sidecar", "use_symphony_status", "use_gemini_status"],
+  "completionHook": {
+    "mode": "meaningful_checkpoint_only",
+    "watchAnchorPath": "sector-drift-watch-latest.md",
+    "eventTypes": ["drift_changed", "controller_conflict", "new_blocker",
+      "sector_cleared", "needs_helm_decision"],
+    "policy": "Notify Helm only when a bounded watch pass changes controller-relevant state."
+  },
+  "sidecar": {
+    "terminalId": "Sentinel",
+    "runtimeRoot": "C:\\Users\\acer\\Asolaria\\runtime\\admin-terminals\\sentinel",
+    "defaultCommand": "codex",
+    "defaultArgs": ["-a", "never", "-s", "danger-full-access"]
+  }
+}
+
+--- core-vector-v1.profile.json ---
+{
+  "version": 1,
+  "profileName": "core-vector-v1",
+  "description": "Primary coordinator lane for Asolaria bridge operations.",
+  "relay": { "room": "asolaria_bridge", "from": "vector" },
+  "security": {
+    "allowSenders": ["rook", "forge", "falcon", "watchdog", "asolaria"]
+  },
+  "execution": {
+    "runner": "claude_cli",
+    "label": "Anthropic Brain Lane",
+    "apiBaseUrl": "http://127.0.0.1:4781",
+    "sandbox": "read-only",
+    "reasoningEffort": "high",
+    "askForApproval": "never"
+  },
+  "runtime": { "pollIntervalMs": 1000 }
+}
+
+--- ops-rook-v1.profile.json ---
+{
+  "version": 1,
+  "profileName": "ops-rook-v1",
+  "description": "Operations lane worker (Rook) with strict mention-triggered execution.",
+  "relay": { "room": "asolaria_bridge", "from": "rook" },
+  "security": { "allowSenders": ["vector", "watchdog", "asolaria"] },
+  "execution": {
+    "runner": "claude_cli",
+    "label": "Claude Ops Lane",
+    "sandbox": "workspace-write",
+    "reasoningEffort": "high"
+  },
+  "runtime": { "pollIntervalMs": 1200 }
+}
+
+--- build-forge-v1.profile.json ---
+{
+  "version": 1,
+  "profileName": "build-forge-v1",
+  "description": "Build lane worker (Forge) for implementation and fix packets.",
+  "relay": { "room": "asolaria_bridge", "from": "forge" },
+  "security": { "allowSenders": ["vector", "watchdog", "asolaria"] },
+  "execution": {
+    "runner": "claude_cli",
+    "label": "Claude Build Lane",
+    "sandbox": "workspace-write",
+    "reasoningEffort": "high"
+  },
+  "runtime": { "pollIntervalMs": 1300 }
+}
+
+--- mobile-falcon-v1.profile.json ---
+{
+  "version": 1,
+  "profileName": "mobile-falcon-v1",
+  "description": "Phone lane worker (Falcon) for mobile/control-plane packets.",
+  "relay": { "room": "asolaria_bridge", "from": "falcon" },
+  "security": { "allowSenders": ["vector", "watchdog", "asolaria"] },
+  "execution": {
+    "runner": "claude_cli",
+    "label": "Claude Phone Lane",
+    "sandbox": "workspace-write",
+    "reasoningEffort": "high"
+  },
+  "runtime": { "pollIntervalMs": 1400 }
+}
+
+--- asolaria-core-v1.profile.json ---
+{
+  "version": 1,
+  "profileName": "asolaria-core-v1",
+  "description": "Organizer lane for Asolaria bridge coordination.",
+  "relay": { "room": "asolaria_bridge", "from": "asolaria" },
+  "security": { "allowSenders": ["vector", "watchdog"] },
+  "execution": {
+    "runner": "claude_cli",
+    "label": "Anthropic Claude Head",
+    "sandbox": "workspace-write",
+    "reasoningEffort": "high"
+  },
+  "runtime": { "pollIntervalMs": 1500 }
+}
+
+--- oli-v1.profile.json ---
+{
+  "version": 1,
+  "profileName": "oli-v1",
+  "description": "Bridge companion lane for Oli-style coordination tasks.",
+  "relay": { "room": "asolaria_bridge", "from": "oli" },
+  "security": { "allowSenders": ["vector", "asolaria", "watchdog"] },
+  "runtime": { "pollIntervalMs": 1600 }
+}
+
+--- kuromi-companion-v1.profile.json ---
+{
+  "schemaKind": "subordinate_agent_profile",
+  "version": 1,
+  "profileName": "kuromi-companion-v1",
+  "displayName": "Kuromi",
+  "description": "Lower-permission companion persona for Rayssa's purple super-admin window.",
+  "identity": {
+    "kind": "subordinate_companion",
+    "callName": "Kuromi",
+    "parentCallName": "Liris"
+  },
+  "authority": {
+    "tier": "limited_companion",
+    "defaultMode": "read_mostly",
+    "mustRemainSubordinateTo": ["Liris", "Rayssa", "Jesse"]
+  },
+  "permissions": {
+    "allowRead": ["index_packets", "handoff_packets", "outbound_liris_orders"],
+    "allowWrite": ["draft_notes", "draft_handoff_packets"],
+    "deny": ["bridge_token_rotation", "sender_policy_changes", "startup_automation_changes",
+      "secret_access", "controller_promotion", "sovereign_promotion", "remote_command_execution"]
+  }
+}
+
+
+################################################################################
+SECTION 3: ARCHIVED/INACTIVE PROFILES
+################################################################################
+
+--- archived-inactive/asolaria-jarvis-room-v1.profile.json ---
+Room: jarvis_boss_bridge, from: asolaria
+AllowSenders: jarvis-boss, jarvis-main, watchdog
+
+--- archived-inactive/oli-jarvis-room-v1.profile.json ---
+Room: jarvis_boss_bridge, from: oli
+AllowSenders: jarvis-boss, jarvis-main, watchdog
+
+--- archived-inactive/boss-cli.profile.template.json ---
+Room: asolaria_boss_bridge, from: boss-cli
+AllowSenders: vector, asolaria, oli
+
+
+################################################################################
+SECTION 4: ADMIN TERMINAL IDENTITIES REGISTRY
+################################################################################
+
+File: profiles/admin-terminal-identities.json
+Schema: admin_terminal_registry, version 4
+Updated: 2026-03-19T10:57:52 -03:00
+
+4 Admin Terminals:
+  Slot 1: Helm     (admin-helm-v1)     -- controller admin terminal
+  Slot 2: Sentinel (admin-sentinel-v1) -- helper/watch admin terminal
+  Slot 3: Gaia     (admin-gaia-v1)     -- sub-colony leader admin terminal
+  Slot 4: Liris    (admin-liris-v1)    -- federated super-admin terminal
+
+Reserved Inner Lane Names: vector, rook, forge, falcon, asolaria, watchdog
+
+Relay Config:
+  Room: asolaria_bridge
+  Confirmation Thread: helm-super-swarm-20260311
+  Peers: vector, rook
+  Mode: explicit_only
+
+Super Swarm:
+  Enabled: true
+  Method: super_swarm
+  Mission: qdd
+  Agent Fanout: 3
+  Participants: local_codex, abacus, symphony, gemini_api, augment_context
+
+Completion Hooks:
+  Sentinel -> Helm: meaningful_checkpoint_only
+  Events: drift_changed, controller_conflict, new_blocker, sector_cleared, needs_helm_decision
+
+Restart Order:
+  1. Read terminal-specific identity card
+  2. Read admin-terminal-identities-latest.md
+  3. Read codex-state-freeze-latest.md
+  4. Read helm-controller-packet-latest.md
+  5. Read qdd-super-swarm-contract-latest.md
+  6. Load active task-local restart packet
+
+
+################################################################################
+SECTION 5: PID FILES (Process Tracking)
+################################################################################
+
+ALL PID FILES ARE CURRENTLY EMPTY (no processes running):
+
+  cloudflared.pid          -- Cloudflare tunnel
+  bridge-watch.pid         -- Bridge watcher
+  bridge2.pid              -- Bridge server
+  tunnel.pid               -- Tunnel process
+  watchdog.pid             -- Watchdog
+  core-gate-bot.pid        -- Core gate bot
+  airlock-ingress.pid      -- Airlock ingress bot
+  vector-bot.pid           -- Vector lane bot
+  rook-bot.pid             -- Rook lane bot
+  forge-bot.pid            -- Forge lane bot
+  falcon-bot.pid           -- Falcon lane bot
+  asolaria-bot.pid         -- Asolaria lane bot
+  notify-bot.pid           -- Notification bot
+  oli-bot.pid              -- Oli lane bot
+  oli-lite.pid             -- Oli lite bot
+  oli-lite-live.pid        -- Oli lite live
+  cloudflared-quick.pid    -- Quick cloudflare tunnel
+  this-codex-bot.pid       -- Legacy this-codex
+  build-codex-bot.pid      -- Legacy build-codex
+  other-codex-bot.pid      -- Legacy other-codex
+  phone-codex-bot.pid      -- Legacy phone-codex
+  asolaria-core-bot.pid    -- Legacy asolaria-core
+  jarvis-room-asolaria.pid -- Jarvis room asolaria
+  jarvis-room-oli.pid      -- Jarvis room oli
+  verve-swarm-verve.pid    -- Verve swarm
+  verve-swarm-verveint.pid -- Verve swarm internal
+  anydesk-sentry.pid       -- AnyDesk sentry (in anydesk-sentry/)
+
+CONCLUSION: The entire bridge stack is DOWN. No processes are running.
+
+
+################################################################################
+SECTION 6: BRIDGE TUNNEL URL
+################################################################################
+
+File: bridge-tunnel-url.txt
+URL: https://stevens-swimming-powerful-gasoline.trycloudflare.com
+
+File: bridge-lan-url.txt
+URL: http://192.168.1.3:8788
+
+
+################################################################################
+SECTION 7: NDJSON INBOX FILES
+################################################################################
+
+No .ndjson inbox files found in C:\Users\acer\codex-bridge\.
+(Inbox files are in C:\Users\acer\Asolaria\runtime\admin-terminals\*/inbox.ndjson)
+
+
+################################################################################
+SECTION 8: AIRLOCK POLICY (Auth/Sender Control)
+################################################################################
+
+File: airlock-policy.json (LIVE)
+
+defaultRequireSenderToken: false
+
+Sender Tokens (12 identities):
+  watchdog:         a6bbac2991a8a918f7ab67a63d60104759f961da0b4fa9a3
+  vector:           ea9afa435e14f7e432bfe7b3038b499cc691b36564bcde6f
+  rook:             d2c6abe0d326d1502cd15422e6dbe07e7922815b7e73eaf8
+  forge:            18f0e93698a91d3632c72cd27ea37ed47eda971ab5f0b647
+  falcon:           b6d240427b5fee0b9f3f4773d23266071be8555c9d8a6066
+  asolaria:         b61c8902f8226c98da7548bf33676a4d1062a70498a96243
+  oli:              84de19488220028749f415f3f52af73d9b565cc7fc1e452b
+  notify-bot:       5ed4de7a3a8614f0c68bd899c7485b2dc3f4ad956a9c535e
+  airlock-ingress:  59f42bd87a678d13db5c0b398aea4a9077c9bbce68c7a8a7
+  core-gate:        99344a1e0a47c5040964a012ac62f9cd5e3ae216c279794b
+  jarvis-main:      9dd1f0f01b2fdb18f413ab53a4d895c7811fba475a13e076
+  jarvis-boss:      a41aee792cd0432e601b72469d0d203ec55cde1ec6815efb
+
+Room Policies (5 rooms):
+  asolaria_external:
+    allowPostFrom: [airlock-ingress]
+    requireSenderToken: true
+
+  asolaria_internal:
+    allowPostFrom: [airlock-ingress, core-gate, vector, asolaria]
+    requireSenderToken: true
+
+  asolaria_ops:
+    allowPostFrom: [core-gate, asolaria, vector]
+    requireSenderToken: true
+
+  asolaria_bridge:
+    allowPostFrom: [vector, rook, forge, falcon, asolaria, watchdog, notify-bot]
+    requireSenderToken: true
+
+  jarvis_boss_bridge:
+    allowPostFrom: [vector, asolaria, oli, jarvis-main, jarvis-boss, watchdog]
+    requireSenderToken: true
+
+
+################################################################################
+SECTION 9: AGENTS REGISTRY (Live State)
+################################################################################
+
+File: agents-registry.json
+Updated: 2026-03-19T14:16:28.942Z
+Room: asolaria_bridge
+cursorAfter: 47563
+
+Active Agents (6):
+  vector:
+    profileId: core-vector-v1
+    lastSeen: 2026-03-19T14:05:10.642Z (id=47563)
+    execution: runner=codex_cli, label="Anthropic Brain Lane"
+    sandbox: read-only, apiBaseUrl: http://127.0.0.1:4781
+
+  rook:
+    profileId: ops-rook-v1
+    lastSeen: 2026-03-18T23:13:35.589Z (id=47487)
+    execution: runner=codex_cli, label="Claude Ops Lane"
+    sandbox: workspace-write
+
+  forge:
+    profileId: build-forge-v1
+    lastSeen: 2026-03-19T14:16:28.942Z (id=47563)
+    execution: runner=codex_cli, label="Claude Build Lane"
+    sandbox: workspace-write
+
+  falcon:
+    profileId: mobile-falcon-v1
+    lastSeen: 2026-03-18T23:09:56.642Z (id=47485)
+    execution: runner=codex_cli, label="Claude Phone Lane"
+    sandbox: workspace-write
+
+  asolaria:
+    profileId: asolaria-core-v1
+    lastSeen: 2026-03-19T12:56:39.082Z (id=47552)
+    execution: runner=codex_cli, label="Anthropic Claude Head"
+    sandbox: workspace-write, lastExecution status=completed
+
+  watchdog:
+    lastSeen: 2026-03-19T13:58:30.930Z (id=47562)
+
+Jarvis Room Asolaria Registry:
+  Room: jarvis_boss_bridge
+  URL: https://claire-tiger-charleston-stops.trycloudflare.com (STALE/DEAD TUNNEL)
+  cursorAfter: 43548
+  Agents: asolaria, jarvis-boss, oli, vector (all last seen ~2026-03-09)
+
+Jarvis Room Oli Registry:
+  Same room and cursor, from=oli
+
+
+################################################################################
+SECTION 10: BRIDGE TOKENS
+################################################################################
+
+bridge-token.txt:          40ecab3963f7cf1e3d3d9c52bae72dfbe7dd53ab8f3b81c00193bb9aaba140ca
+bridge-token2.txt:         40ecab3963f7cf1e3d3d9c52bae72dfbe7dd53ab8f3b81c00193bb9aaba140ca
+bridge-token-new.txt:      6b2eea01862f291da9753b76c6172b2effeaf1963c3dec20efdf7111497fa026
+bridge-token-old-backup.txt: 40ecab3963f7cf1e3d3d9c52bae72dfbe7dd53ab8f3b81c00193bb9aaba140ca
+token-backups/bridge-token2-20260221-184152.txt: b09781d5e49d4e6888240938f646ab5e
+
+NOTE: bridge-token.txt and bridge-token2.txt match. bridge-token-new.txt is different
+(rotated but not yet applied, or applied then reverted).
+
+
+################################################################################
+SECTION 11: TRUSTED WIFI NETWORKS
+################################################################################
+
+File: trusted-wifi-networks.txt
+Profiles:
+  Jesse_5G
+  Jesse's S24 FE
+  Jesse's S24 FE 2
+
+
+################################################################################
+SECTION 12: HELM CURSOR
+################################################################################
+
+File: helm-cursor.txt
+{ "after": 45075 }
+
+
+################################################################################
+SECTION 13: GCP ROLE CHECK RESULT
+################################################################################
+
+File: tmp-gcp-role-check-result.txt
+Result from 2026-02-26T18:57Z:
+  - GCP UNBLOCKED for project winged-complex-390417
+  - Service account: asolaria-automation-service-ac@winged-complex-390417.iam.gserviceaccount.com
+  - Enabled services: cloudresourcemanager, serviceusage, aiplatform, generativelanguage, drive/docs/gmail
+  - Gmail API verified for plasmatoid@gmail.com
+  - Missing OAuth for: jesse@jbrowndevelopmentllc.com, plasmatoid@jbrowndevelopmentllc.com
+
+
+################################################################################
+SECTION 14: COLONY STARTUP SPEC
+################################################################################
+
+File: ASOLARIA_COLONY_STARTUP.md
+
+Permanent Worker Names:
+  vector -> Vector (core coordinator)
+  asolaria -> Asolaria (organizer)
+  rook -> Rook (ops worker)
+  forge -> Forge (build worker)
+  falcon -> Falcon (mobile worker)
+
+Startup Order:
+  1. watchdog.ps1 runs Ensure-NetworkReady.ps1 (trusted Wi-Fi + internet gate)
+  2. Relay starts locally
+  3. Tunnel + lanes start after internet available
+  4. Vector starts first
+  5. Asolaria starts next
+  6. Worker lanes: Rook, Forge, Falcon
+  7. Each lane posts IDENTITY: on boot
+
+Identity Verification:
+  - Watchdog validates --from, --agentName, --profileId
+  - Kill-on-mismatch: terminates and relaunches mismatched lanes
+
+Task Routing:
+  - Workers react to mention + actionable prefix (TASK:/QUESTION:)
+  - Thread tags required: @agent #thread:<id> TASK: ...
+
+
+################################################################################
+SECTION 15: AIRLOCK TWO-BOT PATTERN
+################################################################################
+
+File: AIRLOCK_BOTS.md
+
+Chain:
+  1. External bot -> asolaria_external
+  2. airlock-ingress (Bot A) validates -> asolaria_internal
+  3. core-gate (Bot B) validates -> asolaria_ops (or webhook)
+  4. Replies flow back through the chain
+
+Message Contract:
+  External: @airlock #thread:<id> TASK|QUESTION|NOTE: <summary>
+  Internal: @airlock #thread:<id> RESULT|FAIL|NEED_CONFIRM: <summary>
+
+
+################################################################################
+SECTION 16: WATCHDOG CONFIGURATION (params from watchdog.ps1)
+################################################################################
+
+Default Lane Config:
+  Vector:   from=vector,   pollMs=1000, sandbox=workspace-write, mentions=false, actionable=false
+  Rook:     from=rook,     pollMs=1200, sandbox=workspace-write, mentions=true,  actionable=true
+  Forge:    from=forge,    pollMs=1300, sandbox=workspace-write, mentions=true,  actionable=true
+  Falcon:   from=falcon,   pollMs=1400, sandbox=workspace-write, mentions=true,  actionable=true
+  Asolaria: from=asolaria, pollMs=1500, sandbox=workspace-write, mentions=true,  actionable=true
+  Oli:      from=oli,      pollMs=1600, DISABLED by default
+
+Other Services:
+  NotifyEnabled: true, pollMs=1500
+  AnyDeskSentryEnabled: false
+  AirlockEnabled: false
+  TunnelHealthEverySec: 60
+  CompletionDigestEverySec: 900
+  RequireInternetBeforeStartup: true
+  NetworkBootstrapMaxWaitSec: 120
+  RegistryAllowAgents: asolaria,vector,rook,forge,falcon,watchdog
+  FastForwardLaneCursorOnStart: true
+
+
+################################################################################
+SECTION 17: BRIDGECTL (Stack Control)
+################################################################################
+
+File: bridgectl.ps1
+Commands: status, start, stop, restart
+
+Process Map (PID -> expected command):
+  bridge2.pid          -> bridge.js
+  cloudflared-quick.pid -> cloudflared
+  vector-bot.pid       -> colony-agent-bot.js
+  rook-bot.pid         -> colony-agent-bot.js
+  forge-bot.pid        -> colony-agent-bot.js
+  falcon-bot.pid       -> colony-agent-bot.js
+  asolaria-bot.pid     -> colony-agent-bot.js
+  oli-bot.pid          -> colony-agent-bot.js
+  notify-bot.pid       -> notify-bot.js
+  airlock-ingress.pid  -> airlock-ingress.js
+  core-gate-bot.pid    -> core-gate-bot.js
+  watchdog.pid         -> watchdog.ps1
+  anydesk-sentry.pid   -> anydesk-sentry
+
+Legacy Lane Runners (killed on stop):
+  this-codex-bot.js, other-codex-bot.js, build-codex-bot.js, phone-codex-bot.js
+
+Stop Order:
+  core-gate -> airlock-ingress -> legacy lanes -> falcon -> forge -> rook -> oli ->
+  asolaria -> notify -> vector -> anydesk-sentry -> cloudflared -> tunnel strays ->
+  bridge2 -> watchdog
+
+
+################################################################################
+SECTION 18: REPORTS (Continuation/Handoff)
+################################################################################
+
+4 reports in codex-bridge/reports/:
+
+1. commerce-connectors-bootstrap-shutdown-continuation-20260308-1208.md
+   - Commerce connector lane: Shopify MVP first, then Meta/TikTok/Amazon
+   - 4 ownership lanes: Core platform, Shopify, Marketplace expansion, QA/compliance
+
+2. phone-closeout-pack-shutdown-continuation-20260308-1208.md
+   - Phone lane NOT ready to close out
+   - USB/ADB working, loopback APIs responding
+   - Tunnel smoke failing, push subscriptions=0, pro-mirror not running
+
+3. falcon-continuation-check-20260311.md
+   - Runtime responsiveness degraded (health endpoints timing out)
+   - NotebookLM recovery open (OAuth issues)
+   - Phone activation regressed (tunnel smoke pass=False)
+
+4. ops-unblock-packet-shutdown-continuation-20260308-1208.md
+   - PPO-005 phone-provider cutover: external handoff only (John route)
+   - Phone activation: manual closeout, ADB working but push subscriptions=0
+
+
+################################################################################
+SECTION 19: LOG FILES (Bridge Operation Logs)
+################################################################################
+
+Bot Logs:
+  vector-bot.out.log / .err.log
+  rook-bot.out.log / .err.log
+  forge-bot.out.log / .err.log
+  falcon-bot.out.log / .err.log
+  asolaria-bot.out.log / .err.log
+  oli-bot.out.log / .err.log
+  notify-bot.out.log / .err.log
+
+Bridge/Tunnel Logs:
+  bridge2.out.log / .err.log
+  cloudflared-quick.out.log / .err.log
+  cloudflared.out.log / .err.log
+  tunnel.out.log / .err.log
+  watchdog.out.log / .err.log
+
+Legacy Logs:
+  this-codex-bot.out.log / .err.log
+  other-codex-bot.out.log / .err.log
+  build-codex-bot.out.log / .err.log
+  phone-codex-bot.out.log / .err.log
+  asolaria-core-bot.out.log / .err.log
+  jarvis-room-asolaria.out.log / .err.log
+  jarvis-room-oli.out.log / .err.log
+  oli-lite.out.log / .err.log
+
+Night Ops Logs:
+  oli-night-ops.out.log / .err.log
+  oli-night-ops-smoke003.out.log / .err.log
+  oli-night-ops-gcp.out.log / .err.log
+  oli-night-ops-john008.out.log / .err.log
+  oli-night-ops-john009.out.log / .err.log
+  night-ops-desktop-prompts.log
+
+Sentry:
+  anydesk-sentry/anydesk-sentry.out.log / .err.log
+
+Other:
+  bridge-watch.out.log / .err.log
+  verve-swarm-verve.out.log / .err.log
+  verve-swarm-verveint.out.log / .err.log
+  gcm-diagnose.log
+  cloudflared-quick-bridge-live.log
+
+
+################################################################################
+SECTION 20: CURSOR FILES (Conversation Position Tracking)
+################################################################################
+
+Multiple cursor-*.json files track message positions for different bot sessions.
+Key files:
+  cursor-acer.json
+  cursor-all.json
+  cursor-oli-local.json
+  cursor-oli-live.json
+  cursor-avatar-20260301.json
+  cursor-manual-agents.json
+  cursor-manual-android.json
+  cursor-manual-oli.json
+  cursor-temp-status.json
+  cursor-bom-test.json
+  + many tmp-cursor-*.json debug/diagnostic files
+
+
+################################################################################
+SECTION 21: AGENT PROFILE TEMPLATE
+################################################################################
+
+File: profiles/agent-profile.template.json
+Minimal scaffolded profile with no secrets.
+Fields: version, profileName, description, relay (urlEnv, tokenEnv, room, from),
+  security (allowSenders, senderTokenEnv, requireRoomPolicy),
+  runtime (cursorFile, pollIntervalMs, maxBatch, maxMessageChars),
+  routing (taskPrefixes, requireThreadTag, requireMention),
+  ops (logPrefix, workdir, startMode)
+
+
+################################################################################
+SECTION 22: TOKEN ROTATION
+################################################################################
+
+File: Rotate-BridgeToken.ps1
+- Generates 32-byte cryptographically secure hex token
+- Backs up old token to token-backups/
+- Writes to both bridge-token2.txt and bridge-token.txt
+- Optionally restarts entire stack via bridgectl.ps1 restart
+- Verifies health after rotation
+
+
+################################################################################
+SECTION 23: NETWORK BOOTSTRAP
+################################################################################
+
+File: Ensure-NetworkReady.ps1
+- Reads trusted Wi-Fi profiles from trusted-wifi-networks.txt
+- Also checks ASOLARIA_TRUSTED_WIFI_PROFILES env var
+- Sets profiles to auto-connect
+- Tries connecting with netsh wlan connect
+- Probes internet via: Get-NetConnectionProfile, ping 1.1.1.1, msftconnecttest.com
+- Waits up to MaxWaitSeconds (default 120) with retries every 4s
+- Returns structured result: ok, reason, connectedProfile, attempts
+
+
+################################################################################
+SECTION 24: KEY ARCHITECTURE SUMMARY
+################################################################################
+
+The codex-bridge is the agent colony's message relay infrastructure:
+
+IDENTITY HIERARCHY:
+  Admin Terminals (permanent, not launchable by bridge):
+    Helm (controller) > Gaia (sub-colony leader) > Sentinel (helper/watch)
+    Liris (federated super-admin, external)
+    Kuromi (subordinate companion under Liris, limited permissions)
+
+  Bridge Lanes (runtime workers):
+    Vector (brain, coordinator, read-only sandbox)
+    Asolaria (organizer, workspace-write)
+    Rook (ops worker, workspace-write)
+    Forge (build worker, workspace-write)
+    Falcon (phone/mobile worker, workspace-write)
+    Watchdog (health monitor)
+    Oli (companion, disabled by default)
+
+COMMUNICATION FLOW:
+  External -> airlock-ingress -> core-gate -> ops room
+  Agents <-> relay (bridge.js on port 8788)
+  Relay exposed via Cloudflare tunnel (trycloudflare.com)
+  LAN access at http://192.168.1.3:8788
+
+SECURITY:
+  - Per-sender tokens in airlock-policy.json
+  - Per-room allowlists (who can post where)
+  - 5 rooms: asolaria_external, asolaria_internal, asolaria_ops, asolaria_bridge, jarvis_boss_bridge
+  - No secrets in profile files (env var references only)
+  - Token rotation with backup and stack restart
+
+LIFECYCLE:
+  watchdog.ps1 -> Ensure-NetworkReady -> bridge.js serve -> cloudflared tunnel ->
+  Vector lane -> Asolaria lane -> Rook -> Forge -> Falcon
+  Each lane runs colony-agent-bot.js with its profile
+
+CURRENT STATE (as of mine):
+  - ALL PID FILES EMPTY = entire bridge stack is DOWN
+  - Last agent activity: 2026-03-19 (6 days ago)
+  - Jarvis boss bridge tunnel is dead (claire-tiger-charleston-stops.trycloudflare.com)
+  - Current tunnel URL: stevens-swimming-powerful-gasoline.trycloudflare.com (may also be stale)
+
+================================================================================
+END OF DEEP MINE
+================================================================================
