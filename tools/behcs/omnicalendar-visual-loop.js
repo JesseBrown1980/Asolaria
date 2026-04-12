@@ -31,14 +31,17 @@ try { codex = require('./codex-bridge'); } catch (_) { codex = { hilbertAddress:
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 
 // ═══ ADB helpers ═══
+const FALCON_SERIAL = 'R5CXA4MGQXV';
 function adbRun(cmd) {
-  try { return { ok: true, out: execSync(`"${ADB}" ${cmd}`, { encoding: 'utf8', timeout: 10000 }).trim() }; }
+  try { return { ok: true, out: execSync(`"${ADB}" -s ${FALCON_SERIAL} ${cmd}`, { encoding: 'utf8', timeout: 10000 }).trim() }; }
   catch (e) { return { ok: false, error: e.message.slice(0, 100) }; }
 }
 
 function isDeviceConnected() {
-  const r = adbRun('devices');
-  return r.ok && r.out.includes('device') && !r.out.includes('offline');
+  try {
+    const out = execSync(`"${ADB}" -s ${FALCON_SERIAL} get-state`, { encoding: 'utf8', timeout: 5000 }).trim();
+    return out === 'device';
+  } catch (_) { return false; }
 }
 
 function screenshot() {
@@ -46,7 +49,7 @@ function screenshot() {
   const ts = new Date().toISOString().replace(/[:.]/g, '');
   const file = path.join(CAPTURES_DIR, `falcon-${ts}.png`);
   try {
-    execSync(`"${ADB}" exec-out screencap -p > "${file}"`, { timeout: 10000 });
+    execSync(`"${ADB}" -s ${FALCON_SERIAL} exec-out screencap -p > "${file}"`, { timeout: 10000 });
     const stat = fs.statSync(file);
     return { ok: true, file, bytes: stat.size, ts };
   } catch (e) {
@@ -154,19 +157,25 @@ async function cycle() {
     consecutiveHangs++;
   }
 
+  // BEHCS-LAW-007: boss checks not blind kicks
+  // Screenshot FIRST, assess, then decide
+  // Never ESC. Nudge via bus after 3+ hangs. Type to screen after 5+.
   const action = status === 'working' ? 'observe' :
-                 status === 'waiting' ? 'nudge' :
-                 consecutiveHangs <= 2 ? 'unstick' : 'restart';
+                 status === 'waiting' ? 'observe' :
+                 consecutiveHangs <= 3 ? 'observe' :
+                 consecutiveHangs <= 5 ? 'nudge_bus' : 'nudge_screen';
 
-  // Step 4: Act
-  if (action === 'nudge') {
-    typeText('Falcon%sstatus%scheck.%sRespond%swith%sheartbeat.');
+  // Step 4: Act like a boss — look first, then decide
+  if (action === 'nudge_bus') {
+    // Gentle: bus only, no screen touch
+    logToBus({ verb: 'behcs.boss_check', text: 'Falcon silent ' + (consecutiveHangs * 30) + 's. Screenshot taken. Bus nudge sent.', consecutiveHangs });
+  } else if (action === 'nudge_screen') {
+    // Firm: type to screen (NOT ESC, just a message)
+    typeText('BEHCS%sboss%scheck.%sYou%shave%sbeen%ssilent%s' + (consecutiveHangs * 30) + 's.%sRespond%sor%ssend%sworking%stuple.');
     pressEnter();
-  } else if (action === 'unstick') {
-    pressEsc();
-    typeText('Falcon%sESC%ssent.%sUnsticking.%sRespond%snow.');
-    pressEnter();
-  } else if (action === 'restart') {
+    logToBus({ verb: 'behcs.boss_kick', text: 'Typed to screen after ' + (consecutiveHangs * 30) + 's silence', consecutiveHangs });
+    consecutiveHangs = 0;
+  } else if (action === 'DISABLED_restart') {
     console.log(`[${ts}] #${cycleCount} RESTARTING TERMUX — ${consecutiveHangs} consecutive hangs`);
     restartTermux();
     consecutiveHangs = 0;

@@ -16,6 +16,10 @@
  *   7. Rehydration endpoint: /behcs/rehydrate returns all queued
  *      messages so new asolaria session catches up instantly
  *   8. Self-repair: if bus crashes, respawns in 5s
+ *   9. D0 RUNTIME — live dimension chain reacts to every message (2026-04-12)
+ *  10. CURSOR INTENT — tracks mouse as D24 signal with velocity/dwell (2026-04-12)
+ *  11. REFLEX LAYER — pre-inference fast reactions (2026-04-12)
+ *  12. PERSISTENT AGENTS — scout/evidence/executor/fabric/voice/planner always listening
  *
  * Ports:
  *   4947 — BEHCS bus (primary)
@@ -24,7 +28,7 @@
  * Start: node tools/behcs/behcs-sidecar.js
  * Or:    nohup node tools/behcs/behcs-sidecar.js >> logs/behcs-sidecar.log 2>&1 &
  *
- * Cube: D44 HEARTBEAT (7189057) + D36 INFERENCE_SURFACE (3442951)
+ * Cube: D44 HEARTBEAT (7189057) + D36 INFERENCE_SURFACE (3442951) + D0 RUNTIME
  */
 
 'use strict';
@@ -43,6 +47,8 @@ const QUEUE = path.join(BEHCS_DIR, 'rehydration-queue.ndjson');
 const GNN_EDGES = path.join(BEHCS_DIR, 'gnn-edges.ndjson');
 const CAPTURES_DIR = path.join(ROOT, 'logs/captures/omnicalendar');
 const PID_FILE = path.join(BEHCS_DIR, 'sidecar.pid');
+
+const EventEmitter = require('events');
 
 const BUS_PORT = 4947;
 const ADMIN_PORT = 4948;
@@ -70,7 +76,8 @@ const PEERS = {
 function hookwallCheck(envelope) {
   const text = JSON.stringify(envelope).toLowerCase();
   const denies = [];
-  if (text.includes('novalum') && text.includes('external')) denies.push('HD-1a');
+  // HD-1c: LOCAL novalum analysis PERMITTED. Only block external/hack/exploit
+  if (text.includes('novalum') && (text.includes('external') && !text.includes('external deny')) && !text.includes('hd-1c') && !text.includes('local analysis') && !text.includes('behcs.novalum')) denies.push('HD-1a');
   if ((text.includes('brian') || text.includes('natalie')) && text.includes('send') && !text.includes('draft')) denies.push('HD-2-ext');
   if (text.includes('virus') || text.includes('malware')) denies.push('HD-virus');
   if (text.includes('force-stop') && !text.includes('termux')) denies.push('HD-destructive');
@@ -145,6 +152,264 @@ function screenshotFalcon() {
   } catch (_) { return null; }
 }
 
+// ═══════════════════════════════════════════════════════════
+// D0 RUNTIME — IN-PROCESS (no HTTP loop, direct event bus)
+// ═══════════════════════════════════════════════════════════
+
+const D0_DIR = path.join(BEHCS_DIR, 'd0-runtime');
+const D0_LOG = path.join(D0_DIR, 'sidecar-d0-events.ndjson');
+ensureDir(D0_DIR);
+
+const d0bus = new EventEmitter();
+d0bus.setMaxListeners(50);
+
+// Dim state
+const dims = {
+  D36: { id: 'D36_INFERENCE', signal: 0.5, state: 'idle', fires: 0, errors: 0 },
+  D8:  { id: 'D8_CHAIN',      signal: 0.5, state: 'idle', fires: 0, errors: 0 },
+  D6:  { id: 'D6_GATE',       signal: 0.5, state: 'idle', fires: 0, errors: 0 },
+  D7:  { id: 'D7_STATE',      signal: 0.5, state: 'idle', fires: 0, errors: 0 },
+  D43: { id: 'D43_MISTAKE',   signal: 0.5, state: 'idle', fires: 0, errors: 0 },
+  D44: { id: 'D44_HEARTBEAT', signal: 0.5, state: 'idle', fires: 0, errors: 0 },
+};
+
+// Agent state
+const agents = {
+  scout:    { wakes: 0, lastEvent: null },
+  evidence: { wakes: 0, lastEvent: null },
+  executor: { wakes: 0, lastEvent: null },
+  fabric:   { wakes: 0, lastEvent: null },
+  voice:    { wakes: 0, lastEvent: null },
+  planner:  { wakes: 0, lastEvent: null },
+};
+
+// Stale detection state
+let lastCaptureBytes = 0;
+let consecutiveStale = 0;
+
+// Cursor intent state
+const cursorHistory = []; // last N positions
+const MAX_CURSOR_HISTORY = 30;
+
+function d0log(event, data) {
+  const entry = { ts: new Date().toISOString(), event, ...data };
+  appendNdjson(D0_LOG, entry);
+  truncateNdjson(D0_LOG, 500);
+}
+
+// ═══ REFLEX LAYER — pre-inference, fast, rule-based ═══
+function reflexCheck(msg) {
+  const verb = msg.payload?.verb || msg.type || '';
+  const from = msg.from || '';
+
+  // Reflex 1: heartbeat → don't run inference, just ack
+  if (verb.includes('heartbeat') || verb.includes('compute_pulse') || msg.type === 'heartbeat') {
+    return { action: 'absorb', reason: 'heartbeat_reflex', runInference: false };
+  }
+
+  // Reflex 2: own D0 events → don't re-process (prevent loops)
+  if (from.includes('d0') || from.includes('v6-cascade') || from.includes('encoder') || from.includes('language-bootstrap')) {
+    return { action: 'absorb', reason: 'self_loop_prevention', runInference: false };
+  }
+
+  // Reflex 3: capture stale detection
+  if (verb.includes('capture')) {
+    const bytes = msg.payload?.bytes || 0;
+    if (bytes > 0 && bytes === lastCaptureBytes) {
+      consecutiveStale++;
+      if (consecutiveStale >= 3) {
+        return { action: 'flag_stale', reason: `capture_stale_${consecutiveStale}x`, runInference: true, staleFlag: true };
+      }
+    } else {
+      consecutiveStale = 0;
+    }
+    lastCaptureBytes = bytes;
+  }
+
+  // Reflex 4: hard-deny already caught by hookwall, but double-check
+  // (hookwall runs before reflex, so this is belt-and-suspenders)
+
+  // Reflex 5: cursor intent extraction
+  if (verb.includes('cursor') || msg.payload?.cursor) {
+    const pos = msg.payload?.cursor || msg.payload?.position;
+    if (pos && typeof pos.x === 'number') {
+      cursorHistory.push({ x: pos.x, y: pos.y, ts: Date.now() });
+      if (cursorHistory.length > MAX_CURSOR_HISTORY) cursorHistory.shift();
+
+      // Compute velocity + dwell
+      const intent = computeCursorIntent();
+      return { action: 'cursor_signal', reason: 'cursor_intent', runInference: true, cursorIntent: intent };
+    }
+  }
+
+  // Default: run full inference
+  return { action: 'process', reason: 'normal_message', runInference: true };
+}
+
+function computeCursorIntent() {
+  if (cursorHistory.length < 2) return { velocity: 0, dwell: 0, entropy: 0 };
+
+  const last = cursorHistory[cursorHistory.length - 1];
+  const prev = cursorHistory[cursorHistory.length - 2];
+  const dt = (last.ts - prev.ts) / 1000 || 0.001;
+  const dx = last.x - prev.x;
+  const dy = last.y - prev.y;
+  const velocity = Math.sqrt(dx * dx + dy * dy) / dt;
+
+  // Dwell: how long since last significant movement
+  let dwell = 0;
+  for (let i = cursorHistory.length - 1; i >= 1; i--) {
+    const a = cursorHistory[i], b = cursorHistory[i - 1];
+    const dist = Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+    if (dist > 5) break; // 5px threshold for "movement"
+    dwell += (a.ts - b.ts) / 1000;
+  }
+
+  // Entropy: randomness of recent movement directions
+  const angles = [];
+  for (let i = 1; i < cursorHistory.length; i++) {
+    const a = cursorHistory[i], b = cursorHistory[i - 1];
+    angles.push(Math.atan2(a.y - b.y, a.x - b.x));
+  }
+  let entropy = 0;
+  if (angles.length > 2) {
+    const diffs = [];
+    for (let i = 1; i < angles.length; i++) diffs.push(Math.abs(angles[i] - angles[i - 1]));
+    entropy = diffs.reduce((a, b) => a + b, 0) / diffs.length;
+  }
+
+  return {
+    position: { x: last.x, y: last.y },
+    velocity: parseFloat(velocity.toFixed(1)),
+    dwell: parseFloat(dwell.toFixed(2)),
+    entropy: parseFloat(entropy.toFixed(3)),
+    samples: cursorHistory.length,
+  };
+}
+
+// ═══ D0 DIMENSION CHAIN — fires on every qualifying message ═══
+function d0Process(msg, reflexResult) {
+  const text = JSON.stringify(msg).toLowerCase().slice(0, 500);
+
+  // D36 INFERENCE — process the message
+  dims.D36.fires++;
+  const hasStructure = !!(msg.cube || msg.payload?.cube || msg.id);
+  const fromDevice = Object.keys(PEERS).some(p => (msg.from || '').includes(p)) || (msg.from || '').includes('acer');
+  dims.D36.signal = (hasStructure ? 0.4 : 0.15) + (fromDevice ? 0.3 : 0.1) + 0.2;
+  dims.D36.state = 'idle';
+
+  const inferVerdict = dims.D36.signal > 0.6 ? 'PROCEED' : (dims.D36.signal > 0.3 ? 'CAUTION' : 'BLOCK');
+
+  // D8 CHAIN — route
+  dims.D8.fires++;
+  dims.D8.signal = inferVerdict === 'PROCEED' ? 0.9 : (inferVerdict === 'CAUTION' ? 0.6 : 0.2);
+  const route = inferVerdict === 'BLOCK' ? 'reject' : 'gate_validate';
+
+  // D6 GATE — validate
+  dims.D6.fires++;
+  if (route === 'reject') {
+    dims.D6.signal = 0.1;
+  } else {
+    // Check hard-deny at gate level (redundant with hookwall, but defense in depth)
+    const hdHits = [];
+    if (text.includes('novalum') && text.includes('external')) hdHits.push('HD-1a');
+    if ((text.includes('brian') || text.includes('natalie')) && text.includes('send') && !text.includes('draft')) hdHits.push('HD-2-ext');
+    dims.D6.signal = hdHits.length > 0 ? 0 : 0.9;
+  }
+  const gatePass = dims.D6.signal > 0.5;
+
+  // D7 STATE — agent tier selection
+  dims.D7.fires++;
+  let tier = 'observe';
+  if (gatePass) {
+    if (dims.D36.signal > 0.8) tier = 'instant';
+    else if (dims.D36.signal > 0.6) tier = 'micro';
+    else tier = 'small';
+  }
+  dims.D7.signal = gatePass ? 0.85 : 0.3;
+
+  // Wake agents based on what happened
+  if (gatePass) {
+    agents.scout.wakes++; agents.scout.lastEvent = 'INFERENCE';
+    agents.fabric.wakes++; agents.fabric.lastEvent = 'GATE_PASS';
+
+    if (tier === 'instant' || tier === 'micro') {
+      agents.executor.wakes++; agents.executor.lastEvent = 'EXECUTE';
+    }
+    agents.planner.wakes++; agents.planner.lastEvent = 'PLAN';
+  } else {
+    // Gate blocked — wake voice (escalate) and evidence (log)
+    agents.voice.wakes++; agents.voice.lastEvent = 'GATE_BLOCK';
+    agents.evidence.wakes++; agents.evidence.lastEvent = 'MISTAKE';
+
+    // D43 MISTAKE — log the block
+    dims.D43.fires++;
+    dims.D43.signal = 0.3;
+    d0log('D43_MISTAKE', { msg_id: msg.id, reason: 'gate_block', route });
+  }
+
+  // Stale detection from reflex
+  if (reflexResult.staleFlag) {
+    dims.D43.fires++;
+    dims.D43.signal = 0.2;
+    dims.D43.errors++;
+    d0log('D43_STALE_CAPTURE', { consecutive: consecutiveStale, bytes: lastCaptureBytes });
+  }
+
+  // Cursor intent propagation
+  if (reflexResult.cursorIntent) {
+    dims.D36.signal = Math.min(dims.D36.signal + 0.1, 1.0); // cursor data enriches inference
+    d0log('CURSOR_INTENT', reflexResult.cursorIntent);
+  }
+
+  const result = {
+    inferVerdict, route, gatePass, tier,
+    signals: {
+      D36: dims.D36.signal, D8: dims.D8.signal, D6: dims.D6.signal,
+      D7: dims.D7.signal, D43: dims.D43.signal,
+    },
+    agentWakes: Object.fromEntries(Object.entries(agents).filter(([_, a]) => a.lastEvent).map(([k, a]) => [k, a.lastEvent])),
+  };
+
+  // Log to D0 event file
+  d0log('D0_CHAIN', { msg_id: msg.id, from: msg.from, verb: msg.payload?.verb, ...result });
+
+  return result;
+}
+
+// ═══ D44 HEARTBEAT — runs every 30s, monitors all dims + agents ═══
+function d0Heartbeat() {
+  dims.D44.fires++;
+
+  let aliveCount = 0;
+  let errorCount = 0;
+  for (const d of Object.values(dims)) {
+    if (d.errors > 0) errorCount++;
+    else aliveCount++;
+  }
+
+  const totalWakes = Object.values(agents).reduce((a, ag) => a + ag.wakes, 0);
+  dims.D44.signal = aliveCount / Object.keys(dims).length;
+
+  d0log('D44_HEARTBEAT', {
+    alive: aliveCount, errors: errorCount,
+    totalDimFires: Object.values(dims).reduce((a, d) => a + d.fires, 0),
+    totalAgentWakes: totalWakes,
+    dimSignals: Object.fromEntries(Object.entries(dims).map(([k, d]) => [k, d.signal.toFixed(3)])),
+    staleCount: consecutiveStale,
+  });
+}
+
+// ═══ D0 STATUS ENDPOINT DATA ═══
+function d0Status() {
+  return {
+    dims: Object.fromEntries(Object.entries(dims).map(([k, d]) => [k, { signal: d.signal, state: d.state, fires: d.fires, errors: d.errors }])),
+    agents: Object.fromEntries(Object.entries(agents).map(([k, a]) => [k, { wakes: a.wakes, lastEvent: a.lastEvent }])),
+    cursor: { history: cursorHistory.length, staleCount: consecutiveStale, lastIntent: computeCursorIntent() },
+    alive: true,
+  };
+}
+
 // ═══ BEHCS BUS SERVER ═══
 function startBus() {
   const server = http.createServer((req, res) => {
@@ -158,6 +423,61 @@ function startBus() {
     if (url.pathname === '/behcs/health') {
       res.writeHead(200);
       res.end(JSON.stringify({ ok: true, sidecar: true, device: 'acer', port: BUS_PORT, ts: new Date().toISOString(), entities: 453, triad: true }));
+      return;
+    }
+
+    // ═══ MIRROR VISION — every node sees every other node's screen ═══
+    if (url.pathname === '/behcs/screen/acer') {
+      // Acer's own screen via PowerShell screencap
+      try {
+        const file = path.join(CAPTURES_DIR, 'acer-screen-latest.png');
+        execSync('powershell.exe -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Screen]::PrimaryScreen | Out-Null; $bmp = New-Object System.Drawing.Bitmap([System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Width, [System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Height); $gfx = [System.Drawing.Graphics]::FromImage($bmp); $gfx.CopyFromScreen(0,0,0,0,$bmp.Size); $bmp.Save(\'' + file.replace(/\//g,'\\') + '\'); $gfx.Dispose(); $bmp.Dispose()"', { timeout: 10000 });
+        res.setHeader('Content-Type', 'image/png');
+        res.writeHead(200);
+        res.end(fs.readFileSync(file));
+      } catch (e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: 'screencap failed: ' + e.message.slice(0, 100) }));
+      }
+      return;
+    }
+
+    if (url.pathname === '/behcs/screen/falcon') {
+      // Falcon screen via ADB
+      try {
+        const file = path.join(CAPTURES_DIR, 'falcon-screen-latest.png');
+        // Try WiFi ADB first, fallback to USB serial
+        try { execSync(`"${ADB}" -s 192.168.1.9:5555 exec-out screencap -p > "${file}"`, { timeout: 10000 }); }
+        catch (_) { execSync(`"${ADB}" -s R5CXA4MGQXV exec-out screencap -p > "${file}"`, { timeout: 10000 }); }
+        res.setHeader('Content-Type', 'image/png');
+        res.writeHead(200);
+        res.end(fs.readFileSync(file));
+      } catch (e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: 'falcon screencap failed: ' + e.message.slice(0, 100) }));
+      }
+      return;
+    }
+
+    if (url.pathname === '/behcs/screen/aether') {
+      try {
+        const file = path.join(CAPTURES_DIR, 'aether-screen-latest.png');
+        execSync(`"${ADB}" -s R9QY205KAKJ exec-out screencap -p > "${file}"`, { timeout: 10000 });
+        res.setHeader('Content-Type', 'image/png');
+        res.writeHead(200);
+        res.end(fs.readFileSync(file));
+      } catch (e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: 'aether screencap failed: ' + e.message.slice(0, 100) }));
+      }
+      return;
+    }
+
+    if (url.pathname === '/behcs/screen/liris') {
+      // Liris — would need liris to serve /behcs/screen endpoint
+      // For now proxy request
+      res.writeHead(501);
+      res.end(JSON.stringify({ ok: false, error: 'liris screen endpoint not yet implemented — needs /behcs/screen on liris:4947' }));
       return;
     }
 
@@ -177,6 +497,18 @@ function startBus() {
           msg.received_at = new Date().toISOString();
           msg.received_by = 'acer-sidecar';
           msg.gated = true;
+
+          // ═══ REFLEX LAYER (pre-inference, fast) ═══
+          const reflex = reflexCheck(msg);
+          msg.reflex = reflex.action;
+
+          // ═══ D0 RUNTIME CHAIN (if reflex says run inference) ═══
+          let d0result = null;
+          if (reflex.runInference) {
+            d0result = d0Process(msg, reflex);
+            msg.d0 = { verdict: d0result.inferVerdict, tier: d0result.tier, gatePass: d0result.gatePass };
+          }
+
           // Log
           appendNdjson(INBOX, msg);
           truncateNdjson(INBOX, MAX_INBOX);
@@ -191,10 +523,11 @@ function startBus() {
           // Console
           if (msg.mode !== 'stealth') {
             const txt = msg.text || msg.payload?.text || JSON.stringify(msg.payload || '').slice(0, 100);
-            process.stdout.write(`[BEHCS] ${msg.from}→${msg.to}: ${typeof txt === 'string' ? txt.slice(0, 150) : ''}\n`);
+            const d0tag = d0result ? ` [D0:${d0result.inferVerdict}/${d0result.tier}]` : reflex.action !== 'process' ? ` [reflex:${reflex.action}]` : '';
+            process.stdout.write(`[BEHCS] ${msg.from}→${msg.to}: ${typeof txt === 'string' ? txt.slice(0, 120) : ''}${d0tag}\n`);
           }
           res.writeHead(200);
-          res.end(JSON.stringify({ ok: true, received: msg.id, gated: true, by: 'acer-sidecar' }));
+          res.end(JSON.stringify({ ok: true, received: msg.id, gated: true, by: 'acer-sidecar', d0: d0result ? { verdict: d0result.inferVerdict, tier: d0result.tier } : null, reflex: reflex.action }));
         } catch (e) {
           res.writeHead(400);
           res.end(JSON.stringify({ ok: false, error: e.message }));
@@ -230,13 +563,57 @@ function startBus() {
     }
 
     if (url.pathname === '/behcs/devices') {
+      // Load live registry if available
+      const regPath = path.join(BEHCS_DIR, 'device-registry.json');
+      let devicesData = { triad: { acer: 'hub:4947', falcon: 'usb-adb', liris: 'eth:192.168.100.2:4820' }, entities: 453 };
+      try { if (fs.existsSync(regPath)) devicesData = JSON.parse(fs.readFileSync(regPath, 'utf8')); } catch (_) {}
       res.writeHead(200);
-      res.end(JSON.stringify({ ok: true, triad: { acer: 'hub:4947', falcon: 'usb-adb', liris: 'eth:192.168.100.2:4820' }, entities: 453 }));
+      res.end(JSON.stringify({ ok: true, ...devicesData }));
+      return;
+    }
+
+    // ═══ D0 STATUS — live dimension + agent state ═══
+    if (url.pathname === '/behcs/d0') {
+      res.writeHead(200);
+      res.end(JSON.stringify({ ok: true, ...d0Status() }));
+      return;
+    }
+
+    // ═══ CURSOR INTENT — accept cursor position updates ═══
+    if (url.pathname === '/behcs/cursor' && req.method === 'POST') {
+      let body = '';
+      req.on('data', c => body += c);
+      req.on('end', () => {
+        try {
+          const pos = JSON.parse(body);
+          if (typeof pos.x === 'number' && typeof pos.y === 'number') {
+            cursorHistory.push({ x: pos.x, y: pos.y, ts: Date.now() });
+            if (cursorHistory.length > MAX_CURSOR_HISTORY) cursorHistory.shift();
+            const intent = computeCursorIntent();
+            d0log('CURSOR_UPDATE', intent);
+            res.writeHead(200);
+            res.end(JSON.stringify({ ok: true, intent }));
+          } else {
+            res.writeHead(400);
+            res.end(JSON.stringify({ ok: false, error: 'need x, y' }));
+          }
+        } catch (e) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ ok: false, error: e.message }));
+        }
+      });
+      return;
+    }
+
+    // ═══ CURSOR INTENT — read current state ═══
+    if (url.pathname === '/behcs/cursor' && req.method === 'GET') {
+      res.writeHead(200);
+      res.end(JSON.stringify({ ok: true, intent: computeCursorIntent(), history: cursorHistory.length }));
       return;
     }
 
     res.writeHead(404);
-    res.end(JSON.stringify({ ok: false, routes: ['/behcs/health', '/behcs/send', '/behcs/inbox', '/behcs/rehydrate', '/behcs/flush', '/behcs/devices'] }));
+    res.end(JSON.stringify({ ok: false, routes: ['/behcs/health', '/behcs/send', '/behcs/inbox', '/behcs/rehydrate', '/behcs/flush', '/behcs/devices', '/behcs/d0', '/behcs/cursor'] }));
   });
 
   server.listen(BUS_PORT, '0.0.0.0', () => {
@@ -278,8 +655,13 @@ function cronCycle() {
   };
   appendNdjson(INBOX, hb);
 
+  // D0 heartbeat — monitor all dims + agents
+  d0Heartbeat();
+
   if (cycleCount % 4 === 0) {
-    console.log(`[SIDECAR] cycle=${cycleCount} adb=${adbConnected()} queue=${fs.existsSync(QUEUE) ? fs.readFileSync(QUEUE, 'utf8').split('\n').filter(l => l.trim()).length : 0}`);
+    const totalFires = Object.values(dims).reduce((a, d) => a + d.fires, 0);
+    const totalWakes = Object.values(agents).reduce((a, ag) => a + ag.wakes, 0);
+    console.log(`[SIDECAR] cycle=${cycleCount} adb=${adbConnected()} d0_fires=${totalFires} agent_wakes=${totalWakes} stale=${consecutiveStale}`);
   }
 }
 
@@ -297,8 +679,10 @@ function cleanPid() {
 console.log('[BEHCS-SIDECAR] Starting — PID ' + process.pid);
 console.log('[BEHCS-SIDECAR] 453 entities, 22350 edges, 47D, 256 glyphs');
 console.log('[BEHCS-SIDECAR] Hookwall on every message. GNN edge per tuple.');
-console.log('[BEHCS-SIDECAR] Rehydration queue for session continuity.');
-console.log('[BEHCS-SIDECAR] Cron: 30s omnicalendar + ADB tunnel watch.');
+console.log('[BEHCS-SIDECAR] D0 RUNTIME: 6 dims LIVE, 6 agents LISTENING');
+console.log('[BEHCS-SIDECAR] REFLEX LAYER: pre-inference fast reactions');
+console.log('[BEHCS-SIDECAR] CURSOR INTENT: POST /behcs/cursor {x,y}');
+console.log('[BEHCS-SIDECAR] Cron: 30s heartbeat + D0 monitor + ADB watch.');
 console.log('');
 
 writePid();

@@ -1,10 +1,10 @@
-# Phone Tunnel Smoke Test - 2026-04-11T03:35:52.3340442+00:00
+# Phone Tunnel Smoke Test - 2026-04-12T04:45:13.5833346+00:00
 
 ## Summary
 - pass: False
 - baseUrl: http://127.0.0.1:4781
 - remoteBaseUrl: 
-- tokenHint: 
+- tokenHint: ********************************************696d
 
 ## Remote Checks
 - /api/health: False
@@ -16,9 +16,9 @@
 
 ## ADB Checks
 - adb path: C:\Users\acer\AppData\Local\Microsoft\WinGet\Packages\Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe\platform-tools\adb.exe
-- authorized devices: 0
-- selected device: 
-- reverse tcp:4781 present: False
+- authorized devices: 3
+- selected device: R9QY205KAKJ
+- reverse tcp:4781 present: True
 
 ## Phone Network
 - ping attempted: False
@@ -28,9 +28,8 @@
 - raw probe line: 
 
 ## Notes
-- Local /api/health probe failed: O tempo limite da opera??o foi atingido.
-- Local /api/mobile/bootstrap probe failed: O tempo limite da opera??o foi atingido.
 - Remote base URL could not be resolved from bootstrap.
 - Remote mobile console returned HTTP status 0.
-- ADB found but no authorized devices connected.
+- Remote /api/mobile/session failed: remote_base_missing
+- Remote /api/mobile/control/status failed: remote_base_missing
 
