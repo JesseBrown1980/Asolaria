@@ -162,6 +162,59 @@ function startBus() {
       return;
     }
 
+    // ═══ MIRROR VISION — every node sees every other node's screen ═══
+    if (url.pathname === '/behcs/screen/acer') {
+      // Acer's own screen via PowerShell screencap
+      try {
+        const file = path.join(CAPTURES_DIR, 'acer-screen-latest.png');
+        execSync('powershell.exe -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Screen]::PrimaryScreen | Out-Null; $bmp = New-Object System.Drawing.Bitmap([System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Width, [System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Height); $gfx = [System.Drawing.Graphics]::FromImage($bmp); $gfx.CopyFromScreen(0,0,0,0,$bmp.Size); $bmp.Save(\'' + file.replace(/\//g,'\\') + '\'); $gfx.Dispose(); $bmp.Dispose()"', { timeout: 10000 });
+        res.setHeader('Content-Type', 'image/png');
+        res.writeHead(200);
+        res.end(fs.readFileSync(file));
+      } catch (e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: 'screencap failed: ' + e.message.slice(0, 100) }));
+      }
+      return;
+    }
+
+    if (url.pathname === '/behcs/screen/falcon') {
+      // Falcon screen via ADB
+      try {
+        const file = path.join(CAPTURES_DIR, 'falcon-screen-latest.png');
+        execSync(`"${ADB}" -s R5CXA4MGQXV exec-out screencap -p > "${file}"`, { timeout: 10000 });
+        res.setHeader('Content-Type', 'image/png');
+        res.writeHead(200);
+        res.end(fs.readFileSync(file));
+      } catch (e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: 'falcon screencap failed: ' + e.message.slice(0, 100) }));
+      }
+      return;
+    }
+
+    if (url.pathname === '/behcs/screen/aether') {
+      try {
+        const file = path.join(CAPTURES_DIR, 'aether-screen-latest.png');
+        execSync(`"${ADB}" -s R9QY205KAKJ exec-out screencap -p > "${file}"`, { timeout: 10000 });
+        res.setHeader('Content-Type', 'image/png');
+        res.writeHead(200);
+        res.end(fs.readFileSync(file));
+      } catch (e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ ok: false, error: 'aether screencap failed: ' + e.message.slice(0, 100) }));
+      }
+      return;
+    }
+
+    if (url.pathname === '/behcs/screen/liris') {
+      // Liris — would need liris to serve /behcs/screen endpoint
+      // For now proxy request
+      res.writeHead(501);
+      res.end(JSON.stringify({ ok: false, error: 'liris screen endpoint not yet implemented — needs /behcs/screen on liris:4947' }));
+      return;
+    }
+
     if (url.pathname === '/behcs/send' && req.method === 'POST') {
       let body = '';
       req.on('data', c => body += c);
