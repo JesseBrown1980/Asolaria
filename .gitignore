@@ -31,3 +31,4 @@ tmp-*
 *role_id.txt
 *vault.master.key
 *vault.secrets.json
+/.claude_temp
