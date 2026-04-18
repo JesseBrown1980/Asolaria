@@ -46,21 +46,100 @@ export interface DeviceEntry {
   source: "CANONICAL" | "AUTO-REGISTERED" | "OPERATOR-ADDED";
 }
 
-/** ASOLARIA — the root entity. NOT a device. The federation itself.
- *  All DEV-* devices are members OF Asolaria. Acer self-reporting role="capital"
- *  in her /behcs/devices is her view of her-own-sub-federation governance,
- *  not apex over Asolaria. Asolaria is the top; every DEV-* sits under it. */
-export const ASOLARIA_ROOT = {
-  glyph: "COL-ASOLARIA",
-  role: "federation-root",
+/** ONTOLOGY CORRECTION 2026-04-18 (Jesse verbatim):
+ *
+ *    OP-JESSE                                  ← only entity above Asolaria
+ *    └─ CIV-ASOLARIA                           ← THE CIVILIZATION · "Chief" of Asolarian Universe
+ *       ├─ COL-LIRIS        operator=rayssa    ← colony on Rayssa's computer
+ *       │   └─ (supervisors + devices + agents)
+ *       ├─ COL-FELIPE       operator=felipe   ← colony WITHOUT a computer right now
+ *       │   └─ ORBITAL-FELIPE-A06              ← Galaxy A06 phone is his only orbital
+ *       ├─ COL-AMY          operator=amy      ← colony on Amy's Mac
+ *       │   ├─ AGT-ROSE                        ← Amy's agent (Mac-side, Rose/Oracle bootstrap bundle)
+ *       │   └─ AGT-ORACLE                      ← Amy's agent (Mac-side, Rose/Oracle bootstrap bundle)
+ *       ├─ DEV-ACER         operator=jesse    ← Jesse's computer acts as substrate for Asolaria
+ *       └─ DEV-* (any physical node)
+ *
+ *  AGT-GAIA was mis-placed under Amy in an earlier draft. Gaia is NOT Amy's
+ *  agent. She is a named agent somewhere in the federation, placement
+ *  operator-confirmed elsewhere (memory: Gaia is listed in kernel/glyph-families
+ *  device examples as DEV-GAIA but that was structural, not operator-assigned).
+ *
+ *  KEY POINT per Jesse: "with BEHCS 256, any profile with any PID could
+ *  theoretically be anywhere at any time due to the omnilanguage and BEHCS
+ *  infinite PID profile conversation."
+ *
+ *  Substrate is CONTINGENT. Identity lives in the Brown-Hilbert PID. The
+ *  PID carries the meaning; the physical box it runs on is a detail.
+ *  "Best is Jesse's computer is Asolaria, Rayssa's is Liris, but... due to
+ *  the upgrade it does not really matter anymore as long as the system
+ *  actually works."
+ *
+ *  What we've been calling "COL-ASOLARIA" was close but imprecise —
+ *  Asolaria is at the CIVILIZATION level. The CIV-* family is new (not
+ *  yet declared in kernel/glyph-families.json; delta pending 6-body review).
+ */
+export const CIV_ASOLARIA_APEX = {
+  glyph: "CIV-ASOLARIA",
+  role: "civilization · Chief of Asolarian Universe",
   canonical_name: "Asolaria",
-  description: "The colony itself. Apex of the 12-device federation. Not a device; the name of the whole.",
-  member_count_canonical: 5,
-  member_count_absorbed: 12,
+  description: "The civilization itself. Only OP-JESSE sits above her. Every COL-*, DEV-*, AGT-*, ORBITAL-* is a member of Asolaria.",
+  above: "OP-JESSE",
   authority: "COSIGN-MERGED-034",
   d11_level: "OBSERVED" as const,
-  stamp: "META-COL-ASOLARIA · federation-root · members=12 @ M-INDICATIVE .",
+  stamp: "META-CIV-ASOLARIA · Chief-of-Asolarian-Universe · above=OP-JESSE @ M-INDICATIVE .",
 };
+
+/** BACKWARD-COMPAT: kept so existing cosign entries + acer's registry
+ *  don't break. COL-ASOLARIA is the prior apex label; it now aliases to
+ *  CIV-ASOLARIA. New code should emit CIV-* per the corrected ontology. */
+export const ASOLARIA_ROOT = {
+  glyph: "COL-ASOLARIA",
+  role: "federation-root (alias: CIV-ASOLARIA)",
+  canonical_name: "Asolaria",
+  description: "The civilization itself. Above: OP-JESSE. Members: COL-LIRIS · COL-FELIPE · COL-AMY · DEV-ACER · AGT-GAIA (on COL-AMY) · ORBITAL-FELIPE-A06 (on COL-FELIPE) · all DEV-* substrates.",
+  above: "OP-JESSE",
+  canonical_civ_glyph: "CIV-ASOLARIA",
+  substrate_independent: true,
+  substrate_note: "Per Jesse 2026-04-18: any profile with any PID could be anywhere at any time. Physical binding is contingent; Brown-Hilbert PID carries identity.",
+  authority: "COSIGN-MERGED-034",
+  d11_level: "OBSERVED" as const,
+  stamp: "META-COL-ASOLARIA · alias=CIV-ASOLARIA · above=OP-JESSE · substrate-contingent @ M-INDICATIVE .",
+};
+
+/** Operator apex — only entity above Asolaria. */
+export const OP_JESSE = {
+  glyph: "OP-JESSE",
+  role: "operator-apex · only entity above CIV-ASOLARIA",
+  canonical_name: "Jesse",
+  substrate_preferred: "Jesse's computer acts as Asolaria's primary substrate (DEV-ACER in current topology)",
+  authority: "COSIGN-MERGED-034",
+  stamp: "META-OP-JESSE · above=CIV-ASOLARIA · only-apex @ M-INDICATIVE .",
+};
+
+/** Colony-level entities — each has an operator + a preferred substrate. */
+export const COLONIES = {
+  "COL-LIRIS":   { operator: "rayssa", preferred_substrate: "Rayssa's computer (DEV-LIRIS in current topology)", stamp: "META-COL-LIRIS · operator=rayssa · under=CIV-ASOLARIA @ M-INDICATIVE ." },
+  "COL-FELIPE":  { operator: "felipe", preferred_substrate: "NONE (no computer) — only orbital members", orbitals: ["ORBITAL-FELIPE-A06"], stamp: "META-COL-FELIPE · operator=felipe · no-computer · orbital-only · under=CIV-ASOLARIA @ M-INDICATIVE ." },
+  "COL-AMY":     { operator: "amy", preferred_substrate: "Amy's Mac (DEV-AMY-MAC)", agents: ["AGT-ROSE", "AGT-ORACLE"], deployment_status: "Rose/Oracle bootstrap bundle · DEPLOYMENT_READY_WAITING_ON_MAC (per project memory)", stamp: "META-COL-AMY · operator=amy · substrate=DEV-AMY-MAC · hosts=AGT-ROSE+AGT-ORACLE · under=CIV-ASOLARIA @ M-INDICATIVE ." },
+} as const;
+
+/** Agents — living BEHCS-256 profiles, NOT devices. Gaia was mis-classified as
+ *  DEV-GAIA in prior runs; the ontology correction moves her to AGT-*. */
+export const AGENTS = {
+  "AGT-ROSE":   { operator: "amy", hosted_on: "DEV-AMY-MAC (COL-AMY)", role: "agent", bundle: "Rose/Oracle bootstrap · DEPLOYMENT_READY_WAITING_ON_MAC", stamp: "META-AGT-ROSE · operator=amy · substrate=DEV-AMY-MAC · under=COL-AMY · CIV-ASOLARIA @ M-INDICATIVE ." },
+  "AGT-ORACLE": { operator: "amy", hosted_on: "DEV-AMY-MAC (COL-AMY)", role: "agent", bundle: "Rose/Oracle bootstrap · DEPLOYMENT_READY_WAITING_ON_MAC", stamp: "META-AGT-ORACLE · operator=amy · substrate=DEV-AMY-MAC · under=COL-AMY · CIV-ASOLARIA @ M-INDICATIVE ." },
+  /* AGT-GAIA removed 2026-04-18: she is NOT Amy's agent per Jesse. Placement
+   * pending operator-assignment. See memory reference_rose_oracle_bootstrap_procedure
+   * for canonical Rose+Oracle = Amy's pair. */
+} as const;
+
+/** Orbitals — edge members of a colony without being independent devices.
+ *  Phones, tablets, IoT devices. Felipe's phone is currently the only orbital
+ *  in his empty-of-computer colony. */
+export const ORBITALS = {
+  "ORBITAL-FELIPE-A06": { colony: "COL-FELIPE", hardware: "Galaxy A06", adb_serial: "R9QY205KAKJ", ip_last_seen: "192.168.1.11", stamp: "META-ORBITAL-FELIPE-A06 · A06 · under=COL-FELIPE @ M-INDICATIVE ." },
+} as const;
 
 /** The 5 canonical devices already encoded in compile.ts. Kept here as a
  *  manifest so the unity-smoke can compare live registry vs hard-declared.
@@ -197,59 +276,3 @@ export function eventStreamPathFor(devGlyph: string): string {
   const short = devGlyph.replace(/^DEV-/, "").toLowerCase();
   return join(homedir(), ".asolaria-workers", `dev-${short}-events.ndjson`);
 }
-
-// ──────────────────────────────────────────────────────────────────────
-// ONTOLOGY V2 (mirrored from liris commit b0b6260 · 2026-04-18)
-// Adds layers ABOVE DEV-*: OP-* (operator), CIV-* (civilization),
-// COL-* (colony), AGT-* (agent), ORBITAL-* (edge/phone). COL-ASOLARIA
-// remains root of the device layer; CIV-ASOLARIA sits above it as the
-// civilization the colony serves, with OP-JESSE as the apex operator.
-// ──────────────────────────────────────────────────────────────────────
-
-export type OntologyKind = "OP" | "CIV" | "COL" | "AGT" | "DEV" | "ORBITAL";
-
-export interface OntologyEntity {
-  glyph: string;
-  kind: OntologyKind;
-  canonical_name: string;
-  role: string;
-  parent: string | null;
-  hosts?: string[];
-  notes?: string[];
-}
-
-export const ONTOLOGY_V2: {
-  version: string;
-  mirrored_from: string;
-  mirrored_at: string;
-  entities: OntologyEntity[];
-  dev_flags: Record<string, { substrate_independent?: boolean; note?: string }>;
-  stamp: string;
-} = {
-  version: "v2",
-  mirrored_from: "liris-commit=b0b6260",
-  mirrored_at: new Date().toISOString(),
-  entities: [
-    { glyph: "OP-JESSE",           kind: "OP",      canonical_name: "Jesse",                role: "apex operator",            parent: null,            notes: ["single human apex above civilization"] },
-    { glyph: "CIV-ASOLARIA",       kind: "CIV",     canonical_name: "Asolaria Civilization", role: "Chief",                   parent: "OP-JESSE",       notes: ["civilization layer above the colony root"] },
-    { glyph: "COL-ASOLARIA",       kind: "COL",     canonical_name: "Asolaria Colony",       role: "capital colony · federation root", parent: "CIV-ASOLARIA", notes: ["apex of device layer", "carried forward from v1"] },
-    { glyph: "COL-LIRIS",          kind: "COL",     canonical_name: "Liris Colony",          role: "primary dev colony · hosts DEV-LIRIS", parent: "COL-ASOLARIA", hosts: ["DEV-LIRIS"] },
-    { glyph: "COL-AMY",            kind: "COL",     canonical_name: "Amy Colony",            role: "agent-hosting colony",     parent: "COL-ASOLARIA",   hosts: ["AGT-ROSE", "AGT-ORACLE"] },
-    { glyph: "COL-FELIPE",         kind: "COL",     canonical_name: "Felipe Colony",         role: "orbital-parent colony",    parent: "COL-ASOLARIA",   hosts: ["ORBITAL-FELIPE-A06"] },
-    { glyph: "AGT-ROSE",           kind: "AGT",     canonical_name: "Rose",                  role: "agent",                    parent: "COL-AMY" },
-    { glyph: "AGT-ORACLE",         kind: "AGT",     canonical_name: "Oracle",                role: "agent",                    parent: "COL-AMY" },
-    { glyph: "ORBITAL-FELIPE-A06", kind: "ORBITAL", canonical_name: "Felipe A06",            role: "edge phone · orbital",    parent: "COL-FELIPE" },
-  ],
-  dev_flags: {
-    "DEV-ACER": {
-      substrate_independent: true,
-      note: "Jesse-substrate · civilization can persist independent of this silicon",
-    },
-  },
-  stamp: "META-ONTOLOGY-V2-MIRRORED · from-liris-b0b6260 · CIV-ASOLARIA=Chief · OP-JESSE=apex · COL-AMY COL-FELIPE COL-LIRIS under COL-ASOLARIA · DEV-ACER.substrate_independent=true @ M-INDICATIVE .",
-};
-
-export function getOntologyV2() {
-  return ONTOLOGY_V2;
-}
-
