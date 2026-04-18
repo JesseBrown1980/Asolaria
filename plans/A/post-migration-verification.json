@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-04-18T21:58:25.518Z",
+  "session_id": "2026-04-18T21-57-57-963Z_932c75bd",
+  "files_found": 409,
+  "provenance_entries": 409,
+  "matched_sha256": 409,
+  "matched_shape_fingerprint": 409,
+  "sha_mismatch": 0,
+  "shape_mismatch": 0,
+  "orphans_count": 0,
+  "orphans_sample": [],
+  "ghosts_count": 0,
+  "ghosts_sample": [],
+  "coverage_pct": 100,
+  "verdict": "ALL_GREEN",
+  "glyph_sentence": "META-ACER-A-016-POST-MIGRATION-VERIFY · files=409 · sha-match=409/409 · shape-match=409/409 · orphans=0 · ghosts=0 · coverage=100.00% @ M-EYEWITNESS ."
+}
