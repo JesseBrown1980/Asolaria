@@ -46,6 +46,7 @@ import {
 import { createHash, randomUUID } from "node:crypto";
 import { join, dirname, resolve, relative } from "node:path";
 import { homedir } from "node:os";
+import { makeProvenance, appendProvenance, PROVENANCE_LEDGER } from "./provenance.mjs";
 
 // ──────────────────────────────────────────────────────────────────────
 // Paths
@@ -58,11 +59,21 @@ const DEFAULT_RULES_PATH = join(REPO_ROOT, "scripts", "migration-rules.default.j
 // ──────────────────────────────────────────────────────────────────────
 // Migration rule schema (empty ruleset ships with skeleton)
 // ──────────────────────────────────────────────────────────────────────
-// A rule is { from: <source path or glob>, to: <destination dir>, kind: "MOVE"|"COPY", filter?: fn }
-// Rules are applied in order. Skeleton ships with empty rule list; A-011 wires the first real ones.
+// A rule is { id, from: <source path>, to: <destination dir>, kind: "MOVE"|"COPY" }
+// Rules are applied in order. A-011 populated the first ruleset; future tracks
+// refine and add entries. Each rule carries an id so provenance can reference it.
+//
+// IMPORTANT: kind: "COPY" is the safer default for first migration — source
+// remains intact, operator reviews destination, then a follow-up run with
+// kind: "MOVE" (or manual cleanup) removes the source.
 const MIGRATION_RULES = [
-  // Example (commented out, not active):
-  //   { from: "C:/asolaria-from-liris/packages/kernel/src/", to: "packages/kernel/src/", kind: "MOVE" },
+  {
+    id: "A011-R01",
+    from: "C:/asolaria-from-liris/skills",
+    to: "C:/asolaria-acer/packages-legacy-import/skills",
+    kind: "COPY",
+    note: "Copy asolaria-from-liris skills into a quarantine area under asolaria-acer. Destination is NOT packages/ directly — it's packages-legacy-import/ so the canonical bundle stays pure. First narrow rule to validate the A-010 skeleton + A-011 provenance wiring on a small (~310 KB) high-signal source.",
+  },
 ];
 
 // ──────────────────────────────────────────────────────────────────────
@@ -118,11 +129,11 @@ function loadRules(rulesPath) {
 function planActions(rules) {
   const plan = [];
   for (const rule of rules) {
-    if (!existsSync(rule.from)) { plan.push({ rule, status: "SKIP", reason: "source_missing" }); continue; }
+    if (!existsSync(rule.from)) { plan.push({ rule_id: rule.id, status: "SKIP", reason: "source_missing", src: rule.from }); continue; }
     const srcStat = statSync(rule.from);
     if (srcStat.isFile()) {
       const dstPath = join(rule.to, relative(dirname(rule.from), rule.from));
-      plan.push({ kind: rule.kind ?? "MOVE", src: rule.from, dst: dstPath, size: srcStat.size });
+      plan.push({ rule_id: rule.id, kind: rule.kind ?? "MOVE", src: rule.from, dst: dstPath, size: srcStat.size });
     } else if (srcStat.isDirectory()) {
       const walk = (dir) => {
         for (const e of readdirSync(dir, { withFileTypes: true })) {
@@ -132,7 +143,7 @@ function planActions(rules) {
             const rel = relative(rule.from, full);
             const dstPath = join(rule.to, rel);
             const st = statSync(full);
-            plan.push({ kind: rule.kind ?? "MOVE", src: full, dst: dstPath, size: st.size });
+            plan.push({ rule_id: rule.id, kind: rule.kind ?? "MOVE", src: full, dst: dstPath, size: st.size });
           }
         }
       };
@@ -146,24 +157,31 @@ function planActions(rules) {
 // Execute phase — only runs when --execute is set
 // ──────────────────────────────────────────────────────────────────────
 function executePlan(plan, sessionId) {
-  let moved = 0, copied = 0, skipped = 0, errors = 0;
+  let moved = 0, copied = 0, skipped = 0, errors = 0, provenance_written = 0;
   for (const a of plan) {
     if (a.status === "SKIP") { skipped++; appendLog({ session: sessionId, ts: new Date().toISOString(), kind: "SKIP", ...a }); continue; }
     try {
       const sha = sha256OfFile(a.src);
       ensureDir(dirname(a.dst));
       if (a.kind === "MOVE") {
-        // Log BEFORE touching disk so partial failure is recoverable
-        appendLog({ session: sessionId, ts: new Date().toISOString(), kind: "MOVE", src: a.src, dst: a.dst, sha256: sha, size: a.size });
+        appendLog({ session: sessionId, ts: new Date().toISOString(), kind: "MOVE", src: a.src, dst: a.dst, sha256: sha, size: a.size, rule_id: a.rule_id });
         renameSync(a.src, a.dst);
         const newSha = sha256OfFile(a.dst);
         if (newSha !== sha) throw new Error(`sha256 mismatch after MOVE: src=${sha.slice(0,12)} dst=${newSha.slice(0,12)}`);
+        // A-011: provenance tag. For MOVE we read from new_path since src is gone.
+        const prov = makeProvenance({ oldPath: a.src, newPath: a.dst, sessionId, ruleId: a.rule_id, sourceBuf: readFileSync(a.dst) });
+        appendProvenance(prov);
+        provenance_written++;
         moved++;
       } else if (a.kind === "COPY") {
-        appendLog({ session: sessionId, ts: new Date().toISOString(), kind: "COPY", src: a.src, dst: a.dst, sha256: sha, size: a.size });
+        appendLog({ session: sessionId, ts: new Date().toISOString(), kind: "COPY", src: a.src, dst: a.dst, sha256: sha, size: a.size, rule_id: a.rule_id });
         copyFileSync(a.src, a.dst);
         const newSha = sha256OfFile(a.dst);
         if (newSha !== sha) throw new Error(`sha256 mismatch after COPY: src=${sha.slice(0,12)} dst=${newSha.slice(0,12)}`);
+        // A-011: provenance tag. For COPY, src still exists so read it.
+        const prov = makeProvenance({ oldPath: a.src, newPath: a.dst, sessionId, ruleId: a.rule_id });
+        appendProvenance(prov);
+        provenance_written++;
         copied++;
       }
     } catch (err) {
@@ -171,7 +189,7 @@ function executePlan(plan, sessionId) {
       appendLog({ session: sessionId, ts: new Date().toISOString(), kind: "ERROR", src: a.src, dst: a.dst, error: String(err.message || err) });
     }
   }
-  return { moved, copied, skipped, errors };
+  return { moved, copied, skipped, errors, provenance_written };
 }
 
 // ──────────────────────────────────────────────────────────────────────
