@@ -66,15 +66,25 @@ const DEFAULT_RULES_PATH = join(REPO_ROOT, "scripts", "migration-rules.default.j
 // IMPORTANT: kind: "COPY" is the safer default for first migration — source
 // remains intact, operator reviews destination, then a follow-up run with
 // kind: "MOVE" (or manual cleanup) removes the source.
+// A-014: full-tree ruleset for asolaria-from-liris → packages-legacy-import
+// quarantine. Skipped: node_modules, .git, certs (sensitive), beast-deploy
+// (separate concern), public (assets), *.log files.
 const MIGRATION_RULES = [
-  {
-    id: "A011-R01",
-    from: "C:/asolaria-from-liris/skills",
-    to: "C:/asolaria-acer/packages-legacy-import/skills",
-    kind: "COPY",
-    note: "Copy asolaria-from-liris skills into a quarantine area under asolaria-acer. Destination is NOT packages/ directly — it's packages-legacy-import/ so the canonical bundle stays pure. First narrow rule to validate the A-010 skeleton + A-011 provenance wiring on a small (~310 KB) high-signal source.",
-  },
+  { id: "A011-R01", from: "C:/asolaria-from-liris/skills",     to: "C:/asolaria-acer/packages-legacy-import/skills",     kind: "COPY", note: "310 KB skill specs" },
+  { id: "A014-R02", from: "C:/asolaria-from-liris/src",        to: "C:/asolaria-acer/packages-legacy-import/src",        kind: "COPY", note: "3.8 MB source code" },
+  { id: "A014-R03", from: "C:/asolaria-from-liris/tools",      to: "C:/asolaria-acer/packages-legacy-import/tools",      kind: "COPY", note: "112 KB tools" },
+  { id: "A014-R04", from: "C:/asolaria-from-liris/lib",        to: "C:/asolaria-acer/packages-legacy-import/lib",        kind: "COPY", note: "12 KB lib" },
+  { id: "A014-R05", from: "C:/asolaria-from-liris/middleware", to: "C:/asolaria-acer/packages-legacy-import/middleware", kind: "COPY", note: "4 KB middleware" },
+  { id: "A014-R06", from: "C:/asolaria-from-liris/routes",     to: "C:/asolaria-acer/packages-legacy-import/routes",     kind: "COPY", note: "231 KB routes" },
+  { id: "A014-R07", from: "C:/asolaria-from-liris/services",   to: "C:/asolaria-acer/packages-legacy-import/services",   kind: "COPY", note: "63 KB services" },
+  { id: "A014-R08", from: "C:/asolaria-from-liris/config",     to: "C:/asolaria-acer/packages-legacy-import/config",     kind: "COPY", note: "208 KB config" },
+  { id: "A014-R09", from: "C:/asolaria-from-liris/data",       to: "C:/asolaria-acer/packages-legacy-import/data",       kind: "COPY", note: "6 MB data" },
+  { id: "A014-R10", from: "C:/asolaria-from-liris/public",     to: "C:/asolaria-acer/packages-legacy-import/public",     kind: "COPY", note: "40 KB public assets" },
 ];
+
+// Exclude filter applied during planActions walk — never recurse into these.
+const PLAN_EXCLUDE_DIRS = new Set(["node_modules", ".git", ".cache", "logs", "__pycache__", "dist", "build"]);
+const PLAN_EXCLUDE_SUFFIX = [".log", ".tmp", ".lock", ".pyc"];
 
 // ──────────────────────────────────────────────────────────────────────
 // Utilities
@@ -102,7 +112,7 @@ function appendEvent(obj) {
 }
 
 function parseArgs(argv) {
-  const out = { dryRun: true, execute: false, rollback: null, listRollbacks: false, rulesPath: null };
+  const out = { dryRun: true, execute: false, rollback: null, listRollbacks: false, rulesPath: null, outputPath: null };
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--dry-run")        out.dryRun = true;
@@ -110,6 +120,7 @@ function parseArgs(argv) {
     else if (a === "--rollback")  out.rollback = argv[++i];
     else if (a === "--list-rollbacks") out.listRollbacks = true;
     else if (a === "--rules")     out.rulesPath = argv[++i];
+    else if (a === "--output")    out.outputPath = argv[++i];   // A-014: dump plan JSON
   }
   return out;
 }
@@ -138,8 +149,12 @@ function planActions(rules) {
       const walk = (dir) => {
         for (const e of readdirSync(dir, { withFileTypes: true })) {
           const full = join(dir, e.name);
-          if (e.isDirectory()) walk(full);
+          if (e.isDirectory()) {
+            if (PLAN_EXCLUDE_DIRS.has(e.name)) continue;  // A-014 filter
+            walk(full);
+          }
           else if (e.isFile()) {
+            if (PLAN_EXCLUDE_SUFFIX.some(s => e.name.toLowerCase().endsWith(s))) continue;  // A-014 filter
             const rel = relative(rule.from, full);
             const dstPath = join(rule.to, rel);
             const st = statSync(full);
@@ -278,6 +293,36 @@ for (const a of plan.slice(0, 10)) {
   console.log(`  ${a.kind ?? a.status}  ${a.src ?? "-"}  →  ${a.dst ?? a.reason ?? "-"}  (${a.size ?? 0} b)`);
 }
 if (plan.length > 10) console.log(`  ... and ${plan.length - 10} more`);
+
+if (args.outputPath) {
+  // A-014: serialize full plan to JSON for downstream analysis
+  const byRule = {};
+  let totalBytes = 0;
+  for (const a of plan) {
+    const rid = a.rule_id ?? "unknown";
+    if (!byRule[rid]) byRule[rid] = { files: 0, bytes: 0 };
+    byRule[rid].files++;
+    byRule[rid].bytes += a.size ?? 0;
+    totalBytes += a.size ?? 0;
+  }
+  const report = {
+    generated_at: new Date().toISOString(),
+    session_id: sessionId,
+    rules_count: rules.length,
+    rules_sha256: rulesSha,
+    plan_count: plan.length,
+    total_bytes: totalBytes,
+    by_rule: byRule,
+    first_20_actions: plan.slice(0, 20),
+    rules_detail: rules,
+    glyph_sentence: `META-ACER-DRY-RUN-FULL-TREE · session=${sessionId} · rules=${rules.length} · plan=${plan.length} · bytes=${totalBytes} @ M-EYEWITNESS .`,
+  };
+  ensureDir(dirname(args.outputPath));
+  writeFileSync(args.outputPath, JSON.stringify(report, null, 2));
+  console.log(`\n[A-014] dry-run plan written → ${args.outputPath}`);
+  console.log(`  rules=${rules.length} plan=${plan.length} bytes=${totalBytes}`);
+  console.log(`  by_rule:`, JSON.stringify(byRule));
+}
 
 if (args.execute) {
   appendLog({ session: sessionId, ts: new Date().toISOString(), kind: "SESSION_START", rules_sha256: rulesSha, plan_count: plan.length });

@@ -1,0 +1,265 @@
+{
+  "generated_at": "2026-04-18T21:54:20.268Z",
+  "session_id": "2026-04-18T21-54-20-234Z_a3226e87",
+  "rules_count": 10,
+  "rules_sha256": "faaaed5c41ac8b3a6889be0dd03b6daa5c1bf6bdb8671435b68c3f1bf8a4eaf0",
+  "plan_count": 409,
+  "total_bytes": 10139631,
+  "by_rule": {
+    "A011-R01": {
+      "files": 68,
+      "bytes": 106056
+    },
+    "A014-R02": {
+      "files": 249,
+      "bytes": 3323218
+    },
+    "A014-R03": {
+      "files": 14,
+      "bytes": 74215
+    },
+    "A014-R04": {
+      "files": 2,
+      "bytes": 7482
+    },
+    "A014-R05": {
+      "files": 1,
+      "bytes": 1479
+    },
+    "A014-R06": {
+      "files": 45,
+      "bytes": 139039
+    },
+    "A014-R07": {
+      "files": 7,
+      "bytes": 44885
+    },
+    "A014-R08": {
+      "files": 15,
+      "bytes": 175462
+    },
+    "A014-R09": {
+      "files": 6,
+      "bytes": 6229199
+    },
+    "A014-R10": {
+      "files": 2,
+      "bytes": 38596
+    }
+  },
+  "first_20_actions": [
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\avatar-npc-business\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\avatar-npc-business\\skill.json",
+      "size": 1926
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\captures-prune-desktop-auto\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\captures-prune-desktop-auto\\skill.json",
+      "size": 643
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\captures-prune-desktop-auto-dry-run\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\captures-prune-desktop-auto-dry-run\\skill.json",
+      "size": 614
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\captures-stats\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\captures-stats\\skill.json",
+      "size": 385
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\CATALOG.md",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\CATALOG.md",
+      "size": 17883
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\chrome-profiles-list\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\chrome-profiles-list\\skill.json",
+      "size": 597
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codebase-review-composite-tools-baseline\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codebase-review-composite-tools-baseline\\skill.json",
+      "size": 3059
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codebase-review-external-mcp-cache\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codebase-review-external-mcp-cache\\skill.json",
+      "size": 1973
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codebase-review-kickoff\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codebase-review-kickoff\\skill.json",
+      "size": 2163
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codebase-review-token-efficiency-snapshot\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codebase-review-token-efficiency-snapshot\\skill.json",
+      "size": 2653
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-cloudflare-deploy\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-cloudflare-deploy\\skill.json",
+      "size": 1057
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-develop-web-game\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-develop-web-game\\skill.json",
+      "size": 1048
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-doc\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-doc\\skill.json",
+      "size": 931
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-figma\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-figma\\skill.json",
+      "size": 949
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-figma-implement-design\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-figma-implement-design\\skill.json",
+      "size": 1102
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-gh-address-comments\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-gh-address-comments\\skill.json",
+      "size": 1084
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-gh-fix-ci\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-gh-fix-ci\\skill.json",
+      "size": 990
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-google-code-wiki\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-google-code-wiki\\skill.json",
+      "size": 1048
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-imagegen\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-imagegen\\skill.json",
+      "size": 976
+    },
+    {
+      "rule_id": "A011-R01",
+      "kind": "COPY",
+      "src": "C:\\asolaria-from-liris\\skills\\codex-ref-jupyter-notebook\\skill.json",
+      "dst": "C:\\asolaria-acer\\packages-legacy-import\\skills\\codex-ref-jupyter-notebook\\skill.json",
+      "size": 1048
+    }
+  ],
+  "rules_detail": [
+    {
+      "id": "A011-R01",
+      "from": "C:/asolaria-from-liris/skills",
+      "to": "C:/asolaria-acer/packages-legacy-import/skills",
+      "kind": "COPY",
+      "note": "310 KB skill specs"
+    },
+    {
+      "id": "A014-R02",
+      "from": "C:/asolaria-from-liris/src",
+      "to": "C:/asolaria-acer/packages-legacy-import/src",
+      "kind": "COPY",
+      "note": "3.8 MB source code"
+    },
+    {
+      "id": "A014-R03",
+      "from": "C:/asolaria-from-liris/tools",
+      "to": "C:/asolaria-acer/packages-legacy-import/tools",
+      "kind": "COPY",
+      "note": "112 KB tools"
+    },
+    {
+      "id": "A014-R04",
+      "from": "C:/asolaria-from-liris/lib",
+      "to": "C:/asolaria-acer/packages-legacy-import/lib",
+      "kind": "COPY",
+      "note": "12 KB lib"
+    },
+    {
+      "id": "A014-R05",
+      "from": "C:/asolaria-from-liris/middleware",
+      "to": "C:/asolaria-acer/packages-legacy-import/middleware",
+      "kind": "COPY",
+      "note": "4 KB middleware"
+    },
+    {
+      "id": "A014-R06",
+      "from": "C:/asolaria-from-liris/routes",
+      "to": "C:/asolaria-acer/packages-legacy-import/routes",
+      "kind": "COPY",
+      "note": "231 KB routes"
+    },
+    {
+      "id": "A014-R07",
+      "from": "C:/asolaria-from-liris/services",
+      "to": "C:/asolaria-acer/packages-legacy-import/services",
+      "kind": "COPY",
+      "note": "63 KB services"
+    },
+    {
+      "id": "A014-R08",
+      "from": "C:/asolaria-from-liris/config",
+      "to": "C:/asolaria-acer/packages-legacy-import/config",
+      "kind": "COPY",
+      "note": "208 KB config"
+    },
+    {
+      "id": "A014-R09",
+      "from": "C:/asolaria-from-liris/data",
+      "to": "C:/asolaria-acer/packages-legacy-import/data",
+      "kind": "COPY",
+      "note": "6 MB data"
+    },
+    {
+      "id": "A014-R10",
+      "from": "C:/asolaria-from-liris/public",
+      "to": "C:/asolaria-acer/packages-legacy-import/public",
+      "kind": "COPY",
+      "note": "40 KB public assets"
+    }
+  ],
+  "glyph_sentence": "META-ACER-DRY-RUN-FULL-TREE · session=2026-04-18T21-54-20-234Z_a3226e87 · rules=10 · plan=409 · bytes=10139631 @ M-EYEWITNESS ."
+}
