@@ -83,13 +83,17 @@ async function sweep() {
       const result = runAcerDispatch(envelope);
       const resultEnv = buildResultEnvelope(result);
 
-      // Sign if key available (non-blocking: unsigned envelopes still flow back)
-      let payload = resultEnv;
+      // Sign if key available — preserve top-level verb so Liris's inbox
+      // filter works. Embed signature as sibling (not wrapper) so the
+      // envelope shape is { verb, actor, target, body, glyph_sentence,
+      // entry_sig } with verb at top level.
+      let envelopeToSend = resultEnv;
       if (acerPriv) {
-        payload = signPayload(resultEnv, acerPriv, SIGNING_KEY_ID);
+        const wrapped = signPayload(resultEnv, acerPriv, SIGNING_KEY_ID);
+        envelopeToSend = { ...resultEnv, entry_sig: wrapped.signature };
       }
 
-      const post = await httpPost(LIRIS_ENDPOINT, JSON.stringify(payload));
+      const post = await httpPost(LIRIS_ENDPOINT, JSON.stringify(envelopeToSend));
       if (post.ok) {
         handled++;
         processed.add(scan_id);
