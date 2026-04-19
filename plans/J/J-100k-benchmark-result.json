@@ -1,0 +1,11 @@
+{
+  "n": 100000,
+  "sign_ms": 72922,
+  "schema_ms": 151,
+  "verify_ms": 26847,
+  "schema_invalid": 0,
+  "sig_failed": 0,
+  "throughput_synth_per_s": 1371,
+  "throughput_verify_per_s": 3725,
+  "glyph_sentence": "EVT-J100K-BATCH · n=100000 · synth=72922ms · schema=151ms · verify=26847ms · schema-invalid=0 · sig-failed=0 @ M-EYEWITNESS ."
+}
