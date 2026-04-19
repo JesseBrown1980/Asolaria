@@ -1,0 +1,167 @@
+{
+  "shape": "6×6×6×6×6×12 = 93312",
+  "total_points_per_pass": 93312,
+  "first_pass": {
+    "pass_number": 1,
+    "total_points": 93312,
+    "green": 36,
+    "yellow": 2124,
+    "red": 91152,
+    "l0_l2_rejected": 15552,
+    "l3_rejected": 41472,
+    "l4_insufficient": 91044,
+    "l5_promoted": 36,
+    "gnn_edges_after": 36,
+    "gnn_updates_this_pass": 91188,
+    "by_actor": {
+      "acer": {
+        "green": 6,
+        "yellow": 354,
+        "red": 15192
+      },
+      "liris": {
+        "green": 6,
+        "yellow": 354,
+        "red": 15192
+      },
+      "falcon": {
+        "green": 6,
+        "yellow": 354,
+        "red": 15192
+      },
+      "felipe": {
+        "green": 6,
+        "yellow": 354,
+        "red": 15192
+      },
+      "beast": {
+        "green": 6,
+        "yellow": 354,
+        "red": 15192
+      },
+      "dan": {
+        "green": 6,
+        "yellow": 354,
+        "red": 15192
+      }
+    },
+    "by_verb": {
+      "scan-dispatch": {
+        "green": 36,
+        "yellow": 2124,
+        "red": 13392
+      },
+      "scan-result": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "drift-detected": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "cosign-append": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "migration-intent": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "heartbeat": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      }
+    },
+    "runtime_ms": 57,
+    "glyph_sentence": "EVT-DEEP-WAVE-CASCADE-PASS-1 · points=93312 · green=36 · yellow=2124 · red=91152 · gnn-edges=36 · runtime=57ms @ M-EYEWITNESS ."
+  },
+  "second_pass": {
+    "pass_number": 2,
+    "total_points": 93312,
+    "green": 0,
+    "yellow": 0,
+    "red": 93312,
+    "l0_l2_rejected": 15552,
+    "l3_rejected": 41472,
+    "l4_insufficient": 93312,
+    "l5_promoted": 0,
+    "gnn_edges_after": 36,
+    "gnn_updates_this_pass": 93312,
+    "by_actor": {
+      "acer": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "liris": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "falcon": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "felipe": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "beast": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "dan": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      }
+    },
+    "by_verb": {
+      "scan-dispatch": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "scan-result": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "drift-detected": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "cosign-append": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "migration-intent": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      },
+      "heartbeat": {
+        "green": 0,
+        "yellow": 0,
+        "red": 15552
+      }
+    },
+    "runtime_ms": 44,
+    "glyph_sentence": "EVT-DEEP-WAVE-CASCADE-PASS-2 · points=93312 · green=0 · yellow=0 · red=93312 · gnn-edges=36 · runtime=44ms @ M-EYEWITNESS ."
+  },
+  "delta_green": -36,
+  "delta_red": 2160,
+  "delta_l5_promoted": -36,
+  "convergence_signal": "diverging",
+  "glyph_sentence": "EVT-DEEP-WAVE-SECOND-CASCADE · shape=6x6x6x6x6x12 · per-pass=93312 · Δgreen=-36 · Δred=2160 · Δpromote=-36 · convergence=diverging @ M-EYEWITNESS ."
+}
