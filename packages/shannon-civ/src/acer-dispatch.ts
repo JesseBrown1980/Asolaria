@@ -29,7 +29,13 @@ export interface ShannonScanDispatchEnvelope {
   body: {
     scan_id: string;
     spawn_request: SpawnRequest;
-    l0_l2_verdicts: Array<{ level: "L0" | "L1" | "L2"; ok: boolean; reason?: string }>;
+    // G-089 schema-alignment: accept both liris G-085 wire shape
+    // { layer, decision, reason } AND test-harness shape { level, ok }.
+    // synthesize() normalizes both via isItemOk + itemLevel helpers.
+    l0_l2_verdicts: Array<
+      | { level: "L0" | "L1" | "L2"; ok: boolean; reason?: string }
+      | { layer: "L0" | "L1" | "L2"; decision: string; reason?: string }
+    >;
   };
   glyph_sentence?: string;
 }
@@ -137,13 +143,21 @@ export function synthesize(envelope: ShannonScanDispatchEnvelope, l3: L3Result):
   const { scan_id, spawn_request, l0_l2_verdicts } = envelope.body;
   const notes: string[] = [];
 
-  const l0l2_all_ok = l0_l2_verdicts.every(v => v.ok);
+  // G-089 schema-alignment helpers — accept both { level, ok } and
+  // { layer, decision } shapes
+  const isItemOk = (v: any): boolean => {
+    if (typeof v.ok === "boolean") return v.ok;
+    if (typeof v.decision === "string") return v.decision === "pass" || v.decision === "ok";
+    return false;
+  };
+  const itemLevel = (v: any): string => String(v.level ?? v.layer ?? "");
+
+  const l0l2_all_ok = l0_l2_verdicts.every((v: any) => isItemOk(v));
   const l3_accepted = l3.verdict === "PROFILE_ACER_RESIDENT";
 
   const canonical = (CANONICAL_PROFILES as any)[spawn_request.profile_name];
   const phase_expected = canonical?.phase;
-  // Simple phase-expectation check: L0-L2 must produce one verdict per level (ideally ok on each)
-  const hasAllLevels = ["L0", "L1", "L2"].every(lvl => l0_l2_verdicts.some(v => v.level === lvl));
+  const hasAllLevels = ["L0", "L1", "L2"].every(lvl => l0_l2_verdicts.some((v: any) => itemLevel(v) === lvl));
   const phase_expectation_met = hasAllLevels;
   if (!hasAllLevels) notes.push("L0/L1/L2 coverage incomplete");
   if (typeof phase_expected === "number") notes.push(`profile phase=${phase_expected}`);

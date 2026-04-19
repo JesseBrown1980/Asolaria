@@ -128,6 +128,44 @@ assert(res10.glyph_sentence.includes("verdict="), "has verdict=");
 assert(res10.glyph_sentence.includes("evidence="), "has evidence=");
 assert(res10.glyph_sentence.endsWith("@ M-EYEWITNESS ."), "ends mood");
 
+// T12: G-089 schema-alignment — liris wire shape { layer, decision, reason }
+console.log("\nT12: G-089 accept liris wire shape (layer/decision)");
+const envLiris: ShannonScanDispatchEnvelope = {
+  verb: "shannon-scan-dispatch",
+  actor: "liris-shannon-civ",
+  target: "acer",
+  d1: "IDENTITY",
+  body: {
+    scan_id: "scan-liris-wire",
+    spawn_request: {
+      profile_name: "shannon-recon" as any,
+      scan_id: "scan-liris-wire",
+      scope: { allowed_hosts: ["test.x"], allowed_paths: ["/y"] },
+      operator_witness: { gate: "jesse", profile: "owner" },
+      requested_by: "liris",
+      ts: new Date().toISOString(),
+    } as any,
+    l0_l2_verdicts: [
+      { layer: "L0", decision: "pass", reason: "rate+scope ok" },
+      { layer: "L1", decision: "pass" },
+      { layer: "L2", decision: "pass" },
+    ] as any,
+  },
+  glyph_sentence: "EVT-SHANNON-SCAN-DISPATCH @ M-INDICATIVE .",
+};
+const r12 = runAcerDispatch(envLiris);
+assert(r12.verdict === "promote", `liris wire shape → promote (got ${r12.verdict})`, r12.reason);
+assert(r12.l4.evidence === "STRONG", "evidence=STRONG on liris wire shape");
+assert(r12.l4.l0_l2_all_ok === true, "l0_l2_all_ok true on decision=pass");
+
+// T13: mixed shapes still detect failure
+console.log("\nT13: decision=fail → contradictory");
+const envFail = JSON.parse(JSON.stringify(envLiris));
+envFail.body.l0_l2_verdicts[0].decision = "fail";
+const r13 = runAcerDispatch(envFail);
+assert(r13.l4.l0_l2_all_ok === false, "decision=fail flagged");
+assert(r13.verdict === "halt", "halt on contradictory");
+
 console.log("\n=== RESULTS ===");
 console.log("pass:", pass);
 console.log("fail:", fail);
