@@ -27,6 +27,8 @@ const WHITELIST = {
   "/agent-manager-lessons.md":  "C:/asolaria-acer/plans/D/agent-manager-lessons.md",
   "/device-bound-instance-as-root.md": "C:/asolaria-acer/plans/D/device-bound-instance-as-root.md",
   "/_asolaria_identity.json":         "C:/asolaria-acer/data/device-instance/_asolaria_identity.json",
+  "/_asolaria_falcon_identity.json":  "C:/asolaria-acer/data/device-instance/_asolaria_falcon_identity.json",
+  "/ed25519-registry.json":           "C:/asolaria-acer/kernel/ed25519-registry.json",
 };
 
 const MIME = {
