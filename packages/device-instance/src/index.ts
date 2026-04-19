@@ -32,3 +32,10 @@ export {
   type Violation,
   type ViolationKind,
 } from "./manifest-schema.ts";
+
+export {
+  AsolariaInstance,
+  deriveKeyBinding,
+  type SpawnRequest,
+  type KeyBindingDescriptor,
+} from "./instance.ts";
