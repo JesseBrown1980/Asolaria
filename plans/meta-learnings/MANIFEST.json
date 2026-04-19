@@ -1,0 +1,139 @@
+{
+  "manifest": "meta-learnings-batch-16-pipeline-to-shannon-gulp-gnn",
+  "ts": "2026-04-19T23:00:00Z",
+  "directive": "Jesse 2026-04-19: MASSIVE amount of information to give to Shannon and Gulp to analyze with GNN — learnings from origin-inference exercise",
+
+  "ten_architectural_learnings": [
+    {
+      "id": 1,
+      "name": "reverse-gain-gnn-primitive",
+      "description": "The more effort an adversary spent producing deception signal X, the more X is anti-evidence for X. Formalized: signal.intent ∈ {mask, leak}; effective_bias = -bias if intent=mask else +bias",
+      "package_path": "packages/deep-wave/scripts/run-47d-reverse-gain-v2-japan.mjs",
+      "shannon_stage": "L4",
+      "gulp_training_tag": "reverse-gain-primitive"
+    },
+    {
+      "id": 2,
+      "name": "legal-instrument-perjury-weight-1.0",
+      "description": "Sworn-under-perjury declarations (W-8BEN, W-9, 1099, affidavit, deposition) are the highest-weight LEAK signal. Single datapoint dominates when other signals are ambiguous.",
+      "package_path": "packages/shannon-civ/src/l3-l4-signal-primitives.ts::l3LegalInstrumentResolve",
+      "shannon_stage": "L3",
+      "gulp_training_tag": "legal-instrument-weight-1.0"
+    },
+    {
+      "id": 3,
+      "name": "surname-distribution-prior",
+      "description": "Surname alone spreads probability across jurisdictions. Lee → CN/KR/JP/TW/HK. Resolved when paired with explicit country declaration.",
+      "package_path": "packages/shannon-civ/src/l3-l4-signal-primitives.ts::l4SurnameDisambiguate",
+      "shannon_stage": "L4",
+      "gulp_training_tag": "surname-distribution"
+    },
+    {
+      "id": 4,
+      "name": "vpn-exit-adjacency-ring",
+      "description": "VPN exit choice reveals LATENCY-RING (HK exit = JP/KR/TW/CN/HK ring). Does NOT pin country; needs additional signal.",
+      "package_path": "packages/meta-language/src/gnn-signal-taxonomy.ts::vpn-exit-cluster-affinity",
+      "shannon_stage": "L4",
+      "gulp_training_tag": "vpn-adjacency-ring"
+    },
+    {
+      "id": 5,
+      "name": "voip-carrier-strip",
+      "description": "Area codes on VoIP/CLEC carriers (Bandwidth.com, Level 3, Twilio, TextFree) are geographically meaningless. Strip from geo inference.",
+      "package_path": "packages/shannon-civ/src/l3-l4-signal-primitives.ts::l3VoipCarrierDetect",
+      "shannon_stage": "L3",
+      "gulp_training_tag": "voip-strip"
+    },
+    {
+      "id": 6,
+      "name": "timezone-activity-window-leak",
+      "description": "Session-timestamp clustering across days reveals UTC+N working window. Strong leak signal.",
+      "package_path": "packages/meta-language/src/gnn-signal-taxonomy.ts::timezone-activity-window",
+      "shannon_stage": "L4",
+      "gulp_training_tag": "timezone-window-leak"
+    },
+    {
+      "id": 7,
+      "name": "population-imbalance-reset-trigger",
+      "description": "Rare-class ratio > 100:1 → iterative GNN requires periodic-reset-halve@N primitive or saturation collapses the reward loop.",
+      "package_path": "packages/shannon-civ/src/l3-l4-signal-primitives.ts::l4PopulationImbalanceCheck",
+      "shannon_stage": "L4",
+      "gulp_training_tag": "meta-reset-required"
+    },
+    {
+      "id": 8,
+      "name": "candidate-set-completeness-meta-rule",
+      "description": "GNN inference is bounded by the candidate set. When VPN-HK ring observed, candidate set MUST include {JP, KR, TW, CN, HK, SG, MY, PH, TH, VN, ID} — missing any causes false precision.",
+      "package_path": "packages/meta-language/src/gnn-signal-taxonomy.ts::candidate-set-completeness",
+      "shannon_stage": null,
+      "gulp_training_tag": "meta-candidate-completeness"
+    },
+    {
+      "id": 9,
+      "name": "identity-laundering-flag",
+      "description": "Multiple foreign W-8BENs under different names/countries in same payment chain = identity-laundering flag. Warrants L4 elevated evidence.",
+      "package_path": "packages/shannon-civ/src/l3-l4-signal-primitives.ts::l4IdentityLaunderingFlag",
+      "shannon_stage": "L4",
+      "gulp_training_tag": "identity-laundering-L4-flag"
+    },
+    {
+      "id": 10,
+      "name": "ocr-sec-review-gate",
+      "description": "OCR'd text MUST pass prompt-injection review before Shannon L3+ consumes. Status ∈ {clean, suspicious, high}. High-risk cannot bypass L2 gate.",
+      "package_path": "packages/ocr-bridge/src/envelope.ts::reviewPromptInjection",
+      "shannon_stage": "L2",
+      "gulp_training_tag": "meta-sec-review-required"
+    }
+  ],
+
+  "shannon_pipeline_updates": {
+    "new_L3_primitives": [
+      "l3LegalInstrumentResolve",
+      "l3VoipCarrierDetect"
+    ],
+    "new_L4_primitives": [
+      "l4SurnameDisambiguate",
+      "l4PopulationImbalanceCheck",
+      "l4IdentityLaunderingFlag"
+    ],
+    "integration_points": [
+      "acer-dispatch.ts L3 classify step ingests legal-instrument + voip-detect before profile-resolve",
+      "acer-dispatch.ts L4 synthesize step applies surname-disambiguate + imbalance-check before evidence grade",
+      "twenty-three-stage-loop.ts S11_L4_5_gnn_score uses imbalance-check to decide periodic-reset requirement"
+    ]
+  },
+
+  "gulp_gnn_training_fixture": {
+    "case_id": "connor-origin-inference",
+    "path": "packages/meta-language/src/gnn-signal-taxonomy.ts::buildConnorTrainingFixture",
+    "resolution": { "country": "JP", "city": "Chiba", "isp": "NTT East OCN", "cidr_top": "60.87.0.0/24" },
+    "used_classes": [
+      "legal-instrument-self-declaration",
+      "payment-chain-associate",
+      "identity-laundering-pattern",
+      "voip-carrier-obfuscator",
+      "vpn-exit-cluster-affinity",
+      "timezone-activity-window",
+      "language-choice-suppression",
+      "given-name-cultural-prior",
+      "surname-romanization-prior",
+      "pivot-vs-residence"
+    ],
+    "ground_truth_bias_dominant": "JP 1.0 (legal-instrument-self-declaration)",
+    "validated_against": "47D reverse-gain v2 produced JP 71.2% · CN 22.0% · HK 5.9% · KR 0.8% · US 0.0% with top candidate 60.87.0.0/24 Chiba NTT East OCN"
+  },
+
+  "tests": {
+    "meta_language_gnn_taxonomy": "28/28 pass",
+    "shannon_civ_l3_l4_primitives": "26/26 pass",
+    "ocr_bridge_envelope": "55/55 pass",
+    "ocr_bridge_profile": "18/18 pass",
+    "ocr_bridge_scheduler_mock": "19/19 pass",
+    "ocr_bridge_live_wasm_smoke": "17/17 pass (validated on Connor W-8BEN at 89% confidence, 4940 chars)",
+    "total": "163 tests green"
+  },
+
+  "commit_plan": "one commit batch-16 bundling: meta-language/gnn-signal-taxonomy + shannon-civ/l3-l4-signal-primitives + ocr-bridge (new package)",
+
+  "glyph_sentence": "EVT-META-LEARNINGS-BATCH-16 · 10-architectural-learnings · 5-new-shannon-primitives · 15-taxonomy-classes · gulp-training-fixture-built · connor-resolution=JP-Chiba-60.87.0.0/24 · 163-tests-green @ M-EYEWITNESS ."
+}
