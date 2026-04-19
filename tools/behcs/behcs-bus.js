@@ -22,6 +22,18 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { execSync } = require('child_process');
+const { ingressCheck: schemaIngressCheck } = require('./schema-ingress.js');
+
+// Q-003 schema-ingress mode: "observe" (default, log-only), "warn", "reject"
+const SCHEMA_INGRESS_MODE = process.env.BEHCS_SCHEMA_INGRESS_MODE || 'observe';
+
+// G-090 staleness surface
+const PROCESS_STARTED_AT = new Date().toISOString();
+let SOURCE_COMMIT = 'unknown';
+try {
+  SOURCE_COMMIT = execSync('git -C C:/asolaria-acer rev-parse HEAD', { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }).trim().slice(0, 12);
+} catch { /* not a repo or no git */ }
 
 const ROOT = process.env.BEHCS_ROOT || 'C:/Users/acer/Asolaria';
 const BEHCS_DIR = path.join(ROOT, 'data/behcs');
@@ -29,6 +41,63 @@ const INBOX = path.join(BEHCS_DIR, 'inbox.ndjson');
 const OUTBOX = path.join(BEHCS_DIR, 'outbox.ndjson');
 const REGISTRY = path.join(BEHCS_DIR, 'device-registry.json');
 const SYMBOL_TABLE = path.join(BEHCS_DIR, 'symbol-table-256.json');
+
+// 2026-04-18 ingress sig-verify — complements Liris's outbound signer.
+// Loads the ed25519 registry lazily per-request so acer picks up new
+// peer keys without needing a bus restart.
+const ED25519_REGISTRY_PATH = process.env.ED25519_REGISTRY || 'C:/asolaria-acer/kernel/ed25519-registry.json';
+
+function loadEd25519Registry() {
+  try {
+    if (!fs.existsSync(ED25519_REGISTRY_PATH)) return null;
+    return JSON.parse(fs.readFileSync(ED25519_REGISTRY_PATH, 'utf-8'));
+  } catch { return null; }
+}
+
+function rawPubKeyToKeyObject(b64) {
+  const raw = Buffer.from(b64, 'base64');
+  // SPKI ed25519 wrapper: 302a300506032b6570032100 <32 bytes>
+  const header = Buffer.from('302a300506032b6570032100', 'hex');
+  const der = Buffer.concat([header, raw]);
+  return crypto.createPublicKey({ key: der, format: 'der', type: 'spki' });
+}
+
+// Returns { verdict: 'VERIFIED'|'REJECTED'|'UNSIGNED', reason, owner_glyph, key_id }
+function verifyIngressEnvelope(msg) {
+  // Accept two shapes:
+  //   (a) top-level { payload, signature: { key_id, sig_b64, alg, signed_at } }  (D-055 SignedEnvelope<T>)
+  //   (b) nested body.*_signed_envelope same shape (observed in bilateral reciprocal)
+  //   (c) no signature → UNSIGNED (backward compat)
+  let envelope = null;
+  if (msg && msg.signature && msg.payload) envelope = msg;
+  else if (msg && msg.body && typeof msg.body === 'object') {
+    for (const k of Object.keys(msg.body)) {
+      const v = msg.body[k];
+      if (v && typeof v === 'object' && v.signature && v.payload) { envelope = v; break; }
+    }
+  }
+  if (!envelope) return { verdict: 'UNSIGNED' };
+
+  const sig = envelope.signature;
+  if (!sig.key_id || !sig.sig_b64) return { verdict: 'REJECTED', reason: 'missing_sig_fields' };
+  if (sig.alg && sig.alg !== 'ed25519') return { verdict: 'REJECTED', reason: 'wrong_alg', key_id: sig.key_id };
+
+  const reg = loadEd25519Registry();
+  if (!reg) return { verdict: 'REJECTED', reason: 'registry_not_loadable', key_id: sig.key_id };
+
+  const entry = (reg.keys || []).find(k => k.key_id === sig.key_id);
+  if (!entry) return { verdict: 'REJECTED', reason: 'key_not_in_registry', key_id: sig.key_id };
+  if (entry.rotated_at) return { verdict: 'REJECTED', reason: 'key_rotated_out', key_id: sig.key_id, owner_glyph: entry.owner_glyph };
+
+  try {
+    const pub = rawPubKeyToKeyObject(entry.public_key_b64);
+    const ok = crypto.verify(null, Buffer.from(JSON.stringify(envelope.payload), 'utf-8'), pub, Buffer.from(sig.sig_b64, 'base64'));
+    if (!ok) return { verdict: 'REJECTED', reason: 'signature_mismatch', key_id: sig.key_id, owner_glyph: entry.owner_glyph };
+    return { verdict: 'VERIFIED', key_id: sig.key_id, owner_glyph: entry.owner_glyph, host_device: entry.host_device };
+  } catch (e) {
+    return { verdict: 'REJECTED', reason: 'verify_exception:' + (e.message || String(e)), key_id: sig.key_id };
+  }
+}
 
 const DEFAULT_PORT = parseInt(process.env.BEHCS_PORT || '4947'); // 47th dim cube-adjacent
 const DEVICE_ID = process.env.BEHCS_DEVICE || 'acer';
@@ -151,6 +220,10 @@ function startBus(port) {
         port, ts: new Date().toISOString(),
         registry: Object.keys(registry.devices).length + ' devices',
         cube: { D34: 2685619, D26: 1030301 },
+        // G-090 staleness surface — peers can detect pre-patch daemons
+        process_started_at: PROCESS_STARTED_AT,
+        source_commit: SOURCE_COMMIT,
+        uptime_s: Math.round(process.uptime()),
       }));
       return;
     }
@@ -162,6 +235,79 @@ function startBus(port) {
       req.on('end', () => {
         try {
           const msg = JSON.parse(body);
+
+          // 2026-04-18 ingress sig-verify (D-055 + D-056 + complements liris validator).
+          // Stamps msg._sig_check with verdict. REJECTED signatures block ingestion
+          // with HTTP 403. UNSIGNED envelopes accepted (backward compat) but tagged.
+          const sigCheck = verifyIngressEnvelope(msg);
+          msg._sig_check = sigCheck;
+          if (sigCheck.verdict === 'REJECTED') {
+            const evt = {
+              event: 'EVT-INGRESS-SIG-REJECTED',
+              ts: new Date().toISOString(),
+              reason: sigCheck.reason,
+              key_id: sigCheck.key_id || null,
+              owner_glyph: sigCheck.owner_glyph || null,
+              from: msg.from || msg.actor || null,
+              verb: msg.verb || null,
+              glyph_sentence: `EVT-INGRESS-SIG-REJECTED · reason=${sigCheck.reason} · key=${sigCheck.key_id || 'none'} @ M-EYEWITNESS .`,
+            };
+            appendNdjson(path.join(BEHCS_DIR, 'ingress-sig-events.ndjson'), evt);
+            console.log('[BEHCS] REJECTED sig:', sigCheck.reason, 'key=' + (sigCheck.key_id || 'none'));
+            res.writeHead(403);
+            res.end(JSON.stringify({ ok: false, error: 'sig_rejected', reason: sigCheck.reason, key_id: sigCheck.key_id, by: DEVICE_ID }));
+            return;
+          }
+          if (sigCheck.verdict === 'VERIFIED') {
+            const evt = {
+              event: 'EVT-INGRESS-SIG-VERIFIED',
+              ts: new Date().toISOString(),
+              key_id: sigCheck.key_id,
+              owner_glyph: sigCheck.owner_glyph,
+              host_device: sigCheck.host_device,
+              from: msg.from || msg.actor || null,
+              verb: msg.verb || null,
+              glyph_sentence: `EVT-INGRESS-SIG-VERIFIED · key=${sigCheck.key_id} · owner=${sigCheck.owner_glyph} @ M-EYEWITNESS .`,
+            };
+            appendNdjson(path.join(BEHCS_DIR, 'ingress-sig-events.ndjson'), evt);
+            console.log('[BEHCS] VERIFIED sig:', sigCheck.key_id, 'owner=' + sigCheck.owner_glyph);
+          }
+
+          // Q-003 schema ingress check — observe-mode logs drift without blocking.
+          // Authoritative contracts in packages/schema-contracts; this probe mirrors
+          // their shape in plain JS so behcs-bus can measure real-wire compliance.
+          try {
+            const schemaCheck = schemaIngressCheck(msg, SCHEMA_INGRESS_MODE);
+            msg._schema_check = { action: schemaCheck.action, matched: schemaCheck.matched_contract, violations: schemaCheck.violations.length };
+            if (schemaCheck.violations.length > 0 || schemaCheck.matched_contract) {
+              const evt = {
+                event: schemaCheck.violations.length > 0
+                  ? (SCHEMA_INGRESS_MODE === 'reject' ? 'EVT-INGRESS-SCHEMA-REJECTED' :
+                     SCHEMA_INGRESS_MODE === 'warn' ? 'EVT-INGRESS-SCHEMA-WARNED' : 'EVT-INGRESS-SCHEMA-OBSERVED')
+                  : 'EVT-INGRESS-SCHEMA-OK',
+                ts: new Date().toISOString(),
+                mode: SCHEMA_INGRESS_MODE,
+                verb: msg.verb || null,
+                matched_contract: schemaCheck.matched_contract,
+                violation_count: schemaCheck.violations.length,
+                violations: schemaCheck.violations.slice(0, 10),
+                from: msg.from || msg.actor || null,
+                glyph_sentence: schemaCheck.glyph_sentence,
+              };
+              appendNdjson(path.join(BEHCS_DIR, 'ingress-schema-events.ndjson'), evt);
+              if (schemaCheck.violations.length > 0) {
+                console.log('[BEHCS:schema]', schemaCheck.glyph_sentence);
+              }
+            }
+            if (schemaCheck.action === 'reject' && SCHEMA_INGRESS_MODE === 'reject') {
+              res.writeHead(400);
+              res.end(JSON.stringify({ ok: false, error: 'schema_rejected', contract: schemaCheck.matched_contract, violations: schemaCheck.violations, by: DEVICE_ID }));
+              return;
+            }
+          } catch (se) {
+            console.log('[BEHCS:schema] shim error:', se.message);
+          }
+
           msg.received_at = new Date().toISOString();
           msg.received_by = DEVICE_ID;
 
@@ -183,7 +329,7 @@ function startBus(port) {
           // Stealth: no console output
 
           res.writeHead(200);
-          res.end(JSON.stringify({ ok: true, received: msg.id, by: DEVICE_ID }));
+          res.end(JSON.stringify({ ok: true, received: msg.id, by: DEVICE_ID, sig_verdict: sigCheck.verdict, sig_owner: sigCheck.owner_glyph || null }));
         } catch (e) {
           res.writeHead(400);
           res.end(JSON.stringify({ ok: false, error: e.message }));
@@ -195,14 +341,45 @@ function startBus(port) {
     // List inbox
     if (url.pathname === '/behcs/inbox') {
       try {
+        // 2026-04-18 fix: honor all filter params (bilateral fix mirroring
+        // liris sidecar). Previously only ?mode and ?last were read, so
+        // targeted ack-tracking lost messages under heartbeat flood.
         const mode = url.searchParams.get('mode') || 'all';
-        const lines = fs.existsSync(INBOX)
-          ? fs.readFileSync(INBOX, 'utf8').split('\n').filter(l => l.trim()).map(l => JSON.parse(l))
+        const limit = Math.min(Math.max(1, parseInt(url.searchParams.get('limit') || url.searchParams.get('last') || '50', 10) || 50), 5000);
+        const since = url.searchParams.get('since');
+        const actor = url.searchParams.get('actor');
+        const verb = url.searchParams.get('verb');
+        const target = url.searchParams.get('target');
+        const eventId = url.searchParams.get('event_id');
+        const fallbackD1 = url.searchParams.get('d1');
+
+        const raw = fs.existsSync(INBOX)
+          ? fs.readFileSync(INBOX, 'utf8').split('\n').filter(l => l.trim()).map(l => { try { return JSON.parse(l); } catch (_) { return null; } }).filter(Boolean)
           : [];
-        const filtered = mode === 'all' ? lines : lines.filter(l => l.mode === mode);
-        const last = parseInt(url.searchParams.get('last') || '20');
+        let msgs = mode === 'all' ? raw : raw.filter(l => l.mode === mode);
+        if (eventId) {
+          msgs = msgs.filter(m => {
+            const eid = m.gate_results && m.gate_results.gnn && m.gate_results.gnn.edge && m.gate_results.gnn.edge.eventId;
+            return eid === eventId;
+          });
+        } else {
+          if (since) { const s = Date.parse(since); if (!isNaN(s)) msgs = msgs.filter(m => Date.parse(m.received_at || m.ts || '') >= s); }
+          if (actor) msgs = msgs.filter(m => m.actor === actor || m.from === actor);
+          if (verb) msgs = msgs.filter(m => m.verb === verb);
+          if (target) msgs = msgs.filter(m => m.target === target || m.to === target);
+          if (fallbackD1) msgs = msgs.filter(m => Array.isArray(m.fallbackTuples) && m.fallbackTuples.includes('D1:' + fallbackD1));
+        }
+
+        const tail = msgs.slice(-limit);
         res.writeHead(200);
-        res.end(JSON.stringify({ ok: true, count: filtered.length, messages: filtered.slice(-last) }));
+        res.end(JSON.stringify({
+          ok: true,
+          count: raw.length,
+          filtered: msgs.length,
+          returned: tail.length,
+          filters_applied: { mode, limit, since, actor, verb, target, event_id: eventId, d1: fallbackD1 },
+          messages: tail,
+        }));
       } catch (e) {
         res.writeHead(500);
         res.end(JSON.stringify({ ok: false, error: e.message }));
