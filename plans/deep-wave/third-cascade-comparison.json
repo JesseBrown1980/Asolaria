@@ -1,0 +1,113 @@
+{
+  "shape": "6×6×6×6×6×12 = 93312",
+  "points_per_pass": 93312,
+  "variants": {
+    "symmetric": {
+      "mode": "symmetric",
+      "passes": [
+        {
+          "pass": 1,
+          "green": 36,
+          "yellow": 2124,
+          "red": 91152,
+          "gnn_edges": 36,
+          "runtime_ms": 49
+        },
+        {
+          "pass": 2,
+          "green": 0,
+          "yellow": 0,
+          "red": 93312,
+          "gnn_edges": 36,
+          "runtime_ms": 44
+        },
+        {
+          "pass": 3,
+          "green": 0,
+          "yellow": 0,
+          "red": 93312,
+          "gnn_edges": 36,
+          "runtime_ms": 41
+        }
+      ],
+      "delta_green_pass1_to_pass_n": -36,
+      "delta_red_pass1_to_pass_n": 2160,
+      "convergence": "diverging",
+      "n_passes": 3,
+      "glyph_sentence": "EVT-DEEP-WAVE-THIRD-CASCADE-SYMMETRIC · passes=3 · Δgreen=-36 · Δred=2160 · convergence=diverging @ M-EYEWITNESS ."
+    },
+    "confidence_weighted": {
+      "mode": "confidence-weighted",
+      "passes": [
+        {
+          "pass": 1,
+          "green": 36,
+          "yellow": 2124,
+          "red": 91152,
+          "gnn_edges": 36,
+          "runtime_ms": 51
+        },
+        {
+          "pass": 2,
+          "green": 0,
+          "yellow": 0,
+          "red": 93312,
+          "gnn_edges": 36,
+          "runtime_ms": 42
+        },
+        {
+          "pass": 3,
+          "green": 0,
+          "yellow": 0,
+          "red": 93312,
+          "gnn_edges": 36,
+          "runtime_ms": 41
+        }
+      ],
+      "delta_green_pass1_to_pass_n": -36,
+      "delta_red_pass1_to_pass_n": 2160,
+      "convergence": "diverging",
+      "n_passes": 3,
+      "glyph_sentence": "EVT-DEEP-WAVE-THIRD-CASCADE-CONFIDENCE-WEIGHTED · passes=3 · Δgreen=-36 · Δred=2160 · convergence=diverging @ M-EYEWITNESS ."
+    },
+    "periodic_reset": {
+      "mode": "periodic-reset",
+      "passes": [
+        {
+          "pass": 1,
+          "green": 36,
+          "yellow": 2124,
+          "red": 91152,
+          "gnn_edges": 36,
+          "runtime_ms": 62
+        },
+        {
+          "pass": 2,
+          "green": 0,
+          "yellow": 2160,
+          "red": 91152,
+          "gnn_edges": 36,
+          "runtime_ms": 45
+        },
+        {
+          "pass": 3,
+          "green": 0,
+          "yellow": 2160,
+          "red": 91152,
+          "gnn_edges": 36,
+          "runtime_ms": 44
+        }
+      ],
+      "delta_green_pass1_to_pass_n": -36,
+      "delta_red_pass1_to_pass_n": 0,
+      "convergence": "steady",
+      "n_passes": 3,
+      "glyph_sentence": "EVT-DEEP-WAVE-THIRD-CASCADE-PERIODIC-RESET · passes=3 · Δgreen=-36 · Δred=0 · convergence=steady @ M-EYEWITNESS ."
+    }
+  },
+  "winner": {
+    "mode": "periodic-reset",
+    "reason": "best convergence (steady) with Δgreen=-36"
+  },
+  "glyph_sentence": "EVT-DEEP-WAVE-THIRD-COMPARISON · winner=periodic-reset · sym=diverging · conf=diverging · periodic=steady @ M-EYEWITNESS ."
+}
