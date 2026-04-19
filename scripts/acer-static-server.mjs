@@ -11,6 +11,15 @@ import { createServer } from "node:http";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { extname } from "node:path";
 import { createHash } from "node:crypto";
+import { execSync } from "node:child_process";
+
+// G-090 staleness surface — expose process_started_at + source_commit so
+// peers can detect stale daemons via /health without needing PID access.
+const PROCESS_STARTED_AT = new Date().toISOString();
+let SOURCE_COMMIT = "unknown";
+try {
+  SOURCE_COMMIT = execSync("git -C C:/asolaria-acer rev-parse HEAD", { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] }).trim().slice(0, 12);
+} catch { /* git not available or not a repo */ }
 
 const HOST = "0.0.0.0";
 const PORT = 9998;
@@ -68,7 +77,15 @@ const server = createServer((req, res) => {
   }
   if (req.url === "/health") {
     res.writeHead(200, { "content-type": "application/json; charset=utf-8" });
-    res.end(JSON.stringify({ ok: true, service: "acer-static-server", port: PORT, apex: "COL-ASOLARIA" }));
+    res.end(JSON.stringify({
+      ok: true,
+      service: "acer-static-server",
+      port: PORT,
+      apex: "COL-ASOLARIA",
+      process_started_at: PROCESS_STARTED_AT,
+      source_commit: SOURCE_COMMIT,
+      uptime_s: Math.round(process.uptime()),
+    }));
     return;
   }
   const abs = WHITELIST[req.url];

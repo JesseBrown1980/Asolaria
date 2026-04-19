@@ -14,8 +14,14 @@
 import { readFileSync, existsSync, appendFileSync, mkdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname } from "node:path";
+import { execSync } from "node:child_process";
 import { runAcerDispatch, buildResultEnvelope } from "../src/acer-dispatch.ts";
 import { signPayload, loadRegistry } from "../../kernel/src/ed25519-registry.ts";
+
+// G-090 staleness surface — log on startup + echo into ledger
+const PROCESS_STARTED_AT = new Date().toISOString();
+let SOURCE_COMMIT = "unknown";
+try { SOURCE_COMMIT = execSync("git -C C:/asolaria-acer rev-parse HEAD", { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] }).trim().slice(0, 12); } catch {}
 
 const INBOX = "C:/Users/acer/Asolaria/data/behcs/inbox.ndjson";
 const LEDGER = "C:/Users/acer/Asolaria/data/behcs/shannon-dispatch-processed.ndjson";
@@ -119,7 +125,9 @@ console.log("  LEDGER:", LEDGER);
 console.log("  LIRIS:", LIRIS_ENDPOINT);
 console.log("  signing:", acerPriv ? `${SIGNING_KEY_ID} (signed)` : "UNSIGNED (no private key loaded)");
 console.log("  interval:", INTERVAL + "ms");
-console.log("META-ACER-SHANNON-DISPATCH-DAEMON-STARTED @ M-EYEWITNESS .");
+console.log("  process_started_at:", PROCESS_STARTED_AT);
+console.log("  source_commit:", SOURCE_COMMIT);
+console.log("META-ACER-SHANNON-DISPATCH-DAEMON-STARTED · commit=" + SOURCE_COMMIT + " · started=" + PROCESS_STARTED_AT + " @ M-EYEWITNESS .");
 
 await sweep();
 setInterval(sweep, INTERVAL);
