@@ -11,6 +11,12 @@
 import { readFileSync, existsSync, appendFileSync, mkdirSync, statSync } from "node:fs";
 import { dirname } from "node:path";
 import { createHash } from "node:crypto";
+import { execSync } from "node:child_process";
+
+// G-090 staleness surface (canonized liris seq=66 a5638df)
+const PROCESS_STARTED_AT = new Date().toISOString();
+let SOURCE_COMMIT = "unknown";
+try { SOURCE_COMMIT = execSync("git -C C:/asolaria-acer rev-parse HEAD", { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] }).trim().slice(0, 12); } catch {}
 
 const INBOX = "C:/Users/acer/Asolaria/data/behcs/inbox.ndjson";
 const LEDGER = "C:/Users/acer/Asolaria/data/behcs/orbital-relay-forwarded.ndjson";
@@ -95,12 +101,15 @@ async function sweep() {
   }
 }
 
-console.log("orbital-relay starting — INBOX=" + INBOX);
+console.log("orbital-relay starting");
+console.log("  process_started_at:", PROCESS_STARTED_AT);
+console.log("  source_commit:", SOURCE_COMMIT);
+console.log("  INBOX=" + INBOX);
 console.log("  liris → " + LIRIS_URL);
 console.log("  falcon → " + FALCON_URL);
 console.log("  interval=" + INTERVAL + "ms");
 console.log("  ledger=" + LEDGER);
-console.log("META-ACER-ORBITAL-RELAY-STARTED · liris-via-ethernet · falcon-via-adb-forward-15947 @ M-EYEWITNESS .");
+console.log("META-ACER-ORBITAL-RELAY-STARTED · commit=" + SOURCE_COMMIT + " · started=" + PROCESS_STARTED_AT + " · liris-via-ethernet · falcon-via-adb-forward-15947 @ M-EYEWITNESS .");
 
 // Initial drain
 await sweep();
