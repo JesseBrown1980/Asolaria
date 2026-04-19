@@ -16,6 +16,7 @@ import { createServer, type Server } from "node:http";
 import { execSync } from "node:child_process";
 import { pollFederation, defaultFederationEndpoints, type AggregatorInput, type FederationSnapshot } from "./aggregator.ts";
 import { renderSnapshot, renderOneLiner, type RenderOptions } from "./cli.ts";
+import { renderMetrics, type MetricsSources } from "./metrics-endpoint.ts";
 
 // G-090 self-staleness
 const PROCESS_STARTED_AT = new Date().toISOString();
@@ -27,6 +28,7 @@ export interface DashboardServerOptions {
   host?: string;
   aggregator_input: () => AggregatorInput;
   render_options?: RenderOptions;
+  metrics_sources?: () => Omit<MetricsSources, "federation_snapshot">;
 }
 
 export interface DashboardServerHandle {
@@ -68,6 +70,15 @@ export async function startDashboardServer(opts: DashboardServerOptions): Promis
         }),
       };
     }
+    if (pathname === "/metrics") {
+      const sources = opts.metrics_sources ? opts.metrics_sources() : {};
+      const snap = await pollFederation(opts.aggregator_input());
+      return {
+        status: 200,
+        content_type: "text/plain; version=0.0.4; charset=utf-8",
+        body: renderMetrics({ ...sources, federation_snapshot: snap }),
+      };
+    }
     return {
       status: 404,
       content_type: "application/json",
@@ -75,7 +86,7 @@ export async function startDashboardServer(opts: DashboardServerOptions): Promis
         ok: false,
         error: "not_found",
         path: pathname,
-        routes: ["/", "/render", "/one-liner", "/status", "/json", "/health"],
+        routes: ["/", "/render", "/one-liner", "/status", "/json", "/health", "/metrics"],
       }),
     };
   };
