@@ -17,8 +17,10 @@ reports/asolaria-snapshot-*.json
 reports/asolaria-snapshot-*.md
 reports/asolaria-current-build-profile.*
 reports/*.patch
+reports/c-drive-*-latest.*
 
 # Local temp/debug artifacts
+tmp/
 tmp-*
 *.pid
 *.log
