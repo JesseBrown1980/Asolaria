@@ -3,17 +3,16 @@
     "src",
     "public",
     "skills",
-    "tools",
-    "scripts",
-    "services",
-    "config",
-    "infra",
     "tools-manifests",
-    "docs"
+    "specs",
+    "docs",
+    "examples"
   ],
   "includeFiles": [
     "package.json",
     "package-lock.json",
+    "AGENTS.md",
+    "config/public-release.manifest.json",
     "README.md",
     "PUBLIC_DEPLOYMENT.md",
     "REFERENCES.md",
@@ -23,7 +22,18 @@
     "Stop-Asolaria-ControlPlane.cmd",
     "Start-Asolaria-Phone.cmd",
     "ADB-HealthCheck.cmd",
-    ".gitignore"
+    ".gitignore",
+    "docs/PUBLIC_ROLLOUT_DEEP_WAVE_SECOND_CASCADE.md",
+    "docs/PUBLIC_PROJECTION_MAP.md",
+    "docs/RELEASE_INDEX_CONTRACT.md",
+    "docs/README_SANITIZATION_CHECKLIST.md",
+    "docs/PUBLIC_TREE_DIRECTORY_CONTRACT.md",
+    "docs/DOC_LINK_CLOSURE_AUDIT.md",
+    "docs/P0_REWRITE_BLUEPRINTS.md",
+    "docs/PUBLIC_VALIDATOR_INTERFACE.md",
+    "docs/PUBLIC_RELEASE_PIPELINE.md",
+    "docs/PUBLISHABLE_RELEASE.md",
+    "docs/DOC_SURFACE_CLASSIFICATION.md"
   ],
   "excludePathContains": [
     "\\data\\",
