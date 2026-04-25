@@ -229,4 +229,4 @@ if (require.main === module) {
   main().catch(function (e) { console.error(JSON.stringify({ error: 'main_failed', detail: e.message })); process.exit(6); });
 }
 
-module.exports = { loadLirisToken };
+module.exports = { loadLirisPeer };

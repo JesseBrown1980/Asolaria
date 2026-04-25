@@ -42,6 +42,7 @@ const { spawnSync } = require('child_process');
 const os = require('os');
 
 const INTERVAL_MS = parseInt(process.env.WATCHER_INTERVAL_MS || '5000', 10);
+const RUN_ONCE = process.argv.includes('--once');
 const LOG_FILE = path.join(__dirname, '..', 'logs', 'cpu-gpu-watcher.ndjson');
 const D_MIRROR_DIR = 'D:\\safety-backups\\session-20260406-asolaria';
 const D_MIRROR_FILE = path.join(D_MIRROR_DIR, 'cpu-gpu-watcher.ndjson');
@@ -250,12 +251,18 @@ function tick() {
 console.log('cpu-gpu-watcher starting');
 console.log('  cube:      D14 ENERGY (prime=43, cube=79507)');
 console.log('  interval:  ' + INTERVAL_MS + 'ms');
+console.log('  mode:      ' + (RUN_ONCE ? 'once' : 'persistent'));
 console.log('  log:       ' + LOG_FILE);
 console.log('  D mirror:  ' + D_MIRROR_FILE);
 console.log('  nvidia-smi: ' + (findNvidiaSmi() || 'not found'));
 console.log('');
 
 tick();
+if (RUN_ONCE) {
+  console.log('cpu-gpu-watcher done (once)');
+  process.exit(0);
+}
+
 const handle = setInterval(tick, INTERVAL_MS);
 
 process.on('SIGINT', function() {

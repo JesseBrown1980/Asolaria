@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 
 const projectRoot = path.resolve(__dirname, "..");
@@ -7,7 +8,11 @@ function resolveInstanceRoot() {
   if (!raw) {
     return projectRoot;
   }
-  return path.resolve(raw);
+  const resolved = path.resolve(raw);
+  if (fs.existsSync(resolved)) {
+    return resolved;
+  }
+  return projectRoot;
 }
 
 const instanceRoot = resolveInstanceRoot();
