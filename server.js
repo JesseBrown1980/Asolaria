@@ -42,6 +42,7 @@ function lazyConnector(modulePath) {
 const sovereigntyBoot = require("./src/sovereignty-boot");
 const { resolveToolPaths } = require("./src/connectors/systemPaths");
 const { runBrainTask } = require("./src/brainOrchestrator");
+const { getCacheStatus } = require("./src/agentCacheSharing");
 const {
   getOmnispindle,
   VALID_LANE_IDS: OMNISPINDLE_LANE_IDS
@@ -23509,6 +23510,26 @@ app.get("/api/health/fast", async (req, res) => {
 
 app.get("/api/sovereignty/status", (_req, res) => {
   res.json(sovereigntyBoot.status());
+});
+
+app.get("/api/cache/status", (req, res) => {
+  const payload = getCacheStatus();
+  if (isLoopbackRequest(req)) {
+    return res.json({
+      ok: true,
+      scope: "loopback",
+      ...payload
+    });
+  }
+
+  return res.json({
+    ok: true,
+    scope: "summary",
+    activeCaches: payload.activeCaches,
+    maxCaches: payload.maxCaches,
+    ttlMs: payload.ttlMs,
+    metrics: payload.metrics
+  });
 });
 
 app.get("/api/health", async (req, res) => {
