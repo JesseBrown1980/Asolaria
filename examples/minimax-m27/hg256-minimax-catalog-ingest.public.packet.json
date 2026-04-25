@@ -1,0 +1,9 @@
+{
+  "status": "PROPOSAL",
+  "artifact": "hg256-minimax-catalog-ingest",
+  "publicPlaceholder": true,
+  "note": "Sanitized placeholder packet; no runtime data.",
+  "claimsClass": "PROPOSAL",
+  "replacementClass": "HG256 packet runtime source",
+  "sha256": "PLACEHOLDER_PENDING_GENERATION"
+}
