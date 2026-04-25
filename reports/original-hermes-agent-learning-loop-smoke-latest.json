@@ -1,0 +1,792 @@
+{
+  "ok": true,
+  "generatedAt": "2026-04-25T00:09:27.201Z",
+  "executed": true,
+  "snapshot": {
+    "id": "original-hermes-agent-learning-loop-runtime.v1",
+    "generatedAt": "2026-04-25T00:09:27.201Z",
+    "status": "LEARNING_LOOP_CANDIDATES_READY_ACTIVATION_BLOCKED",
+    "contract": {
+      "contractId": "original-hermes-agent-contracts.v1.learning-loop",
+      "generatedAt": "2026-04-25T00:09:27.201Z",
+      "source": {
+        "upstream": "NousResearch/hermes-agent",
+        "capsule": "self_improving_learning_loop",
+        "sourceDigest": ""
+      },
+      "loop": {
+        "observe": "capture_task_result_tool_events_memory_delta",
+        "classify": "shannon_and_gnn_score_success_mistake_genius",
+        "promote": "reverse_gain_promotes_safe_skill_or_memory",
+        "prevent": "mistake_pattern_blocks_repeated_failure",
+        "replay": "bounded_replay_seed_required_before_atlas_store"
+      },
+      "gates": [
+        "no_secret_import",
+        "reverse_gain_before_promotion",
+        "source_digest_required",
+        "bounded_replay_required",
+        "gac_approval_for_skill_activation"
+      ],
+      "outputSurfaces": [
+        "data/behcs/original-hermes-agent/learning-loop-contract-latest.json",
+        "data/behcs/original-hermes-agent/skill-promotion-queue-latest.ndjson",
+        "data/behcs/original-hermes-agent/mistake-prevention-rules-latest.ndjson"
+      ],
+      "digest": "db4fe9b4b7c9b29406f5577c56fc8e6a205a464b2757cc76b679032bd8b21cba"
+    },
+    "sourceSurfaces": {
+      "mistakePatternSummary": {
+        "ok": true,
+        "path": "C:\\Users\\acer\\Asolaria\\data\\mistake-patterns.json",
+        "updatedAt": "2026-04-24T23:47:50.101Z",
+        "counts": {
+          "total": 8,
+          "active": 8,
+          "archived": 0,
+          "obsolete": 0
+        }
+      },
+      "mistakeAvoidanceHints": {
+        "ok": true,
+        "summary": {
+          "ok": true,
+          "path": "C:\\Users\\acer\\Asolaria\\data\\mistake-patterns.json",
+          "updatedAt": "2026-04-24T23:47:50.101Z",
+          "counts": {
+            "total": 8,
+            "active": 8,
+            "archived": 0,
+            "obsolete": 0
+          }
+        },
+        "totalHints": 8,
+        "hints": [
+          {
+            "id": "m.6.14ae864d08",
+            "code": "6",
+            "sev": "high",
+            "skill": [],
+            "tool": [],
+            "activity": [
+              "gate_block"
+            ],
+            "cause": "unknown",
+            "avoid": "Apply safer default workflow and verify preconditions.",
+            "uses": 14858
+          },
+          {
+            "id": "m.9_9_9.6163437f3e",
+            "code": "9.9.9",
+            "sev": "medium",
+            "skill": [],
+            "tool": [],
+            "activity": [
+              "idle_escalation"
+            ],
+            "cause": "Idle lanes detected: helm:859915s",
+            "avoid": "Apply safer default workflow and verify preconditions.",
+            "uses": 1879
+          },
+          {
+            "id": "m.9_9_9.ca3c18e90d",
+            "code": "9.9.9",
+            "sev": "medium",
+            "skill": [],
+            "tool": [],
+            "activity": [
+              "self_reflect"
+            ],
+            "cause": "migrated from d0-runtime",
+            "avoid": "Apply safer default workflow and verify preconditions.",
+            "uses": 8
+          },
+          {
+            "id": "m.9_9_9.215dae382b",
+            "code": "9.9.9",
+            "sev": "medium",
+            "skill": [],
+            "tool": [],
+            "activity": [
+              "operator_correction"
+            ],
+            "cause": "migrated from d0-runtime",
+            "avoid": "Apply safer default workflow and verify preconditions.",
+            "uses": 5
+          },
+          {
+            "id": "m.9_9_9.a51a480bab",
+            "code": "9.9.9",
+            "sev": "medium",
+            "skill": [],
+            "tool": [],
+            "activity": [
+              "self_caught"
+            ],
+            "cause": "migrated from d0-runtime",
+            "avoid": "Apply safer default workflow and verify preconditions.",
+            "uses": 2
+          },
+          {
+            "id": "m.9_9_9.c0717f99d0",
+            "code": "9.9.9",
+            "sev": "medium",
+            "skill": [],
+            "tool": [],
+            "activity": [
+              "orchestration_mistake"
+            ],
+            "cause": "capital_sovereign_shadow_model_not_loaded_first",
+            "avoid": "Apply safer default workflow and verify preconditions.",
+            "uses": 2
+          },
+          {
+            "id": "m.9_9_9.fe317d5b1b",
+            "code": "9.9.9",
+            "sev": "medium",
+            "skill": [],
+            "tool": [],
+            "activity": [
+              "self_caught_major"
+            ],
+            "cause": "migrated from d0-runtime",
+            "avoid": "Apply safer default workflow and verify preconditions.",
+            "uses": 1
+          },
+          {
+            "id": "m.9_9_9.8258d1d7a1",
+            "code": "9.9.9",
+            "sev": "medium",
+            "skill": [],
+            "tool": [],
+            "activity": [
+              "verification_packet_captured"
+            ],
+            "cause": "kr_deny_read_only_proof_packet",
+            "avoid": "Apply safer default workflow and verify preconditions.",
+            "uses": 1
+          }
+        ]
+      },
+      "skillCount": 56,
+      "memoryTurns": 20,
+      "notebookNotes": 319,
+      "semanticKnowledge": {
+        "ready": true,
+        "documents": 367,
+        "model": "gemini-embedding-2-preview"
+      }
+    },
+    "candidates": [
+      {
+        "generatedAt": "2026-04-25T00:09:27.201Z",
+        "kind": "original_hermes_learning_candidate",
+        "sourcePattern": {
+          "id": "m.6.14ae864d08",
+          "code": "6",
+          "title": "gate_block",
+          "severity": "high",
+          "occurrences": 14858,
+          "updatedAt": "2026-04-25T00:09:27.255Z"
+        },
+        "skillCoverage": {
+          "linkedSkills": [],
+          "covered": [],
+          "missing": []
+        },
+        "candidate": {
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "generatedAt": "2026-04-25T00:09:27.201Z",
+          "id": "original-hermes-learning-m.6.14ae864d08",
+          "lane": "original_hermes_learning_loop",
+          "sourceDigest": "1415a20f98d98b013c61d988c7ce5d6ab50110f423423c8242b2cceb087383a2",
+          "whiteRoomProof": "mistake_pattern:m.6.14ae864d08",
+          "forwardScore": 0.86,
+          "reverseRisk": 0.62,
+          "mistakeClass": "6",
+          "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+          "supervisor": "original_hermes_impl_memory_skills_supervisor",
+          "digest": "0ce49430546eddb58f782a3284a08776de4f013846a4ef435dd06d8145a57079"
+        },
+        "reverseGainEvaluation": {
+          "ok": true,
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "promoted": false,
+          "action": "DEFER_OR_DEMOTE",
+          "errors": [
+            "reverse_risk_above_threshold"
+          ],
+          "warnings": [],
+          "thresholds": {
+            "minForwardScore": 0.72,
+            "maxReverseRisk": 0.28
+          },
+          "digest": "dfc4aa7fb806b692f4c074023630f9b8b9d115f2b6bb1a13db0a35195756bb24"
+        },
+        "preventionRule": {
+          "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+          "generatedAt": "2026-04-25T00:09:27.257Z",
+          "lane": "original_hermes_learning_loop",
+          "mistakeClass": "6",
+          "action": "block_until_reverse_gain_pass",
+          "condition": "reverse_risk_above_threshold",
+          "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+          "digest": "9a5e7c7a4fa9266ea017ebd30e067bfbbe86ddd6d60d9dfdbeb277d7ed291c0d"
+        },
+        "activation": {
+          "state": "candidate_only",
+          "autoActivateSkill": false,
+          "autoWriteAtlas": false,
+          "requiredNextGates": [
+            "bounded_replay_seed",
+            "real_gulp_proof",
+            "gac_approval",
+            "operator_review"
+          ]
+        },
+        "digest": "01fca3a65e3e9f868798224adaaf3a5bc5362635e28316850f4aaaac3bf6aa3d"
+      },
+      {
+        "generatedAt": "2026-04-25T00:09:27.201Z",
+        "kind": "original_hermes_learning_candidate",
+        "sourcePattern": {
+          "id": "m.9_9_9.6163437f3e",
+          "code": "9.9.9",
+          "title": "agent_colony_idle_escalation",
+          "severity": "medium",
+          "occurrences": 1879,
+          "updatedAt": "2026-04-25T00:09:27.254Z"
+        },
+        "skillCoverage": {
+          "linkedSkills": [],
+          "covered": [],
+          "missing": []
+        },
+        "candidate": {
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "generatedAt": "2026-04-25T00:09:27.201Z",
+          "id": "original-hermes-learning-m.9_9_9.6163437f3e",
+          "lane": "original_hermes_learning_loop",
+          "sourceDigest": "54812ce89dc6255bcaff5997bc84f68942d2599ba4d1295c4e2a52467f47437d",
+          "whiteRoomProof": "mistake_pattern:m.9_9_9.6163437f3e",
+          "forwardScore": 0.81,
+          "reverseRisk": 0.53,
+          "mistakeClass": "9.9.9",
+          "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+          "supervisor": "original_hermes_impl_memory_skills_supervisor",
+          "digest": "93da1535d59a96f190d2edb2b78d9b61640abc305de6f910481baaa64278db22"
+        },
+        "reverseGainEvaluation": {
+          "ok": true,
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "promoted": false,
+          "action": "DEFER_OR_DEMOTE",
+          "errors": [
+            "reverse_risk_above_threshold"
+          ],
+          "warnings": [],
+          "thresholds": {
+            "minForwardScore": 0.72,
+            "maxReverseRisk": 0.28
+          },
+          "digest": "4a13934b0a9fd2b7e1fa17941221624e23b14665fe6b24b9dbfbb11d4444304c"
+        },
+        "preventionRule": {
+          "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+          "generatedAt": "2026-04-25T00:09:27.257Z",
+          "lane": "original_hermes_learning_loop",
+          "mistakeClass": "9.9.9",
+          "action": "block_until_reverse_gain_pass",
+          "condition": "reverse_risk_above_threshold",
+          "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+          "digest": "c0fbff73f95e0235b7816219d82c975b07a5bf1496218ab5ad02734c2e58a73c"
+        },
+        "activation": {
+          "state": "candidate_only",
+          "autoActivateSkill": false,
+          "autoWriteAtlas": false,
+          "requiredNextGates": [
+            "bounded_replay_seed",
+            "real_gulp_proof",
+            "gac_approval",
+            "operator_review"
+          ]
+        },
+        "digest": "5d313d68cb0f4a32ba269a36fdf6e167a383931a1952898d2c1bbd89fba36ae9"
+      },
+      {
+        "generatedAt": "2026-04-25T00:09:27.201Z",
+        "kind": "original_hermes_learning_candidate",
+        "sourcePattern": {
+          "id": "m.9_9_9.ca3c18e90d",
+          "code": "9.9.9",
+          "title": "self_reflect",
+          "severity": "medium",
+          "occurrences": 8,
+          "updatedAt": "2026-04-25T00:09:27.255Z"
+        },
+        "skillCoverage": {
+          "linkedSkills": [],
+          "covered": [],
+          "missing": []
+        },
+        "candidate": {
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "generatedAt": "2026-04-25T00:09:27.201Z",
+          "id": "original-hermes-learning-m.9_9_9.ca3c18e90d",
+          "lane": "original_hermes_learning_loop",
+          "sourceDigest": "6f54a860903b9da0bbf57ff0d6f132c15691b171f9f4d41d92d3b332835b1a0b",
+          "whiteRoomProof": "mistake_pattern:m.9_9_9.ca3c18e90d",
+          "forwardScore": 0.77,
+          "reverseRisk": 0.57,
+          "mistakeClass": "9.9.9",
+          "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+          "supervisor": "original_hermes_impl_memory_skills_supervisor",
+          "digest": "864f26dc0a9c54ab90ab352117b2c8616997c8be83fb9ded197b18a136503378"
+        },
+        "reverseGainEvaluation": {
+          "ok": true,
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "promoted": false,
+          "action": "DEFER_OR_DEMOTE",
+          "errors": [
+            "reverse_risk_above_threshold"
+          ],
+          "warnings": [],
+          "thresholds": {
+            "minForwardScore": 0.72,
+            "maxReverseRisk": 0.28
+          },
+          "digest": "845602837f1b0c020345a953ae6af83e39b45a2c6dd62b3af5c91943f47f030f"
+        },
+        "preventionRule": {
+          "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+          "generatedAt": "2026-04-25T00:09:27.258Z",
+          "lane": "original_hermes_learning_loop",
+          "mistakeClass": "9.9.9",
+          "action": "block_until_reverse_gain_pass",
+          "condition": "reverse_risk_above_threshold",
+          "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+          "digest": "4809e36d5cdf1573ad66335088af5e791cc8b9b05de1c1854d35b5913e9ae648"
+        },
+        "activation": {
+          "state": "candidate_only",
+          "autoActivateSkill": false,
+          "autoWriteAtlas": false,
+          "requiredNextGates": [
+            "bounded_replay_seed",
+            "real_gulp_proof",
+            "gac_approval",
+            "operator_review"
+          ]
+        },
+        "digest": "82054300701171726455be6fe21e1db3416d3581176a6af889fb216730de6cf0"
+      },
+      {
+        "generatedAt": "2026-04-25T00:09:27.201Z",
+        "kind": "original_hermes_learning_candidate",
+        "sourcePattern": {
+          "id": "m.9_9_9.215dae382b",
+          "code": "9.9.9",
+          "title": "operator_correction",
+          "severity": "medium",
+          "occurrences": 5,
+          "updatedAt": "2026-04-25T00:09:27.255Z"
+        },
+        "skillCoverage": {
+          "linkedSkills": [],
+          "covered": [],
+          "missing": []
+        },
+        "candidate": {
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "generatedAt": "2026-04-25T00:09:27.201Z",
+          "id": "original-hermes-learning-m.9_9_9.215dae382b",
+          "lane": "original_hermes_learning_loop",
+          "sourceDigest": "efa3135fd3ce1fcf2d6b82935060747646336cdb7d59d1b39960fbc66dc3dcaf",
+          "whiteRoomProof": "mistake_pattern:m.9_9_9.215dae382b",
+          "forwardScore": 0.695,
+          "reverseRisk": 0.57,
+          "mistakeClass": "9.9.9",
+          "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+          "supervisor": "original_hermes_impl_memory_skills_supervisor",
+          "digest": "0af1b769523b9763111a0c907301ecb597ef354b81790522a6a9214fe1683bd6"
+        },
+        "reverseGainEvaluation": {
+          "ok": true,
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "promoted": false,
+          "action": "DEFER_OR_DEMOTE",
+          "errors": [
+            "forward_score_below_threshold",
+            "reverse_risk_above_threshold"
+          ],
+          "warnings": [],
+          "thresholds": {
+            "minForwardScore": 0.72,
+            "maxReverseRisk": 0.28
+          },
+          "digest": "f607c949bc82afac28860809e69bd181d9fba6dfc0618d7e58456ea2e2c739ea"
+        },
+        "preventionRule": {
+          "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+          "generatedAt": "2026-04-25T00:09:27.258Z",
+          "lane": "original_hermes_learning_loop",
+          "mistakeClass": "9.9.9",
+          "action": "block_until_reverse_gain_pass",
+          "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+          "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+          "digest": "a700216b2db5c232c90d3aa004177d6adb11134e67bd508105bfda3760e4f230"
+        },
+        "activation": {
+          "state": "candidate_only",
+          "autoActivateSkill": false,
+          "autoWriteAtlas": false,
+          "requiredNextGates": [
+            "bounded_replay_seed",
+            "real_gulp_proof",
+            "gac_approval",
+            "operator_review"
+          ]
+        },
+        "digest": "cfbefda83ef83dc45987a779c65be85a927f5f31723070013ef1e39ce6534b75"
+      },
+      {
+        "generatedAt": "2026-04-25T00:09:27.201Z",
+        "kind": "original_hermes_learning_candidate",
+        "sourcePattern": {
+          "id": "m.9_9_9.a51a480bab",
+          "code": "9.9.9",
+          "title": "self_caught",
+          "severity": "medium",
+          "occurrences": 2,
+          "updatedAt": "2026-04-25T00:09:27.255Z"
+        },
+        "skillCoverage": {
+          "linkedSkills": [],
+          "covered": [],
+          "missing": []
+        },
+        "candidate": {
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "generatedAt": "2026-04-25T00:09:27.201Z",
+          "id": "original-hermes-learning-m.9_9_9.a51a480bab",
+          "lane": "original_hermes_learning_loop",
+          "sourceDigest": "984b55c8555e913a7365e5f178ea33ee79bf60a2f1f0d1c6b3a8c76de99600f4",
+          "whiteRoomProof": "mistake_pattern:m.9_9_9.a51a480bab",
+          "forwardScore": 0.62,
+          "reverseRisk": 0.63,
+          "mistakeClass": "9.9.9",
+          "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+          "supervisor": "original_hermes_impl_memory_skills_supervisor",
+          "digest": "f17a78d2fce43f0b53a33cd3f2f8df9403f0f692b010579fa0409f5c8d40e60c"
+        },
+        "reverseGainEvaluation": {
+          "ok": true,
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "promoted": false,
+          "action": "DEFER_OR_DEMOTE",
+          "errors": [
+            "forward_score_below_threshold",
+            "reverse_risk_above_threshold"
+          ],
+          "warnings": [],
+          "thresholds": {
+            "minForwardScore": 0.72,
+            "maxReverseRisk": 0.28
+          },
+          "digest": "2719084c8f8542149970dc7c4365c3a620ecd6a16be511b3976b09e120d0bf21"
+        },
+        "preventionRule": {
+          "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+          "generatedAt": "2026-04-25T00:09:27.258Z",
+          "lane": "original_hermes_learning_loop",
+          "mistakeClass": "9.9.9",
+          "action": "block_until_reverse_gain_pass",
+          "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+          "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+          "digest": "a700216b2db5c232c90d3aa004177d6adb11134e67bd508105bfda3760e4f230"
+        },
+        "activation": {
+          "state": "candidate_only",
+          "autoActivateSkill": false,
+          "autoWriteAtlas": false,
+          "requiredNextGates": [
+            "bounded_replay_seed",
+            "real_gulp_proof",
+            "gac_approval",
+            "operator_review"
+          ]
+        },
+        "digest": "acebc6abca18445c68469d5c4c8aebde817020540a726cd9fb359c497f7bf9c6"
+      },
+      {
+        "generatedAt": "2026-04-25T00:09:27.201Z",
+        "kind": "original_hermes_learning_candidate",
+        "sourcePattern": {
+          "id": "m.9_9_9.c0717f99d0",
+          "code": "9.9.9",
+          "title": "orchestration_mistake",
+          "severity": "medium",
+          "occurrences": 2,
+          "updatedAt": "2026-04-25T00:09:27.255Z"
+        },
+        "skillCoverage": {
+          "linkedSkills": [],
+          "covered": [],
+          "missing": []
+        },
+        "candidate": {
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "generatedAt": "2026-04-25T00:09:27.201Z",
+          "id": "original-hermes-learning-m.9_9_9.c0717f99d0",
+          "lane": "original_hermes_learning_loop",
+          "sourceDigest": "05bbc36f2b960fccd979683e43b459d2267568215c06b94b5cb0df981487c588",
+          "whiteRoomProof": "mistake_pattern:m.9_9_9.c0717f99d0",
+          "forwardScore": 0.62,
+          "reverseRisk": 0.63,
+          "mistakeClass": "9.9.9",
+          "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+          "supervisor": "original_hermes_impl_memory_skills_supervisor",
+          "digest": "902d6000784921042bc3684f987c001564ede16ae44ea8917bebe613522f864e"
+        },
+        "reverseGainEvaluation": {
+          "ok": true,
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "promoted": false,
+          "action": "DEFER_OR_DEMOTE",
+          "errors": [
+            "forward_score_below_threshold",
+            "reverse_risk_above_threshold"
+          ],
+          "warnings": [],
+          "thresholds": {
+            "minForwardScore": 0.72,
+            "maxReverseRisk": 0.28
+          },
+          "digest": "678601cc6d435b99d085133b754c5306b3b7cc55b4beb034fd07444b9afe3c7b"
+        },
+        "preventionRule": {
+          "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+          "generatedAt": "2026-04-25T00:09:27.258Z",
+          "lane": "original_hermes_learning_loop",
+          "mistakeClass": "9.9.9",
+          "action": "block_until_reverse_gain_pass",
+          "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+          "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+          "digest": "a700216b2db5c232c90d3aa004177d6adb11134e67bd508105bfda3760e4f230"
+        },
+        "activation": {
+          "state": "candidate_only",
+          "autoActivateSkill": false,
+          "autoWriteAtlas": false,
+          "requiredNextGates": [
+            "bounded_replay_seed",
+            "real_gulp_proof",
+            "gac_approval",
+            "operator_review"
+          ]
+        },
+        "digest": "9045b80a0d9f48275746abcb6a987e1feb9e0bafc559f9b40c11a302295f77a6"
+      },
+      {
+        "generatedAt": "2026-04-25T00:09:27.201Z",
+        "kind": "original_hermes_learning_candidate",
+        "sourcePattern": {
+          "id": "m.9_9_9.fe317d5b1b",
+          "code": "9.9.9",
+          "title": "self_caught_major",
+          "severity": "medium",
+          "occurrences": 1,
+          "updatedAt": "2026-04-25T00:09:27.255Z"
+        },
+        "skillCoverage": {
+          "linkedSkills": [],
+          "covered": [],
+          "missing": []
+        },
+        "candidate": {
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "generatedAt": "2026-04-25T00:09:27.201Z",
+          "id": "original-hermes-learning-m.9_9_9.fe317d5b1b",
+          "lane": "original_hermes_learning_loop",
+          "sourceDigest": "e91542920579b5b754a47502ee941ec33c3bee42cb56ac82cfb2a57e75d8a1c4",
+          "whiteRoomProof": "mistake_pattern:m.9_9_9.fe317d5b1b",
+          "forwardScore": 0.595,
+          "reverseRisk": 0.63,
+          "mistakeClass": "9.9.9",
+          "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+          "supervisor": "original_hermes_impl_memory_skills_supervisor",
+          "digest": "6e52deb51921641a574497a424b45cf6827a720260a841725e7baa51b9f9f13e"
+        },
+        "reverseGainEvaluation": {
+          "ok": true,
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "promoted": false,
+          "action": "DEFER_OR_DEMOTE",
+          "errors": [
+            "forward_score_below_threshold",
+            "reverse_risk_above_threshold"
+          ],
+          "warnings": [],
+          "thresholds": {
+            "minForwardScore": 0.72,
+            "maxReverseRisk": 0.28
+          },
+          "digest": "f20f2dbc11cd965181e832f2c36cabd142a14e22959c161552b3667f60eccac1"
+        },
+        "preventionRule": {
+          "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+          "generatedAt": "2026-04-25T00:09:27.259Z",
+          "lane": "original_hermes_learning_loop",
+          "mistakeClass": "9.9.9",
+          "action": "block_until_reverse_gain_pass",
+          "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+          "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+          "digest": "cf07cf25cc41f6a515bf892113bfaaca94751cefd2e02c91386a5726af6bfe9d"
+        },
+        "activation": {
+          "state": "candidate_only",
+          "autoActivateSkill": false,
+          "autoWriteAtlas": false,
+          "requiredNextGates": [
+            "bounded_replay_seed",
+            "real_gulp_proof",
+            "gac_approval",
+            "operator_review"
+          ]
+        },
+        "digest": "cadcae3ca1fa7a6eef744476d56397d1ff45825fe73b295464d1e034b4a94bb0"
+      },
+      {
+        "generatedAt": "2026-04-25T00:09:27.201Z",
+        "kind": "original_hermes_learning_candidate",
+        "sourcePattern": {
+          "id": "m.9_9_9.8258d1d7a1",
+          "code": "9.9.9",
+          "title": "verification_packet_captured",
+          "severity": "medium",
+          "occurrences": 1,
+          "updatedAt": "2026-04-25T00:09:27.255Z"
+        },
+        "skillCoverage": {
+          "linkedSkills": [],
+          "covered": [],
+          "missing": []
+        },
+        "candidate": {
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "generatedAt": "2026-04-25T00:09:27.201Z",
+          "id": "original-hermes-learning-m.9_9_9.8258d1d7a1",
+          "lane": "original_hermes_learning_loop",
+          "sourceDigest": "8fe62ab2c946fa08bf44635bd947e115f7275dbc836e1b935f10eb36a9cfdb44",
+          "whiteRoomProof": "mistake_pattern:m.9_9_9.8258d1d7a1",
+          "forwardScore": 0.595,
+          "reverseRisk": 0.63,
+          "mistakeClass": "9.9.9",
+          "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+          "supervisor": "original_hermes_impl_memory_skills_supervisor",
+          "digest": "d4947fcee365464d2449ffb218977c90e23559dfe7db37f9de0d586251184da7"
+        },
+        "reverseGainEvaluation": {
+          "ok": true,
+          "contractId": "reverse-gain-promotion-gate.v1",
+          "promoted": false,
+          "action": "DEFER_OR_DEMOTE",
+          "errors": [
+            "forward_score_below_threshold",
+            "reverse_risk_above_threshold"
+          ],
+          "warnings": [],
+          "thresholds": {
+            "minForwardScore": 0.72,
+            "maxReverseRisk": 0.28
+          },
+          "digest": "fad6fa1968ca54acac4f76366531077d18e2e5152b32de3287c0e3aaedd7cd14"
+        },
+        "preventionRule": {
+          "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+          "generatedAt": "2026-04-25T00:09:27.259Z",
+          "lane": "original_hermes_learning_loop",
+          "mistakeClass": "9.9.9",
+          "action": "block_until_reverse_gain_pass",
+          "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+          "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+          "digest": "cf07cf25cc41f6a515bf892113bfaaca94751cefd2e02c91386a5726af6bfe9d"
+        },
+        "activation": {
+          "state": "candidate_only",
+          "autoActivateSkill": false,
+          "autoWriteAtlas": false,
+          "requiredNextGates": [
+            "bounded_replay_seed",
+            "real_gulp_proof",
+            "gac_approval",
+            "operator_review"
+          ]
+        },
+        "digest": "0567bb04bbf64729572daea0615383d8893b3dda7d3b7be82a7facc7fdb9e039"
+      }
+    ],
+    "summary": {
+      "candidateCount": 8,
+      "reverseGainPromotedCount": 0,
+      "reverseGainBlockedCount": 8,
+      "autoActivatedCount": 0,
+      "atlasWrites": 0,
+      "skillWrites": 0
+    },
+    "gates": [
+      "reverse_gain_before_promotion",
+      "bounded_replay_required",
+      "real_gulp_proof_required",
+      "gac_approval_for_skill_activation",
+      "operator_review_required"
+    ],
+    "executionPolicy": {
+      "autoActivateSkill": false,
+      "autoWriteAtlas": false,
+      "autoWriteMemory": false,
+      "candidateQueueOnly": true
+    },
+    "language": {
+      "human": "Original Hermes learning-loop candidates are mined from existing mistake patterns and skill coverage, then held behind reverse-gain, replay, GAC, and operator review.",
+      "agent": "(original_hermes, learning.loop, behcs, 1, memory_skills, reverse_gain, staged, [mistakes+patterns+skills], map_map_mapped, IX, log, persistent, whiteroom, light)",
+      "device": "original_hermes_learning_loop status=candidate_only auto_activate=0 atlas_writes=0"
+    },
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "digest": "5aa6591a5bf3c8f782ca6dc6af519b63f3e31af9bfdd3870d67f008015aa3a7b"
+    },
+    "digest": "977f43a6571f68ddcf3522bd803774f2fc5a55916c57641ef5c5b4bd8fe816ea"
+  },
+  "manifest": {
+    "id": "original-hermes-agent-learning-loop-runtime.v1",
+    "description": "Candidate-only Original Hermes learning-loop runtime surface for BEHCS mistake prevention and skill-promotion gating.",
+    "capabilities": [
+      "mistake_pattern_candidate_mining",
+      "reverse_gain_gate",
+      "prevention_rule_queue",
+      "skill_coverage_snapshot"
+    ],
+    "sideEffects": [],
+    "defaultExecution": "candidate_queue_only_no_activation"
+  },
+  "outputs": {
+    "snapshot": "data/behcs/original-hermes-agent/contracts/learning-loop-runtime-snapshot-latest.json",
+    "queue": "data/behcs/original-hermes-agent/skill-promotion-queue-latest.ndjson",
+    "rules": "data/behcs/original-hermes-agent/mistake-prevention-rules-latest.ndjson",
+    "reportJson": "reports/original-hermes-agent-learning-loop-smoke-latest.json",
+    "reportMd": "reports/original-hermes-agent-learning-loop-smoke-latest.md"
+  },
+  "honesty": {
+    "autoActivatesSkills": false,
+    "writesAtlas": false,
+    "writesMemory": false,
+    "executesReplay": false,
+    "callsExternalProviders": false,
+    "editsShadowFiles": false
+  }
+}

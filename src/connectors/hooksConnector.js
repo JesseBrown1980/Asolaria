@@ -1,6 +1,10 @@
 const { appendHookEvent, queryHookEvents, getHookEventStats, getSessionSummary } = require("../hookEventStore");
 const { backupTranscript, listTranscriptBackups, readTranscriptBackup } = require("../transcriptBackupStore");
 const { upsertSession, getSession, listActiveSessions, addPromptToSession, incrementToolUse, endSession } = require("../agentSessionStore");
+const {
+  buildPluginHookGate,
+  evaluatePluginHook
+} = require("../behcs/originalHermesAgentContracts");
 const childProcess = require("child_process");
 
 // ---------- Guard patterns (ported from disler's pre_tool_use.py) ----------
@@ -53,7 +57,108 @@ function isEnvFileAccess(toolName, toolInput = {}) {
   return false;
 }
 
-function getGuardVerdict(toolName, toolInput = {}) {
+function normalizeList(value) {
+  if (!value) return [];
+  if (Array.isArray(value)) return value.map((item) => String(item || "").trim()).filter(Boolean);
+  return String(value || "")
+    .split(/[,\s]+/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function inferRequestedScopes(toolName, toolInput = {}, context = {}) {
+  const scopes = new Set(normalizeList(context.requested_scopes || context.requestedScopes || toolInput.requested_scopes || toolInput.scopes));
+  const command = String(toolInput.command || "");
+  const filePath = String(toolInput.file_path || toolInput.path || "");
+  const combined = `${toolName} ${command} ${filePath} ${JSON.stringify(toolInput || {})}`.toLowerCase();
+
+  if (/secret|token|apikey|api_key|password|credential|\.env\b/.test(combined)) scopes.add("secret");
+  if (toolName === "Bash" || /\bshell\b|\bcmd\b|\bpowershell\b|\bbash\b/.test(combined)) scopes.add("shell");
+  if (/\bhttps?:\/\//.test(combined) || /\bwebhook\b|\bcallback\b|\bfetch\b|\bnetwork\b/.test(combined)) scopes.add("network");
+  if (/shadow|runtime[\\/]+language-flywheel|brown-hilbert|law-?001/i.test(combined)) scopes.add("shadow");
+
+  return Array.from(scopes);
+}
+
+function shouldApplyOriginalHermesPluginGate(toolName, toolInput = {}, context = {}) {
+  return Boolean(
+    context.original_hermes_hook ||
+    context.hermes_hook ||
+    context.plugin_hook ||
+    context.plugin_id ||
+    context.pluginId ||
+    context.manifest_digest ||
+    context.manifestDigest ||
+    context.hook_phase ||
+    context.phase ||
+    toolInput.plugin_id ||
+    toolInput.pluginId ||
+    toolInput.manifest_digest ||
+    toolInput.manifestDigest ||
+    toolInput.hook_phase ||
+    toolInput.phase
+  );
+}
+
+function normalizeHookPhase(value, eventType = "") {
+  const phase = String(value || eventType || "").trim();
+  const normalized = phase.replace(/([a-z])([A-Z])/g, "$1_$2").replace(/[-\s]+/g, "_").toLowerCase();
+  const aliases = {
+    sessionstart: "on_session_start",
+    session_start: "on_session_start",
+    pretooluse: "pre_tool_call",
+    pre_tool_use: "pre_tool_call",
+    pre_tool_call: "pre_tool_call",
+    posttooluse: "post_tool_call",
+    post_tool_use: "post_tool_call",
+    post_tool_call: "post_tool_call",
+    posttoolusefailure: "post_tool_call",
+    transform_tool_result: "transform_tool_result",
+    transform_terminal_output: "transform_terminal_output",
+    sessionend: "on_session_finalize",
+    session_end: "on_session_finalize",
+    stop: "on_session_finalize"
+  };
+  return aliases[normalized] || normalized || "pre_tool_call";
+}
+
+function buildOriginalHermesHookRequest(toolName, toolInput = {}, context = {}) {
+  const requestedScopes = inferRequestedScopes(toolName, toolInput, context);
+  return {
+    pluginId: String(context.plugin_id || context.pluginId || toolInput.plugin_id || toolInput.pluginId || context.source_app || "unregistered_plugin"),
+    phase: normalizeHookPhase(context.hook_phase || context.phase || toolInput.hook_phase || toolInput.phase, context.event_type || context.eventType),
+    manifestDigest: String(context.manifest_digest || context.manifestDigest || toolInput.manifest_digest || toolInput.manifestDigest || ""),
+    toolScope: String(context.tool_scope || context.toolScope || toolName || "unknown_tool"),
+    requestedScopes,
+    secretAccess: requestedScopes.includes("secret"),
+    shell: requestedScopes.includes("shell"),
+    explicitShellGate: Boolean(context.explicit_shell_gate || context.explicitShellGate || toolInput.explicit_shell_gate || toolInput.explicitShellGate),
+    network: requestedScopes.includes("network"),
+    connectorPolicy: Boolean(context.connector_policy || context.connectorPolicy || toolInput.connector_policy || toolInput.connectorPolicy),
+    shadowWrite: requestedScopes.includes("shadow"),
+    auditTarget: String(context.audit_target || context.auditTarget || "data/hook-events.ndjson"),
+    rollbackSurface: String(context.rollback_surface || context.rollbackSurface || toolInput.rollback_surface || toolInput.rollbackSurface || "")
+  };
+}
+
+function getOriginalHermesPluginHookGateVerdict(toolName, toolInput = {}, context = {}) {
+  const gate = buildPluginHookGate({ generatedAt: new Date().toISOString() });
+  const request = buildOriginalHermesHookRequest(toolName, toolInput, context);
+  const result = evaluatePluginHook({ gate, request });
+  return {
+    blocked: !result.ok,
+    reason: result.ok ? "" : `Original Hermes plugin hook denied: ${result.errors.join(", ")}`,
+    originalHermesPluginGate: {
+      contractId: result.contractId,
+      decision: result.decision,
+      errors: result.errors,
+      audit: result.audit,
+      digest: result.digest
+    }
+  };
+}
+
+function getGuardVerdict(toolName, toolInput = {}, context = {}) {
   if (isEnvFileAccess(toolName, toolInput)) {
     return {
       blocked: true,
@@ -65,6 +170,9 @@ function getGuardVerdict(toolName, toolInput = {}) {
       blocked: true,
       reason: "Dangerous rm command detected and prevented."
     };
+  }
+  if (shouldApplyOriginalHermesPluginGate(toolName, toolInput, context)) {
+    return getOriginalHermesPluginHookGateVerdict(toolName, toolInput, context);
   }
   return { blocked: false };
 }
@@ -183,14 +291,19 @@ function manifest() {
     retrySemantics: "none",
     timeoutMs: 5000,
     secretRequirements: [],
-    sideEffects: ["appends to hook-events.ndjson", "creates transcript backup files", "blocks dangerous tool calls"],
-    failureModes: ["event_store_write_failed", "transcript_backup_failed"],
-    emittedEvents: ["hook.event_ingested", "hook.guard_blocked", "hook.session_started", "hook.session_ended"]
+    sideEffects: ["appends to hook-events.ndjson", "creates transcript backup files", "blocks dangerous tool calls", "denies unregistered Hermes-style plugin hooks"],
+    failureModes: ["event_store_write_failed", "transcript_backup_failed", "plugin_hook_gate_denied"],
+    emittedEvents: ["hook.event_ingested", "hook.guard_blocked", "hook.session_started", "hook.session_ended"],
+    originalHermesPluginGate: {
+      contractId: buildPluginHookGate().contractId,
+      defaultDecision: "deny_runtime_hook_until_registered_and_gac_approved"
+    }
   };
 }
 
 module.exports = {
   getGuardVerdict,
+  getOriginalHermesPluginHookGateVerdict,
   ingestHookEvent,
   getHookDashboard,
   getSessionDetail,

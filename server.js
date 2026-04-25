@@ -23842,7 +23842,7 @@ function handleCompanyPrimarySigninReveal(req, res, source) {
 // ── Captures routes extracted to routes/captures.js (ADR-0001 Phase 3) ──
 
 // ── Hooks Connector Routes (extracted to routes/hooks.js — ADR-0001 Phase 3) ──
-app.use("/api/hooks", require("./routes/hooks"));
+app.use("/api/hooks", requireLoopbackOnly, require("./routes/hooks"));
 // ── End Hooks Connector Routes ──────────────────────────────────────────
 
 // ── Extracted Routes (ADR-0001 Phase 3 — strangler fig) ─────────────────

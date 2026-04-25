@@ -64,7 +64,8 @@ router.post("/guard", (req, res) => {
     const body = req.body || {};
     const verdict = getGuardVerdict(
       String(body.tool_name || ""),
-      body.tool_input || {}
+      body.tool_input || {},
+      body
     );
     return res.json({ ok: true, ...verdict });
   } catch (error) {

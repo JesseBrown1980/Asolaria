@@ -1,0 +1,2038 @@
+{
+  "ok": true,
+  "generatedAt": "2026-04-25T00:18:16.319Z",
+  "executed": true,
+  "snapshot": {
+    "id": "original-hermes-agent-runtime-index.v1",
+    "generatedAt": "2026-04-25T00:18:16.319Z",
+    "status": "ORIGINAL_HERMES_RUNTIME_INDEX_READY_ACTIVATION_BLOCKED",
+    "surfaces": {
+      "transport": {
+        "id": "original-hermes-agent-transport-router-runtime.v1",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "status": "TRANSPORT_ROUTER_CONTRACT_STAGED_NO_SECRET_IMPORT_NO_DISPATCH",
+        "contract": {
+          "contractId": "original-hermes-agent-contracts.v1.transport-router",
+          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "source": {
+            "upstream": "NousResearch/hermes-agent",
+            "capsule": "transport_abc_provider_router",
+            "sourceDigest": ""
+          },
+          "routeShape": {
+            "provider": "openai_compatible_or_native",
+            "transport": "chat_completions_responses_anthropic_bedrock_codex",
+            "model": "selected_by_brainPolicy_workerRouter",
+            "credentials": "resolved_by_existing_vault_only",
+            "output": "normalized_text_tool_calls_usage_errors"
+          },
+          "asolariaBindings": [
+            "src/brainPolicy.js",
+            "src/connectors/workerRouter.js",
+            "src/connectors/externalBrainConnector.js",
+            "src/cognitiveEngines/runtimeBridge.js"
+          ],
+          "gates": [
+            "no_provider_secret_import",
+            "transport_contract_smoke",
+            "rate_limit_and_error_classification",
+            "gac_before_model_switch",
+            "shannon_after_failed_provider"
+          ],
+          "digest": "8506b2fa54cf71212d969077598fa80f09ceddf513a9cb086e71d279ba4d1f41"
+        },
+        "bindings": [
+          "src/brainPolicy.js",
+          "src/connectors/workerRouter.js",
+          "src/connectors/externalBrainConnector.js",
+          "src/cognitiveEngines/runtimeBridge.js"
+        ],
+        "providers": [
+          {
+            "id": "openai",
+            "configured": true,
+            "enabled": true,
+            "model": "gpt-5.4",
+            "baseUrl": "https://api.openai.com",
+            "apiPath": "/v1/responses",
+            "apiStyle": "openai_responses",
+            "officialApi": true,
+            "requireOfficialApi": true,
+            "source": "vault",
+            "configError": null,
+            "mcpEnabled": false,
+            "mcpConfigured": false,
+            "mcpConfigError": null,
+            "warning": null
+          },
+          {
+            "id": "kimi",
+            "configured": false,
+            "enabled": true,
+            "model": null,
+            "baseUrl": null,
+            "apiPath": "/v1/chat/completions",
+            "apiStyle": "openai_chat_completions",
+            "officialApi": false,
+            "requireOfficialApi": true,
+            "source": "none",
+            "configError": "missing_config",
+            "mcpEnabled": false,
+            "mcpConfigured": false,
+            "mcpConfigError": null,
+            "warning": null
+          },
+          {
+            "id": "cursor",
+            "configured": true,
+            "enabled": true,
+            "model": "gpt-5.2-codex",
+            "baseUrl": "https://api.openai.com",
+            "apiPath": "/v1/responses",
+            "apiStyle": "openai_responses",
+            "officialApi": true,
+            "requireOfficialApi": true,
+            "source": "vault",
+            "configError": null,
+            "mcpEnabled": true,
+            "mcpConfigured": true,
+            "mcpConfigError": null,
+            "warning": null
+          },
+          {
+            "id": "antigravity",
+            "configured": true,
+            "enabled": true,
+            "model": "gpt-5.2-codex",
+            "baseUrl": "https://api.openai.com",
+            "apiPath": "/v1/responses",
+            "apiStyle": "openai_responses",
+            "officialApi": true,
+            "requireOfficialApi": true,
+            "source": "vault",
+            "configError": null,
+            "mcpEnabled": true,
+            "mcpConfigured": true,
+            "mcpConfigError": null,
+            "warning": null
+          }
+        ],
+        "workers": [
+          {
+            "id": "opencode",
+            "available": true,
+            "dispatchable": true,
+            "directDispatchSupported": true,
+            "trustTier": "",
+            "role": "",
+            "limitations": [
+              "Depends on the local OpenCode CLI and its configured provider credentials being healthy.",
+              "Not the default owner-plane mutation lane for privileged repo work.",
+              "Reply structure can vary by provider/model and is normalized from CLI output."
+            ],
+            "mistakes": [
+              "Do not assume OpenCode is free just because it is local; it still consumes configured provider quota.",
+              "Do not route privileged or owner-plane writes here when Local Codex is the safer lane."
+            ]
+          },
+          {
+            "id": "local_codex",
+            "available": true,
+            "dispatchable": true,
+            "directDispatchSupported": true,
+            "trustTier": "",
+            "role": "",
+            "limitations": [
+              "Local runtime only; not ideal for cloud-heavy external research bursts.",
+              "Direct runs can consume local provider quota or take longer on bigger tasks."
+            ],
+            "mistakes": [
+              "Do not default local Codex to broad external chores when a cheaper bounded worker would do.",
+              "Do not send owner-plane tasks to lower-trust external workers just because they look faster."
+            ]
+          },
+          {
+            "id": "claude_max",
+            "available": true,
+            "dispatchable": true,
+            "directDispatchSupported": true,
+            "trustTier": "",
+            "role": "",
+            "limitations": [
+              "This lane is review-first and should not be treated as the owner-plane mutation path.",
+              "It depends on the authenticated Claude Code subscription path being healthy on this machine."
+            ],
+            "mistakes": [
+              "Do not send owner-plane secrets or broad uncontrolled context into the Claude lane.",
+              "Do not offload final repo ownership decisions to Claude when Asolaria or local Codex should decide."
+            ]
+          },
+          {
+            "id": "abacus",
+            "available": true,
+            "dispatchable": true,
+            "directDispatchSupported": true,
+            "trustTier": "",
+            "role": "",
+            "limitations": [
+              "CLI is not yet a reliable unattended headless worker on this machine.",
+              "Cloud-heavy or deep-agent work should be treated as scarce and usage-aware."
+            ],
+            "mistakes": [
+              "CLI print mode is still not reliable on this machine, so Abacus is not yet a safe fully headless worker.",
+              "The desktop app exposes many bundled VS Code-style surfaces and extensions; not every prompt or pane is relevant to Asolaria.",
+              "Listener is installed but not currently running, so listener-specific work should be treated as opportunistic.",
+              "Browser or deep-agent cloud work can consume subscription usage faster than desktop-local packet work.",
+              "Abacus outputs should be imported back through Asolaria packets rather than treated as direct ground truth."
+            ]
+          },
+          {
+            "id": "symphony",
+            "available": true,
+            "dispatchable": true,
+            "directDispatchSupported": true,
+            "trustTier": "",
+            "role": "",
+            "limitations": [
+              "Requires valid Linear-backed Symphony configuration and a healthy running service for pickup.",
+              "Depends on valid Symphony configuration and healthy Linear-backed setup."
+            ],
+            "mistakes": [
+              "Do not route urgent single-shot chores into Symphony when a direct local or Abacus lane is available.",
+              "Do not assume issue creation means immediate execution; Symphony still decides pickup from the project queue."
+            ]
+          }
+        ],
+        "cognitiveEngines": {
+          "registryId": "asolaria-cognitive-engine-registry.v1",
+          "engines": [
+            {
+              "id": "openmythos",
+              "title": "OpenMythos recurrent-depth cognitive engine",
+              "description": "Gated adapter contract for the OpenMythos PyTorch recurrent-depth transformer package.",
+              "capabilities": [
+                "deep_reasoning",
+                "recurrent_depth",
+                "latent_looping",
+                "drift_signal"
+              ],
+              "glyphVerbs": {
+                "MYTHOS_THINK": "MYTHOS_THINK",
+                "MYTHOS_REASON": "MYTHOS_REASON",
+                "MYTHOS_LOOP": "MYTHOS_LOOP",
+                "MYTHOS_STATUS": "MYTHOS_STATUS",
+                "MYTHOS_DRIFT": "MYTHOS_DRIFT"
+              },
+              "gacLaws": [
+                "LAW-099-openmythos-recurrence-stability"
+              ],
+              "runtime": {
+                "language": "python",
+                "package": "open-mythos",
+                "import": "open_mythos.main",
+                "execution": "blocked_until_package_weights_and_smoke_test_exist"
+              },
+              "constraints": {
+                "maxLoops": 16,
+                "spectralRadiusMustBeBelow": 1,
+                "noRawHiddenStatePersistence": true,
+                "noModelClaimWithoutWeightsAndBenchmark": true
+              }
+            },
+            {
+              "id": "ga_svm",
+              "title": "GA-SVM classification cognitive engine",
+              "description": "Gated adapter contract for genetic-algorithm optimized SVM classification tasks such as crop disease diagnosis.",
+              "capabilities": [
+                "classification",
+                "feature_validation",
+                "hyperparameter_search",
+                "fitness_scoring"
+              ],
+              "gacLaws": [
+                "LAW-100-ga-svm-validation-and-drift"
+              ],
+              "runtime": {
+                "language": "node",
+                "package": "packages/ga-svm-engine",
+                "implementation": "packages/ga-svm-engine/src/GASVMAdapter.mjs",
+                "mode": "rbf_kernel_ga_smoke_classifier",
+                "productionPromotion": "requires_external_svm_or_validated_dataset_fitness_report",
+                "execution": "local_smoke_ready_dataset_runtime_gated"
+              },
+              "featureSchema": [
+                {
+                  "id": "fractal_dimension",
+                  "symbol": "D1",
+                  "required": true
+                },
+                {
+                  "id": "entropy",
+                  "symbol": "E",
+                  "required": true
+                },
+                {
+                  "id": "lesion_area",
+                  "symbol": "S",
+                  "required": true
+                },
+                {
+                  "id": "intensity_sigma",
+                  "symbol": "sigma",
+                  "required": true
+                },
+                {
+                  "id": "color_channel",
+                  "symbol": "Ci",
+                  "required": true
+                },
+                {
+                  "id": "contrast",
+                  "symbol": "J",
+                  "required": true
+                },
+                {
+                  "id": "morphology_area",
+                  "symbol": "Ai",
+                  "required": true
+                }
+              ],
+              "constraints": {
+                "requireDatasetHash": true,
+                "requireCrossValidation": true,
+                "requireFitnessReport": true,
+                "noMedicalOrAgriculturalGuaranteeClaim": true
+              }
+            },
+            {
+              "id": "openmythos_ga_svm_fusion",
+              "title": "OpenMythos + GA-SVM fusion lane",
+              "description": "GA-SVM handles validated feature classification; OpenMythos reviews deep reasoning, drift, and explanation under GAC.",
+              "capabilities": [
+                "classification_then_deep_reasoning",
+                "drift_review",
+                "operator_explanation"
+              ],
+              "gacLaws": [
+                "LAW-099-openmythos-recurrence-stability",
+                "LAW-100-ga-svm-validation-and-drift"
+              ],
+              "execution": "blocked_until_both_engines_pass_smoke_tests"
+            }
+          ],
+          "selectionRules": [
+            {
+              "engine": "ga_svm",
+              "selectorId": "worker_lane.ga_svm",
+              "surface": "classification",
+              "trigger": "classification, crop disease, image/sensor features, SVM",
+              "fallback": "default"
+            },
+            {
+              "engine": "openmythos",
+              "selectorId": "worker_lane.openmythos",
+              "surface": "deep_reasoning",
+              "trigger": "deep reasoning, recurrent loops, high complexity",
+              "fallback": "default"
+            },
+            {
+              "engine": "openmythos_ga_svm_fusion",
+              "selectorId": "worker_lane.openmythos_ga_svm_fusion",
+              "surface": "classification_then_deep_reasoning",
+              "trigger": "classification plus deep reasoning or explanation",
+              "fallback": "ga_svm"
+            }
+          ]
+        },
+        "routeMatrix": {
+          "providerTransports": [
+            {
+              "provider": "openai",
+              "transport": "openai_responses",
+              "model": "gpt-5.4",
+              "officialApi": true,
+              "mcpEnabled": false
+            },
+            {
+              "provider": "cursor",
+              "transport": "openai_responses",
+              "model": "gpt-5.2-codex",
+              "officialApi": true,
+              "mcpEnabled": true
+            },
+            {
+              "provider": "antigravity",
+              "transport": "openai_responses",
+              "model": "gpt-5.2-codex",
+              "officialApi": true,
+              "mcpEnabled": true
+            }
+          ],
+          "workerTransports": [
+            {
+              "worker": "opencode",
+              "transport": "local_cli_or_local_runtime",
+              "authority": "local_guarded"
+            },
+            {
+              "worker": "local_codex",
+              "transport": "local_cli_or_local_runtime",
+              "authority": "local_guarded"
+            },
+            {
+              "worker": "claude_max",
+              "transport": "packet_or_review_lane",
+              "authority": "guarded_external_or_review"
+            },
+            {
+              "worker": "abacus",
+              "transport": "packet_or_review_lane",
+              "authority": "guarded_external_or_review"
+            },
+            {
+              "worker": "symphony",
+              "transport": "packet_or_review_lane",
+              "authority": "guarded_external_or_review"
+            }
+          ],
+          "cognitiveEngineTransports": [
+            {
+              "engine": "openmythos",
+              "transport": "local_python_runtime_probe_then_spawn"
+            },
+            {
+              "engine": "ga_svm",
+              "transport": "local_runtime_bridge"
+            },
+            {
+              "engine": "openmythos_ga_svm_fusion",
+              "transport": "local_runtime_bridge"
+            }
+          ]
+        },
+        "externalBrainConnector": {
+          "id": "external_brain",
+          "capabilities": [
+            "run_prompt",
+            "provider_status",
+            "mcp_tool_integration",
+            "dynamic_allowlist",
+            "token_reduction",
+            "model_fallback",
+            "multi_provider",
+            "policy_presets"
+          ],
+          "apiStyles": [
+            "openai_chat_completions",
+            "openai_responses"
+          ]
+        },
+        "secretPolicy": {
+          "importsProviderSecrets": false,
+          "exposesProviderSecrets": false,
+          "credentialSource": "existing_secure_vault_only",
+          "legacyEnvKeyHandling": "warn_and_ignore"
+        },
+        "executionPolicy": {
+          "dispatchesNow": false,
+          "launchesGateway": false,
+          "launchesProviderCalls": false,
+          "routeOnly": true
+        },
+        "language": {
+          "human": "Original Hermes transport router contract is staged as a read-only route matrix across workerRouter, externalBrainConnector, and cognitive runtime.",
+          "agent": "(original_hermes, transport.router, behcs, 3, runtime, hookwall, staged, [providers+workers+engines], map_map_mapped, IX, log, persistent, whiteroom, light)",
+          "device": "original_hermes_transport_router status=staged dispatches=0 secret_imports=0"
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": [
+            "kimi:missing_config"
+          ],
+          "digest": "fa59ce31c8a42fa082660d2d90900f140df00941f050d6164426fb644b509c0b"
+        },
+        "digest": "4b2f797d2cb2f7c16a403aca10ff8737de819b7557589c9f248cd9b8a92da58a"
+      },
+      "learningLoop": {
+        "id": "original-hermes-agent-learning-loop-runtime.v1",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "status": "LEARNING_LOOP_CANDIDATES_READY_ACTIVATION_BLOCKED",
+        "contract": {
+          "contractId": "original-hermes-agent-contracts.v1.learning-loop",
+          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "source": {
+            "upstream": "NousResearch/hermes-agent",
+            "capsule": "self_improving_learning_loop",
+            "sourceDigest": ""
+          },
+          "loop": {
+            "observe": "capture_task_result_tool_events_memory_delta",
+            "classify": "shannon_and_gnn_score_success_mistake_genius",
+            "promote": "reverse_gain_promotes_safe_skill_or_memory",
+            "prevent": "mistake_pattern_blocks_repeated_failure",
+            "replay": "bounded_replay_seed_required_before_atlas_store"
+          },
+          "gates": [
+            "no_secret_import",
+            "reverse_gain_before_promotion",
+            "source_digest_required",
+            "bounded_replay_required",
+            "gac_approval_for_skill_activation"
+          ],
+          "outputSurfaces": [
+            "data/behcs/original-hermes-agent/learning-loop-contract-latest.json",
+            "data/behcs/original-hermes-agent/skill-promotion-queue-latest.ndjson",
+            "data/behcs/original-hermes-agent/mistake-prevention-rules-latest.ndjson"
+          ],
+          "digest": "b29a852fe3c0fecdccf7b30fab2b4c9d52ec878ea2d8ec99a1e4aaaa237cbd55"
+        },
+        "sourceSurfaces": {
+          "mistakePatternSummary": {
+            "ok": true,
+            "path": "C:\\Users\\acer\\Asolaria\\data\\mistake-patterns.json",
+            "updatedAt": "2026-04-24T23:47:50.101Z",
+            "counts": {
+              "total": 8,
+              "active": 8,
+              "archived": 0,
+              "obsolete": 0
+            }
+          },
+          "mistakeAvoidanceHints": {
+            "ok": true,
+            "summary": {
+              "ok": true,
+              "path": "C:\\Users\\acer\\Asolaria\\data\\mistake-patterns.json",
+              "updatedAt": "2026-04-24T23:47:50.101Z",
+              "counts": {
+                "total": 8,
+                "active": 8,
+                "archived": 0,
+                "obsolete": 0
+              }
+            },
+            "totalHints": 8,
+            "hints": [
+              {
+                "id": "m.6.14ae864d08",
+                "code": "6",
+                "sev": "high",
+                "skill": [],
+                "tool": [],
+                "activity": [
+                  "gate_block"
+                ],
+                "cause": "unknown",
+                "avoid": "Apply safer default workflow and verify preconditions.",
+                "uses": 14858
+              },
+              {
+                "id": "m.9_9_9.6163437f3e",
+                "code": "9.9.9",
+                "sev": "medium",
+                "skill": [],
+                "tool": [],
+                "activity": [
+                  "idle_escalation"
+                ],
+                "cause": "Idle lanes detected: helm:859915s",
+                "avoid": "Apply safer default workflow and verify preconditions.",
+                "uses": 1879
+              },
+              {
+                "id": "m.9_9_9.ca3c18e90d",
+                "code": "9.9.9",
+                "sev": "medium",
+                "skill": [],
+                "tool": [],
+                "activity": [
+                  "self_reflect"
+                ],
+                "cause": "migrated from d0-runtime",
+                "avoid": "Apply safer default workflow and verify preconditions.",
+                "uses": 8
+              },
+              {
+                "id": "m.9_9_9.215dae382b",
+                "code": "9.9.9",
+                "sev": "medium",
+                "skill": [],
+                "tool": [],
+                "activity": [
+                  "operator_correction"
+                ],
+                "cause": "migrated from d0-runtime",
+                "avoid": "Apply safer default workflow and verify preconditions.",
+                "uses": 5
+              },
+              {
+                "id": "m.9_9_9.a51a480bab",
+                "code": "9.9.9",
+                "sev": "medium",
+                "skill": [],
+                "tool": [],
+                "activity": [
+                  "self_caught"
+                ],
+                "cause": "migrated from d0-runtime",
+                "avoid": "Apply safer default workflow and verify preconditions.",
+                "uses": 2
+              },
+              {
+                "id": "m.9_9_9.c0717f99d0",
+                "code": "9.9.9",
+                "sev": "medium",
+                "skill": [],
+                "tool": [],
+                "activity": [
+                  "orchestration_mistake"
+                ],
+                "cause": "capital_sovereign_shadow_model_not_loaded_first",
+                "avoid": "Apply safer default workflow and verify preconditions.",
+                "uses": 2
+              },
+              {
+                "id": "m.9_9_9.fe317d5b1b",
+                "code": "9.9.9",
+                "sev": "medium",
+                "skill": [],
+                "tool": [],
+                "activity": [
+                  "self_caught_major"
+                ],
+                "cause": "migrated from d0-runtime",
+                "avoid": "Apply safer default workflow and verify preconditions.",
+                "uses": 1
+              },
+              {
+                "id": "m.9_9_9.8258d1d7a1",
+                "code": "9.9.9",
+                "sev": "medium",
+                "skill": [],
+                "tool": [],
+                "activity": [
+                  "verification_packet_captured"
+                ],
+                "cause": "kr_deny_read_only_proof_packet",
+                "avoid": "Apply safer default workflow and verify preconditions.",
+                "uses": 1
+              }
+            ]
+          },
+          "skillCount": 56,
+          "memoryTurns": 20,
+          "notebookNotes": 319,
+          "semanticKnowledge": {
+            "ready": true,
+            "documents": 367,
+            "model": "gemini-embedding-2-preview"
+          }
+        },
+        "candidates": [
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "kind": "original_hermes_learning_candidate",
+            "sourcePattern": {
+              "id": "m.6.14ae864d08",
+              "code": "6",
+              "title": "gate_block",
+              "severity": "high",
+              "occurrences": 14858,
+              "updatedAt": "2026-04-25T00:18:16.352Z"
+            },
+            "skillCoverage": {
+              "linkedSkills": [],
+              "covered": [],
+              "missing": []
+            },
+            "candidate": {
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "id": "original-hermes-learning-m.6.14ae864d08",
+              "lane": "original_hermes_learning_loop",
+              "sourceDigest": "c76032b48b350cf3923b843ee423cf3ab64dae2a58f674197e65b0a201af7579",
+              "whiteRoomProof": "mistake_pattern:m.6.14ae864d08",
+              "forwardScore": 0.86,
+              "reverseRisk": 0.62,
+              "mistakeClass": "6",
+              "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+              "supervisor": "original_hermes_impl_memory_skills_supervisor",
+              "digest": "c27d8fc8fa6daa35711cc8a7ecc3f84524dbbb937f8a01491471a3adaba3cdd9"
+            },
+            "reverseGainEvaluation": {
+              "ok": true,
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "promoted": false,
+              "action": "DEFER_OR_DEMOTE",
+              "errors": [
+                "reverse_risk_above_threshold"
+              ],
+              "warnings": [],
+              "thresholds": {
+                "minForwardScore": 0.72,
+                "maxReverseRisk": 0.28
+              },
+              "digest": "a7c20fe22ea2f3ab649965e4d0e45aa1e139d56c1a84fde4b660e2200f91dcba"
+            },
+            "preventionRule": {
+              "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+              "generatedAt": "2026-04-25T00:18:16.354Z",
+              "lane": "original_hermes_learning_loop",
+              "mistakeClass": "6",
+              "action": "block_until_reverse_gain_pass",
+              "condition": "reverse_risk_above_threshold",
+              "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+              "digest": "9bc7e2b94c2f9db58417cb640a14d7570ba888337ff4de91287d6e1da4df622f"
+            },
+            "activation": {
+              "state": "candidate_only",
+              "autoActivateSkill": false,
+              "autoWriteAtlas": false,
+              "requiredNextGates": [
+                "bounded_replay_seed",
+                "real_gulp_proof",
+                "gac_approval",
+                "operator_review"
+              ]
+            },
+            "digest": "e509ab816476baed5b72f9c713c5315a71010de9d5bd88f27b434a9d52dd691f"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "kind": "original_hermes_learning_candidate",
+            "sourcePattern": {
+              "id": "m.9_9_9.6163437f3e",
+              "code": "9.9.9",
+              "title": "agent_colony_idle_escalation",
+              "severity": "medium",
+              "occurrences": 1879,
+              "updatedAt": "2026-04-25T00:18:16.351Z"
+            },
+            "skillCoverage": {
+              "linkedSkills": [],
+              "covered": [],
+              "missing": []
+            },
+            "candidate": {
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "id": "original-hermes-learning-m.9_9_9.6163437f3e",
+              "lane": "original_hermes_learning_loop",
+              "sourceDigest": "65705f53c8b5c4a6c41e0ca9eacb29460e5b1d899f7275ce2d2eafb2b393a60f",
+              "whiteRoomProof": "mistake_pattern:m.9_9_9.6163437f3e",
+              "forwardScore": 0.81,
+              "reverseRisk": 0.53,
+              "mistakeClass": "9.9.9",
+              "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+              "supervisor": "original_hermes_impl_memory_skills_supervisor",
+              "digest": "a4a917095afca611f2f067c7d7d2a2aa922145c671a058aeeef12a4a45c53e8b"
+            },
+            "reverseGainEvaluation": {
+              "ok": true,
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "promoted": false,
+              "action": "DEFER_OR_DEMOTE",
+              "errors": [
+                "reverse_risk_above_threshold"
+              ],
+              "warnings": [],
+              "thresholds": {
+                "minForwardScore": 0.72,
+                "maxReverseRisk": 0.28
+              },
+              "digest": "b1dd62b430267788ef8b444481917a7809f0d14f278db58b7b1d23dbca8ddeb0"
+            },
+            "preventionRule": {
+              "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+              "generatedAt": "2026-04-25T00:18:16.355Z",
+              "lane": "original_hermes_learning_loop",
+              "mistakeClass": "9.9.9",
+              "action": "block_until_reverse_gain_pass",
+              "condition": "reverse_risk_above_threshold",
+              "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+              "digest": "ecfcabfb61ed271eeabf2a9f8d9b922faa097895755e7c510f5a6c1e39c124e3"
+            },
+            "activation": {
+              "state": "candidate_only",
+              "autoActivateSkill": false,
+              "autoWriteAtlas": false,
+              "requiredNextGates": [
+                "bounded_replay_seed",
+                "real_gulp_proof",
+                "gac_approval",
+                "operator_review"
+              ]
+            },
+            "digest": "6e90c593babf102be21cc25137a623bc858dc4c76a7822a030704e8771683f1c"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "kind": "original_hermes_learning_candidate",
+            "sourcePattern": {
+              "id": "m.9_9_9.ca3c18e90d",
+              "code": "9.9.9",
+              "title": "self_reflect",
+              "severity": "medium",
+              "occurrences": 8,
+              "updatedAt": "2026-04-25T00:18:16.352Z"
+            },
+            "skillCoverage": {
+              "linkedSkills": [],
+              "covered": [],
+              "missing": []
+            },
+            "candidate": {
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "id": "original-hermes-learning-m.9_9_9.ca3c18e90d",
+              "lane": "original_hermes_learning_loop",
+              "sourceDigest": "ae77ffdfd74d36588574df7b08703b3fc8c7145a0698a2173fcb786d86ae93ad",
+              "whiteRoomProof": "mistake_pattern:m.9_9_9.ca3c18e90d",
+              "forwardScore": 0.77,
+              "reverseRisk": 0.57,
+              "mistakeClass": "9.9.9",
+              "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+              "supervisor": "original_hermes_impl_memory_skills_supervisor",
+              "digest": "ec0367016f3c6a7dc19026086d129ef152ebce37d56158309828849754ec4c10"
+            },
+            "reverseGainEvaluation": {
+              "ok": true,
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "promoted": false,
+              "action": "DEFER_OR_DEMOTE",
+              "errors": [
+                "reverse_risk_above_threshold"
+              ],
+              "warnings": [],
+              "thresholds": {
+                "minForwardScore": 0.72,
+                "maxReverseRisk": 0.28
+              },
+              "digest": "558bfbc5b2e7ae8d68ca6b973b369103a25a6d4155e4e7358e3199adcdb7d108"
+            },
+            "preventionRule": {
+              "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+              "generatedAt": "2026-04-25T00:18:16.355Z",
+              "lane": "original_hermes_learning_loop",
+              "mistakeClass": "9.9.9",
+              "action": "block_until_reverse_gain_pass",
+              "condition": "reverse_risk_above_threshold",
+              "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+              "digest": "ecfcabfb61ed271eeabf2a9f8d9b922faa097895755e7c510f5a6c1e39c124e3"
+            },
+            "activation": {
+              "state": "candidate_only",
+              "autoActivateSkill": false,
+              "autoWriteAtlas": false,
+              "requiredNextGates": [
+                "bounded_replay_seed",
+                "real_gulp_proof",
+                "gac_approval",
+                "operator_review"
+              ]
+            },
+            "digest": "b6ab8ee8fbc34ecac9de15716585bb7d76897d7e1658e619ea8ceeb72b5bf3b3"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "kind": "original_hermes_learning_candidate",
+            "sourcePattern": {
+              "id": "m.9_9_9.215dae382b",
+              "code": "9.9.9",
+              "title": "operator_correction",
+              "severity": "medium",
+              "occurrences": 5,
+              "updatedAt": "2026-04-25T00:18:16.352Z"
+            },
+            "skillCoverage": {
+              "linkedSkills": [],
+              "covered": [],
+              "missing": []
+            },
+            "candidate": {
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "id": "original-hermes-learning-m.9_9_9.215dae382b",
+              "lane": "original_hermes_learning_loop",
+              "sourceDigest": "930af1b5b59292af27ef6c5028a57bc1a8309e0672cfec4a5500dc998888adb2",
+              "whiteRoomProof": "mistake_pattern:m.9_9_9.215dae382b",
+              "forwardScore": 0.695,
+              "reverseRisk": 0.57,
+              "mistakeClass": "9.9.9",
+              "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+              "supervisor": "original_hermes_impl_memory_skills_supervisor",
+              "digest": "d2cde2c713a42702d04c8fca3204bfa0942956bcd451d02db9072f673dbffe31"
+            },
+            "reverseGainEvaluation": {
+              "ok": true,
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "promoted": false,
+              "action": "DEFER_OR_DEMOTE",
+              "errors": [
+                "forward_score_below_threshold",
+                "reverse_risk_above_threshold"
+              ],
+              "warnings": [],
+              "thresholds": {
+                "minForwardScore": 0.72,
+                "maxReverseRisk": 0.28
+              },
+              "digest": "dc659c7f8d2fe739b08c389f2e53d5f28aedddc18f17ecb48c669a7d155ccf2b"
+            },
+            "preventionRule": {
+              "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+              "generatedAt": "2026-04-25T00:18:16.355Z",
+              "lane": "original_hermes_learning_loop",
+              "mistakeClass": "9.9.9",
+              "action": "block_until_reverse_gain_pass",
+              "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+              "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+              "digest": "ab0fde1333510c206cd3e6463f09e01bad43041fdf274ef6ba75bd629859b58d"
+            },
+            "activation": {
+              "state": "candidate_only",
+              "autoActivateSkill": false,
+              "autoWriteAtlas": false,
+              "requiredNextGates": [
+                "bounded_replay_seed",
+                "real_gulp_proof",
+                "gac_approval",
+                "operator_review"
+              ]
+            },
+            "digest": "b22b08c2061a7d5108e0bcb759003f841ac9e5e0d2eec43fc8ddfb5043561396"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "kind": "original_hermes_learning_candidate",
+            "sourcePattern": {
+              "id": "m.9_9_9.a51a480bab",
+              "code": "9.9.9",
+              "title": "self_caught",
+              "severity": "medium",
+              "occurrences": 2,
+              "updatedAt": "2026-04-25T00:18:16.352Z"
+            },
+            "skillCoverage": {
+              "linkedSkills": [],
+              "covered": [],
+              "missing": []
+            },
+            "candidate": {
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "id": "original-hermes-learning-m.9_9_9.a51a480bab",
+              "lane": "original_hermes_learning_loop",
+              "sourceDigest": "181bc96fef2ca18dda866ab50173a82fb336584dc030b363039457e042885682",
+              "whiteRoomProof": "mistake_pattern:m.9_9_9.a51a480bab",
+              "forwardScore": 0.62,
+              "reverseRisk": 0.63,
+              "mistakeClass": "9.9.9",
+              "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+              "supervisor": "original_hermes_impl_memory_skills_supervisor",
+              "digest": "4cd01d881cab0d3e06a4d7a72f96bcfb8c2dcfb3b3b5672616a0304dd7f132cd"
+            },
+            "reverseGainEvaluation": {
+              "ok": true,
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "promoted": false,
+              "action": "DEFER_OR_DEMOTE",
+              "errors": [
+                "forward_score_below_threshold",
+                "reverse_risk_above_threshold"
+              ],
+              "warnings": [],
+              "thresholds": {
+                "minForwardScore": 0.72,
+                "maxReverseRisk": 0.28
+              },
+              "digest": "d16f17ca28a900f3bf1db61fb7a6396ff93eae42460560b534b57caf5c4f43e7"
+            },
+            "preventionRule": {
+              "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+              "generatedAt": "2026-04-25T00:18:16.356Z",
+              "lane": "original_hermes_learning_loop",
+              "mistakeClass": "9.9.9",
+              "action": "block_until_reverse_gain_pass",
+              "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+              "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+              "digest": "c8ef6fd1c2e016cc97bf0108fe331d8063d4261c1ecec763bebee977c76945a2"
+            },
+            "activation": {
+              "state": "candidate_only",
+              "autoActivateSkill": false,
+              "autoWriteAtlas": false,
+              "requiredNextGates": [
+                "bounded_replay_seed",
+                "real_gulp_proof",
+                "gac_approval",
+                "operator_review"
+              ]
+            },
+            "digest": "b50394636aa08a73e8ad2a47ad56cefedf119bc93145bcb3395441df915450a8"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "kind": "original_hermes_learning_candidate",
+            "sourcePattern": {
+              "id": "m.9_9_9.c0717f99d0",
+              "code": "9.9.9",
+              "title": "orchestration_mistake",
+              "severity": "medium",
+              "occurrences": 2,
+              "updatedAt": "2026-04-25T00:18:16.352Z"
+            },
+            "skillCoverage": {
+              "linkedSkills": [],
+              "covered": [],
+              "missing": []
+            },
+            "candidate": {
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "id": "original-hermes-learning-m.9_9_9.c0717f99d0",
+              "lane": "original_hermes_learning_loop",
+              "sourceDigest": "d45d9ba2585dbecb48e571b793183f66b5ef6d6122ff079d0d2da99815bbbecb",
+              "whiteRoomProof": "mistake_pattern:m.9_9_9.c0717f99d0",
+              "forwardScore": 0.62,
+              "reverseRisk": 0.63,
+              "mistakeClass": "9.9.9",
+              "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+              "supervisor": "original_hermes_impl_memory_skills_supervisor",
+              "digest": "9abe2336727b268100e3aa453d1ef823e6720d9efa6d1dc73ca39f340866d143"
+            },
+            "reverseGainEvaluation": {
+              "ok": true,
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "promoted": false,
+              "action": "DEFER_OR_DEMOTE",
+              "errors": [
+                "forward_score_below_threshold",
+                "reverse_risk_above_threshold"
+              ],
+              "warnings": [],
+              "thresholds": {
+                "minForwardScore": 0.72,
+                "maxReverseRisk": 0.28
+              },
+              "digest": "f07caf83372d6e12ee892b59fbb8e3afc26ed05c438003a81eb0e32cfb76b99b"
+            },
+            "preventionRule": {
+              "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+              "generatedAt": "2026-04-25T00:18:16.356Z",
+              "lane": "original_hermes_learning_loop",
+              "mistakeClass": "9.9.9",
+              "action": "block_until_reverse_gain_pass",
+              "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+              "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+              "digest": "c8ef6fd1c2e016cc97bf0108fe331d8063d4261c1ecec763bebee977c76945a2"
+            },
+            "activation": {
+              "state": "candidate_only",
+              "autoActivateSkill": false,
+              "autoWriteAtlas": false,
+              "requiredNextGates": [
+                "bounded_replay_seed",
+                "real_gulp_proof",
+                "gac_approval",
+                "operator_review"
+              ]
+            },
+            "digest": "2ad826fb7eb37bf81010795d83216af845390221d3dbb45070cdbf5e1e300fac"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "kind": "original_hermes_learning_candidate",
+            "sourcePattern": {
+              "id": "m.9_9_9.fe317d5b1b",
+              "code": "9.9.9",
+              "title": "self_caught_major",
+              "severity": "medium",
+              "occurrences": 1,
+              "updatedAt": "2026-04-25T00:18:16.352Z"
+            },
+            "skillCoverage": {
+              "linkedSkills": [],
+              "covered": [],
+              "missing": []
+            },
+            "candidate": {
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "id": "original-hermes-learning-m.9_9_9.fe317d5b1b",
+              "lane": "original_hermes_learning_loop",
+              "sourceDigest": "430d05a5d2e7579e24aa3a1d8a522ef0bf0b84c690427aa6295cc283d7c783fd",
+              "whiteRoomProof": "mistake_pattern:m.9_9_9.fe317d5b1b",
+              "forwardScore": 0.595,
+              "reverseRisk": 0.63,
+              "mistakeClass": "9.9.9",
+              "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+              "supervisor": "original_hermes_impl_memory_skills_supervisor",
+              "digest": "fd00f7c66eeb782c58b067eedb51f4e228b96474fde8039925ba591337962875"
+            },
+            "reverseGainEvaluation": {
+              "ok": true,
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "promoted": false,
+              "action": "DEFER_OR_DEMOTE",
+              "errors": [
+                "forward_score_below_threshold",
+                "reverse_risk_above_threshold"
+              ],
+              "warnings": [],
+              "thresholds": {
+                "minForwardScore": 0.72,
+                "maxReverseRisk": 0.28
+              },
+              "digest": "84af8966c6f555f9e1f033ed58ea3cc436e54ff7de6237b61c179a703a61d222"
+            },
+            "preventionRule": {
+              "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+              "generatedAt": "2026-04-25T00:18:16.356Z",
+              "lane": "original_hermes_learning_loop",
+              "mistakeClass": "9.9.9",
+              "action": "block_until_reverse_gain_pass",
+              "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+              "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+              "digest": "c8ef6fd1c2e016cc97bf0108fe331d8063d4261c1ecec763bebee977c76945a2"
+            },
+            "activation": {
+              "state": "candidate_only",
+              "autoActivateSkill": false,
+              "autoWriteAtlas": false,
+              "requiredNextGates": [
+                "bounded_replay_seed",
+                "real_gulp_proof",
+                "gac_approval",
+                "operator_review"
+              ]
+            },
+            "digest": "3a7f37e6614b2c6ed96a6da5bba5cd080678cc56845bfe9677d4d0b555cace5c"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "kind": "original_hermes_learning_candidate",
+            "sourcePattern": {
+              "id": "m.9_9_9.8258d1d7a1",
+              "code": "9.9.9",
+              "title": "verification_packet_captured",
+              "severity": "medium",
+              "occurrences": 1,
+              "updatedAt": "2026-04-25T00:18:16.352Z"
+            },
+            "skillCoverage": {
+              "linkedSkills": [],
+              "covered": [],
+              "missing": []
+            },
+            "candidate": {
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "id": "original-hermes-learning-m.9_9_9.8258d1d7a1",
+              "lane": "original_hermes_learning_loop",
+              "sourceDigest": "cf77d938c2e3a591ba6395ab3053c10aed255107deedf6ffa2ed92c5bdb8173c",
+              "whiteRoomProof": "mistake_pattern:m.9_9_9.8258d1d7a1",
+              "forwardScore": 0.595,
+              "reverseRisk": 0.63,
+              "mistakeClass": "9.9.9",
+              "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
+              "supervisor": "original_hermes_impl_memory_skills_supervisor",
+              "digest": "92ff6867a98f48df424f92109a9fa295793debaf8d9ee09041c320ef53b06cee"
+            },
+            "reverseGainEvaluation": {
+              "ok": true,
+              "contractId": "reverse-gain-promotion-gate.v1",
+              "promoted": false,
+              "action": "DEFER_OR_DEMOTE",
+              "errors": [
+                "forward_score_below_threshold",
+                "reverse_risk_above_threshold"
+              ],
+              "warnings": [],
+              "thresholds": {
+                "minForwardScore": 0.72,
+                "maxReverseRisk": 0.28
+              },
+              "digest": "8c96a4318c4a0b68970d83c81c29b467a259dabacf3bd723340431f943bed62e"
+            },
+            "preventionRule": {
+              "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
+              "generatedAt": "2026-04-25T00:18:16.356Z",
+              "lane": "original_hermes_learning_loop",
+              "mistakeClass": "9.9.9",
+              "action": "block_until_reverse_gain_pass",
+              "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
+              "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
+              "digest": "c8ef6fd1c2e016cc97bf0108fe331d8063d4261c1ecec763bebee977c76945a2"
+            },
+            "activation": {
+              "state": "candidate_only",
+              "autoActivateSkill": false,
+              "autoWriteAtlas": false,
+              "requiredNextGates": [
+                "bounded_replay_seed",
+                "real_gulp_proof",
+                "gac_approval",
+                "operator_review"
+              ]
+            },
+            "digest": "bc577949b4d7689638334fe9fa23a5f7ebcc54b125adf75a3313f1fc75ec9ffd"
+          }
+        ],
+        "summary": {
+          "candidateCount": 8,
+          "reverseGainPromotedCount": 0,
+          "reverseGainBlockedCount": 8,
+          "autoActivatedCount": 0,
+          "atlasWrites": 0,
+          "skillWrites": 0
+        },
+        "gates": [
+          "reverse_gain_before_promotion",
+          "bounded_replay_required",
+          "real_gulp_proof_required",
+          "gac_approval_for_skill_activation",
+          "operator_review_required"
+        ],
+        "executionPolicy": {
+          "autoActivateSkill": false,
+          "autoWriteAtlas": false,
+          "autoWriteMemory": false,
+          "candidateQueueOnly": true
+        },
+        "language": {
+          "human": "Original Hermes learning-loop candidates are mined from existing mistake patterns and skill coverage, then held behind reverse-gain, replay, GAC, and operator review.",
+          "agent": "(original_hermes, learning.loop, behcs, 1, memory_skills, reverse_gain, staged, [mistakes+patterns+skills], map_map_mapped, IX, log, persistent, whiteroom, light)",
+          "device": "original_hermes_learning_loop status=candidate_only auto_activate=0 atlas_writes=0"
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": [],
+          "digest": "5aa6591a5bf3c8f782ca6dc6af519b63f3e31af9bfdd3870d67f008015aa3a7b"
+        },
+        "digest": "04c8b25d29d6296575401d61a3203afa262a817931da9d420e7059813ce17245"
+      },
+      "walState": {
+        "id": "original-hermes-agent-wal-state-runtime.v1",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "status": "WAL_STATE_MANIFEST_READY_MIGRATION_BLOCKED",
+        "contract": {
+          "contractId": "original-hermes-agent-contracts.v1.wal-state",
+          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "source": {
+            "upstream": "NousResearch/hermes-agent",
+            "capsule": "sqlite_wal_session_memory",
+            "sourceDigest": ""
+          },
+          "stores": [
+            "memoryStore",
+            "taskLedgerStore",
+            "mistakeLedgerStore",
+            "semanticKnowledgeStore",
+            "workspaceKnowledgeStore"
+          ],
+          "requiredProperties": [
+            "append_only_event_rows",
+            "session_lineage",
+            "child_session_refs",
+            "passive_checkpoint",
+            "startup_prune_or_vacuum",
+            "digest_per_state_transition"
+          ],
+          "blockedModes": [
+            "raw_json_rewrite_under_pressure",
+            "cross_process_write_without_lock_or_wal",
+            "secret_material_in_state_rows"
+          ],
+          "migrationDefault": "manifest_first_no_store_migration_until_smoke",
+          "digest": "6820e22eaefc660d20dd1a04d9db90647c33660f3b0625ed4746c9a9a98f56be"
+        },
+        "stores": [
+          {
+            "id": "agent_sessions",
+            "path": "C:\\Users\\acer\\Asolaria\\data\\agent-sessions.json",
+            "owner": "agentSessionStore",
+            "mode": "json_atomic_rewrite",
+            "requiredNextGate": "wal_or_lock_before_multi_process_write",
+            "stat": {
+              "exists": true,
+              "bytes": 24857,
+              "modifiedAt": "2026-04-03T01:50:00.596Z"
+            },
+            "sourcePath": "C:\\Users\\acer\\Asolaria\\src\\agentSessionStore.js",
+            "sourceSignals": {
+              "hasAtomicRename": true,
+              "hasAppend": false,
+              "hasExplicitWal": false
+            },
+            "tempFiles": [
+              {
+                "name": "agent-sessions.json.tmp-22784-1774419118144",
+                "bytes": 18944,
+                "modifiedAt": "2026-03-25T06:11:58.145Z"
+              },
+              {
+                "name": "agent-sessions.json.tmp-22784-1774420394220",
+                "bytes": 18944,
+                "modifiedAt": "2026-03-25T06:33:14.222Z"
+              },
+              {
+                "name": "agent-sessions.json.tmp-22784-1774420394237",
+                "bytes": 18944,
+                "modifiedAt": "2026-03-25T06:33:14.238Z"
+              },
+              {
+                "name": "agent-sessions.json.tmp-22784-1774420427109",
+                "bytes": 18944,
+                "modifiedAt": "2026-03-25T06:33:47.111Z"
+              },
+              {
+                "name": "agent-sessions.json.tmp-22784-1774426123809",
+                "bytes": 18944,
+                "modifiedAt": "2026-03-25T08:08:43.811Z"
+              },
+              {
+                "name": "agent-sessions.json.tmp-22784-1774426123820",
+                "bytes": 18944,
+                "modifiedAt": "2026-03-25T08:08:43.822Z"
+              },
+              {
+                "name": "agent-sessions.json.tmp-22784-1774426123831",
+                "bytes": 18944,
+                "modifiedAt": "2026-03-25T08:08:43.833Z"
+              }
+            ],
+            "risk": [
+              "json_store_without_explicit_wal",
+              "stale_temp_siblings_present"
+            ],
+            "recommendedMode": "sqlite_wal_or_single_writer_lock_manifest_before_runtime_migration",
+            "digest": "8f4c965a2afda0d4f81c9fb3328a4ba15932d7c985cdf29c0d0317ea18b9979a"
+          },
+          {
+            "id": "task_ledger",
+            "path": "C:\\Users\\acer\\Asolaria\\data\\task-ledger.json",
+            "owner": "taskLedgerStore",
+            "mode": "json_atomic_rewrite",
+            "requiredNextGate": "wal_or_lock_before_multi_process_write",
+            "stat": {
+              "exists": true,
+              "bytes": 1630204,
+              "modifiedAt": "2026-04-16T00:56:52.580Z"
+            },
+            "sourcePath": "C:\\Users\\acer\\Asolaria\\src\\taskLedgerStore.js",
+            "sourceSignals": {
+              "hasAtomicRename": true,
+              "hasAppend": false,
+              "hasExplicitWal": false
+            },
+            "tempFiles": [],
+            "risk": [
+              "json_store_without_explicit_wal"
+            ],
+            "recommendedMode": "sqlite_wal_or_single_writer_lock_manifest_before_runtime_migration",
+            "digest": "a7ab1b0822fa51196098bfc9334692379a2e3fcc6b5a4728e4f3adc700a27071"
+          },
+          {
+            "id": "mistake_ledger",
+            "path": "C:\\Users\\acer\\Asolaria\\data\\mistake-ledger.ndjson",
+            "owner": "mistakeLedgerStore",
+            "mode": "ndjson_append",
+            "requiredNextGate": "append_batch_file_cap_and_pattern_sync",
+            "stat": {
+              "exists": true,
+              "bytes": 1782048,
+              "modifiedAt": "2026-04-24T18:49:20.025Z"
+            },
+            "sourcePath": "C:\\Users\\acer\\Asolaria\\src\\mistakeLedgerStore.js",
+            "sourceSignals": {
+              "hasAtomicRename": false,
+              "hasAppend": true,
+              "hasExplicitWal": false
+            },
+            "tempFiles": [],
+            "risk": [
+              "source_mentions_secret_terms_verify_no_state_rows"
+            ],
+            "recommendedMode": "append_only_with_batch_digest_and_file_cap",
+            "digest": "1738217ce48fdd01212278bccaa7206fb1c43c861d8ddc7d96abe070b40ee255"
+          },
+          {
+            "id": "memory",
+            "path": "C:\\Users\\acer\\Asolaria\\data\\memory.json",
+            "owner": "memoryStore",
+            "mode": "json_store",
+            "requiredNextGate": "wal_manifest_before_session_lineage",
+            "stat": {
+              "exists": true,
+              "bytes": 189833,
+              "modifiedAt": "2026-04-15T16:51:27.139Z"
+            },
+            "sourcePath": "C:\\Users\\acer\\Asolaria\\src\\memoryStore.js",
+            "sourceSignals": {
+              "hasAtomicRename": true,
+              "hasAppend": false,
+              "hasExplicitWal": false
+            },
+            "tempFiles": [],
+            "risk": [
+              "json_store_without_explicit_wal",
+              "source_mentions_secret_terms_verify_no_state_rows"
+            ],
+            "recommendedMode": "sqlite_wal_or_single_writer_lock_manifest_before_runtime_migration",
+            "digest": "82cb2510e200c4f4f8872ceb63f03ec9e58c99f071f9f19c7050279a5718d0a9"
+          },
+          {
+            "id": "notebook",
+            "path": "C:\\Users\\acer\\Asolaria\\data\\notebook.json",
+            "owner": "notebookStore",
+            "mode": "json_store",
+            "requiredNextGate": "wal_manifest_before_session_lineage",
+            "stat": {
+              "exists": true,
+              "bytes": 276792,
+              "modifiedAt": "2026-03-29T18:40:12.941Z"
+            },
+            "sourcePath": "C:\\Users\\acer\\Asolaria\\src\\notebookStore.js",
+            "sourceSignals": {
+              "hasAtomicRename": true,
+              "hasAppend": false,
+              "hasExplicitWal": false
+            },
+            "tempFiles": [],
+            "risk": [
+              "json_store_without_explicit_wal",
+              "source_mentions_secret_terms_verify_no_state_rows"
+            ],
+            "recommendedMode": "sqlite_wal_or_single_writer_lock_manifest_before_runtime_migration",
+            "digest": "d6d172fb14e71b6e0e3f6a9b0258923aa2f728091fd5445ba1c9265984ae842b"
+          }
+        ],
+        "summary": {
+          "storeCount": 5,
+          "jsonRewriteStoreCount": 4,
+          "appendOnlyStoreCount": 1,
+          "tempFileCount": 7,
+          "migrationWrites": 0,
+          "dataDeletes": 0,
+          "secretsImported": 0
+        },
+        "gates": [
+          "manifest_first",
+          "no_store_migration_until_smoke",
+          "single_writer_or_sqlite_wal_required",
+          "stale_temp_cleanup_requires_operator_review",
+          "secret_material_forbidden_in_state_rows"
+        ],
+        "executionPolicy": {
+          "manifestOnly": true,
+          "migratesStores": false,
+          "deletesTempFiles": false,
+          "importsSecrets": false,
+          "launchesDaemons": false
+        },
+        "language": {
+          "human": "Original Hermes WAL/session state is staged as a store manifest and migration gate before any runtime state migration.",
+          "agent": "(original_hermes, wal.state, behcs, 1, session_memory, manifest, staged, [json+ndjson+temp_siblings], map_mapped, IX, log, persistent, whiteroom, light)",
+          "device": "original_hermes_wal_state status=manifest_only migration=0 deletes=0 secrets=0"
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": [
+            "stale_temp_siblings_present_cleanup_blocked"
+          ],
+          "digest": "14175081b73b0a78a75cea94fe6f571b334b916144694cc56aa104f5f3c76a0e"
+        },
+        "digest": "79f6d216ad92fb9615c1c3268aaba0f605e157dd79590dc08aeffa5c2e4e9dd1"
+      },
+      "pluginHookGate": {
+        "id": "original-hermes-plugin-hook-gate-runtime.v1",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "status": "PLUGIN_HOOK_GATE_ACTIVE_FAIL_CLOSED",
+        "gate": {
+          "contractId": "original-hermes-agent-contracts.v1.plugin-hook-gac-gate",
+          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "source": {
+            "upstream": "NousResearch/hermes-agent",
+            "capsule": "plugin_hook_surface",
+            "sourceDigest": ""
+          },
+          "hookPhases": [
+            "on_session_start",
+            "pre_tool_call",
+            "post_tool_call",
+            "transform_tool_result",
+            "transform_terminal_output",
+            "on_session_finalize"
+          ],
+          "defaultDecision": "deny_runtime_hook_until_registered_and_gac_approved",
+          "allowConditions": [
+            "plugin_manifest_digest_present",
+            "hook_phase_registered",
+            "tool_scope_declared",
+            "audit_log_target_present",
+            "no_shell_or_network_expansion_without_explicit_gate"
+          ],
+          "denyConditions": [
+            "secret_access_request",
+            "unbounded_shell",
+            "network_callback_without_connector_policy",
+            "shadow_file_write",
+            "missing_rollback_surface"
+          ],
+          "digest": "278244c4a67540ede25a0ac5e27bd472d4c805d8f2c8ace17a37a94a85dce5f3"
+        },
+        "samples": {
+          "unsafe": {
+            "ok": false,
+            "contractId": "original-hermes-agent-contracts.v1.plugin-hook-gac-gate",
+            "decision": "DENY_HOOK",
+            "errors": [
+              "unbounded_shell"
+            ],
+            "audit": {
+              "pluginId": "original-hermes-unsafe-sample",
+              "phase": "pre_tool_call",
+              "manifestDigest": "278244c4a67540ede25a0ac5e27bd472d4c805d8f2c8ace17a37a94a85dce5f3",
+              "rollbackSurface": "reports/original-hermes-agent-runtime-index-latest.md"
+            },
+            "digest": "447521e11a3e0a6233836b7d50d5c78baa580dc8008f9177406478897f3dc2b5"
+          },
+          "registeredReadOnly": {
+            "ok": true,
+            "contractId": "original-hermes-agent-contracts.v1.plugin-hook-gac-gate",
+            "decision": "ALLOW_REGISTERED_HOOK",
+            "errors": [],
+            "audit": {
+              "pluginId": "original-hermes-readonly-sample",
+              "phase": "post_tool_call",
+              "manifestDigest": "278244c4a67540ede25a0ac5e27bd472d4c805d8f2c8ace17a37a94a85dce5f3",
+              "rollbackSurface": "reports/original-hermes-agent-runtime-index-latest.md"
+            },
+            "digest": "0f91cf9330b58320bf8ee0d247956edb48d831dd6f5d746fee184a2a8de27620"
+          }
+        },
+        "summary": {
+          "unsafeDenied": true,
+          "registeredReadOnlyAllowed": true,
+          "runtimeHooksEnabled": false,
+          "shellExpansionAllowed": false,
+          "secretAccessAllowed": false,
+          "shadowWritesAllowed": false
+        },
+        "digest": "20cab582581e6c8ef54e6a56e4bd360308e980f3a96c5d0591502600ee083eab",
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": [],
+          "digest": "c08b5c50a7e551cff4e7c89b344b2d00b92af6d047a7d95af3995b6672884b50"
+        }
+      },
+      "securityBackport": {
+        "id": "original-hermes-agent-security-backport-runtime.v1",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "status": "SECURITY_BACKPORT_QUEUE_READY_PATCHES_BLOCKED",
+        "manifest": {
+          "contractId": "original-hermes-agent-contracts.v1.security-backport",
+          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "source": {
+            "upstream": "NousResearch/hermes-agent",
+            "capsule": "release_v011_security_hardening",
+            "sourceDigest": ""
+          },
+          "backports": [
+            {
+              "id": "api_auth_enforcement",
+              "target": "src/gateway/toolAuthority.js",
+              "gate": "loopback_or_authenticated_authority"
+            },
+            {
+              "id": "path_traversal_checkpoint_guard",
+              "target": "tools/c-drive-junction-migrator.js",
+              "gate": "resolved_path_stays_under_allowed_root"
+            },
+            {
+              "id": "sandbox_write_shell_injection_guard",
+              "target": "services/sandbox-manager",
+              "gate": "shell_false_or_argv_only"
+            },
+            {
+              "id": "ssrf_redirect_guard",
+              "target": "src/riskEngine.js",
+              "gate": "block_private_ip_redirects_for_remote_fetch"
+            },
+            {
+              "id": "webhook_signature_validation",
+              "target": "routes/hooks.js",
+              "gate": "per_connector_signature_or_fail_closed"
+            },
+            {
+              "id": "oauth_lifecycle_and_no_secret_import",
+              "target": "src/connectors/*",
+              "gate": "existing_vault_only_explicit_operator_approval"
+            }
+          ],
+          "executionDefault": "queued_no_patch_until_targeted_tests",
+          "digest": "9e32ee34c40e604dcbec7646a081dc21d3369f5285e413ef21b7e4ec2872e8a0"
+        },
+        "backports": [
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "id": "api_auth_enforcement",
+            "target": {
+              "exists": true,
+              "kind": "file",
+              "path": "src/gateway/toolAuthority.js",
+              "bytes": 22716,
+              "modifiedAt": "2026-03-08T20:13:42.658Z"
+            },
+            "gate": "loopback_or_authenticated_authority",
+            "smoke": "node --check src/gateway/toolAuthority.js",
+            "state": "queued_target_present_patch_blocked",
+            "activation": {
+              "appliesPatch": false,
+              "importsSecrets": false,
+              "touchesShadowFiles": false,
+              "requiredNextGates": [
+                "targeted_test",
+                "gac_approval",
+                "operator_review",
+                "rollback_plan"
+              ]
+            },
+            "digest": "534097fd5fd1a92911d9e0d30333c469a701c6cf316dcc3945dfb1675e08e780"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "id": "path_traversal_checkpoint_guard",
+            "target": {
+              "exists": true,
+              "kind": "file",
+              "path": "tools/c-drive-junction-migrator.js",
+              "bytes": 9617,
+              "modifiedAt": "2026-04-24T20:03:18.782Z"
+            },
+            "gate": "resolved_path_stays_under_allowed_root",
+            "smoke": "node --check tools/c-drive-junction-migrator.js",
+            "state": "queued_target_present_patch_blocked",
+            "activation": {
+              "appliesPatch": false,
+              "importsSecrets": false,
+              "touchesShadowFiles": false,
+              "requiredNextGates": [
+                "targeted_test",
+                "gac_approval",
+                "operator_review",
+                "rollback_plan"
+              ]
+            },
+            "digest": "7d1edd6279a2dc02ef1fddbe6110b3e07d15ddc9981e7f878e47a5ca25a635db"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "id": "sandbox_write_shell_injection_guard",
+            "target": {
+              "exists": true,
+              "kind": "directory",
+              "path": "services/sandbox-manager",
+              "bytes": 0,
+              "modifiedAt": "2026-02-18T22:10:47.860Z"
+            },
+            "gate": "shell_false_or_argv_only",
+            "smoke": "node --check services/sandbox-manager",
+            "state": "queued_target_present_patch_blocked",
+            "activation": {
+              "appliesPatch": false,
+              "importsSecrets": false,
+              "touchesShadowFiles": false,
+              "requiredNextGates": [
+                "targeted_test",
+                "gac_approval",
+                "operator_review",
+                "rollback_plan"
+              ]
+            },
+            "digest": "3d4d73396f7021678452a80c3f52513fe46d5cd29bd596e7da286093d198e731"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "id": "ssrf_redirect_guard",
+            "target": {
+              "exists": true,
+              "kind": "file",
+              "path": "src/riskEngine.js",
+              "bytes": 6501,
+              "modifiedAt": "2026-03-05T04:23:17.499Z"
+            },
+            "gate": "block_private_ip_redirects_for_remote_fetch",
+            "smoke": "node --check src/riskEngine.js",
+            "state": "queued_target_present_patch_blocked",
+            "activation": {
+              "appliesPatch": false,
+              "importsSecrets": false,
+              "touchesShadowFiles": false,
+              "requiredNextGates": [
+                "targeted_test",
+                "gac_approval",
+                "operator_review",
+                "rollback_plan"
+              ]
+            },
+            "digest": "3bc538b052b9f7cbd3b886fa548338a2e88ea529107d3953f80f73b5619f5994"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "id": "webhook_signature_validation",
+            "target": {
+              "exists": true,
+              "kind": "file",
+              "path": "routes/hooks.js",
+              "bytes": 4596,
+              "modifiedAt": "2026-04-24T23:49:21.160Z"
+            },
+            "gate": "per_connector_signature_or_fail_closed",
+            "smoke": "node --check routes/hooks.js",
+            "state": "queued_target_present_patch_blocked",
+            "activation": {
+              "appliesPatch": false,
+              "importsSecrets": false,
+              "touchesShadowFiles": false,
+              "requiredNextGates": [
+                "targeted_test",
+                "gac_approval",
+                "operator_review",
+                "rollback_plan"
+              ]
+            },
+            "digest": "c150c5ec29ed15842cdac5321800a42775ebe24017a431fbac73beb804776955"
+          },
+          {
+            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "id": "oauth_lifecycle_and_no_secret_import",
+            "target": {
+              "exists": true,
+              "kind": "directory",
+              "path": "src/connectors",
+              "bytes": 0,
+              "modifiedAt": "2026-04-24T12:05:40.406Z"
+            },
+            "gate": "existing_vault_only_explicit_operator_approval",
+            "smoke": "manual_connector_secret_surface_review",
+            "state": "queued_target_present_patch_blocked",
+            "activation": {
+              "appliesPatch": false,
+              "importsSecrets": false,
+              "touchesShadowFiles": false,
+              "requiredNextGates": [
+                "targeted_test",
+                "gac_approval",
+                "operator_review",
+                "rollback_plan"
+              ]
+            },
+            "digest": "8cab1f0f55874c61b9ad6e0cc523fc7bc06febb16eb9507f5ac48c0f2a76c774"
+          }
+        ],
+        "summary": {
+          "backportCount": 6,
+          "targetPresentCount": 6,
+          "missingTargetCount": 0,
+          "patchesApplied": 0,
+          "secretsImported": 0,
+          "shadowFileWrites": 0
+        },
+        "gates": [
+          "targeted_test_required",
+          "gac_approval_required",
+          "operator_review_required",
+          "rollback_plan_required",
+          "no_secret_import",
+          "no_shadow_file_write"
+        ],
+        "executionPolicy": {
+          "queueOnly": true,
+          "appliesPatches": false,
+          "importsSecrets": false,
+          "writesShadowFiles": false,
+          "launchesDaemons": false
+        },
+        "language": {
+          "human": "Original Hermes v0.11 security hardening is staged as a backport queue with target presence, smoke, GAC, operator review, and rollback gates.",
+          "agent": "(original_hermes, security.backport, behcs, 1, hardening, queue, staged, [targets+gates+smokes], map_mapped, IX, log, persistent, whiteroom, light)",
+          "device": "original_hermes_security_backport status=queue_only patches=0 secrets=0 shadow_writes=0"
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": [],
+          "digest": "1be01aa8b612728dc0964df5c55f8d4673c86899053c9715eddffa76e4b72f86"
+        },
+        "digest": "1e4a5877feb9b06139ce0ba049b8dc45e607ed361496b565020940ef6097660e"
+      }
+    },
+    "supervisors": [
+      {
+        "id": "original_hermes_runtime_supervisor_root",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "role": "supervisor_of_supervisors",
+        "scope": "Coordinate Original Hermes transport, learning loop, WAL/session, plugin hook, and security backport surfaces.",
+        "gates": [
+          "no_shadow_file_edits",
+          "no_provider_secret_import",
+          "no_runtime_launch_without_operator_gate",
+          "real_gulp_proof_before_activation",
+          "reverse_gain_before_learning_promotion"
+        ],
+        "authority": "read_only_index"
+      },
+      {
+        "id": "original_hermes_transport_supervisor",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "role": "surface_supervisor",
+        "ordinal": 1,
+        "surface": "transport",
+        "status": "ready_blocked",
+        "digest": "4b2f797d2cb2f7c16a403aca10ff8737de819b7557589c9f248cd9b8a92da58a",
+        "gates": {
+          "dispatchesNow": false,
+          "launchesGateway": false,
+          "launchesProviderCalls": false,
+          "routeOnly": true
+        }
+      },
+      {
+        "id": "original_hermes_learningLoop_supervisor",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "role": "surface_supervisor",
+        "ordinal": 2,
+        "surface": "learningLoop",
+        "status": "ready_blocked",
+        "digest": "04c8b25d29d6296575401d61a3203afa262a817931da9d420e7059813ce17245",
+        "gates": [
+          "reverse_gain_before_promotion",
+          "bounded_replay_required",
+          "real_gulp_proof_required",
+          "gac_approval_for_skill_activation",
+          "operator_review_required"
+        ]
+      },
+      {
+        "id": "original_hermes_walState_supervisor",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "role": "surface_supervisor",
+        "ordinal": 3,
+        "surface": "walState",
+        "status": "ready_blocked",
+        "digest": "79f6d216ad92fb9615c1c3268aaba0f605e157dd79590dc08aeffa5c2e4e9dd1",
+        "gates": [
+          "manifest_first",
+          "no_store_migration_until_smoke",
+          "single_writer_or_sqlite_wal_required",
+          "stale_temp_cleanup_requires_operator_review",
+          "secret_material_forbidden_in_state_rows"
+        ]
+      },
+      {
+        "id": "original_hermes_pluginHookGate_supervisor",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "role": "surface_supervisor",
+        "ordinal": 4,
+        "surface": "pluginHookGate",
+        "status": "ready_blocked",
+        "digest": "20cab582581e6c8ef54e6a56e4bd360308e980f3a96c5d0591502600ee083eab",
+        "gates": {
+          "unsafeDenied": true,
+          "registeredReadOnlyAllowed": true,
+          "runtimeHooksEnabled": false,
+          "shellExpansionAllowed": false,
+          "secretAccessAllowed": false,
+          "shadowWritesAllowed": false
+        }
+      },
+      {
+        "id": "original_hermes_securityBackport_supervisor",
+        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "role": "surface_supervisor",
+        "ordinal": 5,
+        "surface": "securityBackport",
+        "status": "ready_blocked",
+        "digest": "1e4a5877feb9b06139ce0ba049b8dc45e607ed361496b565020940ef6097660e",
+        "gates": [
+          "targeted_test_required",
+          "gac_approval_required",
+          "operator_review_required",
+          "rollback_plan_required",
+          "no_secret_import",
+          "no_shadow_file_write"
+        ]
+      }
+    ],
+    "map": {
+      "id": "original-hermes-runtime-map",
+      "generatedAt": "2026-04-25T00:18:16.319Z",
+      "nodes": [
+        {
+          "id": "original_hermes_upstream",
+          "kind": "source",
+          "label": "NousResearch/hermes-agent"
+        },
+        {
+          "id": "runtime_index",
+          "kind": "index",
+          "label": "original-hermes-agent-runtime-index.v1"
+        },
+        {
+          "id": "original_hermes_runtime_supervisor_root",
+          "kind": "supervisor",
+          "label": "Original Hermes runtime supervisor root"
+        },
+        {
+          "id": "transport",
+          "kind": "surface",
+          "label": "transport",
+          "status": "ready_blocked",
+          "digest": "4b2f797d2cb2f7c16a403aca10ff8737de819b7557589c9f248cd9b8a92da58a"
+        },
+        {
+          "id": "learningLoop",
+          "kind": "surface",
+          "label": "learningLoop",
+          "status": "ready_blocked",
+          "digest": "04c8b25d29d6296575401d61a3203afa262a817931da9d420e7059813ce17245"
+        },
+        {
+          "id": "walState",
+          "kind": "surface",
+          "label": "walState",
+          "status": "ready_blocked",
+          "digest": "79f6d216ad92fb9615c1c3268aaba0f605e157dd79590dc08aeffa5c2e4e9dd1"
+        },
+        {
+          "id": "pluginHookGate",
+          "kind": "surface",
+          "label": "pluginHookGate",
+          "status": "ready_blocked",
+          "digest": "20cab582581e6c8ef54e6a56e4bd360308e980f3a96c5d0591502600ee083eab"
+        },
+        {
+          "id": "securityBackport",
+          "kind": "surface",
+          "label": "securityBackport",
+          "status": "ready_blocked",
+          "digest": "1e4a5877feb9b06139ce0ba049b8dc45e607ed361496b565020940ef6097660e"
+        }
+      ],
+      "edges": [
+        {
+          "from": "original_hermes_upstream",
+          "to": "runtime_index",
+          "relation": "absorbed_into"
+        },
+        {
+          "from": "runtime_index",
+          "to": "original_hermes_runtime_supervisor_root",
+          "relation": "supervised_by"
+        },
+        {
+          "from": "original_hermes_runtime_supervisor_root",
+          "to": "transport",
+          "relation": "governs"
+        },
+        {
+          "from": "original_hermes_runtime_supervisor_root",
+          "to": "learningLoop",
+          "relation": "governs"
+        },
+        {
+          "from": "original_hermes_runtime_supervisor_root",
+          "to": "walState",
+          "relation": "governs"
+        },
+        {
+          "from": "original_hermes_runtime_supervisor_root",
+          "to": "pluginHookGate",
+          "relation": "governs"
+        },
+        {
+          "from": "original_hermes_runtime_supervisor_root",
+          "to": "securityBackport",
+          "relation": "governs"
+        }
+      ],
+      "counts": {
+        "nodes": 8,
+        "edges": 7
+      },
+      "digest": "cf9a3352d7dd28b0fd37e8515b6bf64a8a2af51e531587b7c41d71f4234dc3d3"
+    },
+    "summary": {
+      "surfaceCount": 5,
+      "supervisorCount": 6,
+      "readyBlockedCount": 5,
+      "activationWrites": 0,
+      "runtimeLaunches": 0,
+      "providerCalls": 0,
+      "shadowWrites": 0,
+      "secretImports": 0
+    },
+    "gates": [
+      "read_only_index",
+      "real_gulp_proof_before_activation",
+      "operator_review_before_runtime_launch",
+      "gac_approval_before_patch_or_skill_activation",
+      "reverse_gain_before_learning_promotion"
+    ],
+    "executionPolicy": {
+      "readOnly": true,
+      "activatesRuntime": false,
+      "appliesPatches": false,
+      "activatesSkills": false,
+      "importsSecrets": false,
+      "writesShadowFiles": false,
+      "callsProviders": false
+    },
+    "language": {
+      "human": "Original Hermes is indexed as supervised BEHCS runtime surfaces with transport, learning, WAL/session, plugin hook, and security backport gates.",
+      "agent": "(original_hermes, runtime.index, behcs, 1, supervisor_of_supervisors, map, staged, [transport+learning+wal+hooks+security], cube_cubed, IX, log, persistent, whiteroom, light)",
+      "device": "original_hermes_runtime_index surfaces=5 readonly=1 runtime_launch=0 patches=0 secrets=0"
+    },
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "digest": "cacfd917b4790202af8c1131526dfe0024373e7630aa6bc5e3edb97f13698234"
+    },
+    "digest": "76b59170b0e33dca731a7ef8c39180d228f779cc3da49029adc8bc5e2d5d54d6"
+  },
+  "manifest": {
+    "id": "original-hermes-agent-runtime-index.v1",
+    "description": "Read-only supervisor index for Original Hermes Agent BEHCS integration surfaces.",
+    "capabilities": [
+      "supervisor_index",
+      "surface_digest_map",
+      "runtime_activation_gate",
+      "map_map_mapped"
+    ],
+    "sideEffects": [],
+    "defaultExecution": "read_only_index_no_activation"
+  },
+  "outputs": {
+    "snapshot": "data/behcs/original-hermes-agent/contracts/runtime-index-latest.json",
+    "supervisors": "data/behcs/supervisors/original-hermes-agent/original-hermes-runtime-supervisors.v1.json",
+    "map": "data/behcs/maps/original-hermes-agent/original-hermes-runtime-map.v1.json",
+    "reportJson": "reports/original-hermes-agent-runtime-index-latest.json",
+    "reportMd": "reports/original-hermes-agent-runtime-index-latest.md"
+  },
+  "honesty": {
+    "readOnlyIndex": true,
+    "activatesRuntime": false,
+    "appliesPatches": false,
+    "activatesSkills": false,
+    "importsSecrets": false,
+    "writesShadowFiles": false,
+    "callsProviders": false
+  }
+}
