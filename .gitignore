@@ -27,6 +27,7 @@ reports/**/*.ndjson
 reports/**/*-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].*
 reports/crypto/
 reports/gc/
+reports/deep-wave-plan-slice-*.md
 
 # Local temp/debug artifacts
 tmp/
