@@ -1,11 +1,12 @@
 const { getSecret, setSecret, deleteSecret } = require("../secureVault");
 
-const PROVIDER_IDS = ["openai", "cursor", "antigravity"];
+const PROVIDER_IDS = ["openai", "kimi", "cursor", "antigravity"];
 const EXTERNAL_SECRET_PREFIX = "integrations.external.";
 const DEFAULT_API_STYLE = "openai_chat_completions";
 const SUPPORTED_API_STYLES = new Set(["openai_chat_completions", "openai_responses"]);
 const OFFICIAL_OPENAI_HOSTS = new Set(["api.openai.com"]);
 const OFFICIAL_OPENAI_HOST_SUFFIXES = [".openai.azure.com"];
+const OFFICIAL_KIMI_HOSTS = new Set(["api.moonshot.ai", "api.moonshot.cn"]);
 const MAX_MCP_ALLOWED_TOOLS = 64;
 const DEFAULT_MCP_DYNAMIC_ALLOWLIST_MAX = 5;
 const DEFAULT_MCP_CONTEXT_TTL_SECONDS = 30 * 60;
@@ -252,7 +253,7 @@ function providerSecretName(providerId) {
 }
 
 function defaultRequireOfficialApi(providerId) {
-  return providerId === "antigravity";
+  return providerId === "antigravity" || providerId === "kimi";
 }
 
 function readProviderEnv(providerId) {
@@ -272,7 +273,7 @@ function readProviderEnv(providerId) {
   };
 }
 
-function isOfficialApiEndpoint(baseUrl, apiStyle) {
+function isOfficialApiEndpoint(baseUrl, apiStyle, providerId = "") {
   if (!baseUrl) {
     return false;
   }
@@ -285,6 +286,9 @@ function isOfficialApiEndpoint(baseUrl, apiStyle) {
     const host = String(parsed.hostname || "").toLowerCase();
     if (parsed.protocol !== "https:") {
       return false;
+    }
+    if (providerId === "kimi") {
+      return OFFICIAL_KIMI_HOSTS.has(host);
     }
     if (OFFICIAL_OPENAI_HOSTS.has(host)) {
       return true;
@@ -1270,7 +1274,7 @@ function providerConfig(id) {
       : mcpUnsupportedStyle
         ? "mcp_requires_openai_responses"
         : mcp.configError || "";
-  const officialApi = isOfficialApiEndpoint(apiBaseUrl, apiStyle);
+  const officialApi = isOfficialApiEndpoint(apiBaseUrl, apiStyle, providerId);
   const configured = Boolean(apiBaseUrl && apiKey && model && (!requireOfficialApi || officialApi));
   const configError = !apiBaseUrl || !apiKey || !model
     ? "missing_config"
@@ -1403,7 +1407,7 @@ function getExternalProviderStatusById(id) {
 function setExternalProviderConfig(input = {}) {
   const providerId = normalizeProviderId(input.provider || input.id);
   if (!providerId) {
-    throw new Error("provider is required (cursor or antigravity).");
+    throw new Error(`provider is required (${PROVIDER_IDS.join(" or ")}).`);
   }
 
   const clear = normalizeBool(input.clear, false);
@@ -1515,13 +1519,13 @@ function setExternalProviderConfig(input = {}) {
   }
 
   const effectiveEnabled = normalizeBool(merged.enabled, true);
-  const officialApi = isOfficialApiEndpoint(merged.apiBaseUrl, merged.apiStyle);
+  const officialApi = isOfficialApiEndpoint(merged.apiBaseUrl, merged.apiStyle, providerId);
   if (effectiveEnabled) {
     if (!merged.apiBaseUrl || !merged.model || !merged.apiKey) {
       throw new Error("apiBaseUrl, model, and apiKey are required for enabled providers.");
     }
     if (normalizeBool(merged.requireOfficialApi, defaultRequireOfficialApi(providerId)) && !officialApi) {
-      throw new Error("External provider must use an official API endpoint (https://api.openai.com or Azure OpenAI endpoint).");
+      throw new Error("External provider must use an official API endpoint (OpenAI/Azure OpenAI for OpenAI-style providers or https://api.moonshot.ai / https://api.moonshot.cn for Kimi).");
     }
     if (normalizedMcp.enabled && normalizeApiStyle(merged.apiStyle, DEFAULT_API_STYLE) !== "openai_responses") {
       throw new Error("MCP requires apiStyle=openai_responses.");
@@ -1877,7 +1881,7 @@ function manifest() {
   return {
     id: "external_brain",
     version: "1.0.0",
-    description: "External AI provider connector — OpenAI/Cursor/Antigravity chat completions and responses API with MCP tool integration, dynamic allowlist, token reduction, and model fallback",
+    description: "External AI provider connector — OpenAI/Kimi/Cursor/Antigravity chat completions and responses API with MCP tool integration, dynamic allowlist, token reduction, and model fallback",
     capabilities: ["run_prompt", "provider_status", "mcp_tool_integration", "dynamic_allowlist", "token_reduction", "model_fallback", "multi_provider", "policy_presets"],
     readScopes: ["external_provider_config", "mcp_tool_catalog", "mcp_cache_status"],
     writeScopes: ["external_provider_config", "mcp_tool_cache"],
@@ -1885,8 +1889,8 @@ function manifest() {
     healthCheck: false,
     retrySemantics: "model_fallback_chain",
     timeoutMs: 180000,
-    secretRequirements: ["integrations.external.openai (API key)", "integrations.external.cursor (API key)", "integrations.external.antigravity (API key)"],
-    sideEffects: ["calls external AI APIs (OpenAI, Cursor, Antigravity)", "caches MCP tool catalogs in memory", "stores provider configs in vault"],
+    secretRequirements: ["integrations.external.openai (API key)", "integrations.external.kimi (Moonshot API key)", "integrations.external.cursor (API key)", "integrations.external.antigravity (API key)"],
+    sideEffects: ["calls external AI APIs (OpenAI, Kimi/Moonshot, Cursor, Antigravity)", "caches MCP tool catalogs in memory", "stores provider configs in vault"],
     failureModes: ["provider_not_configured", "api_key_missing", "model_not_available", "api_request_failed", "mcp_tool_call_failed", "token_limit_exceeded", "all_models_failed"],
     emittedEvents: ["external_brain.prompt_completed", "external_brain.mcp_tool_invoked", "external_brain.model_fallback", "external_brain.config_updated"]
   };
