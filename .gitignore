@@ -25,6 +25,8 @@ reports/system-targeted-10b-hardening-runs-latest.*
 reports/**/*-latest.*
 reports/**/*.ndjson
 reports/**/*-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].*
+reports/crypto/
+reports/gc/
 
 # Local temp/debug artifacts
 tmp/
@@ -41,10 +43,13 @@ quarantine/
 runtime/
 sovereignty/research/gnn-patterns/*.json
 sovereignty/research/gnn-patterns/*.pt
+sovereignty/research/*-patterns/
 sovereignty/index/
 sovereignty/incoming/
 sovereignty/ix/state/
 projections/crypto/*.local/
+projections/hb/
+packets/crypto/
 
 # Local secrets and tokens
 *.token
