@@ -44,9 +44,14 @@ function getUniversalPid() {
 /**
  * Register a PID for a spawned agent.
  */
+function normalizePid(value, fallback = process.pid) {
+  const pid = Number(value);
+  return Number.isInteger(pid) && pid > 0 ? pid : fallback;
+}
+
 function registerPid(agentId, info = {}) {
   _pidRegistry.set(agentId, {
-    pid: info.pid || process.pid,
+    pid: normalizePid(info.pid),
     deviceBinding: info.deviceBinding || "jesse-desktop",
     ixRef: info.ixRef || "—",
     spawnedAt: new Date().toISOString()
