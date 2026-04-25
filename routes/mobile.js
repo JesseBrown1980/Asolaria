@@ -8,6 +8,12 @@ const { isLoopbackRequest } = require("../lib/network");
 const { requireMobileAuth, requireMobileDirectControlEnabled, requireDesktopSuperMasterAuthority } = require("../lib/mobileAuth");
 const settingsLib = require("../lib/settings");
 const runtimeStateLib = require("../lib/runtimeState");
+const { appendHookEvent } = require("../src/hookEventStore");
+const { buildRouteHookEnvelope } = require("../src/hg256RuntimeContract");
+const {
+  resolveIxRuntimeBinding,
+  resolveIxLaneBinding
+} = require("../src/ixFabricAtlasStore");
 
 function createMobileRouter(ctx) {
   const router = express.Router();
@@ -38,6 +44,147 @@ function createMobileRouter(ctx) {
     clipText, requestedChannel, resolveScreenViewerAccess, rotateMobileApprovalToken,
     updateTaskLedgerTask, sendMobilePushNotification
   } = ctx;
+  const MOBILE_CONTROL_LANE_ID = "desktop-phone-mirror";
+  const MOBILE_CONTROL_ROUTE = "mobile_control_runtime";
+  const MOBILE_CONTROL_ROLE = "mobile-control-runtime";
+  const MOBILE_CONTROL_ROUTE_SOURCE_PATHS = [
+    "routes/mobile.js",
+    "src/hookEventStore.js",
+    "src/hg256RuntimeContract.js",
+    "src/ixFabricAtlasStore.js"
+  ];
+
+  function normalizeMobileLaneBinding(binding = {}, routeStage = "control") {
+    return {
+      enabled: binding.enabled !== false,
+      atlasId: String(binding.atlasId || ""),
+      surfaceRegistryId: String(binding.surfaceRegistryId || ""),
+      promotionQueueId: String(binding.promotionQueueId || ""),
+      route: String(binding.route || MOBILE_CONTROL_ROUTE),
+      routeStage: String(binding.routeStage || routeStage),
+      role: String(binding.role || MOBILE_CONTROL_ROLE),
+      roleSurfaceId: String(binding.roleSurfaceId || ""),
+      sourcePaths: Array.isArray(binding.sourcePaths) && binding.sourcePaths.length
+        ? binding.sourcePaths.map((entry) => String(entry))
+        : MOBILE_CONTROL_ROUTE_SOURCE_PATHS.slice(),
+      matchingSurfaceIds: Array.isArray(binding.matchingSurfaceIds) ? binding.matchingSurfaceIds.map((entry) => String(entry)) : [],
+      matchingGroupIds: Array.isArray(binding.matchingGroupIds) ? binding.matchingGroupIds.map((entry) => String(entry)) : [],
+      laneId: String(binding.laneId || MOBILE_CONTROL_LANE_ID),
+      laneStatus: String(binding.laneStatus || "pending"),
+      laneCurrentStage: String(binding.laneCurrentStage || "observe"),
+      laneNextStage: String(binding.laneNextStage || "index")
+    };
+  }
+
+  function resolveMobileLaneBinding(req, routeStage, endpointId) {
+    const resolver = typeof resolveIxLaneBinding === "function"
+      ? resolveIxLaneBinding
+      : resolveIxRuntimeBinding;
+    try {
+      const resolved = resolver({
+        route: MOBILE_CONTROL_ROUTE,
+        routeStage,
+        role: MOBILE_CONTROL_ROLE,
+        laneId: MOBILE_CONTROL_LANE_ID,
+        endpointId: String(endpointId || ""),
+        sourcePaths: MOBILE_CONTROL_ROUTE_SOURCE_PATHS,
+        method: String(req?.method || "")
+      });
+      return normalizeMobileLaneBinding(resolved, routeStage);
+    } catch (_error) {
+      return normalizeMobileLaneBinding({}, routeStage);
+    }
+  }
+
+  function summarizeMobileHookString(value) {
+    const text = String(value || "");
+    return {
+      type: "string",
+      present: text.length > 0,
+      length: text.length
+    };
+  }
+
+  function sanitizeMobileHookPayload(value, depth = 0) {
+    if (value === null || value === undefined) return value;
+    if (typeof value === "boolean") return value;
+    if (typeof value === "number") return Number.isFinite(value) ? value : null;
+    if (typeof value === "string") return summarizeMobileHookString(value);
+    if (Array.isArray(value)) {
+      return {
+        type: "array",
+        count: value.length
+      };
+    }
+    if (typeof value !== "object") return { type: typeof value };
+    if (depth >= 2) {
+      return {
+        type: "object",
+        keys: Object.keys(value).slice(0, 20)
+      };
+    }
+
+    const out = {};
+    for (const [key, raw] of Object.entries(value)) {
+      const normalizedKey = String(key || "").toLowerCase();
+      if (/(token|secret|password|authorization|cookie|text|prompt|message|base64|inline|image|path|url|endpoint)/.test(normalizedKey)) {
+        out[key] = summarizeMobileHookString(raw);
+        continue;
+      }
+      out[key] = sanitizeMobileHookPayload(raw, depth + 1);
+    }
+    return out;
+  }
+
+  function emitMobileControlRouteHook(req, routeStage, endpointId, summary = {}, extraPayload = {}) {
+    const laneBinding = resolveMobileLaneBinding(req, routeStage, endpointId);
+    const channel = requestedChannel(req);
+    const safePayloadSource = sanitizeMobileHookPayload({
+      headers: {
+        "x-asolaria-channel": String(req?.headers?.["x-asolaria-channel"] || "")
+      },
+      query: req?.query || {},
+      body: req?.body || {}
+    });
+    const safeExtraPayload = sanitizeMobileHookPayload(extraPayload);
+    const routeHook = buildRouteHookEnvelope({
+      qId: "Q4_TRANSPORT_ENVELOPE",
+      route: MOBILE_CONTROL_ROUTE,
+      routeStage,
+      owner: "jesse",
+      agentId: "routes-mobile",
+      role: MOBILE_CONTROL_ROLE,
+      constructionId: MOBILE_CONTROL_LANE_ID,
+      agentPid: process.pid,
+      devicePid: `mobile-control:${String(channel || "mobile")}`,
+      packetSource: {
+        channel: channel || "mobile",
+        endpointId,
+        method: String(req?.method || ""),
+        path: String(req?.path || "")
+      },
+      payloadSource: safePayloadSource,
+      atlasBinding: laneBinding,
+      proofRef: "reports/crypto/capsule.verify.json",
+      verifyStatus: "pass_local_only"
+    });
+    appendHookEvent({
+      event_type: "RouteHook",
+      session_id: "routes-mobile",
+      source_app: "routes-mobile",
+      agent_id: "routes-mobile",
+      agent_type: "route_runtime",
+      summary,
+      trigger: String(routeStage || ""),
+      payload: {
+        routeHook,
+        endpointId,
+        laneBinding,
+        ...safeExtraPayload
+      }
+    });
+    return { routeHook, laneBinding };
+  }
 app.get("/session", requireMobileAuth, (_req, res) => {
   const requestedChannel = String(_req.query?.channel || _req.headers["x-asolaria-channel"] || "").trim();
   if (requestedChannel) {
@@ -479,12 +626,25 @@ app.post("/control/click", requireMobileAuth, requireMobileDirectControlEnabled,
     }
     const button = asEnum(req.body?.button, ["left", "right", "middle"], "left");
     const action = asBool(req.body?.doubleClick, false) ? "double_click" : "click";
+    const displayIndex = asInt(req.body?.displayIndex, -1, -1, 16);
+    const timeoutMs = asInt(req.body?.timeoutMs, 9000, 2500, 30000);
     const result = await runMobileControlAction({
       action,
       button,
-      displayIndex: asInt(req.body?.displayIndex, -1, -1, 16),
-      timeoutMs: asInt(req.body?.timeoutMs, 9000, 2500, 30000),
+      displayIndex,
+      timeoutMs,
       ...point
+    });
+    emitMobileControlRouteHook(req, "control_click", "control/click", {
+      action,
+      button,
+      displayIndex,
+      timeoutMs
+    }, {
+      channel: requested,
+      control: result.control,
+      result: result.result,
+      point
     });
     return res.json({
       ok: true,
@@ -512,12 +672,27 @@ app.post("/control/scroll", requireMobileAuth, requireMobileDirectControlEnabled
       2400
     );
     const point = normalizeControlPoint(req.body || {});
+    const displayIndex = asInt(req.body?.displayIndex, -1, -1, 16);
+    const timeoutMs = asInt(req.body?.timeoutMs, 9000, 2500, 30000);
     const result = await runMobileControlAction({
       action: "scroll",
       wheelDelta,
-      displayIndex: asInt(req.body?.displayIndex, -1, -1, 16),
-      timeoutMs: asInt(req.body?.timeoutMs, 9000, 2500, 30000),
+      displayIndex,
+      timeoutMs,
       ...(point || {})
+    });
+    emitMobileControlRouteHook(req, "control_scroll", "control/scroll", {
+      action: "scroll",
+      direction,
+      steps,
+      wheelDelta,
+      displayIndex,
+      timeoutMs
+    }, {
+      channel: requested,
+      control: result.control,
+      result: result.result,
+      point
     });
     return res.json({
       ok: true,
@@ -539,10 +714,21 @@ app.post("/control/type", requireMobileAuth, requireMobileDirectControlEnabled, 
     if (!text) {
       return respondError(res, "text is required.", 400);
     }
+    const timeoutMs = asInt(req.body?.timeoutMs, 12000, 2500, 30000);
     const result = await runMobileControlAction({
       action: "type",
       text,
-      timeoutMs: asInt(req.body?.timeoutMs, 12000, 2500, 30000)
+      timeoutMs
+    });
+    emitMobileControlRouteHook(req, "control_type", "control/type", {
+      action: "type",
+      charCount: text.length,
+      timeoutMs
+    }, {
+      channel: requested,
+      control: result.control,
+      result: result.result,
+      text
     });
     return res.json({
       ok: true,
@@ -564,10 +750,20 @@ app.post("/control/key", requireMobileAuth, requireMobileDirectControlEnabled, r
     if (!key) {
       return respondError(res, "Unsupported key action.", 400);
     }
+    const timeoutMs = asInt(req.body?.timeoutMs, 9000, 2500, 30000);
     const result = await runMobileControlAction({
       action: "key",
       key,
-      timeoutMs: asInt(req.body?.timeoutMs, 9000, 2500, 30000)
+      timeoutMs
+    });
+    emitMobileControlRouteHook(req, "control_key", "control/key", {
+      action: "key",
+      key,
+      timeoutMs
+    }, {
+      channel: requested,
+      control: result.control,
+      result: result.result
     });
     return res.json({
       ok: true,
