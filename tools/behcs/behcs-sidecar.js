@@ -58,6 +58,29 @@ const MAX_QUEUE = 500;
 const MAX_EDGES = 1000;
 const MAX_CAPTURES = 20;
 
+function liveSidecarRelayEnabled() {
+  return String(process.env.ASOLARIA_BEHCS_SIDECAR_RELAY_ENABLED || '').trim() === '1';
+}
+
+function liveSidecarAdbEnabled() {
+  return String(process.env.ASOLARIA_BEHCS_SIDECAR_ADB_ENABLED || '').trim() === '1';
+}
+
+function liveSidecarScreenEnabled() {
+  return String(process.env.ASOLARIA_BEHCS_SIDECAR_SCREEN_ENABLED || '').trim() === '1';
+}
+
+function sendSidecarHold(res, reason, enableWith) {
+  res.writeHead(403);
+  res.end(JSON.stringify({
+    ok: false,
+    held: true,
+    preview: true,
+    reason,
+    enableWith,
+  }));
+}
+
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 function appendNdjson(f, obj) { ensureDir(path.dirname(f)); fs.appendFileSync(f, JSON.stringify(obj) + '\n'); }
 function truncateNdjson(f, maxLines) {
@@ -100,6 +123,7 @@ function logGnnEdge(envelope) {
 
 // ═══ AUTO-RELAY ═══
 function relayToLiris(envelope) {
+  if (!liveSidecarRelayEnabled()) return;
   if (envelope.to === 'liris' || envelope.to === 'liris+falcon' || envelope.to === 'falcon+liris') {
     const data = JSON.stringify({ text: `[relay:${envelope.from}] ${envelope.payload?.text || envelope.text || JSON.stringify(envelope.payload).slice(0, 200)}`, press_enter: true });
     const req = http.request({
@@ -114,6 +138,7 @@ function relayToLiris(envelope) {
 }
 
 function relayToFalcon(envelope) {
+  if (!liveSidecarAdbEnabled()) return;
   if (envelope.to === 'falcon' || envelope.to === 'liris+falcon' || envelope.to === 'falcon+liris') {
     try {
       const text = `[relay:${envelope.from}] ${envelope.payload?.text || envelope.text || ''}`.slice(0, 200).replace(/ /g, '%s');
@@ -125,10 +150,12 @@ function relayToFalcon(envelope) {
 
 // ═══ ADB HELPERS ═══
 function adbConnected() {
+  if (!liveSidecarAdbEnabled()) return false;
   try { return execSync(`"${ADB}" devices`, { encoding: 'utf8', timeout: 5000 }).includes('device'); } catch (_) { return false; }
 }
 
 function ensureTunnels() {
+  if (!liveSidecarAdbEnabled()) return;
   try {
     const list = execSync(`"${ADB}" reverse --list`, { encoding: 'utf8', timeout: 5000 });
     if (!list.includes('4947')) execSync(`"${ADB}" reverse tcp:4947 tcp:4947`, { timeout: 5000 });
@@ -138,6 +165,7 @@ function ensureTunnels() {
 }
 
 function screenshotFalcon() {
+  if (!liveSidecarAdbEnabled()) return null;
   ensureDir(CAPTURES_DIR);
   const ts = new Date().toISOString().replace(/[:.]/g, '');
   const file = path.join(CAPTURES_DIR, `falcon-${ts}.png`);
@@ -428,6 +456,10 @@ function startBus() {
 
     // ═══ MIRROR VISION — every node sees every other node's screen ═══
     if (url.pathname === '/behcs/screen/acer') {
+      if (!liveSidecarScreenEnabled()) {
+        sendSidecarHold(res, 'sidecar_screen_disabled', 'ASOLARIA_BEHCS_SIDECAR_SCREEN_ENABLED=1');
+        return;
+      }
       // Acer's own screen via PowerShell screencap
       try {
         const file = path.join(CAPTURES_DIR, 'acer-screen-latest.png');
@@ -443,6 +475,14 @@ function startBus() {
     }
 
     if (url.pathname === '/behcs/screen/falcon') {
+      if (!liveSidecarScreenEnabled()) {
+        sendSidecarHold(res, 'sidecar_screen_disabled', 'ASOLARIA_BEHCS_SIDECAR_SCREEN_ENABLED=1');
+        return;
+      }
+      if (!liveSidecarAdbEnabled()) {
+        sendSidecarHold(res, 'sidecar_adb_disabled', 'ASOLARIA_BEHCS_SIDECAR_ADB_ENABLED=1');
+        return;
+      }
       // Falcon screen via ADB
       try {
         const file = path.join(CAPTURES_DIR, 'falcon-screen-latest.png');
@@ -460,6 +500,14 @@ function startBus() {
     }
 
     if (url.pathname === '/behcs/screen/aether') {
+      if (!liveSidecarScreenEnabled()) {
+        sendSidecarHold(res, 'sidecar_screen_disabled', 'ASOLARIA_BEHCS_SIDECAR_SCREEN_ENABLED=1');
+        return;
+      }
+      if (!liveSidecarAdbEnabled()) {
+        sendSidecarHold(res, 'sidecar_adb_disabled', 'ASOLARIA_BEHCS_SIDECAR_ADB_ENABLED=1');
+        return;
+      }
       try {
         const file = path.join(CAPTURES_DIR, 'aether-screen-latest.png');
         execSync(`"${ADB}" -s R9QY205KAKJ exec-out screencap -p > "${file}"`, { timeout: 10000 });
