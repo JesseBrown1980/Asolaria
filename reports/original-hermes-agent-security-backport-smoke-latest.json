@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "generatedAt": "2026-04-25T00:42:22.250Z",
+  "generatedAt": "2026-04-25T02:54:24.431Z",
   "executed": true,
   "snapshot": {
     "id": "original-hermes-agent-security-backport-runtime.v1",
-    "generatedAt": "2026-04-25T00:42:22.250Z",
+    "generatedAt": "2026-04-25T02:54:24.431Z",
     "status": "SECURITY_BACKPORT_QUEUE_READY_PATCHES_BLOCKED",
     "manifest": {
       "contractId": "original-hermes-agent-contracts.v1.security-backport",
-      "generatedAt": "2026-04-25T00:42:22.250Z",
+      "generatedAt": "2026-04-25T02:54:24.431Z",
       "source": {
         "upstream": "NousResearch/hermes-agent",
         "capsule": "release_v011_security_hardening",
@@ -47,11 +47,11 @@
         }
       ],
       "executionDefault": "queued_no_patch_until_targeted_tests",
-      "digest": "b83933f55d583e91a8568ad6cc45a02948cb657f40203c48677cc8b0a4eb1c68"
+      "digest": "349a3c78447c01096f11387661c510d1a2a965cc0817085f8d2880659509971c"
     },
     "backports": [
       {
-        "generatedAt": "2026-04-25T00:42:22.250Z",
+        "generatedAt": "2026-04-25T02:54:24.431Z",
         "id": "api_auth_enforcement",
         "target": {
           "exists": true,
@@ -74,17 +74,17 @@
             "rollback_plan"
           ]
         },
-        "digest": "853a6b5b840da2f489043814a587e2e06094a56e80a7c4c250042095eb6d7896"
+        "digest": "46593c97db211e537235896599a29fa1563d444b5e592e09014d22923f256ade"
       },
       {
-        "generatedAt": "2026-04-25T00:42:22.250Z",
+        "generatedAt": "2026-04-25T02:54:24.431Z",
         "id": "path_traversal_checkpoint_guard",
         "target": {
           "exists": true,
           "kind": "file",
           "path": "tools/c-drive-junction-migrator.js",
-          "bytes": 9617,
-          "modifiedAt": "2026-04-24T20:03:18.782Z"
+          "bytes": 9686,
+          "modifiedAt": "2026-04-25T01:29:37.290Z"
         },
         "gate": "resolved_path_stays_under_allowed_root",
         "smoke": "node --check tools/c-drive-junction-migrator.js",
@@ -100,10 +100,10 @@
             "rollback_plan"
           ]
         },
-        "digest": "eaa85a6bb3170d659cce989170fc9108e0641406c822d7d5dc1c7af6b53a6e35"
+        "digest": "2fb6ac278fb73a720b1d5bb0468f64f5c7d3088a2e1688289826ff3995355b98"
       },
       {
-        "generatedAt": "2026-04-25T00:42:22.250Z",
+        "generatedAt": "2026-04-25T02:54:24.431Z",
         "id": "sandbox_write_shell_injection_guard",
         "target": {
           "exists": true,
@@ -126,10 +126,10 @@
             "rollback_plan"
           ]
         },
-        "digest": "eeacb1fc8fca2e4fc3c88687f77981dfa98624216fe7f939fcc1be845ff53475"
+        "digest": "5d0d6394a5dda63fd950ef407af0914f8f7e06231e443b5a3beed0021c7bd3dd"
       },
       {
-        "generatedAt": "2026-04-25T00:42:22.250Z",
+        "generatedAt": "2026-04-25T02:54:24.431Z",
         "id": "ssrf_redirect_guard",
         "target": {
           "exists": true,
@@ -152,10 +152,10 @@
             "rollback_plan"
           ]
         },
-        "digest": "ef3e72efef8db580c5ed355d8c039a6213baa3d473c728c96e66098702169c92"
+        "digest": "38c082e3c4a8c3b31e2d2d20e6e3a20a0da50c60f6b227127a2fdefd6005fa7e"
       },
       {
-        "generatedAt": "2026-04-25T00:42:22.250Z",
+        "generatedAt": "2026-04-25T02:54:24.431Z",
         "id": "webhook_signature_validation",
         "target": {
           "exists": true,
@@ -178,10 +178,10 @@
             "rollback_plan"
           ]
         },
-        "digest": "21be323624a441e2a54ffcd95e121f515839d93fadcb9885cfc5235876c562f5"
+        "digest": "86c34f6b6b68dfc0f2b2193d1061ee401cadee95bc9f639e7451be28d1b40ea4"
       },
       {
-        "generatedAt": "2026-04-25T00:42:22.250Z",
+        "generatedAt": "2026-04-25T02:54:24.431Z",
         "id": "oauth_lifecycle_and_no_secret_import",
         "target": {
           "exists": true,
@@ -204,7 +204,7 @@
             "rollback_plan"
           ]
         },
-        "digest": "2d329f3725f22b3af18e20b484424bcf0d327f666a21fa2238dcd030d81c9a34"
+        "digest": "7e8282315b11d9913ba30f415eb137f13cd25be877d8ea0281410aeee7bc4444"
       }
     ],
     "summary": {
@@ -241,7 +241,7 @@
       "warnings": [],
       "digest": "1be01aa8b612728dc0964df5c55f8d4673c86899053c9715eddffa76e4b72f86"
     },
-    "digest": "796f6abba158193e7ab190914df41f0c4bc1a2072781529cf95512e09db245d0"
+    "digest": "02b7da583b9105f1e57a3ad3efeee5fe62451b37008c02206239b02f6d6ec38d"
   },
   "manifest": {
     "id": "original-hermes-agent-security-backport-runtime.v1",

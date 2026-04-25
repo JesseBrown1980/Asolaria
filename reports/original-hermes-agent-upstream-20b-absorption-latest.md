@@ -1,21 +1,21 @@
-﻿# Original Hermes Agent Upstream 20B Absorption
+# Original Hermes Agent Upstream 10B Compact Absorption
 
-Generated: 2026-04-24T23:40:59.070Z
-Status: ORIGINAL_HERMES_AGENT_20B_ABSORBED_RUNTIME_BLOCKED
+Generated: 2026-04-25T02:53:10.203Z
+Status: ORIGINAL_HERMES_AGENT_COMPACT_ABSORBED_RUNTIME_BLOCKED
 Upstream: https://github.com/NousResearch/hermes-agent.git
-Head: d58b305adfdb5697c0ff268696040b0505d40892
+Head: 2182de55bb7734b804abd3403570ec45428feece
 Version: 0.11.0
 Latest tag: v2026.4.23
 Release: Hermes Agent v0.11.0 (v2026.4.23)
-Logical agents: 20000000000
-Logical Gulp windows: 10000000
+Logical agents: 10000000000
+Logical Gulp windows: 5000000
 Shannon: PROCEED_ORIGINAL_HERMES_AGENT_CONTRACT_ABSORPTION_RUNTIME_BLOCKED
 
 ## D Drive Boundary
 
-- Requested D stage: D:\Original-Hermes-Agent
-- Status: NOT_WRITTEN_SANDBOX_WRITABLE_ROOTS_C_ONLY
-- Replacement used now: .external/hermes-agent-upstream shallow filtered clone on C for inspection
+- Requested D stage: D:\Asolaria-External\hermes-agent-upstream
+- Status: D_STAGE_READY
+- Replacement used now: D:\Asolaria-External\hermes-agent-upstream shallow filtered clone for inspection
 
 ## Architecture Capsules
 
@@ -55,16 +55,16 @@ Shannon: PROCEED_ORIGINAL_HERMES_AGENT_CONTRACT_ABSORPTION_RUNTIME_BLOCKED
 
 ## BEHCS Gulp Proof
 
-- Gulp ID: gulp-2026-04-24T234105698Z-4ef62d
+- Gulp ID: gulp-2026-04-25T025316933Z-614002
 - Processed: 2000
 - Runtime mistakes: 0
 - GNN edges: 1
 
 ## Honesty Boundary
 
-- This is a compact 20B upstream Hermes Agent absorption tranche.
+- This is a compact 10B upstream Hermes Agent absorption tranche.
 - No runtime install.
 - No provider login, no API credential import, no gateway launch.
 - No native Windows Hermes execution.
-- No 20B OS processes, live model calls, or raw records.
+- No 10B OS processes, live model calls, or raw records.
 - No shadow file edits.

@@ -1,9 +1,9 @@
 # Original Hermes WAL State Smoke
 
-Generated: 2026-04-25T00:12:33.297Z
+Generated: 2026-04-25T02:54:24.232Z
 Status: WAL_STATE_MANIFEST_READY_MIGRATION_BLOCKED
 Validation: PASS
-Digest: f1243a1b247b029063bf276e4b4a84ec89d5440b2212b92486713019cdaec49d
+Digest: 1f91dba1077bf0cf8f906c0a422a5d9d3957fc5bb8e55717982f4b228e4be378
 
 ## Summary
 
@@ -19,7 +19,7 @@ Digest: f1243a1b247b029063bf276e4b4a84ec89d5440b2212b92486713019cdaec49d
 
 - agent_sessions: mode=json_atomic_rewrite exists=true bytes=24857 temp=7 risk=json_store_without_explicit_wal|stale_temp_siblings_present
 - task_ledger: mode=json_atomic_rewrite exists=true bytes=1630204 temp=0 risk=json_store_without_explicit_wal
-- mistake_ledger: mode=ndjson_append exists=true bytes=1782048 temp=0 risk=source_mentions_secret_terms_verify_no_state_rows
+- mistake_ledger: mode=ndjson_append exists=true bytes=1782522 temp=0 risk=source_mentions_secret_terms_verify_no_state_rows
 - memory: mode=json_store exists=true bytes=189833 temp=0 risk=json_store_without_explicit_wal|source_mentions_secret_terms_verify_no_state_rows
 - notebook: mode=json_store exists=true bytes=276792 temp=0 risk=json_store_without_explicit_wal|source_mentions_secret_terms_verify_no_state_rows
 

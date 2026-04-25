@@ -8,9 +8,13 @@ const { execFileSync } = require("child_process");
 const behcsGulp = require("./behcs/behcs-gulp-runtime");
 
 const repoRoot = path.resolve(__dirname, "..");
-const upstreamRoot = path.join(repoRoot, ".external", "hermes-agent-upstream");
+const dDriveUpstreamRoot = "D:\\Asolaria-External\\hermes-agent-upstream";
+const upstreamRoot = path.resolve(
+  process.env.ORIGINAL_HERMES_UPSTREAM_ROOT
+    || (fs.existsSync(dDriveUpstreamRoot) ? dDriveUpstreamRoot : path.join(repoRoot, ".external", "hermes-agent-upstream"))
+);
 const UPSTREAM_URL = "https://github.com/NousResearch/hermes-agent.git";
-const TOTAL_AGENTS = 20_000_000_000;
+const TOTAL_AGENTS = Number(process.env.ORIGINAL_HERMES_LOGICAL_AGENTS || 20_000_000_000);
 const GULP_SIZE = 2_000;
 const LOGICAL_GULPS = TOTAL_AGENTS / GULP_SIZE;
 const PROOF_MESSAGES_DEFAULT = 2_000;
@@ -83,6 +87,11 @@ function parseArgValue(argv, name, fallback) {
   const prefix = `--${name}=`;
   const found = argv.find((arg) => String(arg).startsWith(prefix));
   return found ? found.slice(prefix.length) : fallback;
+}
+function logicalScaleLabel(totalAgents = TOTAL_AGENTS) {
+  if (totalAgents >= 1_000_000_000 && totalAgents % 1_000_000_000 === 0) return `${totalAgents / 1_000_000_000}B`;
+  if (totalAgents >= 1_000_000 && totalAgents % 1_000_000 === 0) return `${totalAgents / 1_000_000}M`;
+  return String(totalAgents);
 }
 function readJson(filePath, fallback = {}) {
   try { return JSON.parse(fs.readFileSync(filePath, "utf8")); } catch { return fallback; }
@@ -193,6 +202,7 @@ function buildManifest(generatedAt) {
   const head = git(["rev-parse", "HEAD"]).trim();
   const branch = git(["branch", "--show-current"]).trim();
   const tags = listTags();
+  const dStageExists = fs.existsSync(path.join(dDriveUpstreamRoot, ".git"));
   const entries = SOURCE_PATHS.map((relPath) => {
     const fullPath = upstreamRel(relPath);
     const exists = fs.existsSync(fullPath);
@@ -214,9 +224,9 @@ function buildManifest(generatedAt) {
     upstreamUrl: UPSTREAM_URL,
     localClone: repoRel(upstreamRoot),
     requestedDStage: {
-      path: "D:\\Original-Hermes-Agent",
-      status: "NOT_WRITTEN_SANDBOX_WRITABLE_ROOTS_C_ONLY",
-      replacement: ".external/hermes-agent-upstream shallow filtered clone on C for inspection"
+      path: dDriveUpstreamRoot,
+      status: dStageExists ? "D_STAGE_READY" : "D_STAGE_NOT_PRESENT",
+      replacement: `${upstreamRoot} shallow filtered clone for inspection`
     },
     branch,
     head,
@@ -503,7 +513,7 @@ async function runBehcsProof(generatedAt, proofCount, manifest, architecture, ri
       type: "agent_packet",
       from: "original_hermes_agent_upstream_absorber",
       to: "behcs_gulp_runtime",
-      verb: "EVT-ORIGINAL-HERMES-AGENT-UPSTREAM-20B-ABSORB",
+      verb: "EVT-ORIGINAL-HERMES-AGENT-UPSTREAM-COMPACT-ABSORB",
       payload: {
         room: "whiteroom",
         upstream: UPSTREAM_URL,
@@ -511,6 +521,7 @@ async function runBehcsProof(generatedAt, proofCount, manifest, architecture, ri
         upstreamVersion: manifest.version,
         latestTag: manifest.latestTag,
         totalLogicalAgents: String(TOTAL_AGENTS),
+        logicalScale: logicalScaleLabel(),
         logicalGulpSize: GULP_SIZE,
         logicalGulps: LOGICAL_GULPS,
         proofSlice: i,
@@ -531,7 +542,7 @@ async function runBehcsProof(generatedAt, proofCount, manifest, architecture, ri
     proofRows.push(msg);
     const record = behcsGulp.attachBehcsPath(msg, {
       sequence: startSequence + i + 1,
-      reason: "original_hermes_agent_upstream_20b_absorption",
+      reason: "original_hermes_agent_upstream_compact_absorption",
       remoteMeta: { ip: "127.0.0.1", port: 4947, method: "LOCAL", protocol: "behcs" },
       reflex: { action: "original_hermes_agent_absorb_proof_slice", runInference: true }
     });
@@ -548,9 +559,9 @@ async function runBehcsProof(generatedAt, proofCount, manifest, architecture, ri
     lastPathGlyph,
     lastMessageGlyph,
     lastError: "",
-    lastFileCapReason: "original_hermes_agent_upstream_20b_bulk"
+    lastFileCapReason: "original_hermes_agent_upstream_compact_bulk"
   });
-  const gulp = await behcsGulp.runGulpRehydration({ force: true, reason: "original_hermes_agent_upstream_20b_absorption" });
+  const gulp = await behcsGulp.runGulpRehydration({ force: true, reason: "original_hermes_agent_upstream_compact_absorption" });
   return { proofRows, gulp: { ...gulp, bulkProofRetainedAfterAppend: retained, bulkProofLinesWritten: writer.linesWritten } };
 }
 
@@ -581,7 +592,7 @@ function buildShannon(summary) {
 
 function buildReport(summary, shannon) {
   const lines = [];
-  lines.push("# Original Hermes Agent Upstream 20B Absorption");
+  lines.push(`# Original Hermes Agent Upstream ${logicalScaleLabel()} Compact Absorption`);
   lines.push("");
   lines.push(`Generated: ${summary.generatedAt}`);
   lines.push(`Status: ${summary.status}`);
@@ -623,11 +634,11 @@ function buildReport(summary, shannon) {
   lines.push("");
   lines.push("## Honesty Boundary");
   lines.push("");
-  lines.push("- This is a compact 20B upstream Hermes Agent absorption tranche.");
+  lines.push(`- This is a compact ${logicalScaleLabel()} upstream Hermes Agent absorption tranche.`);
   lines.push("- No runtime install.");
   lines.push("- No provider login, no API credential import, no gateway launch.");
   lines.push("- No native Windows Hermes execution.");
-  lines.push("- No 20B OS processes, live model calls, or raw records.");
+  lines.push(`- No ${logicalScaleLabel()} OS processes, live model calls, or raw records.`);
   lines.push("- No shadow file edits.");
   lines.push("");
   return `${lines.join("\n")}\n`;
@@ -635,7 +646,7 @@ function buildReport(summary, shannon) {
 
 function buildCube(summary, shannon) {
   return `const cube = Object.freeze(${JSON.stringify({
-    id: "original-hermes-agent-upstream-20b-absorption",
+    id: "original-hermes-agent-upstream-compact-absorption",
     generatedAt: summary.generatedAt,
     upstream: summary.manifest.upstreamUrl,
     head: summary.manifest.head,
@@ -656,7 +667,7 @@ function buildCube(summary, shannon) {
 function writeEvents(summary) {
   const event = {
     ts: summary.generatedAt,
-    type: "original_hermes_agent_upstream_20b_absorption_complete",
+    type: "original_hermes_agent_upstream_compact_absorption_complete",
     status: summary.status,
     upstream: summary.manifest.upstreamUrl,
     head: summary.manifest.head,
@@ -692,17 +703,17 @@ async function run({ execute = false, proofMessages = PROOF_MESSAGES_DEFAULT } =
   const behcs = execute ? await runBehcsProof(generatedAt, proofCount, manifest, architecture, risks, queue) : { proofRows: [], gulp: { ok: true, skipped: true, reason: "preview" } };
   const elapsedMs = Date.now() - startedAt;
   const status = behcs.gulp?.ok === true
-    ? "ORIGINAL_HERMES_AGENT_20B_ABSORBED_RUNTIME_BLOCKED"
+    ? "ORIGINAL_HERMES_AGENT_COMPACT_ABSORBED_RUNTIME_BLOCKED"
     : "ORIGINAL_HERMES_AGENT_ABSORPTION_GATED";
   const summary = {
-    id: "original-hermes-agent-upstream-20b-absorption",
+    id: "original-hermes-agent-upstream-compact-absorption",
     generatedAt,
     startedAt: new Date(startedAt).toISOString(),
     finishedAt: new Date().toISOString(),
     status,
     logicalAgents: String(TOTAL_AGENTS),
     logicalGulps: LOGICAL_GULPS,
-    compactMode: "20b_compact_ranges_real_gulp_proof_upstream_clone_absorption",
+    compactMode: `${logicalScaleLabel().toLowerCase()}_compact_ranges_real_gulp_proof_upstream_clone_absorption`,
     elapsedMs,
     manifest,
     architecture,
@@ -764,7 +775,7 @@ async function run({ execute = false, proofMessages = PROOF_MESSAGES_DEFAULT } =
 function status() {
   const manifest = buildManifest(new Date().toISOString());
   return {
-    id: "original-hermes-agent-upstream-20b-absorber",
+    id: "original-hermes-agent-upstream-compact-absorber",
     status: "READY",
     upstreamUrl: UPSTREAM_URL,
     localClone: repoRel(upstreamRoot),

@@ -1,9 +1,9 @@
 {
   "id": "original-hermes-agent-security-targeted-tests.v1",
-  "generatedAt": "2026-04-25T00:42:22.388Z",
+  "generatedAt": "2026-04-25T02:54:32.114Z",
   "status": "SECURITY_TARGETED_TESTS_PASS_PATCHES_BLOCKED",
   "ok": true,
-  "queueDigest": "acbdd6a53859074e52997e37c2e9dac9cce42685a59aa2974bfdab199a776c3b",
+  "queueDigest": "db7230a32f4d24e6fbeaf4da4087fc3d09004ed48d0f56d17fcefbb4890f94ab",
   "securityManifest": {
     "id": "original-hermes-agent-security-backport-runtime.v1",
     "description": "Queue-only Original Hermes security backport staging surface for BEHCS hardening.",
@@ -24,10 +24,10 @@
       "shell": false,
       "status": "pass",
       "exitCode": 0,
-      "elapsedMs": 147,
+      "elapsedMs": 118,
       "output": "",
       "error": "",
-      "digest": "f6646b6571eaedf60ecd69ebeb8be6d3edd8eb1619bdd49d71e386da3192d651"
+      "digest": "9ed6de83c1898808ce4cd72dd02287c2aa6917556f370eb0b8ec3bd0744898de"
     },
     {
       "id": "path_traversal_checkpoint_guard",
@@ -36,10 +36,10 @@
       "shell": false,
       "status": "pass",
       "exitCode": 0,
-      "elapsedMs": 127,
+      "elapsedMs": 124,
       "output": "",
       "error": "",
-      "digest": "6343b9722f4669c8071ad0047a5b5e67abc627f635ed2f8b02187d24c08b5990"
+      "digest": "ee0cfa3f984d9c2ca05803d150ebdabe956cc0c5a947f7605133b75cd5ae4cbd"
     },
     {
       "id": "sandbox_write_shell_injection_guard",
@@ -48,10 +48,10 @@
       "shell": false,
       "status": "pass",
       "exitCode": 0,
-      "elapsedMs": 121,
+      "elapsedMs": 109,
       "output": "",
       "error": "",
-      "digest": "d0e9cccdee2010f9e9e8ff0c85abeda409da49162be38d0cf214845977d1648a"
+      "digest": "95a90315b8abb9cef6a1272e87fbc69513bd345f2a8ced387f2145ad3bb7e0ab"
     },
     {
       "id": "ssrf_redirect_guard",
@@ -60,10 +60,10 @@
       "shell": false,
       "status": "pass",
       "exitCode": 0,
-      "elapsedMs": 141,
+      "elapsedMs": 106,
       "output": "",
       "error": "",
-      "digest": "7747e90d5c7f5ef63b62270aa474a12f83f19d124673e0c54192a3bce26adbca"
+      "digest": "9f3513f60f38469529c740f2d315db920f752dadf7977be9264c9cf4a732332f"
     },
     {
       "id": "webhook_signature_validation",
@@ -72,10 +72,10 @@
       "shell": false,
       "status": "pass",
       "exitCode": 0,
-      "elapsedMs": 154,
+      "elapsedMs": 104,
       "output": "",
       "error": "",
-      "digest": "2c5ab2245afde0bbcdb8037f5664d788fc0469a3ec866310aa92d213ee564471"
+      "digest": "1d4982c1a73b5b61d637614e594fde899267951e1bffe9e8a20113583ecf2736"
     }
   ],
   "connectorReview": {
@@ -286,12 +286,12 @@
       },
       {
         "file": "src/connectors/kimiCodeConnector.js",
-        "envRefs": 1,
+        "envRefs": 8,
         "vaultRefs": 0,
         "authTerms": 1,
         "exportsStatus": true,
         "review": "manual_review_required_no_secret_values_read",
-        "digest": "b4bd52325ee636909fa696bd660f8cc703417a9252b99ed0d1c287d223fe28f5"
+        "digest": "4e94432284d1ec7902d85f4a7b8d6760b0264b67f8f292abedc9361e179b9152"
       },
       {
         "file": "src/connectors/localOpsConnector.js",
@@ -510,7 +510,7 @@
         "digest": "25e0bf0e07aaf4d8c645d6d6e342068bf44308c855ffadd2357d624a385a69bd"
       }
     ],
-    "digest": "6784868d90bbf93e755e160105d74194675b1318b74f8cdde35ec92ca528ecf0"
+    "digest": "3c3be3fc3f50e9b23a1bb2e866ec498262496139a0cc562f2bef5c8c5a2ab00f"
   },
   "summary": {
     "commandCheckCount": 5,
@@ -529,5 +529,5 @@
     "launchesDaemons": false,
     "writesShadowFiles": false
   },
-  "digest": "7557df23715606380b1dd310f6077c10773dd94a63c99034cf054c3080c996ef"
+  "digest": "da5b7f4d8f5972fae85c66dc3010162530e23801196f9f05b737b96de74f893d"
 }

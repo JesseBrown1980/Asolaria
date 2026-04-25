@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "generatedAt": "2026-04-25T00:12:33.297Z",
+  "generatedAt": "2026-04-25T02:54:24.232Z",
   "executed": true,
   "snapshot": {
     "id": "original-hermes-agent-wal-state-runtime.v1",
-    "generatedAt": "2026-04-25T00:12:33.297Z",
+    "generatedAt": "2026-04-25T02:54:24.232Z",
     "status": "WAL_STATE_MANIFEST_READY_MIGRATION_BLOCKED",
     "contract": {
       "contractId": "original-hermes-agent-contracts.v1.wal-state",
-      "generatedAt": "2026-04-25T00:12:33.297Z",
+      "generatedAt": "2026-04-25T02:54:24.232Z",
       "source": {
         "upstream": "NousResearch/hermes-agent",
         "capsule": "sqlite_wal_session_memory",
@@ -35,7 +35,7 @@
         "secret_material_in_state_rows"
       ],
       "migrationDefault": "manifest_first_no_store_migration_until_smoke",
-      "digest": "e5ff088dd037c313392b3c11f710531907f5c6ec9a951b4914b5b4c6a69fe6c7"
+      "digest": "5f7894f01944f5c756baf2457afe22de060ae60fe1862f348a969ee27512ba3d"
     },
     "stores": [
       {
@@ -131,8 +131,8 @@
         "requiredNextGate": "append_batch_file_cap_and_pattern_sync",
         "stat": {
           "exists": true,
-          "bytes": 1782048,
-          "modifiedAt": "2026-04-24T18:49:20.025Z"
+          "bytes": 1782522,
+          "modifiedAt": "2026-04-25T00:52:05.085Z"
         },
         "sourcePath": "C:\\Users\\acer\\Asolaria\\src\\mistakeLedgerStore.js",
         "sourceSignals": {
@@ -145,7 +145,7 @@
           "source_mentions_secret_terms_verify_no_state_rows"
         ],
         "recommendedMode": "append_only_with_batch_digest_and_file_cap",
-        "digest": "1738217ce48fdd01212278bccaa7206fb1c43c861d8ddc7d96abe070b40ee255"
+        "digest": "712e530646cc496dbeb76c77f61a4082cf4d0238a5e75e20cfcdb6599f837dd6"
       },
       {
         "id": "memory",
@@ -234,7 +234,7 @@
       ],
       "digest": "14175081b73b0a78a75cea94fe6f571b334b916144694cc56aa104f5f3c76a0e"
     },
-    "digest": "f1243a1b247b029063bf276e4b4a84ec89d5440b2212b92486713019cdaec49d"
+    "digest": "1f91dba1077bf0cf8f906c0a422a5d9d3957fc5bb8e55717982f4b228e4be378"
   },
   "manifest": {
     "id": "original-hermes-agent-wal-state-runtime.v1",

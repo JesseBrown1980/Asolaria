@@ -1,6 +1,6 @@
 {
   "id": "original-hermes-route-server-smoke.v1",
-  "generatedAt": "2026-04-25T01:10:18.227Z",
+  "generatedAt": "2026-04-25T02:54:37.515Z",
   "status": "ORIGINAL_HERMES_ROUTE_SERVER_SMOKE_PASS",
   "pass": true,
   "logical": {
@@ -14,7 +14,7 @@
       "method": "GET",
       "path": "/api/worker-router/original-hermes-transport-contract",
       "statusCode": 200,
-      "elapsedMs": 7614,
+      "elapsedMs": 6931,
       "ok": true,
       "jsonSummary": {
         "ok": true,
@@ -35,7 +35,7 @@
       "method": "GET",
       "path": "/api/worker-router/original-hermes-learning-loop?limit=8",
       "statusCode": 200,
-      "elapsedMs": 380,
+      "elapsedMs": 348,
       "ok": true,
       "jsonSummary": {
         "ok": true,
@@ -58,7 +58,7 @@
       "method": "GET",
       "path": "/api/worker-router/original-hermes-wal-state-contract",
       "statusCode": 200,
-      "elapsedMs": 14,
+      "elapsedMs": 11,
       "ok": true,
       "jsonSummary": {
         "ok": true,
@@ -81,7 +81,7 @@
       "method": "GET",
       "path": "/api/worker-router/original-hermes-security-backport",
       "statusCode": 200,
-      "elapsedMs": 7,
+      "elapsedMs": 6,
       "ok": true,
       "jsonSummary": {
         "ok": true,
@@ -104,7 +104,7 @@
       "method": "GET",
       "path": "/api/worker-router/original-hermes-runtime-index?learningLimit=8",
       "statusCode": 200,
-      "elapsedMs": 3711,
+      "elapsedMs": 3478,
       "ok": true,
       "jsonSummary": {
         "ok": true,
@@ -135,7 +135,7 @@
         "method": "POST",
         "path": "/api/hooks/guard",
         "statusCode": 200,
-        "elapsedMs": 7,
+        "elapsedMs": 6,
         "ok": true,
         "jsonSummary": {
           "ok": true,
@@ -162,7 +162,7 @@
         "method": "POST",
         "path": "/api/hooks/guard",
         "statusCode": 200,
-        "elapsedMs": 3,
+        "elapsedMs": 5,
         "ok": true,
         "jsonSummary": {
           "ok": true,
@@ -190,7 +190,7 @@
         "method": "POST",
         "path": "/api/hooks/guard",
         "statusCode": 200,
-        "elapsedMs": 3,
+        "elapsedMs": 6,
         "ok": true,
         "jsonSummary": {
           "ok": true,
@@ -225,5 +225,5 @@
     "readsSecretValues": false,
     "editsShadowFiles": false
   },
-  "digest": "d5826338c91ecedd46575654f3a4da3a069bdd3562bd2084955ce84c4af59ef2"
+  "digest": "8d7a49ea594f9f75a00efd738279124d8d065c7d8284a2688df6392ed8cc911c"
 }

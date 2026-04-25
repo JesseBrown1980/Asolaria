@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "generatedAt": "2026-04-24T23:56:49.764Z",
+  "generatedAt": "2026-04-25T02:54:22.974Z",
   "executed": true,
   "snapshot": {
     "id": "original-hermes-agent-transport-router-runtime.v1",
-    "generatedAt": "2026-04-24T23:56:49.764Z",
+    "generatedAt": "2026-04-25T02:54:22.974Z",
     "status": "TRANSPORT_ROUTER_CONTRACT_STAGED_NO_SECRET_IMPORT_NO_DISPATCH",
     "contract": {
       "contractId": "original-hermes-agent-contracts.v1.transport-router",
-      "generatedAt": "2026-04-24T23:56:49.764Z",
+      "generatedAt": "2026-04-25T02:54:22.974Z",
       "source": {
         "upstream": "NousResearch/hermes-agent",
         "capsule": "transport_abc_provider_router",
@@ -34,7 +34,7 @@
         "gac_before_model_switch",
         "shannon_after_failed_provider"
       ],
-      "digest": "cf53ba2ec159863a65523fecd0e9c11cb604b288ed5014030efcc175b0ee2cbf"
+      "digest": "88236121fec8ba17874fda450cf10a1996842b2cbec0a15930570e96da91bd8f"
     },
     "bindings": [
       "src/brainPolicy.js",
@@ -447,7 +447,7 @@
       ],
       "digest": "fa59ce31c8a42fa082660d2d90900f140df00941f050d6164426fb644b509c0b"
     },
-    "digest": "45e0382026cfbf86576d4a67b6ae2eb82edfdfa1e41c920b060d0b320a00ae84"
+    "digest": "364c3128c2d946de5b16cf0de3982eb132e8d398c9abea7112cf933acef43abc"
   },
   "manifest": {
     "id": "original-hermes-agent-transport-router-runtime.v1",

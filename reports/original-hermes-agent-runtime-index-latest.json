@@ -1,19 +1,19 @@
 {
   "ok": true,
-  "generatedAt": "2026-04-25T00:18:16.319Z",
+  "generatedAt": "2026-04-25T02:54:31.564Z",
   "executed": true,
   "snapshot": {
     "id": "original-hermes-agent-runtime-index.v1",
-    "generatedAt": "2026-04-25T00:18:16.319Z",
+    "generatedAt": "2026-04-25T02:54:31.564Z",
     "status": "ORIGINAL_HERMES_RUNTIME_INDEX_READY_ACTIVATION_BLOCKED",
     "surfaces": {
       "transport": {
         "id": "original-hermes-agent-transport-router-runtime.v1",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.565Z",
         "status": "TRANSPORT_ROUTER_CONTRACT_STAGED_NO_SECRET_IMPORT_NO_DISPATCH",
         "contract": {
           "contractId": "original-hermes-agent-contracts.v1.transport-router",
-          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "generatedAt": "2026-04-25T02:54:31.565Z",
           "source": {
             "upstream": "NousResearch/hermes-agent",
             "capsule": "transport_abc_provider_router",
@@ -39,7 +39,7 @@
             "gac_before_model_switch",
             "shannon_after_failed_provider"
           ],
-          "digest": "8506b2fa54cf71212d969077598fa80f09ceddf513a9cb086e71d279ba4d1f41"
+          "digest": "ab2c4fb805aecaf1268e3c6f1835fbbb5c9617854410ba58f8380010713d03f3"
         },
         "bindings": [
           "src/brainPolicy.js",
@@ -452,15 +452,15 @@
           ],
           "digest": "fa59ce31c8a42fa082660d2d90900f140df00941f050d6164426fb644b509c0b"
         },
-        "digest": "4b2f797d2cb2f7c16a403aca10ff8737de819b7557589c9f248cd9b8a92da58a"
+        "digest": "3c0f1f8eeab5a1b20fbd82658756dec25ebfa1f58b20f94aa2a7024b84bfc7c3"
       },
       "learningLoop": {
         "id": "original-hermes-agent-learning-loop-runtime.v1",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "status": "LEARNING_LOOP_CANDIDATES_READY_ACTIVATION_BLOCKED",
         "contract": {
           "contractId": "original-hermes-agent-contracts.v1.learning-loop",
-          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "generatedAt": "2026-04-25T02:54:31.564Z",
           "source": {
             "upstream": "NousResearch/hermes-agent",
             "capsule": "self_improving_learning_loop",
@@ -485,13 +485,13 @@
             "data/behcs/original-hermes-agent/skill-promotion-queue-latest.ndjson",
             "data/behcs/original-hermes-agent/mistake-prevention-rules-latest.ndjson"
           ],
-          "digest": "b29a852fe3c0fecdccf7b30fab2b4c9d52ec878ea2d8ec99a1e4aaaa237cbd55"
+          "digest": "5bacf24dd5f9726109302d86329bff9a62944c4b4e85e77ddcdaf4490bd94ec4"
         },
         "sourceSurfaces": {
           "mistakePatternSummary": {
             "ok": true,
             "path": "C:\\Users\\acer\\Asolaria\\data\\mistake-patterns.json",
-            "updatedAt": "2026-04-24T23:47:50.101Z",
+            "updatedAt": "2026-04-25T02:53:59.219Z",
             "counts": {
               "total": 8,
               "active": 8,
@@ -504,7 +504,7 @@
             "summary": {
               "ok": true,
               "path": "C:\\Users\\acer\\Asolaria\\data\\mistake-patterns.json",
-              "updatedAt": "2026-04-24T23:47:50.101Z",
+              "updatedAt": "2026-04-25T02:53:59.219Z",
               "counts": {
                 "total": 8,
                 "active": 8,
@@ -536,9 +536,9 @@
                 "activity": [
                   "idle_escalation"
                 ],
-                "cause": "Idle lanes detected: helm:859915s",
+                "cause": "Idle lanes detected: helm:881691s",
                 "avoid": "Apply safer default workflow and verify preconditions.",
-                "uses": 1879
+                "uses": 1880
               },
               {
                 "id": "m.9_9_9.ca3c18e90d",
@@ -620,7 +620,7 @@
               }
             ]
           },
-          "skillCount": 56,
+          "skillCount": 59,
           "memoryTurns": 20,
           "notebookNotes": 319,
           "semanticKnowledge": {
@@ -631,7 +631,7 @@
         },
         "candidates": [
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "kind": "original_hermes_learning_candidate",
             "sourcePattern": {
               "id": "m.6.14ae864d08",
@@ -639,7 +639,7 @@
               "title": "gate_block",
               "severity": "high",
               "occurrences": 14858,
-              "updatedAt": "2026-04-25T00:18:16.352Z"
+              "updatedAt": "2026-04-25T02:54:31.598Z"
             },
             "skillCoverage": {
               "linkedSkills": [],
@@ -648,17 +648,17 @@
             },
             "candidate": {
               "contractId": "reverse-gain-promotion-gate.v1",
-              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "generatedAt": "2026-04-25T02:54:31.564Z",
               "id": "original-hermes-learning-m.6.14ae864d08",
               "lane": "original_hermes_learning_loop",
-              "sourceDigest": "c76032b48b350cf3923b843ee423cf3ab64dae2a58f674197e65b0a201af7579",
+              "sourceDigest": "ec74636c2722b074fc86e28c33c36922427edb0f5cd8919a831f796420381f1a",
               "whiteRoomProof": "mistake_pattern:m.6.14ae864d08",
               "forwardScore": 0.86,
               "reverseRisk": 0.62,
               "mistakeClass": "6",
               "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
               "supervisor": "original_hermes_impl_memory_skills_supervisor",
-              "digest": "c27d8fc8fa6daa35711cc8a7ecc3f84524dbbb937f8a01491471a3adaba3cdd9"
+              "digest": "9885f4df474ea2d294e4eb1069ab1d2ba1690c12ff2c3c52b90fcd696154c68e"
             },
             "reverseGainEvaluation": {
               "ok": true,
@@ -673,17 +673,17 @@
                 "minForwardScore": 0.72,
                 "maxReverseRisk": 0.28
               },
-              "digest": "a7c20fe22ea2f3ab649965e4d0e45aa1e139d56c1a84fde4b660e2200f91dcba"
+              "digest": "fd8b277301ee5edbaf2d1283a7a914e48898c19117a96e661c17a1119fb0dfdb"
             },
             "preventionRule": {
               "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
-              "generatedAt": "2026-04-25T00:18:16.354Z",
+              "generatedAt": "2026-04-25T02:54:31.601Z",
               "lane": "original_hermes_learning_loop",
               "mistakeClass": "6",
               "action": "block_until_reverse_gain_pass",
               "condition": "reverse_risk_above_threshold",
               "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
-              "digest": "9bc7e2b94c2f9db58417cb640a14d7570ba888337ff4de91287d6e1da4df622f"
+              "digest": "e88ac4559470a35f5f1ecd64518548140c36670a95534b9c9421f0433ad6199d"
             },
             "activation": {
               "state": "candidate_only",
@@ -696,18 +696,18 @@
                 "operator_review"
               ]
             },
-            "digest": "e509ab816476baed5b72f9c713c5315a71010de9d5bd88f27b434a9d52dd691f"
+            "digest": "3275d04b1c83e5533d57e1c517f62e84c2ffb07c1ea7e48bd66e18810e72e667"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "kind": "original_hermes_learning_candidate",
             "sourcePattern": {
               "id": "m.9_9_9.6163437f3e",
               "code": "9.9.9",
               "title": "agent_colony_idle_escalation",
               "severity": "medium",
-              "occurrences": 1879,
-              "updatedAt": "2026-04-25T00:18:16.351Z"
+              "occurrences": 1880,
+              "updatedAt": "2026-04-25T02:54:31.597Z"
             },
             "skillCoverage": {
               "linkedSkills": [],
@@ -716,17 +716,17 @@
             },
             "candidate": {
               "contractId": "reverse-gain-promotion-gate.v1",
-              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "generatedAt": "2026-04-25T02:54:31.564Z",
               "id": "original-hermes-learning-m.9_9_9.6163437f3e",
               "lane": "original_hermes_learning_loop",
-              "sourceDigest": "65705f53c8b5c4a6c41e0ca9eacb29460e5b1d899f7275ce2d2eafb2b393a60f",
+              "sourceDigest": "40a9c0bd72de87566133cd7b75088ce77c1512406719af28fae13f92b283e3a5",
               "whiteRoomProof": "mistake_pattern:m.9_9_9.6163437f3e",
               "forwardScore": 0.81,
               "reverseRisk": 0.53,
               "mistakeClass": "9.9.9",
               "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
               "supervisor": "original_hermes_impl_memory_skills_supervisor",
-              "digest": "a4a917095afca611f2f067c7d7d2a2aa922145c671a058aeeef12a4a45c53e8b"
+              "digest": "d3dcb6b069ee8cdaf2606e7330e6ab239c6c5e5c6052f0c7e17da48f7fdd393c"
             },
             "reverseGainEvaluation": {
               "ok": true,
@@ -741,17 +741,17 @@
                 "minForwardScore": 0.72,
                 "maxReverseRisk": 0.28
               },
-              "digest": "b1dd62b430267788ef8b444481917a7809f0d14f278db58b7b1d23dbca8ddeb0"
+              "digest": "4474319c1a122d9934d63d97cb3a0b3e366697a6394e511aa3578ce5cb0191a2"
             },
             "preventionRule": {
               "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
-              "generatedAt": "2026-04-25T00:18:16.355Z",
+              "generatedAt": "2026-04-25T02:54:31.602Z",
               "lane": "original_hermes_learning_loop",
               "mistakeClass": "9.9.9",
               "action": "block_until_reverse_gain_pass",
               "condition": "reverse_risk_above_threshold",
               "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
-              "digest": "ecfcabfb61ed271eeabf2a9f8d9b922faa097895755e7c510f5a6c1e39c124e3"
+              "digest": "ae4ac984ed41e9521cb64e22e34f4d73e1698cae771b025ce33b7bda922d849c"
             },
             "activation": {
               "state": "candidate_only",
@@ -764,10 +764,10 @@
                 "operator_review"
               ]
             },
-            "digest": "6e90c593babf102be21cc25137a623bc858dc4c76a7822a030704e8771683f1c"
+            "digest": "8c34e392f1b35654de3eca1a41db38136f2d62c5a8e24a13f71d813bc66eb58b"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "kind": "original_hermes_learning_candidate",
             "sourcePattern": {
               "id": "m.9_9_9.ca3c18e90d",
@@ -775,7 +775,7 @@
               "title": "self_reflect",
               "severity": "medium",
               "occurrences": 8,
-              "updatedAt": "2026-04-25T00:18:16.352Z"
+              "updatedAt": "2026-04-25T02:54:31.598Z"
             },
             "skillCoverage": {
               "linkedSkills": [],
@@ -784,17 +784,17 @@
             },
             "candidate": {
               "contractId": "reverse-gain-promotion-gate.v1",
-              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "generatedAt": "2026-04-25T02:54:31.564Z",
               "id": "original-hermes-learning-m.9_9_9.ca3c18e90d",
               "lane": "original_hermes_learning_loop",
-              "sourceDigest": "ae77ffdfd74d36588574df7b08703b3fc8c7145a0698a2173fcb786d86ae93ad",
+              "sourceDigest": "5adf7254b737a1582416958e45829865c72b5d615eddabc270079fdef0f09f19",
               "whiteRoomProof": "mistake_pattern:m.9_9_9.ca3c18e90d",
               "forwardScore": 0.77,
               "reverseRisk": 0.57,
               "mistakeClass": "9.9.9",
               "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
               "supervisor": "original_hermes_impl_memory_skills_supervisor",
-              "digest": "ec0367016f3c6a7dc19026086d129ef152ebce37d56158309828849754ec4c10"
+              "digest": "111424d576806ff229287d47b044bf1d7ddf3e774a0a65fdab0429924868bde2"
             },
             "reverseGainEvaluation": {
               "ok": true,
@@ -809,17 +809,17 @@
                 "minForwardScore": 0.72,
                 "maxReverseRisk": 0.28
               },
-              "digest": "558bfbc5b2e7ae8d68ca6b973b369103a25a6d4155e4e7358e3199adcdb7d108"
+              "digest": "cc19ee159562a4ea46be83e5a2f16fde6ac9f9fe34902a9fcdd655b1172d0804"
             },
             "preventionRule": {
               "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
-              "generatedAt": "2026-04-25T00:18:16.355Z",
+              "generatedAt": "2026-04-25T02:54:31.602Z",
               "lane": "original_hermes_learning_loop",
               "mistakeClass": "9.9.9",
               "action": "block_until_reverse_gain_pass",
               "condition": "reverse_risk_above_threshold",
               "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
-              "digest": "ecfcabfb61ed271eeabf2a9f8d9b922faa097895755e7c510f5a6c1e39c124e3"
+              "digest": "ae4ac984ed41e9521cb64e22e34f4d73e1698cae771b025ce33b7bda922d849c"
             },
             "activation": {
               "state": "candidate_only",
@@ -832,10 +832,10 @@
                 "operator_review"
               ]
             },
-            "digest": "b6ab8ee8fbc34ecac9de15716585bb7d76897d7e1658e619ea8ceeb72b5bf3b3"
+            "digest": "25dff03283bd2fa006c3937e0df3335437666418bda9d855f5abf4648422f64c"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "kind": "original_hermes_learning_candidate",
             "sourcePattern": {
               "id": "m.9_9_9.215dae382b",
@@ -843,7 +843,7 @@
               "title": "operator_correction",
               "severity": "medium",
               "occurrences": 5,
-              "updatedAt": "2026-04-25T00:18:16.352Z"
+              "updatedAt": "2026-04-25T02:54:31.599Z"
             },
             "skillCoverage": {
               "linkedSkills": [],
@@ -852,17 +852,17 @@
             },
             "candidate": {
               "contractId": "reverse-gain-promotion-gate.v1",
-              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "generatedAt": "2026-04-25T02:54:31.564Z",
               "id": "original-hermes-learning-m.9_9_9.215dae382b",
               "lane": "original_hermes_learning_loop",
-              "sourceDigest": "930af1b5b59292af27ef6c5028a57bc1a8309e0672cfec4a5500dc998888adb2",
+              "sourceDigest": "aae919677c73b100aae568c99cf20dc9613f5297e5fb5f6bae9aef9cade65685",
               "whiteRoomProof": "mistake_pattern:m.9_9_9.215dae382b",
               "forwardScore": 0.695,
               "reverseRisk": 0.57,
               "mistakeClass": "9.9.9",
               "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
               "supervisor": "original_hermes_impl_memory_skills_supervisor",
-              "digest": "d2cde2c713a42702d04c8fca3204bfa0942956bcd451d02db9072f673dbffe31"
+              "digest": "a98726a7164659c0acfadeff6c6bbace4009c5697c0effe470e1f7aab92d1d1a"
             },
             "reverseGainEvaluation": {
               "ok": true,
@@ -878,17 +878,17 @@
                 "minForwardScore": 0.72,
                 "maxReverseRisk": 0.28
               },
-              "digest": "dc659c7f8d2fe739b08c389f2e53d5f28aedddc18f17ecb48c669a7d155ccf2b"
+              "digest": "a240b8afb895f9a1ae0fb455d522054c66d33a614e216c0222c136f699837658"
             },
             "preventionRule": {
               "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
-              "generatedAt": "2026-04-25T00:18:16.355Z",
+              "generatedAt": "2026-04-25T02:54:31.602Z",
               "lane": "original_hermes_learning_loop",
               "mistakeClass": "9.9.9",
               "action": "block_until_reverse_gain_pass",
               "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
               "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
-              "digest": "ab0fde1333510c206cd3e6463f09e01bad43041fdf274ef6ba75bd629859b58d"
+              "digest": "e8d8b9d32473d61cbee646fe8ce4fdea4b3c89c9f36953643f05eea3efde93b0"
             },
             "activation": {
               "state": "candidate_only",
@@ -901,10 +901,10 @@
                 "operator_review"
               ]
             },
-            "digest": "b22b08c2061a7d5108e0bcb759003f841ac9e5e0d2eec43fc8ddfb5043561396"
+            "digest": "19e824404b00d517d8d115053147faf2a6f6f7ba82200145e7795494615712d2"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "kind": "original_hermes_learning_candidate",
             "sourcePattern": {
               "id": "m.9_9_9.a51a480bab",
@@ -912,7 +912,7 @@
               "title": "self_caught",
               "severity": "medium",
               "occurrences": 2,
-              "updatedAt": "2026-04-25T00:18:16.352Z"
+              "updatedAt": "2026-04-25T02:54:31.599Z"
             },
             "skillCoverage": {
               "linkedSkills": [],
@@ -921,17 +921,17 @@
             },
             "candidate": {
               "contractId": "reverse-gain-promotion-gate.v1",
-              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "generatedAt": "2026-04-25T02:54:31.564Z",
               "id": "original-hermes-learning-m.9_9_9.a51a480bab",
               "lane": "original_hermes_learning_loop",
-              "sourceDigest": "181bc96fef2ca18dda866ab50173a82fb336584dc030b363039457e042885682",
+              "sourceDigest": "06db4bd0adc2185b5950010efe8034a3fd8ba10091360bbb71e711057ba243ef",
               "whiteRoomProof": "mistake_pattern:m.9_9_9.a51a480bab",
               "forwardScore": 0.62,
               "reverseRisk": 0.63,
               "mistakeClass": "9.9.9",
               "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
               "supervisor": "original_hermes_impl_memory_skills_supervisor",
-              "digest": "4cd01d881cab0d3e06a4d7a72f96bcfb8c2dcfb3b3b5672616a0304dd7f132cd"
+              "digest": "9a537b0827d0b2eefc99781fa5d98f2ef8ca3d324ffd9e6d338be4dc708cd77e"
             },
             "reverseGainEvaluation": {
               "ok": true,
@@ -947,17 +947,17 @@
                 "minForwardScore": 0.72,
                 "maxReverseRisk": 0.28
               },
-              "digest": "d16f17ca28a900f3bf1db61fb7a6396ff93eae42460560b534b57caf5c4f43e7"
+              "digest": "59d1660696e46104c8c8d4878852a318c93248c3946ba0c4a467cd6fe8393ab2"
             },
             "preventionRule": {
               "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
-              "generatedAt": "2026-04-25T00:18:16.356Z",
+              "generatedAt": "2026-04-25T02:54:31.603Z",
               "lane": "original_hermes_learning_loop",
               "mistakeClass": "9.9.9",
               "action": "block_until_reverse_gain_pass",
               "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
               "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
-              "digest": "c8ef6fd1c2e016cc97bf0108fe331d8063d4261c1ecec763bebee977c76945a2"
+              "digest": "438df31852daadb64a96e7df706ef164ee4975ee2dc394ae34b1d2dd3cc42b75"
             },
             "activation": {
               "state": "candidate_only",
@@ -970,10 +970,10 @@
                 "operator_review"
               ]
             },
-            "digest": "b50394636aa08a73e8ad2a47ad56cefedf119bc93145bcb3395441df915450a8"
+            "digest": "6ef961d137d7d924c0e57a5017fc7ddb998e8770fb39034855e1e8d8f13c91e1"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "kind": "original_hermes_learning_candidate",
             "sourcePattern": {
               "id": "m.9_9_9.c0717f99d0",
@@ -981,7 +981,7 @@
               "title": "orchestration_mistake",
               "severity": "medium",
               "occurrences": 2,
-              "updatedAt": "2026-04-25T00:18:16.352Z"
+              "updatedAt": "2026-04-25T02:54:31.599Z"
             },
             "skillCoverage": {
               "linkedSkills": [],
@@ -990,17 +990,17 @@
             },
             "candidate": {
               "contractId": "reverse-gain-promotion-gate.v1",
-              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "generatedAt": "2026-04-25T02:54:31.564Z",
               "id": "original-hermes-learning-m.9_9_9.c0717f99d0",
               "lane": "original_hermes_learning_loop",
-              "sourceDigest": "d45d9ba2585dbecb48e571b793183f66b5ef6d6122ff079d0d2da99815bbbecb",
+              "sourceDigest": "5642c8db4708a2d286db41c43f88c22693b3b73e34f3fdda13b396aa121081eb",
               "whiteRoomProof": "mistake_pattern:m.9_9_9.c0717f99d0",
               "forwardScore": 0.62,
               "reverseRisk": 0.63,
               "mistakeClass": "9.9.9",
               "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
               "supervisor": "original_hermes_impl_memory_skills_supervisor",
-              "digest": "9abe2336727b268100e3aa453d1ef823e6720d9efa6d1dc73ca39f340866d143"
+              "digest": "9ae7c5722a78fd9842e2b54dbf95cb9e99c06252fd77bd907f4fab76a770882e"
             },
             "reverseGainEvaluation": {
               "ok": true,
@@ -1016,17 +1016,17 @@
                 "minForwardScore": 0.72,
                 "maxReverseRisk": 0.28
               },
-              "digest": "f07caf83372d6e12ee892b59fbb8e3afc26ed05c438003a81eb0e32cfb76b99b"
+              "digest": "7c74f415c3c0ea611f0f460e3e99c8f952705d57a21f636e2864f271c183d1ac"
             },
             "preventionRule": {
               "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
-              "generatedAt": "2026-04-25T00:18:16.356Z",
+              "generatedAt": "2026-04-25T02:54:31.603Z",
               "lane": "original_hermes_learning_loop",
               "mistakeClass": "9.9.9",
               "action": "block_until_reverse_gain_pass",
               "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
               "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
-              "digest": "c8ef6fd1c2e016cc97bf0108fe331d8063d4261c1ecec763bebee977c76945a2"
+              "digest": "438df31852daadb64a96e7df706ef164ee4975ee2dc394ae34b1d2dd3cc42b75"
             },
             "activation": {
               "state": "candidate_only",
@@ -1039,10 +1039,10 @@
                 "operator_review"
               ]
             },
-            "digest": "2ad826fb7eb37bf81010795d83216af845390221d3dbb45070cdbf5e1e300fac"
+            "digest": "475aa9562ae20f71735aecc7ea2eb55bff32d2e9cf860dfd027299e8d6433d09"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "kind": "original_hermes_learning_candidate",
             "sourcePattern": {
               "id": "m.9_9_9.fe317d5b1b",
@@ -1050,7 +1050,7 @@
               "title": "self_caught_major",
               "severity": "medium",
               "occurrences": 1,
-              "updatedAt": "2026-04-25T00:18:16.352Z"
+              "updatedAt": "2026-04-25T02:54:31.599Z"
             },
             "skillCoverage": {
               "linkedSkills": [],
@@ -1059,17 +1059,17 @@
             },
             "candidate": {
               "contractId": "reverse-gain-promotion-gate.v1",
-              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "generatedAt": "2026-04-25T02:54:31.564Z",
               "id": "original-hermes-learning-m.9_9_9.fe317d5b1b",
               "lane": "original_hermes_learning_loop",
-              "sourceDigest": "430d05a5d2e7579e24aa3a1d8a522ef0bf0b84c690427aa6295cc283d7c783fd",
+              "sourceDigest": "17c92a92baf444de9d7e920c68e72d22ea681fbe1e328dada04243046900eba0",
               "whiteRoomProof": "mistake_pattern:m.9_9_9.fe317d5b1b",
               "forwardScore": 0.595,
               "reverseRisk": 0.63,
               "mistakeClass": "9.9.9",
               "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
               "supervisor": "original_hermes_impl_memory_skills_supervisor",
-              "digest": "fd00f7c66eeb782c58b067eedb51f4e228b96474fde8039925ba591337962875"
+              "digest": "611230fac88ba724aa25f52fc72ff58924726a745c24895394d3c6ca253d74bb"
             },
             "reverseGainEvaluation": {
               "ok": true,
@@ -1085,17 +1085,17 @@
                 "minForwardScore": 0.72,
                 "maxReverseRisk": 0.28
               },
-              "digest": "84af8966c6f555f9e1f033ed58ea3cc436e54ff7de6237b61c179a703a61d222"
+              "digest": "e38040e85b803356f26cb0c226f6cb8e0902779a0b30fff4c4208b7ebf5dedbf"
             },
             "preventionRule": {
               "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
-              "generatedAt": "2026-04-25T00:18:16.356Z",
+              "generatedAt": "2026-04-25T02:54:31.603Z",
               "lane": "original_hermes_learning_loop",
               "mistakeClass": "9.9.9",
               "action": "block_until_reverse_gain_pass",
               "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
               "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
-              "digest": "c8ef6fd1c2e016cc97bf0108fe331d8063d4261c1ecec763bebee977c76945a2"
+              "digest": "438df31852daadb64a96e7df706ef164ee4975ee2dc394ae34b1d2dd3cc42b75"
             },
             "activation": {
               "state": "candidate_only",
@@ -1108,10 +1108,10 @@
                 "operator_review"
               ]
             },
-            "digest": "3a7f37e6614b2c6ed96a6da5bba5cd080678cc56845bfe9677d4d0b555cace5c"
+            "digest": "8b82edf1160ddacfc44722ab511980c866668c3f32499d14c69c9e52b6b6189c"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "kind": "original_hermes_learning_candidate",
             "sourcePattern": {
               "id": "m.9_9_9.8258d1d7a1",
@@ -1119,7 +1119,7 @@
               "title": "verification_packet_captured",
               "severity": "medium",
               "occurrences": 1,
-              "updatedAt": "2026-04-25T00:18:16.352Z"
+              "updatedAt": "2026-04-25T02:54:31.599Z"
             },
             "skillCoverage": {
               "linkedSkills": [],
@@ -1128,17 +1128,17 @@
             },
             "candidate": {
               "contractId": "reverse-gain-promotion-gate.v1",
-              "generatedAt": "2026-04-25T00:18:16.319Z",
+              "generatedAt": "2026-04-25T02:54:31.564Z",
               "id": "original-hermes-learning-m.9_9_9.8258d1d7a1",
               "lane": "original_hermes_learning_loop",
-              "sourceDigest": "cf77d938c2e3a591ba6395ab3053c10aed255107deedf6ffa2ed92c5bdb8173c",
+              "sourceDigest": "8a6904c29e65eb3c762c771142740081dae0bd6a0b110aff8f07e995f2778612",
               "whiteRoomProof": "mistake_pattern:m.9_9_9.8258d1d7a1",
               "forwardScore": 0.595,
               "reverseRisk": 0.63,
               "mistakeClass": "9.9.9",
               "preventionRule": "require_bounded_replay_before_skill_or_memory_promotion",
               "supervisor": "original_hermes_impl_memory_skills_supervisor",
-              "digest": "92ff6867a98f48df424f92109a9fa295793debaf8d9ee09041c320ef53b06cee"
+              "digest": "a078d6984e304d5bb2da236e5759e2f5dd74d1728857fd950c10f77efa5bf8dd"
             },
             "reverseGainEvaluation": {
               "ok": true,
@@ -1154,17 +1154,17 @@
                 "minForwardScore": 0.72,
                 "maxReverseRisk": 0.28
               },
-              "digest": "8c96a4318c4a0b68970d83c81c29b467a259dabacf3bd723340431f943bed62e"
+              "digest": "ea90f141d69b1ed39c762a3851409726c4140b9954348c93be07bc75d393e628"
             },
             "preventionRule": {
               "contractId": "reverse-gain-promotion-gate.v1.prevention-rule",
-              "generatedAt": "2026-04-25T00:18:16.356Z",
+              "generatedAt": "2026-04-25T02:54:31.603Z",
               "lane": "original_hermes_learning_loop",
               "mistakeClass": "9.9.9",
               "action": "block_until_reverse_gain_pass",
               "condition": "forward_score_below_threshold|reverse_risk_above_threshold",
               "prevention": "require_bounded_replay_before_skill_or_memory_promotion",
-              "digest": "c8ef6fd1c2e016cc97bf0108fe331d8063d4261c1ecec763bebee977c76945a2"
+              "digest": "438df31852daadb64a96e7df706ef164ee4975ee2dc394ae34b1d2dd3cc42b75"
             },
             "activation": {
               "state": "candidate_only",
@@ -1177,7 +1177,7 @@
                 "operator_review"
               ]
             },
-            "digest": "bc577949b4d7689638334fe9fa23a5f7ebcc54b125adf75a3313f1fc75ec9ffd"
+            "digest": "c5d22f1415fc34e3a933e9e3fc027c247a8eaa45aa6e99a9435cd4c2d277c3dd"
           }
         ],
         "summary": {
@@ -1212,15 +1212,15 @@
           "warnings": [],
           "digest": "5aa6591a5bf3c8f782ca6dc6af519b63f3e31af9bfdd3870d67f008015aa3a7b"
         },
-        "digest": "04c8b25d29d6296575401d61a3203afa262a817931da9d420e7059813ce17245"
+        "digest": "d61ff7d69a3575eb4454f7be06bbb9aef4f78f622e6561d35ad17d8d05e0e903"
       },
       "walState": {
         "id": "original-hermes-agent-wal-state-runtime.v1",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "status": "WAL_STATE_MANIFEST_READY_MIGRATION_BLOCKED",
         "contract": {
           "contractId": "original-hermes-agent-contracts.v1.wal-state",
-          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "generatedAt": "2026-04-25T02:54:31.564Z",
           "source": {
             "upstream": "NousResearch/hermes-agent",
             "capsule": "sqlite_wal_session_memory",
@@ -1247,7 +1247,7 @@
             "secret_material_in_state_rows"
           ],
           "migrationDefault": "manifest_first_no_store_migration_until_smoke",
-          "digest": "6820e22eaefc660d20dd1a04d9db90647c33660f3b0625ed4746c9a9a98f56be"
+          "digest": "96377f35bf9499339048bfc8a90ec75081463881acad2c500d814f6c92041283"
         },
         "stores": [
           {
@@ -1343,8 +1343,8 @@
             "requiredNextGate": "append_batch_file_cap_and_pattern_sync",
             "stat": {
               "exists": true,
-              "bytes": 1782048,
-              "modifiedAt": "2026-04-24T18:49:20.025Z"
+              "bytes": 1782522,
+              "modifiedAt": "2026-04-25T00:52:05.085Z"
             },
             "sourcePath": "C:\\Users\\acer\\Asolaria\\src\\mistakeLedgerStore.js",
             "sourceSignals": {
@@ -1357,7 +1357,7 @@
               "source_mentions_secret_terms_verify_no_state_rows"
             ],
             "recommendedMode": "append_only_with_batch_digest_and_file_cap",
-            "digest": "1738217ce48fdd01212278bccaa7206fb1c43c861d8ddc7d96abe070b40ee255"
+            "digest": "712e530646cc496dbeb76c77f61a4082cf4d0238a5e75e20cfcdb6599f837dd6"
           },
           {
             "id": "memory",
@@ -1446,15 +1446,15 @@
           ],
           "digest": "14175081b73b0a78a75cea94fe6f571b334b916144694cc56aa104f5f3c76a0e"
         },
-        "digest": "79f6d216ad92fb9615c1c3268aaba0f605e157dd79590dc08aeffa5c2e4e9dd1"
+        "digest": "f388b57b838bfb217f6a58cb163cd3bac43194f510c3f14e930010f9b09dd647"
       },
       "pluginHookGate": {
         "id": "original-hermes-plugin-hook-gate-runtime.v1",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "status": "PLUGIN_HOOK_GATE_ACTIVE_FAIL_CLOSED",
         "gate": {
           "contractId": "original-hermes-agent-contracts.v1.plugin-hook-gac-gate",
-          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "generatedAt": "2026-04-25T02:54:31.564Z",
           "source": {
             "upstream": "NousResearch/hermes-agent",
             "capsule": "plugin_hook_surface",
@@ -1483,7 +1483,7 @@
             "shadow_file_write",
             "missing_rollback_surface"
           ],
-          "digest": "278244c4a67540ede25a0ac5e27bd472d4c805d8f2c8ace17a37a94a85dce5f3"
+          "digest": "1416851270670ccff77317884a20cebde44c99c562f817c7ba2eab39e8259e7a"
         },
         "samples": {
           "unsafe": {
@@ -1496,10 +1496,10 @@
             "audit": {
               "pluginId": "original-hermes-unsafe-sample",
               "phase": "pre_tool_call",
-              "manifestDigest": "278244c4a67540ede25a0ac5e27bd472d4c805d8f2c8ace17a37a94a85dce5f3",
+              "manifestDigest": "1416851270670ccff77317884a20cebde44c99c562f817c7ba2eab39e8259e7a",
               "rollbackSurface": "reports/original-hermes-agent-runtime-index-latest.md"
             },
-            "digest": "447521e11a3e0a6233836b7d50d5c78baa580dc8008f9177406478897f3dc2b5"
+            "digest": "adbbda395879856431810af699e8842182329cac615b645c435f52cf9b4bd50d"
           },
           "registeredReadOnly": {
             "ok": true,
@@ -1509,10 +1509,10 @@
             "audit": {
               "pluginId": "original-hermes-readonly-sample",
               "phase": "post_tool_call",
-              "manifestDigest": "278244c4a67540ede25a0ac5e27bd472d4c805d8f2c8ace17a37a94a85dce5f3",
+              "manifestDigest": "1416851270670ccff77317884a20cebde44c99c562f817c7ba2eab39e8259e7a",
               "rollbackSurface": "reports/original-hermes-agent-runtime-index-latest.md"
             },
-            "digest": "0f91cf9330b58320bf8ee0d247956edb48d831dd6f5d746fee184a2a8de27620"
+            "digest": "fa4b8bdb5750a2783e93fc9d2b3d3ce30e8cacb4b4bbfe9d960ab016c107f69b"
           }
         },
         "summary": {
@@ -1523,7 +1523,7 @@
           "secretAccessAllowed": false,
           "shadowWritesAllowed": false
         },
-        "digest": "20cab582581e6c8ef54e6a56e4bd360308e980f3a96c5d0591502600ee083eab",
+        "digest": "a25ea1e1b7eed228ab6130308857bf0f0b7402807df771356d2a31b86cfe1b53",
         "validation": {
           "ok": true,
           "errors": [],
@@ -1533,11 +1533,11 @@
       },
       "securityBackport": {
         "id": "original-hermes-agent-security-backport-runtime.v1",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "status": "SECURITY_BACKPORT_QUEUE_READY_PATCHES_BLOCKED",
         "manifest": {
           "contractId": "original-hermes-agent-contracts.v1.security-backport",
-          "generatedAt": "2026-04-25T00:18:16.319Z",
+          "generatedAt": "2026-04-25T02:54:31.564Z",
           "source": {
             "upstream": "NousResearch/hermes-agent",
             "capsule": "release_v011_security_hardening",
@@ -1576,11 +1576,11 @@
             }
           ],
           "executionDefault": "queued_no_patch_until_targeted_tests",
-          "digest": "9e32ee34c40e604dcbec7646a081dc21d3369f5285e413ef21b7e4ec2872e8a0"
+          "digest": "79a386d9feaa44ecdfdf536db20144336ea70feaafa84f45b16eeea9e04f8218"
         },
         "backports": [
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "id": "api_auth_enforcement",
             "target": {
               "exists": true,
@@ -1603,17 +1603,17 @@
                 "rollback_plan"
               ]
             },
-            "digest": "534097fd5fd1a92911d9e0d30333c469a701c6cf316dcc3945dfb1675e08e780"
+            "digest": "8b4f38a2dafe85219976f48c84d0ea2e1517c1946fee4cea99b4552cf4c2f500"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "id": "path_traversal_checkpoint_guard",
             "target": {
               "exists": true,
               "kind": "file",
               "path": "tools/c-drive-junction-migrator.js",
-              "bytes": 9617,
-              "modifiedAt": "2026-04-24T20:03:18.782Z"
+              "bytes": 9686,
+              "modifiedAt": "2026-04-25T01:29:37.290Z"
             },
             "gate": "resolved_path_stays_under_allowed_root",
             "smoke": "node --check tools/c-drive-junction-migrator.js",
@@ -1629,10 +1629,10 @@
                 "rollback_plan"
               ]
             },
-            "digest": "7d1edd6279a2dc02ef1fddbe6110b3e07d15ddc9981e7f878e47a5ca25a635db"
+            "digest": "136128b06e2d0b073b4eba3d508c3d7bb76cc0518dc8841b06772cb8cc8d2380"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "id": "sandbox_write_shell_injection_guard",
             "target": {
               "exists": true,
@@ -1642,7 +1642,7 @@
               "modifiedAt": "2026-02-18T22:10:47.860Z"
             },
             "gate": "shell_false_or_argv_only",
-            "smoke": "node --check services/sandbox-manager",
+            "smoke": "node --check services/sandbox-manager/server.js",
             "state": "queued_target_present_patch_blocked",
             "activation": {
               "appliesPatch": false,
@@ -1655,10 +1655,10 @@
                 "rollback_plan"
               ]
             },
-            "digest": "3d4d73396f7021678452a80c3f52513fe46d5cd29bd596e7da286093d198e731"
+            "digest": "58c6b709840a40d3e301c1b8bf7d1eb89db5d3c8b5ce369bb73edb4ede253a77"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "id": "ssrf_redirect_guard",
             "target": {
               "exists": true,
@@ -1681,10 +1681,10 @@
                 "rollback_plan"
               ]
             },
-            "digest": "3bc538b052b9f7cbd3b886fa548338a2e88ea529107d3953f80f73b5619f5994"
+            "digest": "6a0ed92b12d7c236dd0cb2805adc323d5e036925cddb02ed12b0c4bfd11bae3d"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "id": "webhook_signature_validation",
             "target": {
               "exists": true,
@@ -1707,10 +1707,10 @@
                 "rollback_plan"
               ]
             },
-            "digest": "c150c5ec29ed15842cdac5321800a42775ebe24017a431fbac73beb804776955"
+            "digest": "44d1d3e6233d5d6022f95fae8ec3cce783f02264b46d9ca6ee9bc4bdc4445435"
           },
           {
-            "generatedAt": "2026-04-25T00:18:16.319Z",
+            "generatedAt": "2026-04-25T02:54:31.564Z",
             "id": "oauth_lifecycle_and_no_secret_import",
             "target": {
               "exists": true,
@@ -1733,7 +1733,7 @@
                 "rollback_plan"
               ]
             },
-            "digest": "8cab1f0f55874c61b9ad6e0cc523fc7bc06febb16eb9507f5ac48c0f2a76c774"
+            "digest": "19b95faee5c47fbf8c2a560239ae703da288f121572d1c9c4c58e65bf3c32d6b"
           }
         ],
         "summary": {
@@ -1770,13 +1770,13 @@
           "warnings": [],
           "digest": "1be01aa8b612728dc0964df5c55f8d4673c86899053c9715eddffa76e4b72f86"
         },
-        "digest": "1e4a5877feb9b06139ce0ba049b8dc45e607ed361496b565020940ef6097660e"
+        "digest": "24e5356b6ee9f25da561d281bf8a0c22646f2e7324d96a040d2bd0ba7c8794a2"
       }
     },
     "supervisors": [
       {
         "id": "original_hermes_runtime_supervisor_root",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "role": "supervisor_of_supervisors",
         "scope": "Coordinate Original Hermes transport, learning loop, WAL/session, plugin hook, and security backport surfaces.",
         "gates": [
@@ -1790,12 +1790,12 @@
       },
       {
         "id": "original_hermes_transport_supervisor",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "role": "surface_supervisor",
         "ordinal": 1,
         "surface": "transport",
         "status": "ready_blocked",
-        "digest": "4b2f797d2cb2f7c16a403aca10ff8737de819b7557589c9f248cd9b8a92da58a",
+        "digest": "3c0f1f8eeab5a1b20fbd82658756dec25ebfa1f58b20f94aa2a7024b84bfc7c3",
         "gates": {
           "dispatchesNow": false,
           "launchesGateway": false,
@@ -1805,12 +1805,12 @@
       },
       {
         "id": "original_hermes_learningLoop_supervisor",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "role": "surface_supervisor",
         "ordinal": 2,
         "surface": "learningLoop",
         "status": "ready_blocked",
-        "digest": "04c8b25d29d6296575401d61a3203afa262a817931da9d420e7059813ce17245",
+        "digest": "d61ff7d69a3575eb4454f7be06bbb9aef4f78f622e6561d35ad17d8d05e0e903",
         "gates": [
           "reverse_gain_before_promotion",
           "bounded_replay_required",
@@ -1821,12 +1821,12 @@
       },
       {
         "id": "original_hermes_walState_supervisor",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "role": "surface_supervisor",
         "ordinal": 3,
         "surface": "walState",
         "status": "ready_blocked",
-        "digest": "79f6d216ad92fb9615c1c3268aaba0f605e157dd79590dc08aeffa5c2e4e9dd1",
+        "digest": "f388b57b838bfb217f6a58cb163cd3bac43194f510c3f14e930010f9b09dd647",
         "gates": [
           "manifest_first",
           "no_store_migration_until_smoke",
@@ -1837,12 +1837,12 @@
       },
       {
         "id": "original_hermes_pluginHookGate_supervisor",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "role": "surface_supervisor",
         "ordinal": 4,
         "surface": "pluginHookGate",
         "status": "ready_blocked",
-        "digest": "20cab582581e6c8ef54e6a56e4bd360308e980f3a96c5d0591502600ee083eab",
+        "digest": "a25ea1e1b7eed228ab6130308857bf0f0b7402807df771356d2a31b86cfe1b53",
         "gates": {
           "unsafeDenied": true,
           "registeredReadOnlyAllowed": true,
@@ -1854,12 +1854,12 @@
       },
       {
         "id": "original_hermes_securityBackport_supervisor",
-        "generatedAt": "2026-04-25T00:18:16.319Z",
+        "generatedAt": "2026-04-25T02:54:31.564Z",
         "role": "surface_supervisor",
         "ordinal": 5,
         "surface": "securityBackport",
         "status": "ready_blocked",
-        "digest": "1e4a5877feb9b06139ce0ba049b8dc45e607ed361496b565020940ef6097660e",
+        "digest": "24e5356b6ee9f25da561d281bf8a0c22646f2e7324d96a040d2bd0ba7c8794a2",
         "gates": [
           "targeted_test_required",
           "gac_approval_required",
@@ -1872,7 +1872,7 @@
     ],
     "map": {
       "id": "original-hermes-runtime-map",
-      "generatedAt": "2026-04-25T00:18:16.319Z",
+      "generatedAt": "2026-04-25T02:54:31.564Z",
       "nodes": [
         {
           "id": "original_hermes_upstream",
@@ -1894,35 +1894,35 @@
           "kind": "surface",
           "label": "transport",
           "status": "ready_blocked",
-          "digest": "4b2f797d2cb2f7c16a403aca10ff8737de819b7557589c9f248cd9b8a92da58a"
+          "digest": "3c0f1f8eeab5a1b20fbd82658756dec25ebfa1f58b20f94aa2a7024b84bfc7c3"
         },
         {
           "id": "learningLoop",
           "kind": "surface",
           "label": "learningLoop",
           "status": "ready_blocked",
-          "digest": "04c8b25d29d6296575401d61a3203afa262a817931da9d420e7059813ce17245"
+          "digest": "d61ff7d69a3575eb4454f7be06bbb9aef4f78f622e6561d35ad17d8d05e0e903"
         },
         {
           "id": "walState",
           "kind": "surface",
           "label": "walState",
           "status": "ready_blocked",
-          "digest": "79f6d216ad92fb9615c1c3268aaba0f605e157dd79590dc08aeffa5c2e4e9dd1"
+          "digest": "f388b57b838bfb217f6a58cb163cd3bac43194f510c3f14e930010f9b09dd647"
         },
         {
           "id": "pluginHookGate",
           "kind": "surface",
           "label": "pluginHookGate",
           "status": "ready_blocked",
-          "digest": "20cab582581e6c8ef54e6a56e4bd360308e980f3a96c5d0591502600ee083eab"
+          "digest": "a25ea1e1b7eed228ab6130308857bf0f0b7402807df771356d2a31b86cfe1b53"
         },
         {
           "id": "securityBackport",
           "kind": "surface",
           "label": "securityBackport",
           "status": "ready_blocked",
-          "digest": "1e4a5877feb9b06139ce0ba049b8dc45e607ed361496b565020940ef6097660e"
+          "digest": "24e5356b6ee9f25da561d281bf8a0c22646f2e7324d96a040d2bd0ba7c8794a2"
         }
       ],
       "edges": [
@@ -1966,7 +1966,7 @@
         "nodes": 8,
         "edges": 7
       },
-      "digest": "cf9a3352d7dd28b0fd37e8515b6bf64a8a2af51e531587b7c41d71f4234dc3d3"
+      "digest": "1e1e5553b5b383a53f5ed463cc5d96629393a585f1e8b25e0e6fc4b5a1070d36"
     },
     "summary": {
       "surfaceCount": 5,
@@ -2003,9 +2003,9 @@
       "ok": true,
       "errors": [],
       "warnings": [],
-      "digest": "cacfd917b4790202af8c1131526dfe0024373e7630aa6bc5e3edb97f13698234"
+      "digest": "42f3ea85d73da224dcfe880f3a1008650f78d31290f7763785629fdc50e94fc6"
     },
-    "digest": "76b59170b0e33dca731a7ef8c39180d228f779cc3da49029adc8bc5e2d5d54d6"
+    "digest": "81c38bc69c4d1f549881cb28189a4a4ba833e1cc8479904f32f1d26bfd926f0d"
   },
   "manifest": {
     "id": "original-hermes-agent-runtime-index.v1",

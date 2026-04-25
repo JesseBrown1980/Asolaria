@@ -1,9 +1,9 @@
 # Original Hermes Route Server Smoke
 
-Generated: 2026-04-25T01:10:18.227Z
+Generated: 2026-04-25T02:54:37.515Z
 Status: ORIGINAL_HERMES_ROUTE_SERVER_SMOKE_PASS
 Pass: true
-Digest: d5826338c91ecedd46575654f3a4da3a069bdd3562bd2084955ce84c4af59ef2
+Digest: 8d7a49ea594f9f75a00efd738279124d8d065c7d8284a2688df6392ed8cc911c
 
 ## Logical Coverage
 
@@ -13,11 +13,11 @@ Digest: d5826338c91ecedd46575654f3a4da3a069bdd3562bd2084955ce84c4af59ef2
 
 ## Route Checks
 
-- GET /api/worker-router/original-hermes-transport-contract: status=200 ok=true elapsedMs=7614
-- GET /api/worker-router/original-hermes-learning-loop?limit=8: status=200 ok=true elapsedMs=380
-- GET /api/worker-router/original-hermes-wal-state-contract: status=200 ok=true elapsedMs=14
-- GET /api/worker-router/original-hermes-security-backport: status=200 ok=true elapsedMs=7
-- GET /api/worker-router/original-hermes-runtime-index?learningLimit=8: status=200 ok=true elapsedMs=3711
+- GET /api/worker-router/original-hermes-transport-contract: status=200 ok=true elapsedMs=6931
+- GET /api/worker-router/original-hermes-learning-loop?limit=8: status=200 ok=true elapsedMs=348
+- GET /api/worker-router/original-hermes-wal-state-contract: status=200 ok=true elapsedMs=11
+- GET /api/worker-router/original-hermes-security-backport: status=200 ok=true elapsedMs=6
+- GET /api/worker-router/original-hermes-runtime-index?learningLimit=8: status=200 ok=true elapsedMs=3478
 
 ## Hook Guard Checks
 

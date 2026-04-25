@@ -1,25 +1,25 @@
 {
-  "id": "original-hermes-agent-upstream-20b-absorption",
-  "generatedAt": "2026-04-24T23:40:59.070Z",
-  "startedAt": "2026-04-24T23:40:59.070Z",
-  "finishedAt": "2026-04-24T23:41:08.664Z",
-  "status": "ORIGINAL_HERMES_AGENT_20B_ABSORBED_RUNTIME_BLOCKED",
-  "logicalAgents": "20000000000",
-  "logicalGulps": 10000000,
-  "compactMode": "20b_compact_ranges_real_gulp_proof_upstream_clone_absorption",
-  "elapsedMs": 9594,
+  "id": "original-hermes-agent-upstream-compact-absorption",
+  "generatedAt": "2026-04-25T02:53:10.203Z",
+  "startedAt": "2026-04-25T02:53:10.203Z",
+  "finishedAt": "2026-04-25T02:53:19.893Z",
+  "status": "ORIGINAL_HERMES_AGENT_COMPACT_ABSORBED_RUNTIME_BLOCKED",
+  "logicalAgents": "10000000000",
+  "logicalGulps": 5000000,
+  "compactMode": "10b_compact_ranges_real_gulp_proof_upstream_clone_absorption",
+  "elapsedMs": 9690,
   "manifest": {
     "id": "original-hermes-agent-source-manifest",
-    "generatedAt": "2026-04-24T23:40:59.070Z",
+    "generatedAt": "2026-04-25T02:53:10.203Z",
     "upstreamUrl": "https://github.com/NousResearch/hermes-agent.git",
-    "localClone": ".external/hermes-agent-upstream",
+    "localClone": "D:/Asolaria-External/hermes-agent-upstream",
     "requestedDStage": {
-      "path": "D:\\Original-Hermes-Agent",
-      "status": "NOT_WRITTEN_SANDBOX_WRITABLE_ROOTS_C_ONLY",
-      "replacement": ".external/hermes-agent-upstream shallow filtered clone on C for inspection"
+      "path": "D:\\Asolaria-External\\hermes-agent-upstream",
+      "status": "D_STAGE_READY",
+      "replacement": "D:\\Asolaria-External\\hermes-agent-upstream shallow filtered clone for inspection"
     },
     "branch": "main",
-    "head": "d58b305adfdb5697c0ff268696040b0505d40892",
+    "head": "2182de55bb7734b804abd3403570ec45428feece",
     "latestTag": "v2026.4.23",
     "version": "0.11.0",
     "release": {
@@ -56,16 +56,16 @@
       {
         "path": "pyproject.toml",
         "exists": true,
-        "bytes": 5765,
-        "sha256": "d1a17bed0f21a7ebf33238d6b8da8652b73a26ab33f9f29efd4c28857f1274c7",
-        "sensitiveSurface": false,
+        "bytes": 6215,
+        "sha256": "e8ff1f1c04f626131520349e84596d653d31e1ca61bde0de3fd5b04abe108be8",
+        "sensitiveSurface": true,
         "persistedContent": "digest_and_capsule_summary_only"
       },
       {
         "path": "cli.py",
         "exists": true,
-        "bytes": 511238,
-        "sha256": "f2206781c8bdd078338d6f2b1480e6391ba06d2404eeff428473ca14d34c1553",
+        "bytes": 511182,
+        "sha256": "65cff960590d06a03cc68b12238a97306fb80b58750dbfcf3628b555db0c8561",
         "sensitiveSurface": true,
         "persistedContent": "digest_and_capsule_summary_only"
       },
@@ -168,8 +168,8 @@
       {
         "path": "gateway/run.py",
         "exists": true,
-        "bytes": 535750,
-        "sha256": "42fe1832597af2bf3f01b463a880073369388d78ce1cf51414900aae4024f2bc",
+        "bytes": 536505,
+        "sha256": "4072e4081869f2c8ebe96892a093fe2b8174baf870c48ca9a1164e45dd46370c",
         "sensitiveSurface": true,
         "persistedContent": "digest_and_capsule_summary_only"
       },
@@ -241,14 +241,14 @@
     "counts": {
       "sourceEntries": 26,
       "present": 25,
-      "sensitiveSurfaces": 22
+      "sensitiveSurfaces": 23
     },
-    "digest": "b8ca6d2db5cc7b689189feadfb6a7a7b8a4d73dcf7c95eb15772ca37648b4e8c"
+    "digest": "9277ba7a493010f3242199ddd3012afafca2ce8fecdb6f925333fefbbd77eb6b"
   },
   "architecture": {
     "id": "original-hermes-agent-architecture-capsules",
-    "generatedAt": "2026-04-24T23:40:59.070Z",
-    "upstreamHead": "d58b305adfdb5697c0ff268696040b0505d40892",
+    "generatedAt": "2026-04-25T02:53:10.203Z",
+    "upstreamHead": "2182de55bb7734b804abd3403570ec45428feece",
     "capsules": [
       {
         "id": "self_improving_learning_loop",
@@ -256,7 +256,7 @@
         "source": "README.md",
         "essence": "Creates skills from experience, improves skills during use, nudges memory persistence, searches prior sessions, and builds long-lived user context.",
         "asolariaFit": "Map to BEHCS mistake-ledger, reverse-gain promotion, Atlas Store, and supervisor-created skill contracts.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
         "sourceSha256": "700e2392191eefa61dd36e2e6d90f61c8c1864115893a10abaa82acc1856cd5b",
         "cubeCoordinates": [
           "original_hermes_agent",
@@ -270,7 +270,7 @@
         "source": "hermes_state.py",
         "essence": "Thread-safe SQLite state with WAL, checkpoints, session lineage, child sessions, usage, memories, and startup VACUUM/prune.",
         "asolariaFit": "Use as design input for Asolaria memoryStore/taskLedgerStore/mistakeLedgerStore WAL-backed evolution.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
         "sourceSha256": "17653bb5754d62bfa0348d53feccd715aff43f66e1b3dd65035ffbd22f351d52",
         "cubeCoordinates": [
           "original_hermes_agent",
@@ -284,7 +284,7 @@
         "source": "agent/transports/",
         "essence": "Provider-specific HTTP/API conversion moved behind transport classes: Anthropic, chat completions, Responses/Codex, Bedrock.",
         "asolariaFit": "Map into brainPolicy/workerRouter as pluggable cognitive-engine transport contracts.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
         "sourceSha256": "f7f7a819569d4bbaac4a47b8bb970eb175559b1c8a7a035b9414e549fa0d1bee",
         "cubeCoordinates": [
           "original_hermes_agent",
@@ -298,7 +298,7 @@
         "source": "hermes_cli/plugins.py + agent/shell_hooks.py",
         "essence": "Plugins and shell hooks can register commands, dispatch tools, block tool calls, transform tool results, and alter terminal output.",
         "asolariaFit": "Map to GAC-governed connector hooks with fail-closed pre-tool policy and audit logging.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
         "sourceSha256": "95a72f0ae96e365ec9f4ea194b54f1d80697d298adad69a8f7efc1c86d92f593",
         "cubeCoordinates": [
           "original_hermes_agent",
@@ -312,8 +312,8 @@
         "source": "gateway/",
         "essence": "Unified gateway for Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Email, SMS, Feishu, WeCom, QQBot, webhooks, and more.",
         "asolariaFit": "Crosswalk to Asolaria connectors and mobile/guardian surfaces with platform-specific session keys.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
-        "sourceSha256": "42fe1832597af2bf3f01b463a880073369388d78ce1cf51414900aae4024f2bc",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": "4072e4081869f2c8ebe96892a093fe2b8174baf870c48ca9a1164e45dd46370c",
         "cubeCoordinates": [
           "original_hermes_agent",
           "gateway",
@@ -326,7 +326,7 @@
         "source": "cron/",
         "essence": "Natural-language scheduled jobs with platform delivery, skills, pause/resume/run/remove flows.",
         "asolariaFit": "Map to OmniScheduler and taskLedgerStore, gated by Law001 and resource-budget guard.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
         "sourceSha256": "1e7e8e27de0dd042dc626b9a91a1b067ac1ad287216b6cb4705db548565c822f",
         "cubeCoordinates": [
           "original_hermes_agent",
@@ -340,7 +340,7 @@
         "source": "tools/checkpoint_manager.py + cli.py",
         "essence": "Filesystem checkpoints and rollback surfaces before destructive operations.",
         "asolariaFit": "Bind to C-drive pressure guard, Brown-Hilbert file identity, and pre-mutation approval snapshots.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
         "sourceSha256": "2f2aed54be3bcb5c47120bc307399a8e7f7f218912b0e106fcad916121cb558d",
         "cubeCoordinates": [
           "original_hermes_agent",
@@ -354,7 +354,7 @@
         "source": "tools/delegate_task.py + RELEASE_v0.11.0.md",
         "essence": "Subagents can run as orchestrators with configurable spawn depth and file coordination.",
         "asolariaFit": "Map to Omnispindle/Omniflywheel coupled workers with supervisor fanout limits.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
         "sourceSha256": null,
         "cubeCoordinates": [
           "original_hermes_agent",
@@ -368,7 +368,7 @@
         "source": "ui-tui/ + tui_gateway/",
         "essence": "React/Ink TUI backed by Python JSON-RPC, streaming status, slash completion, picker, and subagent observability.",
         "asolariaFit": "Design input for Asolaria worker-runtime/graph-runtime frontends and terminal dashboards.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
         "sourceSha256": null,
         "cubeCoordinates": [
           "original_hermes_agent",
@@ -382,7 +382,7 @@
         "source": "RELEASE_v0.11.0.md + SECURITY.md",
         "essence": "Security hardening spans API auth, path traversal, sandbox writes, SSRF, webhook signature validation, OAuth lifecycle, and interrupt scoping.",
         "asolariaFit": "Map directly to GAC, riskEngine, gateway/toolAuthority, and hookwall hardening lanes.",
-        "generatedAt": "2026-04-24T23:40:59.070Z",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
         "sourceSha256": "d16b682b558cadeba8134009161b5a27e854dc359e1ac6468d0c7ffe8304d980",
         "cubeCoordinates": [
           "original_hermes_agent",
@@ -391,12 +391,12 @@
         ]
       }
     ],
-    "digest": "de199b9ce8d2757e527e12c7ddcdd09394736020e6f02ec60fdbaa746231f635"
+    "digest": "19ef8c7462f1bff42b1f9178db1bba24d16afbfae0d049bc3ca6ea9e856c594b"
   },
   "risks": [
     {
       "id": "native_windows_not_supported",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "severity": "HARD",
       "lane": "runtime",
       "evidence": "README states Windows native is not supported and recommends WSL2.",
@@ -404,15 +404,15 @@
     },
     {
       "id": "provider_secret_surface",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "severity": "CRITICAL",
       "lane": "secrets",
-      "evidence": "22 inspected source files mention credential/token/OAuth surfaces.",
+      "evidence": "23 inspected source files mention credential/token/OAuth surfaces.",
       "action": "NO_SECRET_IMPORT; MAP_CONFIG_CONTRACTS_ONLY"
     },
     {
       "id": "shell_hooks_can_execute_code",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "severity": "CRITICAL",
       "lane": "plugins_hooks",
       "evidence": "Hermes plugin/shell hook surface can block, dispatch, transform, and execute lifecycle hooks.",
@@ -420,7 +420,7 @@
     },
     {
       "id": "gateway_platform_sprawl",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "severity": "HIGH",
       "lane": "gateway",
       "evidence": "17 messaging platforms plus webhooks and API server imply broad credential and inbound-event surface.",
@@ -428,7 +428,7 @@
     },
     {
       "id": "optional_dependency_explosion",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "severity": "HIGH",
       "lane": "dependency",
       "evidence": "pyproject includes large optional extras: all, messaging, voice, web, rl, matrix, bedrock, termux.",
@@ -436,7 +436,7 @@
     },
     {
       "id": "remote_memory_provider_exfiltration",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "severity": "HIGH",
       "lane": "memory",
       "evidence": "Honcho and provider/router surfaces can transmit conversation or memory data when configured.",
@@ -444,7 +444,7 @@
     },
     {
       "id": "subagent_file_coordination_conflict",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "severity": "MEDIUM",
       "lane": "omnispindle",
       "evidence": "v0.11 adds orchestrator subagents and concurrent filesystem coordination.",
@@ -454,7 +454,7 @@
   "queue": [
     {
       "id": "hermes_learning_loop_to_reverse_gain",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P0",
       "lane": "memory_skills",
       "action": "Map Hermes self-improving skill loop into BEHCS mistake ledger, reverse-gain sieve, and Atlas Store.",
@@ -481,7 +481,7 @@
     },
     {
       "id": "hermes_wal_state_contract",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P0",
       "lane": "memory_ledger",
       "action": "Extract SQLite WAL/session lineage ideas into Asolaria memory/task/mistake store migration contract.",
@@ -508,7 +508,7 @@
     },
     {
       "id": "hermes_transport_router_adapter",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P0",
       "lane": "model_routing",
       "action": "Bind transport ABC patterns into brainPolicy/workerRouter/cognitive engine backend registry.",
@@ -535,7 +535,7 @@
     },
     {
       "id": "hermes_plugin_hook_gac_gate",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P0",
       "lane": "plugins_hooks",
       "action": "Create a GAC pre-tool/post-tool hook contract before any Hermes plugin or shell hook bridge.",
@@ -562,7 +562,7 @@
     },
     {
       "id": "hermes_gateway_connector_crosswalk",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P1",
       "lane": "gateway",
       "action": "Crosswalk 17 Hermes gateway platforms to Asolaria connector inventory one by one.",
@@ -583,7 +583,7 @@
     },
     {
       "id": "hermes_cron_to_omnischeduler",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P1",
       "lane": "scheduler",
       "action": "Map Hermes cron scheduler to OmniScheduler with pause/resume/run/remove and skills support.",
@@ -602,7 +602,7 @@
     },
     {
       "id": "hermes_checkpoint_to_brown_hilbert_snapshots",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P1",
       "lane": "filesystem_safety",
       "action": "Map checkpoint/rollback behavior to Brown-Hilbert file identity and C-drive pressure guard.",
@@ -621,7 +621,7 @@
     },
     {
       "id": "hermes_delegate_to_omnispindle_supervisors",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P1",
       "lane": "omnispindle",
       "action": "Map orchestrator subagents and spawn depth to Omnispindle supervisors and coupling gates.",
@@ -642,7 +642,7 @@
     },
     {
       "id": "hermes_tui_dashboard_operator_surface",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P2",
       "lane": "operator_interface",
       "action": "Use Ink TUI/dashboard concepts for Asolaria graph runtime and worker runtime panels.",
@@ -661,7 +661,7 @@
     },
     {
       "id": "hermes_security_hardening_backport",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "priority": "P0",
       "lane": "security",
       "action": "Backport security hardening ideas into GAC, riskEngine, gateway authority, hookwall, and audit logs.",
@@ -690,7 +690,7 @@
   "supervisors": [
     {
       "id": "original_hermes_agent_supervisor_of_supervisors",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "upstream_absorption_root",
       "scope": "Original NousResearch Hermes Agent v0.11.0 architecture absorption into BEHCS-256.",
       "gates": [
@@ -706,7 +706,7 @@
     },
     {
       "id": "original_hermes_memory_skills_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "memory_skills",
       "ordinal": 1,
@@ -722,7 +722,7 @@
     },
     {
       "id": "original_hermes_memory_ledger_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "memory_ledger",
       "ordinal": 2,
@@ -738,7 +738,7 @@
     },
     {
       "id": "original_hermes_model_routing_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "model_routing",
       "ordinal": 3,
@@ -754,7 +754,7 @@
     },
     {
       "id": "original_hermes_plugins_hooks_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "plugins_hooks",
       "ordinal": 4,
@@ -770,7 +770,7 @@
     },
     {
       "id": "original_hermes_gateway_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "gateway",
       "ordinal": 5,
@@ -786,7 +786,7 @@
     },
     {
       "id": "original_hermes_scheduler_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "scheduler",
       "ordinal": 6,
@@ -802,7 +802,7 @@
     },
     {
       "id": "original_hermes_filesystem_safety_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "filesystem_safety",
       "ordinal": 7,
@@ -818,7 +818,7 @@
     },
     {
       "id": "original_hermes_omnispindle_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "omnispindle",
       "ordinal": 8,
@@ -834,7 +834,7 @@
     },
     {
       "id": "original_hermes_operator_interface_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "operator_interface",
       "ordinal": 9,
@@ -850,7 +850,7 @@
     },
     {
       "id": "original_hermes_security_supervisor",
-      "generatedAt": "2026-04-24T23:40:59.070Z",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
       "role": "lane_supervisor",
       "lane": "security",
       "ordinal": 10,
@@ -867,13 +867,13 @@
   ],
   "map": {
     "id": "original-hermes-agent-map",
-    "generatedAt": "2026-04-24T23:40:59.070Z",
+    "generatedAt": "2026-04-25T02:53:10.203Z",
     "nodes": [
       {
         "id": "upstream_repo",
         "type": "source",
         "label": "https://github.com/NousResearch/hermes-agent.git",
-        "digest": "d58b305adfdb5697c0ff268696040b0505d40892"
+        "digest": "2182de55bb7734b804abd3403570ec45428feece"
       },
       {
         "id": "release_v011",
@@ -1047,98 +1047,98 @@
       "nodes": 17,
       "edges": 16
     },
-    "digest": "2fb7bbbe51c6ed96a76cc6d5195892ed8604dd62312ad99c36ac3fa1ef770c91"
+    "digest": "b96652b8cf0d466752d9b5b6a1cda192721d0c253e64bab98ffed0569e4e7b6a"
   },
   "shards": [
     {
       "shard": 0,
       "queueItem": "hermes_learning_loop_to_reverse_gain",
       "lane": "memory_skills",
-      "logicalRange": "1..2000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "9e58d6b545430c8687496cfc375ad3bf63efa94daccc43ccbfe4e536afebb514"
+      "logicalRange": "1..1000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "a7cde3a261d0b6a53f441ec277568fc481081432e22bee05038ca1138aaa3869"
     },
     {
       "shard": 1,
       "queueItem": "hermes_wal_state_contract",
       "lane": "memory_ledger",
-      "logicalRange": "2000000001..4000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "3c8863f6bb384baaf87507f156f2c72aa0ecf8e7f8f452d5c36737fce4d12cb0"
+      "logicalRange": "1000000001..2000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "1a162187a202bfb349cd9fb367c7f9d1fdf0ff651e853565b3a1fa7d8ed832bf"
     },
     {
       "shard": 2,
       "queueItem": "hermes_transport_router_adapter",
       "lane": "model_routing",
-      "logicalRange": "4000000001..6000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "f6c8d4f26cc9766ecc86c9fe47452a57dadffbd4d74cffde0386d9fd0b79337e"
+      "logicalRange": "2000000001..3000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "b7eb785dccceda734ed92ac561be3db1f933d908e7e32a672673afccf2daaaa4"
     },
     {
       "shard": 3,
       "queueItem": "hermes_plugin_hook_gac_gate",
       "lane": "plugins_hooks",
-      "logicalRange": "6000000001..8000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "8b6b36cb0c0932734825cc03aaf6b12f76f5942f4d34132da44d55c6bd14c74d"
+      "logicalRange": "3000000001..4000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "6d0ba2a87741efd4d3126e011f120c3e8798fd107877109f0a1248b5041bda18"
     },
     {
       "shard": 4,
       "queueItem": "hermes_gateway_connector_crosswalk",
       "lane": "gateway",
-      "logicalRange": "8000000001..10000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "e82ef4fdaf92d1a6becd45412fcf0bf2cc513bff799c96b62d47de4c957843ab"
+      "logicalRange": "4000000001..5000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "05d56ef887aa66e9af8e8b90a17a9d4ae24805b942c3482c249c7ea63a560085"
     },
     {
       "shard": 5,
       "queueItem": "hermes_cron_to_omnischeduler",
       "lane": "scheduler",
-      "logicalRange": "10000000001..12000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "c6afc7577fb6c88ac3a859351f35ee441b72f8fb19329f2b576258327a6ea889"
+      "logicalRange": "5000000001..6000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "0c7c629382b2e88f1f29440fdb1c6c313b7a77e9cbf4d8b4e6396912674afda8"
     },
     {
       "shard": 6,
       "queueItem": "hermes_checkpoint_to_brown_hilbert_snapshots",
       "lane": "filesystem_safety",
-      "logicalRange": "12000000001..14000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "b373d6ca2fe886b3858d60086dd4947bc4c228403bd818f4a8a6d1395208aa1d"
+      "logicalRange": "6000000001..7000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "6901fe061b2fabddf609995160000f6929c7d1873316ef5f84e2661587538347"
     },
     {
       "shard": 7,
       "queueItem": "hermes_delegate_to_omnispindle_supervisors",
       "lane": "omnispindle",
-      "logicalRange": "14000000001..16000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "60d80b0bce4383d765a13c968f4126804d785713e638bfa38365f62764c2bb9f"
+      "logicalRange": "7000000001..8000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "69cb9588211290c36d7c51f036a327b31db1fbbc14cdcb89394c716b62b27697"
     },
     {
       "shard": 8,
       "queueItem": "hermes_tui_dashboard_operator_surface",
       "lane": "operator_interface",
-      "logicalRange": "16000000001..18000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "f8fa2ca620c03c1b390aeca4bcf458ccebd3752862aaca58940baf9f8974853b"
+      "logicalRange": "8000000001..9000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "0b7a2e3b67ea35f93646d98aea25d3fe6529891719c6422dd918de9b5bfd513d"
     },
     {
       "shard": 9,
       "queueItem": "hermes_security_hardening_backport",
       "lane": "security",
-      "logicalRange": "18000000001..20000000000",
-      "logicalAgents": "2000000000",
-      "logicalGulpWindows": 1000000,
-      "digest": "4e92daa1ef24cb5d8860bf384e0c4b4327906f45f2b9dd72a9ce161feacf3e40"
+      "logicalRange": "9000000001..10000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "02e99c0a25d9e268265cf0142776c3fc79d84a2a27d2295068d6664dfbae77cf"
     }
   ],
   "counts": {
@@ -1153,26 +1153,26 @@
   },
   "behcsGulp": {
     "ok": true,
-    "gulpId": "gulp-2026-04-24T234105698Z-4ef62d",
-    "reportPath": "C:\\Users\\acer\\Asolaria\\data\\behcs\\garbage-collector\\reports\\gulp-2026-04-24T234105698Z-4ef62d.json",
+    "gulpId": "gulp-2026-04-25T025316933Z-614002",
+    "reportPath": "C:\\Users\\acer\\Asolaria\\data\\behcs\\garbage-collector\\reports\\gulp-2026-04-25T025316933Z-614002.json",
     "processedMessages": 2000,
     "mistakesDetected": 0,
     "activePatterns": 8,
     "gnnEdges": 1,
-    "reason": "original_hermes_agent_upstream_20b_absorption",
+    "reason": "original_hermes_agent_upstream_compact_absorption",
     "fileCap": {
       "policyId": "behcs-file-cap.v1",
       "scope": "BEHCS important-data, codex, cube, state, and garbage-collector surfaces on C:",
       "mode": "fail_closed",
-      "reason": "original_hermes_agent_upstream_20b_absorption",
+      "reason": "original_hermes_agent_upstream_compact_absorption",
       "status": "pass",
-      "trackedFiles": 584,
-      "projectedFiles": 589,
-      "plannedCreates": 5,
+      "trackedFiles": 598,
+      "projectedFiles": 602,
+      "plannedCreates": 4,
       "maxTrackedFiles": 2000,
       "warnAt": 1800,
       "gcTriggerMessages": 2000,
-      "remaining": 1411,
+      "remaining": 1398,
       "labels": {
         "spec": "IX-700",
         "dialect": "IX",
@@ -1185,7 +1185,7 @@
         "chain": "ix-chain-fabricate",
         "skillId": "behcs_file_cap",
         "toolId": "behcs_file_cap",
-        "reason": "original_hermes_agent_upstream_20b_absorption",
+        "reason": "original_hermes_agent_upstream_compact_absorption",
         "status": "pass",
         "taskManager": "linked",
         "taskPressure": "medium",
@@ -1194,9 +1194,9 @@
         "explorationMode": "small_batches_with_checkpoints"
       },
       "language": {
-        "human": "File cap guard pass: 589/2000 tracked files after planned writes for original_hermes_agent_upstream_20b_absorption; remaining 1411.",
+        "human": "File cap guard pass: 602/2000 tracked files after planned writes for original_hermes_agent_upstream_compact_absorption; remaining 1398.",
         "agent": "(chief, guard.file_cap, omniverse.file_budget, 2, runtime, hookwall, completed, [count], cube_cube_cubed, IX, log, persistent, whiteroom, light)",
-        "device": "file_cap status=pass tracked=584 projected=589 max=2000 remaining=1411 reason=original_hermes_agent_upstream_20b_absorption",
+        "device": "file_cap status=pass tracked=598 projected=602 max=2000 remaining=1398 reason=original_hermes_agent_upstream_compact_absorption",
         "process": {
           "human": "Task Manager linked: pressure medium (54.7), busiest Memory Compression:1073.2MB, advisory cautious/small_batches_with_checkpoints.",
           "agent": "(chief, guard.process_truth, taskmanager.linked, pressure.medium, advise.cautious, gc.prepare_gc_window, glyph, cube_cube_cubed, log, persistent)",
@@ -1265,7 +1265,7 @@
           "id": "behcs_cubes",
           "label": "BEHCS Cubes",
           "relativePath": "data/behcs/cubes",
-          "fileCount": 187
+          "fileCount": 189
         },
         {
           "id": "ix_codex",
@@ -1283,7 +1283,7 @@
           "id": "behcs_state",
           "label": "BEHCS State",
           "relativePath": "data/behcs/state",
-          "fileCount": 71
+          "fileCount": 73
         },
         {
           "id": "ix_state",
@@ -1295,12 +1295,12 @@
           "id": "behcs_gc",
           "label": "BEHCS Garbage Collector",
           "relativePath": "data/behcs/garbage-collector",
-          "fileCount": 113
+          "fileCount": 123
         }
       ]
     },
     "bulkProofRetainedAfterAppend": 2500,
     "bulkProofLinesWritten": 2000
   },
-  "digest": "39c687c747b97ddc50813741c258175ef0306f0d1ac031ab6c23dc6af5b7343d"
+  "digest": "0f7aaedca2db527642fdfe6530126aa0014d5861cfb4dda6d6a93042eb451ff3"
 }
