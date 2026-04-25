@@ -7,6 +7,10 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
+    "behcs:atlas:build": "node tools/behcs/build-ix-fabric-atlas.js",
+    "behcs:atlas:review": "node tools/behcs/review-ix-fabric-atlas.js",
+    "mythos:integrate": "node tools/openmythos-behcs256-full-integration.js",
+    "gasvm:integrate": "node tools/ga-svm-behcs256-full-integration.js",
     "skills:validate": "node tools/validate-skills.js",
     "skills:codex:wrap": "node scripts/generate-codex-skill-wrappers.js",
     "skills:codex:apply-risk-map": "node scripts/apply-codex-wrapper-risk-map.js",
