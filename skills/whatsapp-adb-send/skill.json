@@ -15,6 +15,19 @@
     "liris",
     "gaia"
   ],
+  "steps": [
+    {
+      "action": "whatsapp_adb_send",
+      "note": "Send through the active WhatsApp chat via ADB after phone connection and operator approval gates pass.",
+      "payload": {
+        "transport": "adb",
+        "requiresActiveChat": true,
+        "requiresConnectedPhone": true
+      },
+      "permissions": ["phone.adb"],
+      "requiresApproval": true
+    }
+  ],
   "ixRef": "—",
   "pidRegistry": {}
 }
