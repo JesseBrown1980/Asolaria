@@ -5,7 +5,47 @@
 const express = require("express");
 const router = express.Router();
 const { asBool, asInt, respondError, inferHttpStatusForError } = require("../lib/helpers");
+const { isLoopbackRequest } = require("../lib/network");
 const { appendGraphEvent } = require("../src/graphRuntimeStore");
+const cognitiveRuntime = require("../src/cognitiveEngines/runtimeBridge");
+
+function envFlag(name) {
+  return String(process.env[name] || "").trim() === "1";
+}
+
+function requireCognitiveEngineProbeEnabled(req, res, next) {
+  if (!isLoopbackRequest(req)) {
+    return res.status(403).json({
+      ok: false,
+      error: "cognitive_engine_probe_loopback_required"
+    });
+  }
+  if (!envFlag("ASOLARIA_COGNITIVE_ENGINE_PROBE_ENABLED")) {
+    return res.status(409).json({
+      ok: false,
+      error: "cognitive_engine_probe_disabled",
+      enableWith: "ASOLARIA_COGNITIVE_ENGINE_PROBE_ENABLED=1"
+    });
+  }
+  return next();
+}
+
+function requireCognitiveEngineExecutionEnabled(req, res, next) {
+  if (!isLoopbackRequest(req)) {
+    return res.status(403).json({
+      ok: false,
+      error: "cognitive_engine_execution_loopback_required"
+    });
+  }
+  if (!envFlag("ASOLARIA_COGNITIVE_ENGINE_EXECUTION_ENABLED")) {
+    return res.status(409).json({
+      ok: false,
+      error: "cognitive_engine_execution_disabled",
+      enableWith: "ASOLARIA_COGNITIVE_ENGINE_EXECUTION_ENABLED=1"
+    });
+  }
+  return next();
+}
 
 function createWorkerRuntimeRouter(ctx) {
   const {
@@ -92,6 +132,90 @@ function createWorkerRuntimeRouter(ctx) {
   router.get("/status", async (_req, res) => {
     try { return res.json(await getCachedWorkerRuntimePayload()); }
     catch (error) { return respondError(res, error, inferHttpStatusForError(error, 500)); }
+  });
+
+  router.get("/cognitive-engines/manifest", async (_req, res) => {
+    try {
+      return res.json({
+        ok: true,
+        generatedAt: new Date().toISOString(),
+        manifest: cognitiveRuntime.buildCognitiveEngineRoute({}).manifest
+      });
+    } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 500)); }
+  });
+
+  router.get("/cognitive-engines/openmythos/probe", requireCognitiveEngineProbeEnabled, async (_req, res) => {
+    try {
+      return res.json({
+        ok: true,
+        generatedAt: new Date().toISOString(),
+        probe: await cognitiveRuntime.probeOpenMythosImport()
+      });
+    } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 500)); }
+  });
+
+  router.post("/cognitive-engines/route", async (req, res) => {
+    try {
+      const payload = cognitiveRuntime.buildCognitiveEngineRoute(req.body || {});
+      appendGraphEvent({
+        component: "worker_runtime",
+        category: "cognitive_engine",
+        action: "route_selected",
+        actor: { type: "runtime", id: "asolaria-core", label: "Asolaria Core", domain: "local", criticality: "medium" },
+        target: { type: "cognitive_engine", id: payload.selectedEngine, label: payload.selectedEngine, domain: "local" },
+        context: { status: payload.engineTask?.status || "", lawCount: Array.isArray(payload.lawResults) ? payload.lawResults.length : 0 },
+        policy: { approvalState: "not_required", mode: "loopback_runtime", autonomous: false },
+        status: "completed"
+      });
+      return res.json(payload);
+    } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 400)); }
+  });
+
+  router.post("/cognitive-engines/openmythos/execute", requireCognitiveEngineExecutionEnabled, async (req, res) => {
+    try {
+      const payload = await cognitiveRuntime.executeOpenMythos(req.body || {});
+      appendGraphEvent({
+        component: "worker_runtime",
+        category: "cognitive_engine",
+        action: "openmythos_execute",
+        actor: { type: "runtime", id: "asolaria-core", label: "Asolaria Core", domain: "local", criticality: "high" },
+        target: { type: "cognitive_engine", id: payload.pid || "openmythos", label: "OpenMythos", domain: "local" },
+        context: {
+          selectedEngine: payload.selectedEngine,
+          executed: Boolean(payload.executed),
+          packageProbeOk: Boolean(payload.packageProbe?.ok),
+          runStatus: payload.runResult?.status || "",
+          loadStatus: payload.loadResult?.status || ""
+        },
+        policy: { approvalState: "operator_gated", mode: "loopback_runtime", autonomous: false },
+        status: payload.runResult?.status === "error" ? "failed" : "completed"
+      });
+      return res.json(payload);
+    } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 400)); }
+  });
+
+  router.post("/cognitive-engines/ga-svm/execute", requireCognitiveEngineExecutionEnabled, async (req, res) => {
+    try {
+      const payload = await cognitiveRuntime.executeGaSvm(req.body || {});
+      appendGraphEvent({
+        component: "worker_runtime",
+        category: "cognitive_engine",
+        action: "ga_svm_execute",
+        actor: { type: "runtime", id: "asolaria-core", label: "Asolaria Core", domain: "local", criticality: "high" },
+        target: { type: "cognitive_engine", id: payload.engineStatus?.pid || "ga_svm", label: "GA-SVM", domain: "local" },
+        context: {
+          selectedEngine: payload.selectedEngine,
+          executed: Boolean(payload.executed),
+          trainStatus: payload.trainResult?.status || "",
+          predictedClass: payload.prediction?.class || "",
+          confidence: payload.prediction?.confidence || null,
+          lawPassed: payload.postLaw?.passed ?? null
+        },
+        policy: { approvalState: "operator_gated", mode: "loopback_runtime", autonomous: false },
+        status: payload.postLaw && payload.postLaw.passed === false ? "failed" : "completed"
+      });
+      return res.json(payload);
+    } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 400)); }
   });
 
   router.get("/trusted-entities", async (_req, res) => {
