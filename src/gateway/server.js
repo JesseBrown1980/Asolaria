@@ -12,6 +12,20 @@ const repoRoot = path.resolve(__dirname, "..", "..");
 const defaultConfigPath = path.join(repoRoot, "config", "asolaria.gateway.json");
 const configPath = path.resolve(process.env.ASOLARIA_GATEWAY_CONFIG || defaultConfigPath);
 
+function manualGatewayCronEnabled() {
+  return String(process.env.ASOLARIA_GATEWAY_MANUAL_CRON_ENABLED || "").trim() === "1";
+}
+
+function buildManualGatewayCronHold() {
+  return {
+    ok: false,
+    held: true,
+    preview: true,
+    reason: "gateway_manual_cron_disabled",
+    enableWith: "ASOLARIA_GATEWAY_MANUAL_CRON_ENABLED=1"
+  };
+}
+
 function readJsonFile(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
@@ -1195,6 +1209,24 @@ function createServer() {
       return;
     }
     if (type === "cron.run") {
+      try {
+        assertAuditGate("ws:cron.run");
+      } catch (error) {
+        ws.send(JSON.stringify({
+          type: "error",
+          id: msg.id || "",
+          error: error.message || String(error)
+        }));
+        return;
+      }
+      if (!manualGatewayCronEnabled()) {
+        ws.send(JSON.stringify({
+          type: "cron.run.result",
+          id: msg.id || "",
+          payload: buildManualGatewayCronHold()
+        }));
+        return;
+      }
       const jobName = String(msg?.payload?.name || "").trim();
       if (!jobName || !Object.prototype.hasOwnProperty.call(config?.scheduler?.jobs || {}, jobName)) {
         ws.send(JSON.stringify({
