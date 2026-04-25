@@ -4,7 +4,27 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const behcsGulp = require("./behcs/behcs-gulp-runtime");
+
+let behcsGulp;
+let behcsGulpAvailable = true;
+let behcsGulpLoadError = "";
+try {
+  behcsGulp = require("./behcs/behcs-gulp-runtime");
+} catch (error) {
+  behcsGulpAvailable = false;
+  behcsGulpLoadError = String(error?.message || error || "behcs_gulp_runtime_unavailable");
+  behcsGulp = {
+    collectorStatus() {
+      return {
+        ok: false,
+        available: false,
+        reason: "behcs_gulp_runtime_unavailable",
+        error: behcsGulpLoadError,
+        state: {}
+      };
+    }
+  };
+}
 
 const repoRoot = path.resolve(__dirname, "..");
 const TOTAL_AGENTS = 10_000_000_000;
@@ -486,6 +506,17 @@ function updateCollectorStatePatch(patch) {
 
 async function runBehcsProof(generatedAt, proofCount, findings, actions) {
   const proofRows = [];
+  if (!behcsGulpAvailable) {
+    return {
+      proofRows,
+      gulp: {
+        ok: false,
+        skipped: true,
+        reason: "behcs_gulp_runtime_unavailable",
+        error: behcsGulpLoadError
+      }
+    };
+  }
   const beforeStatus = behcsGulp.collectorStatus();
   const beforeState = beforeStatus.state || {};
   const startSequence = safeInt(beforeState.totalReceived, 0, 0, Number.MAX_SAFE_INTEGER);
@@ -863,6 +894,10 @@ function status() {
     status: "READY",
     logicalAgents: String(TOTAL_AGENTS),
     logicalGulps: LOGICAL_GULPS,
+    behcsGulpRuntime: {
+      available: behcsGulpAvailable,
+      error: behcsGulpLoadError
+    },
     lanes: LANES.map((lane) => ({
       id: lane.id,
       title: lane.title,
