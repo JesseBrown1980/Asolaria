@@ -37,12 +37,26 @@ const {
   getMistakePatternSummary,
   pruneObsoleteMistakePatterns,
 } = require('../../src/mistakePatternStore');
-const mistakeLearn = require('../../data/behcs/sovereignty/ix/chains/mistake-learn');
 const {
   loadFileCapPolicy,
   evaluateFileCap,
   summarizeFileCapStatus,
 } = require('./behcs-file-cap');
+
+let mistakeLearn = async () => ({
+  ok: true,
+  chain: 'mistake-learn',
+  unavailable: true,
+  ledger: { total: 0, patterns: 0, recurring: 0 },
+  gaps: [],
+  covered: [],
+  gnnEdges: [],
+  summary: 'mistake_learn_unavailable',
+});
+try {
+  const loadedMistakeLearn = require('../../data/behcs/sovereignty/ix/chains/mistake-learn');
+  if (typeof loadedMistakeLearn === 'function') mistakeLearn = loadedMistakeLearn;
+} catch (_) {}
 
 const FILE_CAP_POLICY = loadFileCapPolicy(ROOT);
 
@@ -924,59 +938,14 @@ async function runGulpRehydration(options = {}) {
 
   const gulpId = `gulp-${new Date().toISOString().replace(/[:.]/g, '')}-${crypto.randomBytes(3).toString('hex')}`;
   const generatedAt = new Date().toISOString();
-  const mistakeRows = pending.map((record) => classifyMistakeRecord(record)).filter(Boolean);
-  const ledgerResult = mistakeRows.length > 0 ? appendMistakeLedgerBatch(mistakeRows) : { ok: true, path: process.env.ASOLARIA_MISTAKE_LEDGER_PATH, count: 0 };
-
-  let learnResult = {
-    ok: true,
-    chain: 'mistake-learn',
-    ledger: { total: 0, patterns: 0, recurring: 0 },
-    gaps: [],
-    covered: [],
-    gnnEdges: [],
-    summary: 'no_mistakes_detected',
-  };
-  try {
-    learnResult = await mistakeLearn();
-  } catch (error) {
-    learnResult = {
-      ok: false,
-      chain: 'mistake-learn',
-      error: clipText(error.message, 200),
-      ledger: { total: 0, patterns: 0, recurring: 0 },
-      gaps: [],
-      covered: [],
-      gnnEdges: [],
-      summary: 'mistake_learn_failed',
-    };
-  }
-
-  const patternSummaryBeforePrune = getMistakePatternSummary();
-  const prunePatternResult = pruneObsoleteMistakePatterns({ maxIdleDays: 90 });
-  const patternSummary = getMistakePatternSummary();
-  const activePatterns = listMistakePatterns({ status: 'active', limit: GC_PATTERN_LIMIT });
-  const gnnEdges = Array.isArray(learnResult.gnnEdges) ? learnResult.gnnEdges.map((entry, index) => buildGnnEdge(entry, index, gulpId)) : [];
-  for (const edge of gnnEdges) appendNdjson(GNN_EDGES, edge);
-
-  const fresh = loadState();
-  const lastSequence = safeInt(pending[pending.length - 1]?.sequence, safeInt(fresh.lastGulpSequence, 0));
-  const after = saveState({
-    ...fresh,
-    sinceLastGulp: Math.max(0, safeInt(fresh.totalReceived, 0) - lastSequence),
-    lastGulpAt: generatedAt,
-    lastGulpReason: reason,
-    lastGulpId: gulpId,
-    lastGulpSequence: lastSequence,
-    runs: safeInt(fresh.runs, 0) + 1,
-    lastError: '',
-  });
-
-  const retainBuffer = Math.max(500, safeInt(after.sinceLastGulp, 0) + 64);
+  const lastSequence = safeInt(pending[pending.length - 1]?.sequence, safeInt(before.lastGulpSequence, 0));
+  const projectedSinceLastGulp = Math.max(0, safeInt(before.totalReceived, 0) - lastSequence);
+  const retainBuffer = Math.max(500, projectedSinceLastGulp + 64);
   const gulpFilePlan = planGulpFileCreates(gulpId, retainBuffer);
   const fileCap = collectFileCap(reason, gulpFilePlan.plannedCreates);
   if (fileCap.status === 'deny') {
     const deniedState = saveState({
-      ...after,
+      ...before,
       ...fileCapStatePatch(fileCap),
       lastError: clipText(`file_cap_exceeded ${fileCap.projectedFiles}/${fileCap.maxTrackedFiles}`, 200),
     });
@@ -1022,6 +991,53 @@ async function runGulpRehydration(options = {}) {
       maxFiles: fileCap.maxTrackedFiles,
     });
   }
+
+  const mistakeRows = pending.map((record) => classifyMistakeRecord(record)).filter(Boolean);
+  const ledgerResult = mistakeRows.length > 0 ? appendMistakeLedgerBatch(mistakeRows) : { ok: true, path: process.env.ASOLARIA_MISTAKE_LEDGER_PATH, count: 0 };
+
+  let learnResult = {
+    ok: true,
+    chain: 'mistake-learn',
+    ledger: { total: 0, patterns: 0, recurring: 0 },
+    gaps: [],
+    covered: [],
+    gnnEdges: [],
+    summary: 'no_mistakes_detected',
+  };
+  try {
+    learnResult = await mistakeLearn();
+  } catch (error) {
+    learnResult = {
+      ok: false,
+      chain: 'mistake-learn',
+      error: clipText(error.message, 200),
+      ledger: { total: 0, patterns: 0, recurring: 0 },
+      gaps: [],
+      covered: [],
+      gnnEdges: [],
+      summary: 'mistake_learn_failed',
+    };
+  }
+
+  const patternSummaryBeforePrune = getMistakePatternSummary();
+  const prunePatternResult = pruneObsoleteMistakePatterns({ maxIdleDays: 90 });
+  const patternSummary = getMistakePatternSummary();
+  const activePatterns = listMistakePatterns({ status: 'active', limit: GC_PATTERN_LIMIT });
+  const gnnEdges = Array.isArray(learnResult.gnnEdges) ? learnResult.gnnEdges.map((entry, index) => buildGnnEdge(entry, index, gulpId)) : [];
+  for (const edge of gnnEdges) appendNdjson(GNN_EDGES, edge);
+
+  const fresh = loadState();
+  const after = saveState({
+    ...fresh,
+    sinceLastGulp: Math.max(0, safeInt(fresh.totalReceived, 0) - lastSequence),
+    lastGulpAt: generatedAt,
+    lastGulpReason: reason,
+    lastGulpId: gulpId,
+    lastGulpSequence: lastSequence,
+    runs: safeInt(fresh.runs, 0) + 1,
+    lastError: '',
+  });
+
   const afterWithFileCap = saveState({
     ...after,
     ...fileCapStatePatch(fileCap),
