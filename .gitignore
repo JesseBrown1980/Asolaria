@@ -21,6 +21,7 @@ reports/c-drive-*-latest.*
 reports/ga-svm-*-latest.*
 reports/openmythos-*-latest.*
 reports/mythos-federation-bootstrap-latest.json
+reports/system-targeted-10b-hardening-runs-latest.*
 
 # Local temp/debug artifacts
 tmp/
