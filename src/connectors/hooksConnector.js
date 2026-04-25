@@ -1,4 +1,4 @@
-const { appendHookEvent, queryHookEvents, getHookEventStats, getSessionSummary } = require("../hookEventStore");
+const { appendHookEvent, queryHookEvents, getRouteHookStats, getHookEventStats, getSessionSummary } = require("../hookEventStore");
 const { backupTranscript, listTranscriptBackups, readTranscriptBackup } = require("../transcriptBackupStore");
 const { upsertSession, getSession, listActiveSessions, addPromptToSession, incrementToolUse, endSession } = require("../agentSessionStore");
 const {
@@ -224,12 +224,14 @@ function getHookDashboard() {
   const stats = getHookEventStats();
   const sessions = listActiveSessions();
   const recentEvents = queryHookEvents({ limit: 30 });
+  const routeHooks = getRouteHookStats({ limit: 200 });
   const backups = listTranscriptBackups({ limit: 10 });
 
   return {
     stats,
     activeSessions: sessions,
     recentEvents,
+    routeHooks,
     recentBackups: backups
   };
 }
@@ -309,6 +311,7 @@ module.exports = {
   getSessionDetail,
   injectSessionContext,
   queryHookEvents,
+  getRouteHookStats,
   getHookEventStats,
   listActiveSessions,
   backupTranscript,

@@ -9,7 +9,8 @@ const TEXT_MAX = 320;
 const VALID_EVENT_TYPES = new Set([
   "SessionStart", "SessionEnd", "UserPromptSubmit", "PreToolUse",
   "PostToolUse", "PostToolUseFailure", "PermissionRequest",
-  "Notification", "SubagentStart", "SubagentStop", "Stop", "PreCompact"
+  "Notification", "SubagentStart", "SubagentStop", "Stop", "PreCompact",
+  "RouteHook", "AgentSpawn", "AgentProcess", "AgentComplete"
 ]);
 
 function ensureDir() {
@@ -24,11 +25,47 @@ function makeId() {
   return `hevt_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 }
 
+function clipArray(values, maxItems = 20, maxLen = 80) {
+  if (!Array.isArray(values)) return [];
+  return values
+    .slice(0, maxItems)
+    .map((value) => clip(value, maxLen))
+    .filter(Boolean);
+}
+
+function summarizeRouteHook(payload = {}) {
+  const routeHook = payload && typeof payload.routeHook === "object" ? payload.routeHook : null;
+  if (!routeHook) return null;
+  const atlas = routeHook && typeof routeHook.atlas === "object" ? routeHook.atlas : null;
+  return {
+    trancheId: clip(routeHook.trancheId || "", 80),
+    qId: clip(routeHook.qId || "", 80),
+    route: clip(routeHook.route || "", 80),
+    routeStage: clip(routeHook.routeStage || "", 40),
+    canonVer: clip(routeHook.canonVer || "", 80),
+    scopeHash: clip(routeHook.scopeHash || "", 80),
+    capsuleId: clip(routeHook.capsuleId || "", 120),
+    packetSha256: clip(routeHook.packetSha256 || "", 128),
+    payloadSha256: clip(routeHook.payloadSha256 || "", 128),
+    denyFlags: clipArray(routeHook.denyFlags, 24, 100),
+    skippedChecks: clipArray(routeHook.skippedChecks, 24, 100),
+    atlasId: clip(atlas?.atlasId || "", 80),
+    atlasLaneId: clip(atlas?.laneId || "", 80),
+    atlasLaneStatus: clip(atlas?.laneStatus || "", 40),
+    atlasLaneCurrentStage: clip(atlas?.laneCurrentStage || "", 80),
+    atlasRoleSurfaceId: clip(atlas?.roleSurfaceId || "", 80),
+    atlasSurfaceIds: clipArray(atlas?.matchingSurfaceIds, 24, 120),
+    atlasGroupIds: clipArray(atlas?.matchingGroupIds, 24, 80),
+    failClosed: routeHook.failClosed !== false
+  };
+}
+
 function normalizeHookEvent(input = {}) {
   const now = new Date().toISOString();
   const eventType = VALID_EVENT_TYPES.has(input.event_type || input.hook_event_type)
     ? (input.event_type || input.hook_event_type)
     : "Unknown";
+  const routeHook = summarizeRouteHook(input.payload || {});
   return {
     id: clip(input.id || makeId(), 80),
     at: clip(input.at || input.timestamp || now, 40),
@@ -46,6 +83,25 @@ function normalizeHookEvent(input = {}) {
     trigger: clip(input.trigger || "", 40),
     source: clip(input.source || "", 40),
     reason: clip(input.reason || "", TEXT_MAX),
+    trancheId: clip(routeHook?.trancheId || "", 80),
+    qId: clip(routeHook?.qId || "", 80),
+    route: clip(routeHook?.route || "", 80),
+    routeStage: clip(routeHook?.routeStage || "", 40),
+    canonVer: clip(routeHook?.canonVer || "", 80),
+    scopeHash: clip(routeHook?.scopeHash || "", 80),
+    capsuleId: clip(routeHook?.capsuleId || "", 120),
+    packetSha256: clip(routeHook?.packetSha256 || "", 128),
+    payloadSha256: clip(routeHook?.payloadSha256 || "", 128),
+    atlasId: clip(routeHook?.atlasId || "", 80),
+    atlasLaneId: clip(routeHook?.atlasLaneId || "", 80),
+    atlasLaneStatus: clip(routeHook?.atlasLaneStatus || "", 40),
+    atlasLaneCurrentStage: clip(routeHook?.atlasLaneCurrentStage || "", 80),
+    atlasRoleSurfaceId: clip(routeHook?.atlasRoleSurfaceId || "", 80),
+    atlasSurfaceIds: routeHook?.atlasSurfaceIds || [],
+    atlasGroupIds: routeHook?.atlasGroupIds || [],
+    denyFlags: routeHook?.denyFlags || [],
+    skippedChecks: routeHook?.skippedChecks || [],
+    failClosed: Boolean(routeHook?.failClosed),
     payload: input.payload && typeof input.payload === "object" ? input.payload : {}
   };
 }
@@ -83,7 +139,13 @@ function appendHookEvent(input = {}) {
         eventType: event.eventType,
         toolName: event.toolName,
         sourceApp: event.sourceApp,
-        sessionId: event.sessionId
+        sessionId: event.sessionId,
+        trancheId: event.trancheId,
+        qId: event.qId,
+        route: event.route,
+        scopeHash: event.scopeHash,
+        atlasLaneId: event.atlasLaneId,
+        atlasId: event.atlasId
       },
       status: event.error ? "error" : "ok"
     });
@@ -130,7 +192,7 @@ function readAllEvents() {
 }
 
 function queryHookEvents(options = {}) {
-  const { sessionId, eventType, since, limit = 200 } = options;
+  const { sessionId, eventType, since, limit = 200, route, routeStage, trancheId, qId, trigger, atlasLaneId } = options;
   let events = readAllEvents();
 
   if (sessionId) {
@@ -138,6 +200,24 @@ function queryHookEvents(options = {}) {
   }
   if (eventType) {
     events = events.filter((e) => e.eventType === eventType);
+  }
+  if (route) {
+    events = events.filter((e) => e.route === route);
+  }
+  if (routeStage) {
+    events = events.filter((e) => e.routeStage === routeStage);
+  }
+  if (trancheId) {
+    events = events.filter((e) => e.trancheId === trancheId);
+  }
+  if (qId) {
+    events = events.filter((e) => e.qId === qId);
+  }
+  if (trigger) {
+    events = events.filter((e) => e.trigger === trigger);
+  }
+  if (atlasLaneId) {
+    events = events.filter((e) => e.atlasLaneId === atlasLaneId);
   }
   if (since) {
     const sinceDate = new Date(since);
@@ -153,6 +233,55 @@ function queryHookEvents(options = {}) {
   }
 
   return events;
+}
+
+function getRouteHookStats(options = {}) {
+  const events = queryHookEvents({
+    ...options,
+    eventType: "RouteHook",
+    limit: Math.min(Number(options.limit || 500), 2000)
+  });
+  const byRoute = {};
+  const byQId = {};
+  const byAtlasLane = {};
+  let lastAt = "";
+
+  for (const event of events) {
+    if (event.at > lastAt) lastAt = event.at;
+    const routeKey = event.route || "unknown";
+    const qKey = event.qId || "unknown";
+    const laneKey = event.atlasLaneId || "unbound";
+    byRoute[routeKey] = (byRoute[routeKey] || 0) + 1;
+    byQId[qKey] = (byQId[qKey] || 0) + 1;
+    byAtlasLane[laneKey] = (byAtlasLane[laneKey] || 0) + 1;
+  }
+
+  const recent = events.slice(0, 20).map((event) => ({
+    id: event.id,
+    at: event.at,
+    trigger: event.trigger,
+    route: event.route,
+    routeStage: event.routeStage,
+    trancheId: event.trancheId,
+    qId: event.qId,
+    atlasId: event.atlasId,
+    atlasLaneId: event.atlasLaneId,
+    atlasLaneStatus: event.atlasLaneStatus,
+    atlasLaneCurrentStage: event.atlasLaneCurrentStage,
+    canonVer: event.canonVer,
+    denyFlags: event.denyFlags || [],
+    skippedChecks: event.skippedChecks || [],
+    failClosed: Boolean(event.failClosed)
+  }));
+
+  return {
+    totalRouteHooks: events.length,
+    lastAt,
+    byRoute,
+    byQId,
+    byAtlasLane,
+    recent
+  };
 }
 
 function getHookEventStats() {
@@ -220,6 +349,7 @@ module.exports = {
   HOOK_EVENTS_PATH,
   appendHookEvent,
   queryHookEvents,
+  getRouteHookStats,
   getHookEventStats,
   getSessionSummary
 };

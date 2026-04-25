@@ -13,6 +13,7 @@ const {
   getSessionDetail,
   injectSessionContext,
   queryHookEvents,
+  getRouteHookStats,
   getHookEventStats,
   listActiveSessions,
   backupTranscript
@@ -111,10 +112,48 @@ router.get("/events", (req, res) => {
     const events = queryHookEvents({
       sessionId: req.query?.sessionId,
       eventType: req.query?.eventType,
+      atlasLaneId: req.query?.atlasLaneId,
       since: req.query?.since,
       limit: Number(req.query?.limit || 200)
     });
     return res.json({ ok: true, events });
+  } catch (error) {
+    return respondError(res, error, 500);
+  }
+});
+
+router.get("/route-hooks", (req, res) => {
+  try {
+    const events = queryHookEvents({
+      eventType: "RouteHook",
+      route: String(req.query?.route || "").trim() || undefined,
+      routeStage: String(req.query?.routeStage || "").trim() || undefined,
+      trancheId: String(req.query?.trancheId || "").trim() || undefined,
+      qId: String(req.query?.qId || "").trim() || undefined,
+      atlasLaneId: String(req.query?.atlasLaneId || "").trim() || undefined,
+      trigger: String(req.query?.trigger || "").trim() || undefined,
+      since: req.query?.since,
+      limit: Number(req.query?.limit || 200)
+    });
+    return res.json({ ok: true, events });
+  } catch (error) {
+    return respondError(res, error, 500);
+  }
+});
+
+router.get("/route-hooks/summary", (req, res) => {
+  try {
+    const summary = getRouteHookStats({
+      route: String(req.query?.route || "").trim() || undefined,
+      routeStage: String(req.query?.routeStage || "").trim() || undefined,
+      trancheId: String(req.query?.trancheId || "").trim() || undefined,
+      qId: String(req.query?.qId || "").trim() || undefined,
+      atlasLaneId: String(req.query?.atlasLaneId || "").trim() || undefined,
+      trigger: String(req.query?.trigger || "").trim() || undefined,
+      since: req.query?.since,
+      limit: Number(req.query?.limit || 500)
+    });
+    return res.json({ ok: true, ...summary });
   } catch (error) {
     return respondError(res, error, 500);
   }
