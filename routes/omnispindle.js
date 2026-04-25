@@ -19,6 +19,21 @@ const { requirePermission } = require("../middleware/auth");
 
 const VALID_LANE_IDS = Object.keys(LANE_DEFINITIONS);
 
+function envFlag(name) {
+  return String(process.env[name] || "").trim() === "1";
+}
+
+function processExecutionHold(feature, enableWith) {
+  return {
+    ok: false,
+    held: true,
+    preview: true,
+    feature,
+    reason: `${feature}_disabled`,
+    enableWith
+  };
+}
+
 function createOmnispindleRouter({ resolveToolPaths, respondError, serverDir }) {
 
   router.get("/status", (_req, res) => {
@@ -35,6 +50,9 @@ function createOmnispindleRouter({ resolveToolPaths, respondError, serverDir }) 
 
   router.post("/start", requirePermission("admin"), (req, res) => {
     try {
+      if (!envFlag("ASOLARIA_OMNISPINDLE_PROCESS_EXECUTION_ENABLED")) {
+        return res.status(403).json(processExecutionHold("omnispindle_process_execution", "ASOLARIA_OMNISPINDLE_PROCESS_EXECUTION_ENABLED=1"));
+      }
       const lanes = req.body?.lanes || null;
       const model = String(req.body?.model || "").trim();
       const maxBudgetUsd = Number(req.body?.maxBudgetUsd) || 0;
@@ -68,6 +86,9 @@ function createOmnispindleRouter({ resolveToolPaths, respondError, serverDir }) 
 
   router.post("/agent/:laneId/start", requirePermission("admin"), (req, res) => {
     try {
+      if (!envFlag("ASOLARIA_OMNISPINDLE_PROCESS_EXECUTION_ENABLED")) {
+        return res.status(403).json(processExecutionHold("omnispindle_process_execution", "ASOLARIA_OMNISPINDLE_PROCESS_EXECUTION_ENABLED=1"));
+      }
       const laneId = String(req.params.laneId || "").trim().toLowerCase();
       if (!VALID_LANE_IDS.includes(laneId)) {
         return respondError(res, `Unknown lane: ${laneId}`, 400);
