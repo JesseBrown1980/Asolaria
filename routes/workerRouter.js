@@ -7,7 +7,7 @@ const { asInt, respondError, inferHttpStatusForError } = require("../lib/helpers
 const { requirePermission } = require("../middleware/auth");
 const {
   getWorkerRouterStatus, listWorkerDispatches, getWorkerDispatch,
-  recommendWorker, dispatchWorkerTask
+  recommendWorker, dispatchWorkerTask, getWorkerRouterSelfBuildPosture
 } = require("../src/connectors/workerRouter");
 const {
   buildOriginalHermesTransportRouterSnapshot
@@ -28,6 +28,12 @@ const {
 router.get("/status", (_req, res) => {
   try {
     return res.json({ ok: true, status: getWorkerRouterStatus() });
+  } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 500)); }
+});
+
+router.get("/self-build", (_req, res) => {
+  try {
+    return res.json({ ok: true, selfBuild: getWorkerRouterSelfBuildPosture() });
   } catch (error) { return respondError(res, error, inferHttpStatusForError(error, 500)); }
 });
 
