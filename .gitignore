@@ -18,10 +18,15 @@ reports/asolaria-snapshot-*.md
 reports/asolaria-current-build-profile.*
 reports/*.patch
 reports/c-drive-*-latest.*
+reports/ga-svm-*-latest.*
+reports/openmythos-*-latest.*
+reports/mythos-federation-bootstrap-latest.json
 
 # Local temp/debug artifacts
 tmp/
 tmp-*
+__pycache__/
+*.pyc
 *.pid
 *.log
 *.tmp
