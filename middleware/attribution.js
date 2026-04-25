@@ -1,13 +1,14 @@
 /**
  * Request Attribution Middleware
  * Phase 2: Logs actor, source, IP, and timestamp for every API request.
- * Feeds into gateway-audit.ndjson for forensic review.
+ * Feeds into request-attribution.ndjson so the chained gateway audit log
+ * only contains hash-linked gateway events.
  */
 
 const fs = require("fs");
 const path = require("path");
 
-const AUDIT_PATH = path.join(__dirname, "..", "data", "gateway-audit.ndjson");
+const ATTRIBUTION_PATH = path.join(__dirname, "..", "data", "request-attribution.ndjson");
 
 function nowIso() {
   return new Date().toISOString();
@@ -51,7 +52,8 @@ function attributionMiddleware(options = {}) {
       };
 
       try {
-        fs.appendFileSync(AUDIT_PATH, JSON.stringify(entry) + "\n", "utf8");
+        fs.mkdirSync(path.dirname(ATTRIBUTION_PATH), { recursive: true });
+        fs.appendFileSync(ATTRIBUTION_PATH, JSON.stringify(entry) + "\n", "utf8");
       } catch {}
     }
 

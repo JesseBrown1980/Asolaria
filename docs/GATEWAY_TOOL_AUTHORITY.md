@@ -1,3 +1,5 @@
+INTERNAL ONLY. Exclude from any public bundle. May contain private runtime references, topology/ports, identity, or operational controls. Publish only after sanitization replaces all private refs with tracked projections and claims are relabeled (LIVE/PROPOSAL/PRIVATE).
+
 # Gateway Tool Authority
 
 The gateway now supports policy-enforced tool invocation with approval gates.
@@ -84,7 +86,7 @@ See `docs/GATEWAY_AUDIT_LOG.md` for the full audit contract.
 ## Example flow (PowerShell)
 
 ```powershell
-$token = (Get-Content -Raw C:\Users\acer\Asolaria\data\vault\owner\gateway\gateway.token.txt).Trim()
+$token = (Get-Content -Raw "$env:USERPROFILE\Asolaria\data\vault\owner\gateway\gateway.token.txt").Trim()
 $headers = @{ Authorization = "Bearer $token"; "Content-Type" = "application/json" }
 
 # 1) Invoke a tool that requires approval

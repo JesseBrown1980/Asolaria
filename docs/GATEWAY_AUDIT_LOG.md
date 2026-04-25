@@ -1,3 +1,5 @@
+INTERNAL ONLY. Exclude from any public bundle. May contain private runtime references, topology/ports, identity, or operational controls. Publish only after sanitization replaces all private refs with tracked projections and claims are relabeled (LIVE/PROPOSAL/PRIVATE).
+
 # Gateway Audit Log
 
 The gateway maintains a tamper-evident append-only audit log for authority events.
