@@ -7,13 +7,29 @@ const Ajv = require("ajv");
 const { createToolAuthority } = require("./toolAuthority");
 const { createAuthorityModeManager } = require("./authorityMode");
 const { createAuditLogManager } = require("./auditLog");
+const { appendHookEvent } = require("../hookEventStore");
+const {
+  DEFAULT_DENY_FLAGS,
+  DEFAULT_POLICY_IDS,
+  buildRouteHookEnvelope
+} = require("../hg256RuntimeContract");
 
 const repoRoot = path.resolve(__dirname, "..", "..");
 const defaultConfigPath = path.join(repoRoot, "config", "asolaria.gateway.json");
 const configPath = path.resolve(process.env.ASOLARIA_GATEWAY_CONFIG || defaultConfigPath);
+const CYCLE_CRON_TRANCHE_ID = "Q6_Q8_CYCLES_AND_CRONS_V1";
+const GATEWAY_DENY_FLAGS = Array.from(new Set([
+  ...DEFAULT_DENY_FLAGS,
+  "NO_SILENT_SCHEDULES",
+  "APPEND_ONLY_ONLY"
+]));
 
 function manualGatewayCronEnabled() {
   return String(process.env.ASOLARIA_GATEWAY_MANUAL_CRON_ENABLED || "").trim() === "1";
+}
+
+function manualGatewayActionsEnabled() {
+  return String(process.env.ASOLARIA_GATEWAY_MANUAL_ACTIONS_ENABLED || "").trim() === "1";
 }
 
 function buildManualGatewayCronHold() {
@@ -23,6 +39,17 @@ function buildManualGatewayCronHold() {
     preview: true,
     reason: "gateway_manual_cron_disabled",
     enableWith: "ASOLARIA_GATEWAY_MANUAL_CRON_ENABLED=1"
+  };
+}
+
+function buildManualGatewayActionHold(action) {
+  return {
+    ok: false,
+    held: true,
+    preview: true,
+    action,
+    reason: "gateway_manual_actions_disabled",
+    enableWith: "ASOLARIA_GATEWAY_MANUAL_ACTIONS_ENABLED=1"
   };
 }
 
@@ -132,6 +159,19 @@ function cronMatches(expr, date) {
     && domFn(date.getDate())
     && monthFn(date.getMonth() + 1)
     && dowFn(date.getDay());
+}
+
+function computeNextCronAt(expr, fromDate = new Date()) {
+  if (!expr) return "";
+  const cursor = new Date(fromDate.getTime());
+  cursor.setSeconds(0, 0);
+  for (let i = 0; i < 60 * 24 * 7; i += 1) {
+    cursor.setMinutes(cursor.getMinutes() + 1);
+    if (cronMatches(expr, cursor)) {
+      return cursor.toISOString();
+    }
+  }
+  return "";
 }
 
 async function probeJson(url) {
@@ -330,6 +370,16 @@ function createServer() {
       lastTickAt: "",
       executions: []
     },
+    cycles: {
+      trancheId: CYCLE_CRON_TRANCHE_ID,
+      denyFlags: [...GATEWAY_DENY_FLAGS],
+      lastCronTickAt: "",
+      lastHeartbeatHookAt: "",
+      lastCronHookAt: "",
+      lastHeartbeatHook: null,
+      lastCronHook: null,
+      lastErrors: []
+    },
     authority: {
       events: []
     },
@@ -366,6 +416,164 @@ function createServer() {
       lastVerifyErrorCount: state.audit.lastVerifyErrorCount,
       verifyCount: state.audit.verifyCount
     };
+  }
+
+  function summarizeGateResults(items, keyPrefix = "check") {
+    if (!Array.isArray(items)) return [];
+    return items.map((item, index) => ({
+      gate: String(item?.id || item?.url || `${keyPrefix}_${index + 1}`).slice(0, 120),
+      status: item?.ok === false ? "fail" : "pass",
+      reason: String(item?.reason || item?.error || item?.ack || item?.status || "").slice(0, 220)
+    }));
+  }
+
+  function pushCycleError(label, reason) {
+    if (!reason) return;
+    state.cycles.lastErrors.push({
+      at: new Date().toISOString(),
+      label: String(label || "cycle").slice(0, 80),
+      reason: String(reason || "").slice(0, 240)
+    });
+    if (state.cycles.lastErrors.length > 20) {
+      state.cycles.lastErrors = state.cycles.lastErrors.slice(-20);
+    }
+  }
+
+  function buildCycleStatus(loopback = false) {
+    const heartbeat = {
+      lastRunAt: state.heartbeat.lastRunAt,
+      lastOkAt: state.heartbeat.lastOkAt,
+      nextDelayMs: state.heartbeat.nextDelayMs,
+      consecutiveFailures: state.heartbeat.consecutiveFailures,
+      ack: state.heartbeat.lastResult?.ack || "",
+      lastHookAt: state.cycles.lastHeartbeatHookAt
+    };
+    const cron = {
+      lastTickAt: state.cycles.lastCronTickAt || state.cron.lastTickAt,
+      jobsCount: Object.keys(config?.scheduler?.jobs || {}).length,
+      executionCount: state.cron.executions.length,
+      lastHookAt: state.cycles.lastCronHookAt,
+      lastExecutionAt: state.cron.executions.length ? String(state.cron.executions[state.cron.executions.length - 1]?.at || "") : ""
+    };
+    if (loopback) {
+      heartbeat.lastResult = state.heartbeat.lastResult || null;
+      heartbeat.lastHook = state.cycles.lastHeartbeatHook || null;
+      cron.executions = state.cron.executions.slice(-20);
+      cron.lastHook = state.cycles.lastCronHook || null;
+      cron.nextByJob = Object.fromEntries(
+        Object.entries(config?.scheduler?.jobs || {}).map(([jobName, expr]) => [jobName, computeNextCronAt(expr, new Date())])
+      );
+      return {
+        trancheId: state.cycles.trancheId,
+        denyFlags: [...state.cycles.denyFlags],
+        heartbeat,
+        cron,
+        lastErrors: state.cycles.lastErrors.slice(-10)
+      };
+    }
+    return {
+      trancheId: state.cycles.trancheId,
+      denyFlags: [...state.cycles.denyFlags],
+      heartbeat,
+      cron,
+      lastErrors: state.cycles.lastErrors.slice(-5)
+    };
+  }
+
+  function emitGatewayCycleHook({
+    route,
+    routeStage,
+    qId,
+    trigger,
+    ok,
+    payloadSource,
+    scheduledTs,
+    startedTs,
+    completedTs,
+    nextRunAt,
+    reason,
+    gateResults,
+    skippedChecks,
+    policyIds
+  }) {
+    const nowIso = new Date().toISOString();
+    const completedAt = String(completedTs || nowIso);
+    const routeHook = buildRouteHookEnvelope({
+      trancheId: CYCLE_CRON_TRANCHE_ID,
+      qId,
+      route,
+      routeStage,
+      owner: "jesse",
+      agentId: "asolaria-gateway",
+      role: "gateway",
+      constructionId: "asolaria-gateway",
+      agentPid: process.pid,
+      devicePid: "gateway-local",
+      packetSource: payloadSource,
+      payloadSource,
+      denyFlags: [...GATEWAY_DENY_FLAGS],
+      skippedChecks: Array.isArray(skippedChecks) ? skippedChecks : ["independent_review", "d49_seal"],
+      policyIds: Array.from(new Set([...(Array.isArray(policyIds) ? policyIds : []), ...DEFAULT_POLICY_IDS])),
+      proofRef: "data/hook-events.ndjson",
+      verifyStatus: ok ? "pass_local_only" : "hold_local_only",
+      verificationTs: completedAt,
+      windowStartTs: String(scheduledTs || startedTs || completedAt),
+      windowEndTs: String(nextRunAt || completedAt),
+      windowPolicyId: route === "gateway_heartbeat" ? "gateway-heartbeat-window.v1" : "gateway-cron-window.v1",
+      reason: String(reason || trigger || routeStage || "cycle_run"),
+      traceId: `${route}:${Date.now()}`
+    });
+    appendHookEvent({
+      event_type: "RouteHook",
+      session_id: `gateway:${route}`,
+      source_app: "asolaria-gateway",
+      agent_id: "asolaria-gateway",
+      agent_type: "gateway",
+      summary: `${route} ${routeStage} ${ok ? "pass" : "hold"} local only`,
+      trigger: String(trigger || routeStage || "cycle"),
+      payload: {
+        routeHook,
+        cycle: {
+          cronId: route === "gateway_cron" ? String(payloadSource?.job || "") : "",
+          cycleId: `${route}:${routeStage}:${Date.now()}`,
+          scheduledTs: String(scheduledTs || ""),
+          startedTs: String(startedTs || completedAt),
+          completedTs: completedAt,
+          verificationTs: completedAt,
+          nextRunAt: String(nextRunAt || ""),
+          gateResults: Array.isArray(gateResults) ? gateResults : [],
+          actionsCount: 1,
+          reason: String(reason || ""),
+          ok: Boolean(ok)
+        }
+      }
+    });
+    const minimal = {
+      at: completedAt,
+      route,
+      routeStage,
+      qId,
+      trigger: String(trigger || ""),
+      ok: Boolean(ok),
+      nextRunAt: String(nextRunAt || ""),
+      denyFlags: routeHook.denyFlags,
+      skippedChecks: routeHook.skippedChecks,
+      packetSha256: routeHook.packetSha256,
+      payloadSha256: routeHook.payloadSha256
+    };
+    if (route === "gateway_heartbeat") {
+      state.cycles.lastHeartbeatHookAt = completedAt;
+      state.cycles.lastHeartbeatHook = minimal;
+    } else {
+      state.cycles.lastCronHookAt = completedAt;
+      state.cycles.lastCronHook = minimal;
+    }
+    if (!ok) {
+      const firstFailure = Array.isArray(gateResults)
+        ? gateResults.find((item) => item?.status === "fail")
+        : null;
+      pushCycleError(route, firstFailure?.reason || reason || "cycle_failed");
+    }
   }
 
   function refreshAuditIntegrity(trigger = "manual") {
@@ -725,6 +933,7 @@ function createServer() {
         lastTickAt: state.cron.lastTickAt,
         executions: state.cron.executions.slice(-20)
       },
+      cycles: buildCycleStatus(false),
       authority: {
         policy: toolAuthority.getPolicy(),
         mode: authorityStatus.mode,
@@ -738,6 +947,13 @@ function createServer() {
       audit: {
         ...auditStatus
       }
+    });
+  });
+
+  app.get("/cycles", requireToken, (_req, res) => {
+    res.json({
+      ok: true,
+      cycles: buildCycleStatus(true)
     });
   });
 
@@ -779,6 +995,10 @@ function createServer() {
 
   app.post("/authority/readiness/drill", requireToken, async (req, res) => {
     try {
+      assertAuditGate("http:authority.readiness.drill");
+      if (!manualGatewayActionsEnabled()) {
+        return res.status(403).json(buildManualGatewayActionHold("authority.readiness.drill"));
+      }
       const body = req.body && typeof req.body === "object" ? req.body : {};
       const targetMode = String(body.targetMode || "asolaria_primary").trim().toLowerCase();
       const drill = await runAuthorityReadinessDrill(targetMode, "http.readiness_drill");
@@ -793,6 +1013,10 @@ function createServer() {
 
   app.post("/heartbeat/run", requireToken, async (_req, res) => {
     try {
+      assertAuditGate("http:heartbeat.run");
+      if (!manualGatewayActionsEnabled()) {
+        return res.status(403).json(buildManualGatewayActionHold("heartbeat.run"));
+      }
       const result = await runHeartbeat("http.manual");
       return res.json({
         ok: true,
@@ -829,6 +1053,14 @@ function createServer() {
   });
 
   app.get("/audit/verify", requireToken, (_req, res) => {
+    try {
+      assertAuditGate("http:audit.verify.get");
+      if (!manualGatewayActionsEnabled()) {
+        return res.status(403).json(buildManualGatewayActionHold("audit.verify"));
+      }
+    } catch (error) {
+      return sendHttpError(res, error);
+    }
     const result = refreshAuditIntegrity("http.verify.get");
     res.json({
       ok: true,
@@ -838,6 +1070,14 @@ function createServer() {
   });
 
   app.post("/audit/verify", requireToken, (_req, res) => {
+    try {
+      assertAuditGate("http:audit.verify.post");
+      if (!manualGatewayActionsEnabled()) {
+        return res.status(403).json(buildManualGatewayActionHold("audit.verify"));
+      }
+    } catch (error) {
+      return sendHttpError(res, error);
+    }
     const result = refreshAuditIntegrity("http.verify.post");
     res.json({
       ok: true,
@@ -914,6 +1154,30 @@ function createServer() {
       jobs: config?.scheduler?.jobs || {},
       executions: state.cron.executions.slice(-50)
     });
+  });
+
+  app.post("/cron/run", requireToken, async (req, res) => {
+    try {
+      assertAuditGate("http:cron.run");
+      if (!manualGatewayCronEnabled()) {
+        return res.status(403).json(buildManualGatewayCronHold());
+      }
+      const body = req.body && typeof req.body === "object" ? req.body : {};
+      const jobName = String(body.name || "").trim();
+      if (!jobName || !Object.prototype.hasOwnProperty.call(config?.scheduler?.jobs || {}, jobName)) {
+        return res.status(400).json({
+          ok: false,
+          error: "Unknown cron job name."
+        });
+      }
+      const record = await runCronJob(jobName, "manual");
+      return res.json({
+        ok: true,
+        record
+      });
+    } catch (error) {
+      return sendHttpError(res, error);
+    }
   });
 
   app.post("/invoke", requireToken, async (req, res) => {
@@ -1021,6 +1285,22 @@ function createServer() {
       ack: ok ? "HEARTBEAT_OK" : "HEARTBEAT_DEGRADED",
       checks
     };
+    emitGatewayCycleHook({
+      route: "gateway_heartbeat",
+      routeStage: "run",
+      qId: "Q6_CYCLE_HEARTBEAT",
+      trigger,
+      ok,
+      payloadSource: state.heartbeat.lastResult,
+      scheduledTs: now,
+      startedTs: now,
+      completedTs: now,
+      nextRunAt: new Date(Date.parse(now) + Math.max(1_000, Number(state.heartbeat.nextDelayMs || 60_000))).toISOString(),
+      reason: `heartbeat:${trigger}`,
+      gateResults: summarizeGateResults(checks, "heartbeat_check"),
+      skippedChecks: ["independent_review", "d49_seal"],
+      policyIds: ["gateway-heartbeat-window.v1"]
+    });
     broadcast({
       type: "heartbeat.result",
       payload: state.heartbeat.lastResult
@@ -1079,6 +1359,28 @@ function createServer() {
       type: "cron.executed",
       payload: record
     });
+    emitGatewayCycleHook({
+      route: "gateway_cron",
+      routeStage: "execute",
+      qId: "Q7_CRON_EXECUTION",
+      trigger: reason,
+      ok,
+      payloadSource: record,
+      scheduledTs: state.cron.lastTickAt || startedAt,
+      startedTs: startedAt,
+      completedTs: new Date().toISOString(),
+      nextRunAt: computeNextCronAt(config?.scheduler?.jobs?.[jobName], new Date(startedAt)),
+      reason: `${reason}:${jobName}`,
+      gateResults: summarizeGateResults([
+        {
+          id: "cron_job_result",
+          ok,
+          reason: ok ? `${jobName} completed` : String(result?.error || "cron_failed")
+        }
+      ], "cron_gate"),
+      skippedChecks: ["independent_review", "d49_seal"],
+      policyIds: ["gateway-cron-window.v1"]
+    });
     return record;
   }
 
@@ -1089,6 +1391,7 @@ function createServer() {
     setInterval(() => {
       const now = new Date();
       state.cron.lastTickAt = now.toISOString();
+      state.cycles.lastCronTickAt = state.cron.lastTickAt;
       const minuteKey = now.toISOString().slice(0, 16);
       for (const [jobName, expression] of Object.entries(jobs)) {
         if (!cronMatches(expression, now)) {
@@ -1162,6 +1465,7 @@ function createServer() {
           ok: true,
           heartbeat: state.heartbeat,
           cron: { lastTickAt: state.cron.lastTickAt },
+          cycles: buildCycleStatus(true),
           authority: {
             policy: toolAuthority.getPolicy(),
             mode: authorityStatus.mode,
@@ -1187,7 +1491,29 @@ function createServer() {
       }));
       return;
     }
+    if (type === "cycles.get") {
+      ws.send(JSON.stringify({
+        type: "cycles.get.result",
+        id: msg.id || "",
+        payload: buildCycleStatus(true)
+      }));
+      return;
+    }
     if (type === "heartbeat.run") {
+      try {
+        assertAuditGate("ws:heartbeat.run");
+      } catch (error) {
+        sendWsError(ws, msg.id || "", error);
+        return;
+      }
+      if (!manualGatewayActionsEnabled()) {
+        ws.send(JSON.stringify({
+          type: "heartbeat.run.result",
+          id: msg.id || "",
+          payload: buildManualGatewayActionHold("heartbeat.run")
+        }));
+        return;
+      }
       void runHeartbeat("ws").then((result) => {
         ws.send(JSON.stringify({
           type: "heartbeat.run.result",
@@ -1280,6 +1606,20 @@ function createServer() {
       return;
     }
     if (type === "authority.readiness.drill") {
+      try {
+        assertAuditGate("ws:authority.readiness.drill");
+      } catch (error) {
+        sendWsError(ws, msg.id || "", error);
+        return;
+      }
+      if (!manualGatewayActionsEnabled()) {
+        ws.send(JSON.stringify({
+          type: "authority.readiness.drill.result",
+          id: msg.id || "",
+          payload: buildManualGatewayActionHold("authority.readiness.drill")
+        }));
+        return;
+      }
       const targetMode = String(msg?.payload?.targetMode || "asolaria_primary").trim().toLowerCase();
       void runAuthorityReadinessDrill(targetMode, "ws.readiness_drill").then((drill) => {
         ws.send(JSON.stringify({
@@ -1395,6 +1735,20 @@ function createServer() {
       return;
     }
     if (type === "audit.verify") {
+      try {
+        assertAuditGate("ws:audit.verify");
+      } catch (error) {
+        sendWsError(ws, msg.id || "", error);
+        return;
+      }
+      if (!manualGatewayActionsEnabled()) {
+        ws.send(JSON.stringify({
+          type: "audit.verify.result",
+          id: msg.id || "",
+          payload: buildManualGatewayActionHold("audit.verify")
+        }));
+        return;
+      }
       const result = refreshAuditIntegrity("ws.verify");
       ws.send(JSON.stringify({
         type: "audit.verify.result",

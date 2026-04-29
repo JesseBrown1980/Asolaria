@@ -12,6 +12,22 @@ const VALID_EVENT_TYPES = new Set([
   "Notification", "SubagentStart", "SubagentStop", "Stop", "PreCompact",
   "RouteHook", "AgentSpawn", "AgentProcess", "AgentComplete"
 ]);
+const EVENT_TYPE_ALIASES = new Map();
+
+function normalizeKey(value) {
+  return String(value || "")
+    .trim()
+    .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
+    .replace(/[\s.-]+/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .toLowerCase();
+}
+
+for (const eventType of VALID_EVENT_TYPES) {
+  EVENT_TYPE_ALIASES.set(normalizeKey(eventType), eventType);
+  EVENT_TYPE_ALIASES.set(eventType.toLowerCase(), eventType);
+}
 
 function ensureDir() {
   fs.mkdirSync(path.dirname(HOOK_EVENTS_PATH), { recursive: true });
@@ -19,6 +35,33 @@ function ensureDir() {
 
 function clip(value, max = TEXT_MAX) {
   return String(value || "").trim().slice(0, Math.max(1, Number(max) || TEXT_MAX));
+}
+
+function firstDefined(...values) {
+  for (const value of values) {
+    if (value !== undefined && value !== null && value !== "") return value;
+  }
+  return undefined;
+}
+
+function toBoolean(value) {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") {
+    const normalized = value.trim().toLowerCase();
+    if (["true", "1", "yes", "on"].includes(normalized)) return true;
+    if (["false", "0", "no", "off"].includes(normalized)) return false;
+  }
+  return Boolean(value);
+}
+
+function valueAt(object, ...keys) {
+  if (!object || typeof object !== "object") return undefined;
+  return firstDefined(...keys.map((key) => object[key]));
+}
+
+function normalizeEventType(value) {
+  if (VALID_EVENT_TYPES.has(value)) return value;
+  return EVENT_TYPE_ALIASES.get(normalizeKey(value)) || "Unknown";
 }
 
 function makeId() {
@@ -34,52 +77,52 @@ function clipArray(values, maxItems = 20, maxLen = 80) {
 }
 
 function summarizeRouteHook(payload = {}) {
-  const routeHook = payload && typeof payload.routeHook === "object" ? payload.routeHook : null;
+  const routeHookValue = valueAt(payload, "routeHook", "route_hook");
+  const routeHook = routeHookValue && typeof routeHookValue === "object" ? routeHookValue : null;
   if (!routeHook) return null;
   const atlas = routeHook && typeof routeHook.atlas === "object" ? routeHook.atlas : null;
   return {
-    trancheId: clip(routeHook.trancheId || "", 80),
-    qId: clip(routeHook.qId || "", 80),
+    trancheId: clip(valueAt(routeHook, "trancheId", "tranche_id") || "", 80),
+    qId: clip(valueAt(routeHook, "qId", "q_id") || "", 80),
     route: clip(routeHook.route || "", 80),
-    routeStage: clip(routeHook.routeStage || "", 40),
-    canonVer: clip(routeHook.canonVer || "", 80),
-    scopeHash: clip(routeHook.scopeHash || "", 80),
-    capsuleId: clip(routeHook.capsuleId || "", 120),
-    packetSha256: clip(routeHook.packetSha256 || "", 128),
-    payloadSha256: clip(routeHook.payloadSha256 || "", 128),
-    denyFlags: clipArray(routeHook.denyFlags, 24, 100),
-    skippedChecks: clipArray(routeHook.skippedChecks, 24, 100),
-    atlasId: clip(atlas?.atlasId || "", 80),
-    atlasLaneId: clip(atlas?.laneId || "", 80),
-    atlasLaneStatus: clip(atlas?.laneStatus || "", 40),
-    atlasLaneCurrentStage: clip(atlas?.laneCurrentStage || "", 80),
-    atlasRoleSurfaceId: clip(atlas?.roleSurfaceId || "", 80),
-    atlasSurfaceIds: clipArray(atlas?.matchingSurfaceIds, 24, 120),
-    atlasGroupIds: clipArray(atlas?.matchingGroupIds, 24, 80),
-    failClosed: routeHook.failClosed !== false
+    routeStage: clip(valueAt(routeHook, "routeStage", "route_stage") || "", 40),
+    canonVer: clip(valueAt(routeHook, "canonVer", "canon_ver") || "", 80),
+    scopeHash: clip(valueAt(routeHook, "scopeHash", "scope_hash") || "", 80),
+    capsuleId: clip(valueAt(routeHook, "capsuleId", "capsule_id") || "", 120),
+    packetSha256: clip(valueAt(routeHook, "packetSha256", "packet_sha256") || "", 128),
+    payloadSha256: clip(valueAt(routeHook, "payloadSha256", "payload_sha256") || "", 128),
+    denyFlags: clipArray(valueAt(routeHook, "denyFlags", "deny_flags"), 24, 100),
+    skippedChecks: clipArray(valueAt(routeHook, "skippedChecks", "skipped_checks"), 24, 100),
+    atlasId: clip(valueAt(atlas, "atlasId", "atlas_id") || "", 80),
+    atlasLaneId: clip(valueAt(atlas, "laneId", "lane_id") || "", 80),
+    atlasLaneStatus: clip(valueAt(atlas, "laneStatus", "lane_status") || "", 40),
+    atlasLaneCurrentStage: clip(valueAt(atlas, "laneCurrentStage", "lane_current_stage") || "", 80),
+    atlasRoleSurfaceId: clip(valueAt(atlas, "roleSurfaceId", "role_surface_id") || "", 80),
+    atlasSurfaceIds: clipArray(valueAt(atlas, "matchingSurfaceIds", "matching_surface_ids"), 24, 120),
+    atlasGroupIds: clipArray(valueAt(atlas, "matchingGroupIds", "matching_group_ids"), 24, 80),
+    failClosed: toBoolean(firstDefined(routeHook.failClosed, routeHook.fail_closed, true))
   };
 }
 
 function normalizeHookEvent(input = {}) {
   const now = new Date().toISOString();
-  const eventType = VALID_EVENT_TYPES.has(input.event_type || input.hook_event_type)
-    ? (input.event_type || input.hook_event_type)
-    : "Unknown";
+  const rawEventType = firstDefined(input.eventType, input.event_type, input.hookEventType, input.hook_event_type);
+  const eventType = normalizeEventType(rawEventType);
   const routeHook = summarizeRouteHook(input.payload || {});
   return {
     id: clip(input.id || makeId(), 80),
-    at: clip(input.at || input.timestamp || now, 40),
+    at: clip(firstDefined(input.at, input.timestamp, input.ts, now), 40),
     eventType,
-    sessionId: clip(input.session_id || "", 80),
-    sourceApp: clip(input.source_app || "unknown", 80),
-    toolName: clip(input.tool_name || (input.payload && input.payload.tool_name) || "", 120),
-    toolUseId: clip(input.tool_use_id || "", 120),
-    agentId: clip(input.agent_id || "", 120),
-    agentType: clip(input.agent_type || "", 60),
-    modelName: clip(input.model_name || "", 60),
+    sessionId: clip(firstDefined(input.sessionId, input.session_id, ""), 80),
+    sourceApp: clip(firstDefined(input.sourceApp, input.source_app, "unknown"), 80),
+    toolName: clip(firstDefined(input.toolName, input.tool_name, input.payload?.toolName, input.payload?.tool_name, ""), 120),
+    toolUseId: clip(firstDefined(input.toolUseId, input.tool_use_id, ""), 120),
+    agentId: clip(firstDefined(input.agentId, input.agent_id, ""), 120),
+    agentType: clip(firstDefined(input.agentType, input.agent_type, ""), 60),
+    modelName: clip(firstDefined(input.modelName, input.model_name, ""), 60),
     summary: clip(input.summary || "", TEXT_MAX),
     error: clip(input.error || (input.payload && input.payload.error) || "", TEXT_MAX),
-    stopHookActive: Boolean(input.stop_hook_active),
+    stopHookActive: toBoolean(firstDefined(input.stopHookActive, input.stop_hook_active, false)),
     trigger: clip(input.trigger || "", 40),
     source: clip(input.source || "", 40),
     reason: clip(input.reason || "", TEXT_MAX),
@@ -347,6 +390,7 @@ function getSessionSummary(sessionId) {
 
 module.exports = {
   HOOK_EVENTS_PATH,
+  normalizeHookEvent,
   appendHookEvent,
   queryHookEvents,
   getRouteHookStats,

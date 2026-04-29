@@ -4,6 +4,7 @@ const { resolveDataPath } = require("../runtimePaths");
 const { resolveToolPaths } = require("./systemPaths");
 const { runCodex } = require("./codexConnector");
 const { runAnthropicCli } = require("./anthropicCliConnector");
+const { runOpenCode, isShelllessOpenCodeExecutable } = require("./opencodeConnector");
 const {
   getAbacusIntegrationStatus,
   getAbacusOperatingStrategy,
@@ -26,7 +27,7 @@ const { getIxSelfBuildControllerPacket } = require("../ixFabricAtlasStore");
 
 const ROUTER_ROOT = resolveDataPath("integrations", "worker-router");
 const ROUTER_DISPATCH_ROOT = path.join(ROUTER_ROOT, "dispatches");
-const WORKER_IDS = ["local_codex", "claude_max", "abacus", "symphony"];
+const WORKER_IDS = ["opencode", "local_codex", "claude_max", "abacus", "symphony"];
 const TASK_TYPES = new Set([
   "quick_chore",
   "patch",
@@ -39,6 +40,12 @@ const TASK_TYPES = new Set([
 const SENSITIVITY_LEVELS = new Set(["public", "sanitized", "internal", "privileged", "owner_plane"]);
 const SIZE_LEVELS = new Set(["small", "medium", "large"]);
 const EXTERNAL_WORKER_IDS = new Set(["abacus", "claude_max", "symphony"]);
+function isOpenCodeDirectEnabled(toolPaths = resolveToolPaths()) {
+  return (
+    process.env.ASOLARIA_OPENCODE_DIRECT_ENABLED === "1"
+    && isShelllessOpenCodeExecutable(toolPaths.opencodePath)
+  );
+}
 const SELF_BUILD_HINTS = Object.freeze([
   "self-build",
   "self build",
@@ -93,6 +100,7 @@ function normalizeWorkerId(value) {
   const normalized = cleanText(value).toLowerCase().replace(/[\s-]+/g, "_");
   if (normalized === "codex" || normalized === "local_codex") return "local_codex";
   if (normalized === "claude" || normalized === "anthropic" || normalized === "claude_max") return "claude_max";
+  if (normalized === "opencode" || normalized === "open_code" || normalized === "open_code_cli" || normalized === "open code") return "opencode";
   return WORKER_IDS.includes(normalized) ? normalized : "";
 }
 
@@ -380,6 +388,37 @@ function buildLocalCodexProfile() {
   };
 }
 
+function buildOpenCodeProfile() {
+  const toolPaths = resolveToolPaths();
+  const available = Boolean(toolPaths.opencodePath);
+  const shellless = isShelllessOpenCodeExecutable(toolPaths.opencodePath);
+  const dispatchable = available && shellless && isOpenCodeDirectEnabled(toolPaths);
+  return {
+    id: "opencode",
+    title: "OpenCode Local",
+    available,
+    dispatchable,
+    directDispatchSupported: dispatchable,
+    shellless,
+    directGate: process.env.ASOLARIA_OPENCODE_DIRECT_ENABLED === "1" ? "enabled" : "disabled",
+    strengths: [
+      "Low-cost local worker lane for bounded chores, research packets, and orchestration prep.",
+      "Uses the locally installed OpenCode CLI without adding another long-lived server surface.",
+      "Good fit for fast local work that does not require owner-plane Codex authority."
+    ],
+    limitations: [
+      "Depends on the local OpenCode CLI and its configured provider credentials being healthy.",
+      "Direct execution is disabled unless ASOLARIA_OPENCODE_DIRECT_ENABLED=1 and the resolved path is shellless.",
+      "Not the default owner-plane mutation lane for privileged repo work.",
+      "Reply structure can vary by provider/model and is normalized from CLI output."
+    ],
+    mistakes: [
+      "Do not assume OpenCode is free just because it is local; it still consumes configured provider quota.",
+      "Do not route privileged or owner-plane writes here when Local Codex is the safer lane."
+    ]
+  };
+}
+
 function buildAbacusProfile() {
   const status = getAbacusIntegrationStatus();
   const strategy = getAbacusOperatingStrategy();
@@ -461,7 +500,7 @@ function buildSymphonyProfile() {
 }
 
 function getWorkerProfiles() {
-  return [buildLocalCodexProfile(), buildClaudeMaxProfile(), buildAbacusProfile(), buildSymphonyProfile()];
+  return [buildOpenCodeProfile(), buildLocalCodexProfile(), buildClaudeMaxProfile(), buildAbacusProfile(), buildSymphonyProfile()];
 }
 
 function getWorkerProfile(workerId) {
@@ -478,6 +517,7 @@ function getWorkerRouterStatus() {
   const toolPaths = resolveToolPaths();
   const selfBuild = getWorkerRouterSelfBuildPosture();
   const knownIssues = [
+    "OpenCode is a low-cost local lane, but it still depends on configured provider quota and credentials.",
     "Claude Max is a review/advisory lane here, not the owner-plane write authority.",
     "Symphony submission is now wired through Linear, but pickup still depends on Symphony's own project queue logic.",
     "Abacus CLI is still limited here, so Abacus dispatch means packet handoff rather than fully headless autonomy.",
@@ -492,6 +532,7 @@ function getWorkerRouterStatus() {
     defaultWorker: "claude_max",
     workers,
     integrationSummary: {
+      openCodeAvailable: Boolean(toolPaths.opencodePath),
       localCodexAvailable: Boolean(toolPaths.codexPath),
       claudeMaxReady: Boolean(toolPaths.claudePath),
       abacusReady: Boolean(abacus?.capabilities?.browser?.ready || abacus?.surfaces?.desktop?.installed),
@@ -505,6 +546,12 @@ function getWorkerRouterStatus() {
       selfBuildGuardGate: cleanText(selfBuild?.guards?.gateStatus || "hold")
     },
     coordinationSurfaces: [
+      {
+        id: "opencode",
+        role: "low_cost_local_worker",
+        ready: Boolean(toolPaths.opencodePath),
+        writeCapable: isOpenCodeDirectEnabled(toolPaths)
+      },
       {
         id: "claude_max",
         role: "review_lane",
@@ -590,6 +637,12 @@ function normalizeRouterInput(input = {}) {
     expectedArtifacts: normalizeList(input.expectedArtifacts || input.artifacts, 16),
     presetId: cleanText(input.presetId || ""),
     taskId: cleanText(input.taskId || ""),
+    model: cleanText(input.model || ""),
+    agent: cleanText(input.agent || ""),
+    variant: cleanText(input.variant || ""),
+    opencodeModel: cleanText(input.opencodeModel || ""),
+    opencodeAgent: cleanText(input.opencodeAgent || ""),
+    opencodeVariant: cleanText(input.opencodeVariant || "")
   };
 }
 
@@ -612,6 +665,15 @@ function recommendWorker(input = {}) {
     recommendedWorkerId = "local_codex";
     fallbackWorkerId = byId.get("abacus")?.dispatchable ? "abacus" : "symphony";
     reasons.push("Privileged or owner-plane work should stay on the highest-trust local lane.");
+  } else if (
+    !normalized.requiresRepoWrite
+    && (normalized.taskType === "quick_chore" || normalized.taskType === "research" || normalized.taskType === "orchestration")
+    && byId.get("opencode")?.dispatchable
+    && !normalized.needsCloudWorker
+  ) {
+    recommendedWorkerId = "opencode";
+    fallbackWorkerId = byId.get("local_codex")?.dispatchable ? "local_codex" : "abacus";
+    reasons.push("Bounded local work should prefer the low-cost OpenCode lane before consuming higher-trust Codex capacity.");
   } else if (normalized.taskType === "review" && byId.get("claude_max")?.dispatchable) {
     recommendedWorkerId = "claude_max";
     fallbackWorkerId = "local_codex";
@@ -641,6 +703,9 @@ function recommendWorker(input = {}) {
 
   if (normalized.size === "large" && recommendedWorkerId === "local_codex" && byId.get("abacus")?.dispatchable) {
     warnings.push("Large tasks on local Codex can take longer; consider Abacus for bounded sanitized subtasks.");
+  }
+  if (normalized.size === "large" && recommendedWorkerId === "opencode") {
+    warnings.push("Large tasks on OpenCode can still burn provider quota; move up to Local Codex if the lane stalls or the task becomes write-heavy.");
   }
 
   const selfBuildPolicy = {
@@ -673,6 +738,16 @@ function recommendWorker(input = {}) {
           selfBuildPolicy.rerouteToLocal = true;
         }
       }
+    } else if (
+      normalized.taskType === "orchestration"
+      && !normalized.requiresRepoWrite
+      && !normalized.needsCloudWorker
+      && recommendedWorkerId === "local_codex"
+      && byId.get("opencode")?.dispatchable
+    ) {
+      recommendedWorkerId = "opencode";
+      fallbackWorkerId = byId.get("local_codex")?.dispatchable ? "local_codex" : fallbackWorkerId;
+      reasons.push("Controller guard allows low-cost orchestration, so bounded self-build prep prefers OpenCode.");
     }
   }
 
@@ -731,6 +806,26 @@ function buildLocalCodexPrompt(input, recommendation) {
     "- Do not widen scope beyond the requested objective.",
     "- Do not assume external workers are needed if the task is local and bounded.",
     "- Call out uncertainty or blockers instead of guessing."
+  ].filter(Boolean);
+  if (recommendation?.warnings?.length) {
+    sections.push(`Router warnings:\n- ${recommendation.warnings.join("\n- ")}`);
+  }
+  return sections.join("\n\n");
+}
+
+function buildOpenCodePrompt(input, recommendation) {
+  const sections = [
+    `Objective: ${input.objective || input.title}`,
+    input.instructions ? `Instructions:\n${input.instructions}` : "",
+    input.allowedPaths.length ? `Allowed paths:\n- ${input.allowedPaths.join("\n- ")}` : "",
+    `Task type: ${input.taskType}`,
+    `Sensitivity: ${input.sensitivity}`,
+    `Size: ${input.size}`,
+    input.expectedArtifacts.length ? `Expected artifacts:\n- ${input.expectedArtifacts.join("\n- ")}` : "",
+    "Lane policy:",
+    "- Stay bounded and cost-aware.",
+    "- Prefer concise, high-signal output.",
+    "- Do not widen into owner-plane work unless the prompt explicitly requires it."
   ].filter(Boolean);
   if (recommendation?.warnings?.length) {
     sections.push(`Router warnings:\n- ${recommendation.warnings.join("\n- ")}`);
@@ -959,6 +1054,146 @@ async function dispatchToLocalCodex(input, recommendation, dispatchId, dispatchF
   }
 }
 
+async function dispatchToOpenCode(input, recommendation, dispatchId, dispatchFolder, task) {
+  const prompt = buildOpenCodePrompt(input, recommendation);
+  const promptPath = path.join(dispatchFolder, "prompt.md");
+  safeWriteText(promptPath, prompt);
+
+  const baseResult = {
+    workerId: "opencode",
+    dispatchMode: input.executeNow ? "direct_run" : "queued_local",
+    promptPath,
+    resultSummary: input.executeNow ? "OpenCode run requested." : "Prepared OpenCode prompt."
+  };
+
+  if (input.executeNow && !isOpenCodeDirectEnabled()) {
+    addTaskLedgerEvent(task.id, {
+      type: "worker_routed",
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode direct execution blocked; prepared prompt for manual or deferred shellless execution.",
+      detail: {
+        workerId: "opencode",
+        promptPath,
+        gate: "ASOLARIA_OPENCODE_DIRECT_ENABLED"
+      }
+    });
+    updateTaskLedgerTask(task.id, {
+      status: "ready",
+      owner: "opencode"
+    }, {
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode prompt prepared; direct execution gate is closed."
+    });
+    return {
+      ...baseResult,
+      dispatchMode: "queued_local",
+      resultSummary: "OpenCode direct execution blocked; prompt prepared."
+    };
+  }
+
+  if (!input.executeNow) {
+    addTaskLedgerEvent(task.id, {
+      type: "worker_routed",
+      actor: "worker-router",
+      source: "worker-router",
+      note: "Prepared OpenCode prompt for manual or deferred execution.",
+      detail: {
+        workerId: "opencode",
+        promptPath
+      }
+    });
+    updateTaskLedgerTask(task.id, {
+      status: "ready",
+      owner: "opencode"
+    }, {
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode prompt prepared."
+    });
+    return baseResult;
+  }
+
+  updateTaskLedgerTask(task.id, {
+    status: "in_progress",
+    owner: "opencode",
+    progress: 20
+  }, {
+    actor: "worker-router",
+    source: "worker-router",
+    note: "OpenCode execution started."
+  });
+
+  try {
+    const run = await runOpenCode({
+      prompt,
+      model: cleanText(input.model || input.opencodeModel || ""),
+      agent: cleanText(input.agent || input.opencodeAgent || ""),
+      variant: cleanText(input.variant || input.opencodeVariant || (input.size === "large" ? "high" : "")),
+      dir: process.cwd(),
+      timeoutMs: Math.max(60000, Math.min(Number(input.timeoutMs || 120000), 300000))
+    });
+    const responsePath = path.join(dispatchFolder, "response.md");
+    safeWriteText(responsePath, String(run.reply || "").trim());
+    safeWriteJson(path.join(dispatchFolder, "run.json"), {
+      provider: run.provider || "opencode",
+      model: String(run.model || "").trim(),
+      agent: String(run.agent || "").trim(),
+      variant: String(run.variant || "").trim(),
+      dispatchId,
+      taskId: task.id,
+      completedAt: nowIso()
+    });
+    addTaskLedgerEvent(task.id, {
+      type: "worker_completed",
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode execution completed.",
+      detail: {
+        workerId: "opencode",
+        responsePath
+      }
+    });
+    updateTaskLedgerTask(task.id, {
+      status: "review",
+      progress: 90,
+      owner: "opencode"
+    }, {
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode result ready for review."
+    });
+    return {
+      ...baseResult,
+      responsePath,
+      reply: String(run.reply || "").trim(),
+      model: String(run.model || "").trim(),
+      resultSummary: "OpenCode execution completed."
+    };
+  } catch (error) {
+    addTaskLedgerEvent(task.id, {
+      type: "worker_failed",
+      actor: "worker-router",
+      source: "worker-router",
+      note: `OpenCode execution failed: ${clipText(error?.message || error, 240)}`,
+      detail: {
+        workerId: "opencode"
+      }
+    });
+    updateTaskLedgerTask(task.id, {
+      status: "blocked",
+      owner: "opencode",
+      progress: 0
+    }, {
+      actor: "worker-router",
+      source: "worker-router",
+      note: `OpenCode failed: ${clipText(error?.message || error, 220)}`
+    });
+    throw error;
+  }
+}
+
 function buildClaudeMaxPrompt(input, recommendation) {
   const sections = [
     "You are the Claude Max review lane inside Asolaria super swarm.",
@@ -1098,7 +1333,8 @@ async function dispatchWorkerTask(input = {}) {
     && EXTERNAL_WORKER_IDS.has(workerId)
   ) {
     const localCodex = getWorkerProfile("local_codex");
-    const rerouteWorkerId = localCodex?.dispatchable ? "local_codex" : "";
+    const openCode = getWorkerProfile("opencode");
+    const rerouteWorkerId = localCodex?.dispatchable ? "local_codex" : (openCode?.dispatchable ? "opencode" : "");
     if (rerouteWorkerId) {
       recommendation.warnings = Array.isArray(recommendation.warnings) ? recommendation.warnings.slice() : [];
       recommendation.warnings.push(`Dispatch policy rerouted self-build task from ${workerId} to ${rerouteWorkerId} because guard=${recommendation.selfBuild.dispatchPolicy.guardGate}.`);
@@ -1164,7 +1400,9 @@ async function dispatchWorkerTask(input = {}) {
 
   try {
     let result;
-    if (workerId === "abacus") {
+    if (workerId === "opencode") {
+      result = await dispatchToOpenCode(recommendation.input, recommendation, dispatchId, dispatchFolder, task);
+    } else if (workerId === "abacus") {
       result = await dispatchToAbacus(recommendation.input, recommendation, dispatchId, task);
     } else if (workerId === "claude_max") {
       result = await dispatchToClaudeMax(recommendation.input, recommendation, dispatchId, dispatchFolder, task);

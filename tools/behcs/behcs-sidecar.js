@@ -49,6 +49,17 @@ const CAPTURES_DIR = path.join(ROOT, 'logs/captures/omnicalendar');
 const PID_FILE = path.join(BEHCS_DIR, 'sidecar.pid');
 
 const EventEmitter = require('events');
+const {
+  collectorStatus,
+  recordCollectorMessage,
+  runGulpRehydration,
+  scheduleGulp,
+  seedCollectorBuffer,
+} = require('./behcs-gulp-runtime');
+const { refreshLiveReportFromMessage } = require('./gnn-live-watcher');
+const { buildResourceBudgetSnapshot } = require('../../sovereignty/src/resourceBudgetSnapshot');
+const { buildGnnSiliconHeartbeat } = require('../../sovereignty/src/gnnSiliconHeartbeat');
+const { buildAsolariaAssignableTaskBoard } = require('../../sovereignty/src/asolariaAssignableTaskBoard');
 
 const BUS_PORT = 4947;
 const ADMIN_PORT = 4948;
@@ -68,6 +79,22 @@ function liveSidecarAdbEnabled() {
 
 function liveSidecarScreenEnabled() {
   return String(process.env.ASOLARIA_BEHCS_SIDECAR_SCREEN_ENABLED || '').trim() === '1';
+}
+
+function liveSidecarGcRunEnabled() {
+  return String(process.env.ASOLARIA_BEHCS_GC_RUN_ENABLED || '').trim() === '1';
+}
+
+function remoteSidecarGcRunEnabled() {
+  return String(process.env.ASOLARIA_BEHCS_GC_RUN_ALLOW_REMOTE || '').trim() === '1';
+}
+
+function isLoopbackRequest(req) {
+  const raw = String(req.socket?.remoteAddress || '').trim();
+  return raw === '127.0.0.1'
+    || raw === '::1'
+    || raw === '::ffff:127.0.0.1'
+    || raw === 'localhost';
 }
 
 function sendSidecarHold(res, reason, enableWith) {
@@ -116,9 +143,56 @@ function logGnnEdge(envelope) {
     weight: (envelope.payload?.risk || 1) * 0.5,
     ts: new Date().toISOString(),
     id: envelope.id,
+    pathGlyph: envelope.behcs?.pathGlyph || '',
+    messageGlyph: envelope.behcs?.messageGlyph || '',
   };
   appendNdjson(GNN_EDGES, edge);
   truncateNdjson(GNN_EDGES, MAX_EDGES);
+  try {
+    refreshLiveReportFromMessage({
+      ...envelope,
+      received_at: envelope.received_at || new Date().toISOString(),
+    });
+  } catch (error) {
+    d0log('GNN_REPORT_REFRESH_FAILED', {
+      id: envelope.id || 'unknown',
+      from: envelope.from || 'unknown',
+      to: envelope.to || 'unknown',
+      error: error.message,
+    });
+  }
+  refreshResourceControlSurfaces(envelope);
+}
+
+function isResourceSignal(envelope = {}) {
+  const payload = envelope.payload || {};
+  const verb = String(payload.verb || envelope.type || '').toLowerCase();
+  return Boolean(
+    payload.cpu
+    || payload.ram
+    || payload.gpu
+    || payload.hw
+    || verb.includes('compute_pulse')
+    || verb.includes('behcs.pulse')
+    || verb.includes('node_boot')
+    || envelope.type === 'heartbeat'
+  );
+}
+
+function refreshResourceControlSurfaces(envelope) {
+  if (!isResourceSignal(envelope)) return;
+  try {
+    const snapshot = buildResourceBudgetSnapshot({ latestMessage: envelope });
+    const heartbeat = buildGnnSiliconHeartbeat({ snapshot });
+    buildAsolariaAssignableTaskBoard({ snapshot, heartbeat });
+  } catch (error) {
+    d0log('RESOURCE_CONTROL_REFRESH_FAILED', {
+      id: envelope?.id || 'unknown',
+      from: envelope?.from || 'unknown',
+      to: envelope?.to || 'unknown',
+      error: error.message,
+    });
+  }
 }
 
 // ═══ AUTO-RELAY ═══
@@ -532,14 +606,47 @@ function startBus() {
     if (url.pathname === '/behcs/send' && req.method === 'POST') {
       let body = '';
       req.on('data', c => body += c);
-      req.on('end', () => {
+      req.on('end', async () => {
         try {
           const msg = JSON.parse(body);
+          if (!msg.id) msg.id = 'behcs-' + crypto.randomBytes(6).toString('hex');
+          if (!msg.ts) msg.ts = new Date().toISOString();
+          const remoteMeta = {
+            ip: String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim(),
+            port: req.socket?.remotePort || 0,
+            method: req.method,
+            protocol: req.socket?.encrypted ? 'https' : 'http',
+          };
           // HOOKWALL GATE
           const gate = hookwallCheck(msg);
           if (!gate.allow) {
+            const denied = {
+              ...msg,
+              received_at: new Date().toISOString(),
+              received_by: 'acer-sidecar',
+              gated: false,
+              gate: 'hookwall',
+              denies: gate.denies,
+              reflex: 'rejected',
+            };
+            appendNdjson(INBOX, denied);
+            truncateNdjson(INBOX, MAX_INBOX);
+            recordCollectorMessage(denied, {
+              reason: 'hookwall_deny',
+              remoteMeta,
+              gateDenied: true,
+              reflex: { action: 'rejected', reason: 'hookwall_deny', runInference: false },
+            });
+            logGnnEdge(denied);
+            const gcDenied = scheduleGulp('hookwall_deny');
             res.writeHead(403);
-            res.end(JSON.stringify({ ok: false, gate: 'hookwall', denies: gate.denies }));
+            res.end(JSON.stringify({
+              ok: false,
+              gate: 'hookwall',
+              denies: gate.denies,
+              behcs: denied.behcs || null,
+              gcScheduled: gcDenied.scheduled,
+            }));
             return;
           }
           msg.received_at = new Date().toISOString();
@@ -557,6 +664,13 @@ function startBus() {
             msg.d0 = { verdict: d0result.inferVerdict, tier: d0result.tier, gatePass: d0result.gatePass };
           }
 
+          recordCollectorMessage(msg, {
+            reason: 'message_ingest',
+            remoteMeta,
+            reflex,
+            d0result,
+          });
+
           // Log
           appendNdjson(INBOX, msg);
           truncateNdjson(INBOX, MAX_INBOX);
@@ -568,6 +682,7 @@ function startBus() {
           // Auto-relay
           relayToLiris(msg);
           relayToFalcon(msg);
+          const gcSchedule = scheduleGulp('message_threshold');
           // Console
           if (msg.mode !== 'stealth') {
             const txt = msg.text || msg.payload?.text || JSON.stringify(msg.payload || '').slice(0, 100);
@@ -575,7 +690,16 @@ function startBus() {
             process.stdout.write(`[BEHCS] ${msg.from}→${msg.to}: ${typeof txt === 'string' ? txt.slice(0, 120) : ''}${d0tag}\n`);
           }
           res.writeHead(200);
-          res.end(JSON.stringify({ ok: true, received: msg.id, gated: true, by: 'acer-sidecar', d0: d0result ? { verdict: d0result.inferVerdict, tier: d0result.tier } : null, reflex: reflex.action }));
+          res.end(JSON.stringify({
+            ok: true,
+            received: msg.id,
+            gated: true,
+            by: 'acer-sidecar',
+            d0: d0result ? { verdict: d0result.inferVerdict, tier: d0result.tier } : null,
+            reflex: reflex.action,
+            behcs: msg.behcs || null,
+            gcScheduled: gcSchedule.scheduled,
+          }));
         } catch (e) {
           res.writeHead(400);
           res.end(JSON.stringify({ ok: false, error: e.message }));
@@ -607,6 +731,40 @@ function startBus() {
       if (fs.existsSync(QUEUE)) fs.writeFileSync(QUEUE, '');
       res.writeHead(200);
       res.end(JSON.stringify({ ok: true, flushed: true }));
+      return;
+    }
+
+    if (url.pathname === '/behcs/gc/status' && req.method === 'GET') {
+      res.writeHead(200);
+      res.end(JSON.stringify(collectorStatus()));
+      return;
+    }
+
+    if (url.pathname === '/behcs/gc/run' && req.method === 'POST') {
+      if (!liveSidecarGcRunEnabled()) {
+        sendSidecarHold(res, 'sidecar_gc_run_disabled', 'ASOLARIA_BEHCS_GC_RUN_ENABLED=1');
+        return;
+      }
+      if (!isLoopbackRequest(req) && !remoteSidecarGcRunEnabled()) {
+        sendSidecarHold(res, 'sidecar_gc_run_remote_disabled', 'ASOLARIA_BEHCS_GC_RUN_ALLOW_REMOTE=1');
+        return;
+      }
+      let body = '';
+      req.on('data', c => body += c);
+      req.on('end', async () => {
+        try {
+          const payload = body.trim() ? JSON.parse(body) : {};
+          const result = await runGulpRehydration({
+            force: true,
+            reason: payload.reason || url.searchParams.get('reason') || 'manual_http',
+          });
+          res.writeHead(200);
+          res.end(JSON.stringify(result));
+        } catch (e) {
+          res.writeHead(500);
+          res.end(JSON.stringify({ ok: false, error: e.message }));
+        }
+      });
       return;
     }
 
@@ -661,7 +819,7 @@ function startBus() {
     }
 
     res.writeHead(404);
-    res.end(JSON.stringify({ ok: false, routes: ['/behcs/health', '/behcs/send', '/behcs/inbox', '/behcs/rehydrate', '/behcs/flush', '/behcs/devices', '/behcs/d0', '/behcs/cursor'] }));
+    res.end(JSON.stringify({ ok: false, routes: ['/behcs/health', '/behcs/send', '/behcs/inbox', '/behcs/rehydrate', '/behcs/flush', '/behcs/gc/status', '/behcs/gc/run', '/behcs/devices', '/behcs/d0', '/behcs/cursor'] }));
   });
 
   server.listen(BUS_PORT, '0.0.0.0', () => {
@@ -701,7 +859,15 @@ function cronCycle() {
     id: 'sidecar-hb-' + cycleCount, ts: new Date().toISOString(),
     payload: { cycle: cycleCount, uptime_s: cycleCount * 30, adb: adbConnected() },
   };
+  recordCollectorMessage(hb, {
+    reason: 'sidecar_heartbeat',
+    remoteMeta: { ip: '127.0.0.1', port: BUS_PORT, method: 'INTERNAL', protocol: 'behcs' },
+    reflex: { action: 'absorb', reason: 'heartbeat_reflex', runInference: false },
+  });
   appendNdjson(INBOX, hb);
+  logGnnEdge(hb);
+  truncateNdjson(INBOX, MAX_INBOX);
+  scheduleGulp('heartbeat_threshold');
 
   // D0 heartbeat — monitor all dims + agents
   d0Heartbeat();
@@ -724,20 +890,48 @@ function cleanPid() {
 }
 
 // ═══ MAIN ═══
-console.log('[BEHCS-SIDECAR] Starting — PID ' + process.pid);
-console.log('[BEHCS-SIDECAR] 453 entities, 22350 edges, 47D, 256 glyphs');
-console.log('[BEHCS-SIDECAR] Hookwall on every message. GNN edge per tuple.');
-console.log('[BEHCS-SIDECAR] D0 RUNTIME: 6 dims LIVE, 6 agents LISTENING');
-console.log('[BEHCS-SIDECAR] REFLEX LAYER: pre-inference fast reactions');
-console.log('[BEHCS-SIDECAR] CURSOR INTENT: POST /behcs/cursor {x,y}');
-console.log('[BEHCS-SIDECAR] Cron: 30s heartbeat + D0 monitor + ADB watch.');
-console.log('');
+const CLI_ARGS = new Set(process.argv.slice(2));
 
-writePid();
-process.on('exit', cleanPid);
-process.on('SIGINT', () => { cleanPid(); process.exit(0); });
-process.on('SIGTERM', () => { cleanPid(); process.exit(0); });
+if (CLI_ARGS.has('--gc-status')) {
+  console.log(JSON.stringify(collectorStatus(), null, 2));
+} else if (CLI_ARGS.has('--gc-now')) {
+  if (!liveSidecarGcRunEnabled()) {
+    console.log(JSON.stringify({
+      ok: false,
+      held: true,
+      preview: true,
+      reason: 'sidecar_gc_run_disabled',
+      enableWith: 'ASOLARIA_BEHCS_GC_RUN_ENABLED=1',
+    }, null, 2));
+    process.exit(2);
+  }
+  runGulpRehydration({ force: true, reason: 'cli_manual' })
+    .then((result) => {
+      console.log(JSON.stringify(result, null, 2));
+      process.exit(result.ok === false ? 1 : 0);
+    })
+    .catch((error) => {
+      console.error(JSON.stringify({ ok: false, error: error.message }, null, 2));
+      process.exit(1);
+    });
+} else {
+  seedCollectorBuffer();
+  console.log('[BEHCS-SIDECAR] Starting — PID ' + process.pid);
+  console.log('[BEHCS-SIDECAR] 453 entities, 22350 edges, 47D, 256 glyphs');
+  console.log('[BEHCS-SIDECAR] Hookwall on every message. GNN edge per tuple.');
+  console.log('[BEHCS-SIDECAR] D0 RUNTIME: 6 dims LIVE, 6 agents LISTENING');
+  console.log('[BEHCS-SIDECAR] REFLEX LAYER: pre-inference fast reactions');
+  console.log('[BEHCS-SIDECAR] CURSOR INTENT: POST /behcs/cursor {x,y}');
+  console.log('[BEHCS-SIDECAR] GC: every 2000 messages → gulp rehydration → omnishannon × GNN.');
+  console.log('[BEHCS-SIDECAR] Cron: 30s heartbeat + D0 monitor + ADB watch.');
+  console.log('');
 
-startBus();
-setInterval(cronCycle, HEARTBEAT_INTERVAL);
-cronCycle();
+  writePid();
+  process.on('exit', cleanPid);
+  process.on('SIGINT', () => { cleanPid(); process.exit(0); });
+  process.on('SIGTERM', () => { cleanPid(); process.exit(0); });
+
+  startBus();
+  setInterval(cronCycle, HEARTBEAT_INTERVAL);
+  cronCycle();
+}

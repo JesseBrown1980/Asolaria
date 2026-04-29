@@ -207,7 +207,8 @@ function getCoordinatorPrompt(opts) {
 
   if (Array.isArray(options.mcpServers) && options.mcpServers.length > 0) {
     lines.push(
-      `Workers also have access to MCP tools from: ${options.mcpServers.join(", ")}`,
+      `Workers also have access to MCP tools from Asolaria OS / BEHCS-256 only: ${options.mcpServers.join(", ")}`,
+      "External MCP servers are not a worker surface unless Asolaria BEHCS-256 has wrapped and authorized them.",
       ""
     );
   }

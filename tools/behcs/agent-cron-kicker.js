@@ -20,8 +20,10 @@
 
 const http = require('http');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { execSync } = require('child_process');
+const sovereignty = require('../../ix/verbs/sovereignty');
 
 const ROOT = 'C:/Users/acer/Asolaria';
 const BEHCS_PORT = 4947;
@@ -37,6 +39,22 @@ try { codex = require('./codex-bridge'); } catch (e) {
 const now = () => new Date().toISOString();
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 function appendNdjson(f, obj) { ensureDir(path.dirname(f)); fs.appendFileSync(f, JSON.stringify(obj) + '\n'); }
+function liveCronActionsEnabled() {
+  return String(process.env.ASOLARIA_AGENT_CRON_ACTIONS_ENABLED || '').trim() === '1';
+}
+
+async function runSovereigntyVerb(name, args = {}, permissionTier = 'operator') {
+  const verb = sovereignty[name];
+  if (typeof verb !== 'function') {
+    return { ok: false, error: `unknown_verb:${name}` };
+  }
+  return verb(args, {
+    pid: 'asolaria-cron-kicker',
+    host: os.hostname(),
+    permissionTier,
+    sessionId: `cron-${Date.now()}`,
+  });
+}
 
 // ═══════════════════════════════════════════════════════════
 // NAMED AGENT REGISTRY
@@ -98,18 +116,73 @@ const AGENTS = [
         return r.includes('"ok":true') ? 'LIRIS_ALIVE' : 'LIRIS_DOWN';
       } catch (_) { return 'LIRIS_UNREACHABLE'; }
     },
+    act: async (check) => {
+      if (check === 'LIRIS_ALIVE') {
+        const relay = await runSovereigntyVerb('behcs_bus_relay', {
+          to: 'liris',
+          text: 'cron-kick: check inbox + process pending messages + emit heartbeat back',
+          focus: 'federation-heartbeat',
+        });
+        return relay.ok ? 'RELAYED_TO_LIRIS' : `RELAY_FAILED:${relay.error || 'unknown'}`;
+      }
+      return 'LIRIS_DOWN_SKIP';
+    },
   },
   {
     id: 'phone-falcon-interface',
     target: 'falcon-adb-tunnel',
     cube: 'D15_DEVICE',
     focus: 'Falcon ADB reconnect + tunnel repair + Aether dashboard',
-    checks: () => {
+    checks: async () => {
+      const scan = await runSovereigntyVerb('aerial_cidr_scan', {
+        includeUnknown: false,
+        candidates: [
+          { name: 'falcon', address: '192.168.1.9:5555' },
+          { name: 'felipe', address: '192.168.1.10:5555' },
+        ],
+      });
+      if (!scan.ok) return 'AERIAL_SCAN_FAILED';
+      if (scan.counts.connected > 0) return `AERIAL_${scan.counts.connected}_${scan.counts.candidates}`;
+      if (scan.counts.active > 0) return `ADB_ACTIVE_${scan.counts.active}`;
+      return 'NO_AERIAL_DEVICES';
+    },
+    act: async (check) => {
+      const actions = [];
+      const fleet = await runSovereigntyVerb('phone_fleet_scan', { alias: 'cron-phone-fleet' });
+      if (fleet.ok) {
+        actions.push(`FLEET_${fleet.manifest?.counts?.adbDevices ?? 0}`);
+      }
       try {
-        const r = execSync('adb devices 2>&1', { timeout: 5000 }).toString();
-        const lines = r.split('\n').filter(l => l.includes('device') && !l.includes('List'));
-        return lines.length > 0 ? `ADB_DEVICES_${lines.length}` : 'NO_ADB_DEVICES';
-      } catch (_) { return 'ADB_FAILED'; }
+        // Try reconnect Falcon WiFi ADB if missing
+        const devices = execSync('adb devices 2>&1', { timeout: 5000 }).toString();
+        if (!devices.includes('192.168.1.9')) {
+          try { execSync('adb connect 192.168.1.9:5555 2>&1', { timeout: 8000 }); actions.push('FALCON_RECONNECT_ATTEMPTED'); } catch (_) { actions.push('FALCON_RECONNECT_FAILED'); }
+        }
+        // Set ADB reverse on Felipe if connected
+        if (devices.includes('R9QY205KAKJ')) {
+          try { execSync('adb -s R9QY205KAKJ reverse tcp:4948 tcp:4947 2>&1', { timeout: 5000 }); actions.push('FELIPE_REVERSE_SET'); } catch (_) {}
+          // Check if micro-agent is running on Felipe
+          try {
+            const ps = execSync('adb -s R9QY205KAKJ shell "ps -A 2>/dev/null | grep python" 2>&1', { timeout: 5000 }).toString();
+            if (ps.includes('python')) { actions.push('FELIPE_AGENT_ALIVE'); }
+            else {
+              // Restart micro-agent via Termux
+              execSync('adb -s R9QY205KAKJ shell "am start -n com.termux/.HomeActivity" 2>&1', { timeout: 5000 });
+              execSync('adb -s R9QY205KAKJ shell "input text \'python3 /storage/emulated/0/Asolaria/micro-agent-behcs.py &\' && input keyevent 66" 2>&1', { timeout: 8000 });
+              actions.push('FELIPE_AGENT_RESTARTED');
+            }
+          } catch (_) { actions.push('FELIPE_PS_CHECK_FAILED'); }
+        }
+      } catch (_) { actions.push('ACT_ERROR'); }
+      if (check !== 'NO_AERIAL_DEVICES' && check !== 'AERIAL_SCAN_FAILED') {
+        const relay = await runSovereigntyVerb('behcs_bus_relay', {
+          to: 'falcon',
+          text: 'cron-kick: check inbox + process pending messages + emit heartbeat back',
+          focus: 'phone-heartbeat',
+        });
+        actions.push(relay.ok ? 'RELAYED_TO_FALCON' : 'FALCON_RELAY_FAILED');
+      }
+      return actions.join('+') || 'NO_ACTION';
     },
   },
 ];
@@ -144,9 +217,14 @@ function sendBehcs(payload) {
 async function kickAll(cycle) {
   const ts = now();
   const results = [];
+  const liveActions = liveCronActionsEnabled();
+  const registryUpdate = await runSovereigntyVerb('device_registry_update', {
+    source: 'cron-kicker',
+    dryRun: !liveActions,
+  });
 
   for (const agent of AGENTS) {
-    const checkResult = agent.checks();
+    const checkResult = await Promise.resolve(agent.checks());
     const glyph = codex.hilbertAddress(agent.id);
     const kickGlyph = codex.hilbertAddress(agent.id + ':' + ts);
 
@@ -172,13 +250,25 @@ async function kickAll(cycle) {
       cube: { D0_RUNTIME: true, D44_HEARTBEAT: 7189057, AGENT_KICK: true },
     };
 
+    let actResult = liveActions ? 'NO_ACT_FN' : 'ACTIONS_HELD_ASOLARIA_AGENT_CRON_ACTIONS_ENABLED_REQUIRED';
+    if (liveActions && agent.act) {
+      try { actResult = await Promise.resolve(agent.act(checkResult)); } catch (e) { actResult = 'ACT_ERROR:' + e.message.slice(0, 50); }
+    }
+    envelope.payload.actResult = actResult;
+
     const busResult = await sendBehcs(envelope);
     const ok = busResult.ok === true;
-    results.push({ id: agent.id, glyph, check: checkResult, gated: ok });
+    results.push({ id: agent.id, glyph, check: checkResult, gated: ok, acted: actResult });
   }
 
   // Log kick
-  const kickEntry = { ts, cycle, agents: results.length, results: results.map(r => ({ id: r.id, check: r.check, gated: r.gated })) };
+  const kickEntry = {
+    ts,
+    cycle,
+    agents: results.length,
+    registryUpdated: Array.isArray(registryUpdate.updated) ? registryUpdate.updated.length : 0,
+    results: results.map(r => ({ id: r.id, check: r.check, gated: r.gated, acted: r.acted })),
+  };
   appendNdjson(KICK_LOG, kickEntry);
 
   return results;
@@ -211,7 +301,7 @@ async function main() {
     console.log(`[cron] cycle #${cycle} — ${alive}/${results.length} kicked  checks: ${checks}`);
     for (const r of results) {
       const mark = r.gated ? '✓' : '✗';
-      console.log(`  ${mark} ${r.glyph}  ${r.id.padEnd(38)} check=${r.check}`);
+      console.log(`  ${mark} ${r.glyph}  ${r.id.padEnd(38)} check=${r.check}  act=${r.acted || 'NONE'}`);
     }
   }
 

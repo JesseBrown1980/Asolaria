@@ -6,6 +6,10 @@ const express = require("express");
 const router = express.Router();
 const { respondError, asInt } = require("../lib/helpers");
 
+function manualGatewayCronEnabled() {
+  return String(process.env.ASOLARIA_GATEWAY_MANUAL_CRON_ENABLED || "").trim() === "1";
+}
+
 function createGatewayRouter({ callGatewayControlApi, isLoopbackRequest }) {
 
   function loopbackGuard(req, res) {
@@ -48,6 +52,40 @@ function createGatewayRouter({ callGatewayControlApi, isLoopbackRequest }) {
     if (!loopbackGuard(req, res)) return;
     try {
       return res.json(await callGatewayControlApi("POST", "/heartbeat/run", {}));
+    } catch (error) { return respondError(res, error, Number(error?.statusCode || 502)); }
+  });
+
+  router.get("/cycles", async (req, res) => {
+    if (!loopbackGuard(req, res)) return;
+    try {
+      return res.json(await callGatewayControlApi("GET", "/cycles"));
+    } catch (error) { return respondError(res, error, Number(error?.statusCode || 502)); }
+  });
+
+  router.get("/cron", async (req, res) => {
+    if (!loopbackGuard(req, res)) return;
+    try {
+      return res.json(await callGatewayControlApi("GET", "/cron"));
+    } catch (error) { return respondError(res, error, Number(error?.statusCode || 502)); }
+  });
+
+  router.post("/cron/run", async (req, res) => {
+    if (!loopbackGuard(req, res)) return;
+    try {
+      if (!manualGatewayCronEnabled()) {
+        return res.status(403).json({
+          ok: false,
+          held: true,
+          preview: true,
+          reason: "gateway_manual_cron_disabled",
+          enableWith: "ASOLARIA_GATEWAY_MANUAL_CRON_ENABLED=1"
+        });
+      }
+      const name = String(req.body?.name || "").trim();
+      if (!/^[A-Za-z0-9._:-]{1,100}$/.test(name)) {
+        return respondError(res, "Invalid cron job name.", 400);
+      }
+      return res.json(await callGatewayControlApi("POST", "/cron/run", { name }));
     } catch (error) { return respondError(res, error, Number(error?.statusCode || 502)); }
   });
 
