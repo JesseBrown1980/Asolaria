@@ -29,6 +29,13 @@ function resolveToolPaths() {
       'C:\\nvm4w\\nodejs\\codex.cmd',
       'C:\\nvm4w\\nodejs\\codex'
     ]),
+    opencodePath: firstExisting([
+      process.env.ASOLARIA_OPENCODE_SHELLLESS_PATH || '',
+      process.env.ASOLARIA_OPENCODE_PATH || '',
+      'C:\\nvm4w\\nodejs\\opencode.exe',
+      'C:\\nvm4w\\nodejs\\opencode',
+      appData ? `${appData}\\npm\\opencode.exe` : ''
+    ]),
     claudePath: firstExisting([
       process.env.ASOLARIA_CLAUDE_PATH || '',
       appData ? `${appData}\\npm\\claude.cmd` : '',

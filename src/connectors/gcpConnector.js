@@ -105,6 +105,13 @@ function normalizeProjectNumber(value) {
   return raw;
 }
 
+function normalizeEmail(value) {
+  const raw = String(value || "").trim().toLowerCase();
+  if (!raw) return "";
+  if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(raw)) return "";
+  return raw;
+}
+
 function normalizeProjectKey(value) {
   const raw = normalizeProjectId(value);
   if (!raw) return "";
@@ -182,6 +189,7 @@ function getGcpConfigSummary(policy = {}) {
     configured: Boolean(resolved.clientEmail && resolved.privateKey),
     configSource: resolved.source,
     clientEmail: resolved.clientEmail,
+    clientId: resolved.clientId,
     projectId: resolved.projectId,
     projectNumber: resolved.projectNumber,
     privateKeyIdHint: resolved.privateKeyId ? maskSecret(resolved.privateKeyId) : "",
@@ -335,12 +343,14 @@ function signJwt(payload, privateKeyPem) {
   return `${message}.${base64url(signature)}`;
 }
 
-function scopesCacheKey(scopes) {
+function scopesCacheKey(scopes, subject = "") {
   const normalized = normalizeScopeList(scopes);
-  return normalized.slice().sort().join(" ");
+  const scopeKey = normalized.slice().sort().join(" ");
+  const delegatedSubject = normalizeEmail(subject);
+  return delegatedSubject ? `${delegatedSubject}::${scopeKey}` : scopeKey;
 }
 
-async function fetchServiceAccountToken({ clientEmail, privateKey, scopes }) {
+async function fetchServiceAccountToken({ clientEmail, privateKey, scopes, subject }) {
   const nowSec = Math.floor(Date.now() / 1000);
   const expSec = nowSec + 3600; // max 1 hour
   const scopeList = normalizeScopeList(scopes);
@@ -348,13 +358,19 @@ async function fetchServiceAccountToken({ clientEmail, privateKey, scopes }) {
     throw new Error("At least one OAuth scope is required for service account token.");
   }
 
-  const assertion = signJwt({
+  const delegatedSubject = normalizeEmail(subject);
+  const payload = {
     iss: clientEmail,
     scope: scopeList.join(" "),
     aud: GOOGLE_TOKEN_URL,
     exp: expSec,
     iat: nowSec
-  }, privateKey);
+  };
+  if (delegatedSubject) {
+    payload.sub = delegatedSubject;
+  }
+
+  const assertion = signJwt(payload, privateKey);
 
   const body = new URLSearchParams();
   body.set("grant_type", "urn:ietf:params:oauth:grant-type:jwt-bearer");
@@ -392,28 +408,32 @@ async function fetchServiceAccountToken({ clientEmail, privateKey, scopes }) {
   return { accessToken, expiresAtMs };
 }
 
-async function getServiceAccountAccessToken(scopes) {
+async function getServiceAccountAccessToken(scopes, options = {}) {
   const resolved = resolveServiceAccountConfig();
   if (!resolved.clientEmail || !resolved.privateKey) {
     throw new Error("GCP service account is not configured.");
   }
 
-  const scopeKey = scopesCacheKey(scopes && scopes.length ? scopes : resolved.defaultScopes);
-  const effectiveScopes = scopeKey ? scopeKey.split(" ").filter(Boolean) : (resolved.defaultScopes.length ? resolved.defaultScopes : DEFAULT_SCOPES);
+  const requestedScopes = scopes && scopes.length ? scopes : resolved.defaultScopes;
+  const subject = normalizeEmail(options.subject || options.delegatedSubject || "");
+  const scopeKey = scopesCacheKey(requestedScopes, subject);
+  const scopePart = subject && scopeKey.startsWith(`${subject}::`) ? scopeKey.slice(subject.length + 2) : scopeKey;
+  const effectiveScopes = scopePart ? scopePart.split(" ").filter(Boolean) : (resolved.defaultScopes.length ? resolved.defaultScopes : DEFAULT_SCOPES);
 
   const cached = tokenCache.get(scopeKey);
   const now = Date.now();
   if (cached && cached.accessToken && cached.expiresAtMs > now + 2 * 60 * 1000) {
-    return { accessToken: cached.accessToken, scopes: effectiveScopes };
+    return { accessToken: cached.accessToken, scopes: effectiveScopes, subject, clientEmail: resolved.clientEmail };
   }
 
   const fresh = await fetchServiceAccountToken({
     clientEmail: resolved.clientEmail,
     privateKey: resolved.privateKey,
-    scopes: effectiveScopes
+    scopes: effectiveScopes,
+    subject
   });
   tokenCache.set(scopeKey, fresh);
-  return { accessToken: fresh.accessToken, scopes: effectiveScopes };
+  return { accessToken: fresh.accessToken, scopes: effectiveScopes, subject, clientEmail: resolved.clientEmail };
 }
 
 function isAllowedGoogleApiHost(hostname) {

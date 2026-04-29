@@ -6,8 +6,19 @@ import torch
 
 from models.gnn_baseline import EdgeLevelGNN
 
+
+def normalize_state_dict_keys(state_dict):
+    return {
+        key.replace("conv1.lin.bias", "conv1.bias").replace("conv2.lin.bias", "conv2.bias")
+        if key.endswith(".lin.bias")
+        else key: value
+        for key, value in state_dict.items()
+    }
+
+
 MODEL = EdgeLevelGNN(6, 64)
-MODEL.load_state_dict(torch.load(Path(__file__).with_name("baseline_model.pt"), map_location="cpu"))
+state_dict = torch.load(Path(__file__).with_name("baseline_model.pt"), map_location="cpu")
+MODEL.load_state_dict(normalize_state_dict_keys(state_dict))
 MODEL.eval()
 
 

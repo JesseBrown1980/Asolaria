@@ -6,6 +6,19 @@
   "risk": "high",
   "permissions": ["desktop.capture", "desktop.control", "mobile.auth"],
   "tags": ["phone", "mobile", "desktop", "mirror", "control", "voice", "whatsapp", "approvals"],
+  "steps": [
+    {
+      "action": "phone_mode_desktop_control_status",
+      "note": "Return phone-mode desktop-control metadata; live control remains guarded by mobile auth, direct-control policy, and elevated desktop authority.",
+      "payload": {
+        "mode": "metadata_only",
+        "controlRequiresArm": true,
+        "controlTimeoutSeconds": 90
+      },
+      "permissions": ["desktop.capture", "desktop.control", "mobile.auth"],
+      "requiresApproval": true
+    }
+  ],
   "discoveredAt": "2026-03-14T21:30:00.000Z",
   "source": "session-research",
   "files": {

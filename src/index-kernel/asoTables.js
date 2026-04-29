@@ -199,6 +199,8 @@ module.exports = function createTableOps(deps) {
     }
 
     const table = readTable("conflicts");
+    const isDuplicate = table.rows.some(r => r.resolutionState === "open" && r.topicId === topicId && r.entryB === entryB);
+    if (isDuplicate) return { ok: true, id: null, op: "add-conflict", skipped: true, reason: "duplicate_open_conflict" };
     const conflictId = generateRowId("CON");
     const row = {
       conflictId,

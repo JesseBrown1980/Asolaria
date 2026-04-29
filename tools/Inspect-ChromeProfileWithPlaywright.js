@@ -109,6 +109,8 @@ async function main() {
   const maxChars = Math.max(200, Math.min(20000, Number(args["max-chars"] || 2000)));
   const chromePath = String(args["chrome-path"] || "C:/Program Files/Google/Chrome/Application/chrome.exe").trim();
   const sourceRoot = String(args["source-root"] || "C:/Users/acer/AppData/Local/Google/Chrome/User Data").trim();
+  const useSourceProfile = String(args["use-source-profile"] || "").toLowerCase() === "true";
+  const headless = String(args.headful || "").toLowerCase() === "true" ? false : true;
 
   if (!profileDirectory) {
     throw new Error("--profile-directory is required.");
@@ -123,17 +125,21 @@ async function main() {
     throw new Error(`Chrome user data root not found: ${sourceRoot}`);
   }
 
-  const tempRoot = path.join(os.tmpdir(), `asolaria-pw-${profileDirectory.replace(/[^a-z0-9._-]+/gi, "_")}`);
-  if (fs.existsSync(tempRoot)) {
+  const tempRoot = useSourceProfile
+    ? sourceRoot
+    : path.join(os.tmpdir(), `asolaria-pw-${profileDirectory.replace(/[^a-z0-9._-]+/gi, "_")}`);
+  if (!useSourceProfile && fs.existsSync(tempRoot)) {
     fs.rmSync(tempRoot, { recursive: true, force: true });
   }
-  copyProfileTree(sourceRoot, profileDirectory, tempRoot);
+  if (!useSourceProfile) {
+    copyProfileTree(sourceRoot, profileDirectory, tempRoot);
+  }
 
   let context = null;
   try {
     context = await chromium.launchPersistentContext(tempRoot, {
       executablePath: chromePath,
-      headless: true,
+      headless,
       args: [`--profile-directory=${profileDirectory}`]
     });
     const page = context.pages()[0] || await context.newPage();
@@ -152,7 +158,9 @@ async function main() {
     if (context) {
       await context.close().catch(() => {});
     }
-    fs.rmSync(tempRoot, { recursive: true, force: true });
+    if (!useSourceProfile) {
+      fs.rmSync(tempRoot, { recursive: true, force: true });
+    }
   }
 }
 

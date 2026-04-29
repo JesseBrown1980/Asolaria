@@ -18,6 +18,10 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const {
+  evaluateFileCap,
+  summarizeFileCapStatus,
+} = require('./behcs-file-cap');
 
 const BEHCS_DIR = path.join(__dirname, '..', '..', 'data', 'behcs');
 const CODEX_DIR = path.join(BEHCS_DIR, 'codex');
@@ -102,6 +106,11 @@ const context = {
   catalog_status: catalogs.status,
   cubes_loaded: Object.keys(cubes).length,
   edge_count: connectors.edges?.length || connectors.edge_count || 0,
+  file_cap_guard: summarizeFileCapStatus(evaluateFileCap({
+    rootDir: path.join(__dirname, '..', '..'),
+    reason: 'codex_bridge',
+    surfaceIds: ['behcs_index', 'behcs_codex', 'behcs_cubes', 'ix_codex', 'ix_cubes', 'behcs_state', 'ix_state', 'behcs_gc'],
+  })),
   loaded_at: new Date().toISOString(),
 };
 

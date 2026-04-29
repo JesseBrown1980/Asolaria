@@ -63,6 +63,45 @@ const STATIC_WORKER_SELECTORS = Object.freeze([
     version: 1,
     labels: ["worker", "symphony", "project"],
     description: "Symphony project lane and dispatch surface."
+  }),
+  Object.freeze({
+    id: "worker_lane.openmythos",
+    title: "OpenMythos Cognitive Engine Lane",
+    category: "worker_lane",
+    selectorKind: "control",
+    profileId: "worker_lane",
+    accessLevel: "trusted_agent",
+    tumblerId: "gpu_primary_model",
+    status: "active",
+    version: 1,
+    labels: ["worker", "cognitive_engine", "openmythos", "deep_reasoning", "law_099"],
+    description: "PID-bound recurrent-depth reasoning lane governed by LAW-099 spectral stability."
+  }),
+  Object.freeze({
+    id: "worker_lane.ga_svm",
+    title: "GA-SVM Classification Engine Lane",
+    category: "worker_lane",
+    selectorKind: "control",
+    profileId: "worker_lane",
+    accessLevel: "trusted_agent",
+    tumblerId: "cpu_local_general",
+    status: "active",
+    version: 1,
+    labels: ["worker", "cognitive_engine", "ga_svm", "classification", "crop_disease", "law_100"],
+    description: "Feature-validated GA-SVM classification lane with cross-validation and drift gates."
+  }),
+  Object.freeze({
+    id: "worker_lane.openmythos_ga_svm_fusion",
+    title: "OpenMythos + GA-SVM Fusion Lane",
+    category: "worker_lane",
+    selectorKind: "control",
+    profileId: "worker_lane",
+    accessLevel: "trusted_agent",
+    tumblerId: "gpu_primary_model",
+    status: "active",
+    version: 1,
+    labels: ["worker", "cognitive_engine", "fusion", "openmythos", "ga_svm", "law_099", "law_100"],
+    description: "Staged classification plus deep reasoning lane routed through GAC, drift, memory, and ledger surfaces."
   })
 ]);
 

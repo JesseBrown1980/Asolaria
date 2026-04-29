@@ -361,10 +361,248 @@ const QDD_CONSTRUCTIONS = Object.freeze({
   }
 });
 
+const ASOLARIA_CONSTRUCTIONS = Object.freeze({
+  "asolaria-memory-index-docs": {
+    id: "asolaria-memory-index-docs",
+    label: "Memory Index and Docs Fabric",
+    district: "construction_yard",
+    projectScope: "asolaria",
+    kind: "pipeline",
+    description: "Asolaria memory, atlas, task index, and white-room document lane. This is the active self-build lane for map-map-mapped and cube-cube-cubed work.",
+    skills: ["codebase-review-composite-tools-baseline"],
+    tools: ["node", "json", "markdown", "rg"],
+    contextFiles: [
+      "C:/Users/acer/Asolaria/src/ixFabricAtlasStore.js",
+      "C:/Users/acer/Asolaria/routes/constructions.js",
+      "C:/Users/acer/Asolaria/data/behcs/index/ix-fabric-atlas.v1.json",
+      "C:/Users/acer/Asolaria/TASKS.md"
+    ],
+    systemPromptSuffix: [
+      "You are an instant agent specialized in Asolaria memory/index/docs self-build work.",
+      "Focus: atlas truth, TASKS canon, white-room packet surfaces, and bounded map-map-mapped updates.",
+      "Respect controller packet truth, file-cap guard, and local-only execution.",
+      "Shadow, mirror, and archive are secondary non-promoted evidence only."
+    ].join("\n"),
+    domainModel: {
+      laneId: "memory-index-docs",
+      controllerRole: "active_lane",
+      proofMode: "white_room_append_only"
+    },
+    mistakes: [
+      "shadow-misload: Shadow/mirror/archive must not be treated as promoted live canon"
+    ],
+    patterns: [
+      "atlas-first: Update atlas/task canon before wider lane claims",
+      "bounded-local-only: Self-build stays on C: under proof budget and guard law"
+    ]
+  },
+
+  "asolaria-desktop-phone-mirror": {
+    id: "asolaria-desktop-phone-mirror",
+    label: "Desktop Phone Mirror Lane",
+    district: "construction_yard",
+    projectScope: "asolaria",
+    kind: "service",
+    description: "Phone mirror, pro-mirror, Falcon bridge, USB ADB, and mirror-side runtime lane for bounded self-build integration.",
+    skills: ["phone-dashboard-smoke"],
+    tools: ["node", "adb", "mirror", "routehook"],
+    contextFiles: [
+      "C:/Users/acer/Asolaria/routes/phone.js",
+      "C:/Users/acer/Asolaria/src/connectors/phoneMirrorConnector.js",
+      "C:/Users/acer/Asolaria/src/connectors/phoneProMirrorConnector.js",
+      "C:/Users/acer/Asolaria/data/behcs/sovereignty/bridge/falcon-bridge.js"
+    ],
+    systemPromptSuffix: [
+      "You are an instant agent specialized in the Asolaria desktop-phone-mirror lane.",
+      "Focus: phone mirror lifecycle, pro-mirror state, Falcon bridge surfaces, and bounded route-hook visibility.",
+      "No phone mutation, no E: writes, no promotion claims."
+    ].join("\n"),
+    domainModel: {
+      laneId: "desktop-phone-mirror",
+      controllerRole: "queue_ready_lane",
+      surfaces: ["usb_adb", "mirror_bridge", "pro_mirror", "falcon_bridge"]
+    },
+    mistakes: [
+      "mirror-only-assumption: Mirror lane must stay bridge-multilane, not a single endpoint"
+    ],
+    patterns: [
+      "lane-before-promotion: Bind runtime and proof surfaces before any broader promotion"
+    ]
+  },
+
+  "asolaria-browser-integrations": {
+    id: "asolaria-browser-integrations",
+    label: "Browser and Integrations Lane",
+    district: "construction_yard",
+    projectScope: "asolaria",
+    kind: "workstream",
+    description: "Browser, app integrations, and connector-side external surfaces queued behind desktop-phone-mirror in the self-build sequence.",
+    skills: ["integrations-snapshot"],
+    tools: ["node", "browser", "connector", "routehook"],
+    contextFiles: [
+      "C:/Users/acer/Asolaria/src/connectors/chromeConnector.js",
+      "C:/Users/acer/Asolaria/src/connectors/googleConnector.js",
+      "C:/Users/acer/Asolaria/src/connectors/microsoftConnector.js",
+      "C:/Users/acer/Asolaria/src/connectors/slackConnector.js"
+    ],
+    systemPromptSuffix: [
+      "You are an instant agent specialized in browser and integration surfaces for Asolaria self-build.",
+      "Focus: connector visibility, bounded runtime routing, and proof-first integration work."
+    ].join("\n"),
+    domainModel: {
+      laneId: "browser-integrations",
+      controllerRole: "queued_lane"
+    },
+    mistakes: [],
+    patterns: [
+      "connector-bound: External surfaces are lane-mapped before wider orchestration claims"
+    ]
+  },
+
+  "asolaria-gateway-runtime-routing": {
+    id: "asolaria-gateway-runtime-routing",
+    label: "Gateway Runtime Routing",
+    district: "construction_yard",
+    projectScope: "asolaria",
+    kind: "service",
+    description: "Brain routing, worker router, HG256 transport, omnispindle, and gateway-runtime-routing proof lane.",
+    skills: ["codebase-review-composite-tools-baseline"],
+    tools: ["node", "express", "router", "hookwall"],
+    contextFiles: [
+      "C:/Users/acer/Asolaria/src/brainOrchestrator.js",
+      "C:/Users/acer/Asolaria/src/connectors/workerRouter.js",
+      "C:/Users/acer/Asolaria/src/omnispindle.js",
+      "C:/Users/acer/Asolaria/src/hg256RuntimeContract.js"
+    ],
+    systemPromptSuffix: [
+      "You are an instant agent specialized in Asolaria gateway/runtime routing.",
+      "Focus: worker selection, HG256 route proof, omnispindle gating, and connector audit discipline.",
+      "Keep all work local and bounded unless proofs explicitly say otherwise."
+    ].join("\n"),
+    domainModel: {
+      laneId: "gateway-runtime-routing",
+      controllerRole: "routing_lane",
+      transport: "HG256"
+    },
+    mistakes: [
+      "fake-green: Route proof must stay honest when providers are unavailable"
+    ],
+    patterns: [
+      "transport-first: Hookwall and packet truth precede promotion claims"
+    ]
+  },
+
+  "asolaria-gc-gulp": {
+    id: "asolaria-gc-gulp",
+    label: "GC and Gulp Guard Lane",
+    district: "construction_yard",
+    projectScope: "asolaria",
+    kind: "pipeline",
+    description: "File-cap, Task Manager process truth, GC advice, and gulp runtime lane that keeps the fabric below the 2000-file ceiling.",
+    skills: [],
+    tools: ["node", "powershell", "gc", "budget"],
+    contextFiles: [
+      "C:/Users/acer/Asolaria/tools/behcs/behcs-file-cap.js",
+      "C:/Users/acer/Asolaria/tools/behcs/behcs-gulp-runtime.js",
+      "C:/Users/acer/Asolaria/data/behcs/resource-budget-snapshot.json",
+      "C:/Users/acer/Asolaria/reports/task-manager-gc-live-processor-tranche-latest.md"
+    ],
+    systemPromptSuffix: [
+      "You are an instant agent specialized in GC/gulp guard discipline for Asolaria.",
+      "Focus: the 2000-file budget, process-aware advisory, and small-batch checkpointing.",
+      "Do not widen beyond the live budget."
+    ].join("\n"),
+    domainModel: {
+      laneId: "gc-gulp",
+      controllerRole: "guard_lane",
+      budgetCap: 2000
+    },
+    mistakes: [
+      "gulp-overrun: Burst creation without GC discipline causes avoidable instability"
+    ],
+    patterns: [
+      "taskmanager-aware: Use process truth and file-cap truth as one live law"
+    ]
+  },
+
+  "asolaria-controller-guards": {
+    id: "asolaria-controller-guards",
+    label: "Controller Guard Surface",
+    district: "construction_yard",
+    projectScope: "asolaria",
+    kind: "service",
+    description: "Controller and guard synthesis lane for atlas guard surfaces, cascade guard surfaces, and fail-closed promotion law.",
+    skills: [],
+    tools: ["node", "policy", "guard", "routehook"],
+    contextFiles: [
+      "C:/Users/acer/Asolaria/src/ixFabricAtlasStore.js",
+      "C:/Users/acer/Asolaria/routes/constructions.js",
+      "C:/Users/acer/Asolaria/routes/omnispindle.js",
+      "C:/Users/acer/Asolaria/reports/task-manager-gc-live-processor-tranche-latest.md"
+    ],
+    systemPromptSuffix: [
+      "You are an instant agent specialized in controller guards for Asolaria.",
+      "Focus: pass/warn/hold/deny truth, fail-closed behavior, and operator-readable guard surfaces."
+    ].join("\n"),
+    domainModel: {
+      laneId: "controller-guards",
+      controllerRole: "guard_surface"
+    },
+    mistakes: [],
+    patterns: [
+      "fail-closed: If guard truth is uncertain, promotion stays blocked"
+    ]
+  },
+
+  "asolaria-storage-boot-sentinel": {
+    id: "asolaria-storage-boot-sentinel",
+    label: "Storage Boot Sentinel",
+    district: "construction_yard",
+    projectScope: "asolaria",
+    kind: "workstream",
+    description: "Sentinel-bound review surface for storage and boot recovery. This lane exists for review context only and is never auto-launched by self-build execution.",
+    skills: [],
+    tools: ["review", "boot", "storage"],
+    contextFiles: [
+      "C:/Users/acer/Asolaria/reports/deep-wave-sovereign-recovery-review-seal-latest.md",
+      "C:/Users/acer/Asolaria/reports/deep-wave-sovereign-boot-handoff-latest.md"
+    ],
+    systemPromptSuffix: [
+      "You are a Sentinel review surface for storage and boot recovery.",
+      "This lane stays last, fail-closed, and proof-first."
+    ].join("\n"),
+    domainModel: {
+      laneId: "storage-boot",
+      controllerRole: "blocked_last"
+    },
+    mistakes: [
+      "boot-too-early: Storage and boot promotion must stay last until proofs are explicit"
+    ],
+    patterns: [
+      "sentinel-bound: No automatic launch, no E: writes, no boot mutation"
+    ]
+  }
+});
+
+const SELF_BUILD_LANE_CONSTRUCTION_IDS = Object.freeze({
+  "memory-index-docs": "asolaria-memory-index-docs",
+  "desktop-phone-mirror": "asolaria-desktop-phone-mirror",
+  "browser-integrations": "asolaria-browser-integrations",
+  "gateway-runtime-routing": "asolaria-gateway-runtime-routing",
+  "gc-gulp": "asolaria-gc-gulp",
+  "controller-guards": "asolaria-controller-guards",
+  "storage-boot": "asolaria-storage-boot-sentinel"
+});
+
+const DEFAULT_CONSTRUCTIONS = Object.freeze({
+  ...QDD_CONSTRUCTIONS,
+  ...ASOLARIA_CONSTRUCTIONS
+});
+
 // ── Registry Operations ──
 
 function initializeConstructions() {
-  for (const [id, spec] of Object.entries(QDD_CONSTRUCTIONS)) {
+  for (const [id, spec] of Object.entries(DEFAULT_CONSTRUCTIONS)) {
     if (!_constructions.has(id)) {
       _constructions.set(id, new Construction(spec));
     }
@@ -395,6 +633,10 @@ function removeConstruction(id) {
   _constructions.delete(id);
   constructionEmitter.emit("construction_removed", { constructionId: id });
   return true;
+}
+
+function getConstructionIdForSelfBuildLane(laneId) {
+  return SELF_BUILD_LANE_CONSTRUCTION_IDS[String(laneId || "").trim()] || "";
 }
 
 /**
@@ -597,9 +839,11 @@ module.exports = {
   getAllConstructions,
   registerConstruction,
   removeConstruction,
+  getConstructionIdForSelfBuildLane,
   routeToConstruction,
   buildConstructionEntities,
   saveConstructionState,
   loadConstructionState,
-  QDD_CONSTRUCTIONS
+  QDD_CONSTRUCTIONS,
+  ASOLARIA_CONSTRUCTIONS
 };

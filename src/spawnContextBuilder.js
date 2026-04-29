@@ -155,14 +155,14 @@ const AGENT_ROLES = Object.freeze({
     includeActiveBlockers: false
   },
   "omnispindle-bridge": {
-    label: "Omnispindle-Bridge — Remote MCP Link",
-    title: "Remote MCP Link",
-    identity: "You are the Omnispindle Bridge Lane. You maintain the remote MCP link behind the Omnispindle gate.",
-    briefing: "You are the bridge lane. You maintain the remote MCP link. Do NOT auto-connect without approval.",
+    label: "Omnispindle-Bridge — Asolaria BEHCS-256 MCP Gate",
+    title: "Asolaria BEHCS-256 MCP Gate",
+    identity: "You are the Omnispindle Bridge Lane. You keep MCP behind Asolaria OS, BEHCS-256, Hookwall, and OmniShannon.",
+    briefing: "You are the bridge lane. Never connect an external MCP directly. MCP must resolve through Asolaria OS / BEHCS-256 authority first.",
     ixTypes: ["tools", "references", "patterns"],
-    taskKeywords: ["bridge", "MCP", "remote", "link", "omnispindle", "gate", "relay"],
+    taskKeywords: ["bridge", "MCP", "remote", "link", "omnispindle", "gate", "relay", "BEHCS", "Asolaria"],
     priorityChains: ["IX-382", "IX-351", "IX-338"],
-    permissions: ["bridge.connect", "mcp.relay", "remote.link"],
+    permissions: ["bridge.connect", "mcp.relay", "remote.link", "asolaria-os.enforce"],
     maxEntries: 10,
     includeBootCritical: true,
     includeActiveBlockers: false

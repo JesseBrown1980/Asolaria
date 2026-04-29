@@ -11,6 +11,8 @@ function Resolve-AdminTerminalId {
   switch ($TerminalId.Trim().ToLowerInvariant()) {
     "helm" { return "Helm" }
     "sentinel" { return "Sentinel" }
+    "gaia" { return "Gaia" }
+    "liris" { return "Liris" }
     default { throw "Unsupported admin terminal id: $TerminalId" }
   }
 }
@@ -25,6 +27,8 @@ function Get-AdminTerminalProfilePath {
   switch ($resolved) {
     "Helm" { return "C:\Users\acer\codex-bridge\profiles\admin-helm-v1.profile.json" }
     "Sentinel" { return "C:\Users\acer\codex-bridge\profiles\admin-sentinel-v1.profile.json" }
+    "Gaia" { return "C:\Users\acer\codex-bridge\profiles\admin-gaia-v1.profile.json" }
+    "Liris" { return "C:\Users\acer\codex-bridge\profiles\admin-liris-v1.profile.json" }
     default { throw "No profile path registered for $resolved" }
   }
 }

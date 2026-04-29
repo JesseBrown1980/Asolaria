@@ -25,14 +25,6 @@ agent:
   max_turns: 12
 codex:
   command: "'/mnt/c/nvm4w/nodejs/node.exe' 'C:\\nvm4w\\nodejs\\node_modules\\@openai\\codex\\bin\\codex.js' app-server"
-  command: "'/mnt/c/nvm4w/nodejs/node.exe' 'C:\\nvm4w\\nodejs\\node_modules\\@openai\\codex\\bin\\codex.js' app-server"
-  command: "'/mnt/c/nvm4w/nodejs/node.exe' 'C:\\nvm4w\\nodejs\\node_modules\\@openai\\codex\\bin\\codex.js' app-server"
-  command: "'/mnt/c/nvm4w/nodejs/node.exe' 'C:\\nvm4w\\nodejs\\node_modules\\@openai\\codex\\bin\\codex.js' app-server"
-  command: "'/mnt/c/nvm4w/nodejs/node.exe' 'C:\\nvm4w\\nodejs\\node_modules\\@openai\\codex\\bin\\codex.js' app-server"
-  command: "'/mnt/c/nvm4w/nodejs/node.exe' 'C:\\nvm4w\\nodejs\\node_modules\\@openai\\codex\\bin\\codex.js' app-server"
-  command: "'/mnt/c/nvm4w/nodejs/node.exe' 'C:\\nvm4w\\nodejs\\node_modules\\@openai\\codex\\bin\\codex.js' app-server"
-  command: "'/mnt/c/nvm4w/nodejs/node.exe' 'C:\\nvm4w\\nodejs\\node_modules\\@openai\\codex\\bin\\codex.js' app-server"
-  command: "'/mnt/c/nvm4w/nodejs/node.exe' 'C:\\nvm4w\\nodejs\\node_modules\\@openai\\codex\\bin\\codex.js' app-server"
   read_timeout_ms: 120000
   approval_policy: never
   thread_sandbox: workspace-write

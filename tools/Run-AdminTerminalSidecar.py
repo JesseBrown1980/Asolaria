@@ -56,6 +56,8 @@ def get_profile_path(repo_root: Path, terminal_key: str) -> Path:
     mapping = {
         "helm": Path(r"C:\Users\acer\codex-bridge\profiles\admin-helm-v1.profile.json"),
         "sentinel": Path(r"C:\Users\acer\codex-bridge\profiles\admin-sentinel-v1.profile.json"),
+        "gaia": Path(r"C:\Users\acer\codex-bridge\profiles\admin-gaia-v1.profile.json"),
+        "liris": Path(r"C:\Users\acer\codex-bridge\profiles\admin-liris-v1.profile.json"),
     }
     return mapping[terminal_key]
 
@@ -104,7 +106,7 @@ def read_inbox_lines(path: Path) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--terminal-id", required=True, choices=["Helm", "Sentinel"])
+    parser.add_argument("--terminal-id", required=True, choices=["Helm", "Sentinel", "Gaia", "Liris"])
     parser.add_argument("--command-path", default="")
     parser.add_argument("--command-arg", action="append", default=[])
     parser.add_argument("--workdir", default="")

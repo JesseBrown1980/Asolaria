@@ -61,7 +61,12 @@ const http = require('http');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const { spawnSync } = require('child_process');
+const { spawnSync, execSync } = require('child_process');
+
+// G-090 staleness surface (canonized with liris seq=66 a5638df)
+const PROCESS_STARTED_AT = new Date().toISOString();
+let SOURCE_COMMIT = 'unknown';
+try { SOURCE_COMMIT = execSync('git -C C:/asolaria-acer rev-parse HEAD', { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }).trim().slice(0, 12); } catch {}
 
 // === Cube-aligned constants ===
 const PORT = 4913;  // 17³ = D7 STATE prime cube
@@ -94,6 +99,24 @@ function audit() {
     fs.appendFileSync(LOG_FILE, line);
   } catch (e) {
     console.error('audit failed:', e.message);
+  }
+}
+
+// Structured logger (additive to audit). Uses dynamic import so a missing
+// module never breaks the daemon. Cached after first load.
+let _slogModulePromise = null;
+function slog(component, event, fields) {
+  try {
+    if (!_slogModulePromise) {
+      _slogModulePromise = import('./behcs/structured-log.mjs').catch(function() { return null; });
+    }
+    _slogModulePromise.then(function(mod) {
+      if (mod && typeof mod.slog === 'function') {
+        mod.slog(component, event, fields || {}).catch(function() {});
+      }
+    }).catch(function() {});
+  } catch (_) {
+    // never throw
   }
 }
 
@@ -237,6 +260,222 @@ function powershellPressKey(keyName, target, shift) {
   });
 }
 
+// === WO-L4: PostMessage HWND-targeted injection (no foreground steal) ===
+// Per feedback_never_steal_foreground.md (2026-04-20 Abacus incident) and
+// liris 2026-04-28 directive. Replaces AppActivate+SendKeys with PostMessage
+// WM_CHAR / WM_KEYDOWN/UP targeted by HWND. AttachThreadInput intentionally
+// omitted — PostMessage to a foreign HWND does not require thread attachment
+// for WM_CHAR/WM_KEYDOWN. Audit-named "pid_targeted_inject".
+const WOL4_DEFAULT_DELAY_MS = 2;
+const WOL4_DEFAULT_TIMEOUT_MS = 60000;
+
+// C# Add-Type kept on a single line so the embedded double-quoted DllImport
+// strings live cleanly inside the PS single-quoted string. Heredoc avoided —
+// its closing token must sit at column 0 which is fragile under whitespace
+// edits. lParam encoding for WM_KEYDOWN/UP per MSDN: bits 0-15 repeat=1,
+// bits 16-23 scancode, bit 30 prev-state on KEYUP, bit 31 transition on KEYUP.
+const WOL4_PS_SCRIPT = [
+  "$ErrorActionPreference='Stop';",
+  "Add-Type -TypeDefinition 'using System; using System.Runtime.InteropServices; public class WoL4 { [DllImport(\"user32.dll\")] public static extern bool IsWindow(IntPtr hWnd); [DllImport(\"user32.dll\")] public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId); [DllImport(\"user32.dll\", CharSet=CharSet.Auto)] public static extern IntPtr PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam); [DllImport(\"user32.dll\")] public static extern uint MapVirtualKey(uint uCode, uint uMapType); }';",
+  "$hwndInt=[int64]$env:WOL4_HWND;",
+  "$hwnd=[IntPtr]$hwndInt;",
+  "if(-not [WoL4]::IsWindow($hwnd)){Write-Output ('HWND_INVALID:'+$hwndInt); exit 2}",
+  "$procId=0; [WoL4]::GetWindowThreadProcessId($hwnd,[ref]$procId)|Out-Null;",
+  "if($procId -eq 0){Write-Output ('HWND_NO_PID:'+$hwndInt); exit 2}",
+  "$WM_CHAR=0x0102; $WM_KEYDOWN=0x0100; $WM_KEYUP=0x0101;",
+  "$VK=@{'ENTER'=0x0D;'TAB'=0x09;'ESC'=0x1B;'SPACE'=0x20;'BACKSPACE'=0x08;'DELETE'=0x2E;'HOME'=0x24;'END'=0x23;'PAGEUP'=0x21;'PAGEDOWN'=0x22;'UP'=0x26;'DOWN'=0x28;'LEFT'=0x25;'RIGHT'=0x27;'F1'=0x70;'F2'=0x71;'F3'=0x72;'F4'=0x73;'F5'=0x74;'F6'=0x75;'F7'=0x76;'F8'=0x77;'F9'=0x78;'F10'=0x79;'F11'=0x7A;'F12'=0x7B;'SHIFT'=0x10};",
+  "function Send-VKey([int]$vk){",
+  "  $scan=[int]([WoL4]::MapVirtualKey($vk,0));",
+  "  $down=[IntPtr]((($scan -band 0xFF) -shl 16) -bor 1);",
+  "  $up=[IntPtr]((($scan -band 0xFF) -shl 16) -bor (1 -shl 30) -bor (1 -shl 31) -bor 1);",
+  "  [WoL4]::PostMessage($hwnd,$WM_KEYDOWN,[IntPtr]$vk,$down)|Out-Null;",
+  "  Start-Sleep -Milliseconds 5;",
+  "  [WoL4]::PostMessage($hwnd,$WM_KEYUP,[IntPtr]$vk,$up)|Out-Null;",
+  "}",
+  "$keyName=$env:WOL4_KEY;",
+  "if($keyName){",
+  "  $vk=$VK[$keyName.ToUpper()];",
+  "  if(-not $vk){Write-Output ('INVALID_KEY:'+$keyName); exit 2}",
+  "  $shift=$env:WOL4_SHIFT -eq '1';",
+  "  if($shift){[WoL4]::PostMessage($hwnd,$WM_KEYDOWN,[IntPtr]$VK['SHIFT'],[IntPtr]((1 -shl 16) -bor 1))|Out-Null; Start-Sleep -Milliseconds 2}",
+  "  Send-VKey $vk;",
+  "  if($shift){Start-Sleep -Milliseconds 2; [WoL4]::PostMessage($hwnd,$WM_KEYUP,[IntPtr]$VK['SHIFT'],[IntPtr]((1 -shl 16) -bor (1 -shl 30) -bor (1 -shl 31) -bor 1))|Out-Null}",
+  "  Write-Output ('OK_PRESS:'+$keyName); exit 0",
+  "}",
+  "$bytes=[Convert]::FromBase64String($env:WOL4_TEXT_B64);",
+  "$text=[System.Text.Encoding]::UTF8.GetString($bytes);",
+  "$delay=[int]$env:WOL4_DELAY_MS;",
+  "$len=$text.Length;",
+  "foreach($ch in $text.ToCharArray()){",
+  "  $code=[int]$ch;",
+  "  [WoL4]::PostMessage($hwnd,$WM_CHAR,[IntPtr]$code,[IntPtr]0)|Out-Null;",
+  "  if($delay -gt 0){Start-Sleep -Milliseconds $delay}",
+  "}",
+  "if($env:WOL4_PRESS_ENTER -eq '1'){Start-Sleep -Milliseconds 10; Send-VKey $VK['ENTER']}",
+  "Write-Output ('OK_TYPE:'+$len); exit 0"
+].join('\n');
+
+function sha256Prefix8(text) {
+  return crypto.createHash('sha256').update(text, 'utf8').digest('hex').slice(0, 8);
+}
+
+function pidTargetedInject(opts) {
+  const hwnd = Number(opts.hwnd);
+  if (!Number.isFinite(hwnd) || hwnd <= 0) {
+    return { ok: false, code: 400, error: 'invalid_hwnd', detail: 'hwnd must be positive integer' };
+  }
+  const text = String(opts.text || '');
+  const delayMs = Math.max(0, Math.min(50,
+    Number.isFinite(Number(opts.delayMs)) ? Number(opts.delayMs) : WOL4_DEFAULT_DELAY_MS));
+  const pressEnter = opts.pressEnter ? '1' : '0';
+  const textB64 = Buffer.from(text, 'utf8').toString('base64');
+
+  const env = Object.assign({}, process.env, {
+    WOL4_HWND: String(hwnd),
+    WOL4_TEXT_B64: textB64,
+    WOL4_DELAY_MS: String(delayMs),
+    WOL4_PRESS_ENTER: pressEnter,
+    WOL4_KEY: '',
+    WOL4_SHIFT: '0'
+  });
+
+  const spawnOpts = { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024, env: env };
+  if (!isInfiniteTimeoutPeer(opts.callerIp)) {
+    spawnOpts.timeout = WOL4_DEFAULT_TIMEOUT_MS;
+  }
+
+  const r = spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', WOL4_PS_SCRIPT], spawnOpts);
+  const stdout = (r.stdout || '').trim();
+  const stderr = (r.stderr || '').trim();
+
+  if (r.status === 2 && stdout.startsWith('HWND_INVALID:')) {
+    return { ok: false, code: 410, error: 'hwnd_invalid', detail: stdout, hwnd: hwnd };
+  }
+  if (r.status === 2 && stdout.startsWith('HWND_NO_PID:')) {
+    return { ok: false, code: 410, error: 'hwnd_no_pid', detail: stdout, hwnd: hwnd };
+  }
+  if (r.status !== 0 || r.error) {
+    const detail = (r.error && r.error.message) || stderr.slice(0, 300) || stdout.slice(0, 300) || 'unknown';
+    return { ok: false, code: 500, error: 'pid_targeted_inject_failed', detail: detail, hwnd: hwnd };
+  }
+  return { ok: true, code: 200, typed: text.length, hwnd: hwnd, stdout: stdout };
+}
+
+function pidTargetedPressKey(opts) {
+  const hwnd = Number(opts.hwnd);
+  if (!Number.isFinite(hwnd) || hwnd <= 0) {
+    return { ok: false, code: 400, error: 'invalid_hwnd' };
+  }
+  const upper = String(opts.key || '').toUpperCase();
+  if (!VALID_KEYS.includes(upper)) {
+    return { ok: false, code: 400, error: 'invalid_key', key: upper };
+  }
+
+  const env = Object.assign({}, process.env, {
+    WOL4_HWND: String(hwnd),
+    WOL4_TEXT_B64: '',
+    WOL4_DELAY_MS: '0',
+    WOL4_PRESS_ENTER: '0',
+    WOL4_KEY: upper,
+    WOL4_SHIFT: opts.shift ? '1' : '0'
+  });
+
+  const r = spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', WOL4_PS_SCRIPT], {
+    encoding: 'utf8',
+    timeout: 5000,
+    env: env
+  });
+  const stdout = (r.stdout || '').trim();
+  if (r.status === 2 && stdout.startsWith('HWND_INVALID:')) {
+    return { ok: false, code: 410, error: 'hwnd_invalid', detail: stdout };
+  }
+  if (r.status === 2 && stdout.startsWith('HWND_NO_PID:')) {
+    return { ok: false, code: 410, error: 'hwnd_no_pid', detail: stdout };
+  }
+  if (r.status !== 0) {
+    return { ok: false, code: 500, error: 'pid_targeted_press_failed', detail: (r.stderr || '').slice(0, 300) };
+  }
+  return { ok: true, code: 200, pressed: upper };
+}
+
+// === WO-L5: ConPTY-injection route (D8+E6 conpty-inject.mjs) ===
+// When caller supplies target_session_id or target_claude_pid, route the
+// payload through the per-session ConPTY pipe instead of HWND PostMessage.
+// Audit name: "conpty_inject" (parallel to "pid_targeted_inject").
+// no_route (conpty-inject exit code 4) -> 404 to caller. NEVER silently
+// falls back to WO-L4 — the caller asked for a specific session and that
+// session is gone, so the right answer is "no_route", not "I picked a
+// different window for you".
+const CONPTY_INJECT_SCRIPT = path.join(__dirname, 'behcs', 'conpty-inject.mjs');
+
+function conptyInject(opts) {
+  // opts: { sessionId?, claudePid?, text?, key?, shift?, pressEnter, callerIp }
+  const args = ['--experimental-vm-modules', CONPTY_INJECT_SCRIPT, 'inject'];
+
+  if (opts.sessionId) {
+    args.push('--session-id', String(opts.sessionId));
+  } else if (opts.claudePid !== undefined && opts.claudePid !== null && opts.claudePid !== '') {
+    args.push('--pid', String(opts.claudePid));
+  } else {
+    return { ok: false, code: 400, error: 'invalid_args',
+             detail: 'conpty route requires target_session_id or target_claude_pid' };
+  }
+
+  if (opts.key) {
+    args.push('--key', String(opts.key).toUpperCase());
+  } else {
+    const text = String(opts.text || '');
+    const textB64 = Buffer.from(text, 'utf8').toString('base64');
+    args.push('--text-b64', textB64);
+    if (opts.pressEnter) args.push('--press-enter');
+  }
+
+  const spawnOpts = { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 };
+  if (!isInfiniteTimeoutPeer(opts.callerIp)) {
+    spawnOpts.timeout = WOL4_DEFAULT_TIMEOUT_MS;
+  }
+
+  // Use the same node binary that's running this daemon to avoid PATH drift.
+  const r = spawnSync(process.execPath, args, spawnOpts);
+  const stdout = (r.stdout || '').trim();
+  const stderr = (r.stderr || '').trim();
+
+  // conpty-inject prints a single JSON line to stdout. exit 4 = no_route /
+  // input-validation / forbidden-pattern / pipe-write-failed (it uses one
+  // failure exit code and disambiguates via the JSON body's `code` field).
+  let parsed = null;
+  if (stdout) {
+    // The script may emit multiple lines (audit echoes to stderr only, but
+    // we still defensively parse the LAST JSON line of stdout).
+    const lines = stdout.split(/\r?\n/).filter(function(l) { return l.trim(); });
+    for (let i = lines.length - 1; i >= 0; i--) {
+      try { parsed = JSON.parse(lines[i]); break; } catch (_) { /* keep looking */ }
+    }
+  }
+
+  if (r.error) {
+    return { ok: false, code: 500, error: 'conpty_inject_spawn_failed',
+             detail: r.error.message, stderr: stderr.slice(0, 300) };
+  }
+
+  // exit 4 + parsed body present: surface caller's HTTP code from the JSON.
+  if (r.status === 4 && parsed && typeof parsed === 'object') {
+    const innerCode = Number(parsed.code) || 404;
+    return { ok: false, code: innerCode, error: parsed.error || 'no_route',
+             detail: parsed.detail || '', body: parsed };
+  }
+
+  // success path: parsed.ok must be true and exit 0.
+  if (r.status === 0 && parsed && parsed.ok) {
+    return { ok: true, code: 200, body: parsed };
+  }
+
+  // anything else: opaque failure. Surface as 500.
+  return { ok: false, code: 500, error: 'conpty_inject_failed',
+           detail: stderr.slice(0, 300) || stdout.slice(0, 300) || ('exit=' + r.status),
+           body: parsed };
+}
+
 function getForegroundWindow() {
   const psScript = "$source = @\"\nusing System;\nusing System.Runtime.InteropServices;\nusing System.Text;\npublic class W {\n  [DllImport(\"user32.dll\")] public static extern IntPtr GetForegroundWindow();\n  [DllImport(\"user32.dll\")] public static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);\n}\n\"@;\nAdd-Type -TypeDefinition $source;\n$h = [W]::GetForegroundWindow();\n$sb = New-Object System.Text.StringBuilder 1024;\n[W]::GetWindowText($h, $sb, 1024) | Out-Null;\n$sb.ToString()";
   const r = spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', psScript], {
@@ -364,7 +603,11 @@ const server = http.createServer(async function(req, res) {
         log_file: LOG_FILE,
         cube_law: 'feedback_everything_revolves_around_hilbert_cubes.md',
         spec_source: 'LX-485 (Liris) + LX-486 pending (acer mirror)',
-        siblings: { 'omnikeyboard@liris→acer': 'http://192.168.100.2:4820' }
+        siblings: { 'omnikeyboard@liris→acer': 'http://192.168.100.2:4820' },
+        // G-090 staleness surface
+        process_started_at: PROCESS_STARTED_AT,
+        source_commit: SOURCE_COMMIT,
+        uptime_s: Math.round(process.uptime())
       });
     }
 
@@ -430,6 +673,11 @@ const server = http.createServer(async function(req, res) {
       // Default press_enter:true so callers can never forget. Opt out only with explicit press_enter:false.
       const pressEnter = body.press_enter !== false;
       const enterDelayMs = Math.max(0, Math.min(2000, Number(body.enter_delay_ms || 0)));
+      // WO-L4: default is HWND-targeted PostMessage (no focus steal).
+      // Legacy AppActivate+SendKeys only when use_focus:true is explicitly set.
+      const useFocus = body.use_focus === true;
+      const injectDelayMs = Number.isFinite(Number(body.inject_delay_ms))
+        ? Number(body.inject_delay_ms) : WOL4_DEFAULT_DELAY_MS;
 
       if (!text) return send(400, { error: 'missing_text' });
 
@@ -439,10 +687,139 @@ const server = http.createServer(async function(req, res) {
         return send(403, { error: 'forbidden_pattern', pattern: forbidden });
       }
 
+      const sha8 = sha256Prefix8(text);
+
+      // === WO-L5: ConPTY route (per-session pipe) ===
+      // If caller targeted a specific Claude session, route through ConPTY.
+      // NEVER silently falls back to WO-L4 — no_route means 404 to caller.
+      const targetSessionId = body.target_session_id ? String(body.target_session_id) : null;
+      const targetClaudePid = body.target_claude_pid !== undefined && body.target_claude_pid !== null && body.target_claude_pid !== ''
+        ? Number(body.target_claude_pid) : null;
+      if (targetSessionId || (targetClaudePid !== null && Number.isFinite(targetClaudePid))) {
+        const r = conptyInject({
+          sessionId: targetSessionId,
+          claudePid: targetClaudePid,
+          text: text,
+          pressEnter: pressEnter,
+          callerIp: ip
+        });
+        if (!r.ok) {
+          audit('conpty_inject', 'ip=' + ip,
+                'session_id=' + (targetSessionId || ''),
+                'claude_pid=' + (targetClaudePid !== null ? targetClaudePid : ''),
+                'len=' + text.length, 'sha256_8=' + sha8,
+                'outcome=' + r.error, 'detail=' + (r.detail || ''));
+          slog('agent-keyboard', 'conpty_inject', {
+            ip: ip, session_id: targetSessionId, claude_pid: targetClaudePid,
+            len: text.length, sha256_8: sha8, outcome: r.error,
+            press_enter: pressEnter, detail: r.detail || ''
+          });
+          return send(r.code, {
+            error: r.error, detail: r.detail,
+            session_id: targetSessionId, claude_pid: targetClaudePid,
+            path: 'conpty_inject', body: r.body || null
+          });
+        }
+        audit('conpty_inject', 'ip=' + ip,
+              'session_id=' + (r.body && r.body.session_id || targetSessionId || ''),
+              'claude_pid=' + (r.body && r.body.claude_pid || ''),
+              'len=' + text.length, 'sha256_8=' + sha8,
+              'outcome=ok', 'press_enter=' + pressEnter);
+        slog('agent-keyboard', 'conpty_inject', {
+          ip: ip, session_id: r.body && r.body.session_id, claude_pid: r.body && r.body.claude_pid,
+          len: text.length, sha256_8: sha8, outcome: 'ok', press_enter: pressEnter
+        });
+        return send(200, {
+          ok: true,
+          typed: text.length,
+          session_id: r.body && r.body.session_id || targetSessionId,
+          claude_pid: r.body && r.body.claude_pid || targetClaudePid,
+          pipe: r.body && r.body.pipe || null,
+          press_enter: pressEnter,
+          path: 'conpty_inject',
+          sha256_8: sha8
+        });
+      }
+
+      // === WO-L4 default path: HWND-targeted PostMessage ===
+      if (!useFocus && target.windowId > 0) {
+        // When no enter_delay_ms requested, bake ENTER into one PS call.
+        // When delay requested, inject text first, sleep, then fire ENTER as a
+        // separate press so the receiving terminal sees the gap.
+        const inlineEnter = pressEnter && enterDelayMs === 0;
+        const r = pidTargetedInject({
+          hwnd: target.windowId,
+          text: text,
+          pressEnter: inlineEnter,
+          delayMs: injectDelayMs,
+          callerIp: ip
+        });
+        if (!r.ok) {
+          audit('pid_targeted_inject', 'ip=' + ip, 'hwnd=' + target.windowId,
+                'len=' + text.length, 'sha256_8=' + sha8,
+                'outcome=' + r.error, 'detail=' + (r.detail || ''));
+          slog('agent-keyboard', 'pid_targeted_inject', {
+            ip: ip, hwnd: target.windowId, len: text.length, sha256_8: sha8,
+            outcome: r.error, press_enter: pressEnter, inject_delay_ms: injectDelayMs,
+            detail: r.detail || ''
+          });
+          return send(r.code, {
+            error: r.error, detail: r.detail, hwnd: target.windowId, path: 'pid_targeted_inject'
+          });
+        }
+        if (pressEnter && !inlineEnter) {
+          await new Promise(function(resolve) { setTimeout(resolve, enterDelayMs); });
+          const r2 = pidTargetedPressKey({
+            hwnd: target.windowId, key: 'ENTER', shift: false, callerIp: ip
+          });
+          if (!r2.ok) {
+            audit('pid_targeted_inject', 'ip=' + ip, 'hwnd=' + target.windowId,
+                  'len=' + text.length, 'sha256_8=' + sha8,
+                  'outcome=enter_failed', 'detail=' + (r2.detail || r2.error));
+            slog('agent-keyboard', 'pid_targeted_inject', {
+              ip: ip, hwnd: target.windowId, len: text.length, sha256_8: sha8,
+              outcome: 'enter_failed', press_enter: pressEnter, inject_delay_ms: injectDelayMs,
+              detail: r2.detail || r2.error
+            });
+            return send(r2.code, {
+              error: 'enter_failed', detail: r2.detail || r2.error,
+              typed: text.length, path: 'pid_targeted_inject'
+            });
+          }
+        }
+        audit('pid_targeted_inject', 'ip=' + ip, 'hwnd=' + target.windowId,
+              'len=' + text.length, 'sha256_8=' + sha8,
+              'outcome=ok', 'press_enter=' + pressEnter, 'inject_delay_ms=' + injectDelayMs);
+        slog('agent-keyboard', 'pid_targeted_inject', {
+          ip: ip, hwnd: target.windowId, len: text.length, sha256_8: sha8,
+          outcome: 'ok', press_enter: pressEnter, inject_delay_ms: injectDelayMs
+        });
+        return send(200, {
+          ok: true,
+          typed: text.length,
+          window_id: target.windowId,
+          window_title: target.windowTitle || null,
+          press_enter: pressEnter,
+          inject_delay_ms: injectDelayMs,
+          enter_delay_ms: enterDelayMs,
+          path: 'pid_targeted_inject',
+          sha256_8: sha8
+        });
+      }
+
+      // === Legacy SendKeys path — opt-in only ===
+      // WARNING: AppActivate calls SetForegroundWindow under the hood, which
+      // violates feedback_never_steal_foreground.md (2026-04-20 incident).
+      // Only used when caller explicitly opts in (use_focus:true) or when no
+      // window_id is provided. Prefer the WO-L4 path above.
+      audit('[' + ip + '] WARN', '/type legacy_sendkeys_path',
+            'use_focus=' + useFocus, 'window_id=' + target.windowId,
+            'sha256_8=' + sha8, 'len=' + text.length);
+
       const r = powershellSendKeys(text, target, ip);
       if (r.status !== 0 || r.error) {
         const detail = (r.error && r.error.message) || (r.stderr || '').slice(0, 200) || 'unknown';
-        return send(500, { error: 'sendkeys_failed', detail: detail });
+        return send(500, { error: 'sendkeys_failed', detail: detail, path: 'legacy_sendkeys' });
       }
 
       if (pressEnter) {
@@ -451,19 +828,21 @@ const server = http.createServer(async function(req, res) {
         }
         const r2 = powershellPressKey('ENTER', target, false);
         if (r2.status !== 0 || r2.error) {
-          return send(500, { error: 'enter_failed', typed: text.length });
+          return send(500, { error: 'enter_failed', typed: text.length, path: 'legacy_sendkeys' });
         }
       }
 
       audit('[' + ip + ']', '/type', 'window=' + (target.windowTitle || target.windowId || '(focused)'),
-            'typed=' + text.length, 'enter=' + pressEnter, 'enter_delay_ms=' + enterDelayMs);
+            'typed=' + text.length, 'enter=' + pressEnter, 'enter_delay_ms=' + enterDelayMs,
+            'path=legacy_sendkeys');
       return send(200, {
         ok: true,
         typed: text.length,
         window_title: target.windowTitle || '<foreground>',
         window_id: target.windowId || null,
         press_enter: pressEnter,
-        enter_delay_ms: enterDelayMs
+        enter_delay_ms: enterDelayMs,
+        path: 'legacy_sendkeys'
       });
     }
 
@@ -646,24 +1025,93 @@ const server = http.createServer(async function(req, res) {
       const key = String(body.key || '').toUpperCase();
       const target = resolveTargetBody(body);
       const shift = body.shift === true;
+      const useFocus = body.use_focus === true;
 
       if (!key) return send(400, { error: 'missing_key' });
 
-      const r = powershellPressKey(key, target, shift);
-      if (r.error) {
-        return send(400, { error: 'press_failed', detail: r.error.message });
-      }
-      if (r.status !== 0) {
-        return send(500, { error: 'sendkeys_failed' });
+      // === WO-L5: ConPTY route (per-session pipe) ===
+      const targetSessionId = body.target_session_id ? String(body.target_session_id) : null;
+      const targetClaudePid = body.target_claude_pid !== undefined && body.target_claude_pid !== null && body.target_claude_pid !== ''
+        ? Number(body.target_claude_pid) : null;
+      if (targetSessionId || (targetClaudePid !== null && Number.isFinite(targetClaudePid))) {
+        const r = conptyInject({
+          sessionId: targetSessionId,
+          claudePid: targetClaudePid,
+          key: key,
+          shift: shift,
+          callerIp: ip
+        });
+        if (!r.ok) {
+          audit('conpty_inject', 'ip=' + ip,
+                'session_id=' + (targetSessionId || ''),
+                'claude_pid=' + (targetClaudePid !== null ? targetClaudePid : ''),
+                'key=' + key, 'shift=' + shift,
+                'outcome=' + r.error, 'detail=' + (r.detail || ''));
+          return send(r.code, {
+            error: r.error, detail: r.detail,
+            session_id: targetSessionId, claude_pid: targetClaudePid,
+            path: 'conpty_inject', body: r.body || null
+          });
+        }
+        audit('conpty_inject', 'ip=' + ip,
+              'session_id=' + (r.body && r.body.session_id || targetSessionId || ''),
+              'claude_pid=' + (r.body && r.body.claude_pid || ''),
+              'key=' + key, 'shift=' + shift, 'outcome=ok');
+        return send(200, {
+          ok: true,
+          pressed: key,
+          shift: shift,
+          session_id: r.body && r.body.session_id || targetSessionId,
+          claude_pid: r.body && r.body.claude_pid || targetClaudePid,
+          path: 'conpty_inject'
+        });
       }
 
-      audit('[' + ip + ']', '/press', 'key=' + key, 'shift=' + shift, 'window=' + (target.windowTitle || target.windowId || '(focused)'));
+      // === WO-L4 default path ===
+      if (!useFocus && target.windowId > 0) {
+        const r = pidTargetedPressKey({
+          hwnd: target.windowId, key: key, shift: shift, callerIp: ip
+        });
+        if (!r.ok) {
+          audit('pid_targeted_press', 'ip=' + ip, 'hwnd=' + target.windowId,
+                'key=' + key, 'shift=' + shift, 'outcome=' + r.error,
+                'detail=' + (r.detail || ''));
+          return send(r.code, {
+            error: r.error, detail: r.detail, hwnd: target.windowId, path: 'pid_targeted_press'
+          });
+        }
+        audit('pid_targeted_press', 'ip=' + ip, 'hwnd=' + target.windowId,
+              'key=' + key, 'shift=' + shift, 'outcome=ok');
+        return send(200, {
+          ok: true,
+          pressed: key,
+          shift: shift,
+          window_id: target.windowId,
+          window_title: target.windowTitle || null,
+          path: 'pid_targeted_press'
+        });
+      }
+
+      // === Legacy path — opt-in only ===
+      audit('[' + ip + '] WARN', '/press legacy_sendkeys_path',
+            'use_focus=' + useFocus, 'window_id=' + target.windowId, 'key=' + key);
+      const r = powershellPressKey(key, target, shift);
+      if (r.error) {
+        return send(400, { error: 'press_failed', detail: r.error.message, path: 'legacy_sendkeys' });
+      }
+      if (r.status !== 0) {
+        return send(500, { error: 'sendkeys_failed', path: 'legacy_sendkeys' });
+      }
+
+      audit('[' + ip + ']', '/press', 'key=' + key, 'shift=' + shift,
+            'window=' + (target.windowTitle || target.windowId || '(focused)'), 'path=legacy_sendkeys');
       return send(200, {
         ok: true,
         pressed: key,
         shift: shift,
         window_id: target.windowId || null,
-        window_title: target.windowTitle || '<foreground>'
+        window_title: target.windowTitle || '<foreground>',
+        path: 'legacy_sendkeys'
       });
     }
 

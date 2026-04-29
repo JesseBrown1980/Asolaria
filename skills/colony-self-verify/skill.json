@@ -1,4 +1,5 @@
 {
+  "id": "colony.self.verify",
   "name": "colony-self-verify",
   "description": "Full colony self-verification audit — checks PIDs, skills, mistakes, routes, projects, surfaces, connectors, index integrity, cross-colony sync, and reports gaps.",
   "version": "1.0.0",
@@ -93,6 +94,18 @@
       "description": "buildSpawnContext must include DESPAWN PROTOCOL text",
       "module": "spawnContextBuilder",
       "requiredText": "DESPAWN PROTOCOL"
+    }
+  ],
+  "steps": [
+    {
+      "action": "colony_self_verify",
+      "note": "Run the colony self-verification audit and write the latest report.",
+      "payload": {
+        "checks": "all",
+        "reportPath": "reports/colony-self-verify-latest.md"
+      },
+      "permissions": ["host.read", "skills.read", "routes.read", "connectors.read"],
+      "requiresApproval": false
     }
   ],
   "output": {

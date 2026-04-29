@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
   [Parameter(Mandatory = $true)]
-  [ValidateSet("Helm", "Sentinel")]
+  [ValidateSet("Helm", "Sentinel", "Gaia", "Liris")]
   [string]$TerminalId,
   [int]$Tail = 20
 )

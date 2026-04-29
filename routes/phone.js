@@ -24,6 +24,12 @@ const {
   createVirtualDisplays, destroyVirtualDisplays, captureVirtualDisplay,
   getVirtualDisplayImagePath, tapVirtualDisplay, typeOnVirtualDisplay, launchOnVirtualDisplay, getState: getVirtualDisplayState
 } = require("../src/connectors/virtualDisplayConnector");
+const { appendHookEvent } = require("../src/hookEventStore");
+const { buildRouteHookEnvelope } = require("../src/hg256RuntimeContract");
+const {
+  resolveIxRuntimeBinding,
+  resolveIxLaneBinding
+} = require("../src/ixFabricAtlasStore");
 
 function createPhoneRouter(ctx) {
   const router = express.Router();
@@ -35,6 +41,156 @@ function createPhoneRouter(ctx) {
   };
   // All phone deps from server.js context
   const deps = ctx;
+  const PHONE_MIRROR_LANE_ID = "desktop-phone-mirror";
+  const PHONE_ROUTE = "phone_mirror_runtime";
+  const PHONE_ROLE = "phone-mirror-runtime";
+  const PHONE_ROUTE_SOURCE_PATHS = [
+    "routes/phone.js",
+    "src/connectors/phoneMirrorConnector.js",
+    "src/connectors/phoneProMirrorConnector.js",
+    "src/connectors/virtualDisplayConnector.js",
+    "src/hookEventStore.js",
+    "src/hg256RuntimeContract.js"
+  ];
+
+  function normalizePhoneLaneBinding(binding = {}, routeStage = "status") {
+    return {
+      enabled: binding.enabled !== false,
+      atlasId: String(binding.atlasId || ""),
+      surfaceRegistryId: String(binding.surfaceRegistryId || ""),
+      promotionQueueId: String(binding.promotionQueueId || ""),
+      route: String(binding.route || PHONE_ROUTE),
+      routeStage: String(binding.routeStage || routeStage),
+      role: String(binding.role || PHONE_ROLE),
+      roleSurfaceId: String(binding.roleSurfaceId || ""),
+      sourcePaths: Array.isArray(binding.sourcePaths) && binding.sourcePaths.length
+        ? binding.sourcePaths.map((entry) => String(entry))
+        : PHONE_ROUTE_SOURCE_PATHS.slice(),
+      matchingSurfaceIds: Array.isArray(binding.matchingSurfaceIds) ? binding.matchingSurfaceIds.map((entry) => String(entry)) : [],
+      matchingGroupIds: Array.isArray(binding.matchingGroupIds) ? binding.matchingGroupIds.map((entry) => String(entry)) : [],
+      laneId: String(binding.laneId || PHONE_MIRROR_LANE_ID),
+      laneStatus: String(binding.laneStatus || "in_progress"),
+      laneCurrentStage: String(binding.laneCurrentStage || "runtime_orchestration"),
+      laneNextStage: String(binding.laneNextStage || "bounded_live_promotion")
+    };
+  }
+
+  function resolvePhoneLaneBinding(req, routeStage, endpointId) {
+    const resolver = typeof resolveIxLaneBinding === "function"
+      ? resolveIxLaneBinding
+      : resolveIxRuntimeBinding;
+    try {
+      const resolved = resolver({
+        route: PHONE_ROUTE,
+        routeStage,
+        role: PHONE_ROLE,
+        laneId: PHONE_MIRROR_LANE_ID,
+        endpointId: String(endpointId || ""),
+        sourcePaths: PHONE_ROUTE_SOURCE_PATHS,
+        method: String(req?.method || "")
+      });
+      return normalizePhoneLaneBinding(resolved, routeStage);
+    } catch (_error) {
+      return normalizePhoneLaneBinding({}, routeStage);
+    }
+  }
+
+  function toHookPreview(routeHook = {}) {
+    return {
+      evtId: String(routeHook.evtId || ""),
+      route: String(routeHook.route || ""),
+      routeStage: String(routeHook.routeStage || ""),
+      qId: String(routeHook.qId || ""),
+      scopeHash: String(routeHook.scopeHash || ""),
+      laneId: String(routeHook.atlas?.laneId || ""),
+      laneStatus: String(routeHook.atlas?.laneStatus || ""),
+      laneCurrentStage: String(routeHook.atlas?.laneCurrentStage || "")
+    };
+  }
+
+  function summarizePhoneHookString(value) {
+    const text = String(value || "");
+    return {
+      type: "string",
+      present: text.length > 0,
+      length: text.length
+    };
+  }
+
+  function sanitizePhoneHookPayload(value, depth = 0) {
+    if (value === null || value === undefined) return value;
+    if (typeof value === "boolean") return value;
+    if (typeof value === "number") return Number.isFinite(value) ? value : null;
+    if (typeof value === "string") return summarizePhoneHookString(value);
+    if (Array.isArray(value)) {
+      return {
+        type: "array",
+        count: value.length
+      };
+    }
+    if (typeof value !== "object") return { type: typeof value };
+    if (depth >= 2) {
+      return {
+        type: "object",
+        keys: Object.keys(value).slice(0, 20)
+      };
+    }
+
+    const out = {};
+    for (const [key, raw] of Object.entries(value)) {
+      const normalizedKey = String(key || "").toLowerCase();
+      if (/(token|secret|password|authorization|cookie|text|prompt|message|base64|inline|image|path|url|endpoint|deviceid|filename|voice)/.test(normalizedKey)) {
+        out[key] = summarizePhoneHookString(raw);
+        continue;
+      }
+      out[key] = sanitizePhoneHookPayload(raw, depth + 1);
+    }
+    return out;
+  }
+
+  function buildPhoneHookDevicePid(packetSource, payloadSource) {
+    const raw = packetSource?.deviceId || payloadSource?.deviceId || "";
+    return raw ? "phone-device:provided" : "jesse-desktop";
+  }
+
+  function emitPhoneRouteHook(req, routeStage, endpointId, summary, packetSource, payloadSource, extraPayload = {}) {
+    const laneBinding = resolvePhoneLaneBinding(req, routeStage, endpointId);
+    const safePacketSource = sanitizePhoneHookPayload(packetSource || {});
+    const safePayloadSource = sanitizePhoneHookPayload(payloadSource || {});
+    const safeExtraPayload = sanitizePhoneHookPayload(extraPayload);
+    const routeHook = buildRouteHookEnvelope({
+      qId: "Q4_TRANSPORT_ENVELOPE",
+      route: PHONE_ROUTE,
+      routeStage,
+      owner: "jesse",
+      agentId: "routes-phone",
+      role: PHONE_ROLE,
+      constructionId: PHONE_MIRROR_LANE_ID,
+      agentPid: process.pid,
+      devicePid: buildPhoneHookDevicePid(packetSource, payloadSource),
+      packetSource: safePacketSource,
+      payloadSource: safePayloadSource,
+      atlasBinding: laneBinding,
+      proofRef: "reports/crypto/capsule.verify.json",
+      verifyStatus: "pass_local_only"
+    });
+    appendHookEvent({
+      event_type: "RouteHook",
+      session_id: "routes-phone",
+      source_app: "routes-phone",
+      agent_id: "routes-phone",
+      agent_type: "route_runtime",
+      summary,
+      trigger: String(routeStage || "status"),
+      payload: {
+        routeHook,
+        endpointId: String(endpointId || ""),
+        laneBinding,
+        ...safeExtraPayload
+      }
+    });
+    return { routeHook, laneBinding };
+  }
 app.get("/edge/status", requireMobileAuth, (req, res) => {
   const requested = requestedChannel(req);
   if (requested) {
@@ -454,6 +610,14 @@ app.post("/developer-options/sweep", requirePhoneBridgeAccess, requireDesktopSup
 app.get("/pro-mirror/status", requirePhoneBridgeAccess, (_req, res) => {
   try {
     const status = getPhoneProMirrorStatus();
+    emitPhoneRouteHook(
+      _req,
+      "status",
+      "/api/phone/pro-mirror/status",
+      "Phone pro mirror status route hook appended.",
+      { endpoint: "/api/phone/pro-mirror/status", method: "GET" },
+      { proMirrorActive: Boolean(status?.active), proMirror: status }
+    );
     return res.json({
       ok: true,
       proMirror: status
@@ -494,6 +658,21 @@ app.post("/pro-mirror/start", requirePhoneBridgeAccess, requireDesktopSuperMaste
       fullscreen: asBool(req.body?.fullscreen, false),
       windowTitle: String(req.body?.windowTitle || "Asolaria Pro Mirror").trim()
     });
+    emitPhoneRouteHook(
+      req,
+      "start",
+      "/api/phone/pro-mirror/start",
+      "Phone pro mirror start route hook appended.",
+      {
+        endpoint: "/api/phone/pro-mirror/start",
+        method: "POST",
+        deviceId: String(req.body?.deviceId || "").trim()
+      },
+      {
+        result,
+        guardianBlocked: false
+      }
+    );
 
     return res.json({
       ok: true,
@@ -508,6 +687,14 @@ app.post("/pro-mirror/start", requirePhoneBridgeAccess, requireDesktopSuperMaste
 app.post("/pro-mirror/stop", requirePhoneBridgeAccess, requireDesktopSuperMasterAuthority, async (_req, res) => {
   try {
     const result = stopPhoneProMirror();
+    emitPhoneRouteHook(
+      _req,
+      "stop",
+      "/api/phone/pro-mirror/stop",
+      "Phone pro mirror stop route hook appended.",
+      { endpoint: "/api/phone/pro-mirror/stop", method: "POST" },
+      { result }
+    );
     return res.json({
       ok: true,
       result
@@ -527,6 +714,23 @@ app.get("/mirror/status", requirePhoneBridgeAccess, async (req, res) => {
     const snapshot = getPhoneMirrorSnapshotSummary();
     const voice = getPhoneMirrorVoiceOutput();
     const whatsapp = readGuardianWhatsAppConfig() || {};
+    emitPhoneRouteHook(
+      req,
+      "status",
+      "/api/phone/mirror/status",
+      "Phone mirror status route hook appended.",
+      {
+        endpoint: "/api/phone/mirror/status",
+        method: "GET",
+        deviceId: String(req.query?.deviceId || "").trim()
+      },
+      {
+        mirrorConnected: Boolean(mirror?.connected || mirror?.online || mirror?.ok),
+        proMirrorActive: Boolean(proMirror?.active),
+        snapshotCapturedAt: snapshot?.capturedAt || snapshot?.capturedAtMs || "",
+        voicePath: String(voice?.path || "")
+      }
+    );
     return res.json({
       ok: true,
       mirror,
@@ -559,6 +763,22 @@ app.post("/mirror/capture", requirePhoneBridgeAccess, async (req, res) => {
       fileName: req.body?.fileName,
       timeoutMs: asInt(req.body?.timeoutMs, 20000, 4000, 120000)
     });
+    emitPhoneRouteHook(
+      req,
+      "capture",
+      "/api/phone/mirror/capture",
+      "Phone mirror capture route hook appended.",
+      {
+        endpoint: "/api/phone/mirror/capture",
+        method: "POST",
+        deviceId: String(req.body?.deviceId || "").trim(),
+        fileName: String(req.body?.fileName || "")
+      },
+      {
+        snapshot,
+        imageUrl: `/api/phone/mirror/image?v=${encodeURIComponent(String(snapshot.capturedAtMs || Date.now()))}`
+      }
+    );
     return res.json({
       ok: true,
       snapshot: {
@@ -568,6 +788,50 @@ app.post("/mirror/capture", requirePhoneBridgeAccess, async (req, res) => {
     });
   } catch (error) {
     return respondError(res, error, inferHttpStatusForError(error, 400));
+  }
+});
+
+app.get("/mirror/lane/status", requirePhoneBridgeAccess, async (req, res) => {
+  try {
+    const mirror = await getPhoneMirrorStatus({
+      deviceId: String(req.query?.deviceId || "").trim(),
+      timeoutMs: asInt(req.query?.timeoutMs, 8000, 2000, 45000)
+    });
+    const proMirror = getPhoneProMirrorStatus();
+    const { routeHook, laneBinding } = emitPhoneRouteHook(
+      req,
+      "status",
+      "/api/phone/mirror/lane/status",
+      "Phone mirror lane status route hook appended.",
+      {
+        endpoint: "/api/phone/mirror/lane/status",
+        method: "GET",
+        deviceId: String(req.query?.deviceId || "").trim()
+      },
+      {
+        mirrorConnected: Boolean(mirror?.connected || mirror?.online || mirror?.ok),
+        proMirrorActive: Boolean(proMirror?.active)
+      }
+    );
+    return res.json({
+      ok: true,
+      mirror,
+      proMirror,
+      laneBinding,
+      controller: {
+        route: PHONE_ROUTE,
+        role: PHONE_ROLE,
+        laneId: laneBinding.laneId,
+        laneStatus: laneBinding.laneStatus,
+        laneCurrentStage: laneBinding.laneCurrentStage,
+        laneNextStage: laneBinding.laneNextStage,
+        matchingSurfaceIds: laneBinding.matchingSurfaceIds,
+        matchingGroupIds: laneBinding.matchingGroupIds
+      },
+      routeHook: toHookPreview(routeHook)
+    });
+  } catch (error) {
+    return respondError(res, error, inferHttpStatusForError(error, 500));
   }
 });
 
@@ -592,6 +856,20 @@ app.post("/mirror/control/tap", requirePhoneBridgeAccess, requireDesktopSuperMas
       screenHeight: req.body?.screenHeight ?? snapshot.height,
       timeoutMs: asInt(req.body?.timeoutMs, 10000, 3000, 60000)
     });
+    emitPhoneRouteHook(
+      req,
+      "control_tap",
+      "/api/phone/mirror/control/tap",
+      "Phone mirror tap control route hook appended.",
+      {
+        endpoint: "/api/phone/mirror/control/tap",
+        method: "POST",
+        deviceId: String(req.body?.deviceId || "").trim()
+      },
+      {
+        result
+      }
+    );
     return res.json({
       ok: true,
       result
@@ -615,6 +893,20 @@ app.post("/mirror/control/swipe", requirePhoneBridgeAccess, requireDesktopSuperM
       screenHeight: req.body?.screenHeight ?? snapshot.height,
       timeoutMs: asInt(req.body?.timeoutMs, 10000, 3000, 60000)
     });
+    emitPhoneRouteHook(
+      req,
+      "control_swipe",
+      "/api/phone/mirror/control/swipe",
+      "Phone mirror swipe control route hook appended.",
+      {
+        endpoint: "/api/phone/mirror/control/swipe",
+        method: "POST",
+        deviceId: String(req.body?.deviceId || "").trim()
+      },
+      {
+        result
+      }
+    );
     return res.json({
       ok: true,
       result
@@ -631,6 +923,21 @@ app.post("/mirror/control/text", requirePhoneBridgeAccess, requireDesktopSuperMa
       text: req.body?.text,
       timeoutMs: asInt(req.body?.timeoutMs, 10000, 3000, 60000)
     });
+    emitPhoneRouteHook(
+      req,
+      "control_text",
+      "/api/phone/mirror/control/text",
+      "Phone mirror text control route hook appended.",
+      {
+        endpoint: "/api/phone/mirror/control/text",
+        method: "POST",
+        deviceId: String(req.body?.deviceId || "").trim()
+      },
+      {
+        textLength: String(req.body?.text || "").length,
+        result
+      }
+    );
     return res.json({
       ok: true,
       result
@@ -647,6 +954,21 @@ app.post("/mirror/control/key", requirePhoneBridgeAccess, requireDesktopSuperMas
       key: req.body?.key,
       timeoutMs: asInt(req.body?.timeoutMs, 10000, 3000, 60000)
     });
+    emitPhoneRouteHook(
+      req,
+      "control_key",
+      "/api/phone/mirror/control/key",
+      "Phone mirror key control route hook appended.",
+      {
+        endpoint: "/api/phone/mirror/control/key",
+        method: "POST",
+        deviceId: String(req.body?.deviceId || "").trim()
+      },
+      {
+        key: String(req.body?.key || ""),
+        result
+      }
+    );
     return res.json({
       ok: true,
       result
@@ -920,6 +1242,20 @@ initVirtualDisplayCapturesDir(path.resolve(__dirname));
 app.get("/virtual-display/list", requirePhoneBridgeAccess, (_req, res) => {
   try {
     const result = listVirtualDisplays();
+    emitPhoneRouteHook(
+      _req,
+      "virtual_display_list",
+      "/api/phone/virtual-display/list",
+      "Virtual display list route hook appended.",
+      {
+        endpoint: "/api/phone/virtual-display/list",
+        method: "GET"
+      },
+      {
+        displayCount: Array.isArray(result?.displays) ? result.displays.length : 0,
+        result
+      }
+    );
     return res.json({ ok: true, ...result, state: getVirtualDisplayState() });
   } catch (error) {
     return respondError(res, error, 500);
@@ -934,6 +1270,19 @@ app.post("/virtual-display/create", requirePhoneBridgeAccess, requireDesktopSupe
       height: req.body?.height,
       dpi: req.body?.dpi
     });
+    emitPhoneRouteHook(
+      req,
+      "virtual_display_create",
+      "/api/phone/virtual-display/create",
+      "Virtual display create route hook appended.",
+      {
+        endpoint: "/api/phone/virtual-display/create",
+        method: "POST"
+      },
+      {
+        result
+      }
+    );
     return res.json(result);
   } catch (error) {
     return respondError(res, error, 500);
@@ -943,6 +1292,19 @@ app.post("/virtual-display/create", requirePhoneBridgeAccess, requireDesktopSupe
 app.post("/virtual-display/destroy", requirePhoneBridgeAccess, requireDesktopSuperMasterAuthority, (_req, res) => {
   try {
     const result = destroyVirtualDisplays();
+    emitPhoneRouteHook(
+      _req,
+      "virtual_display_destroy",
+      "/api/phone/virtual-display/destroy",
+      "Virtual display destroy route hook appended.",
+      {
+        endpoint: "/api/phone/virtual-display/destroy",
+        method: "POST"
+      },
+      {
+        result
+      }
+    );
     return res.json(result);
   } catch (error) {
     return respondError(res, error, 500);
@@ -956,6 +1318,20 @@ app.post("/virtual-display/capture", requirePhoneBridgeAccess, (req, res) => {
     if (!result.ok) {
       return res.status(400).json(result);
     }
+    emitPhoneRouteHook(
+      req,
+      "virtual_display_capture",
+      "/api/phone/virtual-display/capture",
+      "Virtual display capture route hook appended.",
+      {
+        endpoint: "/api/phone/virtual-display/capture",
+        method: "POST",
+        displayIndex
+      },
+      {
+        result
+      }
+    );
     return res.json(result);
   } catch (error) {
     return respondError(res, error, 500);
@@ -969,6 +1345,20 @@ app.get("/virtual-display/image/:displayIndex", requirePhoneBridgeAccess, (req, 
     if (!result.ok || !result.localPath) {
       return respondError(res, `No capture available for virtual display ${displayIndex}.`, 404);
     }
+    emitPhoneRouteHook(
+      req,
+      "virtual_display_image",
+      "/api/phone/virtual-display/image/:displayIndex",
+      "Virtual display image route hook appended.",
+      {
+        endpoint: "/api/phone/virtual-display/image/:displayIndex",
+        method: "GET",
+        displayIndex
+      },
+      {
+        result
+      }
+    );
     res.type("image/png");
     res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
     return res.sendFile(result.localPath);
@@ -983,6 +1373,22 @@ app.post("/virtual-display/tap", requirePhoneBridgeAccess, requireDesktopSuperMa
     const x = Number(req.body?.x || 0);
     const y = Number(req.body?.y || 0);
     const result = tapVirtualDisplay(displayIndex, x, y);
+    emitPhoneRouteHook(
+      req,
+      "virtual_display_tap",
+      "/api/phone/virtual-display/tap",
+      "Virtual display tap route hook appended.",
+      {
+        endpoint: "/api/phone/virtual-display/tap",
+        method: "POST",
+        displayIndex
+      },
+      {
+        x,
+        y,
+        result
+      }
+    );
     return res.json(result);
   } catch (error) {
     return respondError(res, error, 500);
@@ -997,6 +1403,21 @@ app.post("/virtual-display/type", requirePhoneBridgeAccess, requireDesktopSuperM
       return respondError(res, "text is required.", 400);
     }
     const result = typeOnVirtualDisplay(displayIndex, text);
+    emitPhoneRouteHook(
+      req,
+      "virtual_display_type",
+      "/api/phone/virtual-display/type",
+      "Virtual display type route hook appended.",
+      {
+        endpoint: "/api/phone/virtual-display/type",
+        method: "POST",
+        displayIndex
+      },
+      {
+        textLength: text.length,
+        result
+      }
+    );
     return res.json(result);
   } catch (error) {
     return respondError(res, error, 500);
@@ -1011,6 +1432,21 @@ app.post("/virtual-display/launch", requirePhoneBridgeAccess, requireDesktopSupe
       return respondError(res, "component is required (e.g. com.package/.Activity).", 400);
     }
     const result = launchOnVirtualDisplay(displayIndex, component);
+    emitPhoneRouteHook(
+      req,
+      "virtual_display_launch",
+      "/api/phone/virtual-display/launch",
+      "Virtual display launch route hook appended.",
+      {
+        endpoint: "/api/phone/virtual-display/launch",
+        method: "POST",
+        displayIndex
+      },
+      {
+        component,
+        result
+      }
+    );
     return res.json(result);
   } catch (error) {
     return respondError(res, error, 500);

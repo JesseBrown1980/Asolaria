@@ -4,10 +4,16 @@ const childProcess = require("child_process");
 const { getSecret, setSecret, deleteSecret } = require("../secureVault");
 const { projectRoot } = require("../runtimePaths");
 const { resolveToolPaths } = require("./systemPaths");
+const {
+  ASOLARIA_MCP_POLICY_VERSION,
+  ASOLARIA_MCP_SERVER_LABEL,
+  enforceAsolariaMcpPolicy,
+  explainAsolariaMcpPolicyFailure
+} = require("../asolariaMcpPolicy");
 
 const AUGMENT_CONTEXT_SECRET_NAME = "integrations.augment_context";
 const DEFAULT_MODE = "local_cli";
-const DEFAULT_SERVER_LABEL = "augment-context";
+const DEFAULT_SERVER_LABEL = ASOLARIA_MCP_SERVER_LABEL;
 const DEFAULT_ALLOWED_TOOLS = Object.freeze(["codebase-retrieval"]);
 const SAFE_ALLOWED_TOOLS = new Set(DEFAULT_ALLOWED_TOOLS);
 const DEFAULT_TOKEN_REDUCTION_PROFILE = "aggressive";
@@ -486,7 +492,7 @@ function buildAugmentContextProviderPatch(input = {}) {
   }
   const headers = normalizeHeaderMap(resolved.headers);
   const authorization = normalizeText(resolved.authorization || "", 400);
-  return {
+  const patch = {
     mode,
     mcpEnabled: normalizeBool(resolved.enabled, true),
     mcpServerLabel: serverLabel,
@@ -510,6 +516,32 @@ function buildAugmentContextProviderPatch(input = {}) {
     ),
     mcpToolSchemaMode: chooseToolSchemaMode(resolved.toolSchemaMode, resolved)
   };
+  const governed = enforceAsolariaMcpPolicy(
+    {
+      enabled: patch.mcpEnabled,
+      serverLabel: patch.mcpServerLabel,
+      serverUrl: patch.mcpServerUrl || "",
+      connectorId: patch.mcpConnectorId || "",
+      authorization: patch.mcpAuthorization || "",
+      headers: patch.mcpHeaders || {},
+      allowedTools: patch.mcpAllowedTools || [],
+      approvalMode: patch.mcpApprovalMode,
+      dynamicAllowlistMax: patch.mcpDynamicAllowlistMax,
+      contextTtlSeconds: patch.mcpContextTtlSeconds,
+      tokenReductionProfile: patch.mcpTokenReductionProfile,
+      toolSchemaMode: patch.mcpToolSchemaMode,
+      preset: patch.mcpPreset
+    },
+    { providerId: "augment_context", phase: "apply" }
+  );
+  return {
+    ...patch,
+    mcpServerLabel: governed.serverLabel,
+    mcpServerUrl: governed.serverUrl || undefined,
+    mcpConnectorId: governed.connectorId || undefined,
+    mcpTokenReductionProfile: governed.tokenReductionProfile,
+    mcpToolSchemaMode: governed.toolSchemaMode
+  };
 }
 
 function buildLocalMcpInstructions(config) {
@@ -517,8 +549,8 @@ function buildLocalMcpInstructions(config) {
   const bridge = getLocalBridgeRuntime();
   if (bridge.available && bridge.localUrl) {
     return {
-      recommended: "Use the local Asolaria MCP bridge. It is the owned runtime on this machine and does not require Auggie.",
-      codexAddCommand: `codex mcp add augment-context --transport http \"${bridge.localUrl}\" --header \"Authorization: Bearer <bridge token>\"`,
+      recommended: "Use the local Asolaria OS / BEHCS-256 MCP bridge. Do not register external MCP directly.",
+      codexAddCommand: `codex mcp add asolaria-behcs256 --transport http \"${bridge.localUrl}\" --header \"Authorization: Bearer <bridge token>\"`,
       workspaceRoot,
       localUrl: bridge.localUrl,
       publicMcpUrl: bridge.publicMcpUrl || null,
@@ -528,10 +560,9 @@ function buildLocalMcpInstructions(config) {
   }
   const auggiePath = resolveAuggiePath(config.auggiePath || "");
   const executable = auggiePath || "auggie";
-  const command = `codex mcp add augment-context -- \"${executable}\" --mcp --mcp-auto-workspace`;
   return {
-    recommended: "Run Auggie locally as a sidecar for Codex sessions on the machine that owns the checked-out workspace.",
-    codexAddCommand: command,
+    recommended: `Start the Asolaria OS / BEHCS-256 MCP bridge first; direct ${executable} MCP registration is blocked by ${ASOLARIA_MCP_POLICY_VERSION}.`,
+    codexAddCommand: "",
     workspaceRoot
   };
 }
@@ -546,15 +577,26 @@ function getAugmentContextStatus() {
   const remoteConfigured = Boolean(resolved.serverLabel && (resolved.serverUrl || resolved.connectorId));
   const localRuntimeAvailable = Boolean(bridgeRuntime.available) || Boolean(resolved.auggiePath) || (resolved.useWsl && wsl.available);
   const warnings = [];
+  const policyError = resolved.enabled && resolved.mode === "remote_mcp"
+    ? explainAsolariaMcpPolicyFailure({
+      enabled: true,
+      serverLabel: resolved.serverLabel,
+      serverUrl: resolved.serverUrl,
+      connectorId: resolved.connectorId
+    })
+    : "";
 
   if (resolved.mode === "remote_mcp" && !remoteConfigured) {
     warnings.push("Remote MCP mode is enabled but serverUrl/connectorId is missing.");
   }
+  if (policyError) {
+    warnings.push(`Remote MCP must be routed through Asolaria OS / BEHCS-256: ${policyError}.`);
+  }
   if (resolved.mode === "local_cli" && !localRuntimeAvailable) {
-    warnings.push("Local bridge or Auggie runtime was not detected on this machine. Start the Asolaria bridge or switch to remote_mcp.");
+    warnings.push("Local bridge or Auggie runtime was not detected on this machine. Start the Asolaria BEHCS-256 bridge before MCP apply.");
   }
   if (resolved.mode === "local_cli") {
-    warnings.push("Asolaria can surface the local read-only sidecar, but direct external-provider MCP apply currently requires remote_mcp.");
+    warnings.push("Direct external-provider MCP apply is disabled unless the route resolves through Asolaria OS / BEHCS-256.");
   }
   if (resolved.useWsl && !wsl.available) {
     warnings.push("useWsl is enabled but WSL was not detected.");

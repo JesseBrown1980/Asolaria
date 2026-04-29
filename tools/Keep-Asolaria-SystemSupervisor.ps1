@@ -275,6 +275,89 @@ function Get-TopProcessSummary {
   return [string](@($items) -join ", ")
 }
 
+function Get-TopProcessRows {
+  param([int]$Count)
+  $rows = @()
+  try {
+    $rows = @(
+      Get-Process |
+        Sort-Object WS -Descending |
+        Select-Object -First $Count ProcessName, Id, WS, PM, CPU
+    )
+  } catch {
+    return @()
+  }
+  return @(
+    $rows | ForEach-Object {
+      [ordered]@{
+        name = [string]$_.ProcessName
+        pid = [int]$_.Id
+        workingSetMb = [math]::Round(([double]$_.WS / 1MB), 1)
+        privateMemoryMb = [math]::Round(([double]$_.PM / 1MB), 1)
+        cpuSeconds = if ($null -ne $_.CPU) { [math]::Round([double]$_.CPU, 1) } else { 0 }
+      }
+    }
+  )
+}
+
+function Get-TaskManagerRuntimeCounts {
+  $families = @(
+    "codex",
+    "node",
+    "powershell",
+    "cmd",
+    "chrome",
+    "mongod",
+    "adb",
+    "python",
+    "cloudflared",
+    "slack",
+    "explorer",
+    "docker"
+  )
+  $counts = [ordered]@{}
+  foreach ($family in $families) {
+    $counts[$family] = 0
+  }
+  $counts["other"] = 0
+
+  $rows = @()
+  try {
+    $rows = @(Get-Process | Select-Object -ExpandProperty ProcessName)
+  } catch {
+    return $counts
+  }
+
+  foreach ($rawName in $rows) {
+    $name = [string]$rawName
+    $normalized = $name.Trim().ToLowerInvariant()
+    $family = switch -Regex ($normalized) {
+      '^pwsh$' { "powershell"; break }
+      '^powershell$' { "powershell"; break }
+      '^node$' { "node"; break }
+      '^cmd$' { "cmd"; break }
+      '^chrome$' { "chrome"; break }
+      '^mongod$' { "mongod"; break }
+      '^adb$' { "adb"; break }
+      '^python(|w)?$' { "python"; break }
+      '^cloudflared$' { "cloudflared"; break }
+      '^slack$' { "slack"; break }
+      '^explorer$' { "explorer"; break }
+      '^docker desktop$' { "docker"; break }
+      '^com\.docker\..*$' { "docker"; break }
+      '^codex$' { "codex"; break }
+      default { "" }
+    }
+    if ([string]::IsNullOrWhiteSpace($family)) {
+      $counts["other"] = [int]$counts["other"] + 1
+    } else {
+      $counts[$family] = [int]$counts[$family] + 1
+    }
+  }
+
+  return $counts
+}
+
 function Get-Snapshot {
   $os = Get-CimInstance Win32_OperatingSystem
   $totalGB = [math]::Round(([double]$os.TotalVisibleMemorySize / 1MB), 2)
@@ -283,7 +366,10 @@ function Get-Snapshot {
   $usedPct = if ($totalGB -gt 0) { [math]::Round((($usedGB / $totalGB) * 100), 1) } else { 0 }
   $cpuPct = Get-InstantCpuPercent
   $gpuPct = Get-MaxGpuPercent
+  $topRows = Get-TopProcessRows -Count ([Math]::Max(3, $TopProcessCount))
   $top = Get-TopProcessSummary -Count ([Math]::Max(3, $TopProcessCount))
+  $runtimeCounts = Get-TaskManagerRuntimeCounts
+  $taskManagerSampledAt = (Get-Date).ToString("o")
 
   return [pscustomobject]@{
     totalGB = $totalGB
@@ -293,6 +379,10 @@ function Get-Snapshot {
     cpuPct = $cpuPct
     gpuPct = $gpuPct
     topProcesses = $top
+    topProcessRows = @($topRows)
+    runtimeProcessCounts = $runtimeCounts
+    taskManagerSource = "windows_get_process"
+    taskManagerSampledAt = $taskManagerSampledAt
   }
 }
 
