@@ -28,8 +28,9 @@ const { execSync } = require('child_process');
 const http = require('http');
 const crypto = require('crypto');
 const path = require('path');
+const runtimePaths = require('./runtime-paths');
 
-const ADB = 'C:/Users/acer/AppData/Local/Microsoft/WinGet/Packages/Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe/platform-tools/adb';
+const ADB = runtimePaths.adbPath;
 const BEHCS_PORT = 4947;
 const codex = require('./codex-bridge');
 

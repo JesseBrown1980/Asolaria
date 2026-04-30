@@ -38,14 +38,15 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { execSync, spawn } = require('child_process');
+const runtimePaths = require('./runtime-paths');
 
-const ROOT = 'C:/Users/acer/Asolaria';
-const ADB = 'C:/Users/acer/AppData/Local/Microsoft/WinGet/Packages/Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe/platform-tools/adb';
-const BEHCS_DIR = path.join(ROOT, 'data/behcs');
+const ROOT = runtimePaths.repoRoot;
+const ADB = runtimePaths.adbPath;
+const BEHCS_DIR = runtimePaths.behcsDataDir;
 const INBOX = path.join(BEHCS_DIR, 'inbox.ndjson');
 const QUEUE = path.join(BEHCS_DIR, 'rehydration-queue.ndjson');
 const GNN_EDGES = path.join(BEHCS_DIR, 'gnn-edges.ndjson');
-const CAPTURES_DIR = path.join(ROOT, 'logs/captures/omnicalendar');
+const CAPTURES_DIR = runtimePaths.captureDir('omnicalendar');
 const PID_FILE = path.join(BEHCS_DIR, 'sidecar.pid');
 
 const EventEmitter = require('events');
@@ -710,10 +711,41 @@ function startBus() {
 
     if (url.pathname === '/behcs/inbox') {
       try {
-        const last = parseInt(url.searchParams.get('last') || '20');
-        const lines = fs.existsSync(INBOX) ? fs.readFileSync(INBOX, 'utf8').split('\n').filter(l => l.trim()).map(l => { try { return JSON.parse(l); } catch (_) { return null; } }).filter(Boolean) : [];
+        // 2026-04-18 fix: honor ALL filter params (bilateral fix with liris
+        // sidecar per acer's Claude audit). Previously only ?last was read.
+        const limit = Math.min(Math.max(1, parseInt(url.searchParams.get('limit') || url.searchParams.get('last') || '50', 10) || 50), 5000);
+        const since = url.searchParams.get('since');
+        const actor = url.searchParams.get('actor');
+        const verb = url.searchParams.get('verb');
+        const target = url.searchParams.get('target');
+        const eventId = url.searchParams.get('event_id');
+        const fallbackD1 = url.searchParams.get('d1');
+
+        const raw = fs.existsSync(INBOX) ? fs.readFileSync(INBOX, 'utf8').split('\n').filter(l => l.trim()).map(l => { try { return JSON.parse(l); } catch (_) { return null; } }).filter(Boolean) : [];
+        let msgs = raw;
+        if (eventId) {
+          msgs = msgs.filter(m => {
+            const eid = m.gate_results && m.gate_results.gnn && m.gate_results.gnn.edge && m.gate_results.gnn.edge.eventId;
+            return eid === eventId;
+          });
+        } else {
+          if (since) { const s = Date.parse(since); if (!isNaN(s)) msgs = msgs.filter(m => Date.parse(m.received_at || m.ts || '') >= s); }
+          if (actor) msgs = msgs.filter(m => m.actor === actor || m.from === actor);
+          if (verb) msgs = msgs.filter(m => m.verb === verb);
+          if (target) msgs = msgs.filter(m => m.target === target || m.to === target);
+          if (fallbackD1) msgs = msgs.filter(m => Array.isArray(m.fallbackTuples) && m.fallbackTuples.includes('D1:' + fallbackD1));
+        }
+
+        const tail = msgs.slice(-limit);
         res.writeHead(200);
-        res.end(JSON.stringify({ ok: true, count: lines.length, messages: lines.slice(-last) }));
+        res.end(JSON.stringify({
+          ok: true,
+          count: raw.length,
+          filtered: msgs.length,
+          returned: tail.length,
+          filters_applied: { limit, since, actor, verb, target, event_id: eventId, d1: fallbackD1 },
+          messages: tail,
+        }));
       } catch (e) { res.writeHead(500); res.end(JSON.stringify({ ok: false, error: e.message })); }
       return;
     }

@@ -13,7 +13,46 @@ const {
 const repoRoot = path.resolve(__dirname, "..", "..");
 const runId = process.env.ASOLARIA_LOGICAL_RUN_ID || "real-free-agent-system-test-logical-20b-20260428";
 const eventId = "EVT-REAL-FREE-AGENT-LOGICAL-SCALE-LEDGER-2026-04-28";
-const logicalAgents = Number(process.env.ASOLARIA_LOGICAL_AGENTS || 20_000_000_000);
+
+// BigInt-aware coercion: accepts decimal Number or decimal-string BigInt.
+// Returns Number if safely representable, BigInt otherwise. Negative or invalid → null.
+function coerceCount(input, fallback) {
+  if (input === undefined || input === null || input === "") return fallback;
+  if (typeof input === "bigint") return input;
+  if (typeof input === "number") {
+    if (!Number.isFinite(input) || input < 0) return null;
+    return Number.isSafeInteger(input) ? input : BigInt(Math.trunc(input));
+  }
+  const str = String(input).trim();
+  if (!/^[0-9]+$/.test(str)) {
+    const numeric = Number(str);
+    if (!Number.isFinite(numeric) || numeric < 0) return null;
+    return Number.isSafeInteger(numeric) ? numeric : BigInt(Math.trunc(numeric));
+  }
+  // Pure decimal-digit string: try Number first, fall back to BigInt.
+  const asNumber = Number(str);
+  if (Number.isSafeInteger(asNumber) && String(asNumber) === str) return asNumber;
+  return BigInt(str);
+}
+
+// True if value is a positive integer (Number safe-int >=1 OR BigInt >=1n).
+function isPositiveCount(value) {
+  if (typeof value === "bigint") return value >= 1n;
+  return Number.isSafeInteger(value) && value >= 1;
+}
+
+// Serialize Number/BigInt count to canonical decimal string.
+function countToString(value) {
+  if (typeof value === "bigint") return value.toString();
+  return String(value);
+}
+
+// JSON replacer that stringifies BigInt as decimal string.
+function bigintReplacer(_key, value) {
+  return typeof value === "bigint" ? value.toString() : value;
+}
+
+const logicalAgents = coerceCount(process.env.ASOLARIA_LOGICAL_AGENTS, 20_000_000_000);
 const logicalShards = Number(process.env.ASOLARIA_LOGICAL_SHARDS || 1000);
 const gulpSize = Number(process.env.ASOLARIA_LOGICAL_GULP_SIZE || 2000);
 const questionPacketRel = process.env.ASOLARIA_SUPERVISOR_QUESTION_PACKET || "data/behcs/orchestration/real-free-agent-system-test-20260428/real-free-agent-system-test-questions.v1.json";
@@ -89,11 +128,11 @@ function writeText(filePath, text) {
 }
 
 function writeJson(filePath, value) {
-  writeText(filePath, JSON.stringify(value, null, 2));
+  writeText(filePath, JSON.stringify(value, bigintReplacer, 2));
 }
 
 function writeNdjson(filePath, rows) {
-  writeText(filePath, rows.map((row) => JSON.stringify(row)).join("\n"));
+  writeText(filePath, rows.map((row) => JSON.stringify(row, bigintReplacer)).join("\n"));
 }
 
 function sha256Text(text) {
@@ -101,7 +140,7 @@ function sha256Text(text) {
 }
 
 function sha256Json(value) {
-  return sha256Text(JSON.stringify(sortDeep(value)));
+  return sha256Text(JSON.stringify(sortDeep(value), bigintReplacer));
 }
 
 function round3(value) {
@@ -113,6 +152,15 @@ function padNumber(value, width) {
 }
 
 function logicalScaleLabel(total) {
+  if (typeof total === "bigint") {
+    if (total % 1_000_000_000_000_000_000n === 0n) return `${total / 1_000_000_000_000_000_000n}e`;
+    if (total % 1_000_000_000_000_000n === 0n) return `${total / 1_000_000_000_000_000n}p`;
+    if (total % 1_000_000_000_000n === 0n) return `${total / 1_000_000_000_000n}t`;
+    if (total % 1_000_000_000n === 0n) return `${total / 1_000_000_000n}b`;
+    if (total % 1_000_000n === 0n) return `${total / 1_000_000n}m`;
+    if (total % 1_000n === 0n) return `${total / 1_000n}k`;
+    return total.toString().replace(/[^0-9a-z_-]+/gi, "_");
+  }
   const value = Number(total);
   if (Number.isSafeInteger(value) && value % 1_000_000_000 === 0) {
     return `${value / 1_000_000_000}b`;
@@ -182,20 +230,27 @@ function buildLogicalRows(options = {}) {
   const questions = Array.isArray(options.questions) && options.questions.length
     ? options.questions
     : [{ id: "system-self-knowledge", question: "System self-knowledge", evidenceClass: "default", cube: null }];
-  const total = Number(options.logicalAgents || logicalAgents);
+  const total = coerceCount(options.logicalAgents, logicalAgents);
   const shards = Number(options.logicalShards || logicalShards);
   const gulp = Number(options.gulpSize || gulpSize);
-  if (!Number.isSafeInteger(total) || total < 1) throw new Error("logicalAgents must be a positive safe integer");
+  if (!isPositiveCount(total)) throw new Error("logicalAgents must be a positive integer (Number or decimal-string BigInt)");
   if (!Number.isSafeInteger(shards) || shards < 1) throw new Error("logicalShards must be a positive safe integer");
   if (!Number.isSafeInteger(gulp) || gulp < 1) throw new Error("gulpSize must be a positive safe integer");
   const rows = [];
-  const base = Math.floor(total / shards);
-  let cursor = 1;
+  const useBig = typeof total === "bigint";
+  const big = (n) => (useBig ? BigInt(n) : n);
+  const ONE = useBig ? 1n : 1;
+  const shardsVal = useBig ? BigInt(shards) : shards;
+  const gulpVal = useBig ? BigInt(gulp) : gulp;
+  const base = useBig ? total / shardsVal : Math.floor(total / shards);
+  let cursor = ONE;
   for (let index = 0; index < shards; index += 1) {
-    const represented = index === shards - 1 ? total - cursor + 1 : base;
+    const represented = index === shards - 1
+      ? (useBig ? (total - cursor + 1n) : (total - cursor + 1))
+      : base;
     const first = cursor;
-    const last = cursor + represented - 1;
-    cursor = last + 1;
+    const last = useBig ? (cursor + represented - 1n) : (cursor + represented - 1);
+    cursor = useBig ? (last + 1n) : (last + 1);
     const question = questions[index % questions.length];
     const lane = lanes[index % lanes.length];
     const workItem = {
@@ -216,7 +271,9 @@ function buildLogicalRows(options = {}) {
       firstLogicalAgent: first,
       lastLogicalAgent: last,
       logicalAgentsRepresented: represented,
-      logicalGulpsRepresented: Math.ceil(represented / gulp),
+      logicalGulpsRepresented: useBig
+        ? ((represented + gulpVal - 1n) / gulpVal)
+        : Math.ceil(represented / gulp),
       gulpSize: gulp,
       modelPolicy: modelPolicyForWorkItem(workItem),
       selectedModelForEmpiricalSample: selectModelForWorkItem(workItem),
@@ -228,34 +285,49 @@ function buildLogicalRows(options = {}) {
 }
 
 function buildOmniflywheelTracker(options = {}) {
-  const total = Number(options.logicalAgents || logicalAgents);
+  const total = coerceCount(options.logicalAgents, logicalAgents);
   const gulp = Number(options.gulpSize || gulpSize);
   const maxRows = Number(options.maxTrackerRows || process.env.ASOLARIA_LOGICAL_TRACKER_MAX_ROWS || 20_000);
   const controllerCount = Number(options.controllerCount || process.env.ASOLARIA_TRACKER_CONTROLLER_COUNT || 1000);
   const flywheelCount = Number(options.flywheelCount || process.env.ASOLARIA_TRACKER_FLYWHEEL_COUNT || 1000);
-  if (!Number.isSafeInteger(total) || total < 1) throw new Error("logicalAgents must be a positive safe integer");
+  if (!isPositiveCount(total)) throw new Error("logicalAgents must be a positive integer (Number or decimal-string BigInt)");
   if (!Number.isSafeInteger(gulp) || gulp < 1) throw new Error("gulpSize must be a positive safe integer");
   if (!Number.isSafeInteger(maxRows) || maxRows < 1) throw new Error("maxTrackerRows must be a positive safe integer");
   if (!Number.isSafeInteger(controllerCount) || controllerCount < 1) throw new Error("controllerCount must be a positive safe integer");
   if (!Number.isSafeInteger(flywheelCount) || flywheelCount < 1) throw new Error("flywheelCount must be a positive safe integer");
 
-  const totalGulps = Math.ceil(total / gulp);
+  const useBig = typeof total === "bigint";
+  const gulpBig = useBig ? BigInt(gulp) : gulp;
+  // totalGulps = ceil(total / gulp). For BigInt path stays BigInt; for Number path stays Number.
+  const totalGulps = useBig
+    ? ((total + gulpBig - 1n) / gulpBig)
+    : Math.ceil(total / gulp);
   const scaleLabel = logicalScaleLabel(total);
-  const strideGulps = Math.max(1, Math.floor(totalGulps / maxRows));
+  // strideGulps: floor(totalGulps / maxRows), at least 1. Stride remains Number-safe when collapsed but may be BigInt for huge totals.
+  const strideGulps = useBig
+    ? (totalGulps / BigInt(maxRows) > 0n ? totalGulps / BigInt(maxRows) : 1n)
+    : Math.max(1, Math.floor(totalGulps / maxRows));
   const started = process.hrtime.bigint();
   const rows = [];
   const geniusCandidates = [];
   const mistakeCandidates = [];
   let checksum = 0;
 
-  for (let firstGulp = 0, rangeIndex = 0; firstGulp < totalGulps; firstGulp += strideGulps, rangeIndex += 1) {
-    const lastGulp = Math.min(totalGulps - 1, firstGulp + strideGulps - 1);
-    const firstWorker = firstGulp * gulp + 1;
-    const lastWorker = Math.min(total, (lastGulp + 1) * gulp);
+  // Iterator must use the same numeric kind as totalGulps/strideGulps.
+  const ZERO = useBig ? 0n : 0;
+  const ONE = useBig ? 1n : 1;
+  const lt = (a, b) => (useBig ? a < b : a < b);
+  const minVal = (a, b) => (useBig ? (a < b ? a : b) : Math.min(a, b));
+  for (let firstGulp = ZERO, rangeIndex = 0; lt(firstGulp, totalGulps); firstGulp = (useBig ? (firstGulp + strideGulps) : (firstGulp + strideGulps)), rangeIndex += 1) {
+    const lastGulp = minVal(useBig ? (totalGulps - 1n) : (totalGulps - 1), useBig ? (firstGulp + strideGulps - 1n) : (firstGulp + strideGulps - 1));
+    const firstWorker = useBig ? (firstGulp * gulpBig + 1n) : (firstGulp * gulp + 1);
+    const lastWorker = useBig
+      ? (total < (lastGulp + 1n) * gulpBig ? total : (lastGulp + 1n) * gulpBig)
+      : Math.min(total, (lastGulp + 1) * gulp);
     const lane = trackerLanes[rangeIndex % trackerLanes.length];
     const controller = `BH.TRACKER.CTRL.${padNumber((rangeIndex % controllerCount) + 1, 4)}`;
     const flywheel = `BH.OMNIFLYWHEEL.${padNumber((rangeIndex % flywheelCount) + 1, 4)}`;
-    const basis = `${runId}:${eventId}:${firstGulp}:${lastGulp}:${firstWorker}:${lastWorker}:${lane}`;
+    const basis = `${runId}:${eventId}:${countToString(firstGulp)}:${countToString(lastGulp)}:${countToString(firstWorker)}:${countToString(lastWorker)}:${lane}`;
     const digest = sha256Text(basis);
     const score = round3((parseInt(digest.slice(0, 6), 16) % 1000) / 1000);
     const reverseGain = round3((parseInt(digest.slice(6, 12), 16) % 1000) / 1000);
@@ -263,10 +335,10 @@ function buildOmniflywheelTracker(options = {}) {
       rangeId: `range-${padNumber(rangeIndex, 8)}`,
       firstGulp,
       lastGulp,
-      gulpsRepresented: lastGulp - firstGulp + 1,
+      gulpsRepresented: useBig ? (lastGulp - firstGulp + 1n) : (lastGulp - firstGulp + 1),
       firstWorker,
       lastWorker,
-      logicalWorkersRepresented: lastWorker - firstWorker + 1,
+      logicalWorkersRepresented: useBig ? (lastWorker - firstWorker + 1n) : (lastWorker - firstWorker + 1),
       lane,
       controller,
       flywheel,

@@ -3,7 +3,8 @@
 # Old: 70LOC socket+reverse_tcp → New: 30LOC BEHCS-bus | LAW-008
 import json,subprocess as sp,time,urllib.request as ur
 B='http://127.0.0.1:4948/behcs/send'
-A='http://192.168.15.189:4947/behcs/send' # fallback direct
+# Fixed 2026-04-17: Felipe A06 at 192.168.1.11 per profiles/felipe-a06.json
+A='http://192.168.1.11:4947/behcs/send' # fallback direct
 def r(c):
  try:return sp.check_output(c,shell=True,stderr=sp.STDOUT,timeout=10).decode().strip()
  except:return''

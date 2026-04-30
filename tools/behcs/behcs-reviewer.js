@@ -2,7 +2,8 @@
 // behcs-reviewer.js — ≤35LOC — scans memories for patterns, GCs mistakes
 // D43(6967871)+D11(29791) | LAW-010 | symbols=code
 const fs=require('fs'),p=require('path'),h=require('http'),c=require('crypto');
-const M='C:/Users/acer/.claude/projects/E--/memory',B=4947;
+const paths=require('./runtime-paths');
+const M=paths.memoryDir,B=4947;
 const H=k=>c.createHash('sha256').update(k).digest('hex').slice(0,16);
 const mds=fs.readdirSync(M).filter(f=>f.endsWith('.md')&&f!=='MEMORY.md');
 const pat={};mds.forEach(f=>{

@@ -8,7 +8,8 @@
  */
 'use strict';
 const { execSync } = require('child_process');
-const ADB = 'C:/Users/acer/AppData/Local/Microsoft/WinGet/Packages/Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe/platform-tools/adb';
+const runtimePaths = require('./runtime-paths');
+const ADB = runtimePaths.adbPath;
 
 const PHONES = [
   { name: 'falcon',  ip: '192.168.1.9',  port: 5555, serial: 'R5CXA4MGQXV', model: 'SM-S721U1' },

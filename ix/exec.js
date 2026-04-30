@@ -3,7 +3,16 @@
 // Gate chain: hookwall → gnn → shannon → execute
 // Usage: node ix/exec.js <name> [arg]
 const registry = require('./index');
-const hookwall = require('./gates/hookwall');
+const hookwall = (() => {
+  const fs = require('fs');
+  const path = require('path');
+  const v2Path = path.join(__dirname, 'gates', 'hookwall-v2.js');
+  if (fs.existsSync(v2Path)) {
+    try { return require('./gates/hookwall-v2'); }
+    catch (e) { console.warn('[exec] hookwall-v2 load failed, falling back to v1:', e.message); }
+  }
+  return require('./gates/hookwall');
+})();
 const gnnGate = require('./gates/gnn');
 const shannonGate = require('./gates/shannon');
 

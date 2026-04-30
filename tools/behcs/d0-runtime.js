@@ -33,11 +33,12 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const runtimePaths = require('./runtime-paths');
 
-const ROOT = 'C:/Users/acer/Asolaria';
-const BEHCS_DIR = path.join(ROOT, 'data/behcs');
+const ROOT = runtimePaths.repoRoot;
+const BEHCS_DIR = runtimePaths.behcsDataDir;
 const D0_DIR = path.join(BEHCS_DIR, 'd0-runtime');
-const D_DEST = 'D:/safety-backups/session-20260411-behcs-v6';
+const D_DEST = runtimePaths.sessionBackupDir('session-20260411-behcs-v6');
 const BEHCS_PORT = 4947;
 
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }

@@ -17,9 +17,10 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const crypto = require('crypto');
+const runtimePaths = require('./runtime-paths');
 
-const MEMORY_DIR = 'C:/Users/acer/.claude/projects/E--/memory';
-const BEHCS_DIR = 'C:/Users/acer/Asolaria/data/behcs';
+const MEMORY_DIR = runtimePaths.memoryDir;
+const BEHCS_DIR = runtimePaths.behcsDataDir;
 const INDEX_PATH = path.join(BEHCS_DIR, 'memory-cube-index.json');
 const BEHCS_PORT = 4947;
 

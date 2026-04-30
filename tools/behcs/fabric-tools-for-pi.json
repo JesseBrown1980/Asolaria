@@ -1,0 +1,152 @@
+{
+  "_canon": "Acer's redesign 2026-04-29: pi as fabric CITIZEN, not target. Pi calls these tools instead of api.anthropic.com.",
+  "_pi_load_pattern": "pi loads via: pi --tool-defs ./fabric-tools-for-pi.json   (or via auto-discovery from cell-spawn envelope)",
+  "_namespace": "fabric_*",
+  "_bilateral_canon": "Acer-side mirror canonical; liris-side identical sha256 required for BEHCS seal.",
+  "tools": [
+    {
+      "name": "fabric_busPost",
+      "description": "Post a signed envelope to the BEHCS-256 bus at acer:4947. Use for any inter-agent dispatch.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "to": { "type": "string", "description": "Target host (acer | liris | falcon | felipe)" },
+          "type": { "type": "string", "description": "Envelope type uppercase snake-case" },
+          "verb": { "type": "string", "description": "Envelope verb prefixed EVT-" },
+          "payload": { "type": "object", "description": "Verb-specific payload" }
+        },
+        "required": ["to", "verb", "payload"]
+      }
+    },
+    {
+      "name": "fabric_inferNext",
+      "description": "Ask the GNN-self-dispatch primitive what the next edge from current state should be. Returns top-K predicted EVT-GNN-SUGGEST envelopes (PID-addressed).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "topK": { "type": "integer", "default": 5 },
+          "context_window_msgs": { "type": "integer", "default": 50, "description": "How many recent bus messages to include in graph context" }
+        }
+      }
+    },
+    {
+      "name": "fabric_councilPropose",
+      "description": "Submit a question to the supervisor council (234 supervisors) for consensus vote. Returns convergence + dominant domains. Acer-side tool.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "question": { "type": "string", "description": "≤80 token plain-English fabric question" }
+        },
+        "required": ["question"]
+      }
+    },
+    {
+      "name": "fabric_hermesValidate",
+      "description": "Pen-test packet integrity via Hermes supervisor. Returns PASS / DISSENT verdict with reasons.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "packet": { "type": "object", "description": "Envelope-shaped artifact to validate" },
+          "supervisor_pid": { "type": "string", "default": "BH.SUPERVISOR.PID.FED.REINTEGRATION.HERMES.PACKET" }
+        },
+        "required": ["packet"]
+      }
+    },
+    {
+      "name": "fabric_shannonTrust",
+      "description": "Information-theoretic trust scoring via Shannon supervisor. Compares artifact entropy + KL-divergence vs prior canon.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "artifact_text": { "type": "string", "description": "Text content to score" },
+          "compare_against": { "type": "string", "default": "current_cosign_chain", "description": "Corpus to compare against" }
+        },
+        "required": ["artifact_text"]
+      }
+    },
+    {
+      "name": "fabric_gnnScore",
+      "description": "Score a graph through EdgeLevelGNN (acer:4792) and GSLGNN (acer:4793 + liris:4793) endpoints. Returns 2 substrate scores.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "graph": {
+            "type": "object",
+            "properties": {
+              "nodes": { "type": "array", "items": { "type": "array", "items": { "type": "number" } } },
+              "edges": { "type": "array", "items": { "type": "array", "items": { "type": "integer" } } },
+              "edge_features": { "type": "array", "items": { "type": "array", "items": { "type": "number" } } }
+            },
+            "required": ["nodes", "edges", "edge_features"]
+          }
+        },
+        "required": ["graph"]
+      }
+    },
+    {
+      "name": "fabric_whiteroomStage",
+      "description": "Stage an artifact in the white-room canon staging area (sandbox before promotion to canon). Returns stage_id.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "kind": { "type": "string", "description": "Artifact kind (prompt | tool_def | scaffold | eval_trace | code_snippet)" },
+          "content": { "type": "string", "description": "Artifact content" },
+          "source_pid": { "type": "string", "description": "PID of the agent/cell that produced this" }
+        },
+        "required": ["kind", "content", "source_pid"]
+      }
+    },
+    {
+      "name": "fabric_inboxPoll",
+      "description": "Poll the bus inbox for envelopes addressed to a specific target / matching a verb. Returns matching envelopes.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "target": { "type": "string" },
+          "verb": { "type": "string" },
+          "since": { "type": "string", "description": "ISO timestamp; only return envelopes after this" },
+          "limit": { "type": "integer", "default": 50 }
+        }
+      }
+    },
+    {
+      "name": "fabric_cosignChainAppend",
+      "description": "Propose appending an entry to the cosign chain. Requires bilateral 2-of-2 sign-off by both DEV-LIRIS and DEV-ACER. T3 verb (no auto-fire).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "kind": { "type": "string", "description": "Canon entry kind (e.g., canon_pi_cell_wave_001_aggregated)" },
+          "payload": { "type": "object", "description": "Full canon entry content" }
+        },
+        "required": ["kind", "payload"]
+      }
+    },
+    {
+      "name": "fabric_glyphGenesis",
+      "description": "Mint a new BEHCS-256 glyph at a Hilbert coordinate. Each pi-cell that completes successfully MAY emit a glyph at its H-coord — the cell IS a glyph being instantiated. Acer's bonus design.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "hilbert_coord": { "type": "integer", "description": "0-9999 H-coord; cell's PID hilbert" },
+          "verb_edge": { "type": "string", "description": "Verb the glyph corresponds to" },
+          "source_cell_pid": { "type": "string" }
+        },
+        "required": ["hilbert_coord", "verb_edge", "source_cell_pid"]
+      }
+    }
+  ],
+  "_aspect_regions": {
+    "_doc": "Hilbert H-coord ranges → division-of-labor regions. Adjacent PIDs auto-specialize.",
+    "0-999": "CORPUS_MINING (verbs: EVT-PI-AGENT-REQUEST, EVT-OPENCODE-AGENT-REQUEST)",
+    "1000-1999": "PEN_TEST (verbs: EVT-HERMES-PACKET-VALIDATE-REQUEST, EVT-SHANNON-TRUST-SCORE-REQUEST)",
+    "2000-2999": "GNN_SCORING (verbs: EVT-GNN-INFER-REQUEST)",
+    "3000-3999": "COUNCIL_VOTE (verbs: EVT-FABRIC-QUERY-REQUEST)",
+    "4000-4999": "SUPERVISOR_EXERCISE (verbs: EVT-FED-SUPERVISOR-EXERCISE)",
+    "5000-5999": "COSIGN_CHAIN_ENTRY (verbs: EVT-COSIGN-CHAIN-MIRROR-CHUNK)",
+    "6000-6999": "WHITE_ROOM_STAGE (verbs: EVT-WHITE-ROOM-STAGE-INGEST)",
+    "7000-7999": "CASCADE_AGGREGATE (verbs: EVT-CASCADE-WAVE-AGGREGATE)",
+    "8000-8999": "GLYPH_GENESIS (verbs: EVT-GLYPH-GENESIS)",
+    "9000-9999": "RESERVED"
+  },
+  "_meta_principle": "Fabric IS the API. Pi is a citizen with PID. Tools are not API calls; they are bus envelopes. Pi pen-tests the fabric AS IT USES IT — anomalies are side-effects of normal operation. Loop closes when pi calls fabric_inferNext."
+}

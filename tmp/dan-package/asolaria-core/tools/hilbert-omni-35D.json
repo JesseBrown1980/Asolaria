@@ -58,9 +58,9 @@
 
   "address_space_35D": {
     "formula": "product of all 35 prime cubes",
-    "total_cubes_per_level_24D": 3683696,
+    "total_cubes_per_level_24D": 3783777,
     "new_cubes_added_D25_D35": "912673+1030301+1092727+1225043+1295029+1442897+2048383+2248091+2571353+2685619+3307949 = 19860065",
-    "total_cubes_per_level_35D": 23543761,
+    "total_cubes_per_level_35D": 23643842,
     "full_address_space_35D": "product of all 35 primes cubed = astronomically infinite, practical cap never reached"
   },
 

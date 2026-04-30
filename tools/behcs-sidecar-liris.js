@@ -38,6 +38,52 @@ try { hookwallGate = require("../gates/hookwall-v2"); } catch(_) { log("WARN: ho
 try { gnnGate = require("../gates/gnn"); } catch(_) { log("WARN: gnn not loaded"); }
 try { shannonGate = require("../gates/shannon"); } catch(_) { log("WARN: shannon not loaded"); }
 
+// Ingress sig-verify — mirrors acer's acer-ingress-sig-verify patch (50bb650).
+// If an incoming /behcs/send carries a `signed_envelope` block with {payload, signature},
+// verify signature against kernel/ed25519-registry.json on liris side. Three verdicts:
+//   VERIFIED  → 200 ok:true sig_verdict:VERIFIED sig_owner:<owner>
+//   TAMPERED  → 403 ok:false sig_verdict:TAMPERED (forgery dies at ingress)
+//   UNSIGNED  → 200 ok:true sig_verdict:UNSIGNED (backward compat)
+const crypto = require("crypto");
+const REGISTRY_PATH = "C:/Users/rayss/Asolaria-BEHCS-256/kernel/ed25519-registry.json";
+const SPKI_ED_PREFIX = Buffer.from("302a300506032b6570032100", "hex");
+const INGRESS_SIG_LOG = path.join(ROOT, "logs/ingress-sig-events.ndjson");
+
+function loadRegistry() {
+  try {
+    if (!fs.existsSync(REGISTRY_PATH)) return { keys: [] };
+    return JSON.parse(fs.readFileSync(REGISTRY_PATH, "utf-8"));
+  } catch (_) { return { keys: [] }; }
+}
+
+function verifySigIngress(signedEnv) {
+  if (!signedEnv || typeof signedEnv !== "object") return { verdict: "UNSIGNED", reason: "no-signed-envelope" };
+  const { payload, signature } = signedEnv;
+  if (!payload || !signature || !signature.key_id || !signature.sig_b64) {
+    return { verdict: "UNSIGNED", reason: "payload-or-signature-missing" };
+  }
+  const reg = loadRegistry();
+  const entry = reg.keys.find((k) => k.key_id === signature.key_id);
+  if (!entry) return { verdict: "TAMPERED", reason: "unknown-key-id", key_id: signature.key_id };
+  try {
+    const pubRaw = Buffer.from(entry.public_key_b64, "base64");
+    if (pubRaw.length !== 32) return { verdict: "TAMPERED", reason: "bad-key-material", key_id: signature.key_id };
+    const spki = Buffer.concat([SPKI_ED_PREFIX, pubRaw]);
+    const pub = crypto.createPublicKey({ key: spki, format: "der", type: "spki" });
+    const material = Buffer.from(JSON.stringify(payload), "utf-8");
+    const sigBuf = Buffer.from(signature.sig_b64, "base64");
+    const ok = crypto.verify(null, material, pub, sigBuf);
+    if (!ok) return { verdict: "TAMPERED", reason: "crypto-verify-failed", key_id: signature.key_id, owner: entry.owner_glyph };
+    return { verdict: "VERIFIED", key_id: entry.key_id, owner: entry.owner_glyph };
+  } catch (e) {
+    return { verdict: "TAMPERED", reason: "threw: " + e.message, key_id: signature.key_id };
+  }
+}
+
+function logSigEvent(rec) {
+  try { ensureDir(INGRESS_SIG_LOG); fs.appendFileSync(INGRESS_SIG_LOG, JSON.stringify({ ts: new Date().toISOString(), ...rec }) + "\n"); } catch (_) {}
+}
+
 async function runGateCheck(verb, args, envelope) {
   const results = { hookwall: null, gnn: null, shannon: null, allowed: true };
   try { if (hookwallGate) results.hookwall = await hookwallGate(verb, args, envelope); } catch(e) { results.hookwall = { degraded: true, error: e.message }; }
@@ -101,18 +147,69 @@ const server = http.createServer(async (req, res) => {
     // Gate check on every message (IX-864)
     const gates = await runGateCheck(msg.verb || "unknown", msg.data || {}, { pid: msg.from || "unknown", permissionTier: "trusted_agent", host: "liris" });
     if (!gates.allowed) { log("GATE-BLOCKED from=" + msg.from + " verb=" + msg.verb); return jsonRes(res, 403, { ok: false, blocked: true, gate_results: gates }); }
+    // Ingress sig-verify (mirrors acer 50bb650). Look for signed_envelope at msg.signed_envelope
+    // OR msg.body.liris_signed_envelope OR msg.body.signed_envelope for compat with prior shapes.
+    const signedEnv = msg.signed_envelope
+      || (msg.body && (msg.body.signed_envelope || msg.body.liris_signed_envelope || msg.body.acer_signed_envelope))
+      || null;
+    const sigVerdict = verifySigIngress(signedEnv);
+    logSigEvent({ verb: msg.verb, actor: msg.actor || msg.from, verdict: sigVerdict.verdict, key_id: sigVerdict.key_id, owner: sigVerdict.owner, reason: sigVerdict.reason });
+    if (sigVerdict.verdict === "TAMPERED") {
+      log("SIG-TAMPERED REJECTED from=" + (msg.actor || msg.from) + " verb=" + msg.verb + " reason=" + sigVerdict.reason);
+      return jsonRes(res, 403, { ok: false, blocked: true, sig_verdict: "TAMPERED", sig_reason: sigVerdict.reason, gate_results: gates });
+    }
     msg.received_at = new Date().toISOString();
     msg.received_by = "liris-sidecar";
     msg.gate_results = gates;
+    msg.sig_verdict = sigVerdict.verdict;
+    msg.sig_owner = sigVerdict.owner || null;
     inbox.push(msg);
     appendInbox(msg);
     appendRehydrate(msg); // Queue for liris-kuromi rehydration
-    log("RECV from=" + msg.from + " verb=" + msg.verb);
-    return jsonRes(res, 200, { ok: true, by: "liris-sidecar", gate_results: gates });
+    log("RECV from=" + (msg.actor || msg.from) + " verb=" + msg.verb + " sig=" + sigVerdict.verdict);
+    return jsonRes(res, 200, { ok: true, by: "liris-sidecar", sig_verdict: sigVerdict.verdict, sig_owner: sigVerdict.owner || null, gate_results: gates });
   }
 
   if (url === "/behcs/inbox") {
-    return jsonRes(res, 200, { ok: true, count: inbox.length, messages: inbox.slice(-50) });
+    // 2026-04-18 fix: honor query params. Acer's Claude observed that
+    // ?limit/?since/?actor/?verb/?target were being ignored, causing targeted
+    // ack-tracking to fail under 1Hz heartbeat flood. Patched bilaterally.
+    const qs = req.url.includes("?") ? new URLSearchParams(req.url.split("?")[1]) : new URLSearchParams();
+    const limit = Math.min(Math.max(1, parseInt(qs.get("limit") || "50", 10) || 50), 5000);
+    const since = qs.get("since"); // ISO timestamp
+    const actor = qs.get("actor");
+    const verb = qs.get("verb");
+    const target = qs.get("target");
+    const eventId = qs.get("event_id");
+    const fallbackD1 = qs.get("d1"); // filter by fallbackTuples contains D1:<x>
+
+    let msgs = inbox;
+    if (eventId) {
+      msgs = msgs.filter(m => {
+        const eid = m.gate_results && m.gate_results.gnn && m.gate_results.gnn.edge && m.gate_results.gnn.edge.eventId;
+        return eid === eventId;
+      });
+    } else {
+      if (since) {
+        const sinceMs = Date.parse(since);
+        if (!isNaN(sinceMs)) msgs = msgs.filter(m => Date.parse(m.received_at || m.ts || "") >= sinceMs);
+      }
+      if (actor) msgs = msgs.filter(m => m.actor === actor || m.from === actor);
+      if (verb) msgs = msgs.filter(m => m.verb === verb);
+      if (target) msgs = msgs.filter(m => m.target === target || m.to === target);
+      if (fallbackD1) msgs = msgs.filter(m => Array.isArray(m.fallbackTuples) && m.fallbackTuples.includes("D1:" + fallbackD1));
+    }
+
+    // Apply limit to the latest N after filtering
+    const tail = msgs.slice(-limit);
+    return jsonRes(res, 200, {
+      ok: true,
+      count: inbox.length,
+      filtered: msgs.length,
+      returned: tail.length,
+      filters_applied: { limit, since, actor, verb, target, event_id: eventId, d1: fallbackD1 },
+      messages: tail,
+    });
   }
 
   if (url === "/behcs/rehydrate") {

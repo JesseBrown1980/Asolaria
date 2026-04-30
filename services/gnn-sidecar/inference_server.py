@@ -18,7 +18,14 @@ def normalize_state_dict_keys(state_dict):
 
 MODEL = EdgeLevelGNN(6, 64)
 state_dict = torch.load(Path(__file__).with_name("baseline_model.pt"), map_location="cpu")
-MODEL.load_state_dict(normalize_state_dict_keys(state_dict))
+# Bilateral-asymmetric load: when the local EdgeLevelGNN class uses real
+# torch_geometric.GCNConv (.bias), the saved keys (.lin.bias) need stripping.
+# When the local class is the no-PyG fallback shim (.lin.bias), keys match as-is.
+# Try both; first one that fits wins.
+try:
+    MODEL.load_state_dict(normalize_state_dict_keys(state_dict))
+except RuntimeError:
+    MODEL.load_state_dict(state_dict)
 MODEL.eval()
 
 

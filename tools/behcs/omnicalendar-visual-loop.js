@@ -19,9 +19,10 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const crypto = require('crypto');
+const runtimePaths = require('./runtime-paths');
 
-const ADB = 'C:/Users/acer/AppData/Local/Microsoft/WinGet/Packages/Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe/platform-tools/adb';
-const CAPTURES_DIR = 'C:/Users/acer/Asolaria/logs/captures/omnicalendar';
+const ADB = runtimePaths.adbPath;
+const CAPTURES_DIR = runtimePaths.captureDir('omnicalendar');
 const BEHCS_PORT = 4947;
 const INTERVAL_MS = 30000;
 
@@ -214,7 +215,7 @@ async function cycle() {
   // GC BEHCS inbox (keep last 200 lines, truncate the rest)
   if (cycleCount % 10 === 0) { // every 5 minutes
     try {
-      const inboxPath = path.join('C:/Users/acer/Asolaria/data/behcs/inbox.ndjson');
+      const inboxPath = runtimePaths.behcsPath('inbox.ndjson');
       if (fs.existsSync(inboxPath)) {
         const lines = fs.readFileSync(inboxPath, 'utf8').split('\n').filter(l => l.trim());
         if (lines.length > 200) {
@@ -228,7 +229,7 @@ async function cycle() {
   // GC BEHCS outbox (keep last 100)
   if (cycleCount % 10 === 0) {
     try {
-      const outboxPath = path.join('C:/Users/acer/Asolaria/data/behcs/outbox.ndjson');
+      const outboxPath = runtimePaths.behcsPath('outbox.ndjson');
       if (fs.existsSync(outboxPath)) {
         const lines = fs.readFileSync(outboxPath, 'utf8').split('\n').filter(l => l.trim());
         if (lines.length > 100) {
@@ -243,7 +244,7 @@ async function cycle() {
   if (cycleCount % 20 === 0) { // every 10 minutes
     for (const dir of ['data/heal-runs', 'data/cycles', 'data/intersection-cube']) {
       try {
-        const fullDir = path.join('C:/Users/acer/Asolaria', dir);
+        const fullDir = path.join(runtimePaths.repoRoot, dir);
         if (!fs.existsSync(fullDir)) continue;
         const files = fs.readdirSync(fullDir).filter(f => f.endsWith('.json')).sort();
         if (files.length > 10) {
@@ -259,7 +260,7 @@ async function cycle() {
   // GC vote directories (keep last 10)
   if (cycleCount % 20 === 0) {
     try {
-      const votesDir = 'C:/Users/acer/Asolaria/data/votes';
+      const votesDir = runtimePaths.repoPath('data', 'votes');
       if (fs.existsSync(votesDir)) {
         const dirs = fs.readdirSync(votesDir).filter(d => fs.statSync(path.join(votesDir, d)).isDirectory()).sort();
         if (dirs.length > 10) {

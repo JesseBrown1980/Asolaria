@@ -30,11 +30,12 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const crypto = require('crypto');
+const runtimePaths = require('./runtime-paths');
 
-const ADB = 'C:/Users/acer/AppData/Local/Microsoft/WinGet/Packages/Google.PlatformTools_Microsoft.Winget.Source_8wekyb3d8bbwe/platform-tools/adb';
-const CAPTURES = 'C:/Users/acer/Asolaria/logs/captures/operator';
-const REGISTER = 'C:/Users/acer/Asolaria/data/behcs/operator-register.ndjson';
-const MISTAKES = 'C:/Users/acer/Asolaria/data/behcs/operator-mistakes.ndjson';
+const ADB = runtimePaths.adbPath;
+const CAPTURES = runtimePaths.captureDir('operator');
+const REGISTER = runtimePaths.behcsPath('operator-register.ndjson');
+const MISTAKES = runtimePaths.behcsPath('operator-mistakes.ndjson');
 const BEHCS_PORT = 4947;
 const MAX_LOOPS = 15;
 const MAX_REGISTER = 200;
