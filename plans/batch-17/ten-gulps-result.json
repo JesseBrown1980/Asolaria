@@ -1,0 +1,124 @@
+{
+  "gulps_count": 10,
+  "workers_per_gulp": 2000,
+  "total_workers": 20000,
+  "cadence_msg_min": 24000,
+  "lane": "opencode-local-freetier",
+  "cost_per_commit_42919d9": 0,
+  "pools": [
+    {
+      "gulp_id": "gulp-0",
+      "gulp_glyph": "g☳€ι_s∑5",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    },
+    {
+      "gulp_id": "gulp-1",
+      "gulp_glyph": "☪◍⇑Γ♢S■Z",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    },
+    {
+      "gulp_id": "gulp-2",
+      "gulp_glyph": "⑩∂Zχ{≤vk",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    },
+    {
+      "gulp_id": "gulp-3",
+      "gulp_glyph": "|3⑭①BeB⑦",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    },
+    {
+      "gulp_id": "gulp-4",
+      "gulp_glyph": "Ω┼€D⑦⑨☳≈",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    },
+    {
+      "gulp_id": "gulp-5",
+      "gulp_glyph": "☆(●◊⑥☪↖B",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    },
+    {
+      "gulp_id": "gulp-6",
+      "gulp_glyph": "⦃=∫◆ω❂╚⟩",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    },
+    {
+      "gulp_id": "gulp-7",
+      "gulp_glyph": "♥3↓≠╔⇧β┤",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    },
+    {
+      "gulp_id": "gulp-8",
+      "gulp_glyph": ")\"≥O♠κ③⑤",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    },
+    {
+      "gulp_id": "gulp-9",
+      "gulp_glyph": "▲JV⑬=△▲▲",
+      "workers": 2000,
+      "lane": "opencode-local-freetier",
+      "cost": 0,
+      "commit_anchor": "42919d9",
+      "cadence_msg_per_min": 2400,
+      "ideation_artifacts": 1828,
+      "fanned_events": 1828
+    }
+  ],
+  "total_ideation_artifacts": 18280,
+  "total_fanned_events": 18280,
+  "parallel_to_opus_reduce": true,
+  "runtime_ms": 3
+}

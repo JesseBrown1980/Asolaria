@@ -3,10 +3,15 @@
 // three reward geometries and writes the result artifact.
 
 import { writeFileSync, mkdirSync } from "node:fs";
+import { dirname, resolve as resolvePath } from "node:path";
+import { fileURLToPath } from "node:url";
 import { compareThirdCascadeVariants } from "../src/third-cascade.ts";
 
-const OUT = "C:/asolaria-acer/plans/deep-wave/third-cascade-comparison.json";
-mkdirSync("C:/asolaria-acer/plans/deep-wave", { recursive: true });
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = process.env.REPO_ROOT || resolvePath(__dirname, "../../..");
+const OUT_DIR = resolvePath(REPO_ROOT, "plans/deep-wave");
+const OUT = resolvePath(OUT_DIR, "third-cascade-comparison.json");
+mkdirSync(OUT_DIR, { recursive: true });
 
 console.log("DEEP WAVE THIRD CASCADE — reward geometry comparison");
 console.log("Shape: 6×6×6×6×6×12 = 93,312 points, 3 passes each variant\n");

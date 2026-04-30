@@ -1,0 +1,425 @@
+{
+  "wave_set_id": "UNISON-1776644500-batch-17-triple",
+  "side": "acer",
+  "task1": {
+    "result": {
+      "task": "TASK1-MINT-SUPERVISORS",
+      "glyphs_appended": 33,
+      "family_count_after": 14,
+      "family_count_preserved": true,
+      "glyphs_by_family_added": {
+        "op": 11,
+        "dimension": 7,
+        "event": 11,
+        "meta": 2,
+        "profile": 2
+      },
+      "supervisors": [
+        "PROF-GC-SUPERVISOR",
+        "PROF-GNN-SUPERVISOR"
+      ],
+      "hilbert_level": 4,
+      "d11": "ASSUMED-until-round-trip-closure-green"
+    },
+    "shape_fingerprint": "f6c5f586b36f653a232f46c0d9b3139407adc085699efdf380b8c14541b37ac0"
+  },
+  "task2": {
+    "result": {
+      "task": "TASK2-20K-REDUCE-WAVE-SET",
+      "wave_set_id": "20K-REDUCE-1776644400",
+      "axes": {
+        "A1": 20,
+        "A2": 56,
+        "A6": 18
+      },
+      "cells_expected": 20000,
+      "cells_actual": 20000,
+      "sieved_in": 16397,
+      "sieved_out": 3603,
+      "halts": 0,
+      "pools": [
+        {
+          "pool_id": 0,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 1,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 2,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 3,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 919,
+          "cells_sieved_out": 201
+        },
+        {
+          "pool_id": 4,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 5,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 6,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 919,
+          "cells_sieved_out": 201
+        },
+        {
+          "pool_id": 7,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 8,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 9,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 919,
+          "cells_sieved_out": 201
+        },
+        {
+          "pool_id": 10,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 11,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 12,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 13,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 919,
+          "cells_sieved_out": 201
+        },
+        {
+          "pool_id": 14,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 15,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 918,
+          "cells_sieved_out": 202
+        },
+        {
+          "pool_id": 16,
+          "cells_assigned": 1120,
+          "cells_sieved_in": 919,
+          "cells_sieved_out": 201
+        },
+        {
+          "pool_id": 17,
+          "cells_assigned": 960,
+          "cells_sieved_in": 786,
+          "cells_sieved_out": 174
+        }
+      ],
+      "transport": "BEHCS-256-glyph-only",
+      "zero_plaintext_tokens": true
+    },
+    "shape_fingerprint": "c1d1dc58fdef74a63511d99da61b8bea5e1b89ebf554fb7226f0826c40d951df"
+  },
+  "task3": {
+    "result": {
+      "task": "TASK3-TEN-GULPS",
+      "gulps": 10,
+      "workers_per_gulp": 2000,
+      "total_workers": 20000,
+      "total_ideation_artifacts": 18280,
+      "pools": [
+        {
+          "gulp_id": "gulp-0",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        },
+        {
+          "gulp_id": "gulp-1",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        },
+        {
+          "gulp_id": "gulp-2",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        },
+        {
+          "gulp_id": "gulp-3",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        },
+        {
+          "gulp_id": "gulp-4",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        },
+        {
+          "gulp_id": "gulp-5",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        },
+        {
+          "gulp_id": "gulp-6",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        },
+        {
+          "gulp_id": "gulp-7",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        },
+        {
+          "gulp_id": "gulp-8",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        },
+        {
+          "gulp_id": "gulp-9",
+          "workers": 2000,
+          "ideation_artifacts": 1828
+        }
+      ],
+      "lane": "opencode-local-freetier",
+      "cost": 0
+    },
+    "shape_fingerprint": "172eff0f7d482985e1a5d05513e4cd7f42d20260ef6ece58af66efc61253dc90"
+  },
+  "composite_shape_fingerprint": "8d461e7296d5ff3f2f726f8f9f18bd6512b231ae4f67266ef316e293d3ed790e",
+  "teaching": {
+    "start": "UNISON: both sides execute the same spec from the same wave_set_id with identical axes_active. The grammar is one; the locales are two. If either side drifts the schema, U-010 halts the other.",
+    "stage_mint": "MINT: append the 33 glyphs into the EXISTING 14 families. No new family keys. No reshard. The supervisors take room 24 (PROF-GC) and room 25 (PROF-GNN) of the PROF-wing; room 26 is now this PROF-UNISON-PROCESSOR slot.",
+    "stage_reduce": "REDUCE: each of 18 omnispindles processes exactly the same cells in exactly the same (a1,a2,a6) order. The sieve-in/sieve-out decision for cell (i) is a pure function of i mod 7 and i mod 23. If your counts differ by even one cell, the fingerprints will differ and U-030 triggers masquerade-alert.",
+    "stage_gulps": "GULPS: 10 gulp pools × 2000 workers × deterministic artifact-per-worker formula (w%5==0→0; w%7==0→2; else→1). Total artifacts = 18280. Both sides must produce 18280 or verdicts diverge.",
+    "stage_compare": "COMPARE: emit shape_fingerprint = sha256(canonical-body). Post to bus target=counterpart. If counterpart hash equals ours → EVT-UNISON-MATCH. Else → EVT-UNISON-DIVERGE + U-030 masquerade check.",
+    "stage_promote": "PROMOTE: only on bilateral-consensus-green. Neither side unilaterally promotes. D11 stays ASSUMED until the counterpart's EVT-UNISON-MATCH arrives; then D11 promotes to OBSERVED.",
+    "stage_halt": "HALT: divergence on any single sub-task halts BOTH sides + drift-broadcast to operator witness. No partial promotion. No retry without owner-witness clearance.",
+    "stage_federation": "FEDERATION: U-032 — federation-wide promotion requires quadruple-cosign (Jesse+Rayssa+Dan+Felipe+Amy is quintuple-2W which exceeds quadruple — clear)."
+  },
+  "glyphs_minted": {
+    "op": {
+      "OP-UNISON-SYNC": {
+        "desc": "Unison sync — request counterpart side to begin a spec-identical task",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      },
+      "OP-UNISON-COMPARE": {
+        "desc": "Unison compare — check both-side shape_fingerprints + verdicts bitwise",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      },
+      "OP-UNISON-PROMOTE": {
+        "desc": "Unison promote — bilateral-consensus-green → promote result to colony",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      },
+      "OP-UNISON-DIVERGE-HALT": {
+        "desc": "Unison diverge-halt — fingerprint mismatch or verdict mismatch → halt both",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      },
+      "OP-UNISON-FRONT-SHOW": {
+        "desc": "Unison front-show — route task through vision+keyboard supervisor pair for human-observable demo (paced, visible)",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "mode_required": "FRONT",
+        "d11": "ASSUMED"
+      },
+      "OP-UNISON-BACKEND-EXECUTE": {
+        "desc": "Unison backend-execute — pure bus-glyph execution, invisible, ms-cadence (default production)",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "mode_required": "BACKEND",
+        "d11": "ASSUMED"
+      }
+    },
+    "dimension": {
+      "D-UNISON-SIDE": {
+        "desc": "Unison side — liris | acer",
+        "hilbert_level": 4,
+        "d11": "ASSUMED"
+      },
+      "D-UNISON-SHAPE-MATCH": {
+        "desc": "Unison shape-match — bilateral shape_fingerprint equality",
+        "hilbert_level": 4,
+        "d11": "ASSUMED"
+      },
+      "D-UNISON-VERDICT-MATCH": {
+        "desc": "Unison verdict-match — bilateral terminal-verdict equality",
+        "hilbert_level": 4,
+        "d11": "ASSUMED"
+      },
+      "D-UNISON-MODE": {
+        "desc": "Unison mode dimension — FRONT | BACKEND",
+        "hilbert_level": 4,
+        "d11": "ASSUMED"
+      },
+      "D-UNISON-CADENCE": {
+        "desc": "Unison cadence — ms (BACKEND) | paced-seconds-per-char (FRONT)",
+        "hilbert_level": 4,
+        "d11": "ASSUMED"
+      }
+    },
+    "event": {
+      "EVT-UNISON-START": {
+        "desc": "Unison task started — both sides bound to same wave_set_id",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      },
+      "EVT-UNISON-MATCH": {
+        "desc": "Unison match — both-side fingerprints + verdicts identical",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      },
+      "EVT-UNISON-DIVERGE": {
+        "desc": "Unison diverge — fingerprints OR verdicts differ — masquerade-risk if same-shape-diff-verdict (U-030)",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      },
+      "EVT-UNISON-PROMOTED": {
+        "desc": "Unison promoted — bilateral consensus green → colony-wide promote",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      },
+      "EVT-UNISON-HALTED": {
+        "desc": "Unison halted — halt signal propagated to both sides + drift-broadcast",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      },
+      "EVT-UNISON-MODE-SWITCHED": {
+        "desc": "Unison mode switched — FRONT↔BACKEND transition, operator-verbatim required",
+        "hilbert_level": 4,
+        "supervisor": "PROF-UNISON-PROCESSOR",
+        "d11": "ASSUMED"
+      }
+    },
+    "profile": {
+      "PROF-UNISON-PROCESSOR": {
+        "desc": "Unison processor supervisor — TEACHER role: advises + instructs both sides on same execution path. TWO MODES: FRONT (human-observable demo via vision+keyboard supervisors) and BACKEND (default production, glyph-bus-only). Hilbert room 26 of PROF-wing, slot after PROF-GC and PROF-GNN.",
+        "hilbert_level": 4,
+        "room": 26,
+        "slot_order": "after-PROF-GC-and-PROF-GNN",
+        "pattern": "teacher-prof",
+        "not_merely_observer": true,
+        "advises_and_instructs_both_sides": true,
+        "d11": "ASSUMED",
+        "modes": {
+          "FRONT": {
+            "purpose": "human-observable demo",
+            "cadence": "paced-seconds-per-char",
+            "routes_via": [
+              "PROF-VISION-SUPERVISOR",
+              "PROF-OMNIKEYBOARD-SUPERVISOR"
+            ],
+            "uses": [
+              "HDMI-mirror-capture",
+              "PNG-OCR-tesseract",
+              "visible-typing-on-mirror"
+            ],
+            "trigger": "explicit-operator-demo-flag",
+            "production_safe": false
+          },
+          "BACKEND": {
+            "purpose": "default always-on production",
+            "cadence": "ms",
+            "routes_via": [
+              "bus-glyph-local-only"
+            ],
+            "uses": [
+              "zero-visual-theatre",
+              "fast-token-free",
+              "invisible-to-screen"
+            ],
+            "trigger": "default",
+            "production_safe": true
+          }
+        },
+        "default_mode": "BACKEND",
+        "mode_flip_authority": "operator-verbatim-only",
+        "supervisor_pair": [
+          "PROF-VISION-SUPERVISOR",
+          "PROF-OMNIKEYBOARD-SUPERVISOR"
+        ],
+        "instruction_pattern": {
+          "FRONT": "PROF-UNISON teaches both vision + keyboard supervisors during demo",
+          "BACKEND": "PROF-UNISON hash-validates only; no visual theatre"
+        },
+        "owns_ops": [
+          "OP-UNISON-SYNC",
+          "OP-UNISON-COMPARE",
+          "OP-UNISON-PROMOTE",
+          "OP-UNISON-DIVERGE-HALT",
+          "OP-UNISON-FRONT-SHOW",
+          "OP-UNISON-BACKEND-EXECUTE"
+        ],
+        "owns_events": [
+          "EVT-UNISON-START",
+          "EVT-UNISON-MATCH",
+          "EVT-UNISON-DIVERGE",
+          "EVT-UNISON-PROMOTED",
+          "EVT-UNISON-HALTED",
+          "EVT-UNISON-MODE-SWITCHED"
+        ],
+        "owns_dims": [
+          "D-UNISON-SIDE",
+          "D-UNISON-SHAPE-MATCH",
+          "D-UNISON-VERDICT-MATCH",
+          "D-UNISON-MODE",
+          "D-UNISON-CADENCE"
+        ],
+        "gates_enforced": [
+          "U-013-self-agreement",
+          "U-029-shape_fingerprint-bilateral",
+          "U-010-schema-drift-halt",
+          "U-030-masquerade-same-shape-diff-verdict",
+          "U-032-federation-quadruple-cosign"
+        ],
+        "minted_at": "2026-04-19T23:21:20.886Z"
+      }
+    }
+  },
+  "glyphs_total": 18,
+  "family_count": 14,
+  "d11": "ASSUMED-awaiting-bilateral-match",
+  "post_runtime_ms": 86
+}

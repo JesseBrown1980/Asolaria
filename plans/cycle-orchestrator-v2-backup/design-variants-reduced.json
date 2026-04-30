@@ -1,0 +1,1215 @@
+{
+  "ts": "2026-04-20T00:17:52.316Z",
+  "directive": "Jesse 2026-04-19: 50k Opus × 18 omnispindles + 50k free-Gulp for cycle-orchestrator-v2",
+  "totals": {
+    "opus_agents": 50000,
+    "gulp_agents": 50000,
+    "pools_opus": 18,
+    "pools_gulp": 25
+  },
+  "opus_summary": {
+    "promoted": 14999,
+    "demoted": 34995,
+    "halted": 6
+  },
+  "gulp_summary": {
+    "total_workers": 50000,
+    "total_ideation_artifacts": 45714
+  },
+  "halt_predicates": {
+    "U-006-mem": "PASS",
+    "U-007-err-10pct": "PASS",
+    "U-008-op-halt": "PASS",
+    "U-010-schema-drift": "PASS"
+  },
+  "transport": "BEHCS-256-glyph-only",
+  "top_design_variants_per_upgrade": {
+    "stateMachine": [
+      {
+        "id": "opus-agent-495",
+        "angle": "runtime-model",
+        "failure_mode": "masquerade",
+        "intent": "leak",
+        "score": 1.15,
+        "glyph": "β❄x☱◎⑨♢▽"
+      },
+      {
+        "id": "opus-agent-195",
+        "angle": "runtime-model",
+        "failure_mode": "fingerprint-mismatch",
+        "intent": "leak",
+        "score": 1.15,
+        "glyph": "♫ηqμ⟩⇒th"
+      },
+      {
+        "id": "opus-agent-390",
+        "angle": "architecture",
+        "failure_mode": "restart-mid-cycle",
+        "intent": "leak",
+        "score": 1.1,
+        "glyph": "9W⇐→<✿├║"
+      },
+      {
+        "id": "opus-agent-90",
+        "angle": "architecture",
+        "failure_mode": "slo-red-flapping",
+        "intent": "leak",
+        "score": 1.1,
+        "glyph": "▼Bυ④↖❁←Φ"
+      },
+      {
+        "id": "opus-agent-285",
+        "angle": "runtime-model",
+        "failure_mode": "peer-outage",
+        "intent": "leak",
+        "score": 1.05,
+        "glyph": "η①✝gbf\"j"
+      }
+    ],
+    "unisonTestDriver": [
+      {
+        "id": "opus-agent-396",
+        "angle": "data-flow",
+        "failure_mode": "schema-evolution",
+        "intent": "leak",
+        "score": 1.16,
+        "glyph": "❄8▲↖G✝ρO"
+      },
+      {
+        "id": "opus-agent-96",
+        "angle": "data-flow",
+        "failure_mode": "drift",
+        "intent": "leak",
+        "score": 1.16,
+        "glyph": "aΓωF⑩⑨❃◉"
+      },
+      {
+        "id": "opus-agent-291",
+        "angle": "observability",
+        "failure_mode": "fingerprint-mismatch",
+        "intent": "leak",
+        "score": 1.11,
+        "glyph": "×+t❄ε⟩❀☮"
+      },
+      {
+        "id": "opus-agent-591",
+        "angle": "observability",
+        "failure_mode": "masquerade",
+        "intent": "leak",
+        "score": 1.11,
+        "glyph": "-fV4/ιi⑪"
+      },
+      {
+        "id": "opus-agent-186",
+        "angle": "data-flow",
+        "failure_mode": "slo-red-flapping",
+        "intent": "leak",
+        "score": 1.06,
+        "glyph": "☲①@d]❂π≥"
+      }
+    ],
+    "fingerprintTracker": [
+      {
+        "id": "opus-agent-297",
+        "angle": "resume-from-state",
+        "failure_mode": "thundering-herd",
+        "intent": "leak",
+        "score": 1.17,
+        "glyph": "≤C×≈Cεl)"
+      },
+      {
+        "id": "opus-agent-597",
+        "angle": "resume-from-state",
+        "failure_mode": "peer-outage",
+        "intent": "leak",
+        "score": 1.17,
+        "glyph": "○γ⇑p/⚡◆R"
+      },
+      {
+        "id": "opus-agent-492",
+        "angle": "error-path",
+        "failure_mode": "schema-evolution",
+        "intent": "leak",
+        "score": 1.12,
+        "glyph": "nJa∆×Π≠❂"
+      },
+      {
+        "id": "opus-agent-192",
+        "angle": "error-path",
+        "failure_mode": "drift",
+        "intent": "leak",
+        "score": 1.12,
+        "glyph": "↗③∃Q⇩←\"λ"
+      },
+      {
+        "id": "opus-agent-387",
+        "angle": "resume-from-state",
+        "failure_mode": "fingerprint-mismatch",
+        "intent": "leak",
+        "score": 1.07,
+        "glyph": "\"║⑬Z♤:☶✦"
+      }
+    ],
+    "gnnFeedback": [
+      {
+        "id": "opus-agent-498",
+        "angle": "runtime-model",
+        "failure_mode": "slo-red-flapping",
+        "intent": "leak",
+        "score": 1.18,
+        "glyph": "~u⑤♪●υ✦J"
+      },
+      {
+        "id": "opus-agent-198",
+        "angle": "runtime-model",
+        "failure_mode": "restart-mid-cycle",
+        "intent": "leak",
+        "score": 1.18,
+        "glyph": "△♫2☆⑧♥→○"
+      },
+      {
+        "id": "opus-agent-393",
+        "angle": "architecture",
+        "failure_mode": "thundering-herd",
+        "intent": "leak",
+        "score": 1.13,
+        "glyph": "η≤╗W♧○V●"
+      },
+      {
+        "id": "opus-agent-93",
+        "angle": "architecture",
+        "failure_mode": "peer-outage",
+        "intent": "leak",
+        "score": 1.13,
+        "glyph": "Λ❃€U√♣▲τ"
+      },
+      {
+        "id": "opus-agent-288",
+        "angle": "runtime-model",
+        "failure_mode": "drift",
+        "intent": "leak",
+        "score": 1.08,
+        "glyph": "\\aP&ζ&☵F"
+      }
+    ],
+    "sloGate": [
+      {
+        "id": "opus-agent-399",
+        "angle": "data-flow",
+        "failure_mode": "masquerade",
+        "intent": "leak",
+        "score": 1.19,
+        "glyph": "┘xU:●EJ☳"
+      },
+      {
+        "id": "opus-agent-99",
+        "angle": "data-flow",
+        "failure_mode": "fingerprint-mismatch",
+        "intent": "leak",
+        "score": 1.19,
+        "glyph": "∎π⑮R✦νe❁"
+      },
+      {
+        "id": "opus-agent-294",
+        "angle": "observability",
+        "failure_mode": "restart-mid-cycle",
+        "intent": "leak",
+        "score": 1.14,
+        "glyph": "♤&[>④)@∆"
+      },
+      {
+        "id": "opus-agent-594",
+        "angle": "observability",
+        "failure_mode": "slo-red-flapping",
+        "intent": "leak",
+        "score": 1.14,
+        "glyph": "!☪⑦,πzNλ"
+      },
+      {
+        "id": "opus-agent-189",
+        "angle": "data-flow",
+        "failure_mode": "peer-outage",
+        "intent": "leak",
+        "score": 1.09,
+        "glyph": "Θχο*Ω②h☵"
+      }
+    ]
+  },
+  "opus_pools": [
+    {
+      "pool_id": 0,
+      "glyph": "w△£V⇒H■│",
+      "assigned": 2778,
+      "promoted": 2500,
+      "demoted": 277,
+      "halted": 1,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "fingerprintTracker": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "sloGate": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        }
+      }
+    },
+    {
+      "pool_id": 1,
+      "glyph": "5Z◍≤┼PsU",
+      "assigned": 2778,
+      "promoted": 0,
+      "demoted": 2777,
+      "halted": 1,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "gnnFeedback": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 554
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        }
+      }
+    },
+    {
+      "pool_id": 2,
+      "glyph": "↘i∎ψ❁3★☷",
+      "assigned": 2778,
+      "promoted": 0,
+      "demoted": 2777,
+      "halted": 1,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "unisonTestDriver": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 554
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "sloGate": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        }
+      }
+    },
+    {
+      "pool_id": 3,
+      "glyph": "≠R{bα0X*",
+      "assigned": 2778,
+      "promoted": 2499,
+      "demoted": 278,
+      "halted": 1,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "fingerprintTracker": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 499,
+          "demoted": 56
+        }
+      }
+    },
+    {
+      "pool_id": 4,
+      "glyph": "{⑯✦♪①BL|",
+      "assigned": 2778,
+      "promoted": 0,
+      "demoted": 2777,
+      "halted": 1,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "unisonTestDriver": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "gnnFeedback": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        }
+      }
+    },
+    {
+      "pool_id": 5,
+      "glyph": "Km↓±②△∂∞",
+      "assigned": 2778,
+      "promoted": 0,
+      "demoted": 2777,
+      "halted": 1,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "fingerprintTracker": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "sloGate": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        }
+      }
+    },
+    {
+      "pool_id": 6,
+      "glyph": "η↑╚═✯★⟦◍",
+      "assigned": 2778,
+      "promoted": 2500,
+      "demoted": 278,
+      "halted": 0,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "gnnFeedback": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        }
+      }
+    },
+    {
+      "pool_id": 7,
+      "glyph": "⑯╔∫fdI♪⇓",
+      "assigned": 2778,
+      "promoted": 0,
+      "demoted": 2778,
+      "halted": 0,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "unisonTestDriver": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "sloGate": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        }
+      }
+    },
+    {
+      "pool_id": 8,
+      "glyph": "lLZ)❀}ψ①",
+      "assigned": 2778,
+      "promoted": 0,
+      "demoted": 2778,
+      "halted": 0,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "fingerprintTracker": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        }
+      }
+    },
+    {
+      "pool_id": 9,
+      "glyph": "∂2Ua☯Dkλ",
+      "assigned": 2778,
+      "promoted": 2500,
+      "demoted": 278,
+      "halted": 0,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "unisonTestDriver": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "gnnFeedback": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        }
+      }
+    },
+    {
+      "pool_id": 10,
+      "glyph": ")∂;☆zk⑧5",
+      "assigned": 2778,
+      "promoted": 0,
+      "demoted": 2778,
+      "halted": 0,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "fingerprintTracker": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "sloGate": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        }
+      }
+    },
+    {
+      "pool_id": 11,
+      "glyph": "∃⁂fψ$⟩Q⟨",
+      "assigned": 2778,
+      "promoted": 0,
+      "demoted": 2778,
+      "halted": 0,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "gnnFeedback": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        }
+      }
+    },
+    {
+      "pool_id": 12,
+      "glyph": "⑧gλ☪δ⁂l`",
+      "assigned": 2778,
+      "promoted": 2500,
+      "demoted": 278,
+      "halted": 0,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "unisonTestDriver": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "sloGate": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        }
+      }
+    },
+    {
+      "pool_id": 13,
+      "glyph": "☱gc■e⟦☆⇩",
+      "assigned": 2778,
+      "promoted": 0,
+      "demoted": 2778,
+      "halted": 0,
+      "ideations": 2778,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "fingerprintTracker": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        }
+      }
+    },
+    {
+      "pool_id": 14,
+      "glyph": "│-#✧││,☯",
+      "assigned": 2777,
+      "promoted": 0,
+      "demoted": 2777,
+      "halted": 0,
+      "ideations": 2777,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "unisonTestDriver": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "gnnFeedback": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        }
+      }
+    },
+    {
+      "pool_id": 15,
+      "glyph": "μ✧6:⦃crΠ",
+      "assigned": 2777,
+      "promoted": 2500,
+      "demoted": 277,
+      "halted": 0,
+      "ideations": 2777,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "unisonTestDriver": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "fingerprintTracker": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        },
+        "gnnFeedback": {
+          "total": 556,
+          "promoted": 500,
+          "demoted": 56
+        },
+        "sloGate": {
+          "total": 555,
+          "promoted": 500,
+          "demoted": 55
+        }
+      }
+    },
+    {
+      "pool_id": 16,
+      "glyph": "Hσ∃i|^∎∑",
+      "assigned": 2777,
+      "promoted": 0,
+      "demoted": 2777,
+      "halted": 0,
+      "ideations": 2777,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "unisonTestDriver": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "fingerprintTracker": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "gnnFeedback": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "sloGate": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        }
+      }
+    },
+    {
+      "pool_id": 17,
+      "glyph": "╚∫⑩¥x∑↑.",
+      "assigned": 2777,
+      "promoted": 0,
+      "demoted": 2777,
+      "halted": 0,
+      "ideations": 2777,
+      "by_upgrade": {
+        "stateMachine": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "unisonTestDriver": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "fingerprintTracker": {
+          "total": 556,
+          "promoted": 0,
+          "demoted": 556
+        },
+        "gnnFeedback": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        },
+        "sloGate": {
+          "total": 555,
+          "promoted": 0,
+          "demoted": 555
+        }
+      }
+    }
+  ],
+  "gulp_pools": [
+    {
+      "pool_id": 0,
+      "glyph": "g☳€ι_s∑5",
+      "workers": 2000,
+      "ideation_artifacts": 0,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 1,
+      "glyph": "☪◍⇑Γ♢S■Z",
+      "workers": 2000,
+      "ideation_artifacts": 2285,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 2285,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 2,
+      "glyph": "⑩∂Zχ{≤vk",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 2286,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 3,
+      "glyph": "|3⑭①BeB⑦",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 2286,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 4,
+      "glyph": "Ω┼€D⑦⑨☳≈",
+      "workers": 2000,
+      "ideation_artifacts": 2285,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 2285
+      }
+    },
+    {
+      "pool_id": 5,
+      "glyph": "☆(●◊⑥☪↖B",
+      "workers": 2000,
+      "ideation_artifacts": 0,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 6,
+      "glyph": "⦃=∫◆ω❂╚⟩",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 2286,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 7,
+      "glyph": "♥3↓≠╔⇧β┤",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 2286,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 8,
+      "glyph": ")\"≥O♠κ③⑤",
+      "workers": 2000,
+      "ideation_artifacts": 2285,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 2285,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 9,
+      "glyph": "▲JV⑬=△▲▲",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 2286
+      }
+    },
+    {
+      "pool_id": 10,
+      "glyph": "⁂I✦┬o⇩{[",
+      "workers": 2000,
+      "ideation_artifacts": 0,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 11,
+      "glyph": "f)ze☢I∇⇐",
+      "workers": 2000,
+      "ideation_artifacts": 2285,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 2285,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 12,
+      "glyph": "δ☴⇐nδor③",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 2286,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 13,
+      "glyph": "h⁂Lυ⟩❂j╚",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 2286,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 14,
+      "glyph": "⇓i☵1ι▼◉√",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 2286
+      }
+    },
+    {
+      "pool_id": 15,
+      "glyph": "3║Δ┴┬h^↓",
+      "workers": 2000,
+      "ideation_artifacts": 0,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 16,
+      "glyph": "β↗¥┐]F♡b",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 2286,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 17,
+      "glyph": "S↙Φ|❂║H⟦",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 2286,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 18,
+      "glyph": "[Il%n∎δ'",
+      "workers": 2000,
+      "ideation_artifacts": 2285,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 2285,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 19,
+      "glyph": "t:7⑤♥⑩☴:",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 2286
+      }
+    },
+    {
+      "pool_id": 20,
+      "glyph": "♧¢φ◉─√W♫",
+      "workers": 2000,
+      "ideation_artifacts": 0,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 21,
+      "glyph": "┬♪♡☷─■⇑☰",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 2286,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 22,
+      "glyph": "♢F✿o\"×T≠",
+      "workers": 2000,
+      "ideation_artifacts": 2285,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 2285,
+        "gnnFeedback": 0,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 23,
+      "glyph": "↙┐Δ⑪∑Δ⦄l",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 2286,
+        "sloGate": 0
+      }
+    },
+    {
+      "pool_id": 24,
+      "glyph": "⇦H(①⑭M❄j",
+      "workers": 2000,
+      "ideation_artifacts": 2286,
+      "by_upgrade": {
+        "stateMachine": 0,
+        "unisonTestDriver": 0,
+        "fingerprintTracker": 0,
+        "gnnFeedback": 0,
+        "sloGate": 2286
+      }
+    }
+  ]
+}

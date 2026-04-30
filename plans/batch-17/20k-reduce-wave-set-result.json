@@ -1,0 +1,193 @@
+{
+  "wave_set_id": "20K-REDUCE-1776644400",
+  "axes": {
+    "A1": 20,
+    "A2": 56,
+    "A6": 18
+  },
+  "cells_expected": 20000,
+  "cells_actual": 20000,
+  "omnispindles_count": 18,
+  "omnispindles": [
+    {
+      "pool_id": 0,
+      "glyph": "w△£V⇒H■│",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 1,
+      "glyph": "5Z◍≤┼PsU",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 2,
+      "glyph": "↘i∎ψ❁3★☷",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 3,
+      "glyph": "≠R{bα0X*",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 919,
+      "cells_sieved": 201
+    },
+    {
+      "pool_id": 4,
+      "glyph": "{⑯✦♪①BL|",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 5,
+      "glyph": "Km↓±②△∂∞",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 6,
+      "glyph": "η↑╚═✯★⟦◍",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 919,
+      "cells_sieved": 201
+    },
+    {
+      "pool_id": 7,
+      "glyph": "⑯╔∫fdI♪⇓",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 8,
+      "glyph": "lLZ)❀}ψ①",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 9,
+      "glyph": "∂2Ua☯Dkλ",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 919,
+      "cells_sieved": 201
+    },
+    {
+      "pool_id": 10,
+      "glyph": ")∂;☆zk⑧5",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 11,
+      "glyph": "∃⁂fψ$⟩Q⟨",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 12,
+      "glyph": "⑧gλ☪δ⁂l`",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 13,
+      "glyph": "☱gc■e⟦☆⇩",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 919,
+      "cells_sieved": 201
+    },
+    {
+      "pool_id": 14,
+      "glyph": "│-#✧││,☯",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 15,
+      "glyph": "μ✧6:⦃crΠ",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 918,
+      "cells_sieved": 202
+    },
+    {
+      "pool_id": 16,
+      "glyph": "Hσ∃i|^∎∑",
+      "cells_assigned": 1120,
+      "cells_processed": 1120,
+      "cells_reduced": 919,
+      "cells_sieved": 201
+    },
+    {
+      "pool_id": 17,
+      "glyph": "╚∫⑩¥x∑↑.",
+      "cells_assigned": 960,
+      "cells_processed": 960,
+      "cells_reduced": 786,
+      "cells_sieved": 174
+    }
+  ],
+  "sieve_results": {
+    "sieved_in": 16397,
+    "sieved_out": 3603,
+    "reduced": 16397,
+    "halted": 0,
+    "err_count": 0
+  },
+  "halt_predicates": {
+    "U-006-mem": {
+      "trigger": false,
+      "detail": "mem_used_pct < 90"
+    },
+    "U-007-err-10pct": {
+      "trigger": false,
+      "detail": "err_count / total < 10%"
+    },
+    "U-008-op-halt": {
+      "trigger": false,
+      "detail": "no op-halt signal"
+    },
+    "U-010-schema-drift": {
+      "trigger": false,
+      "detail": "schema OK"
+    }
+  },
+  "halt_triggered": 0,
+  "budget": {
+    "max_parallel_U003": 900,
+    "observed_parallelism": 18
+  },
+  "transport": "BEHCS-256-glyph-only",
+  "zero_plaintext_tokens": true,
+  "commit_v04": "b439364",
+  "d11": "ASSUMED-per-U-021-on-composite",
+  "review_policy": "per-wave-set-6-body",
+  "runtime_ms": 156
+}

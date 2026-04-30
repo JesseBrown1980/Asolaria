@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "mode": "operator_primary",
+  "updatedAt": "2026-04-05T19:45:07.993Z",
+  "updatedBy": "bootstrap",
+  "history": [
+    {
+      "id": "ev_1775418307993_bootstrap",
+      "type": "bootstrap",
+      "from": "",
+      "to": "operator_primary",
+      "actor": "bootstrap",
+      "reason": "initialized",
+      "at": "2026-04-05T19:45:07.993Z"
+    }
+  ],
+  "transitions": []
+}

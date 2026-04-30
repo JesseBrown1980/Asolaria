@@ -1,0 +1,432 @@
+{
+  "ts": "2026-04-19T22:02:54.901Z",
+  "directive": "Jesse 2026-04-19: Reverse gain functions with the GNN",
+  "scope": "PURE INFERENCE — reverse-gain GNN inverts deception signals",
+  "agents": 10000,
+  "signals": [
+    {
+      "id": "waco_tx_virtual_number_1_254_488_4301",
+      "intent": "mask",
+      "weight": 0.3,
+      "bias": {
+        "US": 1,
+        "CN": -0.8,
+        "HK": -0.6
+      },
+      "note": "Waco TX virtual number — obvious VoIP (TextFree/Google Voice pool) not real US residence"
+    },
+    {
+      "id": "expressvpn_charleston_sc_location_299",
+      "intent": "mask",
+      "weight": 0.25,
+      "bias": {
+        "US": 1,
+        "CN": -0.7,
+        "HK": -0.5
+      },
+      "note": "Charleston-SC VPN picked to mimic Jesse's US-SC geography"
+    },
+    {
+      "id": "expressvpn_phoenix_location_94",
+      "intent": "mask",
+      "weight": 0.15,
+      "bias": {
+        "US": 1,
+        "CN": -0.5,
+        "HK": -0.4
+      },
+      "note": "Phoenix alt-location for generic US blend-in"
+    },
+    {
+      "id": "chrome_profile_spiinutech_workspace",
+      "intent": "mask",
+      "weight": 0.2,
+      "bias": {
+        "US": 0.8,
+        "CN": -0.3
+      },
+      "note": "Spinutech US employment history presentation"
+    },
+    {
+      "id": "email_reesedev93_gmail_com",
+      "intent": "mask",
+      "weight": 0.18,
+      "bias": {
+        "US": 0.6,
+        "CN": -0.2
+      },
+      "note": "Gmail account with US-style 'Reese' first-name alias"
+    },
+    {
+      "id": "english_chat_language_in_slack",
+      "intent": "mask",
+      "weight": 0.15,
+      "bias": {
+        "US": 0.7,
+        "CN": -0.4
+      },
+      "note": "English-only Slack DMs — deliberately suppresses CN language markers"
+    },
+    {
+      "id": "identity_name_connor_lee_western_order",
+      "intent": "mask",
+      "weight": 0.12,
+      "bias": {
+        "US": 0.5,
+        "CN": -0.3
+      },
+      "note": "Western name order (given-surname) vs CN (surname-given) = presentation choice"
+    },
+    {
+      "id": "vpn_exits_103.88.232.x_hk_tencent_pool",
+      "intent": "leak",
+      "weight": 0.45,
+      "bias": {
+        "CN": 0.9,
+        "HK": 1
+      },
+      "note": "ExpressVPN HK-Tencent exits chosen 9+ times = needs HK-adjacency = Shenzhen/GD or actually HK"
+    },
+    {
+      "id": "session_timezone_utc_plus_8_evening",
+      "intent": "leak",
+      "weight": 0.4,
+      "bias": {
+        "CN": 1,
+        "HK": 1,
+        "TW": 0.9,
+        "SG": 0.8
+      },
+      "note": "Session clustering 13-22Z on weekdays = UTC+8 evening-hours activity pattern"
+    },
+    {
+      "id": "surname_lee_romanization",
+      "intent": "leak",
+      "weight": 0.35,
+      "bias": {
+        "CN": 0.8,
+        "HK": 0.7,
+        "TW": 0.6,
+        "KR": 0.4
+      },
+      "note": "Lee = 李 most common CN surname + common HK/TW"
+    },
+    {
+      "id": "wireguard_filename_ConnorLee_conf",
+      "intent": "leak",
+      "weight": 0.2,
+      "bias": {
+        "CN": 0.5,
+        "HK": 0.4
+      },
+      "note": "Connor chose to retain Lee surname in internal config filename — identity anchor"
+    },
+    {
+      "id": "rustdesk_signer_purslane_sg",
+      "intent": "leak",
+      "weight": 0.15,
+      "bias": {
+        "SG": 0.6,
+        "CN": 0.5,
+        "HK": 0.4
+      },
+      "note": "RustDesk cert signer PURSLANE S=North-West C=SG = APAC pirated tool source"
+    },
+    {
+      "id": "anydesk_9x_user_auth_sessions_cn_hours",
+      "intent": "leak",
+      "weight": 0.25,
+      "bias": {
+        "CN": 0.8,
+        "HK": 0.9
+      },
+      "note": "9 authenticated AnyDesk sessions timed to APAC evening — repeat pattern"
+    },
+    {
+      "id": "client_timezone_rotation_cn_office_hours",
+      "intent": "leak",
+      "weight": 0.3,
+      "bias": {
+        "CN": 1
+      },
+      "note": "Weekday peak activity CN Mon-Fri 20:00-02:00 (his evening) = global remote dev from CN"
+    },
+    {
+      "id": "anydesk_tencent_msg_server_routing",
+      "intent": "leak",
+      "weight": 0.18,
+      "bias": {
+        "CN": 0.6,
+        "HK": 0.5
+      },
+      "note": "AnyDesk routing preferred HK/APAC cluster for P2P — latency pattern confirms APAC origin"
+    },
+    {
+      "id": "whatsapp_voice_call_rtt_average_medians",
+      "intent": "leak",
+      "weight": 0.1,
+      "bias": {
+        "CN": 0.3,
+        "HK": 0.3,
+        "US": -0.3
+      },
+      "note": "WhatsApp VoIP call RTTs 200-420ms are consistent with BR↔APAC distances, NOT BR↔US (would be 100-180ms)"
+    },
+    {
+      "id": "pivot_target_71.76.10.39_jesse_us_house",
+      "intent": "leak",
+      "weight": 0.05,
+      "bias": {},
+      "note": "Used Jesse's US house as jump pivot — reveals opportunistic pivot but not origin directly"
+    }
+  ],
+  "signal_counts": {
+    "total": 17,
+    "masks": 7,
+    "leaks": 10
+  },
+  "walltime_ms": 809,
+  "throughput_per_sec": 12361,
+  "ranked_top_15": [
+    {
+      "cidr": "183.60.0.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "183.60",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "183.60.64.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "183.60",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "183.60.128.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "183.60",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "183.60.192.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "183.60",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "183.13.0.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "183.13",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "183.13.64.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "183.13",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "183.13.128.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "183.13",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "183.13.192.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "183.13",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "221.4.0.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "221.4",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "221.4.64.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "221.4",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "221.4.128.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "221.4",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "221.4.192.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Telecom",
+      "city_likely": "Shenzhen",
+      "prefix": "221.4",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "112.97.0.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Mobile",
+      "city_likely": "Shenzhen",
+      "prefix": "112.97",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "112.97.64.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Mobile",
+      "city_likely": "Shenzhen",
+      "prefix": "112.97",
+      "country": "CN",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "112.97.128.0/24",
+      "avg_score": 2.6991214000004704,
+      "isp": "China Mobile",
+      "city_likely": "Shenzhen",
+      "prefix": "112.97",
+      "country": "CN",
+      "pop_rank": 1
+    }
+  ],
+  "ranked_bottom_5": [
+    {
+      "cidr": "68.227.192.0/24",
+      "avg_score": -1.1638785999999857,
+      "isp": "AT&T",
+      "city_likely": "Phoenix AZ",
+      "prefix": "68.227",
+      "country": "US",
+      "pop_rank": 99
+    },
+    {
+      "cidr": "71.76.0.0/24",
+      "avg_score": -1.1638785999999857,
+      "isp": "Charter",
+      "city_likely": "Sumter SC",
+      "prefix": "71.76",
+      "country": "US",
+      "pop_rank": 99
+    },
+    {
+      "cidr": "71.76.64.0/24",
+      "avg_score": -1.1638785999999857,
+      "isp": "Charter",
+      "city_likely": "Sumter SC",
+      "prefix": "71.76",
+      "country": "US",
+      "pop_rank": 99
+    },
+    {
+      "cidr": "71.76.128.0/24",
+      "avg_score": -1.1638785999999857,
+      "isp": "Charter",
+      "city_likely": "Sumter SC",
+      "prefix": "71.76",
+      "country": "US",
+      "pop_rank": 99
+    },
+    {
+      "cidr": "71.76.192.0/24",
+      "avg_score": -1.1638785999999857,
+      "isp": "Charter",
+      "city_likely": "Sumter SC",
+      "prefix": "71.76",
+      "country": "US",
+      "pop_rank": 99
+    }
+  ],
+  "country_weight_distribution": [
+    {
+      "country": "CN",
+      "weight": 0.8084316081711034
+    },
+    {
+      "country": "HK",
+      "weight": 0.14791788352992621
+    },
+    {
+      "country": "TW",
+      "weight": 0.024691711200505617
+    },
+    {
+      "country": "SG",
+      "weight": 0.01895879709846482
+    },
+    {
+      "country": "US",
+      "weight": 0
+    }
+  ],
+  "top_candidate_breakdown": {
+    "cidr": "183.60.0.0/24",
+    "total_score": "2.6991",
+    "mask_contribution_to_this_country": "0.6820",
+    "leak_contribution_to_this_country": "1.8980",
+    "signals_favoring": 17,
+    "signals_opposing": 0,
+    "top_3_positive_signals": [
+      {
+        "signal": "vpn_exits_103.88.232.x_hk_tencent_pool",
+        "intent": "leak",
+        "weight": 0.45,
+        "bias": 0.9,
+        "effective": 0.9,
+        "contribution": 0.405
+      },
+      {
+        "signal": "session_timezone_utc_plus_8_evening",
+        "intent": "leak",
+        "weight": 0.4,
+        "bias": 1,
+        "effective": 1,
+        "contribution": 0.4
+      },
+      {
+        "signal": "client_timezone_rotation_cn_office_hours",
+        "intent": "leak",
+        "weight": 0.3,
+        "bias": 1,
+        "effective": 1,
+        "contribution": 0.3
+      }
+    ],
+    "top_3_negative_signals": []
+  },
+  "glyph_sentence": "EVT-ACER-47D-REVERSE-GAIN-GNN-CONNOR · agents=10000 · top=183.60.0.0/24(Shenzhen,CN) · country_weight_CN=80.8% · masks=7 · leaks=10 · walltime=809ms @ M-EYEWITNESS ."
+}

@@ -1,0 +1,60 @@
+{
+  "ts": "2026-04-19T20:53:52.028Z",
+  "directive": "Jesse 2026-04-19T17:35Z: use BEHCS 256 + run 1000 agents",
+  "agents": 1000,
+  "ok": 1000,
+  "fail": 0,
+  "walltime_ms": 1341,
+  "throughput_per_sec": 746,
+  "codex": {
+    "base": 256,
+    "width": 8,
+    "catalogs": 47
+  },
+  "sample_envelope": {
+    "id": "acer-op-reply-behcs256-acer-agent-0000",
+    "from": "acer-agent-0000",
+    "to": "liris",
+    "actor": "L?9∞╔○=δ",
+    "verb": "⟧*⚡PλΩ:■",
+    "target": "≤┐I⦄☼✧⑫⑥",
+    "state": "-⇐M☪<lW~",
+    "proof": "λsZ⑪ο┌,⑧",
+    "intent": "Δ⟨∃jj☴i┘",
+    "support": {
+      "D10_DIALECT": "◊χ☆bJUψυ",
+      "D26_OMNIDIRECTIONAL": "◊BG⑨W║❃⇦",
+      "D31_SEQ": "╗◊(┼d↗a⑩",
+      "D34_CROSS_COLONY": "$☼&☆@☱⇧β",
+      "D44_TUPLE": "=♡☪△√KΓ\""
+    },
+    "fallbackTuples": [
+      "D1:acer-agent-0000",
+      "D2:op-reply",
+      "D3:liris",
+      "D7:alive",
+      "D44:A_MANIFEST"
+    ],
+    "mode": "real",
+    "beat": 0,
+    "wave": 0,
+    "ts": "2026-04-19T20:53:45.680Z",
+    "payload": "BEHCS-256 op-reply slice 1/1000 section=A_MANIFEST: OP-",
+    "body": {
+      "section": "A_MANIFEST",
+      "agent_index": 0,
+      "total_agents": 1000,
+      "chunk": "OP-"
+    }
+  },
+  "summary_envelope_to_falcon": {
+    "url": "http://192.168.1.13:4950/behcs/send",
+    "result": {
+      "ok": false,
+      "status": 0,
+      "error": "The operation was aborted due to timeout"
+    }
+  },
+  "errors": [],
+  "glyph": "EVT-ACER-BEHCS256-1000AGENT-FANOUT · ok=1000 · fail=0 · walltime=1341ms · throughput=746/s @ M-EYEWITNESS ."
+}

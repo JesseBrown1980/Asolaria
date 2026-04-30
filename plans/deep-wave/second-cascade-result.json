@@ -156,8 +156,8 @@
         "red": 15552
       }
     },
-    "runtime_ms": 44,
-    "glyph_sentence": "EVT-DEEP-WAVE-CASCADE-PASS-2 · points=93312 · green=0 · yellow=0 · red=93312 · gnn-edges=36 · runtime=44ms @ M-EYEWITNESS ."
+    "runtime_ms": 46,
+    "glyph_sentence": "EVT-DEEP-WAVE-CASCADE-PASS-2 · points=93312 · green=0 · yellow=0 · red=93312 · gnn-edges=36 · runtime=46ms @ M-EYEWITNESS ."
   },
   "delta_green": -36,
   "delta_red": 2160,

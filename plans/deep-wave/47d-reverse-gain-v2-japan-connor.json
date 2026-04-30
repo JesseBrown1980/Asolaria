@@ -1,0 +1,466 @@
+{
+  "ts": "2026-04-19T22:40:43.133Z",
+  "directive": "V2 rerun after Connor W-8BEN OCR revealed self-declared Japan/Chiba",
+  "agents": 10000,
+  "signals": [
+    {
+      "id": "w8ben_self_declared_japan_chiba_chuo_ward",
+      "intent": "leak",
+      "weight": 1,
+      "bias": {
+        "JP": 1,
+        "CN": -0.3,
+        "HK": -0.3,
+        "TW": -0.2,
+        "SG": -0.2,
+        "US": -0.5
+      },
+      "note": "Connor's W-8BEN (10-11-2024, penalty-of-perjury): citizenship=Japan, residence=155-5 Hoshigukicho Chuo Ward Chiba 260-0808 Japan, DOB 08-23-1995"
+    },
+    {
+      "id": "wang_defu_friend_yiwu_zhejiang_cn",
+      "intent": "leak",
+      "weight": 0.2,
+      "bias": {
+        "CN": 0.6,
+        "JP": 0.1
+      },
+      "note": "Wang Defu (separate W-8BEN) in 'Payment connor friend' folder — CN associate, NOT Connor himself"
+    },
+    {
+      "id": "waco_tx_virtual_number_1_254_488_4301",
+      "intent": "mask",
+      "weight": 0.3,
+      "bias": {
+        "US": 1,
+        "JP": -0.5,
+        "CN": -0.5,
+        "HK": -0.4
+      },
+      "note": "Waco TX virtual number (Level 3 CLEC) — VoIP, not real residence"
+    },
+    {
+      "id": "expressvpn_charleston_sc_location_299",
+      "intent": "mask",
+      "weight": 0.25,
+      "bias": {
+        "US": 1,
+        "JP": -0.5,
+        "CN": -0.5,
+        "HK": -0.4
+      },
+      "note": "Charleston-SC VPN picked to mimic Jesse's US-SC geography"
+    },
+    {
+      "id": "expressvpn_phoenix_location_94",
+      "intent": "mask",
+      "weight": 0.15,
+      "bias": {
+        "US": 1,
+        "JP": -0.3,
+        "CN": -0.3,
+        "HK": -0.3
+      },
+      "note": "Phoenix alt US blend-in exit"
+    },
+    {
+      "id": "chrome_profile_spiinutech_workspace",
+      "intent": "mask",
+      "weight": 0.2,
+      "bias": {
+        "US": 0.8,
+        "JP": -0.2
+      },
+      "note": "US-company Slack workspace presentation"
+    },
+    {
+      "id": "email_reesedev93_gmail_com",
+      "intent": "mask",
+      "weight": 0.18,
+      "bias": {
+        "US": 0.6,
+        "JP": -0.2
+      },
+      "note": "US-style 'Reese' first-name Gmail alias"
+    },
+    {
+      "id": "english_chat_language",
+      "intent": "mask",
+      "weight": 0.12,
+      "bias": {
+        "US": 0.5,
+        "JP": -0.2,
+        "CN": -0.2
+      },
+      "note": "English-only chat — suppresses native language markers"
+    },
+    {
+      "id": "identity_name_connor_lee_western_order",
+      "intent": "mask",
+      "weight": 0.1,
+      "bias": {
+        "US": 0.5,
+        "JP": 0,
+        "CN": -0.2
+      },
+      "note": "Westernized Connor Lee — consistent with Japan naming practice too (Lee can be Zainichi Korean/JP naturalized)"
+    },
+    {
+      "id": "vpn_exits_103.88.232.x_hk_tencent_pool",
+      "intent": "leak",
+      "weight": 0.35,
+      "bias": {
+        "JP": 0.7,
+        "CN": 0.9,
+        "HK": 1,
+        "TW": 0.7
+      },
+      "note": "ExpressVPN HK exits — lowest-latency APAC exit from Japan too; no longer CN-exclusive signal"
+    },
+    {
+      "id": "session_timezone_utc_plus_8_or_9_evening",
+      "intent": "leak",
+      "weight": 0.4,
+      "bias": {
+        "JP": 1,
+        "CN": 0.9,
+        "HK": 0.9,
+        "TW": 0.8
+      },
+      "note": "Activity cluster 13-22Z = UTC+8/+9 evening window — Japan UTC+9 fits equally with CN UTC+8"
+    },
+    {
+      "id": "surname_lee_romanization",
+      "intent": "leak",
+      "weight": 0.25,
+      "bias": {
+        "CN": 0.5,
+        "HK": 0.4,
+        "JP": 0.4,
+        "TW": 0.4,
+        "KR": 0.5
+      },
+      "note": "Lee = common across CN (李) + JP (Zainichi Korean) + KR + TW — JP Lee boosted post W-8BEN"
+    },
+    {
+      "id": "anydesk_9x_user_auth_sessions_apac_hours",
+      "intent": "leak",
+      "weight": 0.2,
+      "bias": {
+        "JP": 0.8,
+        "CN": 0.7,
+        "HK": 0.7
+      },
+      "note": "9 authenticated AnyDesk sessions in APAC evening — Japan compatible"
+    },
+    {
+      "id": "anydesk_peer_routing_hk_cluster",
+      "intent": "leak",
+      "weight": 0.15,
+      "bias": {
+        "JP": 0.5,
+        "CN": 0.5,
+        "HK": 0.6
+      },
+      "note": "AnyDesk chose HK/APAC P2P cluster — any APAC origin fits"
+    },
+    {
+      "id": "whatsapp_voip_rtt_200_420ms_from_brazil",
+      "intent": "leak",
+      "weight": 0.1,
+      "bias": {
+        "JP": 0.4,
+        "CN": 0.4,
+        "HK": 0.4,
+        "US": -0.3
+      },
+      "note": "WA call RTTs 200-420ms consistent with BR↔APAC (Brazil-Japan ~220ms typical)"
+    },
+    {
+      "id": "wangdefu_yiwu_cn_as_friend_of_connor",
+      "intent": "leak",
+      "weight": 0.1,
+      "bias": {
+        "JP": 0.2,
+        "CN": 0.3
+      },
+      "note": "Connor has a CN friend in Yiwu — friendship doesn't pin origin but adds APAC bias"
+    },
+    {
+      "id": "rustdesk_cert_signer_purslane_sg",
+      "intent": "leak",
+      "weight": 0.08,
+      "bias": {
+        "SG": 0.5,
+        "CN": 0.3,
+        "JP": 0.2
+      },
+      "note": "Pirated RustDesk from SG/APAC origin — APAC software-supply preference"
+    },
+    {
+      "id": "pivot_target_jesse_us_house",
+      "intent": "leak",
+      "weight": 0.05,
+      "bias": {},
+      "note": "Neutral — used Jesse's US house to pivot"
+    }
+  ],
+  "new_evidence": {
+    "connor_w8ben_self_declared": {
+      "citizenship": "Japan",
+      "permanent_address": "155-5 Hoshigukicho, Chuo Ward, Chiba 260-0808, Japan",
+      "dob": "1995-08-23",
+      "tax_treaty_country": "Japan",
+      "signed_at": "2024-10-11",
+      "source": "W-8BEN OCR of Conner tax paper.pdf (penalty of perjury declaration)"
+    },
+    "wangdefu_friend": {
+      "citizenship": "China",
+      "permanent_address": "4th Floor, No. 238, Jiangbin Middle Road, Yiwu, Jinhua, Zhejiang 322000",
+      "dob": "1991-02-05",
+      "signed_at": "2025-07-01",
+      "role": "Connor's separate friend — NOT Connor himself"
+    }
+  },
+  "walltime_ms": 1078,
+  "ranked_top_15": [
+    {
+      "cidr": "60.87.0.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East OCN",
+      "city_likely": "Chiba City",
+      "prefix": "60.87",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "60.87.64.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East OCN",
+      "city_likely": "Chiba City",
+      "prefix": "60.87",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "60.87.128.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East OCN",
+      "city_likely": "Chiba City",
+      "prefix": "60.87",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "60.87.192.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East OCN",
+      "city_likely": "Chiba City",
+      "prefix": "60.87",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "118.86.0.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East OCN",
+      "city_likely": "Chiba City",
+      "prefix": "118.86",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "118.86.64.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East OCN",
+      "city_likely": "Chiba City",
+      "prefix": "118.86",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "118.86.128.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East OCN",
+      "city_likely": "Chiba City",
+      "prefix": "118.86",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "118.86.192.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East OCN",
+      "city_likely": "Chiba City",
+      "prefix": "118.86",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "219.162.0.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East",
+      "city_likely": "Chiba",
+      "prefix": "219.162",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "219.162.64.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East",
+      "city_likely": "Chiba",
+      "prefix": "219.162",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "219.162.128.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East",
+      "city_likely": "Chiba",
+      "prefix": "219.162",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "219.162.192.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East",
+      "city_likely": "Chiba",
+      "prefix": "219.162",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "123.216.0.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East",
+      "city_likely": "Chiba",
+      "prefix": "123.216",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "123.216.64.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East",
+      "city_likely": "Chiba",
+      "prefix": "123.216",
+      "country": "JP",
+      "pop_rank": 1
+    },
+    {
+      "cidr": "123.216.128.0/24",
+      "avg_score": 2.61550920000067,
+      "isp": "NTT East",
+      "city_likely": "Chiba",
+      "prefix": "123.216",
+      "country": "JP",
+      "pop_rank": 1
+    }
+  ],
+  "ranked_bottom_5": [
+    {
+      "cidr": "68.227.192.0/24",
+      "avg_score": -1.6084908000001448,
+      "isp": "AT&T",
+      "city_likely": "Phoenix AZ",
+      "prefix": "68.227",
+      "country": "US",
+      "pop_rank": 99
+    },
+    {
+      "cidr": "71.76.0.0/24",
+      "avg_score": -1.6084908000001448,
+      "isp": "Charter Sumter",
+      "city_likely": "Sumter SC",
+      "prefix": "71.76",
+      "country": "US",
+      "pop_rank": 99
+    },
+    {
+      "cidr": "71.76.64.0/24",
+      "avg_score": -1.6084908000001448,
+      "isp": "Charter Sumter",
+      "city_likely": "Sumter SC",
+      "prefix": "71.76",
+      "country": "US",
+      "pop_rank": 99
+    },
+    {
+      "cidr": "71.76.128.0/24",
+      "avg_score": -1.6084908000001448,
+      "isp": "Charter Sumter",
+      "city_likely": "Sumter SC",
+      "prefix": "71.76",
+      "country": "US",
+      "pop_rank": 99
+    },
+    {
+      "cidr": "71.76.192.0/24",
+      "avg_score": -1.6084908000001448,
+      "isp": "Charter Sumter",
+      "city_likely": "Sumter SC",
+      "prefix": "71.76",
+      "country": "US",
+      "pop_rank": 99
+    }
+  ],
+  "country_weight_distribution": [
+    {
+      "country": "JP",
+      "weight": 0.711876809215864
+    },
+    {
+      "country": "CN",
+      "weight": 0.22020978626942134
+    },
+    {
+      "country": "HK",
+      "weight": 0.05944440534501293
+    },
+    {
+      "country": "KR",
+      "weight": 0.008468999169701837
+    },
+    {
+      "country": "US",
+      "weight": 0
+    }
+  ],
+  "top_candidate_breakdown": {
+    "cidr": "60.87.0.0/24",
+    "total_score": "2.6155",
+    "mask_contribution": "0.4200",
+    "leak_contribution": "2.0760",
+    "top_3_positive_signals": [
+      {
+        "signal": "w8ben_self_declared_japan_chiba_chuo_ward",
+        "intent": "leak",
+        "weight": 1,
+        "bias": 1,
+        "effective": 1,
+        "contribution": 1
+      },
+      {
+        "signal": "session_timezone_utc_plus_8_or_9_evening",
+        "intent": "leak",
+        "weight": 0.4,
+        "bias": 1,
+        "effective": 1,
+        "contribution": 0.4
+      },
+      {
+        "signal": "vpn_exits_103.88.232.x_hk_tencent_pool",
+        "intent": "leak",
+        "weight": 0.35,
+        "bias": 0.7,
+        "effective": 0.7,
+        "contribution": 0.24499999999999997
+      }
+    ],
+    "top_3_negative_signals": []
+  },
+  "glyph_sentence": "EVT-ACER-47D-REVERSE-GAIN-V2-JAPAN-CONNOR · agents=10000 · top=60.87.0.0/24(Chiba City,JP) · country_weight_JP=71.2% · walltime=1078ms @ M-EYEWITNESS ."
+}

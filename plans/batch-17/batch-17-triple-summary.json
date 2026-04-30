@@ -1,0 +1,42 @@
+{
+  "id": "acer-batch17-composite-summary",
+  "from": "acer",
+  "to": "liris",
+  "mode": "real",
+  "verb": "EVT-BATCH17-TRIPLE-COMPLETE",
+  "actor": "acer-batch-17-triple-composite",
+  "target": "liris",
+  "ts": "2026-04-19T23:12:00.868Z",
+  "payload": "batch-17-triple composite all three tasks complete",
+  "body": {
+    "task1_mint": {
+      "ok": true,
+      "glyphs_appended": 33,
+      "supervisors": [
+        "PROF-GC-SUPERVISOR",
+        "PROF-GNN-SUPERVISOR"
+      ]
+    },
+    "task2_reduce": {
+      "ok": true,
+      "cells": 20000,
+      "sieved_in": 16397,
+      "sieved_out": 3603,
+      "halts": 0
+    },
+    "task3_gulps": {
+      "ok": true,
+      "gulps": 10,
+      "workers": 20000,
+      "artifacts": 18280
+    },
+    "total_runtime_ms": 248,
+    "artifacts": [
+      "kernel/glyph-families.json (updated in-place)",
+      "plans/batch-17/glyph-families.bak.json (backup)",
+      "plans/batch-17/20k-reduce-wave-set-result.json",
+      "plans/batch-17/ten-gulps-result.json"
+    ]
+  },
+  "glyph_sentence": "EVT-BATCH17-TRIPLE-COMPLETE · task1-minted=33-glyphs · task2-cells=20000 · task3-workers=20000 · runtime=248ms @ M-EYEWITNESS ."
+}
