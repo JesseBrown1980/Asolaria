@@ -1,0 +1,807 @@
+{
+  "ok": true,
+  "artifact": "behcs1024-p16-redaction-plan",
+  "generated_at": "2026-05-13T20:16:50.039Z",
+  "scope": "Acer BEHCS-1024 bounded source candidate set",
+  "mode": "safe_fingerprints_only",
+  "manifest": "reports/behcs1024-github-candidate-hash-manifest-20260513.json",
+  "files_scanned": 17,
+  "files_missing": 0,
+  "missing": [],
+  "findings_total": 38,
+  "blocker_findings": 38,
+  "counts": {
+    "by_category": {
+      "operator_label": 10,
+      "private_ip": 3,
+      "phone_model": 5,
+      "device_serial": 9,
+      "windows_path": 7,
+      "android_path": 4
+    },
+    "by_file": {
+      "tools/behcs/behcs-bus.js": 16,
+      "tools/Start-Asolaria.ps1": 2,
+      "tools/Start-GnnSidecar.ps1": 1,
+      "tools/behcs/omnicoder/omnicoder-server.mjs": 2,
+      "tools/behcs/omnicoder/start-omnicoder.sh": 1,
+      "tools/behcs/omnicoder-pilot-daemon.mjs": 2,
+      "tools/behcs/Start-FalconOmnicoder.ps1": 2,
+      "tools/behcs/Start-OmnicoderPilot.ps1": 1,
+      "tools/behcs/Test-FalconOmnicoder.ps1": 1,
+      "tools/behcs/fabric-revolver.mjs": 1,
+      "tools/behcs/behcs1024-free-agent-wave.mjs": 3,
+      "plans/BEHCS-1024-REMAKE-GITHUB-200-STEP-IMPROVEMENT-PLAN.md": 2,
+      "reports/behcs1024-p01-p02-baseline-git-segmentation-20260513.md": 4
+    }
+  },
+  "redaction_catalog": [
+    {
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "def2c96f914b862e",
+      "masked_value": "R5...XV",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}",
+      "occurrences": 6,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 790
+      }
+    },
+    {
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "1ecb9e6bdf6cc808",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}",
+      "occurrences": 3,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 774
+      }
+    },
+    {
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "3f2e23b2ee1991da",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}",
+      "occurrences": 3,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 777
+      }
+    },
+    {
+      "category": "android_path",
+      "severity": "public_blocker",
+      "value_sha16": "6b89780d7319a7e7",
+      "masked_value": "/.../Asolaria",
+      "suggested_replacement": "${ANDROID_ASOLARIA_ROOT}",
+      "occurrences": 2,
+      "first_seen": {
+        "path": "tools/behcs/omnicoder/omnicoder-server.mjs",
+        "line": 10
+      }
+    },
+    {
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "76c91471d760073b",
+      "masked_value": "OP-...",
+      "suggested_replacement": "${BEHCS_OPERATOR_LABEL}",
+      "occurrences": 2,
+      "first_seen": {
+        "path": "tools/behcs/behcs1024-free-agent-wave.mjs",
+        "line": 70
+      }
+    },
+    {
+      "category": "phone_model",
+      "severity": "public_blocker",
+      "value_sha16": "9a54ec693a8a6b63",
+      "masked_value": "phone_model",
+      "suggested_replacement": "${BEHCS_DEVICE_MODEL}",
+      "occurrences": 2,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 800
+      }
+    },
+    {
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "515dedb6819ef12d",
+      "masked_value": "C:\\...\\Asolaria",
+      "suggested_replacement": "${ASOLARIA_ROOT}",
+      "occurrences": 2,
+      "first_seen": {
+        "path": "plans/BEHCS-1024-REMAKE-GITHUB-200-STEP-IMPROVEMENT-PLAN.md",
+        "line": 6
+      }
+    },
+    {
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "e7b5cb1e3fc7ef66",
+      "masked_value": "C:\\...\\opencode.ps1",
+      "suggested_replacement": "${WINDOWS_LOCAL_PATH}",
+      "occurrences": 2,
+      "first_seen": {
+        "path": "tools/behcs/fabric-revolver.mjs",
+        "line": 46
+      }
+    },
+    {
+      "category": "android_path",
+      "severity": "public_blocker",
+      "value_sha16": "912bf4175f4aa2d5",
+      "masked_value": "/.../omnicoder",
+      "suggested_replacement": "${ANDROID_ASOLARIA_ROOT}/omnicoder",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/Start-FalconOmnicoder.ps1",
+        "line": 38
+      }
+    },
+    {
+      "category": "android_path",
+      "severity": "public_blocker",
+      "value_sha16": "ab231bebbf362f36",
+      "masked_value": "/.../${name}",
+      "suggested_replacement": "${ANDROID_ASOLARIA_ROOT}/omnicoder/packets/${name}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/omnicoder-pilot-daemon.mjs",
+        "line": 117
+      }
+    },
+    {
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "4be8ddda16b038c1",
+      "masked_value": "R9...KJ",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 797
+      }
+    },
+    {
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "60d321924a2b8873",
+      "masked_value": "RQ...MA",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 804
+      }
+    },
+    {
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "d377c53e17e39a50",
+      "masked_value": "RE...ED",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "plans/BEHCS-1024-REMAKE-GITHUB-200-STEP-IMPROVEMENT-PLAN.md",
+        "line": 81
+      }
+    },
+    {
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "3634bd18ae2bd2fa",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 783
+      }
+    },
+    {
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "ee95743fdac796e8",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 780
+      }
+    },
+    {
+      "category": "phone_model",
+      "severity": "public_blocker",
+      "value_sha16": "3ba16bf2812999e1",
+      "masked_value": "SM-...",
+      "suggested_replacement": "${BEHCS_DEVICE_MODEL}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "reports/behcs1024-p01-p02-baseline-git-segmentation-20260513.md",
+        "line": 27
+      }
+    },
+    {
+      "category": "phone_model",
+      "severity": "public_blocker",
+      "value_sha16": "d7235e280ca8543a",
+      "masked_value": "phone_model",
+      "suggested_replacement": "${BEHCS_DEVICE_MODEL}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 786
+      }
+    },
+    {
+      "category": "phone_model",
+      "severity": "public_blocker",
+      "value_sha16": "fba0d68fa5f88add",
+      "masked_value": "phone_model",
+      "suggested_replacement": "${BEHCS_DEVICE_MODEL}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/omnicoder/omnicoder-server.mjs",
+        "line": 86
+      }
+    },
+    {
+      "category": "private_ip",
+      "severity": "public_blocker",
+      "value_sha16": "aaf2daed5a516b7c",
+      "masked_value": "192.168.x.x",
+      "suggested_replacement": "${BEHCS_PRIVATE_HOST}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 775
+      }
+    },
+    {
+      "category": "private_ip",
+      "severity": "public_blocker",
+      "value_sha16": "b5fc5e0389850fc0",
+      "masked_value": "192.168.x.x",
+      "suggested_replacement": "${BEHCS_PRIVATE_HOST}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 781
+      }
+    },
+    {
+      "category": "private_ip",
+      "severity": "public_blocker",
+      "value_sha16": "ba753efa2015157b",
+      "masked_value": "192.168.x.x",
+      "suggested_replacement": "${BEHCS_PRIVATE_HOST}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/behcs/behcs-bus.js",
+        "line": 794
+      }
+    },
+    {
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "3a7853f465984184",
+      "masked_value": "C:\\...\\python.exe",
+      "suggested_replacement": "${USER_HOME}\\anaconda3\\python.exe",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/Start-GnnSidecar.ps1",
+        "line": 48
+      }
+    },
+    {
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "5f7a2f4ed5877e57",
+      "masked_value": "C:\\...\\node.exe",
+      "suggested_replacement": "${NODE_HOME}\\nodejs\\node.exe",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/Start-Asolaria.ps1",
+        "line": 268
+      }
+    },
+    {
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "836fafb1e6d8c942",
+      "masked_value": "C:\\...\\Program",
+      "suggested_replacement": "${WINDOWS_LOCAL_PATH}",
+      "occurrences": 1,
+      "first_seen": {
+        "path": "tools/Start-Asolaria.ps1",
+        "line": 269
+      }
+    }
+  ],
+  "findings": [
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 774,
+      "column": 42,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "1ecb9e6bdf6cc808",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 775,
+      "column": 27,
+      "category": "private_ip",
+      "severity": "public_blocker",
+      "value_sha16": "aaf2daed5a516b7c",
+      "masked_value": "192.168.x.x",
+      "suggested_replacement": "${BEHCS_PRIVATE_HOST}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 777,
+      "column": 33,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "3f2e23b2ee1991da",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 780,
+      "column": 42,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "ee95743fdac796e8",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 781,
+      "column": 27,
+      "category": "private_ip",
+      "severity": "public_blocker",
+      "value_sha16": "b5fc5e0389850fc0",
+      "masked_value": "192.168.x.x",
+      "suggested_replacement": "${BEHCS_PRIVATE_HOST}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 783,
+      "column": 33,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "3634bd18ae2bd2fa",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 786,
+      "column": 44,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "1ecb9e6bdf6cc808",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 786,
+      "column": 36,
+      "category": "phone_model",
+      "severity": "public_blocker",
+      "value_sha16": "d7235e280ca8543a",
+      "masked_value": "phone_model",
+      "suggested_replacement": "${BEHCS_DEVICE_MODEL}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 789,
+      "column": 33,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "3f2e23b2ee1991da",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 790,
+      "column": 20,
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "def2c96f914b862e",
+      "masked_value": "R5...XV",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 794,
+      "column": 27,
+      "category": "private_ip",
+      "severity": "public_blocker",
+      "value_sha16": "ba753efa2015157b",
+      "masked_value": "192.168.x.x",
+      "suggested_replacement": "${BEHCS_PRIVATE_HOST}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 797,
+      "column": 20,
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "4be8ddda16b038c1",
+      "masked_value": "R9...KJ",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 800,
+      "column": 45,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "1ecb9e6bdf6cc808",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 800,
+      "column": 34,
+      "category": "phone_model",
+      "severity": "public_blocker",
+      "value_sha16": "9a54ec693a8a6b63",
+      "masked_value": "phone_model",
+      "suggested_replacement": "${BEHCS_DEVICE_MODEL}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 803,
+      "column": 33,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "3f2e23b2ee1991da",
+      "masked_value": "operator_name",
+      "suggested_replacement": "${BEHCS_OPERATOR_NAME}"
+    },
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "line": 804,
+      "column": 20,
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "60d321924a2b8873",
+      "masked_value": "RQ...MA",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}"
+    },
+    {
+      "path": "tools/Start-Asolaria.ps1",
+      "line": 268,
+      "column": 6,
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "5f7a2f4ed5877e57",
+      "masked_value": "C:\\...\\node.exe",
+      "suggested_replacement": "${NODE_HOME}\\nodejs\\node.exe"
+    },
+    {
+      "path": "tools/Start-Asolaria.ps1",
+      "line": 269,
+      "column": 6,
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "836fafb1e6d8c942",
+      "masked_value": "C:\\...\\Program",
+      "suggested_replacement": "${WINDOWS_LOCAL_PATH}"
+    },
+    {
+      "path": "tools/Start-GnnSidecar.ps1",
+      "line": 48,
+      "column": 19,
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "3a7853f465984184",
+      "masked_value": "C:\\...\\python.exe",
+      "suggested_replacement": "${USER_HOME}\\anaconda3\\python.exe"
+    },
+    {
+      "path": "tools/behcs/omnicoder/omnicoder-server.mjs",
+      "line": 10,
+      "column": 45,
+      "category": "android_path",
+      "severity": "public_blocker",
+      "value_sha16": "6b89780d7319a7e7",
+      "masked_value": "/.../Asolaria",
+      "suggested_replacement": "${ANDROID_ASOLARIA_ROOT}"
+    },
+    {
+      "path": "tools/behcs/omnicoder/omnicoder-server.mjs",
+      "line": 86,
+      "column": 21,
+      "category": "phone_model",
+      "severity": "public_blocker",
+      "value_sha16": "fba0d68fa5f88add",
+      "masked_value": "phone_model",
+      "suggested_replacement": "${BEHCS_DEVICE_MODEL}"
+    },
+    {
+      "path": "tools/behcs/omnicoder/start-omnicoder.sh",
+      "line": 3,
+      "column": 6,
+      "category": "android_path",
+      "severity": "public_blocker",
+      "value_sha16": "6b89780d7319a7e7",
+      "masked_value": "/.../Asolaria",
+      "suggested_replacement": "${ANDROID_ASOLARIA_ROOT}"
+    },
+    {
+      "path": "tools/behcs/omnicoder-pilot-daemon.mjs",
+      "line": 36,
+      "column": 43,
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "def2c96f914b862e",
+      "masked_value": "R5...XV",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}"
+    },
+    {
+      "path": "tools/behcs/omnicoder-pilot-daemon.mjs",
+      "line": 117,
+      "column": 17,
+      "category": "android_path",
+      "severity": "public_blocker",
+      "value_sha16": "ab231bebbf362f36",
+      "masked_value": "/.../${name}",
+      "suggested_replacement": "${ANDROID_ASOLARIA_ROOT}/omnicoder/packets/${name}"
+    },
+    {
+      "path": "tools/behcs/Start-FalconOmnicoder.ps1",
+      "line": 2,
+      "column": 22,
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "def2c96f914b862e",
+      "masked_value": "R5...XV",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}"
+    },
+    {
+      "path": "tools/behcs/Start-FalconOmnicoder.ps1",
+      "line": 38,
+      "column": 15,
+      "category": "android_path",
+      "severity": "public_blocker",
+      "value_sha16": "912bf4175f4aa2d5",
+      "masked_value": "/.../omnicoder",
+      "suggested_replacement": "${ANDROID_ASOLARIA_ROOT}/omnicoder"
+    },
+    {
+      "path": "tools/behcs/Start-OmnicoderPilot.ps1",
+      "line": 2,
+      "column": 22,
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "def2c96f914b862e",
+      "masked_value": "R5...XV",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}"
+    },
+    {
+      "path": "tools/behcs/Test-FalconOmnicoder.ps1",
+      "line": 2,
+      "column": 22,
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "def2c96f914b862e",
+      "masked_value": "R5...XV",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}"
+    },
+    {
+      "path": "tools/behcs/fabric-revolver.mjs",
+      "line": 46,
+      "column": 51,
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "e7b5cb1e3fc7ef66",
+      "masked_value": "C:\\...\\opencode.ps1",
+      "suggested_replacement": "${WINDOWS_LOCAL_PATH}"
+    },
+    {
+      "path": "tools/behcs/behcs1024-free-agent-wave.mjs",
+      "line": 16,
+      "column": 51,
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "e7b5cb1e3fc7ef66",
+      "masked_value": "C:\\...\\opencode.ps1",
+      "suggested_replacement": "${WINDOWS_LOCAL_PATH}"
+    },
+    {
+      "path": "tools/behcs/behcs1024-free-agent-wave.mjs",
+      "line": 58,
+      "column": 94,
+      "category": "phone_model",
+      "severity": "public_blocker",
+      "value_sha16": "9a54ec693a8a6b63",
+      "masked_value": "phone_model",
+      "suggested_replacement": "${BEHCS_DEVICE_MODEL}"
+    },
+    {
+      "path": "tools/behcs/behcs1024-free-agent-wave.mjs",
+      "line": 70,
+      "column": 102,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "76c91471d760073b",
+      "masked_value": "OP-...",
+      "suggested_replacement": "${BEHCS_OPERATOR_LABEL}"
+    },
+    {
+      "path": "plans/BEHCS-1024-REMAKE-GITHUB-200-STEP-IMPROVEMENT-PLAN.md",
+      "line": 6,
+      "column": 16,
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "515dedb6819ef12d",
+      "masked_value": "C:\\...\\Asolaria",
+      "suggested_replacement": "${ASOLARIA_ROOT}"
+    },
+    {
+      "path": "plans/BEHCS-1024-REMAKE-GITHUB-200-STEP-IMPROVEMENT-PLAN.md",
+      "line": 81,
+      "column": 26,
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "d377c53e17e39a50",
+      "masked_value": "RE...ED",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}"
+    },
+    {
+      "path": "reports/behcs1024-p01-p02-baseline-git-segmentation-20260513.md",
+      "line": 4,
+      "column": 29,
+      "category": "windows_path",
+      "severity": "public_blocker",
+      "value_sha16": "515dedb6819ef12d",
+      "masked_value": "C:\\...\\Asolaria",
+      "suggested_replacement": "${ASOLARIA_ROOT}"
+    },
+    {
+      "path": "reports/behcs1024-p01-p02-baseline-git-segmentation-20260513.md",
+      "line": 27,
+      "column": 55,
+      "category": "device_serial",
+      "severity": "public_blocker",
+      "value_sha16": "def2c96f914b862e",
+      "masked_value": "R5...XV",
+      "suggested_replacement": "${BEHCS_DEVICE_SERIAL}"
+    },
+    {
+      "path": "reports/behcs1024-p01-p02-baseline-git-segmentation-20260513.md",
+      "line": 27,
+      "column": 76,
+      "category": "phone_model",
+      "severity": "public_blocker",
+      "value_sha16": "3ba16bf2812999e1",
+      "masked_value": "SM-...",
+      "suggested_replacement": "${BEHCS_DEVICE_MODEL}"
+    },
+    {
+      "path": "reports/behcs1024-p01-p02-baseline-git-segmentation-20260513.md",
+      "line": 40,
+      "column": 3,
+      "category": "operator_label",
+      "severity": "public_blocker",
+      "value_sha16": "76c91471d760073b",
+      "masked_value": "OP-...",
+      "suggested_replacement": "${BEHCS_OPERATOR_LABEL}"
+    }
+  ],
+  "scanned_files": [
+    {
+      "path": "tools/behcs/behcs-bus.js",
+      "sha256": "2c058cf3e49e86128c6dde440d921336b7fa59e9aea9a9a3fcbab1d065503fb7",
+      "bytes": 67480
+    },
+    {
+      "path": "tools/behcs/bus-supervisor.mjs",
+      "sha256": "be5b902b258147c8a4434203715cb7b09ceeb4fdd2fe5d9231c5cccd6f6803ea",
+      "bytes": 11287
+    },
+    {
+      "path": "tools/Start-Asolaria.ps1",
+      "sha256": "e8a1beca8513320ec9cdc7f21307c96a421f5bde08a6cf4bd2b5757a5d888dd1",
+      "bytes": 17750
+    },
+    {
+      "path": "tools/Start-GnnSidecar.ps1",
+      "sha256": "41eeec6e14f1c5bd8e2e5aa08abcb2bcdcb2fabc73bf449865f0681ad0a2c023",
+      "bytes": 3188
+    },
+    {
+      "path": "services/gnn-sidecar/inference_server.py",
+      "sha256": "093917a704b0388e4527a57631edb7d4224310844d9c6938b411e90d40792609",
+      "bytes": 2249
+    },
+    {
+      "path": "tools/behcs/omnicoder/omnicoder-server.mjs",
+      "sha256": "54c40078e5a4cfcb0e7a57888ed15ba1653d44874e74b0fb36dee1f17aa894c5",
+      "bytes": 7248
+    },
+    {
+      "path": "tools/behcs/omnicoder/public/index.html",
+      "sha256": "e9f56482b6ad5011db8f5a2e32842a44f089aeba9be073e9dc82571465c12599",
+      "bytes": 9703
+    },
+    {
+      "path": "tools/behcs/omnicoder/start-omnicoder.sh",
+      "sha256": "258e2a11ca8ba26990fa1d6dff46d139feb894210377034bb55f3adf0e23112b",
+      "bytes": 601
+    },
+    {
+      "path": "tools/behcs/omnicoder-pilot-daemon.mjs",
+      "sha256": "6326227bda6587c69e9bf4b20671dbd7cb7882fdfb8cf82dd9f49935d8ceeac9",
+      "bytes": 11445
+    },
+    {
+      "path": "tools/behcs/Start-FalconOmnicoder.ps1",
+      "sha256": "a68a5581bf39d4dcaa4a533792ee2ed7a8369dc5016ecd6c7de32acb1f67ca19",
+      "bytes": 3060
+    },
+    {
+      "path": "tools/behcs/Start-OmnicoderPilot.ps1",
+      "sha256": "f92473321a908781263e20abc38f34a55557d9b56b9d1f5f443dec525345ce75",
+      "bytes": 1653
+    },
+    {
+      "path": "tools/behcs/Test-FalconOmnicoder.ps1",
+      "sha256": "3bf4c7fe2d769298d72ab47fd8a48ed8ba457e8e45987f6dba874900c0f6b74d",
+      "bytes": 1766
+    },
+    {
+      "path": "tools/behcs/fabric-revolver.mjs",
+      "sha256": "b05ff876350842b84b838f095cacca5a56cd96fdac7d89244cca10b970f6f79c",
+      "bytes": 16737
+    },
+    {
+      "path": "tools/behcs/behcs1024-free-agent-wave.mjs",
+      "sha256": "ca805485b44eaffe48a519e572b61be417650913f34ec47cdea9bd8bd218d1f1",
+      "bytes": 10754
+    },
+    {
+      "path": "plans/BEHCS-1024-REMAKE-GITHUB-200-STEP-IMPROVEMENT-PLAN.md",
+      "sha256": "62e61690943392965ccbdd92879a73b8afaa123185c04bc502b519f4775a5fa2",
+      "bytes": 16714
+    },
+    {
+      "path": "reports/behcs1024-p01-p02-baseline-git-segmentation-20260513.md",
+      "sha256": "2609643280df9580a4148c68e2c0321fbb375e717febab8bb900a57d760a4e98",
+      "bytes": 4940
+    },
+    {
+      "path": "reports/behcs1024-liris-mirror-intake-20260513.md",
+      "sha256": "b75b6e8580b54a694a9c575c152dbeb6e103251121472f4e9a0d31cc79812db0",
+      "bytes": 1493
+    }
+  ],
+  "public_projection": {
+    "status": "blocked_until_redacted",
+    "blockers": 38,
+    "rule": "no public push with private topology references"
+  },
+  "outputs": {
+    "report": "reports/behcs1024-redaction-plan-20260513.md",
+    "plan": "reports/behcs1024-redaction-plan-20260513.json",
+    "dashboard_feed": "data/behcs/dashboard-feeds/behcs1024-redaction-plan-latest.json"
+  }
+}
