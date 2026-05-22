@@ -334,6 +334,40 @@
       padding-bottom: 3px;
     }
 
+    .planet-link {
+      margin-top: 10px;
+      border: 1px solid rgba(92,242,255,0.22);
+      border-radius: 10px;
+      background:
+        linear-gradient(90deg, rgba(92,242,255,0.08), rgba(125,255,178,0.05)),
+        rgba(0,0,0,0.18);
+      padding: 8px;
+      color: rgba(217,250,255,0.82);
+      font-size: 10px;
+      line-height: 1.35;
+    }
+
+    .planet-link strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--green);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .planet-link span {
+      display: block;
+      overflow-wrap: anywhere;
+      border-top: 1px dashed rgba(92,242,255,0.12);
+      padding-top: 3px;
+      margin-top: 3px;
+    }
+
+    .planet-link b {
+      color: var(--cyan);
+      font-weight: normal;
+    }
+
     .console-log {
       margin: 0 12px 10px;
       border: 1px solid rgba(92,242,255,0.18);
@@ -404,6 +438,15 @@
           <p class="kicker">OBSERVE SYSTEM</p>
           <h2>Observação local ativa</h2>
           <p>Hermes observa o campo visual 16-bit como Prism Relay Operator. Nenhuma rota real é executada. O sistema permanece fail-closed.</p>
+          <div class="planet-link" aria-label="AETHER HPB local planet link">
+            <strong>PLANET LINK</strong>
+            <span><b>HPB source:</b> C:\AETHER_16BIT\output\cosmos_AETHER-COSMOS-016.hpb</span>
+            <span><b>Hermes receipt:</b> C:\AETHER_16BIT\hermes\receipts.hpb</span>
+            <span><b>Repo bridge:</b> hyperbehcs-hermes/aether_receipts/*.hpb</span>
+            <span><b>Format:</b> HPB</span>
+            <span><b>JSON dependency:</b> removed</span>
+            <span><b>Status:</b> observable only</span>
+          </div>
         </article>
 
         <div class="locks">
@@ -439,7 +482,15 @@
       observe: {
         kicker: "OBSERVE SYSTEM",
         title: "Observação local ativa",
-        body: "Hermes observa o campo visual 16-bit como Prism Relay Operator. Nenhuma rota real é executada. O sistema permanece fail-closed."
+        body: "Hermes observa o campo visual 16-bit como Prism Relay Operator. Nenhuma rota real é executada. O sistema permanece fail-closed.",
+        planet: [
+          ["HPB source", "C:\\AETHER_16BIT\\output\\cosmos_AETHER-COSMOS-016.hpb"],
+          ["Hermes receipt", "C:\\AETHER_16BIT\\hermes\\receipts.hpb"],
+          ["Repo bridge", "hyperbehcs-hermes/aether_receipts/*.hpb"],
+          ["Format", "HPB"],
+          ["JSON dependency", "removed"],
+          ["Status", "observable only"]
+        ]
       },
       plan: {
         kicker: "PLAN ACCESS",
@@ -470,10 +521,15 @@
         ? `<div class="verify-lines">${data.lines.map((line) => `<span><b>${line[0]}</b><em>${line[1]}</em></span>`).join("")}</div>`
         : "";
 
+      const planet = data.planet
+        ? `<div class="planet-link" aria-label="AETHER HPB local planet link"><strong>PLANET LINK</strong>${data.planet.map((line) => `<span><b>${line[0]}:</b> ${line[1]}</span>`).join("")}</div>`
+        : "";
+
       readout.innerHTML = `
         <p class="kicker">${data.kicker}</p>
         <h2>${data.title}</h2>
         <p>${data.body}</p>
+        ${planet}
         ${lines}
       `;
     }
