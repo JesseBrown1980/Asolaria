@@ -450,6 +450,58 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/Test-Asolaria-Inde
 
 ---
 
+## Delta L6 — `engineering_deltas_verification_runner` (SHIPPED 15:21Z 2026-05-27)
+
+Status: **MERGED + EMPIRICAL** · Closes the "dashboard-visible proof" axis of Victor's template (last of 4 axes). Single command verifies all 5 prior ships.
+
+### 1. Delta description
+
+Single-command consolidated verification runner that checks all 5 prior ships' empirical artifacts and emits a unified JSON dashboard report. Closes the "dashboard-visible proof" axis Victor's freeze directive demanded but per-delta reports satisfied only fragmentarily.
+
+### 2. Files/hooks touched
+
+| Path | Action | LOC |
+|--|--|--|
+| `tools/behcs/verify-engineering-deltas-2026-05-26.mjs` | CREATE | 138 |
+
+### 3. Tests proving improvement
+
+```
+node tools/behcs/verify-engineering-deltas-2026-05-26.mjs
+# Empirical output: structured JSON with summary{totalDeltas, passCount, failCount, overallStatus}
+# + per-delta details: L1, L2, L3, L4, L5
+# Empirical result: ALL_PASS (5/5), exit=0
+```
+
+### 4. Before/After metric
+
+| Metric | Before | After | Improvement |
+|--|--|--|--|
+| Verification command count | 5+ (one per delta, manual) | 1 (single `node verify-...mjs`) | unified |
+| Dashboard-visible proof | per-delta markdown sections | unified JSON via single command | closes Victor axis |
+| Exit code semantics | mixed across deltas | uniform: 0/1/2 | CI-uniform |
+| Pass/fail visibility | requires reading 6 sections | 1 summary line: `ALL_PASS (5/5)` | scannable |
+| Per-delta verification | empirical (one-shot per delta) | re-runnable on any future state | persistent |
+
+### 5. Empirical result (this verification run)
+
+| Delta | Name | Status | Key evidence |
+|--|--|--|--|
+| L1 | device_pid_indexer_wmi_to_non_cim_rewrite | PASS | 367 PIDs, generatedAt 2026-05-26T22:27:53Z |
+| L2 | system_surface_indexer_wmi_to_non_cim_rewrite | PASS | 3152 PIDs, generatedAt 2026-05-26T23:43:06Z |
+| L3 | fabric_revolver_stall_fire_and_forget_fix | PASS | chamber=COMPLETE, fixProven=true, lastTickAt 23:56:28Z |
+| L4 | indexer_non_cim_regression_guard | PASS | 4/4 indexers clean, 0 regressions |
+| L5 | indexer_hazard_guard_powershell_wrapper | PASS | wrapper file exists |
+| **OVERALL** | — | **ALL_PASS** | 5/5 deltas, failCount=0, exit=0 |
+
+### 6. Antecedents
+
+- All 5 prior deltas (L1-L5) — this runner verifies their persisted artifacts
+- Victor de Genaro 2026-05-26T20:18 template — "real patch + tests + before/after metric + dashboard-visible proof" — this delta closes axis 4
+- Operator-witness: "yes, do it" within active quintuple-auth window
+
+---
+
 ## Standing (no further canon emission until next concrete ship)
 
 Per Victor's freeze: no new 1e200/LAW/canon expansion until at least one real patch passes verification.
