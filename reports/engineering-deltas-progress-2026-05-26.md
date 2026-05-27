@@ -400,6 +400,56 @@ Operator can now grep all 4 indexers with one command. CI integration: add to `n
 
 ---
 
+## Delta L5 — `indexer_hazard_guard_powershell_wrapper` (SHIPPED 00:42Z 2026-05-27)
+
+Status: **MERGED + EMPIRICAL** · CI-integration wrapper for Delta L4. Wires the audit into Asolaria's existing PowerShell `Test-Asolaria-*.ps1` tooling convention.
+
+### 1. Delta description
+
+Closes the TODO at L4 §7 ("CI integration: add to `Test-Asolaria-HealthGuardrail` pipeline"). Standalone PowerShell wrapper around the Node audit module — invokable from Asolaria's PowerShell tooling without disturbing the existing HealthGuardrail script.
+
+### 2. Files/hooks touched
+
+| Path | Action | LOC |
+|--|--|--|
+| `tools/Test-Asolaria-IndexerHazardGuard.ps1` | CREATE | 82 |
+
+### 3. Tests proving improvement
+
+```
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/Test-Asolaria-IndexerHazardGuard.ps1
+# Empirical (default mode):
+#   === Asolaria Indexer Hazard Guard (Delta L5 wrap of L4) ===
+#     status:      PASS
+#     total:       4
+#     clean:       4
+#     regressions: 0
+#   Exit: 0
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/Test-Asolaria-IndexerHazardGuard.ps1 -Json
+# Empirical (-Json mode): raw JSON suitable for CI pipeline parse
+# Exit: 0
+```
+
+### 4. Before/After metric
+
+| Metric | Before | After | Improvement |
+|--|--|--|--|
+| L4 audit invocation method | bash-only (`node tools/behcs/...mjs`) | PowerShell + bash both work | tooling parity |
+| PowerShell tooling convention | not yet integrated | matches existing `Test-Asolaria-*.ps1` naming + param shape | convention-compliant |
+| CI integration | manual command | wrapper script ready for `Test-Asolaria-HealthGuardrail` orchestrator | shippable |
+| Exit code semantics | 0/1 | 0 (PASS) / 1 (REGRESSION) / 2 (audit module or node missing) | error-class-distinct |
+| Human-readable output | JSON-only | structured summary + regression detail on fail | dev-ergonomic |
+| `-Json` flag for CI | not implemented | implemented (raw stdout) | CI-pipeline ready |
+
+### 5. Antecedents
+
+- **Delta L4** (`tools/behcs/test-indexer-non-cim-regression.mjs`) — the Node audit module L5 wraps
+- **Engineering report L4 §7 TODO** — explicitly named CI integration as next step
+- **Operator-witness**: "yes build it" 2026-05-26 within active quintuple-auth window
+
+---
+
 ## Standing (no further canon emission until next concrete ship)
 
 Per Victor's freeze: no new 1e200/LAW/canon expansion until at least one real patch passes verification.
