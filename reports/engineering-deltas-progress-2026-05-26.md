@@ -502,6 +502,77 @@ node tools/behcs/verify-engineering-deltas-2026-05-26.mjs
 
 ---
 
+## Delta L7 — `interview_copilot_fabric_binding` (SHIPPED 2026-05-27 ~16:45Z)
+
+Status: **MERGED + EMPIRICAL** · Phase 1 of operator's 2026-05-27 directive (interview-copilot HyperBEHCS fabric integration). Binds the existing `public/interview-copilot.js` UI/runtime to the fabric via canonical supervisor + PID + cube class. Phase 2 (voice translator + abacus connector fix) deferred to follow-up ship.
+
+### 1. Delta description
+
+Operator OP-JESSE directive 2026-05-27 (URGENT): bind interview-copilot to HyperBEHCS fabric with supervisor + PID-specific profile + cube + glyph + Asolaria-MCP + Web-MCP + omnimetric/omnischeduler/omniquant linkage. Phase 1 ships the canonical entity binding (supervisor record + PID mint + cube-cube-cubed classifier) without modifying `public/interview-copilot.js` itself. Phase 2 wires the binding into the actual JS runtime + adds voice translator + addresses abacus connector regression separately.
+
+### 2. Files/hooks touched
+
+| Path | Action | LOC |
+|--|--|--|
+| `tools/behcs/interview-copilot-fabric-binding.mjs` | CREATE | 152 |
+| `tools/behcs/interview-copilot-fabric-binding.test.mjs` | CREATE | 117 |
+| Indexer-absorbed supervisor set (regenerated via existing indexer) | INDEX | +1 supervisor set / +1 record |
+
+Net: +269 LOC pushable + 1 supervisor index entry. Zero modifications to existing `public/interview-copilot.js` (Phase 1 is binding only; UI/runtime layer untouched).
+
+### 3. Hookwall rule changes proposed
+
+None new. Fabric edges declared in binding for future wire-in: `mcpUniversal=asolaria-mcp`, `webMcp=web-mcp-pixels-pre-gpu`, `hookwall=PR-21-universal-route-dual-emit`, `gnn=L0-EdgeLevel-GNN`, `omnischeduler/omnimetric/omniquant=canonical lanes`.
+
+### 4. Tests proving improvement
+
+**Unit test suite (15 tests, all pass):**
+- PROF surface (canonical id + band + runtime paths exist + fabric edges)
+- mintInterviewCopilotPid (canonical AGT-L3 shape + deterministic + vantage-differentiated + H-coord hex)
+- buildSupervisorRecord (canonical supervisor shape + runtime + fabric edges + evidence level)
+- cube-cube-cubed routing (8 dimensions + classify routes correct PROFs + null on unrelated + mutationAllowed false)
+- writeSupervisorSetFile (writes structured JSON, parseable, correct shape)
+
+```
+node --test tools/behcs/interview-copilot-fabric-binding.test.mjs
+# Empirical: 15 pass / 0 fail / 0 skipped / 285ms
+```
+
+**Empirical CLI invocations:**
+- `node ...binding.mjs status` → all 8 runtime paths resolve `true`
+- `node ...binding.mjs mint` → writes `data/behcs/supervisors/interview-copilot/interview-copilot-supervisors.v1.json`
+- Supervisor indexer post-mint: 34→35 sets, 234→235 records, 0 parse errors
+
+### 5. Before/After metric
+
+| Metric | Before | After | Improvement |
+|--|--|--|--|
+| `PROF-INTERVIEW-COPILOT` in fabric | ABSENT | PRESENT (supervisor + PID + cube) | bound |
+| Canonical PID for interview-copilot | none | `AGT-L3-INTERVIEW-COPILOT-H1303-W150-P00-N45054a6d` | deterministic |
+| Cube-cube-cubed classifier | none | 8 dimensions, mutationAllowed false | routing-canon |
+| Runtime path discovery | manual | 8 paths declared + all verified-existing | empirical |
+| Supervisor index entries | 34 sets / 234 records | 35 sets / 235 records | +1/+1 |
+| Tests added | 0 | 15 (5 describe blocks) | empirical proof |
+
+### 6. Empirical finding (separate from this ship — surfaced for follow-up)
+
+**`abacusConnector.js` W2 refactor (2026-04-08) removed `require("./abacusPacketRuntime")` and the runtime instantiation block (~30 LOC).** Per diff `pre-W2-backup-2026-04-08.bak` vs current. Likely root cause of operator's "abacus AI stopped working" symptom IF downstream code still references the removed `abacusPacketRuntime`. Phase 2 ship target.
+
+### 7. Phase 2 ship targets (queued, operator-pick)
+
+- **Abacus connector W2 regression fix** — restore `abacusPacketRuntime` require + audit downstream references
+- **Voice translator hookup** — wire `whisper-local/whisper-adapter.ps1` STT + `kitty-tts-adapter.ps1` TTS into the bound interview-copilot UI runtime
+- **MCP routing wire-in** — connect interview-copilot to Asolaria-MCP + Web-MCP per declared fabric edges
+- **Omnischeduler task lane** — register interview-session as omni-scheduled task class
+
+### 8. Antecedents
+
+- Operator-witness 2026-05-27: "abacus AI stopped working... interview copilot... HyperBEHCS, Human friendly... supervisor and PID specific profile... Map that the system, cube, map, glyph, Asolaria MCP, Web MCP... I authorize JESSE"
+- Existing infrastructure used (per AXIOM 6 use-existing): `public/interview-copilot.js`, `public/abacus-worker.js`, `src/connectors/abacusConnector.js`, `tools/whisper-local/`, `tools/kitty-tts-adapter.ps1`, `tools/caption_ocr_bridge.py`
+- Path B / Path-L1-L6 discipline pattern (real patch + tests + before/after metric + dashboard-visible proof per Victor template)
+
+---
+
 ## Standing (no further canon emission until next concrete ship)
 
 Per Victor's freeze: no new 1e200/LAW/canon expansion until at least one real patch passes verification.
