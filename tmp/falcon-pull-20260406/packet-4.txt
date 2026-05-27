@@ -1,0 +1,6 @@
+@shannon IX-554: asolaria remains the pass-2 blocker at closure 42.2%
+@bridge lead IX-070:dev external=16 from 3 sources
+@stage deficit dev ratio=30.4% action=run 6x6 review slices at dev
+@anchor frontier IX-070 score=64
+@gap residual_internal_to_target=70
+@codex verdict: run 6x6 repair at the weakest stages and thicken Asolaria internal bridges before pass-3 lock.

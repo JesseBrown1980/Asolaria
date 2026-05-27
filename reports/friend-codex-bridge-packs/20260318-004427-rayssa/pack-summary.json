@@ -1,0 +1,13 @@
+﻿{
+    "ok":  true,
+    "friendLabel":  "Rayssa",
+    "friendHandle":  "rayss-codex",
+    "room":  "asolaria-friend-rayss",
+    "bridgeUrl":  "https://knight-defines-varieties-safely.trycloudflare.com",
+    "packDir":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260318-004427-rayssa",
+    "profilePath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260318-004427-rayssa\\rayss-codex.profile.json",
+    "envPath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260318-004427-rayssa\\rayss-codex.env.example",
+    "startScriptPath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260318-004427-rayssa\\Start-Friend-Codex-Bridge.ps1",
+    "policyPath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260318-004427-rayssa\\relay-policy.example.json",
+    "readmePath":  "C:\\Users\\acer\\Asolaria\\reports\\friend-codex-bridge-packs\\20260318-004427-rayssa\\README.md"
+}

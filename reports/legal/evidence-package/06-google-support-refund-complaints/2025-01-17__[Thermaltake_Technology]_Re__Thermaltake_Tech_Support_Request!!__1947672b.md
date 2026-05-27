@@ -1,0 +1,163 @@
+---
+gmail_message_id: 1947672b279ea107
+account: plasmatoid@gmail.com
+date_header: Fri, 17 Jan 2025 22:46:55 +0000
+from: "CS02 (Thermaltake Technology)" <support@thermaltakeusa.zendesk.com>
+to: PLASMATOID <plasmatoid@gmail.com>
+subject: [Thermaltake Technology] Re: Thermaltake Tech Support Request!!
+body_sha256: 7f0ab70dfc927d2a524733f1c17dcb8b2366769b6f7816aaac8a6d491b501f82
+snippet: ##- Please type your reply above this line -## Your request (229802) has been updated. To add additional comments, reply to this email. CS02 (Thermaltake Technology) Jan 17, 2025, 14:46 PST Hello, It
+---
+
+# [Thermaltake Technology] Re: Thermaltake Tech Support Request!!
+
+**From:** "CS02 (Thermaltake Technology)" <support@thermaltakeusa.zendesk.com>
+**To:** PLASMATOID <plasmatoid@gmail.com>
+**Date:** Fri, 17 Jan 2025 22:46:55 +0000
+**SHA256:** `7f0ab70dfc927d2a524733f1c17dcb8b2366769b6f7816aaac8a6d491b501f82`
+
+## Body (extracted text)
+
+##- Please type your reply above this line -## Your request (229802) has been updated. To add additional comments, reply to this email. ---------------------------------------------- CS02, Jan 17, 2025, 14:46 PST Hello, It does help with everything connecting together easier. Please let us know if you have any further questions. Best Regards, Thermaltake Customer Service 800-988-1088 (M~F) 9:00am - 5:30pm ---------------------------------------------- PLASMATOID, Jan 16, 2025, 14:56 PST Honestly, i will probably just buy everything from you guys in the future. It is a nightmare to find all these parts. Jesse Sent from Outlook for Android ________________________________ From: CS02 (Thermaltake Technology) Sent: Thursday, January 16, 2025 7:41:23 PM To: PLASMATOID Subject: [Thermaltake Technology] Re: Thermaltake Tech Support Request!! ---------------------------------------------- CS02, Jan 16, 2025, 14:41 PST Hello, As long as the water blocks match the CPU and or GPU compatibility then it would work. We use G 1/4 size tubing so you would need to confirm that size. If it is all Thermaltake, then you would be fine since we use G 1/4. The GPU water block must remain true to what GPU you have, i.e. 3090 Ti and 3090 Super will NOT use the same water block. For the CPU water block, it would depend on the motherboard and CPU you are using. If using ours, under the specifications tab. You will find what brackets the CPU water block would come with. Please let us know if you have any further questions. Best Regards, Thermaltake Customer Service 800-988-1088 (M~F) 9:00am - 5:30pm ---------------------------------------------- Tech, Jan 16, 2025, 03:54 PST This is a Tech Support Request Form Persnal Information : Region : North & South Americas Country : United States First Name : Jesse Last Name : Brown Mobile Phone : +1 714-417-5254 Phone : +1 714-417-5254 E-mail : PLASMATOID@GMAIL.COM Address : San Fransico Zip Code/ Postal Code : Same Product Information : Product Serial Number : Titan 900 Product Name : Titan 900 Product Model : Titian 900 Description : Bought the tower and the hardware. Working on the cooling system and need to buy your special liquids. I have some very important doubts and do not want to destroy my 13k dollar system. If possible can you call today and I can go over and buy the right cooling blocks and parts from your company? I am installing the following (help from gpt): Updated Shopping List for Remaining Parts Here is a complete list of the additional parts you need to order to finalize the custom cooling system for your build. This ensures compatibility with the ASUS Pro WS WRX80E-Sage SE WiFi motherboard, AMD Ryzen Threadripper PRO 5955WX, and Gigabyte AORUS RTX 3090 Xtreme GPU. Parts to Order Coolant Thermaltake T1000 Clear Coolant Reason: Compatible with nickel-plated blocks and prevents corrosion, scaling, and biological growth. Quantity: At least 1 liter (depending on loop size). Purchase Link: Thermaltake Website CPU Water Block EK-Quantum Magnitude sTRX4 - Full Nickel Reason: Specifically designed for AMD Ryzen Threadripper SP3 socket. Purchase Link: EKWB Website GPU Water Block EK-Quantum Vector Xtreme RTX 3080/3090 D-RGB (Nickel + Plexi) Reason: Tailored for the Gigabyte AORUS RTX 3090 Xtreme with custom PCB design. Purchase Link: EKWB Website EK-Quantum Vector Xtreme Backplate (Black or Nickel) Reason: Provides additional cooling and protection for the GPU’s PCB. Purchase Link: EKWB Website Fittings EK-Quantum Torque STC 16/10mm Fittings (Pack of 6) Reason: Secure and leak-proof connections for PETG tubing. Purchase Link: EKWB Website EK-Quantum Torque Angled Adapters (90° and 45°) Reason: Needed to manage tight spaces in the Thermaltake Tower 900 case. Quantity: 4-6 (depending on loop design). Purchase Link: EKWB Website Additional Radiators (if not included in the Thermaltake Kit) EK-CoolStream PE 360 (Triple) Radiator Reason: High-performance heat dissipation for the CPU and GPU in a single loop. Purchase Link: EKWB Website Tubing EK-Tube ZMT Matte Black 16/10mm Tubing Reason: Durable and compatible with all fittings and blocks. Purchase Link: EKWB Website Thermal Paste Thermal Grizzly Kryonaut Extreme Reason: High-performance paste suitable for Threadripper's large IHS. Purchase Link: Thermal Grizzly Website Optional (But Recommended) Flow Meter Example: Thermaltake Pacific Flow Indicator Reason: Helps monitor coolant flow in real-time. Purchase Link: Thermaltake Website RGB Controller (if desired) Example: Thermaltake TT Sync Controller Reason: Synchronize lighting across all RGB components. Purchase Link: Thermaltake Website Summary of New Purchases Coolant: Thermaltake T1000 Clear. CPU Block: EK-Quantum Magnitude sTRX4. GPU Block: EK-Quantum Vector Xtreme RTX 3090 + Backplate. Fittings: EK-Quantum Torque + angled adapters. Radiator: EK-CoolStream PE 360. Tubing: EK-Tube ZMT 16/10mm. Thermal Paste: Thermal Grizzly Kryonaut Extreme. Optional: Flow meter, RGB controller. Next Steps Verify if the Thermaltake Pacific DP100-D5 Plus reservoir and pump can handle a dual-block loop (it likely can). Double-check dimensions for radiator and tubing routing in the Thermaltake Tower 900. Place orders and proceed with assembly. (I am concerned about this evaluation and wanted to check with your team). Product Information : Date of Purchase : 2025/1/16 Shop / Store Name : Amazon City / Country : San fransisco -------------------------------- This email is a service from Thermaltake Technology. [ZV31MZ-JNLGW] === HTML PART === table td { border-collapse: collapse; } body[dir=rtl] .directional_text_wrapper { direction: rtl; unicode-bidi: embed; } @media only screen and (max-width: 768px) { .simplified-email-footer .namecard { display: block; min-width: 100%; padding: 0 0 16px 0; } .simplified-email-footer .content { padding: 16px; } } ##- Please type your reply above this line -## Your request (229802) has been updated. To add additional comments, reply to this email. CS02 (Thermaltake Technology) Jan 17, 2025, 14:46 PST Hello, It does help with everything connecting together easier. Please let us know if you have any further questions. Best Regards, Thermaltake Customer Service 800-988-1088 (M~F) 9:00am - 5:30pm PLASMATOID Jan 16, 2025, 14:56 PST Honestly, i will probably just buy everything from you guys in the future. It is a nightmare to find all these parts. Jesse Sent from Outlook for Android< https://aka.ms/AAb9ysg > ________________________________ From: CS02 (Thermaltake Technology) < support@thermaltakeusa.zendesk.com > Sent: Thursday, January 16, 2025 7:41:23 PM To: PLASMATOID < plasmatoid@gmail.com > Subject: [Thermaltake Technology] Re: Thermaltake Tech Support Request!! CS02 (Thermaltake Technology) Jan 16, 2025, 14:41 PST Hello, As long as the water blocks match the CPU and or GPU compatibility then it would work. We use G 1/4 size tubing so you would need to confirm that size. If it is all Thermaltake, then you would be fine since we use G 1/4. The GPU water block must remain true to what GPU you have, i.e. 3090 Ti and 3090 Super will NOT use the same water block. For the CPU water block, it would depend on the motherboard and CPU you are using. If using ours, under the specifications tab. You will find what brackets the CPU water block would come with. Please let us know if you have any further questions. Best Regards, Thermaltake Customer Service 800-988-1088 (M~F) 9:00am - 5:30pm Tech Jan 16, 2025, 03:54 PST This is a Tech Support Request Form Persnal Information : Region : North & South Americas Country : United States First Name : Jesse Last Name : Brown Mobile Phone : +1 714-417-5254 Phone : +1 714-417-5254 E-mail : PLASMATOID@GMAIL.COM Address : San Fransico Zip Code/ Postal Code : Same Product Information : Product Serial Number : Titan 900 Product Name : Titan 900 Product Model : Titian 900 Description : Bought the tower and the hardware. Working on the cooling system and need to buy your special liquids. I have some very important doubts and do not want to destroy my 13k dollar system. If possible can you call today and I can go over and buy the right cooling blocks and parts from your company? I am installing the following (help from gpt): Updated Shopping List for Remaining Parts Here is a complete list of the additional parts you need to order to finalize the custom cooling system for your build. This ensures compatibility with the ASUS Pro WS WRX80E-Sage SE WiFi motherboard, AMD Ryzen Threadripper PRO 5955WX, and Gigabyte AORUS RTX 3090 Xtreme GPU. Parts to Order Coolant Thermaltake T1000 Clear Coolant Reason: Compatible with nickel-plated blocks and prevents corrosion, scaling, and biological growth. Quantity: At least 1 liter (depending on loop size). Purchase Link: Thermaltake Website CPU Water Block EK-Quantum Magnitude sTRX4 - Full Nickel Reason: Specifically designed for AMD Ryzen Threadripper SP3 socket. Purchase Link: EKWB Website GPU Water Block EK-Quantum Vector Xtreme RTX 3080/3090 D-RGB (Nickel + Plexi) Reason: Tailored for the Gigabyte AORUS RTX 3090 Xtreme with custom PCB design. Purchase Link: EKWB Website EK-Quantum Vector Xtreme Backplate (Black or Nickel) Reason: Provides additional cooling and protection for the GPU’s PCB. Purchase Link: EKWB Website Fittings EK-Quantum Torque STC 16/10mm Fittings (Pack of 6) Reason: Secure and leak-proof connections for PETG tubing. Purchase Link: EKWB Website EK-Quantum Torque Angled Adapters (90° and 45°) Reason: Needed to manage tight spaces in the Thermaltake Tower 900 case. Quantity: 4-6 (depending on loop design). Purchase Link: EKWB Website Additional Radiators (if not included in the Thermaltake Kit) EK-CoolStream PE 360 (Triple) Radiator Reason: High-performance heat dissipation for the CPU and GPU in a single loop. Purchase Link: EKWB Website Tubing EK-Tube ZMT Matte Black 16/10mm Tubing Reason: Durable and compatible with all fittings and blocks. Purchase Link: EKWB Website Thermal Paste Thermal Grizzly Kryonaut Extreme Reason: High-performance paste suitable for Threadripper's large IHS. Purchase Link: Thermal Grizzly Website Optional (But Recommended) Flow Meter Example: Thermaltake Pacific Flow Indicator Reason: Helps monitor coolant flow in real-time. Purchase Link: Thermaltake Website RGB Controller (if desired) Example: Thermaltake TT Sync Controller Reason: Synchronize lighting across all RGB components. Purchase Link: Thermaltake Website Summary of New Purchases Coolant: Thermaltake T1000 Clear. CPU Block: EK-Quantum Magnitude sTRX4. GPU Block: EK-Quantum Vector Xtreme RTX 3090 + Backplate. Fittings: EK-Quantum Torque + angled adapters. Radiator: EK-CoolStream PE 360. Tubing: EK-Tube ZMT 16/10mm. Thermal Paste: Thermal Grizzly Kryonaut Extreme. Optional: Flow meter, RGB controller. Next Steps Verify if the Thermaltake Pacific DP100-D5 Plus reservoir and pump can handle a dual-block loop (it likely can). Double-check dimensions for radiator and tubing routing in the Thermaltake Tower 900. Place orders and proceed with assembly. (I am concerned about this evaluation and wanted to check with your team). Product Information : Date of Purchase : 2025/1/16 Shop / Store Name : Amazon City / Country : San fransisco This email is a service from Thermaltake Technology. Delivered by Zendesk [ZV31MZ-JNLGW]
+
+## Raw body (tamper-evident)
+
+```
+##- Please type your reply above this line -##
+
+Your request (229802) has been updated. To add additional comments, reply to this email.
+----------------------------------------------
+
+CS02, Jan 17, 2025, 14:46 PST
+
+Hello,
+It does help with everything connecting together easier. Please let us know if you have any further questions.
+
+Best Regards,
+Thermaltake Customer Service
+800-988-1088 (M~F) 9:00am - 5:30pm
+
+----------------------------------------------
+
+PLASMATOID, Jan 16, 2025, 14:56 PST
+
+Honestly, i will probably just buy everything from you guys in the future. It is a nightmare to find all these parts.
+Jesse
+
+Sent from Outlook for Android<https://aka.ms/AAb9ysg>
+________________________________
+From: CS02 (Thermaltake Technology) <support@thermaltakeusa.zendesk.com>
+Sent: Thursday, January 16, 2025 7:41:23 PM
+To: PLASMATOID <plasmatoid@gmail.com>
+Subject: [Thermaltake Technology] Re: Thermaltake Tech Support Request!!
+
+----------------------------------------------
+
+CS02, Jan 16, 2025, 14:41 PST
+
+Hello,
+
+As long as the water blocks match the CPU and or GPU compatibility then it would work. We use G 1/4 size tubing so you would need to confirm that size. If it is all Thermaltake, then you would be fine since we use G 1/4. The GPU water block must remain true to what GPU you have, i.e. 3090 Ti and 3090 Super will NOT use the same water block. For the CPU water block, it would depend on the motherboard and CPU you are using. If using ours, under the specifications tab. You will find what brackets the CPU water block would come with. Please let us know if you have any further questions.
+
+Best Regards,
+Thermaltake Customer Service
+800-988-1088 (M~F) 9:00am - 5:30pm
+
+----------------------------------------------
+
+Tech, Jan 16, 2025, 03:54 PST
+
+This is a Tech Support Request Form
+
+Persnal Information :
+
+Region : North & South Americas
+
+Country : United States
+
+First Name : Jesse
+
+Last Name : Brown
+
+Mobile Phone : +1 714-417-5254
+
+Phone : +1 714-417-5254
+
+E-mail : PLASMATOID@GMAIL.COM
+
+Address : San Fransico
+
+Zip Code/ Postal Code : Same
+
+Product Information :
+
+Product Serial Number : Titan 900
+
+Product Name : Titan 900
+
+Product Model : Titian 900
+
+Description : Bought the tower and the hardware. Working on the cooling system and need to buy your special liquids. I have some very important doubts and do not want to destroy my 13k dollar system. If possible can you call today and I can go over and buy the right cooling blocks and parts from your company? I am installing the following (help from gpt): Updated Shopping List for Remaining Parts Here is a complete list of the additional parts you need to order to finalize the custom cooling system for your build. This ensures compatibility with the ASUS Pro WS WRX80E-Sage SE WiFi motherboard, AMD Ryzen Threadripper PRO 5955WX, and Gigabyte AORUS RTX 3090 Xtreme GPU. Parts to Order Coolant Thermaltake T1000 Clear Coolant Reason: Compatible with nickel-plated blocks and prevents corrosion, scaling, and biological growth. Quantity: At least 1 liter (depending on loop size). Purchase Link: Thermaltake Website CPU Water Block EK-Quantum Magnitude sTRX4 - Full Nickel Reason: Specifically designed for AMD Ryzen Threadripper SP3 socket. Purchase Link: EKWB Website GPU Water Block EK-Quantum Vector Xtreme RTX 3080/3090 D-RGB (Nickel + Plexi) Reason: Tailored for the Gigabyte AORUS RTX 3090 Xtreme with custom PCB design. Purchase Link: EKWB Website EK-Quantum Vector Xtreme Backplate (Black or Nickel) Reason: Provides additional cooling and protection for the GPU’s PCB. Purchase Link: EKWB Website Fittings EK-Quantum Torque STC 16/10mm Fittings (Pack of 6) Reason: Secure and leak-proof connections for PETG tubing. Purchase Link: EKWB Website EK-Quantum Torque Angled Adapters (90° and 45°) Reason: Needed to manage tight spaces in the Thermaltake Tower 900 case. Quantity: 4-6 (depending on loop design). Purchase Link: EKWB Website Additional Radiators (if not included in the Thermaltake Kit) EK-CoolStream PE 360 (Triple) Radiator Reason: High-performance heat dissipation for the CPU and GPU in a single loop. Purchase Link: EKWB Website Tubing EK-Tube ZMT Matte Black 16/10mm Tubing Reason: Durable and compatible with all fittings and blocks. Purchase Link: EKWB Website Thermal Paste Thermal Grizzly Kryonaut Extreme Reason: High-performance paste suitable for Threadripper's large IHS. Purchase Link: Thermal Grizzly Website Optional (But Recommended) Flow Meter Example: Thermaltake Pacific Flow Indicator Reason: Helps monitor coolant flow in real-time. Purchase Link: Thermaltake Website RGB Controller (if desired) Example: Thermaltake TT Sync Controller Reason: Synchronize lighting across all RGB components. Purchase Link: Thermaltake Website Summary of New Purchases Coolant: Thermaltake T1000 Clear. CPU Block: EK-Quantum Magnitude sTRX4. GPU Block: EK-Quantum Vector Xtreme RTX 3090 + Backplate. Fittings: EK-Quantum Torque + angled adapters. Radiator: EK-CoolStream PE 360. Tubing: EK-Tube ZMT 16/10mm. Thermal Paste: Thermal Grizzly Kryonaut Extreme. Optional: Flow meter, RGB controller. Next Steps Verify if the Thermaltake Pacific DP100-D5 Plus reservoir and pump can handle a dual-block loop (it likely can). Double-check dimensions for radiator and tubing routing in the Thermaltake Tower 900. Place orders and proceed with assembly. (I am concerned about this evaluation and wanted to check with your team).
+
+Product Information :
+
+Date of Purchase : 2025/1/16
+
+Shop / Store Name : Amazon
+
+City / Country : San fransisco
+
+--------------------------------
+This email is a service from Thermaltake Technology.
+
+
+
+
+
+
+
+
+
+[ZV31MZ-JNLGW]
+
+=== HTML PART ===
+<!DOCTYPE html><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <style type="text/css">
+    table td {
+      border-collapse: collapse;
+    }
+    body[dir=rtl] .directional_text_wrapper { direction: rtl; unicode-bidi: embed; }
+
+  </style>
+
+          <style type="text/css">
+            @media only screen and (max-width: 768px) {
+              .simplified-email-footer .namecard {
+                display: block;
+                min-width: 100%;
+                padding: 0 0 16px 0; }
+
+              .simplified-email-footer .content {
+                padding: 16px; }
+            }
+          </style>
+        </head>
+<body lang="en-us" style="width: 100%!important; margin: 0; padding: 0;">
+  <div style="padding: 10px ; line-height: 18px; font-family: 'Lucida Grande',Verdana,Arial,sans-serif; font-size: 12px; color:#444444;">
+    <div style="color: #b5b5b5;">##- Please type your reply above this line -##</div>
+    <p dir="ltr">Your request (229802) has been updated. To add additional comments, reply to this email.<br></p><div style="margin-top: 25px" data-version="2"><table class="zd-liquid-comment" width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">  <tbody><tr>    <td width="100%" style="padding: 15px 0; border-top: 1px dotted #c5c5c5;">      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;" role="presentation">        <tbody><tr>                    <td width="100%" style="padding: 0; margin: 0;" valign="top">            <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif; font-size: 15px; line-height: 18px; margin-bottom: 0; margin-top: 0; padding: 0; color:#1b1d1e;" dir="ltr">                                                <strong>CS02</strong> (Thermaltake Technology)                                          </p>            <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif; font-size: 13px; line-height: 25px; margin-bottom: 15px; margin-top: 0; padding: 0; color:#bbbbbb;" dir="ltr">              Jan 17, 2025, 14:46 PST            </p>                                    <div class="zd-comment" dir="auto" style="color: #2b2e2f; line-height: 22px; margin: 15px 0;">Hello,&nbsp;<br>It does help with everything connecting together easier. Please let us know if you have any further questions.&nbsp;<br><div class="signature"><p dir="ltr" style="color: #2b2e2f; line-height: 22px; margin: 15px 0;">Best Regards,<br>
+Thermaltake Customer Service<br>
+800-988-1088 (M~F) 9:00am - 5:30pm</p></div></div><p dir="ltr">                      </p></td>        </tr>      </tbody></table>    </td>  </tr></tbody></table><p dir="ltr"></p><table class="zd-liquid-comment" width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">  <tbody><tr>    <td width="100%" style="padding: 15px 0; border-top: 1px dotted #c5c5c5;">      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;" role="presentation">        <tbody><tr>                    <td width="100%" style="padding: 0; margin: 0;" valign="top">            <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif; font-size: 15px; line-height: 18px; margin-bottom: 0; margin-top: 0; padding: 0; color:#1b1d1e;" dir="ltr">                              <strong>PLASMATOID</strong>                          </p>            <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif; font-size: 13px; line-height: 25px; margin-bottom: 15px; margin-top: 0; padding: 0; color:#bbbbbb;" dir="ltr">              Jan 16, 2025, 14:56 PST            </p>                                    <div class="zd-comment" dir="auto" style="color: #2b2e2f; line-height: 22px; margin: 15px 0;"><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Honestly, i will probably just buy everything from you guys in the future. It is a nightmare to find all these parts.<br>Jesse</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Sent from Outlook for Android&lt;<a href="https://aka.ms/AAb9ysg" target="_blank" rel="nofollow noreferrer">https://aka.ms/AAb9ysg</a>&gt;<br>________________________________<br>From: CS02 (Thermaltake Technology) &lt;<a href="mailto:support@thermaltakeusa.zendesk.com" rel="noreferrer">support@thermaltakeusa.zendesk.com</a>&gt;<br>Sent: Thursday, January 16, 2025 7:41:23 PM<br>To: PLASMATOID &lt;<a href="mailto:plasmatoid@gmail.com" rel="noreferrer">plasmatoid@gmail.com</a>&gt;<br>Subject: [Thermaltake Technology] Re: Thermaltake Tech Support Request!!</p></div>                      </td>        </tr>      </tbody></table>    </td>  </tr></tbody></table><p dir="ltr"></p><table class="zd-liquid-comment" width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">  <tbody><tr>    <td width="100%" style="padding: 15px 0; border-top: 1px dotted #c5c5c5;">      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;" role="presentation">        <tbody><tr>                    <td width="100%" style="padding: 0; margin: 0;" valign="top">            <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif; font-size: 15px; line-height: 18px; margin-bottom: 0; margin-top: 0; padding: 0; color:#1b1d1e;" dir="ltr">                                                <strong>CS02</strong> (Thermaltake Technology)                                          </p>            <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif; font-size: 13px; line-height: 25px; margin-bottom: 15px; margin-top: 0; padding: 0; color:#bbbbbb;" dir="ltr">              Jan 16, 2025, 14:41 PST            </p>                                    <div class="zd-comment" dir="auto" style="color: #2b2e2f; line-height: 22px; margin: 15px 0;">Hello,&nbsp;<br>&nbsp;<br>As long as the water blocks match the CPU and or GPU compatibility then it would work. We use G 1/4 size tubing so you would need to confirm that size. If it is all Thermaltake, then you would be fine since we use G 1/4. The GPU water block must remain true to what GPU you have, i.e. 3090 Ti and 3090 Super will NOT use the same water block. For the CPU water block, it would depend on the motherboard and CPU you are using. If using ours, under the specifications tab. You will find what brackets the CPU water block would come with. Please let us know if you have any further questions.&nbsp;<br><div class="signature"><p dir="ltr" style="color: #2b2e2f; line-height: 22px; margin: 15px 0;">Best Regards,<br>
+Thermaltake Customer Service<br>
+800-988-1088 (M~F) 9:00am - 5:30pm</p></div></div><p dir="ltr">                      </p></td>        </tr>      </tbody></table>    </td>  </tr></tbody></table><p dir="ltr"></p><table class="zd-liquid-comment" width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">  <tbody><tr>    <td width="100%" style="padding: 15px 0; border-top: 1px dotted #c5c5c5;">      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;" role="presentation">        <tbody><tr>                    <td width="100%" style="padding: 0; margin: 0;" valign="top">            <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif; font-size: 15px; line-height: 18px; margin-bottom: 0; margin-top: 0; padding: 0; color:#1b1d1e;" dir="ltr">                              <strong>Tech</strong>                          </p>            <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif; font-size: 13px; line-height: 25px; margin-bottom: 15px; margin-top: 0; padding: 0; color:#bbbbbb;" dir="ltr">              Jan 16, 2025, 03:54 PST            </p>                                    <div class="zd-comment" dir="auto" style="color: #2b2e2f; line-height: 22px; margin: 15px 0;"><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">This is a Tech Support Request Form</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Persnal Information :</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Region : North &amp; South Americas</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Country : United States</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">First Name : Jesse</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Last Name : Brown</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Mobile Phone : +1 714-417-5254</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Phone : +1 714-417-5254</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">E-mail : <a href="mailto:PLASMATOID@GMAIL.COM" rel="noreferrer">PLASMATOID@GMAIL.COM</a></p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Address : San Fransico</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Zip Code/ Postal Code : Same</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Product Information :</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Product Serial Number : Titan 900</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Product Name : Titan 900</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Product Model : Titian 900</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Description : Bought the tower and the hardware. Working on the cooling system and need to buy your special liquids. I have some very important doubts and do not want to destroy my 13k dollar system. If possible can you call today and I can go over and buy the right cooling blocks and parts from your company? I am installing the following (help from gpt): Updated Shopping List for Remaining Parts Here is a complete list of the additional parts you need to order to finalize the custom cooling system for your build. This ensures compatibility with the ASUS Pro WS WRX80E-Sage SE WiFi motherboard, AMD Ryzen Threadripper PRO 5955WX, and Gigabyte AORUS RTX 3090 Xtreme GPU. Parts to Order Coolant Thermaltake T1000 Clear Coolant Reason: Compatible with nickel-plated blocks and prevents corrosion, scaling, and biological growth. Quantity: At least 1 liter (depending on loop size). Purchase Link: Thermaltake Website CPU Water Block EK-Quantum Magnitude sTRX4 - Full Nickel Reason: Specifically designed for AMD Ryzen Threadripper SP3 socket. Purchase Link: EKWB Website GPU Water Block EK-Quantum Vector Xtreme RTX 3080/3090 D-RGB (Nickel + Plexi) Reason: Tailored for the Gigabyte AORUS RTX 3090 Xtreme with custom PCB design. Purchase Link: EKWB Website EK-Quantum Vector Xtreme Backplate (Black or Nickel) Reason: Provides additional cooling and protection for the GPU’s PCB. Purchase Link: EKWB Website Fittings EK-Quantum Torque STC 16/10mm Fittings (Pack of 6) Reason: Secure and leak-proof connections for PETG tubing. Purchase Link: EKWB Website EK-Quantum Torque Angled Adapters (90° and 45°) Reason: Needed to manage tight spaces in the Thermaltake Tower 900 case. Quantity: 4-6 (depending on loop design). Purchase Link: EKWB Website Additional Radiators (if not included in the Thermaltake Kit) EK-CoolStream PE 360 (Triple) Radiator Reason: High-performance heat dissipation for the CPU and GPU in a single loop. Purchase Link: EKWB Website Tubing EK-Tube ZMT Matte Black 16/10mm Tubing Reason: Durable and compatible with all fittings and blocks. Purchase Link: EKWB Website Thermal Paste Thermal Grizzly Kryonaut Extreme Reason: High-performance paste suitable for Threadripper's large IHS. Purchase Link: Thermal Grizzly Website Optional (But Recommended) Flow Meter Example: Thermaltake Pacific Flow Indicator Reason: Helps monitor coolant flow in real-time. Purchase Link: Thermaltake Website RGB Controller (if desired) Example: Thermaltake TT Sync Controller Reason: Synchronize lighting across all RGB components. Purchase Link: Thermaltake Website Summary of New Purchases Coolant: Thermaltake T1000 Clear. CPU Block: EK-Quantum Magnitude sTRX4. GPU Block: EK-Quantum Vector Xtreme RTX 3090 + Backplate. Fittings: EK-Quantum Torque + angled adapters. Radiator: EK-CoolStream PE 360. Tubing: EK-Tube ZMT 16/10mm. Thermal Paste: Thermal Grizzly Kryonaut Extreme. Optional: Flow meter, RGB controller. Next Steps Verify if the Thermaltake Pacific DP100-D5 Plus reservoir and pump can handle a dual-block loop (it likely can). Double-check dimensions for radiator and tubing routing in the Thermaltake Tower 900. Place orders and proceed with assembly. (I am concerned about this evaluation and wanted to check with your team).</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Product Information :</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Date of Purchase : 2025/1/16</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">Shop / Store Name : Amazon</p><p style="color: #2b2e2f; line-height: 22px; margin: 15px 0;" dir="ltr">City / Country : San fransisco</p></div>                      </td>        </tr>      </tbody></table>    </td>  </tr></tbody></table></div>
+  </div>
+  <div style="padding: 10px ; line-height: 18px; font-family: 'Lucida Grande',Verdana,Arial,sans-serif; font-size: 12px; color: #aaaaaa;
+    margin: 10px 0 14px 0; padding-top: 10px; border-top: 1px solid #eeeeee;">
+    This email is a service from Thermaltake Technology. Delivered by <a href="https://www.zendesk.com/support/?utm_campaign=text&amp;utm_content=Thermaltake+Technology&amp;utm_medium=poweredbyzendesk&amp;utm_source=email-notification" style="color:black;" target="_blank">Zendesk</a>
+  </div>
+<span style="color:#FFFFFF" aria-hidden="true" class="zd_encoded_id">[ZV31MZ-JNLGW]</span>
+
+<div itemscope="" itemtype="http://schema.org/EmailMessage" style="display:none">  <div itemprop="action" itemscope="" itemtype="http://schema.org/ViewAction">    <link itemprop="url" href="https://help.thermaltakeusa.com/hc/requests/229802">    <meta itemprop="name" content="View ticket">  </div></div></body></html>
+
+```

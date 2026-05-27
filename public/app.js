@@ -1190,6 +1190,9 @@ function refreshQuickVoiceControls() {
 function applyUiExperienceMode(mode, options = {}) {
   const normalized = normalizeUiExperienceMode(mode, uiExperienceMode || "simple");
   uiExperienceMode = normalized;
+  // BEHCS: UI mode maps to bus access level (simple=mirror, admin=mirror+tools, advanced=super-admin+dev-branch)
+  const behcsLevel = normalized === "advanced" ? "super_admin" : (normalized === "admin" ? "admin" : "mirror");
+  try { fetch("/api/cube-fabric/gate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ verb: "behcs.access_level", args: { level: behcsLevel, ui_mode: normalized }, envelope: { pid: "dashboard" } }) }).catch(() => {}); } catch (_) {}
   const isSimple = normalized === "simple";
   const isAdmin = normalized === "admin";
   const isAdvanced = normalized === "advanced";
@@ -8955,6 +8958,8 @@ async function getJob(jobId) {
 function applyStealthUi(enabled) {
   stealthMode = Boolean(enabled);
   document.body.classList.toggle("stealth-on", stealthMode);
+  // BEHCS: stealth toggle sets bus mode for all outbound messages
+  try { fetch("/api/cube-fabric/gate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ verb: "behcs.mode_switch", args: { mode: stealthMode ? "stealth" : "real" }, envelope: { pid: "dashboard" } }) }).catch(() => {}); } catch (_) {}
 
   if (stealthToggle) {
     stealthToggle.checked = stealthMode;

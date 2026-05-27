@@ -1,11 +1,17 @@
 const { getSecret, setSecret, deleteSecret } = require("../secureVault");
+const {
+  ASOLARIA_MCP_POLICY_VERSION,
+  enforceAsolariaMcpPolicy,
+  explainAsolariaMcpPolicyFailure
+} = require("../asolariaMcpPolicy");
 
-const PROVIDER_IDS = ["openai", "cursor", "antigravity"];
+const PROVIDER_IDS = ["openai", "kimi", "cursor", "antigravity"];
 const EXTERNAL_SECRET_PREFIX = "integrations.external.";
 const DEFAULT_API_STYLE = "openai_chat_completions";
 const SUPPORTED_API_STYLES = new Set(["openai_chat_completions", "openai_responses"]);
 const OFFICIAL_OPENAI_HOSTS = new Set(["api.openai.com"]);
 const OFFICIAL_OPENAI_HOST_SUFFIXES = [".openai.azure.com"];
+const OFFICIAL_KIMI_HOSTS = new Set(["api.moonshot.ai", "api.moonshot.cn"]);
 const MAX_MCP_ALLOWED_TOOLS = 64;
 const DEFAULT_MCP_DYNAMIC_ALLOWLIST_MAX = 5;
 const DEFAULT_MCP_CONTEXT_TTL_SECONDS = 30 * 60;
@@ -252,7 +258,7 @@ function providerSecretName(providerId) {
 }
 
 function defaultRequireOfficialApi(providerId) {
-  return providerId === "antigravity";
+  return providerId === "antigravity" || providerId === "kimi";
 }
 
 function readProviderEnv(providerId) {
@@ -272,7 +278,7 @@ function readProviderEnv(providerId) {
   };
 }
 
-function isOfficialApiEndpoint(baseUrl, apiStyle) {
+function isOfficialApiEndpoint(baseUrl, apiStyle, providerId = "") {
   if (!baseUrl) {
     return false;
   }
@@ -285,6 +291,9 @@ function isOfficialApiEndpoint(baseUrl, apiStyle) {
     const host = String(parsed.hostname || "").toLowerCase();
     if (parsed.protocol !== "https:") {
       return false;
+    }
+    if (providerId === "kimi") {
+      return OFFICIAL_KIMI_HOSTS.has(host);
     }
     if (OFFICIAL_OPENAI_HOSTS.has(host)) {
       return true;
@@ -1047,11 +1056,14 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
   if (runtimeMcp.presetInvalid) {
     throw new Error(`Invalid MCP preset override. Allowed: ${Object.keys(MCP_POLICY_PRESETS).join(", ")}.`);
   }
-  const enabled = patch.hasPatch && patch.clear ? false : runtimeMcp.enabled;
+  const governedMcp = patch.hasPatch && patch.clear
+    ? { ...runtimeMcp, enabled: false }
+    : enforceAsolariaMcpPolicy(runtimeMcp, { providerId: provider.id, phase: "runtime" });
+  const enabled = governedMcp.enabled;
   if (!enabled) {
     return null;
   }
-  if (!runtimeMcp.configured) {
+  if (!governedMcp.configured) {
     throw new Error(`${provider.id} MCP is enabled but missing server_label and server_url/connector_id.`);
   }
 
@@ -1071,7 +1083,7 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
       ["mcpAllowedTools", "allowedTools", "allowed_tools", "tool_names"],
       payload?.mcp,
       ["allowedTools", "allowed_tools", "tool_names"],
-      runtimeMcp.allowedTools
+      governedMcp.allowedTools
     )
   );
   const dynamicAllowlistMax = normalizeMcpDynamicAllowlistMax(
@@ -1080,9 +1092,9 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
       ["mcpDynamicAllowlistMax", "dynamicAllowlistMax", "dynamic_allowlist_max"],
       payload?.mcp,
       ["dynamicAllowlistMax", "dynamic_allowlist_max"],
-      runtimeMcp.dynamicAllowlistMax
+      governedMcp.dynamicAllowlistMax
     ),
-    runtimeMcp.dynamicAllowlistMax
+    governedMcp.dynamicAllowlistMax
   );
   const tokenReductionProfile = normalizeMcpTokenReductionProfile(
     pickFirst(
@@ -1090,9 +1102,9 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
       ["mcpTokenReductionProfile", "tokenReductionProfile", "token_reduction_profile"],
       payload?.mcp,
       ["tokenReductionProfile", "token_reduction_profile"],
-      runtimeMcp.tokenReductionProfile
+      governedMcp.tokenReductionProfile
     ),
-    runtimeMcp.tokenReductionProfile
+    governedMcp.tokenReductionProfile
   );
   const tokenReductionPolicy = MCP_TOKEN_REDUCTION_PROFILES[tokenReductionProfile] || MCP_TOKEN_REDUCTION_PROFILES[DEFAULT_MCP_TOKEN_REDUCTION_PROFILE];
   const promptTokenLimit = normalizeMcpPromptTokenLimit(
@@ -1101,9 +1113,9 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
       ["mcpPromptTokenLimit", "promptTokenLimit", "prompt_token_limit"],
       payload?.mcp,
       ["promptTokenLimit", "prompt_token_limit"],
-      runtimeMcp.promptTokenLimit
+      governedMcp.promptTokenLimit
     ),
-    runtimeMcp.promptTokenLimit
+    governedMcp.promptTokenLimit
   );
   const toolSchemaMode = normalizeMcpToolSchemaMode(
     pickFirst(
@@ -1111,9 +1123,9 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
       ["mcpToolSchemaMode", "toolSchemaMode", "tool_schema_mode"],
       payload?.mcp,
       ["toolSchemaMode", "tool_schema_mode"],
-      runtimeMcp.toolSchemaMode
+      governedMcp.toolSchemaMode
     ),
-    runtimeMcp.toolSchemaMode
+    governedMcp.toolSchemaMode
   );
   const skillHints = normalizeList(
     pickFirst(
@@ -1121,7 +1133,7 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
       ["mcpSkillHints", "skillHints", "skill_hints"],
       payload?.mcp,
       ["skillHints", "skill_hints"],
-      runtimeMcp.skillHints
+      governedMcp.skillHints
     ),
     24,
     72
@@ -1132,7 +1144,7 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
       ["mcpWebMcpHints", "webMcpHints", "web_mcp_hints", "webHints", "web_hints"],
       payload?.mcp,
       ["webMcpHints", "web_mcp_hints", "webHints", "web_hints"],
-      runtimeMcp.webMcpHints
+      governedMcp.webMcpHints
     ),
     24,
     72
@@ -1157,9 +1169,9 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
       ["mcpApprovalMode", "mcpRequireApproval", "requireApproval", "require_approval"],
       payload?.mcp,
       ["approvalMode", "requireApproval", "require_approval"],
-      runtimeMcp.approvalMode
+      governedMcp.approvalMode
     ),
-    runtimeMcp.approvalMode
+    governedMcp.approvalMode
   );
   const requireApproval = approvalMode === "auto"
     ? inferMcpRequireApproval(prompt, allowedTools)
@@ -1171,21 +1183,21 @@ function buildMcpRuntime(provider, payload = {}, prompt = "") {
 
   return {
     enabled: true,
-    serverLabel: runtimeMcp.serverLabel,
-    serverUrl: runtimeMcp.serverUrl,
-    connectorId: runtimeMcp.connectorId,
-    authorization: runtimeMcp.authorization,
-    headers: runtimeMcp.headers,
+    serverLabel: governedMcp.serverLabel,
+    serverUrl: governedMcp.serverUrl,
+    connectorId: governedMcp.connectorId,
+    authorization: governedMcp.authorization,
+    headers: governedMcp.headers,
     allowedTools,
     requireApproval,
     contextKey,
-    preset: runtimeMcp.preset || "",
+    preset: governedMcp.preset || "",
     tokenReductionProfile,
     promptTokenLimit,
     toolSchemaMode,
     skillHints,
     webMcpHints,
-    contextTtlSeconds: runtimeMcp.contextTtlSeconds,
+    contextTtlSeconds: governedMcp.contextTtlSeconds,
     previousResponseId
   };
 }
@@ -1262,6 +1274,7 @@ function providerConfig(id) {
     },
     {}
   );
+  const mcpPolicyError = mcp.enabled ? explainAsolariaMcpPolicyFailure(mcp) : "";
   const mcpUnsupportedStyle = mcp.enabled && apiStyle !== "openai_responses";
   const mcpConfigError = mcp.presetInvalid
     ? "invalid_mcp_preset"
@@ -1269,8 +1282,8 @@ function providerConfig(id) {
       ? ""
       : mcpUnsupportedStyle
         ? "mcp_requires_openai_responses"
-        : mcp.configError || "";
-  const officialApi = isOfficialApiEndpoint(apiBaseUrl, apiStyle);
+        : mcp.configError || (mcpPolicyError ? "asolaria_mcp_policy_required" : "");
+  const officialApi = isOfficialApiEndpoint(apiBaseUrl, apiStyle, providerId);
   const configured = Boolean(apiBaseUrl && apiKey && model && (!requireOfficialApi || officialApi));
   const configError = !apiBaseUrl || !apiKey || !model
     ? "missing_config"
@@ -1297,6 +1310,8 @@ function providerConfig(id) {
     configError,
     mcp: {
       ...mcp,
+      policyVersion: ASOLARIA_MCP_POLICY_VERSION,
+      policyError: mcpPolicyError || "",
       configError: mcpConfigError
     },
     legacyEnvApiKeyDetected: Boolean(env.apiKey)
@@ -1403,7 +1418,7 @@ function getExternalProviderStatusById(id) {
 function setExternalProviderConfig(input = {}) {
   const providerId = normalizeProviderId(input.provider || input.id);
   if (!providerId) {
-    throw new Error("provider is required (cursor or antigravity).");
+    throw new Error(`provider is required (${PROVIDER_IDS.join(" or ")}).`);
   }
 
   const clear = normalizeBool(input.clear, false);
@@ -1513,20 +1528,23 @@ function setExternalProviderConfig(input = {}) {
   if (normalizedMcp.presetInvalid) {
     throw new Error(`Unsupported MCP preset. Allowed: ${Object.keys(MCP_POLICY_PRESETS).join(", ")}.`);
   }
+  const governedMcp = normalizedMcp.enabled
+    ? enforceAsolariaMcpPolicy(normalizedMcp, { providerId, phase: "config" })
+    : normalizedMcp;
 
   const effectiveEnabled = normalizeBool(merged.enabled, true);
-  const officialApi = isOfficialApiEndpoint(merged.apiBaseUrl, merged.apiStyle);
+  const officialApi = isOfficialApiEndpoint(merged.apiBaseUrl, merged.apiStyle, providerId);
   if (effectiveEnabled) {
     if (!merged.apiBaseUrl || !merged.model || !merged.apiKey) {
       throw new Error("apiBaseUrl, model, and apiKey are required for enabled providers.");
     }
     if (normalizeBool(merged.requireOfficialApi, defaultRequireOfficialApi(providerId)) && !officialApi) {
-      throw new Error("External provider must use an official API endpoint (https://api.openai.com or Azure OpenAI endpoint).");
+      throw new Error("External provider must use an official API endpoint (OpenAI/Azure OpenAI for OpenAI-style providers or https://api.moonshot.ai / https://api.moonshot.cn for Kimi).");
     }
-    if (normalizedMcp.enabled && normalizeApiStyle(merged.apiStyle, DEFAULT_API_STYLE) !== "openai_responses") {
+    if (governedMcp.enabled && normalizeApiStyle(merged.apiStyle, DEFAULT_API_STYLE) !== "openai_responses") {
       throw new Error("MCP requires apiStyle=openai_responses.");
     }
-    if (normalizedMcp.enabled && !normalizedMcp.configured) {
+    if (governedMcp.enabled && !governedMcp.configured) {
       throw new Error("MCP is enabled but missing server_label and server_url/connector_id.");
     }
   }
@@ -1541,7 +1559,7 @@ function setExternalProviderConfig(input = {}) {
     organization: String(merged.organization || "").trim(),
     requireOfficialApi: normalizeBool(merged.requireOfficialApi, defaultRequireOfficialApi(providerId)),
     apiKey: normalizeApiKey(merged.apiKey || ""),
-    mcp: normalizedMcp,
+    mcp: governedMcp,
     updatedAt: new Date().toISOString()
   };
 
@@ -1877,7 +1895,7 @@ function manifest() {
   return {
     id: "external_brain",
     version: "1.0.0",
-    description: "External AI provider connector — OpenAI/Cursor/Antigravity chat completions and responses API with MCP tool integration, dynamic allowlist, token reduction, and model fallback",
+    description: "External AI provider connector — OpenAI/Kimi/Cursor/Antigravity chat completions and responses API with MCP tool integration, dynamic allowlist, token reduction, and model fallback",
     capabilities: ["run_prompt", "provider_status", "mcp_tool_integration", "dynamic_allowlist", "token_reduction", "model_fallback", "multi_provider", "policy_presets"],
     readScopes: ["external_provider_config", "mcp_tool_catalog", "mcp_cache_status"],
     writeScopes: ["external_provider_config", "mcp_tool_cache"],
@@ -1885,8 +1903,8 @@ function manifest() {
     healthCheck: false,
     retrySemantics: "model_fallback_chain",
     timeoutMs: 180000,
-    secretRequirements: ["integrations.external.openai (API key)", "integrations.external.cursor (API key)", "integrations.external.antigravity (API key)"],
-    sideEffects: ["calls external AI APIs (OpenAI, Cursor, Antigravity)", "caches MCP tool catalogs in memory", "stores provider configs in vault"],
+    secretRequirements: ["integrations.external.openai (API key)", "integrations.external.kimi (Moonshot API key)", "integrations.external.cursor (API key)", "integrations.external.antigravity (API key)"],
+    sideEffects: ["calls external AI APIs (OpenAI, Kimi/Moonshot, Cursor, Antigravity)", "caches MCP tool catalogs in memory", "stores provider configs in vault"],
     failureModes: ["provider_not_configured", "api_key_missing", "model_not_available", "api_request_failed", "mcp_tool_call_failed", "token_limit_exceeded", "all_models_failed"],
     emittedEvents: ["external_brain.prompt_completed", "external_brain.mcp_tool_invoked", "external_brain.model_fallback", "external_brain.config_updated"]
   };

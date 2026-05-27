@@ -1,0 +1,230 @@
+eBacMap / QDD Project Inventory — Jesse's Machine
+Generated: 2026-03-25 (READ ONLY)
+================================================================
+
+1. D:\projects\QDD\ — TOP-LEVEL DIRECTORY
+================================================================
+
+Directories:
+  ebacmap/              Main repo clone (git dir, .git/ folder)
+  ebacmap-master/       Worktree (.git is a file → worktree of ebacmap)
+  ebacmap-pnpm9/        Worktree (.git is a file → worktree of ebacmap)
+  NL2XSyncApp/          .NET MAUI sync app (C# source, no .sln here)
+  novalink-desktop-sync-app/  Full MAUI solution (NL2XSyncApp.sln + publish script)
+  NovaLink6.1.4.3_Source/     Legacy NovaLink6 (C# WinForms, .sln, ~15 projects)
+  NovaLUM2X_FirwmareUpdater011103/  Firmware updater exe + .nl2xfw
+  detect/               Empty directory
+  dump/                 Contains subdirectory "dump" (MongoDB dump?)
+  mergecheck_fix_clear_retest_20260311_1748/  Snapshot of ebacmap at fix/clear-retest
+  mongodb-database-tools-windows-x86_64-100.12.0/  MongoDB CLI tools
+  patch/                Partial NL2XSyncApp patch (Models, Services, Utils, ViewModels)
+
+Files:
+  dev-credential.txt               Credential file (SENSITIVE)
+  NL2x_01110300.nl2xfw             Firmware binary
+  NL2x_01120000_release (1).nl2xfw Firmware binary
+  NL2x_01120000_release (1) - Copia/  Firmware release notes + hash
+  NL2x_01120000_release (1) - Copia.zip
+  dump.zip                         MongoDB dump archive
+  mongodb-database-tools-windows-x86_64-100.12.0.zip
+  NovaLink6.1.4.3_Source.7z        NovaLink source archive
+  NovalumUpgradeUtility_Source.zip  Upgrade utility source
+  NovaLUM2X_FirwmareUpdater011103.zip
+  patch.7z                         Patch archive
+
+2. D:\projects\ebacmap\ — DOES NOT EXIST
+================================================================
+(All ebacmap code lives under D:\projects\QDD\)
+
+3. GIT WORKTREES
+================================================================
+
+Main repo: D:\projects\QDD\ebacmap\
+  .git = directory (this is the parent repo)
+  Current branch: fix/clear-retest
+  Latest commit: 0b1793f5d "Add Charm EZ Protect rollout scaffolding"
+  Structure: OLD monolith layout (common/, components/, hooks/, modules/, pages/)
+
+Worktree 1: D:\projects\QDD\ebacmap-master\
+  .git = file (worktree of ebacmap)
+  Current branch: chore/pnpm-10-upgrade
+  Structure: NEW monorepo layout (apps/admin, libs/common, libs/db, libs/domains)
+  Has .claude/ directory (Claude Code has been used here)
+
+Worktree 2: D:\projects\QDD\ebacmap-pnpm9\
+  .git = file (worktree of ebacmap)
+  Current branch: feature/ez-protect-admin-monorepo
+  Structure: NEW monorepo layout (apps/admin, libs/common, libs/db, libs/domains)
+  Has node_modules installed
+
+All branches (11 local, 85+ remote):
+  Local: chore/pnpm-10-upgrade, feature/ez-protect-admin-monorepo,
+         feature/sync-batch-issue, feature/sync-locations-batch,
+         fix/assay-issue, fix/clear-retest, fix/incorrect-batching,
+         fix/reading-assay-issue, fix/sync-missing-batch,
+         fix/write-frozen-issue, master
+  Key remote branches: production, main, master,
+         release/v4.3.7, release/v5.0.9,
+         feature/ez-protect-admin-monorepo,
+         feature/monorepo, feature/global-charm-report,
+         hotfix/* (many)
+
+4. C:\Users\acer\Downloads\ — QDD/CHARM FILES
+================================================================
+
+Documents (docx):
+  CHARM_EZP.docx                  (738K, 2026-01-26)
+  CHARM_EZP (1).docx              (738K, 2026-03-09)
+  CHARM_EZP (2).docx              (738K, 2026-03-13)
+  CharmDevice_Outputs.docx        (16K, 2026-03-09)
+  CharmDevice_Outputs (1).docx    (16K, 2026-03-13)
+  Charm_EZ_Module_Review_Notes_for_Natalie.docx      (28K, 2026-01-26)
+  Charm_EZ_Module_Review_Notes_for_Natalie (1).docx  (28K, 2026-03-09)
+  Charm_EZ_Module_Review_Notes_for_Natalie (2).docx  (28K, 2026-03-13)
+
+Presentations (pptx):
+  EZ module for eBacmap IHH 10-23-25.pptx      (6MB, 2026-03-09)
+  EZ module for eBacmap IHH 10-23-25 (1).pptx  (6MB, 2026-03-13)
+  EZ module for eBacmap IHH 10-23-25 (2).pptx  (6MB, 2026-03-14)
+  EZ module for eBacmap IHH 10-23-25 (3).pptx  (6MB, 2026-03-17)
+
+PDF:
+  QDD last workers notes -they worked for me.pdf  (3MB, 2026-03-22)
+
+Archives:
+  charm_ez_codex_pack.zip          (6.6MB, 2026-03-09)
+  charm_ez_codex_pack (1).zip      (6.6MB, 2026-03-09)
+  charm_ez_codex_pack (2).zip      (6.6MB, 2026-03-09)
+  charm_ezp_codex_pack.zip         (6.6MB, 2026-03-09)
+
+Extracted:
+  charm_ezp_codex_pack_extracted/  (2026-03-11)
+    Contains: AGENTS.md, README.md, docs/, fixtures/,
+              prompts/, scripts/, source_docs/
+
+5. C:\Users\acer\Asolaria\data\integrations\abacus-packets\ — DOES NOT EXIST
+================================================================
+
+6. AGENT INDEX REFERENCES (IX/LX entries mentioning qdd/ebacmap/charm/ez.protect)
+================================================================
+
+Total files with matches: 120
+
+Breakdown:
+  IX entries (Asolaria colony):  ~82 files
+  LX entries (Liris sub-colony): ~38 files
+
+Key IX entries found:
+  IX-003, IX-004, IX-013, IX-015, IX-022, IX-023, IX-024, IX-025,
+  IX-026, IX-027, IX-028, IX-029, IX-030, IX-031, IX-032, IX-033,
+  IX-034, IX-037, IX-038, IX-039, IX-040, IX-043, IX-058, IX-067,
+  IX-097, IX-112, IX-141, IX-146, IX-147, IX-157, IX-168, IX-204,
+  IX-205, IX-213, IX-219, IX-221, IX-222, IX-223, IX-224, IX-249,
+  IX-266, IX-273, IX-279, IX-285, IX-322, IX-334, IX-357, IX-359,
+  IX-360, IX-361, IX-362, IX-363, IX-366, IX-368, IX-369, IX-375,
+  IX-377, IX-395
+
+Key LX entries found:
+  LX-005, LX-007, LX-008, LX-010, LX-011, LX-012, LX-013, LX-015,
+  LX-022, LX-025, LX-034, LX-036, LX-043, LX-066, LX-099, LX-100,
+  LX-106, LX-118, LX-139, LX-140, LX-141, LX-142, LX-143, LX-144,
+  LX-145, LX-146, LX-147, LX-148, LX-149, LX-150, LX-151, LX-155,
+  LX-159, LX-160, LX-165, LX-166, LX-173, LX-174
+
+Also referenced in: CHAINS.md, XREF.md, XREF-COLONIES.md,
+  CROSS-EXAMINATION-REPORT.md, aso-crosswalk-ix.seed.json,
+  multiple CATALOG files
+
+7. C:\Users\acer\Asolaria\reports\ — QDD REPORTS
+================================================================
+
+  qdd-codex-restart-packet-20260311.md
+  qdd-codex-restart-packet-latest.md
+  qdd-external-admin-handoff-20260311-093145.md
+  qdd-external-admin-handoff-20260311-093146.md
+  qdd-external-admin-handoff-20260311-093221.md
+  qdd-external-admin-handoff-latest.md
+  qdd-ez-protect-finish-checklist.md
+  qdd-ez-protect-rollout-evidence.md
+  qdd-ezprotect-test-status-20260320.md
+  qdd-liris-return-lane-correction-20260322-182541.md
+  qdd-liris-return-lane-correction-latest.md
+  qdd-master-status-20260315.md
+  qdd-monorepo-ez-protect-checkpoint-20260311.md
+  qdd-monorepo-ez-protect-checkpoint-latest.md
+  qdd-pnpm-version-recommendation.md
+  qdd-super-swarm-contract-latest.md
+  codex-state-freeze-20260311-184124.md
+  codex-state-freeze-latest.md
+  ebacmap-ezp-local-changes-20260310-122131.patch
+  research-charm-docs-20260322.md
+
+8. C:\Users\acer\Asolaria\tmp\docs\ — EXTRACTED QDD DOCX FILES
+================================================================
+
+  CHARM_EZP.txt
+  CHARM_EZP (1).txt
+  CHARM_EZP (2).txt
+  CharmDevice_Outputs.txt
+  CharmDevice_Outputs (1).txt
+  Charm_EZ_Module_Review_Notes_for_Natalie.txt
+  Charm_EZ_Module_Review_Notes_for_Natalie (1).txt
+  Charm_EZ_Module_Review_Notes_for_Natalie (2).txt
+
+Also relevant in tmp/docs:
+  PQ_Bid_Proposal_V2.txt
+  PQ_Bid_Proposal_V4.txt
+  PQ_Bid_Proposal_V4_Change_Log.txt
+  PQ_Bid_Proposal_V4_Change_Log (1).txt
+  PQ_Bid_Proposal_V4_MVP_Revised.txt
+  PQ_Bid_Proposal_V4_MVP_Revised (1).txt
+
+================================================================
+MONOREPO STRUCTURE (ebacmap-pnpm9 / ebacmap-master — new layout)
+================================================================
+
+apps/
+  admin/          Next.js admin portal (App Router, TypeScript)
+                  API routes: admin-stats, admin-users, auth, clients,
+                  facilities, novalum/units, products, purchases,
+                  queue, system-alerts, users, databases
+
+libs/
+  common/         Shared DDD primitives (Entity, ValueObject, UseCase, Result)
+  db/             Mongoose models: ActivityLog, Capa, Category, Channel,
+                  Client, EzProtectAlert, EzProtectAlertHistory,
+                  EzProtectEvent, EzProtectMsaConfig, FacilityMap,
+                  Location, Organism, Plan, Product, Purchase, Queue,
+                  Report, Site, Subscription, SwabSchedule,
+                  TestDefinition, TestResult, Unit, User, Zone, ...
+  domains/        Domain logic: activity-logs, capas (CAPA workflow)
+
+================================================================
+OLD MONOLITH STRUCTURE (ebacmap/ — fix/clear-retest branch)
+================================================================
+
+  common/         Shared code
+  components/     React components
+  config/         Configuration
+  data/           Static data
+  docs/           Documentation
+  hooks/          React hooks
+  modules/        Feature modules
+  pages/          Next.js pages (Pages Router)
+
+================================================================
+SUMMARY
+================================================================
+
+Total git copies:     3 (1 parent repo + 2 worktrees)
+Total branches:       11 local, 85+ remote
+Active work branches: fix/clear-retest, chore/pnpm-10-upgrade,
+                      feature/ez-protect-admin-monorepo
+Agent index refs:     120 files (58 IX + 38 LX + catalogs/chains/xrefs)
+Asolaria reports:     20 QDD-related files
+Downloads docs:       17 files (docx, pptx, pdf, zips)
+Extracted texts:      8 CHARM/EZP .txt files in tmp/docs
+PQ Bid proposals:     6 files in tmp/docs
+Supporting tools:     NL2XSyncApp, NovaLink6 source, firmware updaters,
+                      MongoDB tools + dump
+Credential file:      dev-credential.txt (D:\projects\QDD\)

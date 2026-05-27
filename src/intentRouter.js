@@ -14,7 +14,10 @@ function normalizeExternalProviderToken(value) {
   if (raw === "claude") {
     return "anthropic";
   }
-  if (raw === "anthropic" || raw === "gemini" || raw === "cursor" || raw === "antigravity") {
+  if (raw === "moonshot") {
+    return "kimi";
+  }
+  if (raw === "anthropic" || raw === "gemini" || raw === "kimi" || raw === "cursor" || raw === "antigravity") {
     return raw;
   }
   return "";
@@ -1126,6 +1129,23 @@ function routeIntent(rawMessage) {
     };
   }
 
+  if (/^(?:kimi|moonshot)\s+status$/i.test(message)) {
+    return {
+      matched: true,
+      action: "kimi_status",
+      payload: {}
+    };
+  }
+
+  const kimiAsk = message.match(/^(?:kimi|moonshot)\s+(?:ask|chat)\s+(.+)$/i);
+  if (kimiAsk) {
+    return {
+      matched: true,
+      action: "kimi_ask",
+      payload: { prompt: unquote(kimiAsk[1]) }
+    };
+  }
+
   if (/^(?:anthropic|claude)\s+status$/i.test(message)) {
     return {
       matched: true,
@@ -1165,9 +1185,9 @@ function routeIntent(rawMessage) {
   }
 
   const externalModelsStatus = message.match(
-    /^(?:external|provider)\s+models?\s+(?:status|show|list)(?:\s+(anthropic|claude|gemini|cursor|antigravity))?$/i
+    /^(?:external|provider)\s+models?\s+(?:status|show|list)(?:\s+(anthropic|claude|gemini|kimi|moonshot|cursor|antigravity))?$/i
   ) || message.match(
-    /^(?:default|observed)\s+models?(?:\s+(anthropic|claude|gemini|cursor|antigravity))?$/i
+    /^(?:default|observed)\s+models?(?:\s+(anthropic|claude|gemini|kimi|moonshot|cursor|antigravity))?$/i
   );
   if (externalModelsStatus) {
     return {
@@ -1180,7 +1200,7 @@ function routeIntent(rawMessage) {
   }
 
   const setDefaultModel = message.match(
-    /^(?:set\s+)?default\s+model\s+(anthropic|claude|gemini|cursor|antigravity)\s+([\s\S]+)$/i
+    /^(?:set\s+)?default\s+model\s+(anthropic|claude|gemini|kimi|moonshot|cursor|antigravity)\s+([\s\S]+)$/i
   );
   if (setDefaultModel) {
     return {
@@ -1194,7 +1214,7 @@ function routeIntent(rawMessage) {
   }
 
   const clearDefaultModel = message.match(
-    /^(?:clear|unset|remove)\s+default\s+model\s+(anthropic|claude|gemini|cursor|antigravity)$/i
+    /^(?:clear|unset|remove)\s+default\s+model\s+(anthropic|claude|gemini|kimi|moonshot|cursor|antigravity)$/i
   );
   if (clearDefaultModel) {
     return {
@@ -1207,7 +1227,7 @@ function routeIntent(rawMessage) {
   }
 
   const clearObservedModels = message.match(
-    /^(?:clear|reset)\s+observed\s+models?(?:\s+(all|anthropic|claude|gemini|cursor|antigravity))?$/i
+    /^(?:clear|reset)\s+observed\s+models?(?:\s+(all|anthropic|claude|gemini|kimi|moonshot|cursor|antigravity))?$/i
   );
   if (clearObservedModels) {
     const target = String(clearObservedModels[1] || "").trim().toLowerCase();
@@ -1222,7 +1242,7 @@ function routeIntent(rawMessage) {
   }
 
   const pruneObservedModels = message.match(
-    /^(?:prune|cleanup)\s+observed\s+models?(?:\s+(all|anthropic|claude|gemini|cursor|antigravity))?(?:\s+(?:older\s+than\s+)?(\d{1,4})(?:\s*d(?:ays?)?|d(?:ays?)?)?)?$/i
+    /^(?:prune|cleanup)\s+observed\s+models?(?:\s+(all|anthropic|claude|gemini|kimi|moonshot|cursor|antigravity))?(?:\s+(?:older\s+than\s+)?(\d{1,4})(?:\s*d(?:ays?)?|d(?:ays?)?)?)?$/i
   );
   if (pruneObservedModels) {
     const target = String(pruneObservedModels[1] || "").trim().toLowerCase();

@@ -1,0 +1,46 @@
+{
+  "grammarId": "brown-hilbert-opencode-pid.grammar.v1",
+  "generatedAt": "2026-04-24T00:27:44.354Z",
+  "status": "minted",
+  "token": "BH_OPENCODE_PID",
+  "pattern": "^BH\\.OPENCODE\\.PID\\.[0-9]{11}$",
+  "validRange": {
+    "min": 0,
+    "max": 99999999999
+  },
+  "controllerSlots": {
+    "first": "BH.OPENCODE.PID.00000000001",
+    "last": "BH.OPENCODE.PID.00000000100",
+    "count": 100
+  },
+  "backendSlots": {
+    "first": "BH.OPENCODE.PID.00000000101",
+    "last": "BH.OPENCODE.PID.00001000100",
+    "count": 1000000
+  },
+  "safety": {
+    "backend": "opencode_cli_packet_backend",
+    "cli": "opencode_run_json_packet",
+    "headless": true,
+    "shelllessRuntime": true,
+    "noServerAuth": true,
+    "noServerApiRoute": true,
+    "noHttpHeaders": true,
+    "noBanner": true,
+    "noApiCall": true,
+    "alreadyAuthenticatedAssumedByOperator": true,
+    "noDownloads": true,
+    "noInstall": true,
+    "noDeviceAccess": true,
+    "noLiveRecording": true,
+    "noHumanSubjectData": true,
+    "virtualBackendAgentsOnly": true,
+    "realOpenCodeLaunches": 0,
+    "noProcessStorm": true,
+    "compactMillionWorkerRanges": true,
+    "brownHilbertPidRotation": true,
+    "opencodePidSpaceCount": 100000000000,
+    "childProcessUse": false,
+    "secretMaterialWritten": false
+  }
+}

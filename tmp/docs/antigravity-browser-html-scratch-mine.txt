@@ -1,0 +1,360 @@
+===============================================================================
+ANTIGRAVITY DEEP MINE: browser_recordings, html_artifacts, scratch,
+                       _backup_pb_files, playground cities
+Mined: 2026-03-25 by Gaia (Claude Opus 4.6)
+Source: C:\Users\acer\.gemini\antigravity\
+===============================================================================
+
+=====================================
+1. browser_recordings/
+=====================================
+15 recording sessions, each a UUID-named subdirectory containing
+hundreds of sequential JPG screenshots + metadata.json.
+All screenshots are nanosecond-timestamped filenames (e.g. 1766588435447368900.jpg).
+
+Directory structure confirmed: C:\Users\acer\.gemini\antigravity\browser_recordings\
+Modified range: 2025-12-23 to 2026-01-31
+
+RECORDING INDEX (chronological by first highlight timestamp):
+
+#01  90102c21-a14b-4a23-a54c-32ec211c3581
+     Date: 2025-12-23  (dir modified 2025-12-23 19:44)
+     Session: 21:30 - 22:43 UTC (nearly 1.5 hours)
+     Highlights: 42 segments
+     Notable: One segment spans 21 minutes (22:17:35 to 22:38:27) - long recording
+     Corresponding .pb backup: 9.8 MB
+
+#02  cd82daf5-707a-4904-a1ff-af5fbee777fd
+     Date: 2025-12-24  (dir modified 2025-12-24 00:52)
+     Session: 03:03 - 03:51 UTC (~48 minutes)
+     Highlights: 58 segments
+     Corresponding .pb backup: 5.7 MB
+
+#03  7aeceb95-f491-4dc7-acd9-cf33320b9822
+     Date: 2025-12-24  (dir modified 2025-12-24 02:45)
+     Session: 04:43 - 05:22 UTC (~39 minutes)
+     Highlights: 88 segments (DENSEST session)
+     Corresponding .pb backup: 11.5 MB
+
+#04  d542ba13-89ed-4b71-ad66-37b5fbd1e01d
+     Date: 2025-12-24  (dir modified 2025-12-24 11:16)
+     Session: 06:26 - 14:15 UTC (spans ~8 hours with gap)
+     Highlights: 21 segments (two clusters: 06:26 and 14:12-14:15)
+     Corresponding .pb backup: 5.2 MB
+
+#05  12fa564c-759a-4b7e-87ec-0a6d9c651852
+     Date: 2025-12-24  (dir modified 2025-12-24 12:01)
+     Session: 15:00 - 15:01 UTC (~1 minute)
+     Highlights: 4 segments (SHORT session)
+     Files: 281 (280 JPGs + metadata.json)
+     Corresponding .pb backup: 1.3 MB
+
+#06  5e44c400-3b3d-4e1b-9b1e-4f613ac780e6
+     Date: 2025-12-24  (dir modified 2025-12-24 15:12)
+     Session: 18:10 - 18:11 UTC (~1 minute)
+     Highlights: 7 segments
+     Corresponding .pb backup: 2.7 MB
+
+#07  1b994a54-3593-4af3-af7a-9a7f2e496627
+     Date: 2025-12-24  (dir modified 2025-12-24 19:08)
+     Session: 19:59 - 22:08 UTC (~2 hours, LONGEST)
+     Highlights: 121 segments (MOST highlights - 4 distinct activity bursts)
+     Corresponding .pb backup: 21.9 MB (LARGEST backup file)
+
+#08  92844762-80ea-4b31-b044-761323a1b259
+     Date: 2025-12-24  (dir modified 2025-12-24 20:31)
+     Session: 23:27 - 23:31 UTC (~4 minutes)
+     Highlights: 16 segments
+     Corresponding .pb backup: 3.2 MB
+
+#09  503d6a27-c58d-4ad1-97d2-e76e9b7dc4e4
+     Date: 2026-01-04  (dir modified 2026-01-04 06:29)
+     Session: 09:19 - 09:29 UTC (~10 minutes)
+     Highlights: 38 segments
+     Corresponding .pb backup: (not found by UUID match)
+
+#10  7880f5ce-26e9-4b00-b75c-518ee33c1360
+     Date: 2026-01-07/08  (dir modified 2026-01-08 13:08)
+     Session: 2026-01-07 16:21 to 2026-01-08 16:08 UTC (spans ~24 hours)
+     Highlights: 98 segments (many 30-second streaming segments)
+     NOTE: This is the LONGEST span recording - covers a full day
+     Corresponding .pb backup: (not found by UUID match)
+
+#11  80912a08-eb6c-460e-9463-a76d7fe2db8b
+     Date: 2026-01-10/11  (dir modified 2026-01-10 23:08)
+     Session: 2026-01-10 05:25 to 2026-01-11 02:07 UTC
+     Highlights: 59 segments
+     Corresponding .pb backup: (not found by UUID match)
+
+#12  d7ac0ac8-2107-4c98-89b4-960e4df94383
+     Date: 2026-01-11  (dir modified 2026-01-11 00:04)
+     Session: 03:01 - 03:03 UTC (~2 minutes)
+     Highlights: 10 segments
+     Corresponding .pb backup: (not found by UUID match)
+
+#13  8888eeea-cb2f-4f82-8d08-827ffb8d6bcb
+     Date: 2026-01-12  (dir modified 2026-01-12 03:14)
+     Session: 06:14 UTC
+     Highlights: 2 segments (SHORTEST session)
+     Corresponding .pb backup: (not found by UUID match)
+
+#14  28d333e5-9d74-448e-a4d5-e2ae705ac186
+     Date: 2026-01-31/02-01  (dir modified 2026-01-31 01:58)
+     Session: 2026-01-31 04:55 to 2026-02-01 05:33 UTC
+     Highlights: 9 segments
+     NOTE: One segment spans 3 minutes (04:55:43 to 04:58:41)
+     LATEST recording session
+     Corresponding .pb backup: (not found by UUID match)
+
+METADATA FORMAT:
+  All metadata.json files follow identical schema:
+  { "highlights": [{ "start_time": "ISO8601", "end_time": "ISO8601" }, ...] }
+  No URLs, tab info, or other browser context is stored in metadata.
+  Content is purely temporal — screenshot frames capture the actual content.
+
+PATTERN SUMMARY:
+  - Peak activity: 2025-12-23/24 (Christmas Eve marathon: 8 sessions in 24 hours)
+  - After Christmas: Sporadic sessions Jan 4, 7-8, 10-12, 31 + Feb 1
+  - Screenshot density: ~2-10 screenshots per second during active segments
+  - Total estimated screenshots: 5,000-10,000+ JPGs across all sessions
+
+
+=====================================
+2. html_artifacts/
+=====================================
+EMPTY DIRECTORY.
+  Path: C:\Users\acer\.gemini\antigravity\html_artifacts\
+  Modified: 2026-03-03
+  Contents: None (only . and ..)
+  NOTE: Directory exists but was never populated with artifacts.
+
+
+=====================================
+3. scratch/
+=====================================
+Two project directories:
+
+--- 3a. scratch/AI-Healthcare-Project/ ---
+Created: 2025-12-23
+Full-stack AI healthcare CDSS (Clinical Decision Support System)
+
+FILE MANIFEST:
+  README.md                        — Project overview
+  CHANGELOG.md                     — v1.0.0 released 2025-12-23
+  pyproject.toml                   — "healthcare-ai" v1.0.0, Python 3.11+
+  docker-compose.yml               — 3 services: backend, frontend, fhir
+  requirements-dev.txt             — pytest, ruff, mypy, sphinx
+  backend/__init__.py              — Empty
+  backend/main.py                  — FastAPI app: /health + /patients endpoints
+  backend/requirements.txt         — fastapi 0.104.1, uvicorn, pydantic, httpx
+  frontend/app.py                  — Streamlit dashboard (800 lines)
+  frontend/requirements.txt        — streamlit, plotly, requests, pandas
+  frontend/utils/env_loader.py     — API URL resolution from env vars
+  docs/conf.py                     — Sphinx config
+  docs/index.rst                   — Sphinx index
+  .github/workflows/ci.yml         — CI: test, lint, type-check
+  .github/workflows/docs.yml       — Deploy docs to GitHub Pages
+  .github/workflows/docker.yml     — Docker build + smoke test
+
+ARCHITECTURE:
+  Backend: FastAPI (port 8000), FHIR integration, GPT-4 powered
+  Frontend: Streamlit (port 8501), multi-patient dashboard
+  FHIR: HAPI FHIR server (port 8080) with MySQL backend
+  AI Features: S-LoRA, RAG-Fusion, Algorithm of Thought, Meta-Learning
+  Docker Compose orchestrates all three services
+
+FRONTEND PAGES (from app.py):
+  - Home (capabilities overview)
+  - Multi-Patient Dashboard (auto-refresh, severity cards, filters)
+  - Patient Analysis (FHIR patient fetch, risk charts, medication review)
+  - Medical Query (evidence-based AI Q&A with reasoning chains)
+  - Feedback & Learning (correction loop)
+  - Settings (API config, adapter status)
+
+RELEVANCE: This is Antigravity's scaffold for Jesse's AI Healthcare project.
+  Matches IX-362/364/365/366 in agent index. Antigravity built the initial
+  structure during Christmas 2025 sessions.
+
+--- 3b. scratch/holographic-interface/ ---
+Created: 2025-12-09
+React + Vite + Three.js holographic UI prototype
+
+FILE MANIFEST (source files only, node_modules excluded):
+  package.json                     — "holographic-interface" v0.0.0, private
+  index.html                       — Vite entry, title "holographic-interface"
+  vite.config.js                   — Standard React plugin config
+  eslint.config.js                 — ESLint flat config with React hooks
+  .gitignore                       — Standard Vite gitignore
+  src/main.jsx                     — React 19 strict mode entry
+  src/App.jsx                      — Canvas component with OrbitControls
+  src/App.css                      — Layout styles
+  src/index.css                    — Full-viewport black background
+  src/Scene.jsx                    — 3D scene with cyberpunk lighting + grid
+  src/components/HoloIcon.jsx      — Draggable holographic icon component
+  dist/                            — Built output (index.html, assets, vite.svg)
+
+DEPENDENCIES:
+  @react-three/fiber 9.4.2         — React Three.js renderer
+  @react-three/drei 10.7.7         — Three.js helpers (Grid, OrbitControls, PivotControls)
+  @react-three/postprocessing 3.0.4 — Bloom/glow effects
+  three 0.181.2                    — Three.js core
+  react 19.2.0                     — React 19
+  uuid 13.0.0                      — UUID generation
+
+SCENE DESCRIPTION:
+  - Dark cyberpunk environment (#050510 background)
+  - Infinite grid floor with cyan (#2c2c35) and purple (#4a4a5e) sections
+  - Cyan and magenta point lights
+  - 3 draggable holographic icons with PivotControls:
+    1. "Storage" — cyan box, glass-like material
+    2. "System" — magenta dodecahedron
+    3. "Security" — green torus
+  - Icons rotate continuously, float with sine wave
+  - Hover: wireframe mode + emissive glow + monospace label tooltip
+  - Bloom post-processing for glow effect
+  - Built and deployed (dist/ directory exists)
+
+RELEVANCE: This is a 3D holographic desktop concept. Could be an Asolaria
+  admin interface prototype — draggable system nodes in a cyberpunk 3D space.
+
+
+=====================================
+4. _backup_pb_files/
+=====================================
+Path: C:\Users\acer\.gemini\antigravity\_backup_pb_files\
+Total: 48 protobuf (.pb) conversation backup files
+Total size: ~83 MB
+Date range: 2025-12-23 to 2025-12-30 (one week of intense activity)
+
+CHRONOLOGICAL FILE LIST (sorted by modification date):
+
+2025-12-23:
+  476c3515-b114-44dd-b61c-517de715ba94.pb    469,657 bytes   16:23
+  cbbf761e-3391-41d3-9d1a-266159eab433.pb    331,242 bytes   18:20
+  61f2715c-1cf4-45dd-8368-9c02953f6467.pb  1,554,682 bytes   18:05
+  37698af1-9dcf-465c-b76c-462c755e0e5c.pb    570,162 bytes   20:23
+  90102c21-a14b-4a23-a54c-32ec211c3581.pb  9,809,793 bytes   22:42
+
+2025-12-24:
+  cd82daf5-707a-4904-a1ff-af5fbee777fd.pb  5,723,767 bytes   01:01
+  6d2d4b8d-c64c-4a25-8abc-89e6220792ac.pb    905,231 bytes   01:07
+  7aeceb95-f491-4dc7-acd9-cf33320b9822.pb 11,531,949 bytes   02:56
+  6481a5f4-5178-4be2-b486-fe65bb962707.pb  1,776,039 bytes   03:19
+  b27b8734-3380-4f0b-bd4f-9c7625b2305c.pb    391,096 bytes   11:32
+  d542ba13-89ed-4b71-ad66-37b5fbd1e01d.pb  5,184,163 bytes   11:17
+  e42a6454-985f-4712-a640-754b7ed8f243.pb    888,606 bytes   11:47
+  12fa564c-759a-4b7e-87ec-0a6d9c651852.pb  1,275,842 bytes   15:03
+  5e44c400-3b3d-4e1b-9b1e-4f613ac780e6.pb  2,718,410 bytes   16:52
+  1b994a54-3593-4af3-af7a-9a7f2e496627.pb 21,853,271 bytes   20:23
+  92844762-80ea-4b31-b044-761323a1b259.pb  3,198,619 bytes   22:02
+  19340628-7be3-42ea-ad9a-59b8e0cc55e4.pb  1,654,093 bytes   23:46
+
+2025-12-25:
+  514df202-6489-49fd-8f9f-4da5c770603d.pb  1,182,047 bytes   00:03
+  b6fb5227-0871-4957-8d39-d842575ad6bd.pb    872,371 bytes   00:46
+  ff6215f5-cba6-4a0c-974a-45261b6d33fe.pb    539,337 bytes   01:34
+  00692eea-87af-4484-85b4-f1b06a829d4c.pb  1,332,162 bytes   11:53
+  13f87e24-05f0-48a6-8e27-4095dd57f38d.pb    599,795 bytes   20:00
+  8f7c74d6-878c-4add-917b-8d0ed52b02c2.pb  1,173,245 bytes   21:08
+  54a77542-2a2d-482c-873e-7662cdc1a3ff.pb    674,506 bytes   21:33
+  97e96b84-6d0f-4182-a60a-fa93b0baeadf.pb    208,315 bytes   22:41
+  0bd89293-b1ec-4e30-acde-7717c46bff42.pb    503,360 bytes   22:52
+  4d5e309c-adba-401b-960f-f7578aa9feb0.pb    249,635 bytes   23:18
+  02ff2ae4-f03f-42c5-954b-c4b17614308b.pb    470,610 bytes   23:18
+  06552306-509a-4e1d-8437-eafcc1710c8e.pb    712,558 bytes   23:18
+
+2025-12-26:
+  004217ed-6ee1-4e28-abce-61054508a1f7.pb    190,772 bytes   00:50
+  153b3aa1-16ce-415d-a4b0-b94ad97f6546.pb    204,275 bytes   00:50
+  ab06ebe8-404d-4b20-b625-981e050c7da4.pb    234,899 bytes   00:50
+  234f1972-0c1f-4d97-ade5-ba3cd75525d8.pb    208,066 bytes   01:45
+  2548aada-b2db-4e2a-94ac-1402124a51b5.pb    339,753 bytes   01:45
+  26d78b66-349f-4822-b205-9f874b794602.pb    100,541 bytes   01:45
+  f3f8500e-057f-4645-8d9f-af4814d9e202.pb    254,592 bytes   01:45
+  345c54d8-7a43-407f-a9d5-1752fae2081b.pb    114,350 bytes   02:09
+  8e617400-6869-4791-bc63-7dcf0f65f03c.pb    498,961 bytes   02:40
+  64aa7fe3-3483-4582-a993-01c2f2d391c7.pb    119,261 bytes   12:38
+  af5f62c4-d590-46df-a0dd-e917413e2bad.pb    178,787 bytes   12:38
+  e1ea8ed8-412f-4239-8e15-c3881fec94db.pb     89,957 bytes   12:40
+
+2025-12-30:
+  4b328e6f-4934-495d-8fed-2b26cbec7fc9.pb    240,742 bytes   11:30
+  4c4c3dd6-a90a-4304-835d-831a5dfd05f2.pb    677,795 bytes   11:30
+  56486534-c3e0-48e5-b254-dc7f98a7e261.pb    589,264 bytes   11:58
+  5c14563a-6ec1-4ef0-8a7f-1bbc34bb7c12.pb    489,709 bytes   12:47
+  b9bede96-5729-4b50-833a-58cfc3801c22.pb    102,145 bytes   12:49
+  0a6bd076-1cd3-4a1b-8f28-7ccffa4e92de.pb  1,342,010 bytes   13:33
+  02ce3179-2f76-4a7c-817b-cf09b5ba2ada.pb    594,315 bytes   13:51
+
+SIZE DISTRIBUTION:
+  Largest:  1b994a54... = 21.9 MB (Dec 24 evening marathon)
+  2nd:      7aeceb95... = 11.5 MB (Dec 24 early morning)
+  3rd:      90102c21... =  9.8 MB (Dec 23 evening)
+  Smallest: e1ea8ed8... =  90 KB  (Dec 26)
+  Average:  ~1.7 MB per file
+
+NOTE ON CORRELATION:
+  Several backup file UUIDs match browser_recordings UUIDs exactly:
+  - 90102c21 matches recording #01
+  - cd82daf5 matches recording #02
+  - 7aeceb95 matches recording #03
+  - d542ba13 matches recording #04
+  - 12fa564c matches recording #05
+  - 5e44c400 matches recording #06
+  - 1b994a54 matches recording #07
+  - 92844762 matches recording #08
+  This confirms: .pb files are Antigravity conversation backups paired with
+  their browser recording sessions. Remaining .pb files without matching
+  recordings were text-only conversations (no browser automation).
+
+
+=====================================
+5. playground/icy-celestial/ and playground/crystal-chromosphere/
+=====================================
+
+playground/icy-celestial/
+  Created: 2025-12-23
+  Contents: EMPTY (no files, no subdirectories)
+
+playground/crystal-chromosphere/
+  Created: 2026-03-03
+  Contents: EMPTY (no files, no subdirectories)
+
+Both "city" directories are empty shells. They may be Antigravity playground
+workspace names that were created but never populated, or whose contents
+were moved/cleaned.
+
+The playground/ parent directory was modified 2026-03-03, suggesting
+crystal-chromosphere was added more recently.
+
+
+===============================================================================
+SUMMARY & FINDINGS
+===============================================================================
+
+1. BROWSER RECORDINGS: 15 sessions spanning Dec 23 2025 to Feb 1 2026.
+   Each session is hundreds of JPG screenshots at ~10fps with timestamp-based
+   metadata. Peak activity was Christmas Eve 2025 (8 sessions, one spanning
+   2+ hours). These are Antigravity's browser automation captures.
+
+2. HTML ARTIFACTS: Empty. Never used.
+
+3. SCRATCH WORKSPACE: Two projects:
+   a) AI-Healthcare-Project: Full-stack CDSS with FastAPI + Streamlit + FHIR.
+      This is the scaffold Antigravity built for Jesse's healthcare project
+      during the Christmas sessions. Python 3.11, Docker Compose, CI/CD.
+   b) holographic-interface: React 19 + Three.js cyberpunk 3D UI with
+      draggable holographic icons. Built and deployed (has dist/).
+      Potential Asolaria admin interface concept.
+
+4. BACKUP PB FILES: 48 protobuf conversation backups (83 MB total).
+   All from Dec 23-30 2025. Eight files have matching browser recording
+   UUIDs, confirming they are paired conversation+recording sessions.
+   The largest (21.9 MB) corresponds to the Christmas Eve marathon session.
+
+5. PLAYGROUND CITIES: Both icy-celestial and crystal-chromosphere are
+   empty directories. Placeholder workspaces never populated.
+
+===============================================================================
+END OF MINE
+===============================================================================

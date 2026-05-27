@@ -1,0 +1,119 @@
+QDD Test Results API — Data Pipeline Fix Report
+================================================
+Date: 2026-03-25
+
+PROBLEM
+-------
+The report detail page loads but charts show no data. The charts fetch from
+/api/test-results with filters, but the endpoint returns empty results.
+
+ROOT CAUSE (confirmed)
+----------------------
+The test-results API uses a **denormalized read model** — a separate MongoDB
+collection called `testresultreads` — not the raw `testresults` collection.
+
+The read model stores pre-joined subdocuments:
+  - client:   { _id: ObjectId }          (not a flat ObjectId)
+  - location: { _id: ObjectId, name: String }
+  - site:     { _id, name, description, siteId }
+  - zone:     { _id, name }
+  - testDefinition: { _id, subTest, ... }
+  - category: { _id, name }
+  - organism: { _id, name }
+
+The search query in TestResultRepo.ts (line 1255) filters:
+  'client._id': new ObjectId(clientId)
+  'location._id': new ObjectId(location)
+
+The seed script (seed-test-results.js) was inserting 60 records into
+`testresults` (the write model) with flat ObjectIds:
+  client: ObjectId('69c41938d84980e337ac77cd')
+  location: ObjectId('69c41938d84980e337ac77cf')
+
+But NEVER populated `testresultreads`. So the API read model had zero docs.
+
+In production, the denormalization happens via addReadOnlyTestResults.ts
+(a migration script) and via event handlers when test results are created
+through the normal CRUD flow. The seed bypassed all of that.
+
+SECONDARY ISSUE: DATE RANGE
+----------------------------
+The default report filter is dateRange: 'month' (see NewReportModule.tsx
+line 56), which maps to startOfMonth(today) → today. The seeded data was
+spread over 90 random days, meaning many results fell outside the default
+view window if the seed was run weeks ago.
+
+FIX APPLIED
+-----------
+File: D:\projects\QDD\ebacmap-master\scripts\seed-test-results.js
+
+1. After inserting into `testresults`, the script now ALSO inserts
+   denormalized docs into `testresultreads` with the correct subdocument
+   structure matching TestResultReadSchema.
+
+2. Changed date distribution: the first 20 of 60 results are guaranteed
+   to fall within the current month (daysAgo = 0 to current day-of-month),
+   so the default "month" filter always has data. The remaining 40 still
+   span 90 days for chart variety.
+
+3. The script fetches the location doc and user doc from the DB to
+   populate the read model's denormalized fields (location.name, user
+   firstName/lastName, etc.).
+
+DB NAME WARNING
+---------------
+seed-dev-user.js and seed-test-results.js default to: ebacmap-local-test
+seed-reports-data.js defaults to:                     ebacmap
+
+The app (.env.local) connects to: ebacmap-local-test
+
+So seed-reports-data.js MUST be run with:
+  MONGODB_URI=mongodb://localhost:27017/ebacmap-local-test node scripts/seed-reports-data.js
+
+Otherwise reference data (categories, organisms, zones, etc.) ends up in
+the wrong database and seed-test-results.js will fail with "Missing
+reference data."
+
+HOW TO RE-SEED
+--------------
+  # 1. Seed user, client, location (if not already done)
+  node scripts/seed-dev-user.js
+
+  # 2. Seed reference data (categories, organisms, zones, sites, testdefs)
+  MONGODB_URI=mongodb://localhost:27017/ebacmap-local-test node scripts/seed-reports-data.js
+
+  # 3. Seed test results + read model
+  node scripts/seed-test-results.js
+
+  # 4. Seed report configs
+  MONGODB_URI=mongodb://localhost:27017/ebacmap-local-test node scripts/seed-reports-complete.js
+
+KEY FILES
+---------
+- Seed script (fixed):
+    D:\projects\QDD\ebacmap-master\scripts\seed-test-results.js
+
+- Read model schema:
+    D:\projects\QDD\ebacmap-master\libs\db\src\models\TestResultRead.ts
+
+- Denormalization reference (production script):
+    D:\projects\QDD\ebacmap-master\scripts\addReadOnlyTestResults.ts
+
+- API route:
+    D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\test-results\index.ts
+
+- Repo search method (line 1147):
+    D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\test-results\repos\TestResultRepo.ts
+
+- Domain model (uses `client` and `location`, not `clientId`/`locationId`):
+    D:\projects\QDD\ebacmap-master\libs\domains\src\test-results\TestResult.ts
+
+- Date range utility:
+    D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\utils\testResults.ts
+
+FIELD NAME SUMMARY
+------------------
+Write model (testresults):    client = ObjectId,  location = ObjectId
+Read model (testresultreads): client = { _id },   location = { _id, name }
+API query:                    'client._id',        'location._id'
+Domain (TestResult.ts):       client, location     (correct, matches write model)

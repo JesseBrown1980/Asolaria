@@ -1,0 +1,615 @@
+================================================================================
+ZIP SNAPSHOT INVENTORY -- Asolaria Time Capsules
+Generated: 2026-03-25
+Total zips: 20
+Location: C:\Users\acer\Downloads\
+NOTE: Read-only inventory. No zips were extracted or modified.
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: asolaria-claude-project-bundle.zip
+DATE: 2026-03-16 09:46
+COMPRESSED SIZE: 124.1 KB (127095 bytes)
+FILE COUNT: 32 files, 0 directories
+TOTAL UNCOMPRESSED: 331.3 KB (339244 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+       322  adr/ADR-0000-template.md
+      1769  adr/ADR-0001-strangler-fig-monolith-decomposition.md
+      1643  adr/ADR-0002-durable-job-queue-wal.md
+      1298  adr/ADR-0003-gateway-auth-skeleton.md
+      1679  adr/ADR-0004-connector-manifest-registry.md
+      1056  adr/ADR-0005-request-attribution-middleware.md
+      1872  adr/ADR-0006-rbac-enforcement.md
+      1660  adr/ADR-0007-google-write-scopes.md
+      2219  adr/ADR-0008-visual-world-event-contract.md
+      1339  adr/ADR-0009-mcp-audit-logging.md
+      3002  adr/ADR-0010-gnn-preconditions.md
+      2614  adr/ADR-0011-security-world-mechanics.md
+      1735  adr/ADR-0012-tunnel-auth-hardening.md
+      1600  apihub/asolaria-functional-spec.md
+      1751  apihub/asolaria-requirements-spec.md
+      1581  apihub/asolaria-technical-spec.md
+      3920  admin-terminal-helm-profile-latest.md
+      5357  admin-terminal-identities-latest.md
+     13150  AGENTS.md
+      2403  asolaria.gateway.json
+      1966  AUTHORITY_MODES.md
+      6111  codex-state-freeze-latest.md
+      3466  GATEWAY_TOOL_AUTHORITY.md
+      3026  HANDOVER_ROADMAP.md
+      3868  HELM_CONTROLLER_SURFACES.md
+     14007  phase0-state-packet-20260315.md
+       904  PHONE-URLS.md
+     14788  README.md
+      1808  REFERENCES.md
+      1216  skills-README.md
+      3226  STARTUP_CONTRACT_V1.md
+    232888  TASKS.md
+
+--------------------------------------------------------------------------------
+FILE: asolaria-claude-project-bundle-v2.zip
+DATE: 2026-03-16 11:19
+COMPRESSED SIZE: 124.9 KB (127935 bytes)
+FILE COUNT: 32 files, 0 directories
+TOTAL UNCOMPRESSED: 333.1 KB (341106 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+       322  adr/ADR-0000-template.md
+      1769  adr/ADR-0001-strangler-fig-monolith-decomposition.md
+      1643  adr/ADR-0002-durable-job-queue-wal.md
+      1298  adr/ADR-0003-gateway-auth-skeleton.md
+      1679  adr/ADR-0004-connector-manifest-registry.md
+      1056  adr/ADR-0005-request-attribution-middleware.md
+      1872  adr/ADR-0006-rbac-enforcement.md
+      1660  adr/ADR-0007-google-write-scopes.md
+      2219  adr/ADR-0008-visual-world-event-contract.md
+      1339  adr/ADR-0009-mcp-audit-logging.md
+      3002  adr/ADR-0010-gnn-preconditions.md
+      2614  adr/ADR-0011-security-world-mechanics.md
+      1735  adr/ADR-0012-tunnel-auth-hardening.md
+      1600  apihub/asolaria-functional-spec.md
+      1751  apihub/asolaria-requirements-spec.md
+      1581  apihub/asolaria-technical-spec.md
+      3920  admin-terminal-helm-profile-latest.md
+      5357  admin-terminal-identities-latest.md
+     13743  AGENTS.md
+      2403  asolaria.gateway.json
+      1966  AUTHORITY_MODES.md
+      6111  codex-state-freeze-latest.md
+      3466  GATEWAY_TOOL_AUTHORITY.md
+      3026  HANDOVER_ROADMAP.md
+      3868  HELM_CONTROLLER_SURFACES.md
+     14007  phase0-state-packet-20260315.md
+       904  PHONE-URLS.md
+     16057  README.md
+      1808  REFERENCES.md
+      1216  skills-README.md
+      3226  STARTUP_CONTRACT_V1.md
+    232888  TASKS.md
+
+--------------------------------------------------------------------------------
+FILE: asolaria-claude-project-bundle-v3.zip
+DATE: 2026-03-16 12:34
+COMPRESSED SIZE: 32.2 KB (32923 bytes)
+FILE COUNT: 6 files, 0 directories
+TOTAL UNCOMPRESSED: 71.2 KB (72941 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+     18227  README.md
+     18294  AGENTS.md
+     19372  CONSTITUTION.md
+      7670  MISSION-PACK-PHASE0-1.md
+      1560  SESSION-TRAILER-TEMPLATE.md
+      7818  HANDOFF-20260316.md
+
+--------------------------------------------------------------------------------
+FILE: asolaria-claude-project-bundle-v4.zip
+DATE: 2026-03-16 13:08
+COMPRESSED SIZE: 33.0 KB (33840 bytes)
+FILE COUNT: 6 files, 0 directories
+TOTAL UNCOMPRESSED: 73.9 KB (75668 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+     18246  README.md
+     18294  AGENTS.md
+     22080  CONSTITUTION.md
+      7670  MISSION-PACK-PHASE0-1.md
+      1560  SESSION-TRAILER-TEMPLATE.md
+      7818  HANDOFF-20260316.md
+
+--------------------------------------------------------------------------------
+FILE: asolaria-claude-project-bundle-v5.zip
+DATE: 2026-03-16 13:35
+COMPRESSED SIZE: 48.6 KB (49811 bytes)
+FILE COUNT: 12 files, 0 directories
+TOTAL UNCOMPRESSED: 108.1 KB (110734 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+     21891  AGENTS.md
+      1600  asolaria-functional-spec.md
+      7761  asolaria-mobile-architecture-card-20260303.md
+      1095  asolaria-openapi-v1.yaml
+      1751  asolaria-requirements-spec.md
+     16764  asolaria-system-card-20260303.md
+      1581  asolaria-technical-spec.md
+     22080  CONSTITUTION.md
+      7818  HANDOFF-20260316.md
+      7670  MISSION-PACK-PHASE0-1.md
+     19163  README.md
+      1560  SESSION-TRAILER-TEMPLATE.md
+
+--------------------------------------------------------------------------------
+FILE: asolaria_shared_processing_and_startup_truth.zip
+DATE: 2026-03-23 15:00
+COMPRESSED SIZE: 36.6 KB (37446 bytes)
+FILE COUNT: 5 files, 0 directories
+TOTAL UNCOMPRESSED: 35.9 KB (36738 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+      3606  01_source_mapping_by_topic.txt
+      6041  02_cooperation_model.txt
+      5070  03_helm_startup_overload.txt
+      5770  04_shared_processing_startup_load_truth.txt
+     16251  05_raw_verbatim_evidence.txt
+
+--------------------------------------------------------------------------------
+FILE: asolaria_shared_processing_and_startup_truth (1).zip
+DATE: 2026-03-23 15:00
+COMPRESSED SIZE: 36.6 KB (37446 bytes)
+FILE COUNT: 5 files, 0 directories
+TOTAL UNCOMPRESSED: 35.9 KB (36738 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+      3606  01_source_mapping_by_topic.txt
+      6041  02_cooperation_model.txt
+      5070  03_helm_startup_overload.txt
+      5770  04_shared_processing_startup_load_truth.txt
+     16251  05_raw_verbatim_evidence.txt
+
+--------------------------------------------------------------------------------
+FILE: asolaria_shared_processing_and_startup_truth (2).zip
+DATE: 2026-03-23 15:14
+COMPRESSED SIZE: 20.7 KB (21216 bytes)
+FILE COUNT: 5 files, 0 directories
+TOTAL UNCOMPRESSED: 20.0 KB (20508 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+      3318  01_source_mapping_by_topic.txt
+      4619  02_cooperation_model.txt
+      3228  03_helm_startup_overload.txt
+      3931  04_shared_processing_startup_load_truth.txt
+      5412  05_raw_verbatim_evidence.txt
+
+--------------------------------------------------------------------------------
+FILE: asolaria_shared_processing_and_startup_truth (3).zip
+DATE: 2026-03-23 15:15
+COMPRESSED SIZE: 20.7 KB (21216 bytes)
+FILE COUNT: 5 files, 0 directories
+TOTAL UNCOMPRESSED: 20.0 KB (20508 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+      3318  01_source_mapping_by_topic.txt
+      4619  02_cooperation_model.txt
+      3228  03_helm_startup_overload.txt
+      3931  04_shared_processing_startup_load_truth.txt
+      5412  05_raw_verbatim_evidence.txt
+
+--------------------------------------------------------------------------------
+FILE: asolaria_shared_processing_and_startup_truth (4).zip
+DATE: 2026-03-23 15:16
+COMPRESSED SIZE: 20.7 KB (21216 bytes)
+FILE COUNT: 5 files, 0 directories
+TOTAL UNCOMPRESSED: 20.0 KB (20508 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+      3318  01_source_mapping_by_topic.txt
+      4619  02_cooperation_model.txt
+      3228  03_helm_startup_overload.txt
+      3931  04_shared_processing_startup_load_truth.txt
+      5412  05_raw_verbatim_evidence.txt
+
+--------------------------------------------------------------------------------
+FILE: gaia-anatomy-for-liris.zip
+DATE: 2026-03-24 22:33
+COMPRESSED SIZE: 9.9 KB (10165 bytes)
+FILE COUNT: 2 files, 0 directories
+TOTAL UNCOMPRESSED: 34.9 KB (35726 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+     33332  colonyAnatomy.js
+      2394  LIRIS-FIX-NOTES.md
+
+--------------------------------------------------------------------------------
+FILE: gaia-to-liris-sync.zip
+DATE: 2026-03-24 20:28
+COMPRESSED SIZE: 66.2 KB (67745 bytes)
+FILE COUNT: 18 files, 0 directories
+TOTAL UNCOMPRESSED: 222.6 KB (227955 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: 3
+    IX-394.md
+    IX-395.md
+    IX-396.md
+  LX-*.md files: NONE
+  indexLedger/indexCatalogSync: ['indexCatalogSync.js']
+  CATALOG files: ['CATALOG.md']
+  XREF files: ['XREF-COLONIES.md']
+
+CONTENTS (up to 50 entries):
+     25743  colonyAnatomy.js
+      5428  indexCatalogSync.js
+     30471  spawnContextBuilder.js
+     19190  agentIndexStore.js
+     18353  instantAgentSpawner.js
+     16989  omnispindle.js
+     20108  codexConnector.js
+     10760  anthropicCliConnector.js
+      9889  cursorAgentConnector.js
+      8750  geminiCliConnector.js
+     37361  mqttConnector.js
+      3600  skill.json
+      6763  run.js
+      2111  CATALOG.md
+      6319  XREF-COLONIES.md
+      1886  IX-394.md
+      1341  IX-396.md
+      2893  IX-395.md
+
+--------------------------------------------------------------------------------
+FILE: liris-anatomy-fix.zip
+DATE: 2026-03-24 22:24
+COMPRESSED SIZE: 9.9 KB (10132 bytes)
+FILE COUNT: 2 files, 0 directories
+TOTAL UNCOMPRESSED: 34.8 KB (35616 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+     33332  colonyAnatomy.js
+      2284  GAIA-FIX-NOTES.md
+
+--------------------------------------------------------------------------------
+FILE: liris-colonyAnatomy.zip
+DATE: 2026-03-24 22:14
+COMPRESSED SIZE: 8.6 KB (8758 bytes)
+FILE COUNT: 1 files, 0 directories
+TOTAL UNCOMPRESSED: 32.4 KB (33208 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+     33208  colonyAnatomy.js
+
+--------------------------------------------------------------------------------
+FILE: liris-colonyAnatomy-final.zip
+DATE: 2026-03-24 23:00
+COMPRESSED SIZE: 9.6 KB (9819 bytes)
+FILE COUNT: 1 files, 0 directories
+TOTAL UNCOMPRESSED: 35.8 KB (36710 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: NONE
+  ** NO agent-index content detected **
+
+CONTENTS (up to 50 entries):
+     36710  colonyAnatomy.js
+
+--------------------------------------------------------------------------------
+FILE: liris-final-cross-exam.zip
+DATE: 2026-03-24 20:37
+COMPRESSED SIZE: 62.5 KB (64011 bytes)
+FILE COUNT: 14 files, 0 directories
+TOTAL UNCOMPRESSED: 194.0 KB (198630 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: 4
+    LX-288.md
+    LX-289.md
+    LX-290.md
+    LX-291.md
+  indexLedger/indexCatalogSync: ['indexCatalogSync.js']
+  XREF files: ['XREF-COLONIES.md']
+
+CONTENTS (up to 50 entries):
+     19190  agentIndexStore.js
+     17929  codexConnector.js
+      6379  colony-self-verify-skill.json
+     25743  colonyAnatomy.js
+     31917  CROSS-EXAMINATION-REPORT.md
+      5189  indexCatalogSync.js
+     18616  instantAgentSpawner.js
+      2509  LX-288.md
+      1729  LX-289.md
+      1374  LX-290.md
+      2149  LX-291.md
+      8233  omnispindle.js
+     30467  spawnContextBuilder.js
+     27206  XREF-COLONIES.md
+
+--------------------------------------------------------------------------------
+FILE: liris-final-system (1).zip
+DATE: 2026-03-24 21:03
+COMPRESSED SIZE: 83.5 KB (85547 bytes)
+FILE COUNT: 19 files, 0 directories
+TOTAL UNCOMPRESSED: 271.1 KB (277612 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: 4
+    LX-288.md
+    LX-289.md
+    LX-290.md
+    LX-291.md
+  indexLedger/indexCatalogSync: ['indexCatalogSync.js']
+  XREF files: ['XREF-COLONIES.md']
+
+CONTENTS (up to 50 entries):
+     19190  agentIndexStore.js
+     10760  anthropicCliConnector.js
+     17929  codexConnector.js
+     30508  colonyAnatomy.js
+     31917  CROSS-EXAMINATION-REPORT.md
+      9889  cursorAgentConnector.js
+      8750  geminiCliConnector.js
+      5428  indexCatalogSync.js
+     18616  instantAgentSpawner.js
+      2509  LX-288.md
+      1729  LX-289.md
+      1374  LX-290.md
+      2149  LX-291.md
+     37812  mqttConnector.js
+      8233  omnispindle.js
+      6763  run.js
+      6379  skill.json
+     30471  spawnContextBuilder.js
+     27206  XREF-COLONIES.md
+
+--------------------------------------------------------------------------------
+FILE: liris-final-system.zip
+DATE: 2026-03-24 20:51
+COMPRESSED SIZE: 94.3 KB (96569 bytes)
+FILE COUNT: 19 files, 0 directories
+TOTAL UNCOMPRESSED: 300.6 KB (307791 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: 1
+    LX-288.md
+  indexLedger/indexCatalogSync: ['indexCatalogSync.js']
+  XREF files: ['XREF-COLONIES.md']
+
+CONTENTS (up to 50 entries):
+     19190  agentIndexStore.js
+     10760  anthropicCliConnector.js
+     17929  codexConnector.js
+      2299  colony-self-verify-latest.md
+     25743  colonyAnatomy.js
+     31917  CROSS-EXAMINATION-REPORT.md
+      9889  cursorAgentConnector.js
+      5980  gaia-cross-exam.json
+     31917  gaia-CROSS-EXAMINATION-REPORT.md
+      8750  geminiCliConnector.js
+      5428  indexCatalogSync.js
+     18616  instantAgentSpawner.js
+      2509  LX-288.md
+     37812  mqttConnector.js
+      8233  omnispindle.js
+      6763  run.js
+      6379  skill.json
+     30471  spawnContextBuilder.js
+     27206  XREF-COLONIES.md
+
+--------------------------------------------------------------------------------
+FILE: liris-index-restructure.zip
+DATE: 2026-03-24 01:20
+COMPRESSED SIZE: 225.0 KB (230416 bytes)
+FILE COUNT: 225 files, 0 directories
+TOTAL UNCOMPRESSED: 405.0 KB (414697 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: 210
+    identity/LX-001.md
+    mistake/LX-002.md
+    mistake/LX-006.md
+    ... (204 more)
+    tool/LX-179.md
+    tool/LX-187.md
+    tool/LX-188.md
+  CATALOG files: ['pattern/CATALOG.md', 'mistake/CATALOG.md', 'skill/CATALOG.md', 'plan/CATALOG.md', 'tool/CATALOG.md', 'rule/CATALOG.md', 'project/CATALOG.md', 'identity/CATALOG.md', 'task/CATALOG-TASKS.md', 'CATALOG.md', 'CATALOG.md']
+  XREF files: ['XREF.md']
+
+CONTENTS (up to 50 entries):
+      9354  pattern/CATALOG.md
+      2463  pattern/LX-015.md
+      1473  pattern/LX-019.md
+      1859  pattern/LX-020.md
+      1423  pattern/LX-021.md
+      1113  pattern/LX-022.md
+       991  pattern/LX-023.md
+      1381  pattern/LX-025.md
+      1202  pattern/LX-026.md
+      1222  pattern/LX-027.md
+      1035  pattern/LX-028.md
+      1551  pattern/LX-029.md
+      1293  pattern/LX-031.md
+      1167  pattern/LX-033.md
+      1185  pattern/LX-037.md
+      1015  pattern/LX-038.md
+       847  pattern/LX-039.md
+      1028  pattern/LX-040.md
+      1269  pattern/LX-041.md
+      1087  pattern/LX-047.md
+      1372  pattern/LX-049.md
+      1558  pattern/LX-051.md
+      1315  pattern/LX-055.md
+      1626  pattern/LX-058.md
+      1562  pattern/LX-059.md
+      1895  pattern/LX-060.md
+      1708  pattern/LX-061.md
+      1551  pattern/LX-062.md
+       957  pattern/LX-063.md
+      1913  pattern/LX-065.md
+      1768  pattern/LX-066.md
+      1541  pattern/LX-067.md
+      1442  pattern/LX-071.md
+      2411  pattern/LX-073.md
+      2291  pattern/LX-074.md
+      1819  pattern/LX-075.md
+      3251  pattern/LX-077.md
+      3058  pattern/LX-079.md
+      1808  pattern/LX-080.md
+      2199  pattern/LX-087.md
+      3297  pattern/LX-088.md
+      1786  pattern/LX-089.md
+       811  pattern/LX-090.md
+      2848  pattern/LX-091.md
+      1945  pattern/LX-092.md
+      1317  pattern/LX-093.md
+      1867  pattern/LX-094.md
+      2688  pattern/LX-096.md
+      1175  pattern/LX-097.md
+      1534  pattern/LX-098.md
+  ... and 175 more entries
+
+--------------------------------------------------------------------------------
+FILE: liris-merged-20260324.zip
+DATE: 2026-03-24 01:56
+COMPRESSED SIZE: 237.8 KB (243533 bytes)
+FILE COUNT: 231 files, 0 directories
+TOTAL UNCOMPRESSED: 443.8 KB (454478 bytes)
+
+AGENT INDEX MARKERS:
+  IX-*.md files: NONE
+  LX-*.md files: 212
+    identity/LX-001.md
+    mistake/LX-002.md
+    mistake/LX-006.md
+    ... (206 more)
+    tool/LX-179.md
+    tool/LX-187.md
+    tool/LX-188.md
+  CATALOG files: ['pattern/CATALOG.md', 'mistake/CATALOG.md', 'skill/CATALOG.md', 'plan/CATALOG.md', 'tool/CATALOG.md', 'rule/CATALOG.md', 'project/CATALOG.md', 'identity/CATALOG.md', 'task/CATALOG-TASKS.md', 'CATALOG.md', 'CATALOG.md']
+  XREF files: ['XREF.md']
+
+CONTENTS (up to 50 entries):
+      9354  pattern/CATALOG.md
+      2463  pattern/LX-015.md
+      1473  pattern/LX-019.md
+      1859  pattern/LX-020.md
+      1423  pattern/LX-021.md
+      1113  pattern/LX-022.md
+       991  pattern/LX-023.md
+      1381  pattern/LX-025.md
+      1202  pattern/LX-026.md
+      1222  pattern/LX-027.md
+      1035  pattern/LX-028.md
+      1551  pattern/LX-029.md
+      1293  pattern/LX-031.md
+      1167  pattern/LX-033.md
+      1185  pattern/LX-037.md
+      1015  pattern/LX-038.md
+       847  pattern/LX-039.md
+      1028  pattern/LX-040.md
+      1269  pattern/LX-041.md
+      1087  pattern/LX-047.md
+      1372  pattern/LX-049.md
+      1558  pattern/LX-051.md
+      1315  pattern/LX-055.md
+      1626  pattern/LX-058.md
+      1562  pattern/LX-059.md
+      1895  pattern/LX-060.md
+      1708  pattern/LX-061.md
+      1551  pattern/LX-062.md
+       957  pattern/LX-063.md
+      1913  pattern/LX-065.md
+      1768  pattern/LX-066.md
+      1541  pattern/LX-067.md
+      1442  pattern/LX-071.md
+      2411  pattern/LX-073.md
+      2291  pattern/LX-074.md
+      1819  pattern/LX-075.md
+      3251  pattern/LX-077.md
+      3058  pattern/LX-079.md
+      1808  pattern/LX-080.md
+      2199  pattern/LX-087.md
+      3297  pattern/LX-088.md
+      1786  pattern/LX-089.md
+       811  pattern/LX-090.md
+      2848  pattern/LX-091.md
+      1945  pattern/LX-092.md
+      1317  pattern/LX-093.md
+      1867  pattern/LX-094.md
+      2688  pattern/LX-096.md
+      1175  pattern/LX-097.md
+      1534  pattern/LX-098.md
+  ... and 181 more entries
+
+================================================================================
+END OF INVENTORY
+================================================================================

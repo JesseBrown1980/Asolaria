@@ -1,0 +1,321 @@
+Abacus AI References in Asolaria Codebase
+==========================================
+Scan date: 2026-03-25
+Scope: All .js, .json, .md, .txt files under src/, routes/, server.js, data/agent-index/, skills/, docs/, public/, tests/
+Result: READ-ONLY audit. Nothing modified.
+
+================================================================================
+1. CORE CONNECTOR — src/connectors/abacusConnector.js (1,423 lines)
+================================================================================
+The primary Abacus AI integration module. Full-featured connector.
+
+Path: C:\Users\acer\Asolaria\src\connectors\abacusConnector.js
+
+Key constants:
+  Line 8:   ABACUS_SECRET_NAME = "integrations.abacus"
+  Line 9:   DEFAULT_APP_URL = "https://apps.abacus.ai/chatllm/?appId=7560d5f36"
+  Line 13:  DEFAULT_DESKTOP_ROOT = LOCALAPPDATA\Programs\AbacusAI
+  Line 14:  DEFAULT_LISTENER_ROOT = LOCALAPPDATA\Programs\AbacusAI Listener
+  Line 15:  DEFAULT_DESKTOP_USER_DATA = APPDATA\AbacusAI
+  Line 16:  DEFAULT_LISTENER_USER_DATA = APPDATA\AbacusAI Listener
+  Line 18:  ABACUS_RUNTIME_ROOT = data/integrations/abacus
+  Line 19:  ABACUS_PACKET_ROOT = data/integrations/abacus/packets
+  Line 20:  ABACUS_PROBE_STATUS_PATH = data/integrations/abacus/cli-probe-status.json
+
+Exported functions (lines 1408-1421):
+  - getAbacusIntegrationStatus
+  - setAbacusConfig
+  - getAbacusPacketPresets
+  - getAbacusOperatingStrategy
+  - listAbacusWorkPackets
+  - getAbacusWorkPacket
+  - scanAbacusWorkPacket
+  - writeAbacusWorkPacketResponse
+  - openAbacusWorkPacket
+  - createAbacusWorkPacket
+  - runAbacusCliProbe
+  - openAbacusDesktop
+  - emitAbacusEvent
+  - emitAbacusManifest
+
+Packet presets (lines 27-140):
+  - workflow-studio: Workflow Studio / multi-step canvas work
+  - cloud-heavy: Larger web/research work with cloud execution
+  - code-mode: Claude Code / Code Mode surface inside Abacus desktop
+  - listener-context: Working from Abacus Listener or transcript-like session
+  - research-default: General research-capable surface
+
+Connector manifest (lines 1389-1404):
+  id: "abacus"
+  readScopes: ["abacus_packets", "abacus_status"]
+  writeScopes: ["abacus_packets", "abacus_config"]
+  secretRequirements: ["integrations.abacus (config)"]
+  sideEffects: creates work packets on external Abacus surface, opens desktop windows
+  emittedEvents: abacus.packet_created, abacus.scan_completed, abacus.response_written
+
+================================================================================
+2. WORKER ROUTER — src/connectors/workerRouter.js
+================================================================================
+Path: C:\Users\acer\Asolaria\src\connectors\workerRouter.js
+
+Abacus is one of 4 worker IDs: ["local_codex", "claude_max", "abacus", "symphony"]
+
+Key lines:
+  Line 8-11:  Imports getAbacusIntegrationStatus, getAbacusOperatingStrategy, createAbacusWorkPacket from ./abacusConnector
+  Line 28:    WORKER_IDS includes "abacus"
+  Line 156:   domain: abacus and claude_max are "external"
+  Line 236-261: buildAbacusProfile() — builds worker profile with:
+                  id: "abacus", title: "Abacus"
+                  "Best fit for sanitized tasks that benefit from external surfaces"
+                  Guardrails: "Do not treat Abacus output as source-of-truth"
+                  Guardrails: "Do not send owner-plane secrets into external Abacus lanes"
+  Line 317:   buildAllWorkerProfiles() includes buildAbacusProfile()
+  Line 326-339: Integration status check, abacusReady flag
+  Line 376:   "Abacus CLI is still limited here, so Abacus dispatch means packet handoff"
+  Line 478-532: Routing logic — abacus is fallback for research, quick_chore, cloud tasks
+  Line 579-613: dispatchToAbacus() — creates work packet and returns result
+  Line 987-988: Dispatch switch case for workerId === "abacus"
+
+================================================================================
+3. SERVER.JS — C:\Users\acer\Asolaria\server.js
+================================================================================
+Lazy-loads the abacusConnector and wires all Abacus API routes.
+
+Key lines:
+  Line 219-233: Lazy import of 14 Abacus functions from ./src/connectors/abacusConnector
+  Line 1036:    "abacus" in integration keys list
+  Line 3219-3228: Integration status summary includes abacusReady flag
+  Line 3571-3584: API route manifest (14 Abacus routes):
+    GET  /api/integrations/abacus/status
+    GET  /api/integrations/abacus/strategy
+    GET  /api/integrations/abacus/presets
+    GET  /api/integrations/abacus/packets
+    GET  /api/integrations/abacus/packets/:id
+    POST /api/integrations/abacus/config
+    POST /api/integrations/abacus/open
+    POST /api/integrations/abacus/desktop/open
+    POST /api/integrations/abacus/handoff
+    POST /api/integrations/abacus/packets/:id/open
+    POST /api/integrations/abacus/packets/:id/scan
+    POST /api/integrations/abacus/packets/:id/response
+    POST /api/integrations/abacus/packets/:id/import
+    POST /api/integrations/abacus/cli/probe
+  Line 11076:   WORKER_RUNTIME_ABACUS_ROUTE_TTL_MS = 10000
+  Line 11110:   workerRuntimeRouteCaches.abacus
+  Line 11311-11498: summarizeAbacusWorkerRuntime() and summarizeAbacusLite()
+  Line 11571-11576: buildWorkerRuntimeAbacusPayload()
+  Line 11849-11906: Abacus status in full worker runtime payload, CLI print mode warning
+  Line 14738:   Advice: "Vector, Abacus, Augment, Symphony... are tools, not startup memory"
+  Line 23722-23800: Module exports include all Abacus functions
+  Line 23997-23999: Comments noting Abacus routes extracted to separate route files
+
+================================================================================
+4. ROUTES — C:\Users\acer\Asolaria\routes\
+================================================================================
+
+routes/integrationStatus.js (lines 14, 51-70):
+  Imports: getAbacusIntegrationStatus, getAbacusOperatingStrategy, getAbacusPacketPresets, listAbacusWorkPackets
+  Routes: GET /abacus/status, /abacus/strategy, /abacus/presets, /abacus/packets
+
+routes/integrationOps.js (lines 64-67):
+  Route: GET /abacus/packets/:id — packet detail
+
+routes/workerRuntime.js (lines 18, 28, 72-77):
+  Imports: buildWorkerRuntimeAbacusPayload, WORKER_RUNTIME_ABACUS_ROUTE_TTL_MS
+  Route: GET /abacus — cached runtime payload
+
+routes/integrationsRemaining.js (lines 40-43, 539-1358):
+  Full Abacus operations — 8 POST routes:
+    POST /abacus/config         (line 539)
+    POST /abacus/open           (line 713)
+    POST /abacus/desktop/open   (line 801)
+    POST /abacus/handoff        (line 877)
+    POST /abacus/packets/:id/open     (line 971)
+    POST /abacus/packets/:id/scan     (line 1040)
+    POST /abacus/packets/:id/response (line 1106)
+    POST /abacus/packets/:id/import   (line 1176)
+    POST /abacus/cli/probe            (line 1267)
+  All routes: loopback-only, guardian-gated, emit manifest/events
+
+================================================================================
+5. PUBLIC UI FILES
+================================================================================
+
+C:\Users\acer\Asolaria\public\abacus-worker.html  — Abacus AI task packet UI (344 lines per IX-320)
+C:\Users\acer\Asolaria\public\abacus-worker.js     — JS for the Abacus worker UI
+C:\Users\acer\Asolaria\public\worker-runtime.html   — References Abacus in worker runtime view
+C:\Users\acer\Asolaria\public\worker-runtime.js     — References Abacus in worker runtime JS
+C:\Users\acer\Asolaria\public\worker-router.html     — References Abacus in worker router view
+C:\Users\acer\Asolaria\public\app.js                 — References Abacus integration
+C:\Users\acer\Asolaria\public\index.html              — References Abacus in main UI
+C:\Users\acer\Asolaria\public\storage-migration.js    — References Abacus in storage migration
+
+================================================================================
+6. DATA — Runtime Integration Files
+================================================================================
+
+C:\Users\acer\Asolaria\data\integrations\abacus\
+  cli-probe-status.json — CLI probe results
+
+C:\Users\acer\Asolaria\data\integrations\abacus\packets\ — 8 work packets:
+  20260307235254-abacus-integration-smoke-packet/  (packet.json, prompt.md, response.md) — ONLY packet with responseReady=true
+  20260308002117-abacus-preset-smoke/              (packet.json, prompt.md, response.md)
+  20260308002230-workflow-studio-surface-map/       (packet.json, prompt.md, response.md)
+  20260308014943-abacus-router-smoke/              (packet.json, prompt.md, response.md)
+  20260308015042-symphony-router-smoke/            (packet.json, prompt.md, response.md)
+  20260308015101-symphony-direct-smoke/            (packet.json, prompt.md, response.md)
+  20260308015101-abacus-direct-smoke/              (packet.json, prompt.md, response.md)
+  20260314035030-security-review-of-qdd-ebacmap.../  (packet.json, prompt.md, response.md)
+  20260317192700-qdd-pre-commit-hook-fix/          (packet.json, prompt.md, response.md, .claude/)
+
+C:\Users\acer\Asolaria\data\integrations\worker-router\dispatches\
+  20260308014937-abacus-router-smoke/dispatch.json
+  20260308015053-abacus-direct-smoke/dispatch.json
+
+================================================================================
+7. AGENT INDEX (IX entries)
+================================================================================
+
+PRIMARY INDEX ENTRIES:
+
+IX-186 (plans/IX-186.md) — TREASURE MAP
+  Line 5:  tags include "abacus"
+  Line 13: "The external agents (Claude Code, Abacus AI, Google Antigravity) were SAVING POSSIBLE PLANS"
+  Line 30-33: "Abacus AI Files" section — Jesse bought Abacus AI, check for config/output/workspace files
+
+IX-187 (references/IX-187.md) — SYMPHONY + AUGGIE + ABACUS
+  Line 3:  "the external build tools Jesse remembers"
+  Line 27-32: "ABACUS AI" section — "WE CAN SEE IT", listed as super swarm participant
+  Line 44: "Abacus AI — part of the startup, has visibility"
+
+IX-188 (references/IX-188.md) — ALL BUILD TOOLS FOUND LOCALLY
+  Line 19: Abacus AI at C:\Users\acer\.abacusai\ — Installed, config.json, CLI at abacus-ai-cli
+
+IX-227 (patterns/IX-227.md) — Risk-mode graph
+  "Risk-mode graph links Gemini, phone, router, Abacus, and Symphony"
+
+IX-313 (patterns/IX-313.md) — Line 20: Lists Abacus desktop app
+
+IX-316 (references/IX-316.md) — System inventory
+  Line 19: abacusConnector.js | 1423 | Abacus AI desktop/browser/listener, voice recorder
+  Line 70: workerRouter.js | 1099 | 4-worker dispatch (codex/claude/abacus/symphony)
+
+IX-317 (plans/IX-317.md) — Voice injection architecture
+  Line 38: Abacus voice recorder | abacusConnector.js | 1423 | Built
+  Line 64-66: "The Abacus Insight" — Jesse saw Abacus AI voice recorder doing: input -> processor -> divide video/audio -> process audio -> transcription -> human reads
+
+IX-318 (tools/IX-318.md) — Line 18: workerRouter.js 4-worker dispatch mentions abacus
+
+IX-320 (references/IX-320.md) — Definitive system map
+  Line 40: abacus-worker.html (344) — Abacus AI task packet system
+  Line 54: abacusConnector.js (1,423 lines)
+  Line 113: Worker router: 4 workers (codex, claude, abacus, symphony)
+
+IX-323 (references/IX-323.md) — Line 22: Super swarm config includes abacus participant
+
+IX-334 (tools/IX-334.md) — Worker router
+  Line 19: "abacus — Abacus AI desktop/browser/workflow"
+  Line 28: Participants include abacus
+
+IX-358 (references/IX-358.md) — Connectors reference
+  Line 38: abacusConnector | 1,423 | Abacus AI desktop/workflow/voice | ACTIVE
+
+IX-361 (mistakes/IX-361.md) — Lines 65, 85: superSwarmMission with abacus participant
+
+IX-387 (tools/IX-387.md) — AI workspace integrations (Abacus + Augment + Symphony + NotebookLM)
+  Lines 16-28: Full Abacus route documentation (8 routes, connector reference)
+
+IX-019 (skills/IX-019.md) — Line 23: abacus in swarm participants
+IX-036 (references/IX-036.md) — Line 19: abacus as network node
+IX-058 (patterns/IX-058.md) — Line 17: abacus in swarm participants
+IX-168 (patterns/IX-168.md) — Line 31: abacus in swarm participants
+
+CATALOG/INDEX REFERENCES:
+  CHAINS.md lines 141, 393
+  CROSS-EXAMINATION-REPORT.md line 322
+  XREF-COLONIES.md lines 86, 108, 173
+  plans/CATALOG-PLANS.md lines 19, 36
+  tools/CATALOG-INFRA.md lines 17, 28
+  patterns/CATALOG-SIMULATION.md line 14
+  references/CATALOG-REFERENCES.md lines 63, 64
+
+SUB-COLONY REFERENCES (Liris merged):
+  LX-030 (skill) — Helper Surfaces: Abacus, Augment, Gemini, Phone
+  LX-029 (pattern) — Abacus: "Sanitized external research, browser, bounded orchestration"
+  LX-053 (tool) — abacusConnector.js as Abacus research agent
+  LX-055 (pattern) — abacus as research/browser agent
+  LX-084 (skill) — Abacus for "sanitized external research"
+  LX-085 (skill) — Abacus reads authenticated web pages
+  LX-119 (pattern) — "Gaia MASSIVE FINDS" — Abacus AI at .abacusai/, installed with local files
+  LX-128 (plan) — All tools found including Abacus
+  LX-147 (tool) — Abacus confirmed alongside Auggie, Cursor, Symphony, Codex
+  LX-149 (pattern) — Abacus in Gaia findings
+
+================================================================================
+8. DOCS
+================================================================================
+
+C:\Users\acer\Asolaria\docs\SYMPHONY_HELPER_SURFACES.md
+  Lines 11-30: Abacus section — use cases, restrictions, API endpoints
+
+C:\Users\acer\Asolaria\docs\claude-project\README.md
+  Line 76: abacus as integration key
+  Line 132: Abacus in stored integrations list
+  Line 210: "Abacus: AbacusAI integration"
+
+C:\Users\acer\Asolaria\docs\claude-project\AGENTS.md
+  Line 355: Abacus | Active | AbacusAI
+
+C:\Users\acer\Asolaria\docs\claude-project\HANDOFF-20260316.md
+  Line 24: Abacus (10 routes) in integration categories
+
+C:\Users\acer\Asolaria\docs\claude-project\bundle\codex-state-freeze-latest.md
+  Lines 47-109: Full "Abacus Integration State" section — configuration status,
+  probe facts, packet inventory, diagnostic commands
+
+C:\Users\acer\Asolaria\docs\adr\ADR-0004-connector-manifest-registry.md
+  Line 15: abacus listed as one of 13/42 connectors with manifests
+
+================================================================================
+9. TESTS
+================================================================================
+
+C:\Users\acer\Asolaria\tests\contract-integrations.test.js
+  Line 10: '/api/integrations/abacus/status' in contract test
+
+C:\Users\acer\Asolaria\tests\contract-full-suite.test.js
+  Line 45: '/api/integrations/abacus/status' in full suite test
+
+================================================================================
+10. SKILLS — No dedicated Abacus skill found
+================================================================================
+No skill directory matching *abacus* under C:\Users\acer\Asolaria\skills\.
+Abacus integration is handled entirely through the connector + routes + worker router.
+
+================================================================================
+SUMMARY
+================================================================================
+
+Total files with Abacus references: ~50+
+
+Core implementation:
+  - 1 connector:     src/connectors/abacusConnector.js (1,423 lines)
+  - 1 worker router: src/connectors/workerRouter.js (41 references)
+  - 1 server:        server.js (~80 references)
+  - 4 route files:   integrationStatus.js, integrationOps.js, workerRuntime.js, integrationsRemaining.js
+  - 2 UI files:      public/abacus-worker.html, public/abacus-worker.js
+  - 6 other UI refs: app.js, index.html, worker-runtime.html/.js, worker-router.html, storage-migration.js
+
+Runtime data:
+  - 8 work packets in data/integrations/abacus/packets/
+  - 1 CLI probe status file
+  - 2 worker-router dispatch records
+
+Agent index:
+  - 10+ primary IX entries (IX-186, 187, 188, 227, 313, 316, 317, 318, 320, 323, 334, 358, 361, 387)
+  - 10+ Liris sub-colony entries (LX-029, 030, 053, 055, 084, 085, 119, 128, 147, 149)
+  - Multiple catalog/chain/xref references
+
+API surface: 14 routes under /api/integrations/abacus/*
+Worker ID: "abacus" — one of 4 workers in the dispatch system
+Status: ACTIVE but CLI print mode still limited (desktop/browser worker, not fully headless)

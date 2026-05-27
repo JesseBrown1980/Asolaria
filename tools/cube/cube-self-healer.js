@@ -33,11 +33,11 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const ROOT = 'C:/Users/acer/Asolaria';
-const D_DEST = 'D:/safety-backups/session-20260410-asolaria';
+const ROOT = 'C:/Users/rayss/Asolaria';
+const D_DEST = 'C:/Users/rayss/Asolaria/data/safety-backups/session-20260410';
 const CUBES_DIR = path.join(ROOT, 'data/cubes');
 const INTERSECTION_LATEST = path.join(ROOT, 'data/intersection-cube/latest.json');
-const HEAL_LOG = path.join(ROOT, 'data/cubes/asolaria-instance@acer/heal-log.ndjson');
+const HEAL_LOG = path.join(ROOT, 'data/cubes/liris-kuromi@DESKTOP-PTSQTIE/heal-log.ndjson');
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const REPORT = process.argv.includes('--report');
@@ -79,7 +79,7 @@ const HEALERS = [
     id: 'HEAL-002',
     name: 'heartbeat file',
     check: () => {
-      const hbPath = path.join(CUBES_DIR, 'asolaria-instance@acer/heartbeat.ndjson');
+      const hbPath = path.join(CUBES_DIR, 'liris-kuromi@DESKTOP-PTSQTIE/heartbeat.ndjson');
       if (!fs.existsSync(hbPath)) return true;
       const lines = fs.readFileSync(hbPath, 'utf8').split('\n').filter(l => l.trim());
       if (lines.length === 0) return true;
@@ -89,13 +89,13 @@ const HEALERS = [
       } catch (_) { return true; }
     },
     fix: () => {
-      const hbPath = path.join(CUBES_DIR, 'asolaria-instance@acer/heartbeat.ndjson');
+      const hbPath = path.join(CUBES_DIR, 'liris-kuromi@DESKTOP-PTSQTIE/heartbeat.ndjson');
       ensureDir(path.dirname(hbPath));
       const entry = {
         ts: new Date().toISOString(),
         event: 'HEARTBEAT',
         source: 'cube-self-healer',
-        agent: 'asolaria-instance@acer',
+        agent: 'liris-kuromi@DESKTOP-PTSQTIE',
         cube: 4913,
         dim: 'D7_STATE',
         pulse: 1,
@@ -124,16 +124,16 @@ const HEALERS = [
       } catch (_) {}
 
       const anatomy = {
-        omninode: 'asolaria-instance@acer',
+        omninode: 'liris-kuromi@DESKTOP-PTSQTIE',
         generated_by: 'cube-self-healer',
         generated_at: new Date().toISOString(),
         device: { model: 'Acer', firmware: 'Windows 11' },
         profile: 'asolaria-orchestrator-v1',
-        id: 'asolaria-acer',
-        name: 'Asolaria-acer',
+        id: 'liris-kuromi',
+        name: 'Liris-kuromi',
         cpu, gpu, ram,
         dialect: 'IX',
-        surface: 'asolaria-acer-gateway',
+        surface: 'liris-kuromi-gateway',
         gate: ['hookwall', 'gnn', 'shannon', 'sovereignty', 'omni'],
         chain: ['asolaria-sovereign', 'jesse'],
         cube: [704969, 4913, 29791],
@@ -224,8 +224,8 @@ const UNHEALABLE = [
   {
     id: 'UNFIX-001',
     name: 'Sovereignty USB not mounted',
-    check: () => !fs.existsSync('E:\\'),
-    requires: 'Jesse physically plugs in USB + PID verification',
+    check: () => !fs.existsSync('D:\\') && !fs.existsSync('E:\\'),
+    requires: 'USB rotation to liris + PID verification (volume_serial_741E5B79)',
     dim: 'D15_DEVICE',
     severity: 'critical',
   },
@@ -237,7 +237,7 @@ const UNHEALABLE = [
       const peerHb = path.join(CUBES_DIR, 'liris-rayssa.peer-mirror-of-liris-kuromi/heartbeat.ndjson');
       return !fs.existsSync(peerHb);
     },
-    requires: 'Rayssa starts liris + agent-keyboard on liris host',
+    requires: 'Acer federation channel alive + bilateral keyboard exchange',
     dim: 'D23_FEDERATION',
     severity: 'critical',
   },

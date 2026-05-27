@@ -1,18 +1,20 @@
 ﻿# Asolaria Phone URLs (Tokenless Bookmarks)
 
-Generated: 2026-03-15 23:14:45 -03:00
+Generated: 2026-04-14 15:56:26 -03:00
 
 ## One-Time Setup (HTTPS Trust For Push)
 
-- Local certificate install is optional here (remote URL already uses trusted public TLS).
-- For tunnel links, no local CA install is required.
+- Download the Asolaria Local CA certificate to your phone:
+  - http://192.168.1.12:4781/asolaria-local.cer
+- Install it on Android as a **CA certificate** (not a Wi-Fi certificate).
+- Then fully close/reopen Chrome and use the HTTPS links below.
 
 ## Remote (Wi-Fi / cellular fallback)
 
 - Mobile Console (recommended bookmark):
-  - 
+  - https://192.168.1.12:5443/mobile-console.html?channel=private_internet&viewer=falcon
 - Mobile Approvals:
-  - 
+  - https://192.168.1.12:5443/mobile-approvals.html?channel=private_internet
 
 ## USB-only (via ADB reverse)
 

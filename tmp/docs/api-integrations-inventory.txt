@@ -1,0 +1,419 @@
+================================================================================
+ASOLARIA API INTEGRATIONS INVENTORY
+Generated: 2026-03-25
+Source: Full codebase audit of connectors, routes, config, vault secrets, agent-index
+================================================================================
+
+================================================================================
+SECTION 1: CONNECTORS (45 files in src/connectors/)
+================================================================================
+
+Each connector file is listed with its external service target and vault secret name.
+
+#  CONNECTOR FILE                      EXTERNAL SERVICE / PURPOSE                     VAULT SECRET NAME
+-- -----------------------------------  ---------------------------------------------  -------------------------------------------
+01 abacusConnector.js                   Abacus AI (managed ChatLLM workspace)          integrations.abacus
+02 anthropicCliConnector.js             Anthropic Claude CLI (local agent spawning)     (uses local CLI, no API key in vault)
+03 atlassianConnector.js                Atlassian (Jira + Confluence) OAuth 2.0        integrations.atlassian.oauth + integrations.atlassian.accounts
+04 augmentContextConnector.js           Augment Context MCP (Cursor/Antigravity)       integrations.augment_context
+05 avatarNpcConnector.js                Avatar NPC system (internal simulation)         (no external API key)
+06 capturesConnector.js                 Desktop captures manager (local)                (no external API key)
+07 chromeConnector.js                   Chrome browser launcher (local)                 (no external API key)
+08 codexConnector.js                    OpenAI Codex CLI (local agent spawning)         (uses local CLI)
+09 cursorAgentConnector.js              Cursor AI editor agent spawning                 (uses local CLI)
+10 desktopCaptureConnector.js           Desktop screenshot capture (local)              (no external API key)
+11 desktopControlConnector.js           Desktop mouse/keyboard control (local)          (no external API key)
+12 desktopDisplayConnector.js           Desktop display management (local)              (no external API key)
+13 externalBrainConnector.js            External AI providers (OpenAI/Cursor/Antigrav)  integrations.external.openai + integrations.external.cursor + integrations.external.antigravity
+14 gcpConnector.js                      Google Cloud Platform (service account)         integrations.gcp.service_account
+15 geminiApiConnector.js                Google Gemini API (AI Studio, API key auth)     integrations.gemini.api_studio
+16 geminiCliConnector.js                Gemini CLI (local agent spawning)               (uses local CLI)
+17 geminiLiveConnector.js               Gemini Live WebSocket (Vertex AI)               integrations.gcp.service_account (shared with GCP)
+18 githubConnector.js                   GitHub API (repos, issues, PRs)                 integrations.github
+19 googleConnector.js                   Google OAuth (Gmail, Calendar, Drive)            integrations.google.oauth + integrations.google.accounts
+20 googleWorkspaceCliConnector.js       Google Workspace admin CLI                      (uses googleConnector OAuth tokens)
+21 hooksConnector.js                    Hook event system (internal)                     (no external API key)
+22 hubspotConnector.js                  HubSpot CRM (OAuth, contacts, deals)            integrations.hubspot.oauth + integrations.hubspot.accounts
+23 localOpsConnector.js                 Local operations runner (build/test/script)      (no external API key)
+24 localRebuildConnector.js             Local rebuild lab (internal)                     (no external API key)
+25 microsoftConnector.js                Microsoft Graph API (Teams, Outlook, OneDrive)   integrations.microsoft.oauth + integrations.microsoft.accounts
+26 mqttConnector.js                     MQTT broker (federation/real-time transport)     integrations.mqtt
+27 notebooklmConnector.js               NotebookLM Enterprise (GCP-backed)              integrations.gcp.service_account + integrations.gemini.api_studio
+28 openclawConnector.js                 OpenClaw (local CLI tool)                        (uses local CLI)
+29 padConnector.js                      Power Automate Desktop (local)                   (no external API key)
+30 phoneBrowserHistoryConnector.js      Phone browser history (ADB)                      (no external API key)
+31 phoneDeveloperOptionsConnector.js    Phone developer options (ADB)                    (no external API key)
+32 phoneMirrorConnector.js              Phone mirror/screen capture (ADB)                (no external API key)
+33 phoneProMirrorConnector.js           Phone pro mirror (scrcpy)                        (no external API key)
+34 phoneTermuxConnector.js              Phone Termux shell (ADB)                         (no external API key)
+35 screenshotConnector.js               Playwright browser screenshots                   (no external API key)
+36 slackConnector.js                    Slack API (messaging, channels)                  integrations.slack
+37 symphonyConnector.js                 Symphony orchestrator (Linear + repo + codex)    integrations.symphony
+38 systemPaths.js                       System tool path resolver (utility, not API)      N/A
+39 telegramConnector.js                 Telegram Bot API (messaging)                     integrations.telegram
+40 uiVisualAuditConnector.js            UI visual audit runner (internal)                 (no external API key)
+41 vertexConnector.js                   Google Vertex AI (Gemini models)                  integrations.vertex.gemini + integrations.vertex.budget_config + integrations.vertex.budget_usage
+42 virtualDisplayConnector.js           Virtual display manager (local)                   (no external API key)
+43 voiceConnector.js                    Voice/transcription (Gemini + OpenAI)             integrations.voice.transcribe + integrations.gemini.api_studio
+44 wolConnector.js                      Wake-on-LAN (network power management)            power.wol
+45 workerRouter.js                      Worker dispatch router (internal)                  (no external API key)
+
+================================================================================
+SECTION 2: VAULT SECRET MAP (all integration secrets)
+================================================================================
+
+All secrets are stored via secureVault.js in namespace "owner".
+NO ACTUAL VALUES ARE LISTED. Service names and secret paths only.
+
+SECRET PATH                              SERVICE                    AUTH TYPE
+-----------------------------------------  -------------------------  --------------------
+integrations.abacus                        Abacus AI                  Config (appUrl, appId, account)
+integrations.atlassian.oauth               Atlassian                  OAuth 2.0 (PKCE)
+integrations.atlassian.accounts            Atlassian                  Account tokens
+integrations.augment_context               Augment Context            Config (mode, server, auth)
+integrations.external.openai               OpenAI (external brain)    API Key
+integrations.external.cursor               Cursor (external brain)    API Key
+integrations.external.antigravity          Antigravity (ext brain)    API Key
+integrations.gcp.service_account           Google Cloud Platform       Service Account JSON
+integrations.gemini.api_studio             Gemini API (AI Studio)      API Key
+integrations.github                        GitHub                      PAT (Personal Access Token)
+integrations.google.oauth                  Google OAuth               Client ID + Secret
+integrations.google.accounts               Google Accounts            OAuth tokens
+integrations.hubspot.oauth                 HubSpot CRM               OAuth 2.0 (PKCE)
+integrations.hubspot.accounts              HubSpot Accounts           Per-portal tokens
+integrations.microsoft.oauth               Microsoft Graph            OAuth 2.0
+integrations.microsoft.accounts            Microsoft Accounts         Account tokens
+integrations.mqtt                          MQTT Broker                Broker URL + credentials
+integrations.slack                         Slack                      Bot Token
+integrations.symphony                      Symphony Orchestrator      Config (repo, linear key, codex)
+integrations.telegram                      Telegram Bot               Bot Token + chat IDs
+integrations.vertex.gemini                 Vertex AI Gemini           Config (project, location, model)
+integrations.vertex.budget_config          Vertex AI Budget           Budget limits
+integrations.vertex.budget_usage           Vertex AI Budget           Usage counters
+integrations.voice.transcribe              Voice Transcription        API Key (OpenAI Whisper)
+power.wol                                  Wake-on-LAN                MAC addresses
+
+Total: 25 vault secret paths across 18 external services
+
+================================================================================
+SECTION 3: INTEGRATION STATUS ROUTES (routes/integrationStatus.js)
+================================================================================
+
+All status endpoints are at /api/integrations/<service>/status
+
+STATUS ENDPOINT                          SERVICE
+-----------------------------------------  -------------------------
+GET /api/integrations/slack/status         Slack
+GET /api/integrations/github/status        GitHub
+GET /api/integrations/github/repos         GitHub repos (job dispatch)
+GET /api/integrations/symphony/status      Symphony
+GET /api/integrations/abacus/status        Abacus AI
+GET /api/integrations/abacus/strategy      Abacus AI strategy
+GET /api/integrations/abacus/presets       Abacus AI presets
+GET /api/integrations/abacus/packets       Abacus AI work packets
+GET /api/integrations/augment-context/status  Augment Context
+GET /api/integrations/gemini_api/status    Gemini API (AI Studio)
+GET /api/integrations/google/status        Google OAuth
+GET /api/integrations/google_workspace_cli/status  Google Workspace CLI
+GET /api/integrations/microsoft/status     Microsoft Graph
+GET /api/integrations/atlassian/status     Atlassian (Jira/Confluence)
+GET /api/integrations/hubspot/status       HubSpot CRM
+GET /api/integrations/gcp/status           Google Cloud Platform
+GET /api/integrations/vertex/status        Vertex AI
+GET /api/integrations/vertex/budget/status Vertex AI Budget
+GET /api/integrations/external/status      External providers (OpenAI/Cursor/Antigravity)
+GET /api/integrations/gemini_live/status   Gemini Live (WebSocket)
+GET /api/integrations/openai_web_chat/status  OpenAI Web Chat (browser)
+GET /api/integrations/contactout/status    ContactOut (browser ext)
+GET /api/integrations/gemini_enterprise_web/status  Gemini Enterprise Web
+GET /api/integrations/slack/channels       Slack channels (job dispatch)
+GET /api/integrations/telegram/status      Telegram
+GET /api/integrations/mqtt/status          MQTT
+
+Total: 26 status endpoints
+
+================================================================================
+SECTION 4: INTEGRATION CONFIG ROUTES (routes/integrationConfig.js)
+================================================================================
+
+All config endpoints require loopback + admin permission + Guardian approval.
+
+CONFIG ENDPOINT                          SERVICE
+-----------------------------------------  -------------------------
+POST /api/integrations/slack/config        Slack (bot token, default channel)
+POST /api/integrations/github/config       GitHub (PAT, base URL, owner/repo)
+POST /api/integrations/vertex/config       Vertex AI (project, location, model, enable/disable)
+
+================================================================================
+SECTION 5: INTEGRATION OPS ROUTES (routes/integrationOps.js)
+================================================================================
+
+OPS ENDPOINT                             SERVICE / ACTION
+-----------------------------------------  -------------------------
+POST /api/integrations/symphony/start      Symphony lifecycle
+POST /api/integrations/symphony/stop       Symphony lifecycle
+POST /api/integrations/symphony/restart    Symphony lifecycle
+POST /api/integrations/gemini_api/embed    Gemini API embedding
+
+Google Ops (all gated by googlePolicy.enabled):
+POST /api/integrations/google/gmail/send   Gmail send
+POST /api/integrations/google/calendar/create  Calendar event create
+POST /api/integrations/google/drive/create Drive file create
+GET  /api/integrations/google/gmail/messages  Gmail list messages
+GET  /api/integrations/google/calendar/events  Calendar list events
+GET  /api/integrations/google/drive/search  Drive search
+
+================================================================================
+SECTION 6: REMAINING INTEGRATIONS (routes/integrationsRemaining.js)
+================================================================================
+
+This is the largest integration route file. Organized by service:
+
+--- MQTT ---
+POST /api/integrations/mqtt/config         MQTT broker config
+POST /api/integrations/mqtt/publish        MQTT publish message
+
+--- TELEGRAM ---
+POST /api/integrations/telegram/config     Telegram bot config
+POST /api/integrations/telegram/send       Telegram send message
+POST /api/integrations/telegram/webhook    Telegram inbound webhook
+
+--- SLACK ---
+POST /api/integrations/slack/review        Slack channel message review
+
+--- AUGMENT CONTEXT ---
+POST /api/integrations/augment-context/config   Augment Context config
+POST /api/integrations/augment-context/apply    Apply MCP patch to editors
+
+--- SYMPHONY ---
+POST /api/integrations/symphony/config     Symphony orchestrator config
+
+--- ABACUS AI (8 routes) ---
+POST /api/integrations/abacus/config       Abacus config
+POST /api/integrations/abacus/open         Open Abacus in Chrome
+POST /api/integrations/abacus/desktop/open Open AbacusAI desktop app
+POST /api/integrations/abacus/handoff      Create work packet
+POST /api/integrations/abacus/packets/:id/open    Open packet workspace
+POST /api/integrations/abacus/packets/:id/scan    Scan packet readiness
+POST /api/integrations/abacus/packets/:id/response Write packet response
+POST /api/integrations/abacus/packets/:id/import  Import packet to task ledger
+POST /api/integrations/abacus/cli/probe    CLI health probe
+
+--- EXTERNAL MCP CACHE ---
+GET  /api/integrations/external/mcp-cache          Read cache status
+POST /api/integrations/external/mcp-cache/clear    Clear cache
+POST /api/integrations/external/config             Full provider config
+
+--- EXTERNAL BRAIN PROVIDERS ---
+POST /api/integrations/external/config     OpenAI/Cursor/Antigravity provider config
+
+--- OPENAI WEB CHAT (browser automation) ---
+POST /api/integrations/openai_web_chat/chat  Automate ChatGPT web UI
+
+--- GEMINI ENTERPRISE WEB (browser automation) ---
+POST /api/integrations/gemini_enterprise_web/chat  Automate Gemini Enterprise web
+
+--- CONTACTOUT (browser extension) ---
+POST /api/integrations/contactout/open     Launch ContactOut in Chrome
+
+--- GOOGLE (OAuth + API relay) ---
+POST /api/integrations/google/config       Google OAuth config
+POST /api/integrations/google/oauth/start  Begin OAuth flow
+GET  /api/integrations/google/oauth/callback  OAuth callback
+POST /api/integrations/google/request      Generic Google API relay
+
+--- GCP ---
+POST /api/integrations/gcp/config          GCP service account config
+POST /api/integrations/gcp/config/import_latest_download  Auto-import SA key
+POST /api/integrations/gcp/request         GCP API request
+GET  /api/integrations/gcp/services/enabled  List enabled APIs
+POST /api/integrations/gcp/services/enable   Enable a GCP API
+POST /api/integrations/gcp/services/bootstrap  Bulk-enable services
+
+--- GEMINI API ---
+POST /api/integrations/gemini_api/config   Gemini API key config
+POST /api/integrations/gemini_api/explain-file  Gemini file analysis
+
+--- VERTEX AI ---
+POST /api/integrations/vertex/ask          Direct Vertex AI prompt (PAID)
+POST /api/integrations/vertex/budget/config  Budget limits
+POST /api/integrations/vertex/budget/reset   Reset usage
+
+--- GOOGLE WORKSPACE CLI ---
+POST /api/integrations/google_workspace_cli/run  Execute Workspace CLI cmds
+
+--- HUBSPOT CRM ---
+POST /api/integrations/hubspot/oauth/start     Begin OAuth flow
+GET  /api/integrations/hubspot/oauth/callback  OAuth callback
+
+--- ATLASSIAN (Jira/Confluence) ---
+POST /api/integrations/atlassian/oauth/start     Begin OAuth flow
+GET  /api/integrations/atlassian/oauth/callback  OAuth callback
+POST /api/integrations/atlassian/request         Proxy API request
+
+--- MICROSOFT GRAPH ---
+POST /api/integrations/microsoft/oauth/start     Begin OAuth flow
+GET  /api/integrations/microsoft/oauth/callback  OAuth callback
+POST /api/integrations/microsoft/request         Microsoft Graph API relay
+
+--- NOTEBOOKLM ENTERPRISE ---
+GET  /api/integrations/notebooklm/enterprise/status      Enterprise status
+GET  /api/integrations/notebooklm/enterprise/notebooks   List notebooks
+POST /api/integrations/notebooklm/enterprise/notebooks   Create notebook
+POST /api/integrations/notebooklm/enterprise/sources/batch_create  Add sources
+
+================================================================================
+SECTION 7: DATA/INTEGRATIONS DIRECTORY (packet storage)
+================================================================================
+
+data/integrations/
+  abacus/
+    cli-probe-status.json
+    packets/ (9 work packets, dates 2026-03-07 to 2026-03-17)
+  worker-router/
+    dispatches/ (21 dispatches, dates 2026-03-08 to 2026-03-17)
+
+================================================================================
+SECTION 8: GATEWAY CONFIG (config/asolaria.gateway.json)
+================================================================================
+
+Gateway binds to 127.0.0.1:4791 with token auth.
+Allowed tools: registry.list, health.get, heartbeat.run, cron.list, cron.run,
+               github.status, github.repos, browser.task, localops.run
+Require approval: localops.run, sandbox.execute
+Scheduler: heartbeat every 15 min, connector_health_every_5m, model_router_check_daily, security_audit_weekly
+Authority: operator_primary default, handover guards enabled
+Audit: enabled, verified every 10 min
+
+================================================================================
+SECTION 9: MCP INTEGRATIONS (Claude Code deferred tools)
+================================================================================
+
+Three MCP server integrations active in the current Claude session:
+
+1. MCP_DOCKER — Multi-purpose MCP server with:
+   - Browser automation (navigate, click, fill, screenshot, etc.)
+   - Notebook management (create, upload, edit)
+   - GraphQL query execution
+   - SQL execution
+   - Workspace management (starter workspaces, regions)
+   - User info and organization info
+
+2. claude_ai_Gmail — Gmail MCP integration:
+   - gmail_get_profile, gmail_search_messages, gmail_read_message
+   - gmail_read_thread, gmail_create_draft, gmail_list_drafts
+   - gmail_list_labels
+
+3. claude_ai_Linear — Linear project management MCP:
+   - Issues, projects, milestones, cycles, documents
+   - Comments, labels, teams, users
+   - Full CRUD operations
+
+4. claude_ai_Slack — Slack MCP integration:
+   - slack_send_message, slack_read_channel, slack_read_thread
+   - slack_search_public, slack_search_users, slack_create_canvas
+   - slack_schedule_message
+
+================================================================================
+SECTION 10: EXTERNAL SERVICES SUMMARY (complete map)
+================================================================================
+
+CATEGORY          SERVICE                  AUTH METHOD           CONNECTOR EXISTS  STATUS ROUTE  CONFIG ROUTE
+----------------  -----------------------  --------------------  ---------------   -----------   -----------
+AI/LLM            Anthropic Claude CLI     Local CLI binary      Yes               No            No
+AI/LLM            OpenAI Codex CLI         Local CLI binary      Yes               No            No
+AI/LLM            Cursor AI Agent          Local CLI binary      Yes               No            No
+AI/LLM            Gemini CLI               Local CLI binary      Yes               No            No
+AI/LLM            Gemini API (AI Studio)   API Key               Yes               Yes           Yes
+AI/LLM            Gemini Live (WebSocket)  GCP Service Account   Yes               Yes           No
+AI/LLM            Vertex AI (Gemini)       GCP Service Account   Yes               Yes           Yes
+AI/LLM            External Brain (OpenAI)  API Key               Yes               Yes           Yes
+AI/LLM            External Brain (Cursor)  API Key               Yes               Yes           Yes
+AI/LLM            External Brain (Antigrav)API Key               Yes               Yes           Yes
+AI/LLM            Abacus AI                Config (browser)      Yes               Yes           Yes
+AI/LLM            Augment Context MCP      Config + auth         Yes               Yes           Yes
+AI/LLM            NotebookLM Enterprise    GCP Service Account   Yes               Yes           No
+AI/LLM            OpenAI Web Chat          Browser automation    No (uses chrome)  Yes           No
+AI/LLM            Gemini Enterprise Web    Browser automation    No (uses chrome)  Yes           No
+Voice             Voice Transcription      API Key (OpenAI)      Yes               No            No
+Orchestration     Symphony                 Config (Linear+repo)  Yes               Yes           Yes
+Cloud             Google Cloud Platform    Service Account JSON  Yes               Yes           Yes
+Cloud             Google OAuth             OAuth 2.0             Yes               Yes           Yes
+Cloud             Google Workspace CLI     CLI + OAuth tokens    Yes               Yes           No
+Cloud             Microsoft Graph          OAuth 2.0             Yes               Yes           Yes
+CRM               HubSpot CRM             OAuth 2.0             Yes               Yes           Yes
+Project Mgmt      Atlassian (Jira/Conf)    OAuth 2.0             Yes               Yes           Yes
+Project Mgmt      Linear                   MCP integration       No (MCP only)     No            No
+Dev Tools         GitHub                   PAT                   Yes               Yes           Yes
+Messaging         Slack                    Bot Token             Yes               Yes           Yes
+Messaging         Telegram Bot             Bot Token             Yes               Yes           Yes
+Messaging         Gmail                    MCP integration       No (MCP only)     No            No
+Transport         MQTT Broker              Broker URL + creds    Yes               Yes           Yes
+Network           Wake-on-LAN              MAC addresses         Yes               No            No
+Browser           Chrome Launcher          Local binary          Yes               No            No
+Browser           ContactOut Extension     Browser extension     No (uses chrome)  Yes           No
+Browser           Playwright Screenshots   Local library         Yes               No            No
+Phone             Phone Mirror (ADB)       USB/ADB               Yes               No            No
+Phone             Phone Pro Mirror (scrcpy)USB/ADB               Yes               No            No
+Phone             Phone Termux (ADB)       USB/ADB               Yes               No            No
+Phone             Phone Browser History    USB/ADB               Yes               No            No
+Phone             Phone Developer Options  USB/ADB               Yes               No            No
+Desktop           Desktop Capture          Local PowerShell      Yes               No            No
+Desktop           Desktop Control          Local PowerShell      Yes               No            No
+Desktop           Desktop Display          Local PowerShell      Yes               No            No
+Desktop           Virtual Display          Local binary          Yes               No            No
+Desktop           Power Automate Desktop   Local binary          Yes               No            No
+Desktop           UI Visual Audit          Local Playwright      Yes               No            No
+Internal          OpenClaw CLI             Local CLI             Yes               No            No
+Internal          Worker Router            Internal dispatch     Yes               No            No
+Internal          Hooks System             Internal events       Yes               No            No
+Internal          Local Ops Runner         Internal scripts      Yes               No            No
+Internal          Local Rebuild Lab        Internal reports      Yes               No            No
+Internal          Avatar NPC System        Internal simulation   Yes               No            No
+
+================================================================================
+SECTION 11: AGENT INDEX REFERENCES (data/agent-index/)
+================================================================================
+
+Key IX entries about integrations:
+- IX-316 / IX-320: Full system inventory (~140K lines, 45 connectors, 60 modules, 38 routes)
+- IX-358: External connector inventory (45 connectors)
+- IX-378: ContactOut browser extension launcher
+- IX-379: HubSpot CRM integration (OAuth, portal 51209071, token EXPIRED 2026-03-14)
+- IX-380: Google API Hub (OAuth + GCP + Workspace CLI + API relay)
+- IX-386: Business integrations (Telegram + Slack + Atlassian)
+- IX-387: AI workspace integrations (Abacus + Augment + Symphony + NotebookLM)
+- IX-388: Browser task integrations (OpenAI Web + Gemini Enterprise + MCP cache)
+
+Cross-colony references (XREF-COLONIES.md):
+- 98 confirmed cross-colony matches between IX (Asolaria) and LX (Liris) entries
+- Notable: LX-053 counted 41 connectors vs IX-358's 45 (updated count)
+
+================================================================================
+SECTION 12: KNOWN ISSUES AND WARNINGS
+================================================================================
+
+1. HubSpot OAuth token EXPIRED (2026-03-14) - needs re-auth
+2. Vertex AI: NEVER auto-select as brain (billing incident) - paid research ONLY
+3. GCP billing (018AD9-3319F5-507615) may fail April 1 - fallback: brainPrimaryProvider=anthropic
+4. Server responded "Cannot GET /api/integrations/status" (no aggregate status endpoint)
+5. .env file access blocked by security hook (asolaria_guard.py)
+
+================================================================================
+TOTALS
+================================================================================
+
+Connectors:                    45 files
+Vault secret paths:            25
+External services with APIs:   18 (requiring keys/tokens)
+Local/CLI integrations:        13 (no API keys needed)
+Phone/ADB integrations:        5
+Desktop integrations:          6
+Internal-only modules:         6
+Status endpoints:              26
+Config endpoints:              20+
+MCP integrations:              4 (Docker, Gmail, Linear, Slack)
+Integration data packets:      30 (9 Abacus + 21 worker-router)
+
+GRAND TOTAL EXTERNAL SERVICE CONNECTIONS: 50 (connectors + MCP integrations + browser-only integrations)
+================================================================================

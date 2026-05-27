@@ -1,0 +1,42 @@
+Mom's Meals – Genesys Live Chat Implementation
+Simple implementation summary • January 28, 2026
+1. Summary
+The website chat entry point was migrated from NICE Incontact to Genesys Cloud Web Messenger. A custom pre-chat form collects customer details before Genesys is loaded. After successful submission, the Genesys widget is lazy-loaded, the details are attached to the conversation, and the Messenger window opens automatically.
+2. Customer Flow
+During business hours, a bottom-right “Live Chat” button is visible.
+Clicking the button opens a modal pre-chat form (First Name, Last Name, Phone Number).
+Submitting the form validates required fields and checks availability (server endpoint).
+If available, Genesys loads on-demand and the Messenger opens automatically.
+3. Data Passed to Genesys
+After the form is submitted, these Genesys conversation custom attributes are set:
+FirstName
+LastName
+PhoneNumber (digits-only)
+4. Hours of Operation
+The “Live Chat” button is only shown during these hours (America/Chicago time):
+Monday–Friday, 7:00 AM to 6:00 PM Central Time.
+The button is hidden on configured holidays (New Year’s Day, Memorial Day, July 4, Labor Day, Thanksgiving, Christmas), with observed Friday/Monday closures if the holiday falls on a weekend.
+Availability is enforced in two layers: (1) client-side show/hide logic and (2) a server-side availability check on form submit.
+5. Implementation Components
+Front-end:
+_LiveChatModal.cshtml – button + modal pre-form + Genesys lazy-load/start logic
+chat-availability.js – hours/holiday logic + server availability call
+_live-chat.scss – styling (responsive) and basic accessibility helpers
+Back-end:
+GET /api/genesys/chat-availability – returns { open: true/false }
+GenesysService – OAuth client-credentials + schedule group evaluation (Genesys Cloud API)
+Dependencies: jQuery, Newtonsoft.Json, TimeZoneConverter.
+6. Configuration Checklist
+Web.config (appSettings): GenesysClientId, GenesysClientSecret, GenesysRegion, GenesysScheduleGroupId.
+Genesys Web Messenger: environment + deploymentId (site/skill-specific).
+If CSP is enabled, allow-list required Genesys script/frame/websocket domains (example provided in the package).
+7. High-Level Integration Steps
+Copy the provided files into the target project (keep folder structure).
+Include the partial view (_LiveChatModal.cshtml) in the site layout before </body>.
+Compile/import the SCSS and ensure the JS file is served.
+Add Web.config settings (and CSP allow-lists if needed), then test during and outside business hours.
+8. Troubleshooting (Quick Checks)
+Button not visible: confirm current Central Time is within hours and not a holiday.
+Messenger does not open: check browser console for CSP/script errors; verify deploymentId/environment.
+Attributes not visible: confirm the Genesys deployment supports Database.set and attributes are mapped in Genesys/agent tooling.
+Detailed integration instructions and full source files are included in the delivery package.

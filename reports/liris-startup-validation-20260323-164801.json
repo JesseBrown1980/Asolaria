@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "reportPath": "C:\\Users\\acer\\Asolaria\\reports\\liris-next-phase-startup-report-template.md",
+  "generatedAt": "2026-03-23T16:48:01.8427843-03:00",
+  "verdict": "blocked_runtime",
+  "readyForNextPhase": false,
+  "checks": [
+    {
+      "name": "branch_recorded",
+      "ok": true,
+      "detail": "- Commit:"
+    },
+    {
+      "name": "commit_recorded",
+      "ok": true,
+      "detail": "- Git status:"
+    },
+    {
+      "name": "node_version_recorded",
+      "ok": true,
+      "detail": "- npm version:"
+    },
+    {
+      "name": "npm_version_recorded",
+      "ok": true,
+      "detail": "- Codex version:"
+    },
+    {
+      "name": "codex_version_recorded",
+      "ok": true,
+      "detail": "## Install"
+    },
+    {
+      "name": "install_result_recorded",
+      "ok": true,
+      "detail": "- If failed, exact error:"
+    },
+    {
+      "name": "install_not_failed",
+      "ok": true,
+      "detail": "no install failure detected"
+    },
+    {
+      "name": "health_json_recorded",
+      "ok": true,
+      "detail": "health block present"
+    },
+    {
+      "name": "health_ok_true",
+      "ok": false,
+      "detail": "missing ok=true"
+    },
+    {
+      "name": "mqtt_result_recorded",
+      "ok": false,
+      "detail": "missing"
+    },
+    {
+      "name": "mqtt_success",
+      "ok": false,
+      "detail": "18883 not confirmed reachable"
+    }
+  ],
+  "recommendations": [
+    "Ask Liris for the exact /api/health/fast response or the startup error from the \npm start shell.",
+    "Keep manual owner relay as the only return path. Do not assume MQTT reachability yet.",
+    "If the health JSON is present but ok is not true, treat the Rayssa runtime as blocked, not partially ready.",
+    "Ask for a resend using the report template if key fields are missing."
+  ]
+}

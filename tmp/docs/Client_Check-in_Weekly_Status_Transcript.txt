@@ -1,0 +1,75 @@
+Client Check-in Meeting
+Weekly Status and Talking Points
+Date: February 25, 2026
+At-a-glance
+Primary focus: #1072 Nursing Notes PDF upload background job (CareTend document upload visibility).
+Finished: #1082 DMS - Configure Azure Resources.
+Start #1083 DMS - Health Check Endpoint
+Completed this week: #1176 Feature Flag middleware; #1081 DMS - Create Database Tables; PR reviews/support.
+60-90 second readout script
+Hi everyone - quick status update from my side for this week.
+
+On ticket #1072 (Nursing Notes PDF upload background job), I investigated the CareTend document upload issue where we sometimes receive a CareTendDocumentId in logs but the PDF is not consistently visible under the patient in the CareTend UI. I documented the findings, corrected the request payload mapping (including nested field casing), standardized the upload flow to the patient document endpoint, and added stronger diagnostics (full request and response logging) plus a small verification endpoint to confirm whether a returned DocumentId is actually retrievable. I am discussing to fix the issue with Xavio, Theo.
+
+On ticket #1082 (DMS - Configure Azure Resources), I continued working through the Azure resource configuration and we discussed the plan for the remaining steps. This work is still in progress.
+
+Other items: I completed ticket #1176 (Feature Flag middleware) and opened the PR, fixed ticket #1081 (DMS - Create Database Tables), and reviewed several PRs.
+
+Next steps: I will validate #1072 end-to-end with a controlled upload to confirm the PDF shows under the correct patient in CareTend, and then complete the remaining work on #1082.
+
+Client ask: if you can confirm the required CareTend payload fields and any tenant/workflow constraints for patient document uploads, or share a known-good sample payload/response, it will help finalize validation.
+3-5 minute detailed script
+Hi everyone - here is my update for the week, focusing on delivery status and current risks.
+
+Ticket #1072 - Nursing Notes PDF upload background job:
+The key issue we were seeing is that an ID may be returned from CareTend, but the document is not always linked in a way that makes it visible under the patient in the CareTend UI. This week I investigated the endpoint behavior and our request mapping, and implemented fixes to align with patient-visible document creation. Specifically, I standardized uploads to the patient document endpoint, corrected a JSON serialization mismatch in nested fields, and added more complete request/response logging so we can see CareTend validation behavior directly in our logs. I also added a verification endpoint so we can confirm whether a returned CareTendDocumentId maps to an actually retrievable document. A PR is open for review.
+
+What remains for #1072 is controlled retesting and validation: run a test upload, confirm we receive a valid DocumentId, confirm the verification endpoint can retrieve it, and confirm it appears in the CareTend patient UI for the same patient.
+
+Ticket #1082 - DMS Configure Azure Resources:
+I continued work on the Azure resources configuration and we reviewed the approach/plan. This is still in progress and is my next priority after #1072 validation.
+
+Other support work:
+- Completed ticket #1176 (Feature Flag middleware) and opened the PR.
+- Fixed ticket #1081 (DMS - Create Database Tables).
+- Reviewed several PRs to support the team.
+
+Risks and asks:
+For #1072, final confirmation depends on validating the CareTend payload contract for patient document uploads in this tenant/environment (required fields, workflow group constraints, and any tenant-specific rules). If you can confirm the official contract or share a known-good example, we can close the loop quickly.
+
+Happy to walk through the #1072 findings and the validation plan if helpful.
+Work completed this week
+Ticket #1072: Investigated and fixed CareTend document upload behavior; documented findings; opened PR.
+Ticket #1082: DMS - Configure Azure Resources (in progress); planning discussion completed.
+Ticket #1176: Feature Flag - Middleware completed; opened PR.
+Ticket #1081: DMS - Create Database Tables fixed.
+Reviewed several PRs across the codebase.
+In progress and next steps
+Ticket #1072: Run controlled upload tests and validate document visibility in CareTend UI; monitor logs and verification endpoint output.
+Ticket #1082: Finish Azure resource configuration and confirm deployment readiness.
+Continue PR reviews and support as needed.
+Appendix A - Ticket #1072 key notes
+Current behavior observed
+In some cases, our logs show a CareTendDocumentId, but the PDF is not visible under the intended patient in CareTend.
+Endpoint behavior differed between documents/externalfile and documents/patient, creating ambiguity during testing.
+Fixes implemented
+Standardized document creation uploads to POST documents/patient (patient-visible document endpoint).
+Corrected JSON serialization for nested assignedTo fields to ensure camelCase property names match CareTend expectations.
+Added full request/response logging (including raw response body) for diagnostics.
+Added a verification endpoint to confirm document retrievability by CareTendDocumentId.
+Validation checklist
+Trigger one nursing note upload (manual or background job).
+Confirm response status and DocumentId returned.
+Call verification endpoint using the DocumentId.
+Confirm document appears under the correct patient in CareTend UI.
+Confirm tracking row updated (Status=Success, CareTendDocumentId populated, UploadedAt populated).
+Appendix B - Support notes and Q&A
+If asked: what was the likely root cause?
+The most likely root cause was a request payload mapping/serialization mismatch in nested fields. CareTend appears to be sensitive to the expected JSON property names in assignedTo. When nested properties were serialized in PascalCase instead of camelCase, CareTend could return an ID but fail to reliably link the document to the patient.
+Client questions / asks
+Confirm the mandated CareTend endpoint for patient-visible attachments in this environment.
+Confirm required payload fields for patient document uploads (assignedTo, workflowGroupName, and any tenant-specific constraints).
+Provide a known-good sample payload/response from CareTend support if available.
+Provide 1-2 test patients or a testing workflow where document visibility can be validated quickly.
+One-line status summary
+#1072: Fix implemented and PR open; validating CareTend UI visibility.  #1082: Azure resources configuration in progress.  Other: #1176, #1082  completed; #1081 fixed; PR reviews done.

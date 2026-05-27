@@ -1,0 +1,17 @@
+@tool PHONE-ATTACH-AUTOPILOT
+tool=IX-538
+chain=IX-538 IX-535 IX-534 IX-532 IX-501 IX-311 IX-537
+alias=samsung-beast
+serial=RQCT302BXMA
+stage=wait_adb
+mode=degraded
+truth=USB attach should become the command. Manual babysitting is the bug.
+state=usb:true adb:false authorized:false scrcpy:true tasker:true termux:true screenBroken:true
+next=Bring the device to real ADB readiness so the attach chain can fire.
+phase1=usb-detect active=true USB presence confirmed.
+phase2=adb-readiness active=false Device must surface in adb and accept authorization.
+phase3=bridge-wave active=false adb -s RQCT302BXMA reverse tcp:4781 tcp:4781 | adb -s RQCT302BXMA forward tcp:4799 tcp:4799 | adb -s RQCT302BXMA forward tcp:4800 tcp:4800
+phase4=scrcpy-auto-open active=false scrcpy -s RQCT302BXMA --stay-awake --video-bit-rate=8M --max-fps=60
+phase5=tasker-phone-side-trigger active=false Phone-local Tasker profile should react to attach and launch the local automation.
+phase6=termux-bootstrap active=false Hand off to Termux/bootstrap once the bridge and mirror are live.
+blockers=adb-not-ready,screen-broken

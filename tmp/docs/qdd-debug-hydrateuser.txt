@@ -1,0 +1,266 @@
+QDD EZ Protect Dashboard — hydrateUser 500 Debug Report
+========================================================
+Date: 2026-03-25
+Files examined:
+  - D:\projects\QDD\ebacmap-master\libs\db\src\models\User.ts
+  - D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\common\core\Endpoint.ts
+  - D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\auth\dev-bypass.ts
+  - D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\common\core\types.ts
+  - D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\types\iron-session.d.ts
+
+========================================================
+ROOT CAUSE: FIELD NAME MISMATCH — `client` vs `clientId`
+========================================================
+
+The Mongoose UserSchema (User.ts line 180-183) defines the field as:
+
+    client: { type: Schema.Types.ObjectId, ref: 'Client' }
+
+The hydrateUser function (Endpoint.ts line 78) reads it as:
+
+    clientId: user!.client!.toHexString() || ''
+
+This means the MongoDB document MUST have a field named `client` (not `clientId`)
+containing a valid ObjectId.
+
+However, the dev-bypass session (dev-bypass.ts line 31) sets:
+
+    clientId: '69c3ecbdecd240dd83e93d3b'
+
+This is the SESSION shape — fine for the cookie. But the QUESTION is whether
+the actual MongoDB document with _id '69c3ecbdecd240dd83e93d3d' was seeded
+with field `client` or `clientId`.
+
+========================================================
+THE CRASH PATH (step by step)
+========================================================
+
+1. User hits /api/auth/dev-bypass → session cookie gets set with
+   session.user.id = '69c3ecbdecd240dd83e93d3d'
+
+2. User hits any protected EZ Protect endpoint
+
+3. Endpoint.register() (line 264-268) reads session:
+   session.user → UserSessionTUser { id: '69c3ecbdecd240dd83e93d3d', ... }
+
+4. hydrateUser(user) is called (line 285) with that session user
+
+5. Line 57: models.UserModel.findById('69c3ecbdecd240dd83e93d3d')
+   → THIS IS THE FIRST FAILURE POINT.
+   If no document with this _id exists in MongoDB, `user` is null.
+
+6. Line 78: user!.client!.toHexString()
+   → THIS IS THE SECOND FAILURE POINT.
+   If the document exists but was seeded with `clientId` instead of `client`,
+   then user.client is undefined → .toHexString() throws → 500.
+
+7. Line 82-102: user!.permissions.map(p => { ... p.location.toHexString() })
+   → THIS IS THE THIRD FAILURE POINT.
+   If permissions was seeded as a flat object { ezProtect: {...} } instead of
+   an array of { location: ObjectId, ezProtect: {...}, ... } objects,
+   .map() throws or .location is undefined → 500.
+
+========================================================
+WHAT THE USER SCHEMA ACTUALLY REQUIRES
+========================================================
+
+Mongoose schema fields (User.ts lines 178-276, strict: false):
+  - client:      ObjectId ref 'Client'      (NOT clientId)
+  - email:       String
+  - firstName:   String
+  - lastName:    String
+  - role:        String
+  - status:      String
+  - permissions: ARRAY of objects, each with:
+      - location:      ObjectId ref 'Location'
+      - users:         PermissionSchema
+      - sites:         PermissionSchema
+      - billing:       PermissionSchema
+      - categories:    PermissionSchema
+      - organisms:     PermissionSchema
+      - zones:         PermissionSchema
+      - tests:         PermissionSchema
+      - facilityMaps:  PermissionSchema
+      - reports:       PermissionSchema
+      - testResults:   PermissionSchema
+      - ebacmap:       PermissionSchema
+      - novalum:       PermissionSchema
+      - ezProtect:     PermissionSchema
+      - swabSchedule:  PermissionSchema
+      - capa:          PermissionSchema
+      - tour:          PermissionSchema
+      - ftp:           PermissionSchema
+  - locations:   NOT in the schema but referenced in code (line 58 interface,
+                 line 104 in hydrateUser). Schema is strict:false so it stores.
+  - paymentMethods: Array
+  - dashboardReports: Array of ObjectId ref 'Report'
+
+PermissionSchema shape:
+  { action: String, zones: [ObjectId], sites: [ObjectId], categories: [ObjectId],
+    organisms: [ObjectId], tests: [ObjectId], facilityMaps: [ObjectId],
+    reports: [ObjectId], create: Boolean, update: Boolean, close: Boolean,
+    reopen: Boolean, canSubmit: Boolean }
+
+========================================================
+WHAT dev-bypass.ts SEEDS INTO SESSION (NOT MongoDB)
+========================================================
+
+The dev-bypass only sets the SESSION COOKIE. It does NOT insert a document
+into MongoDB. So if nobody separately inserted a User document with
+_id: ObjectId('69c3ecbdecd240dd83e93d3d') into the users collection,
+findById returns null and everything after line 57 crashes with:
+  "Cannot read properties of null (reading '_id')"
+
+========================================================
+DIAGNOSIS
+========================================================
+
+There are TWO bugs:
+
+BUG 1 (CRITICAL): No MongoDB user document exists.
+  The dev-bypass.ts sets a session cookie but never creates a MongoDB document.
+  hydrateUser calls findById → null → crash on line 69 (user?._id.toHexString)
+  or line 71 (user!._id.toHexString).
+
+BUG 2 (STRUCTURAL): If the user WAS seeded manually with `clientId` instead
+  of `client`, Mongoose ignores the field for the `client` path.
+  user.client would be undefined → line 78 crashes.
+
+BUG 3 (STRUCTURAL): If permissions were seeded as a flat object instead of
+  an array of {location: ObjectId, ...} subdocuments, .map() fails or
+  p.location is undefined.
+
+========================================================
+CORRECT SEED SCRIPT
+========================================================
+
+// Run this in mongo shell or via a Node script with mongoose:
+
+const mongoose = require('mongoose');
+
+async function seedDevUser() {
+  await mongoose.connect('mongodb://localhost:27017/ebacmap-local-test');
+  const db = mongoose.connection.db;
+
+  const clientId = new mongoose.Types.ObjectId('69c3ecbdecd240dd83e93d3b');
+  const locationId = new mongoose.Types.ObjectId('69c3ecbdecd240dd83e93d3c');
+  const userId = new mongoose.Types.ObjectId('69c3ecbdecd240dd83e93d3d');
+
+  // 1. Seed Client document
+  await db.collection('clients').updateOne(
+    { _id: clientId },
+    { $setOnInsert: {
+      name: 'Charm Sciences (Dev)',
+      slug: 'charm-dev',
+      features: { ezProtect: true, novalum: true },
+      status: 'active'
+    }},
+    { upsert: true }
+  );
+
+  // 2. Seed Location document
+  await db.collection('locations').updateOne(
+    { _id: locationId },
+    { $setOnInsert: {
+      name: 'Test Facility',
+      client: clientId,              // <-- `client` not `clientId`
+      status: 'active',
+      subscriptionFeatures: {
+        detailPhotos: { enabled: false }
+      }
+    }},
+    { upsert: true }
+  );
+
+  // 3. Seed User document — THIS IS THE CRITICAL ONE
+  const fullPermBlock = {
+    action: 'manage',
+    zones: [],
+    sites: [],
+    categories: [],
+    organisms: [],
+    tests: [],
+    facilityMaps: [],
+    reports: [],
+    create: true,
+    update: true,
+    close: true,
+    reopen: true,
+    canSubmit: true
+  };
+
+  await db.collection('users').updateOne(
+    { _id: userId },
+    { $setOnInsert: {
+      client: clientId,              // <-- MUST be `client`, NOT `clientId`
+      email: 'charm-dev@quickdrawdevelopment.com',
+      firstName: 'Dev',
+      lastName: 'User',
+      role: 'company_admin',
+      status: 'active',
+      locations: [locationId],       // <-- Array of ObjectIds (referenced in hydrateUser line 58)
+      permissions: [                 // <-- MUST be an ARRAY of subdocuments
+        {
+          location: locationId,      // <-- MUST be ObjectId, NOT string
+          users: fullPermBlock,
+          sites: fullPermBlock,
+          billing: fullPermBlock,
+          categories: fullPermBlock,
+          organisms: fullPermBlock,
+          zones: fullPermBlock,
+          tests: fullPermBlock,
+          facilityMaps: fullPermBlock,
+          reports: fullPermBlock,
+          testResults: fullPermBlock,
+          ebacmap: fullPermBlock,
+          novalum: fullPermBlock,
+          ezProtect: fullPermBlock,
+          swabSchedule: fullPermBlock,
+          capa: fullPermBlock,
+          tour: fullPermBlock,
+          ftp: fullPermBlock
+        }
+      ],
+      paymentMethods: [],
+      dashboardReports: [],
+      auAdmin: false,
+      isPrimaryCompanyAdmin: true,
+      isOperator: false,
+      numLogins: 0,
+      tableHeaders: [],
+      ssExportHeaders: [],
+      ssExportHeadersOrdered: [],
+      environments: []
+    }},
+    { upsert: true }
+  );
+
+  console.log('Dev user seeded successfully');
+  console.log('  User:     69c3ecbdecd240dd83e93d3d');
+  console.log('  Client:   69c3ecbdecd240dd83e93d3b');
+  console.log('  Location: 69c3ecbdecd240dd83e93d3c');
+  await mongoose.disconnect();
+}
+
+seedDevUser().catch(err => { console.error(err); process.exit(1); });
+
+========================================================
+KEY FIELD MISMATCHES TO WATCH
+========================================================
+
+  WRONG (what was likely seeded)        CORRECT (what schema expects)
+  ──────────────────────────────        ─────────────────────────────
+  clientId: ObjectId(...)               client: ObjectId(...)
+  permissions: { ezProtect: {...} }     permissions: [{ location: ObjectId, ezProtect: {...}, ... }]
+  locations: [ObjectId] (missing)       locations: [ObjectId] (must be present, hydrateUser reads it)
+  No MongoDB document at all            Must exist — dev-bypass only sets cookie, not DB
+
+========================================================
+QUICK FIX (if you just want the dashboard to stop 500-ing)
+========================================================
+
+Option A: Run the seed script above, then hit /api/auth/dev-bypass, then /ez-protect.
+
+Option B: Add a null guard in hydrateUser (Endpoint.ts line 57):
+  if (!user) throw new UnauthorizedError('Session user not found in database');
+  This turns the 500 into a proper 401.

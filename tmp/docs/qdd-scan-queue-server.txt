@@ -1,0 +1,307 @@
+================================================================================
+QDD QUEUE-SERVER DEEP SCAN — 2026-03-25
+D:\projects\QDD\ebacmap-master\apps\queue-server\
+================================================================================
+
+FILES SCANNED:
+  src/index.ts, src/Queue.ts, src/types.ts, src/ChangeStreamMonitor.ts,
+  src/version.ts, src/use-cases/QueueUseCase.ts,
+  17 use-case files, 4 util files, 6 DTO files
+
+================================================================================
+CRITICAL BUGS
+================================================================================
+
+1. UNHANDLED ASYNC IN forEach — SILENT FAILURES (Queue.ts + multiple use cases)
+   ──────────────────────────────────────────────────────────────────────────────
+   Files:
+     - Queue.ts line 247: swabSchedules.forEach(async (swabSchedule) => { ... })
+     - ImportTestResult/UseCase.ts line 643: swabSchedules.forEach(async ...)
+     - ImportTestResult/UseCase.ts line 651: singleMultiCombined.forEach(async ...)
+     - CheckSwabsForCompletedTests/UseCase.ts line 247: swabSchedules.forEach(async ...)
+     - CheckSwabsForCompletedTests/UseCase.ts line 254: singleMultiCombined.forEach(async ...)
+
+   Problem: Array.forEach does NOT await async callbacks. The async lambdas
+   fire-and-forget. Any rejection inside is an unhandled promise rejection that
+   will crash Node in newer versions (--unhandled-rejections=throw, default
+   since Node 15+). Even if it doesn't crash, the database writes inside
+   (updateScheduledDate, ActivityLogModel.create, SwabScheduleModel.updateOne)
+   race against each other and against the caller that already returned.
+
+   The code at CheckSwabsForCompletedTests line 305 calls
+   `await this.commmitSwabSchedule(swabSchedule, models)` INSIDE a
+   forEach-async, meaning the commit fires before the inner
+   forEach-async that populates `changes` has finished. The schedule is
+   committed with EMPTY or PARTIAL changes.
+
+   Impact: PRODUCTION BUG. Swab schedule dates may not be marked complete.
+   Activity logs may be created with empty change records. Corrective actions
+   may not trigger. Data corruption is possible under concurrent load.
+
+   Fix: Replace .forEach(async ...) with for...of loops, or use
+   Promise.all(array.map(async ...)).
+
+2. STARTUP INIT forEach SWALLOWS ERRORS (index.ts line 105)
+   ──────────────────────────────────────────────────────────────────────────────
+   ```
+   environments.forEach(async env => {
+     ...
+     await queue.startQueue();
+   });
+   ```
+   Same forEach-async pattern. If startQueue() or initDbMonitoring() throws,
+   the promise rejection is UNHANDLED. The outer try/catch on line 104 will
+   NOT catch it because forEach returns void immediately.
+
+   Impact: If one environment's DB is unreachable at startup, the server
+   continues running but that queue silently never started. No alert, no log
+   beyond a Sentry capture deep inside getConnection().
+
+   Fix: Use for...of with await, or Promise.allSettled().
+
+3. queueJob CLOSES ITS OWN CONNECTION (Queue.ts line 176-178)
+   ──────────────────────────────────────────────────────────────────────────────
+   ```
+   if(this.connection) {
+     await closeDbConnection(this.appEnv);
+     this.connection = null;
+   }
+   ```
+   After every queueJob() call, the shared DB connection is closed. This means
+   the next processJobs() tick must re-establish the connection. Worse, if
+   processJobs() is running concurrently (setInterval fires while a job is
+   processing), the connection gets pulled out from under the running job.
+
+   Impact: Intermittent "connection closed" errors in production. Performance
+   degradation from constant reconnection overhead.
+
+   Fix: Remove the closeDbConnection call from queueJob. Let the connection
+   persist like it does everywhere else. Only close on stopQueue().
+
+4. shouldLock() CALLED WITHOUT await (Queue.ts line 231)
+   ──────────────────────────────────────────────────────────────────────────────
+   ```
+   if (!this.shouldLock()) {  // shouldLock returns Promise<boolean>
+   ```
+   shouldLock() is declared `async` (returns Promise<boolean>). Calling it
+   without await means the if-check always evaluates a truthy Promise object,
+   so the lock check NEVER blocks. The maxConcurrentJobs limit is effectively
+   bypassed in processJobs.
+
+   Impact: Multiple jobs can run concurrently beyond the configured limit,
+   defeating the purpose of the concurrency guard.
+
+   Fix: Add await: `if (!(await this.shouldLock()))`.
+
+5. Date.now().valueOf() BUG (Queue.ts line 259)
+   ──────────────────────────────────────────────────────────────────────────────
+   ```
+   const lockDeadline = new Date(Date.now().valueOf() - 600000);
+   ```
+   Date.now() returns a number. Calling .valueOf() on a number is a no-op so
+   this works by accident, but it's misleading. Same pattern on line 492. Not
+   a runtime bug but indicates confused intent.
+
+6. RACE CONDITION: getNextJob lock-then-update (Queue.ts lines 307-317)
+   ──────────────────────────────────────────────────────────────────────────────
+   The aggregation pipeline finds a candidate job, then a separate updateOne
+   sets lockedAt. Between the aggregate and the updateOne, another queue
+   instance (e.g. another container) could pick up the same job. The lock
+   should use findOneAndUpdate with atomic filter.
+
+   Impact: In multi-instance deployments, the same job can be processed twice.
+
+================================================================================
+HIGH-SEVERITY ISSUES
+================================================================================
+
+7. GetOverdueAssignedActions: MISSING await on queueJob (line 100)
+   ──────────────────────────────────────────────────────────────────────────────
+   ```
+   queueJob({...});  // no await
+   ```
+   The queueJob call (imported from @ebacmap/utils/queue) returns a Promise
+   that is never awaited. If it fails, it's an unhandled rejection.
+
+   Fix: Add await.
+
+8. ImportFtpResults: unawaited LocationModel.updateOne (line 354)
+   ──────────────────────────────────────────────────────────────────────────────
+   ```
+   models.LocationModel.updateOne({...}, {...}).catch(...);
+   ```
+   The .catch() prevents unhandled rejection, but the error is only logged to
+   console.error, not to Sentry. If the location deactivation fails, the queue
+   will keep retrying the same broken FTP connection every cycle.
+
+9. ImportFtpResults: logResults passes count instead of array (line 491)
+   ──────────────────────────────────────────────────────────────────────────────
+   ```
+   logs.append(`Imported ${validResults} results\n`);
+   ```
+   validResults is TestResultPartial[] (an array), not a number. This will
+   print "[object Object],[object Object],..." in the FTP log file.
+
+   Fix: Use validResults.length.
+
+10. SendIntervalReports: Mutates shared `now` variable (lines 107-114)
+    ──────────────────────────────────────────────────────────────────────────────
+    In the non-zoned branch:
+    ```
+    sendingTime = now;
+    sendingTime.setHours(...);
+    ```
+    sendingTime and now point to the SAME Date object. setHours mutates the
+    shared `now`, corrupting the time for all subsequent notification iterations.
+
+    Impact: Notifications after the first one in the non-zoned branch use a
+    corrupted time reference, causing incorrect send-time calculations.
+
+    Fix: Clone: `sendingTime = new Date(now.getTime())`.
+
+11. SendIntervalReports: Wrong Sentry import (line 7)
+    ──────────────────────────────────────────────────────────────────────────────
+    ```
+    import * as Sentry from '@sentry/nextjs';
+    ```
+    This is a Node.js queue server importing the Next.js Sentry SDK. While it
+    may work at runtime (both export captureException), it pulls in browser/
+    React dependencies unnecessarily and may cause bundling issues.
+
+    Same issue in SendPendingTestResultNotification/UseCase.ts line 9.
+
+    Fix: Use `@sentry/node`.
+
+12. ChangeStreamMonitor: handleUpdate query misses testresultreads (line 412)
+    ──────────────────────────────────────────────────────────────────────────────
+    When a non-testresults collection changes (e.g. sites, zones), the query
+    on line 412 queries `testresults` with a filter like `{site: documentKey}`,
+    but it only finds ONE testresult and updates ONE read model entry. If
+    multiple test results reference the same site, only the first is updated.
+
+    Fix: Use find() instead of findOne(), and update all matching read models.
+
+================================================================================
+MEDIUM-SEVERITY ISSUES
+================================================================================
+
+13. ChangeStreamMonitor: Constructor missing TypeScript types (line 38)
+    ```
+    constructor(mongoUri, collections, options = {})
+    ```
+    Parameters have no type annotations. mongoUri is typed as `string` in the
+    class field but the constructor param is `any`.
+
+14. QueueModel! non-null assertions everywhere (Queue.ts)
+    Lines 156, 205, 307, 332, 336, 370, 408, 425, 446, 493, 500
+    If getConnection() silently fails (it catches and swallows errors on
+    line 94-98), QueueModel remains null and the next non-null assertion
+    crashes with "Cannot read properties of null".
+
+    Fix: Check QueueModel before using it, or make getConnection throw
+    on failure.
+
+15. getConnection swallows errors silently (Queue.ts lines 84-98)
+    The catch block reports to Sentry (only in non-local) but does not
+    re-throw. Callers assume the connection succeeded. All downstream
+    code uses this.QueueModel! which will throw a confusing TypeError
+    instead of a clear "connection failed" error.
+
+16. Hardcoded system user ID (ImportTestResult line 125)
+    ```
+    const userId = MongoIdentifier.build('66a2a2527edf0be1be753593').value;
+    ```
+    Hardcoded ObjectId for the system user. If this user is deleted or
+    the ID changes across environments, all FTP imports silently use
+    a non-existent user reference.
+
+17. Hardcoded Sentry DSN (index.ts line 34)
+    The DSN is committed in source. Should come from environment variable.
+
+18. Multiple SIGTERM handlers (index.ts + ChangeStreamMonitor.ts)
+    index.ts registers SIGTERM/SIGINT for queue shutdown. Each call to
+    initDbMonitoring() also registers a SIGTERM handler. With 5 environments,
+    there are 6 SIGTERM handlers racing to call process.exit(0), potentially
+    before all cleanup finishes.
+
+19. recoverStuckJobs throws if QueueModel is null (Queue.ts line 490-491)
+    ```
+    if(!this.QueueModel) { throw new Error('QueueModel is not initialized'); }
+    ```
+    This throw propagates to processJobs() which catches it and logs it. But
+    recoverStuckJobs is called on EVERY processJobs tick. If the connection
+    was lost, this creates a flood of Sentry events every 5 seconds.
+
+20. ExportToFtp: reverseDateStatus uses wrong field name (line 246)
+    ```
+    await models.SwabScheduleModel.updateOne(
+      { _id: swabSchedule.id },
+      { $set: { scheduledDates: swabData.scheduledDates } }
+    );
+    ```
+    The field is likely `dates` (used everywhere else), not `scheduledDates`.
+    The revert-on-failure path may silently do nothing.
+
+21. GenerateTemporaryDownloadLink: Not a QueueUseCase
+    It extends UseCase directly, not QueueUseCase. It's instantiated as a
+    singleton in index.ts. This is fine but inconsistent with the rest of
+    the queue use cases.
+
+22. SendNotifications: Empty catch block (line 379)
+    ```
+    try { await addNotificationForUser(...); } catch {}
+    ```
+    User notification creation failures are silently swallowed.
+
+23. ChangeStreamMonitor: handleUpdate query for non-testresults (lines 400-411)
+    The query builds a filter based on collection name but queries the
+    `testresults` collection for all of them. For collections like `users`
+    or `plans`, the query field doesn't match testresults schema fields
+    (e.g. `{user: change.documentKey._id}` queries by the `user` field
+    in testresults, which works, but `{plan: change.documentKey._id}` would
+    fail since the testresults field is `planId` not `plan`).
+
+================================================================================
+LOW-SEVERITY / CODE QUALITY
+================================================================================
+
+24. Typo: "cron-environemnt" (index.ts lines 153, 205) — should be "environment"
+25. Typo: "commmitSwabSchedule" (CheckSwabsForCompletedTests line 320) — triple m
+26. Dead code: Extensive commented-out blocks in index.ts (lines 60-70, 117-118,
+    287-304, 319-347)
+27. Dead code: pdfDispatcher.ts is imported nowhere in the codebase
+28. Unused import: `type Model` imported in Queue.ts but Model is used only via
+    QueueModel which comes from getConnection
+29. The /queue endpoint (index.ts line 307) does nothing — all the actual
+    queueing is commented out. It just returns {env, version}.
+30. GET endpoints for mutations: /queue/pause and /queue/start use GET instead
+    of POST/PUT. These mutate server state and should not be GET requests.
+31. No authentication on any endpoint — /queue/pause, /queue/start, /health,
+    /locations/test-ftp are all publicly accessible.
+32. No request size limits on express.json() — potential DoS via large payloads.
+
+================================================================================
+SUMMARY
+================================================================================
+
+CRITICAL:  6 issues (forEach-async silent failures, connection lifecycle,
+           shouldLock not awaited, race conditions)
+HIGH:      6 issues (unawaited promises, data corruption, wrong Sentry SDK)
+MEDIUM:   10 issues (null assertions, swallowed errors, hardcoded values)
+LOW:       9 issues (dead code, typos, missing auth)
+
+The most dangerous pattern is the forEach-async anti-pattern, which appears
+in 5 places across 3 files. It causes silent data corruption in swab schedule
+completion — the core business logic of the queue server. The second most
+dangerous is the shouldLock() missing await, which makes the concurrency
+limiter completely non-functional.
+
+RECOMMENDED PRIORITY:
+  1. Fix all forEach-async to for...of with await
+  2. Add await to shouldLock() call
+  3. Remove closeDbConnection from queueJob
+  4. Atomic lock in getNextJob (findOneAndUpdate)
+  5. Fix SendIntervalReports shared Date mutation
+  6. Fix logResults validResults.length
+  7. Add await to GetOverdueAssignedActions queueJob
+  8. Switch @sentry/nextjs to @sentry/node

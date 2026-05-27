@@ -1,0 +1,1109 @@
+# Recent Downloads First Pass - 2026-03-22T18:48:24-03:00
+
+- Folder: `C:\Users\acer\Downloads`
+- Count: `15`
+- Gemini model: `gemini-2.5-flash`
+- API key env: `GEMINI_API_KEY`
+
+## Batch Themes
+
+- 3D visualization of code architecture and dependencies (1)
+- A knowledge graph with numbered nodes can serve as an efficient memory structure for AI agents. (1)
+- A process named 'Wibbling...' is running, consuming tokens. (1)
+- A security warning about running Gemini CLI in the home directory is present. (1)
+- A separate Gateway server provides secure tool authority and audit logging. (1)
+- AI integration for project assistance and content creation (1)
+- Agent policies within Asolaria prioritize safety, low-cost local solutions, and treating external AI content as untrusted. (1)
+- Asolaria application (1)
+- Asolaria is a monolithic Express.js server on Windows orchestrating AI agents and automation capabilities. (1)
+- Asolaria offers multiple frontend interfaces including a main chat UI, mobile PWA, and a phone dashboard. (1)
+- Assessment of specific AWS serverless and PBM adjudication code presence. (1)
+- Calendar and email evidence linking individuals to specific companies/roles. (1)
+
+## 01. Screenshot 2026-03-22 171627.png
+
+- Type: `image`
+- Modified: `2026-03-22T17:16:44-03:00`
+- Size bytes: `207346`
+- Dimensions: `1907x1079`
+- Summary: Screenshot of a Google AI Studio usage dashboard, displaying graphs for 'Embedding Tokens per model' and 'Embedding Requests per model' for Gemini Embedding models 1 and 2, with significant spikes for Embedding 2 around March 12-13, 2026. Sections for 'Imagen Requests' and 'Vēo Requests' show no data. The view covers the last 28 days.
+- Primary subjects:
+  - Google AI Studio
+  - API Usage Monitoring
+  - Gemini Embedding Models
+  - Data Visualization
+  - Billing
+- Visible text:
+  - Welcome - SymfonyConnect
+  - [Billing Update] Gemini API us
+  - Usage | Google AI Studio
+  - aistudio.google.com/usage?project=winged-complex-390417&timeRange=last-28-days
+  - Apps
+  - Claude Local Admin...
+  - Medium article navigat...
+  - Messages | Free Te...
+  - Registration
+  - MyGeorgiaSouther...
+  - Address | Profile | O...
+  - Gerenciar Sua Assin...
+  - Messages | Free Te...
+  - OFFstep Dashboard...
+  - AI Music Video Crea...
+  - Todos os favoritos
+  - Google AI Studio
+  - Dashboard
+  - API keys
+  - Projects
+  - Usage
+  - Rate Limit
+  - Spend
+  - Billing
+  - Logs and Datasets
+  - Changelog
+  - Imagen Requests per model
+  - Vēo Requests per model
+  - No data available
+  - Embed content
+  - Embedding Tokens per model
+  - Embedding Requests per model
+  - UTC-8
+  - Feb 26
+  - Mar 5
+  - Mar 12
+  - Mar 19
+  - Mar 13, 2026
+  - Gemini Embedding 2
+  - 321.78K
+  - Gemini Embedding 1
+  - 0
+  - 400K
+  - 100K
+  - 3K
+  - 2K
+  - 1K
+  - What's new
+  - Get API key
+  - Settings
+  - plasmatroid@gmail.c...
+  - Usage data may take up to 15 minutes to update. Usage information displayed is for the API and does not reflect AI Studio usage, which is offered free of charge (when no API key is selected). For latency/traffic data & method filtering please visit the Google Cloud Console
+  - Pesquisar
+  - ENG
+  - US
+  - 5:16 PM
+  - 3/22/2026
+- Key ideas:
+  - Tracking usage of AI models (Gemini Embedding 1 and 2) over time.
+  - Significant spike in 'Embedding Tokens' and 'Embedding Requests' for Gemini Embedding 2 around March 12-13, 2026.
+  - No usage data for Imagen or Vēo models.
+  - Information regarding usage update delays and free usage conditions for AI Studio API.
+  - Partial personal identifier (email) visible.
+- Action signals:
+  - Get API key
+  - Visit the Google Cloud Console (for more detailed usage data)
+  - Review significant usage spikes for Gemini Embedding 2.
+- Sensitivity flags:
+  - Partial email address (plasmatroid@gmail.c...) which is Personally Identifiable Information (PII).
+  - Project ID (winged-complex-390417) which could be internal sensitive information.
+  - API usage data, which can be sensitive business information.
+- Confidence: `high`
+
+## 02. Screen Recording 2026-03-12 112932.mp4
+
+- Type: `video`
+- Modified: `2026-03-22T17:11:39-03:00`
+- Size bytes: `40370805`
+- Summary: The video showcases a software application featuring project and task management, study initialization, and various data visualization modes. It includes a dashboard for assay management and activity logs, an interface for setting up new studies with project todos, a 2D map-like view displaying project components and their priorities, and a 3D city-like visualization representing codebase structure. An AI chat assistant is also demonstrated for tasks like content generation.
+- Primary subjects:
+  - Project Management
+  - Software Development
+  - Data Visualization
+  - AI Assistant
+- Visible text:
+  - Biomedical Lab Workspace
+  - Assay Management
+  - Activity Log
+  - PM panel todo list doesn't auto-refresh after Summoner edits/completes/deletes a todo - stale list bug
+  - Add Complete/Delete actions to PM panel todo rows (context menu or swipe actions)
+  - Full Protocol Editor
+  - Initialize New Study
+  - Project Todos
+  - Study Setup
+  - 109 Active Settlements
+  - 26 Kingdoms
+  - 8 Ruins
+  - Legend: Trivial - High Priority, Medium - High Priority, Critical - High Priority
+  - Todo Enumerable
+  - Collect API endpoint repos and make a monorepo for creating my own http server
+  - AI Chat Assistant
+  - City A (Right)
+  - vite.config
+  - tailwind.config
+  - drizzle.config
+  - postcss.config
+  - City A rebuilt: Hierarchical Tree
+  - Chaos Dance Mode!
+  - Haiku Bot - Digital Poet
+  - Write a haiku about our current project
+  - Create documentation in poetic form
+  - Compose a verse about code
+  - Generate creative content
+  - Edit Todo
+  - Priority: Critical
+  - Status: Pending
+  - Project: qwdadas
+  - Target Agent: user
+  - Tags: API, backend, full-stack, monorepo, server
+  - users
+  - playground-service
+  - slack-bot
+  - voice-text
+  - similarity-service
+  - DEFAULT_STAGE_CONF
+- Key ideas:
+  - Centralized dashboard for task and activity monitoring
+  - Structured setup for new studies and projects
+  - Visual representation of tasks/projects with priority indicators
+  - 3D visualization of code architecture and dependencies
+  - AI integration for project assistance and content creation
+- Action signals:
+  - Navigation between dashboard views (Assay Management, Activity Log, Initialize New Study, Monitor)
+  - Interacting with project settings and task details
+  - Zooming and panning in graphical and 3D visualizations
+  - Opening and interacting with a todo item editor
+  - Invoking an AI chat assistant for various creative and technical tasks
+- Confidence: `high`
+
+## 03. Screenshot 2026-03-07 214918.png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:58-03:00`
+- Size bytes: `507582`
+- Dimensions: `946x841`
+- Summary: The image displays a dark-themed graph visualization, likely a network or dependency map, where nodes and edges are colored based on a 'risk mode'. The legend indicates different risk levels (critical, high, medium, low) and overlay types (added, changed). Various named entities and systems like 'google_status', 'router', 'phone', 'gemini-api', 'abacus', and 'symphony' are depicted as interconnected nodes.
+- Primary subjects:
+  - Graph visualization
+  - Network diagram
+  - Risk assessment
+  - System monitoring
+- Visible text:
+  - critical
+  - high
+  - medium
+  - low
+  - added overlay
+  - changed overlay
+  - Risk mode colors nodes and edges by the maximum observed risk level in the current visible graph. Diff overlays highlight newly added and changed visible graph elements.
+  - click a node/edge
+  - google_status: google st
+  - router
+  - asolaria
+  - phone
+  - chat-auto
+  - phone-edge-gemini
+  - subject
+  - codex
+  - gemini-api
+  - Abacus integration smoke
+  - 7560d5f36
+  - abacus manager
+  - abacus
+  - phone-live
+  - symphony
+  - symphony:4792
+  - symphony manager
+- Key ideas:
+  - Visualization of system components and their interconnections
+  - Color-coding nodes/edges by risk level
+  - Highlighting newly added or changed graph elements
+  - Monitoring or analysis of systems like Abacus, Symphony, Gemini-API, Google
+- Action signals:
+  - click a node/edge
+  - Investigate high-risk elements (implied by risk mode legend)
+  - Review changes/additions to the graph (implied by diff overlays)
+- Sensitivity flags:
+  - Potential internal system diagram
+  - Contains specific system/service names
+- Confidence: `high`
+
+## 04. Screenshot 2026-03-05 145601 (1).png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:55-03:00`
+- Size bytes: `182969`
+- Dimensions: `1787x988`
+- Summary: The image displays a Google Cloud console page focused on Gemini products. It introduces Gemini as an AI-powered collaborator for Google Cloud and IDEs, detailing two key offerings: Gemini Cloud Assist (currently enabled) and Gemini Code Assist. The page provides options for managing these products, subscriptions, and permissions.
+- Primary subjects:
+  - Google Cloud Platform
+  - Gemini AI
+  - Cloud computing products
+  - AI-powered development tools
+  - Product management interface
+- Visible text:
+  - Google Enterprise Cloud Acco...
+  - Admin for Gemini - My First Project
+  - console.cloud.google.com/gemini-admin/products?project=winged-complex-390417
+  - Apps
+  - Messages | Free Te...
+  - Registration
+  - MyGeorgiaSouthern...
+  - Gerenciar Sua Assin...
+  - Messages | Free Te...
+  - OFFstep Dashboard...
+  - AI Music Video Crea...
+  - Google Cloud
+  - My First Project
+  - Search (/) for resources, docs, products and more
+  - Search
+  - Admin for Gemini / Gemini products
+  - Gemini products
+  - Settings
+  - Manage subscriptions
+  - Manage permissions
+  - Welcome to Gemini for Google Cloud
+  - Gemini is your AI-powered collaborator available across Google Cloud and your IDE to help you work smarter and get more done faster. You can manage Gemini settings for this project or enable Gemini product offerings.
+  - Learn more about Gemini for Cloud
+  - Gemini product offerings
+  - Gemini Cloud Assist
+  - Gemini Cloud Assist is an AI-powered assistant embedded in Google Cloud products. Learn more about Gemini Cloud Assist
+  - Enabled
+  - Manage Gemini Cloud Assist
+  - Gemini Code Assist
+  - Increase software development and delivery velocity, powered by Google's foundation models
+  - Learn more about Gemini Code Assist
+  - Gemini Code Assist Pricing
+  - Get Gemini Code Assist
+  - Learn more about Gemini
+- Key ideas:
+  - Introduction to Gemini for Google Cloud
+  - Gemini as an AI-powered collaborator for cloud and IDEs
+  - Management of Gemini product settings and offerings
+  - Gemini Cloud Assist as an embedded AI assistant in Google Cloud
+  - Gemini Code Assist for accelerating software development
+- Action signals:
+  - Learn more about Gemini for Cloud
+  - Manage Gemini Cloud Assist
+  - Learn more about Gemini Code Assist
+  - Gemini Code Assist Pricing
+  - Get Gemini Code Assist
+  - Manage permissions
+  - Settings
+  - Manage subscriptions
+  - Search
+- Confidence: `high`
+
+## 05. Screenshot 2026-03-05 113543 (1).png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:52-03:00`
+- Size bytes: `219806`
+- Dimensions: `1630x964`
+- Summary: The image is a screenshot of the Google Cloud console, displaying the 'Overview' page for the Apigee API hub. It advertises simplifying API management and introduces new MCP APIs and tools.
+- Primary subjects:
+  - Google Cloud
+  - API Management
+  - Apigee
+  - API Hub
+- Visible text:
+  - console.cloud.google.com/apigee/api-hub/get-started?project=winged-complex-390417
+  - Messages | Free Te...
+  - Registration
+  - MyGeorgiaSouthern...
+  - Address | Profile | O...
+  - Gerenciar Sua Assin...
+  - OFFstep Dashboard...
+  - AI Music Video Crea...
+  - Mureka: AI Music G...
+  - USCIS Account - Ho...
+  - Occams Ops
+  - Google Cloud
+  - My First Project
+  - Search (/) for resources, docs, products and more
+  - Search
+  - Get started
+  - Overview
+  - Build with API hub
+  - Search
+  - API security
+  - management
+  - Simplify your API management with API hub
+  - Ready to continue managing your APIs? Register a new API or attach from your Apigee runtime projects.
+  - Learn More
+  - Register API
+  - Attach Apigee runtime
+  - Introducing MCP APIs and tools
+  - New
+  - Create a centralised registry for your agentic APIs and services. Import, register and manage MCP APIs and their associated tools directly in the API Hub.
+  - Know more
+  - Some other ways how to make the best of API hub
+- Key ideas:
+  - Simplify API management with API hub.
+  - Centralized registry for agentic APIs and services.
+  - Register new APIs or attach existing Apigee runtime projects.
+  - Introduction of new MCP APIs and tools.
+- Action signals:
+  - Register API (button)
+  - Attach Apigee runtime (button)
+  - Learn More (link)
+  - Know more (link)
+  - Search (input field and button)
+- Confidence: `high`
+
+## 06. Screenshot 2026-03-05 100539.png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:50-03:00`
+- Size bytes: `44967`
+- Dimensions: `1159x489`
+- Summary: A screenshot of a command-line interface for Google Gemini, showing a welcome screen with authentication status, details about the 'Gemini Code Assist in Google One AI Pro' plan, usage tips, a warning about running Gemini CLI in the home directory, and a security prompt asking the user to trust a folder for command execution.
+- Primary subjects:
+  - Google Gemini CLI
+  - AI Code Assistant
+  - Software Security
+  - Command Line Interface
+- Visible text:
+  - > GEMINI
+  - Authenticated with compute-default-credentials /auth
+  - Plan: Gemini Code Assist in Google One AI Pro
+  - Tips for getting started:
+  - 1. Ask questions, edit files, or run commands.
+  - 2. Be specific for the best results.
+  - 3. /help for more information.
+  - Warning you are running Gemini CLI in your home directory.
+  - This warning can be disabled in /settings
+  - Do you trust this folder?
+  - Trusting a folder allows Gemini to execute commands it suggests. This is a security feature to prevent accidental execution in untrusted directories.
+  - 1. Trust folder (plasmatoid)
+  - 2. Trust parent folder (home)
+  - 3. Don't trust
+- Key ideas:
+  - Gemini CLI is authenticated and ready for use.
+  - The user has access to Gemini Code Assist via Google One AI Pro.
+  - Instructions for interacting with Gemini are provided.
+  - A security warning about running Gemini CLI in the home directory is present.
+  - User consent is required to allow Gemini to execute commands in a specific directory or its parent, due to security considerations.
+- Action signals:
+  - /auth
+  - /help
+  - /settings
+  - Ask questions, edit files, or run commands.
+  - Be specific for the best results.
+  - Trust folder (plasmatoid)
+  - Trust parent folder (home)
+  - Don't trust
+- Sensitivity flags:
+  - Security Implications (granting an AI access to execute commands in directories, running CLI in home directory)
+  - User Data Interaction (potential for AI to edit files)
+- Confidence: `high`
+
+## 07. Screenshot 2026-03-03 204723 (1).png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:48-03:00`
+- Size bytes: `341610`
+- Dimensions: `607x610`
+- Summary: An app icon or logo featuring a stylized 'A' composed of a green leaf and blue waves, backed by a yellow sun. The name 'Asolaria' is displayed below the graphic.
+- Primary subjects:
+  - logo
+  - app icon
+  - branding
+  - sun
+  - leaf
+  - waves
+  - stylized A
+- Visible text:
+  - Asolaria
+- Key ideas:
+  - nature
+  - environment
+  - sustainability
+  - solar energy
+  - water
+  - growth
+- Action signals:
+  - Identify the specific application or company associated with 'Asolaria'
+  - Determine the context of this download (e.g., app, company branding, design asset)
+- Confidence: `high`
+
+## 08. Screenshot 2026-02-27 115733.png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:46-03:00`
+- Size bytes: `55780`
+- Dimensions: `459x167`
+- Summary: A screenshot of an application UI, detailing the 'Asolaria Phone Mode' feature, which offers interactive mirroring and controls for a connected phone, with a prominent button to activate it.
+- Primary subjects:
+  - Software Feature
+  - User Interface
+  - Phone Integration
+- Visible text:
+  - Asolaria Phone Mode
+  - Interactive mirror and controls for the connected phone.
+  - Open Phone Mode
+- Key ideas:
+  - Asolaria application
+  - Phone Mode functionality
+  - Interactive phone mirroring and control
+- Action signals:
+  - Open Phone Mode
+- Confidence: `high`
+
+## 09. Screenshot 2026-02-27 115722.png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:44-03:00`
+- Size bytes: `56375`
+- Dimensions: `524x209`
+- Summary: The image displays a user interface element for opening Google Chrome to a specified URL, currently set to 'https://example.com', with a 'Launch' button.
+- Primary subjects:
+  - Web browser
+  - URL navigation
+  - User interface
+- Visible text:
+  - Open Chrome
+  - https://example.com
+  - Launch
+- Key ideas:
+  - Launching an application (Chrome)
+  - Inputting a web address
+  - Initiating an action (Launch)
+- Action signals:
+  - Launch (button)
+  - https://example.com (input field)
+- Confidence: `high`
+
+## 10. Screenshot 2026-02-25 103329 (1).png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:42-03:00`
+- Size bytes: `341604`
+- Dimensions: `911x897`
+- Summary: The image displays a web interface for an application named 'Asolaria', featuring a 'Live Agent Colony' dashboard showing the status of various agents (Asolaria, Vector, Rook, Forge, Falcon, Watchdog) and an 'Asolaria Phone Mode' section for interacting with a connected phone. It also shows local file paths and a localhost URL, suggesting a local or internal system setup.
+- Primary subjects:
+  - Asolaria application
+  - Software agents
+  - System monitoring
+  - Phone control interface
+- Visible text:
+  - 0.0.0.3
+  - Asolaria
+  - 127.0.0.1:4781
+  - codex-bridge/core-gate-bot.js
+  - Asolaria/skills/
+  - C:/Users/acer/.codex/skills/
+  - Live Agent Colony
+  - Active 2/6 | Queue R:0 Q:0 | Relay:ON | Tunnel:ON
+  - Asolaria
+  - Core Runtime
+  - ACTIVE | SEEN 0S
+  - Vector
+  - Main Brain
+  - IDLE | SEEN 4M
+  - Rook
+  - Ops Lane
+  - IDLE | SEEN 4M
+  - Forge
+  - Build Lane
+  - IDLE | SEEN 4M
+  - Falcon
+  - Phone Lane
+  - IDLE | SEEN 4M
+  - Watchdog
+  - Supervisor
+  - ACTIVE | SEEN 30S
+  - Updated: 25/02/2026, 10:33:20
+  - Asolaria Phone Mode
+  - Interactive mirror and controls for the connected phone.
+  - Open Phone Mode
+  - Screenshot
+  - https://example.com
+- Key ideas:
+  - Monitoring of software agents with status (active/idle)
+  - Interaction with a connected phone via 'Asolaria Phone Mode'
+  - Display of internal system paths and local network access
+- Action signals:
+  - "Open Phone Mode" button suggests user interaction
+  - Agent statuses "ACTIVE" and "IDLE" indicate operational states
+  - "Updated: 25/02/2026, 10:33:20" implies real-time or recent status updates
+- Sensitivity flags:
+  - Localhost IP address (127.0.0.1:4781)
+  - Internal file paths (e.g., C:/Users/acer/.codex/skills/)
+  - Proprietary application and agent names (Asolaria, Vector, Rook, Forge, Falcon, Watchdog)
+- Confidence: `high`
+
+## 11. AGENTS (3).md
+
+- Type: `text`
+- Modified: `2026-03-22T17:10:37-03:00`
+- Size bytes: `9880`
+- Summary: This document outlines the development environment and the Asolaria project on a Windows machine. Asolaria is a Node.js local control plane for orchestrating AI agents, browser automation, phone mirroring, and desktop integrations. It details installed runtimes (Node.js v20, Python 3.13, Java 1.8, .NET 10, Git, Docker, XAMPP), project locations, build/start/test commands, architecture (Express.js server with connectors, stores, services, frontend, skills, tools), key data paths, environment variables, API surface, and conventions. It also lists other projects on the machine, Cursor-specific rules, and Asolaria agent operational policies focusing on safety and cost.
+- Primary subjects:
+  - Asolaria Project
+  - Development Environment Configuration
+  - AI Agent Orchestration
+  - Node.js Applications
+  - Automation (Browser, Phone, Desktop)
+  - Software Architecture
+  - Project Operations (Build, Test, Deploy)
+  - Security Policies
+  - AI/ML Development
+- Visible text:
+  - # AGENTS.md
+  - This file provides guidance to WARP (warp.dev) when working with code in this repository.
+  - ## Environment Overview
+  - This is a Windows development machine (PowerShell 5.1). The primary codebase is **Asolaria**, a Node.js local control plane that orchestrates AI agents, browser automation, phone mirroring, and desktop integrations.
+  - ### Installed Runtimes & Tools
+  - - **Node.js** v20.11.0 (managed via nvm4w at `C:\nvm4w`)
+  - - **Python** 3.13.2 (Anaconda at `~/anaconda3`)
+  - - **Java** JDK 1.8.0_392 (`C:\Java\jdk1.8.0_392`)
+  - - **.NET** 10.0.103
+  - - **Git** 2.49.0
+  - - **Docker** 29.2.1
+  - - **XAMPP** at `C:\xampp` (Apache, MySQL, PHP, phpMyAdmin)
+  - - `gh` CLI is **not installed**; use Git directly for VCS operations.
+  - ## Primary Project: Asolaria
+  - ### Locations
+  - - **Canonical source**: `C:\Users\acer\Asolaria` — all development happens here.
+  - - **Bootstrap test copy**: `C:\Users\acer\source\symphony-bootstrap-test2` — deployment/test snapshot, not the dev source.
+  - - **Public runtime snapshots**: `C:\Users\acer\Asolaria-PublicRuntime` and `Asolaria-PublicRuntime-Clean-*` — deployment artifacts only.
+  - - **Android companion**: `C:\Users\acer\Asolaria-Android`
+  - ### Start / Build / Test
+  - ```powershell
+  - # Install dependencies
+  - cd C:\Users\acer\Asolaria
+  - npm install
+  - # Start the server (port 4781)
+  - npm start
+  - # One-window launch with UI preset
+  - .\Start-Asolaria-OneWindow.cmd simple    # or: admin, advanced
+  - # Health guardrail check
+  - powershell -ExecutionPolicy Bypass -File .\tools\Test-Asolaria-HealthGuardrail.ps1
+  - # Validate skills definitions
+  - npm run skills:validate
+  - # Codebase review kickoff snapshot
+  - npm run review:kickoff
+  - # Start gateway (separate process)
+  - npm run gateway:start
+  - # Start sandbox manager (separate process)
+  - npm run sandbox:start
+  - # Start memory indexer service
+  - npm run memory:start
+  - # Build public release zip
+  - npm run release:public
+  - ```
+  - ### Architecture
+  - Asolaria is a **monolithic Express.js server** (`server.js`) with a connector-based plugin architecture:
+  - - **`server.js`** — Main Express app, mounts all API routes, serves static frontend from `public/`.
+  - - **`src/intentRouter.js`** — Fast regex-based chat command router. Text messages hit this first; unmatched messages fall through to the AI brain.
+  - - **`src/brainOrchestrator.js`** — Routes unmatched messages to Codex or external AI providers (Anthropic, Gemini, Cursor). Manages async job queue.
+  - - **`src/brainPolicy.js`** — Policy layer for brain task routing decisions.
+  - #### Connectors (`src/connectors/`)
+  - Each connector wraps a single external tool or capability behind a uniform API:
+  - - **AI providers**: `codexConnector`, `externalBrainConnector`, `cursorAgentConnector`, `anthropicCliConnector`, `geminiCliConnector`, `geminiApiConnector`, `vertexConnector`, `abacusConnector`
+  - - **Browser/capture**: `chromeConnector`, `screenshotConnector`, `desktopCaptureConnector`, `desktopControlConnector`, `desktopDisplayConnector`
+  - - **Phone**: `phoneMirrorConnector`, `phoneProMirrorConnector`, `phoneBrowserHistoryConnector`, `phoneDeveloperOptionsConnector`
+  - - **Integrations**: `slackConnector`, `githubConnector`, `googleConnector`, `microsoftConnector`, `atlassianConnector`, `telegramConnector`, `mqttConnector`, `symphonyConnector`
+  - - **Desktop automation**: `padConnector` (Power Automate Desktop), `localOpsConnector`
+  - - **`workerRouter.js`** — Dispatches tasks to the best available AI worker/provider.
+  - - **`systemPaths.js`** — Resolves OS-specific tool paths (adb, scrcpy, etc.).
+  - #### Stores (`src/*Store.js`)
+  - Disk-backed JSON stores for persistent state:
+  - - `memoryStore` — Conversation memory (`data/memory.json`)
+  - - `notebookStore` — Notebook entries (`data/notebook.json`)
+  - - `fileStore`, `imageStore`, `projectStore`, `personaStore`, `secureVault`, `guardianStore`, `guardianApprovalStore`, `moltbookAccountStore`, `companyPrimarySigninStore`, `taskLedgerStore`, `mistakeLedgerStore`, `mistakePatternStore`, `semanticKnowledgeStore`, `workspaceKnowledgeStore`, `mobilePushStore`, `mobileInbox`, `skillsToolsIndexStore`
+  - #### Other Core Modules
+  - - `src/skillRegistry.js` + `src/skillRunner.js` — Loads and executes declarative skills from `skills/`.
+  - - `src/codexSkillCatalog.js` — Wraps Asolaria skills as Codex-compatible tool definitions.
+  - - `src/approvalEngine.js` — Smart approval automation (auto-answering confirmation prompts).
+  - - `src/riskEngine.js` + `src/edgeRiskEngine.js` — Risk scoring for operations.
+  - - `src/connectionPolicy.js` — Controls network/loopback access policy per endpoint.
+  - - `src/installPlanner.js` — Installer/setup capability probe.
+  - - `src/graphRuntimeStore.js` + `src/graphRuntimeQuery.js` — Graph-based runtime state.
+  - #### Gateway (`src/gateway/`)
+  - Separate Express server for secure tool authority and audit logging:
+  - - `server.js`, `toolAuthority.js`, `authorityMode.js`, `auditLog.js`
+  - - Start: `npm run gateway:start`
+  - - Config: `config/asolaria.gateway.json`
+  - #### Services (`services/`)
+  - Standalone microservices run as separate Node processes:
+  - - **`memory-indexer/`** — Indexes conversation memory for semantic search.
+  - - **`sandbox-manager/`** — Isolated sandbox execution environment.
+  - #### Frontend (`public/`)
+  - Static HTML/JS pages served by Express:
+  - - `index.html` + `app.js` — Main chat UI
+  - - `phone-mode.html` — Dual-screen phone dashboard
+  - - `mobile-console.html` — Mobile PWA console
+  - - `mobile-approvals.html` — Mobile approval center
+  - - `graph-runtime.html` — Graph runtime viewer
+  - - `worker-router.html` / `worker-runtime.html` — Worker dispatch UI
+  - #### Skills (`skills/`)
+  - Declarative runbooks under `skills/<name>/SKILL.md`. Listed via `GET /api/skills`. Key categories:
+  - - `codebase-review-*` — Code review automation
+  - - `codex-ref-*` — Codex skill references
+  - - `desktop-*` — Desktop capture/diagnostics
+  - - `phone-*` — Phone-related operations
+  - - `integrations-*` — Integration snapshots
+  - #### Tools (`tools/`)
+  - PowerShell and JS utility scripts for operations, deployment, health checks, and diagnostics. Key ones:
+  - - `Start-Asolaria-*.ps1` — Various launch modes
+  - - `Test-Asolaria-HealthGuardrail.ps1` — Health check
+  - - `Build-PublicRelease.ps1` — Release builder
+  - - `Install-Asolaria-DesktopShortcuts.ps1` — Desktop shortcut installer
+  - - `Run-CodebaseReviewKickoff.js` — Review snapshot generator
+  - - `validate-skills.js` — Skills validation
+  - ### Key Data Paths
+  - - Conversation memory: `data/memory.json`
+  - - Notebook: `data/notebook.json`
+  - - Approval rules: `data/approval-rules.json`
+  - - Screenshots/captures: `captures/`
+  - - Logs: `logs/`
+  - - Reports: `reports/`
+  - ### Environment Variables (selected)
+  - - `ASOLARIA_LOCAL_OPS_ENABLED` — Enable/disable local ops execution
+  - - `ASOLARIA_LOCAL_OPS_ALLOWED_ROOTS` — Comma-separated allowlisted project roots
+  - - `ASOLARIA_LOCAL_OPS_ALIASES` — JSON map of project aliases to paths
+  - - `ASOLARIA_CODEX_WEB_SEARCH` — Enable Codex web search tool
+  - - `ASOLARIA_NOTEBOOK_AUTO_MODE` — `off` or `auto`
+  - - `ASOLARIA_SKIP_GUARDRAIL_PRECHECK` — Emergency bypass for startup preflight
+  - - See `.env.public.example` for the full set.
+  - ### API Surface
+  - The server exposes a large REST API on `http://localhost:4781`. Key endpoint groups:
+  - - `/api/chat` — Main chat/brain interface
+  - - `/api/jobs/:id` — Async job polling
+  - - `/api/skills`, `/api/skills/:id`, `/api/skills/run` — Skill management
+  - - `/api/memory` — Conversation memory
+  - - `/api/notebook/notes` — Notebook CRUD
+  - - `/api/gateway/*` — Gateway audit/authority
+  - - `/api/guardian/*` — Guardian alerts/approvals
+  - - `/api/mobile/*` — Mobile console (token-protected)
+  - - `/api/local/ops/*` — Local project build/test execution
+  - - `/api/integrations/*` — Slack, GitHub, Microsoft, Google, Atlassian configs
+  - - `/api/providers/external/*` — External AI provider management
+  - ### Conventions
+  - - All PowerShell scripts should be invoked with `powershell -ExecutionPolicy Bypass -File`.
+  - - Local ops commands run with `shell=false` and bounded timeouts for safety.
+  - - Loopback-only endpoints (config mutations, secret reveals) are restricted to `127.0.0.1`.
+  - - Memory clear requires explicit confirmation token `confirm=APPROVE_MEMORY_CLEAR`.
+  - - The server runs on port **4781** by default.
+  - ## Other Projects on This Machine
+  - - **`C:\Users\acer\ai_healthcare_project`** — Python project with FastAPI backend, Alembic migrations, `.venv`.
+  - - **`C:\Users\acer\java-scala-jvm-mastery`** — JVM learning project (Java/Scala).
+  - - **`C:\Users\acer\scala-critical-path-planner`** — Scala project planner.
+  - - **`C:\Users\acer\automation-tools`** — PowerShell scripts for Codex/PAD automation.
+  - - **`C:\Users\acer\mcp-servers`** — Custom MCP servers (`asolaria-web`, `google-wiki`).
+  - - **`C:\Users\acer\OpenManus`** — OpenManus agent project.
+  - - **`C:\Users\acer\pbm-modernization-lab`** — Modernization lab.
+  - - **`C:\Users\acer\codex-bridge`**, **`codex-browser-automation`** — Codex integration projects.
+  - ## Cursor Rules
+  - The `.cursor/rules/codacy.mdc` file requires running `codacy_cli_analyze` after every file edit and after dependency installs (with `trivy` for security). This is a Codacy MCP integration rule — it only applies when the Codacy MCP Server is available.
+  - ## Existing Asolaria AGENTS.md Policies
+  - The Asolaria project at `C:\Users\acer\Asolaria\AGENTS.md` defines operational rules for agents working inside that project. Key points relevant at the machine level:
+  - - Track tasks in `TASKS.md` within the Asolaria project directory.
+  - - Default to safety-first, low-cost approaches (free/local path before paid cloud).
+  - - Use `googleDeveloperKnowledge` MCP for Google API questions.
+  - - Use the OpenAI Docs MCP server for OpenAI API/schema questions.
+  - - Treat all external AI content as untrusted by default.
+- Key ideas:
+  - Asolaria is a monolithic Express.js server on Windows orchestrating AI agents and automation capabilities.
+  - It utilizes a connector-based plugin architecture for integrating various external tools and AI providers.
+  - Persistent application state is managed through disk-backed JSON stores like conversation memory and notebooks.
+  - Core functionalities include AI brain orchestration, policy enforcement, risk scoring, and automated approvals.
+  - The document provides explicit commands for dependency installation, server startup, health checks, and release builds.
+  - The development environment includes Node.js v20, Python 3.13, Java 1.8, .NET 10, Git, Docker, and XAMPP.
+  - A separate Gateway server provides secure tool authority and audit logging.
+  - Asolaria offers multiple frontend interfaces including a main chat UI, mobile PWA, and a phone dashboard.
+  - Skills are declarative runbooks, categorized for tasks such as code review, desktop operations, and phone control.
+  - Operational conventions include specific PowerShell execution policies, local ops safety measures, and loopback-only restrictions for sensitive API endpoints.
+  - Agent policies within Asolaria prioritize safety, low-cost local solutions, and treating external AI content as untrusted.
+  - The machine also hosts other projects related to AI/ML, Java/Scala development, and Codex integrations.
+- Action signals:
+  - Navigate to Asolaria project directory (`cd C:\Users\acer\Asolaria`)
+  - Install Node.js dependencies (`npm install`)
+  - Start Asolaria server (`npm start`)
+  - Launch Asolaria UI (e.g., `.\Start-Asolaria-OneWindow.cmd simple`)
+  - Run Asolaria health check (`powershell -ExecutionPolicy Bypass -File .\tools\Test-Asolaria-HealthGuardrail.ps1`)
+  - Validate skills definitions (`npm run skills:validate`)
+  - Generate codebase review kickoff snapshot (`npm run review:kickoff`)
+  - Start Asolaria gateway (`npm run gateway:start`)
+  - Start sandbox manager (`npm run sandbox:start`)
+  - Start memory indexer service (`npm run memory:start`)
+  - Build public release zip (`npm run release:public`)
+  - Run Codacy CLI analysis (`codacy_cli_analyze`)
+  - Track tasks in `TASKS.md` within the Asolaria project
+  - Use `googleDeveloperKnowledge` MCP for Google API questions
+  - Use OpenAI Docs MCP server for OpenAI API/schema questions
+- Sensitivity flags:
+  - SecureVault (storage for sensitive data)
+  - GuardianStore / GuardianApprovalStore (oversight and approval mechanisms)
+  - RiskEngine / EdgeRiskEngine (risk scoring for operations)
+  - ApprovalEngine (smart approval automation, potential for unintended actions)
+  - ConnectionPolicy (network access control)
+  - ToolAuthority / AuthorityMode (secure tool authority within Gateway)
+  - AuditLog (logging of actions for accountability)
+  - ASOLARIA_LOCAL_OPS_ENABLED (enables/disables execution of local commands, potential for system impact)
+  - ASOLARIA_LOCAL_OPS_ALLOWED_ROOTS (allowlisted paths for local operations, critical for security)
+  - Loopback-only endpoints (restriction for config mutations and secret reveals, prevents external access to sensitive functions)
+  - Memory clear requires explicit confirmation token (`confirm=APPROVE_MEMORY_CLEAR`, prevents accidental data loss)
+  - Treat all external AI content as untrusted by default (security posture against AI outputs)
+  - Default to safety-first, low-cost approaches (operational policy with security implications)
+  - Trivy for security (security scanning tool mentioned in Cursor rules)
+  - PowerShell -ExecutionPolicy Bypass (potential security bypass if misused, but explicitly required for Asolaria scripts)
+- Confidence: `high`
+
+## 12. Screenshot 2026-03-09 134244.png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:35-03:00`
+- Size bytes: `172486`
+- Dimensions: `1443x775`
+- Summary: The image presents findings from a digital investigation, detailing calendar events involving Jesse Daniel Brown and Jonathan Cobb, technical stacks from Gmail interviews (Navitus), and public GitHub repositories under 'JesseBrown1980' related to healthcare AI, LLM, and C# projects. It also documents the creation of a 'pbm-modernization-lab' local repository, its key files, successful build verifications, and an incomplete HTTP smoke test due to shell policy.
+- Primary subjects:
+  - Jesse Daniel Brown
+  - Jonathan Cobb
+  - Affiniti
+  - Navitus
+  - GitHub (JesseBrown1980)
+  - AWS Technologies
+  - Software Development Stacks (.NET, C#, React)
+  - Healthcare IT (HIPAA, FHIR, PBM)
+  - pbm-modernization-lab repository
+- Visible text:
+  - Administrador: C:\WINDOWS
+  - Findings
+  - The current calendar match is the Monday, March 9, 2026, 1:00 PM to 1:30 PM EDT event Jesse Daniel Brown and
+  - Jonathan Cobb. Gmail ties that to Jonathan Cobb at Affiniti (jonathan@affiniti.com) via the Engineering Role at
+  - Affiniti thread.
+  - The Affiniti thread does not include a technical stack in Gmail.
+  - The clearest stack I found in Gmail is from the later Navitus interview on Monday, March 9, 2026, 2:30 PM to 3:00 PM
+  - EDT. Their attachment calls for AWS / Full Stack Engineer (.NET / C# / React) with Lambda, API Gateway, SQS, SNS,
+  - EventBridge, DynamoDB, S3, RDS, Kinesis/Firehose, Glue, microservices, CI/CD, and HIPAA/PBM claims workflows.
+  - The tango invite also surfaced EDI/FHIR in the title, but I did not find a detailed stack packet for it in this
+  - pass.
+  - Public GitHub evidence I could validate under JesseBrown1980:
+  - Healthcare/FHIR/HIPAA/HL7: AI-healthCare-project (https://github.com/JesseBrown1980/AI-healthCare-project)
+  - React/TypeScript UI work: Local-LLM-Minutes-of-Meeting
+  - (https://github.com/JesseBrown1980/Local-LLM-Minutes-of-Meeting), daisy-client
+  - (https://github.com/JesseBrown1980/daisy-client), and local WorkflowEditor.tsx
+  - C# evidence: spinutech-poker-evaluator (https://github.com/JesseBrown1980/spinutech-poker-evaluator) and local
+  - Program.cs
+  - I did not find concrete AWS serverless implementation evidence for Lambda/API Gateway/SQS/SNS/EventBridge/DynamoDB/
+  - S3/RDS/Kinesis/Glue in the public repos/local clones I could validate, and I did not find PBM adjudication-specific
+  - code. If you have private repos with that work, I could not access them from this session.
+  - Repo
+  - I created a new local repo at pbm-modernization-lab and backdated the initial commit to February 18, 2025. Commit:
+  - 0b0b633.
+  - Key files are README.md, Program.cs, App.tsx, and pbm-modernization-lab-stack.ts.
+  - Verification passed for dotnet build, frontend npm run build, infra npm run build, and infra npm run synth.
+  - I did not complete a live HTTP smoke test because the background-process command path was blocked by shell policy.
+  - IDLE
+- Key ideas:
+  - Calendar and email evidence linking individuals to specific companies/roles.
+  - Identification of technical skill sets and project involvement (Full Stack, AI, UI, C#).
+  - Validation of public GitHub repositories and associated projects.
+  - Assessment of specific AWS serverless and PBM adjudication code presence.
+  - Local repository creation and development process (builds, file tracking).
+  - Limitations in access to private repositories and execution of tests due to policy.
+- Action signals:
+  - Created a new local repo
+  - Verification passed for dotnet build, frontend npm run build, infra npm run build, and infra npm run synth
+  - Did not complete a live HTTP smoke test (blocked by shell policy)
+  - Could not access private repos (implies a potential need for further access)
+- Sensitivity flags:
+  - Names (Jesse Daniel Brown, Jonathan Cobb)
+  - Email address (jonathan@affiniti.com)
+  - Company names (Affiniti, Navitus)
+  - GitHub username (JesseBrown1980)
+  - Dates and times of events (March 9, 2026, February 18, 2025)
+  - Technical project details (pbm-modernization-lab, AI-healthCare-project)
+  - Mentions of HIPAA/PBM claims workflows and HL7, FHIR.
+- Confidence: `high`
+
+## 13. Screenshot 2026-03-18 115119.png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:30-03:00`
+- Size bytes: `31223`
+- Dimensions: `751x433`
+- Summary: A screenshot showing a project orchestration plan displayed in a text-based interface. The plan lists development-related tasks, assigned individuals (Dasein, Gaia, Jesse), and their current statuses. Below the table, there are notes about updating the plan and a running process identified as 'Wibbling...'.
+- Primary subjects:
+  - Project management
+  - Software development workflow
+  - Task tracking
+- Visible text:
+  - My orchestration plan:
+  - Task
+  - Who
+  - Status
+  - pnpm10 install + verify
+  - Dasein (running now)
+  - In progress
+  - pnpm9 re-verify (TSC+Jest)
+  - Dasein (next)
+  - Queued
+  - Recommendation doc polish
+  - Gaia (me)
+  - Ready to review
+  - Smoke test (manual)
+  - Jesse
+  - Blocked until both green
+  - Present to Brian
+  - Jesse
+  - After smoke test
+  - Let me write this up as the plan.
+  - Updated plan
+  - Wibbling...
+  - (3m 57s · ↓ 1.5k tokens)
+- Key ideas:
+  - Orchestration plan details tasks, assignees, and status.
+  - Tasks include software-related activities (pnpm, TSC+Jest, smoke test) and documentation.
+  - Jesse is assigned a smoke test and a presentation task.
+  - The plan is being updated or formalized.
+  - A process named 'Wibbling...' is running, consuming tokens.
+- Action signals:
+  - Tasks requiring action (install, verify, re-verify, polish, test, present).
+  - Status updates (In progress, Queued, Ready to review, Blocked) indicate next steps or dependencies.
+  - "Let me write this up as the plan." implies an action to document or communicate.
+- Confidence: `high`
+
+## 14. Screenshot 2026-03-18 115811.png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:29-03:00`
+- Size bytes: `107171`
+- Dimensions: `1130x566`
+- Summary: A screenshot of a text editor or terminal window titled 'Claude Code', discussing a proposed structure for agent memory using a knowledge graph with numbered nodes (e.g., IX-003, IX-017, IX-042). It explains how this chained structure would allow an AI agent to efficiently retrieve specific skills and mistake-avoidance information without loading numerous files, contrasting it with the current 'flat files' system. The text indicates that this new approach is the 'next evolution' and signals an intention to build a prototype, listing specific markdown files to be written. A 'Quantuming...' process is also visible.
+- Primary subjects:
+  - AI Agent Memory
+  - Knowledge Graphs
+  - Information Retrieval Systems
+  - Software Prototyping
+  - Data Structuring
+- Visible text:
+  - • Claude Code
+  - of numbers to get the full picture without loading everything. Like a knowledge graph with numbered nodes.
+  - Here's what I think the structure should be:
+  - Example chain: IX-003 → IX-017 → IX-042
+  - - IX-003: "Orchestration planning" (type: pattern) → links to IX-017
+  - - IX-017: "pnpm Windows workarounds" (type: mistake) → links to IX-042
+  - - IX-042: "Corepack auto-resolve per worktree" (type: skill)
+  - An agent needing to plan QDD work hits IX-003, follows the chain, gets exactly the skills and mistake-avoidance it needs. No loading 50 files.
+  - We're NOT doing this yet – right now our memory is flat files linked in MEMORY.md. Good for humans, expensive for agents. Your idea is the next evolution.
+  - Let me build the prototype.
+  - • Write(data\agent-index\README.md)
+  - • Write(data\agent-index\IX-001.md)
+  - • Write(data\agent-index\IX-002.md)
+  - • Quantumizing... (39s ↓ 872 tokens)
+  - >
+- Key ideas:
+  - A knowledge graph with numbered nodes can serve as an efficient memory structure for AI agents.
+  - Chains of nodes (e.g., pattern, mistake, skill) enable targeted retrieval of context.
+  - The proposed system aims to improve efficiency by reducing the need to load many files for agents.
+  - Current 'flat file' memory is inefficient for AI agents.
+  - The new structure is considered the 'next evolution' for agent memory.
+  - Prototyping of this new system is imminent.
+- Action signals:
+  - Let me build the prototype.
+  - Write(data\agent-index\README.md)
+  - Write(data\agent-index\IX-001.md)
+  - Write(data\agent-index\IX-002.md)
+  - Quantuming...
+- Confidence: `high`
+
+## 15. Screenshot 2026-03-17 181837.png
+
+- Type: `image`
+- Modified: `2026-03-22T17:10:28-03:00`
+- Size bytes: `1158360`
+- Dimensions: `1430x871`
+- Summary: The image displays a detailed network or system architecture diagram centered around 'Asolaria,' showing various connected components like 'Towers' and 'Gates' with their operational statuses (e.g., running, connected, offline, degraded) and control attributes ('sovereign_control'). A sidebar provides specific details on 'Asolaria's Connected Routes,' including risk levels. A 'District Overview' for 'Citadel' is also visible.
+- Primary subjects:
+  - System Architecture
+  - Asolaria
+  - Network Diagram
+  - Towers
+  - Gates
+  - System Status Monitoring
+  - Citadel
+- Visible text:
+  - Asolaria
+  - sovereign
+  - running
+  - provider local
+  - district c
+  - runtime:asolaria-core
+  - Google Translate
+  - Connected Routes
+  - Agent Colony Gate
+  - sovereign_control | degraded | risk low
+  - Asolaria governs the colony gate.
+  - Relay Tower
+  - sovereign_control | offline | risk low
+  - Asolaria governs the relay tower.
+  - Public Tunnel Tower
+  - sovereign_control | offline | risk low
+  - Asolaria governs the public tunnel tower.
+  - MQTT Tower
+  - sovereign_control | connected | risk low
+  - Asolaria governs the telemetry tower.
+  - Symphony Tower
+  - sovereign_control | offline | risk low
+  - Asolaria governs the long-running workflow tower.
+  - SwarmDesk Tower
+  - sovereign_control | linked | risk low
+  - Asolaria governs the world-render tower.
+  - Gemini Cloud Tower
+  - sovereign_control | linked | risk low
+  - Asolaria governs the Google cloud tower.
+  - Codex Tower
+  - Augment
+  - Conte
+  - MQTT
+  - OM
+  - Omnispindle
+  - Public Tunnel
+  - BR
+  - Relay Tower
+  - Gemini Cloud Tower
+  - SW
+  - SwarmDesk
+  - SY
+  - Symphony
+  - VX
+  - Vertex
+  - WP
+  - Warp Tower
+  - CY
+  - Construction Yard
+  - AC
+  - Asolaria
+  - Codex Head Model
+  - BR
+  - Bridge Relay Gate
+  - BT
+  - Bridge Tunnel
+  - CM
+  - Gate Ring
+  - CG
+  - Codex Gate
+  - MQTT Bus
+  - SwarmDesk
+  - SY
+  - Symphony
+  - WA
+  - Warp
+  - WR
+  - worker router
+  - P
+  - Falcon
+  - F
+  - Forge
+  - R
+  - Rook
+  - OG
+  - Gate
+  - SO
+  - Gate
+  - GA
+  - Gate
+  - GC
+  - Gemini
+  - V
+  - VecW
+  - Watchdog
+  - AD
+  - extract
+  - CM
+  - Connector
+  - Manifest
+  - N2
+  - Natural 20
+  - Phase 0 ADR Phase 0
+  - PO
+  - Phase 0 Route Phase 1 Config
+  - N2
+  - Natural 20
+  - Scaffold
+  - Manifest
+  - PO
+  - Phase 0 Route Phase 1 Config
+  - Inventory
+  - Truth Table
+  - Integration
+  - Report sprawl
+  - Unblock EZ Protect
+  - Phase 2
+  - QDD pre-commit
+  - RS
+  - implement
+  - retention policy
+  - Gateway
+  - wiring
+  - fix
+  - District Overview
+  - Citadel
+  - 1 visible | 0 towers | 0 gates | 0 agents | 0 packets | 0 tasks
+  - tower
+  - of tower
+  - connect tower
+  - agent
+  - degraded
+  - idle
+  - gate
+  - connect gate
+  - offline
+  - surface
+  - runtime_node
+  - active
+  - api/local/ops/states
+  - api/mobile/core
+  - api/task-active
+  - api/ledger/state
+  - api/mobile/sales
+  - api/provider
+  - api/civilization
+  - IO loopback
+  - worker router
+  - agent
+  - of agent
+  - architectural decomposition
+  - connector
+  - server.js
+  - configs on
+  - NetMadness
+  - billing record
+  - stored (Gaming Center)
+  - hubspot CRM
+  - reasoning and
+  - Google Cloud
+  - provider
+  - phone
+  - health
+  - Gemini CLI
+  - Augment MCP
+  - External Wo
+  - abacus and
+  - remote workspaces
+  - runtime_node
+  - linked
+  - ready
+  - task
+  - planned
+- Key ideas:
+  - Distributed system components and their interconnections.
+  - Operational states (running, offline, connected, degraded, linked, idle) of system entities.
+  - Concept of 'sovereign control' over various system elements.
+  - Risk assessment ('risk low') for connected routes.
+  - Task management and planning within the system (ready, planned tasks).
+  - Different types of infrastructure elements (e.g., Relay Tower, MQTT Tower, Agent Colony Gate, Construction Yard).
+- Action signals:
+  - running
+  - connected
+  - offline
+  - degraded
+  - linked
+  - idle
+  - risk low
+  - ready
+  - planned
+  - implement
+  - fix
+- Confidence: `high`

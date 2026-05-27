@@ -1,0 +1,96 @@
+PQ Bid System: 
+Proposed Project Timeline & Investment	
+Prepared for Vince Benitez, SPecialized Testing INC
+Overview
+The PQ Bid System is being developed to unify and streamline the complex workflows within Specialized Testing that currently exist across multiple spreadsheets. This application will serve to manage client bids, product testing, scheduling, invoicing, and profitability tracking.
+
+Drawing from the existing bid worksheets, test plans, and invoice records, the new platform will introduce centralized data management, real-time reporting, and automated calculations—all within a clean and role-aware user interface. The goal is to eliminate manual double-entry, reduce error risk, and offer a scalable foundation for future lab integrations and data insights.
+The following phased implementation plan outlines an MVP-focused engagement spanning 18–22 weeks. This release prioritizes core functionality with minimal interface features to deliver immediate operational value. Advanced automation, reporting, and escalation features are deferred for a future phase 
+Phase 1 – Discovery & Design
+Duration: 2 Weeks
+Est. Hours: 80
+This initial phase focuses on establishing a strong foundation for the system by mapping out the real-world workflows currently supported by Excel spreadsheets (e.g., PQ INV, Bid Worksheet, Test Plan).
+By collaborating closely with stakeholders, we will define the system’s core data models—covering clients, projects, bids, products, tests, invoices, and more—and ensure they support both current needs and future scalability.
+Goals:
+Review and validate existing Excel files and workflows (PQ Bid worksheet, PQ INV, STQA).
+Define core data models for Clients, Projects, Bids, Tests, and Invoices.
+Identify and document user roles, permissions, and access levels (engineers vs. technicians).
+Deliverables:
+Approved core data models
+Detailed functional specifications
+Role-based access matrix
+Phase 2 – Core System Setup
+Duration: 2 Weeks
+Estimated Hours: 80 
+In this phase, we will lay the technical groundwork: setting up the backend system, database schema, and basic API structure.
+User authentication and role-based access will be built early to support proper data boundaries between departments.
+This phase also prepares for potential integrations (e.g., STI Labs), which will be documented and staged for future use where needed. Project templates and relational logic (linking bids to projects) will begin to take shape.
+Goals:
+Build foundational database and backend architecture.
+Implement authentication and role management.
+Configure API structure and integration paths (potential STI Labs connection).
+Establish project templates and relational linkage between bids → projects.
+Deliverables:
+Deployed development environment
+Working API skeleton and endpoints
+Database schema and migration scripts
+Phase 3 – Bid & Project Modules
+Duration: 4 Weeks - 5 Weeks
+Estimated Hours: 160 - 200 
+Phase 3 delivers simplified spreadsheet and formula-driven bid entry interface that mirrors the flexibility of your current spreadsheet model while adding structure, versioning, and automation.
+Product and test details (dimensions, specifications, embedment depths, etc.) will be tightly integrated with bids. The system will support reusable test plan templates based on product types, improving efficiency for standardized project types (e.g., screw anchors, panels).
+Key financial fields like gross profit, labor burden, and material cost will be automatically calculated but override-capable for edge cases. An important milestone here is enabling seamless bid-to-project conversion while tracking status through the full lifecycle (Prospect → Won → In Progress → Complete).
+Goals:
+Develop bid worksheet interface (line-item entry, formula-based).
+Create and link product and test detail entries to bids and projects, including specifications and dimensional metadata.
+Automate calculations for gross profit, labor cost, and material cost. Functionality will support both automated calculations and manual input overrides with logging.
+Enable “Convert Bid to Project” workflow.
+Implement bid tracking statuses: Prospect, Won, Lost, Completed.
+Deliverables:
+Functional Bid Management module
+Tested bid-to-project conversion flow
+Cost and profitability calculations validated
+Phase 4 – Scheduling & Tracking
+Duration: 3 Weeks
+Estimated Hours: 120 
+This module translates project planning into execution. Engineers and technicians will be assigned to projects via a scheduling dashboard that supports calendar and workload views.
+A major focus will be enabling comparison between planned vs. actual labor hours at both the project and task level. This will allow for real-time progress tracking and early flagging of scope deviations. Reports on technician workloads (by month or project) will help with resource balancing and future capacity planning.
+Goals:
+Build scheduling dashboard for engineers and technicians.
+Implement planned vs. actual hours tracking.
+Add project progress visualization (completion %).
+Generate technician workload summaries (basic overview only).
+Deliverables:
+Scheduling module with live assignment data
+Progress tracking metrics
+Technician workload reports
+Phase 5 – invoicing integration
+Duration: 1 Week
+Estimated Hours: 40
+This phase will implement invoice generation via integration with QuickBooks. Users will be able to generate invoices, with viewing capabilities transferred to the QuickBooks platform.   
+No invoice viewing or reporting UI is included in the initial MVP.
+Goals:
+Generate invoice records from project data
+Deliverables:
+Basic Invoice export capability
+Phase 6 – QA, Review & Launch
+Duration: 1 Week - 2 Weeks
+Estimated Hours: 40 - 80 
+The final phase ensures the system is robust, accurate, and user-ready. We’ll conduct full QA using actual data samples, validate all calculations and workflows, and deliver comprehensive training for end users (engineers, PMs, accounting).
+After deployment to the production environment, we’ll provide post-launch monitoring and rapid response to any issues that arise during the rollout window.
+Goals:
+Conduct full QA testing with live data samples.
+Fix discrepancies and finalize report outputs.
+Provide user training for engineers, PMs, and accounting staff.
+Deploy the system to production.
+Post-launch monitoring and refinements.
+Deliverables:
+Signed-off QA checklist
+Trained user base
+Production-ready system
+
+
+Summary Timeline & Cost
+Total Project Estimate
+Duration: 13 Weeks – 15 Weeks
+Total Hours: 520 - 600

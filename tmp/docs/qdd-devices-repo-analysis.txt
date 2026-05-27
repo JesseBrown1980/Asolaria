@@ -1,0 +1,121 @@
+QDD EZ Protect — getDevices() Aggregation Pipeline Analysis
+============================================================
+File: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\ez-protect\repos\EzProtectRepo.ts
+Method: getDevices() — lines 542-607
+
+Schema: D:\projects\QDD\ebacmap-master\libs\db\src\models\EzProtectEvent.ts
+
+1. COLLECTION
+   Collection: "ezprotectevents" (Mongoose model name "EzProtectEvent")
+   Model: models.EzProtectEventModel
+
+2. $match FILTER
+   The pipeline builds a dynamic query object:
+     const query: any = {};
+     if (filter.locationId) query.locationId = filter.locationId;
+     if (filter.clientId)   query.clientId   = filter.clientId;
+
+   Then: { $match: query }
+
+   There is NO time window filter. The $match scans ALL events for the
+   given locationId/clientId — not just recent ones. (The 24-hour check
+   is done AFTER aggregation, only for online/offline status display.)
+
+3. GROUP BY deviceSerialNumber
+   Yes. The pipeline groups by '$deviceSerialNumber':
+     { $group: { _id: '$deviceSerialNumber', ... } }
+
+   Before grouping it sorts by { completedAt: -1 } so $first picks
+   the most recent event per device.
+
+4. PROJECTED FIELDS
+   From the $group stage:
+     - _id              (deviceSerialNumber)
+     - deviceModel      ($first)
+     - lastSeenAt       ($first completedAt)
+     - lastControlStatus ($first controlLineValid)
+     - lastCalibrationStatus ($first calibrationStatus)
+     - lastPmStatus     ($first pmStatus)
+     - facilityId       ($first)
+     - locationId       ($first)
+     - totalEvents      ($sum: 1)
+
+   The map step then derives: id, deviceSerialNumber, status
+   (online/offline/error), calibrationStatus, pmStatus,
+   lastControlStatus (PASS/FAIL string), facilityId, locationId, totalEvents.
+
+5. locationId / clientId TYPE MISMATCH — THIS IS THE BUG
+   Schema definition (EzProtectEvent.ts lines 150-151):
+     locationId: { type: Schema.Types.ObjectId, ref: 'Location', required: true }
+     clientId:   { type: Schema.Types.ObjectId, ref: 'Client',   required: true }
+
+   Both fields are stored as MongoDB ObjectId in the database.
+
+   How the UseCase calls getDevices (GetDeviceHealth/UseCase.ts):
+     filter.clientId  = ctx.user.clientId;   // string (from UseCase.ts user interface)
+     filter.locationId = request.locationId;  // string (from yup schema / query param)
+
+   How getDevices builds the $match:
+     query.locationId = filter.locationId;  // passes raw string
+     query.clientId   = filter.clientId;    // passes raw string
+
+   THERE IS NO ObjectId CONVERSION.
+
+   MongoDB aggregation pipelines bypass Mongoose's automatic casting.
+   Mongoose .find() auto-casts string → ObjectId for fields defined as
+   ObjectId in the schema, but .aggregate() does NOT.
+
+   So the $match is:
+     { clientId: "69c41938d84980e337ac77cd", locationId: "69c41938d84980e337ac77cf" }
+
+   But the documents contain:
+     { clientId: ObjectId("69c41938d84980e337ac77cd"), locationId: ObjectId("69c41938d84980e337ac77cf") }
+
+   String "69c41938d84980e337ac77cd" !== ObjectId("69c41938d84980e337ac77cd")
+   Result: $match returns 0 documents. getDevices() returns [].
+
+6. TIME WINDOW
+   No. The $match has NO completedAt filter. All events are scanned.
+   The 24-hour window is only used post-aggregation to set status to
+   "online" or "offline".
+
+   Compare with getDashboardSummary (line 211) and getCorporateDashboard
+   (line 248) which both add completedAt: { $gte: thirtyDaysAgo } to
+   their $match. getDevices does not.
+
+CONFIRMED BUG
+=============
+The aggregation pipeline passes string IDs into $match but the database
+stores ObjectIds. MongoDB aggregate() does not auto-cast. This means:
+
+  - 300 events exist with the correct clientId and locationId as ObjectIds
+  - 10 unique deviceSerialNumber values (SN-1001 through SN-3005)
+  - getDevices() returns [] because the string/ObjectId mismatch finds nothing
+
+FIX
+===
+Import mongoose Types and cast before building query:
+
+  import { Types } from 'mongoose';
+
+  const query: any = {};
+  if (filter.locationId) query.locationId = new Types.ObjectId(filter.locationId);
+  if (filter.clientId)   query.clientId   = new Types.ObjectId(filter.clientId);
+
+Same bug likely exists in listNormalizedEvents() (line 139-140) BUT
+that method uses .find() which benefits from Mongoose auto-casting,
+so it works. Only the aggregate()-based methods are affected.
+
+Also affected: getCorporateDashboard() (line 248) uses aggregate with
+{ clientId } as a raw string — same bug pattern. getDashboardSummary()
+(line 213) uses .find() so Mongoose auto-casts and it works.
+
+METHODS AFFECTED (aggregate, no cast):
+  - getDevices()            — line 550, BROKEN
+  - getCorporateDashboard() — line 248, BROKEN
+
+METHODS NOT AFFECTED (.find(), auto-cast):
+  - listNormalizedEvents()  — line 169, OK
+  - getDashboardSummary()   — line 212, OK
+  - getEventById()          — line 195, OK
+  - upsertEvent()           — line 615, OK (findOneAndUpdate)

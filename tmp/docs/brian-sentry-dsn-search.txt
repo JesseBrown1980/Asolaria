@@ -1,0 +1,154 @@
+Brian Sentry DSN Search — 2026-03-25
+READ ONLY — Do not modify
+=============================================
+
+OBJECTIVE: Find Brian Birkhauser's communications containing Sentry DSN,
+credentials, or QDD/eBacMap configuration.
+
+=============================================
+RESULT: SENTRY DSN FOUND — HARDCODED IN CODEBASE
+=============================================
+
+## 1. SENTRY DSN (FOUND — hardcoded in multiple server files)
+
+  DSN: https://0b05cfede9714f0c8f8a4c658bf62782@o477196.ingest.sentry.io/6653692
+
+  Found in:
+    - D:\projects\QDD\ebacmap-pnpm9\apps\queue-server\src\index.ts  (line 34)
+    - D:\projects\QDD\ebacmap-pnpm9\apps\sync-server\src\index.ts   (line 19)
+    - D:\projects\QDD\ebacmap\queue-server\index.ts                  (line 22)
+    - D:\projects\QDD\ebacmap\serial-server\index.ts                 (line 14)
+    - D:\projects\QDD\ebacmap-master\apps\queue-server\src\index.ts  (line 34)
+    - D:\projects\QDD\ebacmap-master\apps\sync-server\src\index.ts   (line 19)
+
+  Breakdown:
+    - Key:        0b05cfede9714f0c8f8a4c658bf62782
+    - Org ID:     o477196
+    - Project ID: 6653692
+    - Host:       sentry.io (standard, not self-hosted)
+
+## 2. SENTRY ORG + PROJECT (FOUND — sentry.properties)
+
+  File: D:\projects\QDD\ebacmap-pnpm9\sentry.properties
+  Also: D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\sentry.properties
+
+    defaults.url=https://sentry.io/
+    defaults.org=quick-draw-development
+    defaults.project=ebacmap
+
+## 3. ENV PLACEHOLDERS (FOUND — .env.example)
+
+  File: D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\.env.example
+
+    SENTRY_DSN=                              (empty — needs the DSN above)
+    NEXT_PUBLIC_SENTRY_DSN=                  (empty — same DSN, client-side)
+    SENTRY_IGNORE_API_RESOLUTION_ERROR=1
+    SENTRY_AUTH_TOKEN=                       (empty — needs Brian's auth token)
+
+  The web-ebacmap Next.js app reads DSN from env vars:
+    process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
+
+  The queue-server and sync-server HARDCODE the DSN (no env var needed).
+
+## 4. SENTRY TUNNEL (FOUND — anti-adblock proxy)
+
+  File: D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\src\pages\api\tunnel.ts
+
+    sentryHost = 'sentry.io'
+    projectId  = '6653692'
+
+  This is a Sentry tunnel endpoint at /api/tunnel that proxies Sentry
+  envelopes to avoid ad-blockers. Confirms project ID 6653692.
+
+## 5. BITBUCKET PIPELINES (FOUND — CI/CD env vars)
+
+  File: D:\projects\QDD\ebacmap-pnpm9\bitbucket-pipelines.yml
+
+    SENTRY_AUTH_TOKEN: $SENTRY_AUTH_TOKEN   (from Bitbucket repo variables)
+    SENTRY_ORG: $SENTRY_ORG               (from Bitbucket repo variables)
+    SENTRY_PROJECT: 'ebacmap'              (hardcoded)
+
+  The SENTRY_AUTH_TOKEN is stored as a Bitbucket pipeline variable.
+  Brian or QDD admin must have set it in Bitbucket repo settings.
+
+## 6. .sentryclirc FILE — NOT FOUND
+
+  No .sentryclirc file exists in D:\projects\QDD\ebacmap-pnpm9\ or its apps/.
+
+=============================================
+COMMUNICATION SEARCHES — NO SENTRY DSN IN MESSAGES
+=============================================
+
+## 7. EXTRACTED DOCX FILES (C:\Users\acer\Asolaria\tmp\docs\)
+
+  Brian mentions found but NONE contain Sentry DSN or credentials:
+    - "Asolaria Systems Engineering Assessment.txt" — Brian runs payroll,
+      Brian Birkhauser identified as tech lead
+    - "digitalocean-inventory.txt" — Brian has DigitalOcean production
+      credentials (NOT Sentry)
+    - "It is on on my phone right now.txt" — eBacMap smoke testing for Brian
+
+## 8. DOWNLOADS FOLDER
+
+  File found: "From brian mar 16.pdf"
+  Content: Bitbucket PR #631 review — Brian REQUESTED CHANGES on
+  EZ Protect admin module + SFTP import/export fixes.
+  Two code review comments about keeping error throws.
+  NO Sentry DSN or credentials in this PDF.
+
+## 9. WHATSAPP CHAT WITH RAYSSA
+
+  Brian mentioned in context of:
+    - pnpm branch options to present to Brian
+    - Brian's testing rule (integration + unit tests)
+    - CHARM_EZ_PROTECT_* provisioning values — "ask Brian/Natalie directly"
+    - Brian hasn't responded since March 11
+  NO Sentry DSN found in WhatsApp chat.
+
+## 10. GMAIL (via MCP)
+
+  Searches performed:
+    - "from:brian sentry" — 0 results
+    - "sentry DSN" — 0 results
+    - "from:brian ebacmap OR charm OR credentials OR environment" — 0 results
+  Brian's communications are via Bitbucket (pullrequests-reply@bitbucket.org),
+  not direct Gmail. The Gmail account searched may not be the primary one
+  receiving Brian's messages.
+
+## 11. SLACK (via MCP)
+
+  Search: "sentry DSN ebacmap brian" — 0 results
+  Search: "sentry DSN" — 0 results
+  No Sentry-related Slack messages found.
+
+## 12. AGENT INDEX (C:\Users\acer\Asolaria\data\agent-index\)
+
+  Relevant IX entries about Brian:
+    - IX-023: Brian's testing rule — integration + unit tests required
+    - IX-147: DANGER — Old bridges to Oli, Connor, Brian may still exist
+    - IX-154: Jarvis = Brian's failed attempt
+    - IX-361: Brian is the bottleneck. Last message March 11.
+    - IX-368: QDD project status — Brian hasn't responded since March 11
+    - IX-359: Monitoring uses Sentry (nextjs + node + react + profiling)
+    - IX-377: "For QDD: connection string from DigitalOcean (Brian has credentials)"
+  NO Sentry DSN values stored in IX entries.
+
+=============================================
+SUMMARY
+=============================================
+
+SENTRY DSN IS ALREADY IN THE CODEBASE. No need to get it from Brian.
+
+  DSN:     https://0b05cfede9714f0c8f8a4c658bf62782@o477196.ingest.sentry.io/6653692
+  Org:     quick-draw-development
+  Project: ebacmap
+  ID:      6653692
+
+WHAT IS STILL MISSING (needs Brian):
+  1. SENTRY_AUTH_TOKEN — for source map uploads during CI/CD.
+     Currently stored as Bitbucket pipeline variable. Jesse may not have it locally.
+  2. CHARM_EZ_PROTECT_* env values — provisioning values, ask Brian/Natalie.
+  3. DigitalOcean production credentials — Brian controls these.
+  4. LIMS API specs + real device data — blocked on Brian (LX-150).
+
+Brian last responded: 2026-03-11 (SFTP bugs marked "fixed").

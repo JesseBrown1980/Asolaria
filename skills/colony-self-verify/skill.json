@@ -1,0 +1,118 @@
+{
+  "id": "colony.self.verify",
+  "name": "colony-self-verify",
+  "description": "Full colony self-verification audit — checks PIDs, skills, mistakes, routes, projects, surfaces, connectors, index integrity, cross-colony sync, and reports gaps.",
+  "version": "1.0.0",
+  "category": "operations",
+  "tags": ["audit", "verification", "pid", "index", "colony", "health", "self-check"],
+  "trigger": "manual",
+  "requiredModules": [
+    "src/spawnContextBuilder.js",
+    "src/agentIndexStore.js",
+    "src/indexCatalogSync.js"
+  ],
+  "checks": [
+    {
+      "id": "pid_registry",
+      "name": "PID Registry Health",
+      "description": "Verify spawn-pid-registry.json exists, active PIDs are real, history is capped",
+      "module": "spawnContextBuilder",
+      "method": "readPidRegistry"
+    },
+    {
+      "id": "agent_roles",
+      "name": "Agent Roles Completeness",
+      "description": "Verify all expected roles exist in AGENT_ROLES",
+      "module": "spawnContextBuilder",
+      "method": "listAgentRoles",
+      "expected": { "minRoles": 10 }
+    },
+    {
+      "id": "ix_cache",
+      "name": "IX Cache Status",
+      "description": "Check if file watcher is active and cache is functioning",
+      "module": "spawnContextBuilder",
+      "method": "getIxCacheStats"
+    },
+    {
+      "id": "ix_type_canonical",
+      "name": "IX Type Canonicality",
+      "description": "All IX entries must use one of 12 canonical types",
+      "canonicalTypes": ["pattern", "tool", "skill", "mistake", "plan", "rule", "reference", "project", "task", "identity", "policy"]
+    },
+    {
+      "id": "ix_frontmatter",
+      "name": "IX Frontmatter Completeness",
+      "description": "Every IX-*.md must have ix, name, type, tags fields in frontmatter"
+    },
+    {
+      "id": "skills_coverage",
+      "name": "Skills Coverage",
+      "description": "Compare skills/ folders against IX skill entries"
+    },
+    {
+      "id": "routes_coverage",
+      "name": "Routes Coverage",
+      "description": "Compare routes/*.js handler counts against IX route entries"
+    },
+    {
+      "id": "connectors_pid",
+      "name": "Connector PID Wiring",
+      "description": "All connectors that spawn processes must have despawnPid hooks",
+      "files": [
+        "src/omnispindle.js",
+        "src/connectors/codexConnector.js",
+        "src/connectors/anthropicCliConnector.js",
+        "src/connectors/cursorAgentConnector.js",
+        "src/connectors/geminiCliConnector.js",
+        "src/instantAgentSpawner.js"
+      ],
+      "requiredPattern": "despawnPid"
+    },
+    {
+      "id": "catalog_sync",
+      "name": "Catalog Sync Health",
+      "description": "Check local catalog snapshot and remote catalogs received",
+      "module": "indexCatalogSync",
+      "method": "getCatalogSyncStatus"
+    },
+    {
+      "id": "mqtt_retained",
+      "name": "MQTT Retained Messages",
+      "description": "Verify presence and health topics are published"
+    },
+    {
+      "id": "event_file_size",
+      "name": "Event File Size",
+      "description": "graph-runtime-events.ndjson should not exceed 100MB",
+      "file": "data/graph-runtime-events.ndjson",
+      "maxSizeMB": 100
+    },
+    {
+      "id": "despawn_protocol",
+      "name": "Despawn Protocol in Briefings",
+      "description": "buildSpawnContext must include DESPAWN PROTOCOL text",
+      "module": "spawnContextBuilder",
+      "requiredText": "DESPAWN PROTOCOL"
+    }
+  ],
+  "steps": [
+    {
+      "action": "colony_self_verify",
+      "note": "Run the colony self-verification audit and write the latest report.",
+      "payload": {
+        "checks": "all",
+        "reportPath": "reports/colony-self-verify-latest.md"
+      },
+      "permissions": ["host.read", "skills.read", "routes.read", "connectors.read"],
+      "requiresApproval": false
+    }
+  ],
+  "output": {
+    "format": "json+markdown",
+    "path": "reports/colony-self-verify-latest.md"
+  },
+  "ix": "IX-396",
+  "createdBy": "gaia-20260324-unification-orchestrator",
+  "createdAt": "2026-03-24"
+}

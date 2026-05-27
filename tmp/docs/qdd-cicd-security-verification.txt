@@ -1,0 +1,29 @@
+QDD CI/CD & Security Verification — 2026-03-25
+================================================
+
+Source: D:\projects\QDD\ebacmap-master
+Verified by: Gaia (Claude Opus 4.6)
+
+#  Check                                          Result   Detail
+-- ---------------------------------------------- -------- -------------------------------------------------------
+1  bitbucket-pipelines.yml pnpm 10.32.0           PASS     Line 19: PNPM_VERSION="${PNPM_VERSION:-10.32.0}"
+2  queue-server/package.json no @sentry/nextjs     PASS     No match in apps/queue-server/package.json
+3  sync-server/package.json no @sentry/nextjs      PASS     No match in apps/sync-server/package.json
+4  sync-server/src/version.ts = '2.0.1'           PASS     Line 1: const version = '2.0.1';
+5  EZ Protect ingest.ts rate limit + max           PASS     .useRateLimit(100, 60000) at line 139;
+                                                            events array .max(1000) at line 146
+6  ExportEvents/UseCase.ts MAX_EXPORT_ROWS=10000  PASS     Line 5: const MAX_EXPORT_ROWS = 10000;
+7  ManageAlertRules/UseCase.ts URL sanitization    PASS     Line 9: if (!url.startsWith('https://'))
+                                                            Line 10: returns error for non-https URLs
+8  EzProtectEvent compound index                   PASS     { clientId: 1, locationId: 1, ingestedAt: -1 }
+                                                            in libs/db/src/models/EzProtectEvent.ts line 173
+9  Controller.ts mockedResponse dead code          FAIL     mockedResponse still present in
+                                                            apps/web-ebacmap/src/common/core/Controller.ts
+                                                            Lines 123 and 131: parameter + if-branch remain
+10 admin/next.config.js ignoreBuildErrors TODO     PASS     Line 22: // TODO: Remove ignoreBuildErrors once
+                                                            type errors are resolved.
+                                                            Line 24: ignoreBuildErrors: true
+
+Summary: 9/10 PASS, 1 FAIL
+  - Item 9: Controller.ts still has the mockedResponse parameter and conditional branch.
+    This dead code was expected to be removed but remains in place.

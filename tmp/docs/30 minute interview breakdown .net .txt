@@ -1,0 +1,110 @@
+30- minute interview breakdown
+0 – 3 Minutes
+Introductions
+What happens
+Interviewer introduces themselves and their role
+Quick overview of the team or platform
+Candidate introduces their background
+Candidate should cover
+Years of experience
+Core stack (.NET, AWS, React)
+Work with microservices or cloud systems
+Any healthcare / PBM / high-volume systems
+Example intro answer
+“I’m a full stack engineer specialising in .NET and AWS. Most of my recent work has been building cloud-native microservices and serverless architectures using Lambda, API Gateway, DynamoDB and event-driven systems. I’ve worked on high-transaction platforms where reliability and scalability were critical.”
+3 – 10 Minutes
+Experience Deep Dive
+The interviewer will pick 1–2 previous projects.
+What they want to confirm
+Experience with .NET microservices
+Experience working in AWS environments
+Ability to work independently on contracts
+Typical questions
+Tell me about a project where you used AWS and .NET together
+What architecture did you use?
+How did your services communicate?
+What AWS services were involved?
+Good signals
+Mentions Lambda
+Mentions API Gateway
+Mentions event-driven systems
+Mentions SQS/SNS/EventBridge
+10 – 20 Minutes
+Technical Discussion (Core Part)
+This is the most important part of the interview.
+The interviewer will validate knowledge of the AWS serverless stack used in the platform.
+Topic 1: .NET Microservices
+Questions may include:
+How do you design a scalable .NET microservice?
+How would you break a monolith into microservices?
+How do you handle API versioning?
+Good answer themes:
+Clean architecture
+Dependency injection
+REST APIs
+Container or serverless deployment
+Topic 2: AWS Architecture
+Because the system runs on AWS, expect questions about:
+Lambda
+API Gateway
+SQS
+SNS
+EventBridge
+DynamoDB
+S3
+RDS
+Example question
+How would you design a serverless API in AWS?
+Expected answer:
+API Gateway receives request
+Lambda processes business logic
+DynamoDB or RDS stores data
+SQS / EventBridge used for async processing
+Topic 3: Event-Driven Systems
+Since the platform uses Kinesis, SQS, SNS, EventBridge, they may ask:
+When would you use SQS vs SNS?
+What is an event-driven architecture?
+How do you handle message retries or failures?
+Strong answer:
+Use SQS for queue based workloads
+Use SNS for pub/sub notifications
+Use EventBridge for event routing across services
+Topic 4: Data Systems
+They may ask about:
+DynamoDB vs RDS
+Streaming pipelines
+ETL processes
+Example question:
+When would you choose DynamoDB instead of RDS?
+Good answer:
+DynamoDB for high scale, low latency workloads
+RDS for relational queries and structured data
+20 – 25 Minutes
+Platform / Domain Discussion
+The interviewer may explain the PBM adjudication platform.
+They may ask:
+Have you worked on high transaction systems?
+Systems that process real-time decisions
+Healthcare or financial platforms
+Even if the candidate has not worked in PBM, they should relate to:
+payment systems
+insurance systems
+fintech platforms
+high-volume APIs
+25 – 28 Minutes
+Candidate Questions
+Candidates should ask smart architecture questions.
+Good examples:
+How large is the engineering team working on the platform?
+What AWS services are used most heavily?
+What part of the adjudication system is being rebuilt?
+How mature is the CI/CD pipeline?
+This shows genuine engineering interest.
+28 – 30 Minutes
+Close & Next Steps
+Typical outcomes:
+Move to technical interview
+Move to system design interview
+Move to client interview
+They may say something like:
+“We’ll review internally and get back to you within a few days.”

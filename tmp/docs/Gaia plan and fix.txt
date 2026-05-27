@@ -1,0 +1,843 @@
+The cross-check found a real divergence. Liris’s OpenClaw conclusion is valid as a Rayssa-host note,
+  but it is not portable to the current Jesse checkout. I’m freezing that distinction into memory now
+  so we don’t accidentally treat “retired” and “active” as the same truth.
+
+• Running rg -n -S "/api/openclaw/action|openclawMode|OpenClaw Control|OpenClaw \(legacy\)" 'C:
+  │ \Users\acer\Asolaria\public' 'C:\Users\acer\Asolaria\src' 'C:\Users\acer\Asolaria\routes'
+
+• Ran rg -n -S "/api/openclaw/action|openclawMode|OpenClaw Control|OpenClaw \(legacy\)" 'C:
+  │ \Users\acer\Asolaria\public' 'C:\Users\acer\Asolaria\src' 'C:\Users\acer\Asolaria\routes'
+  └ C:\Users\acer\Asolaria\src\brainOrchestrator.js:572:      if (String(safeSettings.openclawMode ||
+    "read_only").trim().toLowerCase() === "disabled") {
+    … +32 lines
+    ${openclawMode}.`);
+    C:\Users\acer\Asolaria\public\app.js:13066:      openclawModeSelect.value = openclawMode;
+
+• Ran Get-Date -Format 'yyyyMMdd-HHmmss'
+  └ 20260323-172018
+
+• Edited 6 files (+215 -1)
+  └ TASKS.md (+4 -0)
+    31
+    32 +- [x] Digest the latest Liris Natural20/OpenClaw artifact into memory without letting it overw
+        rite compute truth (2026-03-23 17:20 -03:00): extracted `C:\Users\acer\Downloads\Liris comment
+         Natural 20 and open claw artifiacts and potential.docx`, wrote `reports/liris-natural20-openc
+        law-digest-20260323-172018.md` (`latest`: `reports/liris-natural20-openclaw-digest-latest.md`)
+        , stored `data/vault/owner/observations/liris-natural20-openclaw-digest-20260323-172018.md`, a
+        nd indexed the durable boundary as `IX-301`. Result: Natural20 is useful as outside-world awar
+        eness only; OpenClaw status remains host-scoped and drifted between Rayssa and Jesse; this art
+        ifact does not override `IX-300`.
+    33 +
+    34 +- [ ] Reconcile OpenClaw status drift between Jesse and Rayssa hosts before touching that surf
+        ace again (2026-03-23 17:20 -03:00): Liris’s Rayssa-side review treats OpenClaw as retired/sta
+        le, but the current Jesse checkout still exposes live OpenClaw mode controls, UI control card,
+         `/api/openclaw/action` client calls, settings writes, intent routes, and connector code. Deci
+        de whether OpenClaw is truly retired, disabled-but-present, or still supported, then make UI/d
+        ocs/router/settings match. Keep it out of Helm startup memory until resolved.
+    35 +
+    36  - [ ] Review unexpected Google-account access prompt on Jesse phone and keep local auth-capabl
+        e Google surfaces disabled (2026-03-23 12:31 -03:00): killed the live `notebooklm-mcp` process
+         tree after an unexpected Google access prompt appeared for `jessebrown.soft1980@gmail.com`. D
+        isabled `asolariaGoogleWiki`, `notebooklmMcp`, and `googleDeveloperKnowledge` in `C:\Users\ace
+        r\.codex\config.toml`, and cleared `GOOGLE_DEVKNOWLEDGE_API_KEY` from user/process env so they
+         cannot respawn or be used implicitly. Treat the prompt as hostile/unverified until owner conf
+        irms otherwise. If the phone prompt is still visible, deny it. Re-enable only after explicit o
+        wner approval and incident review.
+
+  └ data\agent-index\CATALOG.md (+4 -1)
+    643
+    644 -## Next available: IX-301
+    644 +**Natural20 versus OpenClaw host-drift chain:** IX-301 → IX-300 → IX-299 → IX-296 → IX-291
+    645 +> Natural20 belongs on the outside-world awareness side, while OpenClaw status is currently d
+         rifted across Rayssa and Jesse hosts and must stay host-scoped until reconciled.
+    646 +
+    647 +## Next available: IX-302
+
+  └ data\agent-index\IX-301.md (+45 -0)
+     1 +---
+     2 +ix: 301
+     3 +name: Natural20 is outside-world awareness and OpenClaw status must stay host-scoped until Jes
+        se and Rayssa drift is reconciled
+     4 +type: pattern
+     5 +tags: [natural20, openclaw, host-drift, rayssa, jesse, oversight, telemetry, helm]
+     6 +chain: [IX-300, IX-299, IX-296, IX-291]
+     7 +agents: [gaia, liris, helm, sentinel]
+     8 +---
+     9 +
+    10 +# Natural20 And OpenClaw Boundary
+    11 +
+    12 +## Durable Rule
+    13 +
+    14 +Treat Natural20 as an external-awareness surface, not an internal-governance source of truth.
+    15 +
+    16 +Use Natural20 for:
+    17 +
+    18 +- outside-world model and vendor awareness
+    19 +- daily external intelligence
+    20 +
+    21 +Do not use Natural20 for:
+    22 +
+    23 +- colony decisions
+    24 +- routing truth
+    25 +- approvals
+    26 +- internal comms
+    27 +- worker-state truth
+    28 +
+    29 +For those, use Asolaria-native telemetry and records.
+    30 +
+    31 +## OpenClaw Rule
+    32 +
+    33 +Treat OpenClaw status as host-scoped until drift is reconciled.
+    34 +
+    35 +- Rayssa-side review currently treats OpenClaw as stale/retired and not safe to re-enable as-i
+        s
+    36 +- Jesse checkout still has active OpenClaw UI, settings, intent, and connector surfaces
+    37 +
+    38 +So the current integrated truth is not “OpenClaw is retired everywhere.”
+    39 +The current integrated truth is “OpenClaw state is drifted across hosts and must not be genera
+        lized blindly.”
+    40 +
+    41 +## Use Rule
+    42 +
+    43 +- keep OpenClaw release-note excitement out of Helm startup memory
+    44 +- do not let OpenClaw host drift overwrite current compute truth in `IX-300`
+    45 +- if OpenClaw is touched again, reconcile Jesse and Rayssa surfaces explicitly before claiming
+         it is either active or retired
+
+  └ data\vault\owner\observations\liris-natural20-openclaw-digest-20260323-172018.md (+14 -0)
+     1 +# Owner Observation
+     2 +
+     3 +This DOCX is not a new build packet. It is a mixed transcript with two useful conclusions.
+     4 +
+     5 +First, Liris’s Natural20 read is good and durable:
+     6 +
+     7 +- Natural20 is an outside-world awareness surface
+     8 +- not an inside-Asolaria governance surface
+     9 +
+    10 +Second, the OpenClaw conclusion is only partly portable.
+    11 +
+    12 +On Rayssa host, Liris sees OpenClaw as retired/stale and not something to re-enable as-is. But
+         the current Jesse checkout still carries active OpenClaw UI, settings, intent, and connector
+        surfaces. So the real finding is host drift, not universal retirement.
+    13 +
+    14 +That means this artifact is worth indexing for the Natural20 boundary and the OpenClaw host-dr
+        ift warning, but it should not override `IX-300` or be treated as startup authority.
+
+  └ reports\liris-natural20-openclaw-digest-20260323-172018.md (+74 -0)
+     1 +# Liris Natural20 OpenClaw Digest
+     2 +
+     3 +- Ingested: `2026-03-23 17:20:18 -03:00`
+     4 +- Source DOCX: `C:\Users\acer\Downloads\Liris comment Natural 20 and open claw artifiacts and
+        potential.docx`
+     5 +- Extracted text: `tmp/docs/liris-comment-natural20-openclaw-artifacts-potential-extracted.txt
+        `
+     6 +
+     7 +## Classification
+     8 +
+     9 +This document is mixed-scope.
+    10 +
+    11 +It contains:
+    12 +
+    13 +- preserved Rayssa-side rerun and compute packet material already superseded by `IX-300`
+    14 +- Liris opinion and repo review around Natural20
+    15 +- Liris opinion and repo review around old OpenClaw surfaces
+    16 +- external OpenClaw release-note and docs references
+    17 +
+    18 +It is not a new startup packet and it does not change the current compute boundary in `IX-300`
+        .
+    19 +
+    20 +## Durable Truth Worth Keeping
+    21 +
+    22 +### 1. Natural20 boundary
+    23 +
+    24 +The useful durable rule is architectural, not operational:
+    25 +
+    26 +- Natural20 is an outside-world intelligence feed
+    27 +- it is useful for external AI ecosystem updates, model/vendor changes, and ambient daily awar
+        eness
+    28 +- it is not the correct source of truth for internal colony oversight
+    29 +
+    30 +The document’s own conclusion is clean:
+    31 +
+    32 +- `Natural20 = outside world`
+    33 +- `Civilization Oversight = inside Asolaria`
+    34 +
+    35 +For internal truth, keep using Asolaria-native telemetry:
+    36 +
+    37 +- task ledger
+    38 +- graph/action manifests
+    39 +- approvals
+    40 +- mailbox/comms
+    41 +- worker dispatches
+    42 +- MQTT node state
+    43 +
+    44 +### 2. OpenClaw must stay host-scoped
+    45 +
+    46 +The document argues that on Rayssa host, OpenClaw should be treated as retired/stale and not r
+        e-enabled as-is.
+    47 +
+    48 +That is usable as a Rayssa-host note, but it is not portable global truth.
+    49 +
+    50 +## Jesse Checkout Cross-Check
+    51 +
+    52 +Current Jesse checkout still exposes materially live OpenClaw surfaces:
+    53 +
+    54 +- UI mode control exists in `public/index.html`
+    55 +- OpenClaw control card exists in `public/index.html`
+    56 +- client code still posts to `/api/openclaw/action` from `public/app.js`
+    57 +- settings still expose `openclawMode` through `routes/remaining.js`
+    58 +- intent routes still parse `openclaw ...` commands in `src/intentRouter.js`
+    59 +- provider fallback and connector code still exist in `src/brainOrchestrator.js` and `src/conn
+        ectors/openclawConnector.js`
+    60 +
+    61 +So the correct integrated conclusion is:
+    62 +
+    63 +- Liris’s “OpenClaw is retired/not actively wired” reading is host-scoped to her Rayssa-side r
+        eview
+    64 +- Jesse checkout still has active OpenClaw UI/control/router surfaces
+    65 +- Asolaria currently has OpenClaw status drift across hosts and docs, not a single clean truth
+    66 +
+    67 +## Memory Boundary
+    68 +
+    69 +Promote only these rules:
+    70 +
+    71 +- keep Natural20 as external-awareness support, not internal-governance truth
+    72 +- keep OpenClaw claims host-scoped until the Jesse/Rayssa drift is reconciled
+    73 +- do not import OpenClaw release-note excitement into Helm startup memory
+    74 +- do not treat this DOCX as newer than `IX-300` on compute readiness
+
+  └ reports\liris-natural20-openclaw-digest-latest.md (+74 -0)
+     1 +# Liris Natural20 OpenClaw Digest
+     2 +
+     3 +- Ingested: `2026-03-23 17:20:18 -03:00`
+     4 +- Source DOCX: `C:\Users\acer\Downloads\Liris comment Natural 20 and open claw artifiacts and
+        potential.docx`
+     5 +- Extracted text: `tmp/docs/liris-comment-natural20-openclaw-artifacts-potential-extracted.txt
+        `
+     6 +
+     7 +## Classification
+     8 +
+     9 +This document is mixed-scope.
+    10 +
+    11 +It contains:
+    12 +
+    13 +- preserved Rayssa-side rerun and compute packet material already superseded by `IX-300`
+    14 +- Liris opinion and repo review around Natural20
+    15 +- Liris opinion and repo review around old OpenClaw surfaces
+    16 +- external OpenClaw release-note and docs references
+    17 +
+    18 +It is not a new startup packet and it does not change the current compute boundary in `IX-300`
+        .
+    19 +
+    20 +## Durable Truth Worth Keeping
+    21 +
+    22 +### 1. Natural20 boundary
+    23 +
+    24 +The useful durable rule is architectural, not operational:
+    25 +
+    26 +- Natural20 is an outside-world intelligence feed
+    27 +- it is useful for external AI ecosystem updates, model/vendor changes, and ambient daily awar
+        eness
+    28 +- it is not the correct source of truth for internal colony oversight
+    29 +
+    30 +The document’s own conclusion is clean:
+    31 +
+    32 +- `Natural20 = outside world`
+    33 +- `Civilization Oversight = inside Asolaria`
+    34 +
+    35 +For internal truth, keep using Asolaria-native telemetry:
+    36 +
+    37 +- task ledger
+    38 +- graph/action manifests
+    39 +- approvals
+    42 +- MQTT node state
+    43 +
+    44 +### 2. OpenClaw must stay host-scoped
+    45 +
+    46 +The document argues that on Rayssa host, OpenClaw should be treated as retired/stale and not r
+        e-enabled as-is.
+    47 +
+    48 +That is usable as a Rayssa-host note, but it is not portable global truth.
+    49 +
+    50 +## Jesse Checkout Cross-Check
+    51 +
+    52 +Current Jesse checkout still exposes materially live OpenClaw surfaces:
+    53 +
+    54 +- UI mode control exists in `public/index.html`
+    55 +- OpenClaw control card exists in `public/index.html`
+    56 +- client code still posts to `/api/openclaw/action` from `public/app.js`
+    57 +- settings still expose `openclawMode` through `routes/remaining.js`
+    58 +- intent routes still parse `openclaw ...` commands in `src/intentRouter.js`
+    59 +- provider fallback and connector code still exist in `src/brainOrchestrator.js` and `src/conn
+        ectors/openclawConnector.js`
+    60 +
+    61 +So the correct integrated conclusion is:
+    62 +
+    63 +- Liris’s “OpenClaw is retired/not actively wired” reading is host-scoped to her Rayssa-side r
+        eview
+    64 +- Jesse checkout still has active OpenClaw UI/control/router surfaces
+    65 +- Asolaria currently has OpenClaw status drift across hosts and docs, not a single clean truth
+    66 +
+    67 +## Memory Boundary
+    68 +
+    69 +Promote only these rules:
+    70 +
+    71 +- keep Natural20 as external-awareness support, not internal-governance truth
+    72 +- keep OpenClaw claims host-scoped until the Jesse/Rayssa drift is reconciled
+    73 +- do not import OpenClaw release-note excitement into Helm startup memory
+    74 +- do not treat this DOCX as newer than `IX-300` on compute readiness
+
+─ Worked for 1m 03s ──────────────────────────────────────────────────────────────────────────────────
+
+• The digest and new boundary are written. I’m doing a quick verification pass now because the
+  important part here is the distinction: Natural20 insight is durable, OpenClaw retirement is not
+  globally portable.
+
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-301.md' -TotalCount 220
+
+• Ran Select-String -Path 'C:\Users\acer\Asolaria\TASKS.md' -Pattern 'Digest the latest Liris
+  │ Natural20/OpenClaw artifact|Reconcile OpenClaw status drift between Jesse and Rayssa hosts'
+  │ -Context 0,1
+  └
+      TASKS.md:35:
+
+
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' -Tail 18
+
+    ## Next available: IX-302
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• I checked it and indexed it. The digest is at reports/liris-natural20-openclaw-digest-latest.md, the
+  new durable rule is data/agent-index/IX-301.md, and data/agent-index/CATALOG.md now advances to IX-
+  302.
+
+  What the document actually adds:
+
+  - Natural20 is a good outside-world awareness surface, not an inside-Asolaria governance surface.
+  - The OpenClaw conclusion is only safe as a Rayssa-host reading.
+  - It does not override the current compute boundary in data/agent-index/IX-300.md.
+
+  The important cross-check is this: Liris’s DOCX treats OpenClaw as retired/stale on Rayssa, but the
+  current Jesse checkout still has active OpenClaw UI/control/settings/router surfaces, including
+  OpenClaw (legacy) UI, /api/openclaw/action client calls, openclawMode settings handling, intent
+  routes, and connector code. So the real truth is host drift, not “OpenClaw is retired everywhere.” I
+  captured that as an open reconciliation task in TASKS.md.
+
+  No runtime mutation happened here. This was memory/index/report only.
+
+
+› Liris: "C:\Users\acer\Downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105.zip" Packet
+  is ready in /C:/Users/rayss/Downloads/gaia-rayssa-phone-reauthorized-
+    packet-20260323-173105.zip.
+
+    It contains:
+
+    - /C:/Users/rayss/Asolaria/reports/gaia-rayssa-phone-reauthorized-packet-
+
+• I’m treating this as a narrow host-truth packet. First step is to verify the ZIP contents and
+  compare it against the current Rayssa phone chain so I only promote what is actually newer than IX-
+  300 and IX-301.
+
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' -Tail 20
+
+• Running Get-FileHash 'C:
+    **Liris post-proof next-order chain:** IX-296 → IX-295 → IX-288 → IX-292 → IX-291
+    … +19 lines
+
+    ## Next available: IX-302
+
+• Ran Get-Item 'C:\Users\acer\Downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105.zip' |
+  │ Select-Object FullName,Length,LastWriteTime | Format-List
+  └
+    FullName      : C:\Users\acer\Downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105.zip
+    Length        : 1617
+    LastWriteTime : 3/23/2026 5:43:57 PM
+
+
+• Ran Get-FileHash 'C:\Users\acer\Downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105.zip'
+  │ -Algorithm SHA256 | Format-List
+  └
+    Algorithm : SHA256
+    Hash      : 39AF385835E4EBD28223BA51CED53B7E8EBCAEE87001DFD99C05D96C129700FB
+    Path      : C:\Users\acer\Downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105.zip
+
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• Ran Get-Content 'C:
+  │ \Users\acer\tmp\downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105\gaia-rayssa-phon
+  │ e-reauthorized-packet-latest.md' -TotalCount 240
+  └ Get-Content:
+    Line |
+    … +3 lines
+    \Users\acer\tmp\downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105\gaia-rayssa-phone-
+    reauthorized-packet-latest.md' because it does not exist.
+
+• Ran Expand-Archive -LiteralPath 'C:
+  │ \Users\acer\Downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105.zip'
+  │ -DestinationPath 'C:
+  │ … +4 lines
+  └
+    FullName
+    … +6 lines
+    …
+• Ran Get-Content 'C:
+  │ \Users\acer\tmp\downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105\phone-tunnel-smo
+  │ ke-20260323-173105.md' -TotalCount 260
+  └ # Phone Tunnel Smoke Test - 2026-03-23T20:31:05.5679257+00:00
+
+    … +26 lines
+    - raw probe line:
+
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• The smoke file is present and it’s clean. The packet wrapper filename is slightly different than the
+  relay text, so I’m listing the extracted names and reading the wrapper directly before I write the
+  ingest.
+
+• Running Get-ChildItem 'C:
+  │ \Users\acer\tmp\downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105' |
+  │ Select-Object Name,FullName
+
+• Ran Get-Content (Get-ChildItem 'C:
+  │ \Users\acer\tmp\downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105' | Where-Object
+  │ { $_.Name -like '*packet*.md' } | Select-Object -ExpandProperty FullName) -TotalCount 240
+  └ # Gaia Rayssa Phone Reauthorized Packet
+
+    … +50 lines
+    - Default label remains `liris/kuromi`, not `falcon`.
+    - This packet is host-scoped recovery proof only; it does not change the current compute boundary.
+
+• Ran Get-ChildItem 'C:
+  │ \Users\acer\tmp\downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105' | Select-Object
+  │ Name,FullName
+  └
+    Name                                            FullName
+    … +4 lines
+    \Users\acer\tmp\downloads\gaia-rayssa-phone-reauth…
+
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• The packet is exactly what the relay said: fresh phone reauthorization proof, not a compute change.
+  I’m indexing it as a host-scoped phone-lane refresh and keeping the compute boundary anchored to IX-
+  300.
+
+• Running Get-Date -Format 'yyyyMMdd-HHmmss'
+
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-295.md' -TotalCount 220
+  └ ---
+    ix: 295
+    … +32 lines
+    Compare future failures only at the failing raw-proof layer; do not reopen the older `/api/mobile/
+    bootstrap = 404` packet unless fresh host-scoped proof forces it.
+
+• Ran Get-Date -Format 'yyyyMMdd-HHmmss'
+  └ 20260323-174551
+
+• Edited 6 files (+150 -1)
+  └ TASKS.md (+2 -0)
+    35
+    36 +- [x] Ingest the fresh Rayssa phone reauthorization packet without letting it bleed into compu
+        te claims (2026-03-23 17:45 -03:00): validated `C:\Users\acer\Downloads\gaia-rayssa-phone-reau
+        thorized-packet-20260323-173105.zip`, wrote `reports/gaia-rayssa-phone-reauthorized-packet-ing
+        est-20260323-174551.md` (`latest`: `reports/gaia-rayssa-phone-reauthorized-packet-ingest-lates
+        t.md`), stored `data/vault/owner/observations/gaia-rayssa-phone-reauthorized-packet-ingest-202
+        60323-174551.md`, and indexed the host-scoped recovery refresh as `IX-302`. Current rule: Rays
+        sa phone lane is re-authorized and healthy again under `liris/kuromi`, but this packet does no
+        t change `IX-300`.
+    37 +
+    38  - [ ] Review unexpected Google-account access prompt on Jesse phone and keep local auth-capabl
+        e Google surfaces disabled (2026-03-23 12:31 -03:00): killed the live `notebooklm-mcp` process
+         tree after an unexpected Google access prompt appeared for `jessebrown.soft1980@gmail.com`. D
+        isabled `asolariaGoogleWiki`, `notebooklmMcp`, and `googleDeveloperKnowledge` in `C:\Users\ace
+        r\.codex\config.toml`, and cleared `GOOGLE_DEVKNOWLEDGE_API_KEY` from user/process env so they
+         cannot respawn or be used implicitly. Treat the prompt as hostile/unverified until owner conf
+        irms otherwise. If the phone prompt is still visible, deny it. Re-enable only after explicit o
+        wner approval and incident review.
+
+  └ data\agent-index\CATALOG.md (+4 -1)
+    646
+    647 -## Next available: IX-302
+    647 +**Rayssa phone reauthorized-refresh chain:** IX-302 → IX-300 → IX-295 → IX-294 → IX-287
+    648 +> Rayssa phone authorization is live again on both USB and wireless with fresh reverse and sm
+         oke proof, but this is a phone-lane recovery refresh only and does not change compute truth.
+    649 +
+    650 +## Next available: IX-303
+
+  └ data\agent-index\IX-302.md (+32 -0)
+     1 +---
+     2 +ix: 302
+     3 +name: Rayssa phone lane is reauthorized again and healthy, but compute truth remains unchanged
+     4 +type: reference
+     5 +tags: [rayssa, liris, kuromi, phone, reauthorized, adb, reverse, smoke, usb, wireless]
+     6 +chain: [IX-300, IX-295, IX-294, IX-287]
+     7 +agents: [gaia, liris, helm, sentinel]
+     8 +---
+     9 +
+    10 +# Rayssa Phone Reauthorized Refresh
+    11 +
+    12 +## Durable Rule
+    13 +
+    14 +Treat the Rayssa-host phone lane as re-authorized and healthy again.
+    15 +
+    16 +- both USB and wireless endpoints are authorized
+    17 +- USB reverse for `tcp:4781` is present
+    18 +- bootstrap/session/control on the USB lane are healthy
+    19 +- fresh smoke passes
+    20 +
+    21 +## Boundary
+    22 +
+    23 +This packet is a phone-lane recovery refresh only.
+    24 +
+    25 +- default phone-side label remains `liris/kuromi`
+    26 +- it does not alter `IX-300`
+    27 +- it does not justify `computeWorkerReady=true`
+    28 +- it does not prove cross-host compute or phone CPU sharing
+    29 +
+    30 +## Use Rule
+    31 +
+    32 +If the Rayssa phone lane fails again, compare future failures against this packet at the faili
+        ng probe layer instead of reopening older archaeology.
+
+  └ data\vault\owner\observations\gaia-rayssa-phone-reauthorized-packet-ingest-20260323-174551.md (+18
+-0)
+     1 +# Owner Observation
+     2 +
+     3 +This is a clean phone-lane refresh packet, not a new compute packet.
+     4 +
+     5 +Useful live update:
+     6 +
+     7 +- Rayssa USB and wireless endpoints are both authorized again
+     8 +- `tcp:4781` reverse is present
+     9 +- bootstrap/session/control on the USB lane are healthy
+    10 +- fresh smoke passes
+    11 +
+    12 +What it does not change:
+    13 +
+    14 +- it does not move `computeWorkerReady`
+    15 +- it does not prove cross-host compute
+    16 +- it does not replace `IX-300`
+    17 +
+    18 +The right use is simple: treat the Rayssa-host phone lane as re-authorized and healthy again u
+        nder `liris/kuromi`, and keep compute truth separate.
+
+  └ reports\gaia-rayssa-phone-reauthorized-packet-ingest-20260323-174551.md (+47 -0)
+     1 +# Gaia Rayssa Phone Reauthorized Packet Ingest
+     2 +
+     3 +- Ingested: `2026-03-23 17:45:51 -03:00`
+     4 +- Source ZIP: `C:\Users\acer\Downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105.z
+        ip`
+     5 +- SHA-256: `39AF385835E4EBD28223BA51CED53B7E8EBCAEE87001DFD99C05D96C129700FB`
+     6 +- Extracted under: `C:\Users\acer\tmp\downloads\gaia-rayssa-phone-reauthorized-packet-20260323
+        -173105`
+     7 +
+     8 +## Classification
+     9 +
+    10 +This is a narrow host-scoped recovery packet.
+    11 +
+    12 +It refreshes live Rayssa phone authorization state. It does not alter the compute boundary alr
+        eady locked in `IX-300`.
+    13 +
+    14 +## Current Accepted Proof
+    15 +
+    16 +- `adb devices -l` shows both the USB serial and the wireless endpoint as authorized
+    17 +  - USB serial: `RQCX907KFTK`
+    18 +  - wireless endpoint: `192.168.15.47:5555`
+    19 +- USB reverse is present for `tcp:4781`
+    20 +- `GET /api/mobile/bootstrap` is healthy and advertises `viewer=liris`
+    21 +- `GET /api/mobile/session?channel=usb` returns `200`
+    22 +- `GET /api/mobile/control/status?channel=usb` returns `200`
+    23 +- fresh phone tunnel smoke passes
+    24 +
+    25 +Fresh smoke summary preserved from the packet:
+    26 +
+    27 +- `ok=true`
+    28 +- `effectiveChannel=usb`
+    29 +- `authorizedCount=2`
+    30 +- `usbAuthorizedCount=1`
+    31 +- `selectedDevice=RQCX907KFTK`
+    32 +- `reversePresent=true`
+    33 +
+    34 +## Durable Boundary
+    35 +
+    36 +Promote only this host-scoped update:
+    37 +
+    38 +- the Rayssa-host USB phone lane is re-authorized and healthy again
+    39 +- the default phone-side label remains `liris/kuromi`, not `falcon`
+    40 +- this packet is recovery proof only
+    41 +- this packet does not change `IX-300`
+    42 +
+    43 +## Use Rule
+    44 +
+    45 +- keep using the current Rayssa phone lane as live under `liris/kuromi`
+    46 +- if a future phone failure appears, compare it against this packet at the failing probe layer
+    47 +- do not let phone reauthorization proof expand into claims about `computeWorkerReady` or cros
+        s-host compute
+
+  └ reports\gaia-rayssa-phone-reauthorized-packet-ingest-latest.md (+47 -0)
+     1 +# Gaia Rayssa Phone Reauthorized Packet Ingest
+     2 +
+     3 +- Ingested: `2026-03-23 17:45:51 -03:00`
+     4 +- Source ZIP: `C:\Users\acer\Downloads\gaia-rayssa-phone-reauthorized-packet-20260323-173105.z
+        ip`
+     5 +- SHA-256: `39AF385835E4EBD28223BA51CED53B7E8EBCAEE87001DFD99C05D96C129700FB`
+     6 +- Extracted under: `C:\Users\acer\tmp\downloads\gaia-rayssa-phone-reauthorized-packet-20260323
+        -173105`
+     7 +
+     8 +## Classification
+     9 +
+    10 +This is a narrow host-scoped recovery packet.
+        eady locked in `IX-300`.
+    13 +
+    14 +## Current Accepted Proof
+    15 +
+    16 +- `adb devices -l` shows both the USB serial and the wireless endpoint as authorized
+    17 +  - USB serial: `RQCX907KFTK`
+    18 +  - wireless endpoint: `192.168.15.47:5555`
+    19 +- USB reverse is present for `tcp:4781`
+    20 +- `GET /api/mobile/bootstrap` is healthy and advertises `viewer=liris`
+    21 +- `GET /api/mobile/session?channel=usb` returns `200`
+    22 +- `GET /api/mobile/control/status?channel=usb` returns `200`
+    23 +- fresh phone tunnel smoke passes
+    24 +
+    25 +Fresh smoke summary preserved from the packet:
+    26 +
+    27 +- `ok=true`
+    28 +- `effectiveChannel=usb`
+    29 +- `authorizedCount=2`
+    30 +- `usbAuthorizedCount=1`
+    31 +- `selectedDevice=RQCX907KFTK`
+    32 +- `reversePresent=true`
+    33 +
+    34 +## Durable Boundary
+    35 +
+    36 +Promote only this host-scoped update:
+    42 +
+    43 +## Use Rule
+    44 +
+    45 +- keep using the current Rayssa phone lane as live under `liris/kuromi`
+    46 +- if a future phone failure appears, compare it against this packet at the failing probe layer
+    47 +- do not let phone reauthorization proof expand into claims about `computeWorkerReady` or cros
+        s-host compute
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• The ingest is patched. I’m doing a quick consistency pass on IX-302, the new report, and the task/
+  catalog pointers so the phone lane refresh doesn’t accidentally blur into the compute chain.
+
+• Running Select-String -Path 'C:\Users\acer\Asolaria\TASKS.md' -Pattern 'Ingest the fresh Rayssa
+  │ phone reauthorization packet' -Context 0,1
+
+• Running Get-Content 'C:
+  │ \Users\acer\Asolaria\reports\gaia-rayssa-phone-reauthorized-packet-ingest-latest.md'
+  │ -TotalCount 220
+
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' -Tail 18
+
+• Ran Get-Content 'C:
+  │ \Users\acer\Asolaria\reports\gaia-rayssa-phone-reauthorized-packet-ingest-latest.md' -TotalCount
+  │ 220
+  └ # Gaia Rayssa Phone Reauthorized Packet Ingest
+
+    … +44 lines
+    - do not let phone reauthorization proof expand into claims about `computeWorkerReady` or
+    cross-host compute
+
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' -Tail 18
+    ## Next available: IX-303
+
+• Ran Select-String -Path 'C:\Users\acer\Asolaria\TASKS.md' -Pattern 'Ingest the fresh Rayssa phone
+  │ reauthorization packet' -Context 0,1
+  └
+    > TASKS.md:36:- [x] Ingest the fresh Rayssa phone reauthorization packet without letting it bleed
+    … +8 lines
+      TASKS.md:37:
+
+
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-302.md' -TotalCount 220
+  └ ---
+    ix: 302
+    … +29 lines
+    If the Rayssa phone lane fails again, compare future failures against this packet at the failing
+    probe layer instead of reopening older archaeology.
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• Indexed.
+
+  I wrote the ingest at reports/gaia-rayssa-phone-reauthorized-packet-ingest-latest.md, stored the
+  owner note at data/vault/owner/observations/gaia-rayssa-phone-reauthorized-packet-ingest-20260323-
+  174551.md, and added the new host-scoped reference data/agent-index/IX-302.md. data/agent-index/
+  CATALOG.md now advances to IX-303.
+
+  Current accepted update:
+
+  - Rayssa phone lane is re-authorized and healthy again under liris/kuromi
+  - both USB and wireless are authorized
+  - tcp:4781 reverse is present
+  - bootstrap, session, and control on the USB lane are healthy
+  - fresh smoke passes
+
+  Boundary stays strict: this is a phone-lane recovery refresh only. It does not change data/agent-
+  index/IX-300.md, and it does not promote computeWorkerReady or cross-host compute.
+
+  No runtime mutation happened here beyond memory/index/report updates.
+
+
+› Ok, what now? Are the phones ready to suppor
+
+
+• Yes for control/support. No for shared compute.
+
+  Current honest state:
+
+  - Rayssa phone lane: ready for phone-side support
+      - re-authorized on USB and wireless
+      - 4781 reverse present
+      - bootstrap/session/control healthy
+      - fresh smoke passes
+      - indexed in data/agent-index/IX-302.md
+  - Rayssa compute lane: not ready to claim phone compute support
+      - host-side bounded compute prep is proven
+      - computeWorkerReady is still false
+      - indexed in data/agent-index/IX-300.md
+
+  So if you mean:
+
+  - support mobile control, monitoring, approvals, bridge, session/control surfaces: yes
+  - support pooled CPU/RAM or real federated phone compute: no, not yet
+
+  What now:
+
+  1. Restart Jesse sovereign runtime into the live shared-compute build.
+  2. Prove one real advertised worker contract on a non-phone federated node first, likely Amy or
+     Rayssa host.
+  3. Only after that, decide whether to make phone compute real as a bounded edge-worker lane.
+
+  If you want the strict answer in one line:
+
+
+  If you want, I can give you the exact next proof sequence to get from phone support to real
+  federated compute.
+
+• Start with the phone-support lane, not the compute lane.
+
+  Use them now for:
+
+
+  Do not use them yet for:
+
+  1. computeWorkerReady
+  2. pooled CPU/RAM claims
+  3. cross-host compute claims
+
+  Current boundary:
+
+  - Rayssa phone lane is live and re-authorized under liris/kuromi: data/agent-index/IX-302.md
+  - Rayssa compute prep is real, but worker readiness is still false: data/agent-index/IX-300.md
+
+  Best next move:
+
+  1. start using the phones for real ops/control immediately
+  2. restart Jesse sovereign into the live shared-compute build
+  3. prove one non-phone federated worker contract end to end
+  4. only then decide whether phone edge compute should become a real bounded worker lane
+
+  So the clean answer is: yes, start using the phones now, but only as operational support surfaces.
+  Do not call them compute yet.
+
+  If you want the exact next command sequence, the next safe mutation is Jesse-side shared-compute
+  rollout verification, not more phone proof.
+
+
+› Yes
+
+  line up. After that I’ll give you the exact result and the next command sequence.
+
+• Running Get-Content 'C:\Users\acer\Asolaria\TASKS.md' | Select-Object -Skip 20 -First 20
+• Running Get-Content 'C:\Users\acer\Asolaria\package.json' -TotalCount 220
+
+• Ran Get-Content 'C:\Users\acer\Asolaria\package.json' -TotalCount 220
+  └ {
+      "name": "asolaria",
+    … +29 lines
+      }
+    }
+
+• Ran rg -n -S "shared-compute|sharedCompute|federation/nodes|integrations/mqtt/status|health/fast"
+  │ 'C:\Users\acer\Asolaria\server.js' 'C:\Users\acer\Asolaria\routes' 'C:\Users\acer\Asolaria\src'
+  └ C:\Users\acer\Asolaria\server.js:3562:  "GET /api/integrations/mqtt/status",
+    C:\Users\acer\Asolaria\server.js:4508:app.get("/api/health/fast", async (req, res) => {
+    C:\Users\acer\Asolaria\server.js:23306:app.get("/api/health/fast", async (req, res) => {
+    require("./routes/sharedCompute")({ publishMqttMessage }));
+
+• Ran Get-Content 'C:\Users\acer\Asolaria\TASKS.md' | Select-Object -Skip 20 -First 20
+  └ - [x] Make shared processor execution real with a bounded shared-compute substrate (2026-03-23
+    13:25 -03:00): added `src/sharedComputeFabric.js`, `routes/sharedCompute.js`, MQTT `compute/
+    … +51 lines
+    includes authorized ADB devices, USB reverse for `tcp:4781`, passing phone tunnel smoke, and live
+    bootstrap/session/control under `liris/kuromi`.
+
+• Ran rg -n -S "shared-compute|sharedCompute|federation/nodes|integrations/mqtt/status|health/fast"
+• The code path is present in this checkout and the pending task is exactly the live rollout. I’m
+  probing the currently running Jesse runtime first; if /api/shared-compute/* is already live, we
+  don’t need a restart, and if it isn’t, I’ll restart main and verify the routes afterward.
+
+• Running try { Invoke-RestMethod -TimeoutSec 5 -Uri 'http://127.0.0.1:4781/api/federation/nodes' | C
+  │ onvertTo-Json -Depth 6 } catch { $_.Exception.Message }
+
+• Running try { Invoke-RestMethod -TimeoutSec 5 -Uri 'http://127.0.0.1:4781/api/health/fast' | Conver
+  │ tTo-Json -Depth 6 } catch { $_.Exception.Message }
+
+• Running try { Invoke-RestMethod -TimeoutSec 5 -Uri
+  │ 'http://127.0.0.1:4781/api/integrations/mqtt/status' | ConvertTo-Json -Depth 6 } catch { $_
+  │ .Exception.Message }
+• Ran try { Invoke-RestMethod -TimeoutSec 5 -Uri 'http://127.0.0.1:4781/api/health/fast' | ConvertTo-
+  │ Json -Depth 6 } catch { $_.Exception.Message }
+  └ The request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+
+• Ran try { Invoke-RestMethod -TimeoutSec 5 -Uri 'http://127.0.0.1:4781/api/integrations/mqtt/status'
+  │ | ConvertTo-Json -Depth 6 } catch { $_.Exception.Message }
+  └ The request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+
+• Ran try { Invoke-RestMethod -TimeoutSec 5 -Uri 'http://127.0.0.1:4781/api/shared-compute/status' |
+  │ ConvertTo-Json -Depth 6 } catch { $_.Exception.Message }
+  └ The request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+
+• Ran try { Invoke-RestMethod -TimeoutSec 5 -Uri 'http://127.0.0.1:4781/api/federation/nodes' | Conve
+  │ rtTo-Json -Depth 6 } catch { $_.Exception.Message }
+  └ The request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• The live runtime isn’t answering within a short loopback timeout on any of the key routes. I’m
+  checking whether 4781 is still listening cleanly; if it is degraded or stale, I’ll restart main now
+  and verify the compute routes after restart.
+
+• Running Get-Process -Id (Get-NetTCPConnection -LocalPort 4781 -State Listen -ErrorAction
+  │ SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess) | Select-Object
+  │ Id,ProcessName,StartTime,Path | Format-List
+
+• Running netstat -ano | findstr :4781
+
+• Ran netstat -ano | findstr :4781
+  └   TCP    0.0.0.0:4781           0.0.0.0:0              LISTENING       10380
+      TCP    127.0.0.1:4781         127.0.0.1:50093        TIME_WAIT       0
+    … +20 lines
+      TCP    127.0.0.1:50205        127.0.0.1:4781         ESTABLISHED     17204
+      TCP    127.0.0.1:50206        127.0.0.1:4781         ESTABLISHED     14820
+
+• Ran try { Invoke-WebRequest -TimeoutSec 15 -UseBasicParsing -Uri
+  │ 'http://127.0.0.1:4781/api/health/fast' | Select-Object StatusCode,Content | Format-List } catch
+  │ { $_.Exception.Message }
+  └
+    StatusCode : 200
+    … +385 lines
+                 e,"buildMs":1}}
+
+
+• Ran Get-Process -Id (Get-NetTCPConnection -LocalPort 4781 -State Listen -ErrorAction
+  │ SilentlyContinue | Select-Object -First 1 -ExpandProper

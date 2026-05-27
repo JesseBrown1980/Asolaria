@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1a0a0a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="/mobile.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/asolaria-icon-192.png" />
+  <title>EMERGENCY — Asolaria</title>
+  <style>
+    :root { --bg: #1a0a0a; --card: #2a1010; --red: #cc3333; --green: #2d7a4a; --yellow: #8c7a24; --ink: #ffe8e8; --muted: #bb9999; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 50% 20%, #3a1515, var(--bg)); color: var(--ink); font-family: "Segoe UI", sans-serif; padding: 16px; display: grid; gap: 14px; place-items: center; }
+    .shell { width: min(480px, 100%); display: grid; gap: 14px; }
+    h1 { margin: 0; font-size: 1.6rem; text-align: center; color: #ff6666; text-shadow: 0 0 20px rgba(255,60,60,0.4); }
+    .health { display: flex; gap: 10px; justify-content: center; align-items: center; padding: 12px; border-radius: 14px; border: 2px solid #444; background: rgba(20,8,8,0.9); }
+    .health-dot { width: 28px; height: 28px; border-radius: 50%; background: #555; border: 2px solid #666; transition: all 300ms; }
+    .health-dot.green { background: var(--green); border-color: #4aba72; box-shadow: 0 0 12px rgba(45,180,90,0.5); }
+    .health-dot.yellow { background: var(--yellow); border-color: #c4aa44; box-shadow: 0 0 12px rgba(200,180,60,0.4); }
+    .health-dot.red { background: var(--red); border-color: #ee5555; box-shadow: 0 0 12px rgba(220,50,50,0.5); animation: pulse 1s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    .health-text { font-size: 1rem; color: var(--muted); }
+    #emergencyBtn { width: 100%; min-height: 120px; border-radius: 20px; border: 3px solid #ee4444; background: linear-gradient(135deg, #881111, #cc2222); color: white; font-size: 1.8rem; font-weight: 700; cursor: pointer; text-shadow: 0 2px 8px rgba(0,0,0,0.5); box-shadow: 0 8px 32px rgba(200,30,30,0.4); transition: transform 100ms; letter-spacing: 0.04em; }
+    #emergencyBtn:active { transform: scale(0.96); }
+    #emergencyBtn.sent { background: linear-gradient(135deg, #224422, #336633); border-color: #55aa55; }
+    .links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .links a { display: grid; place-items: center; padding: 14px 8px; border-radius: 12px; border: 1px solid #444; background: rgba(30,15,15,0.9); color: var(--muted); text-decoration: none; font-size: 0.85rem; text-align: center; }
+    .links a:active { background: rgba(60,30,30,0.9); }
+    .messages { display: grid; gap: 8px; }
+    .msg { border: 1px solid #333; border-radius: 10px; padding: 10px; background: rgba(15,8,8,0.9); font-size: 0.82rem; color: var(--muted); white-space: pre-wrap; overflow-wrap: anywhere; }
+    .msg .time { font-size: 0.72rem; color: #886666; }
+    #statusText { text-align: center; font-size: 0.9rem; color: var(--muted); min-height: 24px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <h1>ASOLARIA EMERGENCY</h1>
+    <div class="health">
+      <div id="healthDot" class="health-dot"></div>
+      <span id="healthText" class="health-text">Checking colony...</span>
+    </div>
+    <button id="emergencyBtn" type="button">EMERGENCY HELP</button>
+    <p id="statusText"></p>
+    <div class="links">
+      <a id="linkPhoneMode" href="/phone-mode.html">Phone Link</a>
+      <a id="linkConsole" href="/mobile-console.html">Console</a>
+      <a id="linkApprovals" href="/mobile-approvals.html">Approvals</a>
+    </div>
+    <div id="recentMessages" class="messages"></div>
+  </div>
+  <script>
+    const TOKEN_KEY = "asolaria.phone_mode.token";
+    const REMOTE_KEY = "asolaria.mobile.remote_base_url.v1";
+    function getBase() {
+      try { return localStorage.getItem(REMOTE_KEY) || ""; } catch { return ""; }
+    }
+    function getToken() {
+      try { return localStorage.getItem(TOKEN_KEY) || new URLSearchParams(location.search).get("token") || ""; } catch { return ""; }
+    }
+    function api(path, options = {}) {
+      const base = getBase() || location.origin;
+      const token = getToken();
+      const headers = { "Content-Type": "application/json" };
+      if (token) headers["Authorization"] = `Bearer ${token}`;
+      return fetch(`${base}${path}`, { ...options, headers }).then(r => r.json()).catch(() => null);
+    }
+    const healthDot = document.getElementById("healthDot");
+    const healthText = document.getElementById("healthText");
+    const emergencyBtn = document.getElementById("emergencyBtn");
+    const statusText = document.getElementById("statusText");
+    const recentMessages = document.getElementById("recentMessages");
+    async function checkHealth() {
+      const data = await api("/api/health");
+      if (!data) {
+        healthDot.className = "health-dot red";
+        healthText.textContent = "Colony OFFLINE";
+        return;
+      }
+      const ok = data.ok;
+      const mode = data.mode || "unknown";
+      if (ok) {
+        healthDot.className = "health-dot green";
+        healthText.textContent = `Colony OK (${mode})`;
+      } else {
+        healthDot.className = "health-dot yellow";
+        healthText.textContent = `Colony degraded (${mode})`;
+      }
+    }
+    async function loadMessages() {
+      const data = await api("/api/mobile/inbox");
+      if (!data || !data.ok) return;
+      const items = [
+        ...(Array.isArray(data.inbox?.approvals) ? data.inbox.approvals.slice(0, 1) : []),
+        ...(Array.isArray(data.inbox?.tasks) ? data.inbox.tasks.slice(0, 1) : []),
+        ...(Array.isArray(data.inbox?.notes) ? data.inbox.notes.slice(0, 1) : [])
+      ].slice(0, 3);
+      recentMessages.innerHTML = items.map(item => {
+        const title = item.title || item.text || "—";
+        const time = item.updatedAt || item.createdAt || "";
+        return `<div class="msg"><span class="time">${time}</span><br>${title.slice(0, 200)}</div>`;
+      }).join("") || '<div class="msg">No recent messages.</div>';
+    }
+    emergencyBtn.addEventListener("click", async () => {
+      emergencyBtn.disabled = true;
+      emergencyBtn.textContent = "SENDING...";
+      statusText.textContent = "Dispatching emergency alert to colony...";
+      const result = await api("/api/brain/chat", {
+        method: "POST",
+        body: JSON.stringify({
+          message: "EMERGENCY: Owner pressed emergency button from phone. Immediate assistance required. Check all systems, report status, and await instructions.",
+          priority: "critical",
+          source: "emergency-page"
+        })
+      });
+      if (result && result.ok) {
+        emergencyBtn.textContent = "ALERT SENT ✓";
+        emergencyBtn.className = "sent";
+        statusText.textContent = "Emergency alert dispatched. Colony is responding.";
+      } else {
+        emergencyBtn.textContent = "RETRY EMERGENCY";
+        emergencyBtn.disabled = false;
+        statusText.textContent = "Failed to reach colony. Try the direct links below.";
+      }
+      setTimeout(() => { emergencyBtn.disabled = false; emergencyBtn.textContent = "EMERGENCY HELP"; emergencyBtn.className = ""; }, 15000);
+    });
+    // Add token to links
+    const token = getToken();
+    if (token) {
+      document.getElementById("linkPhoneMode").href += `?token=${encodeURIComponent(token)}`;
+      document.getElementById("linkConsole").href += `?token=${encodeURIComponent(token)}`;
+      document.getElementById("linkApprovals").href += `?token=${encodeURIComponent(token)}`;
+    }
+    checkHealth();
+    loadMessages();
+    setInterval(checkHealth, 30000);
+    setInterval(loadMessages, 60000);
+  </script>
+</body>
+</html>

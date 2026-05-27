@@ -1,0 +1,118 @@
+QDD EZ Protect — devices.tsx Page Analysis
+==========================================
+File: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\ez-protect\devices.tsx
+Date: 2026-03-25
+
+1. API ENDPOINT
+---------------
+  GET /api/ez-protect/devices?locationId={location.id}
+
+  The URL is only constructed when ALL of these are true:
+    - moduleEnabled (isEzProtectModuleEnabled returns true)
+    - location?.id exists
+    - location.id !== 'global'
+  If any condition fails, devicesUrl is null and NO fetch happens.
+
+2. EXPECTED RESPONSE SHAPE
+--------------------------
+  Interface: EzProtectDevicesResponse = { devices: EzProtectDevice[] }
+
+  Each EzProtectDevice:
+    id: string
+    deviceSerialNumber: string
+    deviceModel: string
+    lastSeenAt: string
+    status: DeviceStatus          // 'online' | 'offline' | 'error'
+    calibrationStatus: string
+    pmStatus: string
+    totalEvents: number
+    facilityId: string
+
+  The page accesses data.devices throughout. If the API returns a flat array
+  instead of { devices: [...] }, every reference to data.devices will be
+  undefined and the page will show "No devices found" with zero counts.
+
+3. SUMMARY COUNT CALCULATION
+----------------------------
+  Online count:  data.devices.filter((d) => d.status === 'online').length
+  Offline count: data.devices.filter((d) => d.status === 'offline').length
+  Error count:   data.devices.filter((d) => d.status === 'error').length
+
+  There is NO "total" card. The three cards are Online / Offline / Error.
+  A device whose status is none of those three values would NOT appear in
+  any summary card (silent omission).
+
+  IMPORTANT: Summary cards always count from the FULL data.devices array
+  (unfiltered). The status filter dropdown only affects the table below.
+
+4. "ONLINE" STATUS
+------------------
+  Field: device.status (type DeviceStatus = 'online' | 'offline' | 'error')
+  Online value: exactly the string 'online' (case-sensitive)
+  Offline value: exactly the string 'offline' (case-sensitive)
+
+  The comparison is strict equality (===). If the API returns 'Online' or
+  'ONLINE', it will NOT match — the device will show in the table with a
+  gray fallback color but will not count in any summary card.
+
+5. "ERROR" STATUS
+-----------------
+  Field: device.status === 'error'
+  Same field as online/offline. It is a tri-state enum on the same field,
+  not a separate boolean.
+
+6. CLIENT-SIDE FILTERING
+-------------------------
+  YES. There is a status filter dropdown (all / online / offline / error).
+  Default is 'all' (shows everything).
+
+  Filter logic (useMemo):
+    if statusFilter === 'all' → return data.devices (no filter)
+    otherwise → data.devices.filter((d) => d.status === statusFilter)
+
+  This means the table can hide devices while the summary cards still
+  count them. No search/text filter exists — only status filter.
+
+7. CONDITIONAL RENDERS THAT COULD HIDE DATA
+--------------------------------------------
+  a) moduleEnabled is false → shows "EZ Protect is not available for the
+     current location." — NO fetch, NO data.
+
+  b) location?.id === 'global' → shows "Select a facility to view device
+     health." — devicesUrl is null, NO fetch.
+
+  c) devicesUrl is null for any reason → useService gets null, returns no
+     data. The summary cards are guarded by {data?.devices && ...} so they
+     simply don't render. The table section shows "No devices found."
+
+  d) error truthy → shows "Failed to load devices. Please try again."
+     The table is hidden but summary cards STILL render if data?.devices
+     exists (the error and data checks are independent).
+
+  e) filteredDevices.length === 0 → shows "No devices found" message
+     (with filter context if a filter is active).
+
+  f) isCheckingUser or isLoading → shows <Loading /> spinner, hides
+     everything.
+
+KEY FINDING: totalEvents vs status
+-----------------------------------
+  totalEvents is ONLY used for display in the table column. It plays NO
+  role in online/offline/error determination. A device could have
+  totalEvents: 50000 but status: 'offline' and it would count as offline.
+  The summary cards are purely driven by the status field.
+
+  If the API populates totalEvents but sends a wrong or missing status,
+  the device will appear in the table (with a gray/fallback badge) but
+  will NOT be counted in any summary card.
+
+POTENTIAL ISSUES
+----------------
+  1. Case sensitivity: status must be lowercase 'online'/'offline'/'error'.
+  2. No total count card — user has to mentally sum the three cards.
+  3. If API returns { data: [...] } instead of { devices: [...] }, page
+     silently shows zero devices with no error message.
+  4. Row click navigates to /ez-protect/results?device={serial} — if
+     serial contains special chars, encodeURIComponent handles it.
+  5. Summary cards render independently of the error state — possible to
+     see stale summary cards alongside an error message on refetch.

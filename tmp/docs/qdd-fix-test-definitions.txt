@@ -1,0 +1,59 @@
+QDD /api/test-definitions 500 Fix — 2026-03-25
+================================================
+
+INVESTIGATION:
+  - Route: apps/web-ebacmap/src/pages/api/test-definitions/index.ts
+  - UseCase: apps/web-ebacmap/src/modules/test-results/use-cases/ListTestDefinitions/UseCase.ts
+  - Repo: apps/web-ebacmap/src/modules/test-results/repos/TestDefinitionRepo.ts
+
+FINDINGS:
+  1. $skip null pattern: ALREADY FIXED (line 279 uses `skip` / `docLimit` safe defaults)
+  2. clientId string vs ObjectId: CORRECT (ctx.user.clientId is hex string,
+     repo converts with `new ObjectId(clientId)`)
+  3. categoryid typo in list(): ALREADY FIXED (was lowercase 'i', now correct camelCase)
+
+BUGS FOUND AND FIXED:
+
+  Bug A — Yup schema has no defaults for limit/offset/sort
+    File: apps/web-ebacmap/src/pages/api/test-definitions/index.ts
+    Problem: limit, offset, and sort are yup.number().notRequired() / yup.string().notRequired()
+             with NO .default() value. When query params are omitted, these pass through
+             as undefined. While the repo has || fallbacks, having defaults in the schema
+             is the proper defensive layer — prevents undefined from reaching the use case
+             and avoids any edge-case coercion issues (e.g. empty string -> NaN).
+    Fix: Added .default(10), .default(0), .default('_id:-1') to yup schema.
+
+  Bug B — organismId not validated before new ObjectId()
+    File: apps/web-ebacmap/src/modules/test-results/repos/TestDefinitionRepo.ts
+    Problem: In search(), categoryId goes through MongoIdentifier.build() validation
+             before being used in new ObjectId(), but organismId does NOT.
+             If an invalid ObjectId string is passed as organismId (anything other than
+             a 24-char hex string), `new ObjectId(invalidString)` throws a BSONError,
+             which bubbles up as a 500 Internal Server Error.
+    Fix: Added the same MongoIdentifier.build() validation pattern for organismId
+         that already existed for categoryId. Invalid organismId values are now
+         silently excluded from the match filter instead of crashing.
+
+CHANGE SUMMARY:
+  File 1: apps/web-ebacmap/src/pages/api/test-definitions/index.ts
+    - limit: yup.number().notRequired()           -> .default(10)
+    - offset: yup.number().notRequired()           -> .default(0)
+    - sort: yup.string().notRequired()             -> .default('_id:-1')
+
+  File 2: apps/web-ebacmap/src/modules/test-results/repos/TestDefinitionRepo.ts
+    - Added MongoIdentifier.build() validation for conditions.organismId
+    - Added includeOrganismId guard before new ObjectId(conditions.organismId)
+    - Pattern matches the existing categoryId validation (lines 228-235)
+
+TESTING:
+  Restart the dev server to pick up changes, then test:
+    GET /api/test-definitions                        (no params — uses defaults)
+    GET /api/test-definitions?limit=10&offset=0      (explicit params)
+    GET /api/test-definitions?organismId=invalid     (should not 500 now)
+    GET /api/test-definitions?categoryId=all         (all filter)
+
+NOTE: The $skip null fix from qdd-fix-skip-null.txt IS applied in the working
+tree. If the endpoint was still returning 500, the most likely cause was either:
+  (a) Dev server not restarted after the fix was applied
+  (b) The organismId BSONError crash (Bug B above) — now fixed
+  (c) The undefined limit/offset edge case (Bug A above) — now fixed

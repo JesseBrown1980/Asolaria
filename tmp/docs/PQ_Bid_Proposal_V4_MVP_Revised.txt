@@ -1,0 +1,67 @@
+PQ Bid Proposal – MVP Scope (Revised from V4)
+PHASE 1 – DISCOVERY & FUNCTIONAL SPECIFICATION (MVP)
+Duration: 1–1.5 Weeks
+Estimated Hours: 40–50
+
+This phase focuses on documenting and validating existing spreadsheet-based workflows and translating them into clear functional specifications. Visual design and wireframes are intentionally excluded, as the UI will follow existing STI Labs patterns for continuity.
+
+Key Outputs:
+- Spreadsheet behavior documentation
+- Data models and field definitions
+- Functional specifications
+
+PHASE 2 – CORE SYSTEM SETUP (MVP)
+Duration: 1.5 Weeks
+Estimated Hours: 60
+
+This phase establishes the core backend foundation using existing boilerplate and STI Labs architecture. Authentication, role-based access, and API scaffolding will be reused where possible.
+
+Key Outputs:
+- Backend services and schema
+- Auth & RBAC configuration
+- Core API endpoints
+
+PHASE 3 – BID & PROJECT MODULES (SPREADSHEET MVP)
+Duration: 3–4 Weeks
+Estimated Hours: 110–140
+
+This phase delivers a spreadsheet-style bid and project entry experience focused on manual line-item input. Automated bid generation, reusable templates, and auto-population logic are explicitly out of scope.
+
+Key Outputs:
+- Manual line-item bid table
+- Formula-based calculations with overrides
+- Bid-to-project conversion
+- Status tracking
+
+PHASE 4 – BASIC SCHEDULING & TRACKING (MVP)
+Duration: 2 Weeks
+Estimated Hours: 70–90
+
+Provides basic scheduling and workload visibility without forecasting or advanced analytics.
+
+Key Outputs:
+- Simple scheduling dashboard
+- Planned vs actual hours tracking
+- Basic workload overview
+
+PHASE 5 – INVOICING INTEGRATION (QUICKBOOKS MVP)
+Duration: 1 Week
+Estimated Hours: 25–30
+
+Implements invoice generation via existing QuickBooks integration. No invoice UI or reporting is included.
+
+Key Outputs:
+- Invoice payload generation
+- QuickBooks linkage
+- Invoice list with external links
+
+PHASE 6 – QA, REVIEW & LAUNCH (MVP)
+Duration: 1–1.5 Weeks
+Estimated Hours: 30–40
+
+QA and deployment focused only on MVP features.
+
+Key Outputs:
+- QA validation
+- Production deployment
+- Post-launch monitoring

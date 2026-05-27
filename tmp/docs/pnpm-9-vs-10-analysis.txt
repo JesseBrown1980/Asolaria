@@ -1,0 +1,103 @@
+QDD / eBacMap — pnpm 9 vs pnpm 10 Branch Analysis
+===================================================
+Generated: 2026-03-25
+Status: READ-ONLY INVESTIGATION (no changes made)
+
+1. CURRENT STATE OF package.json (D:\projects\QDD\ebacmap-pnpm9)
+----------------------------------------------------------------
+  packageManager: "pnpm@9.12.2"
+  engines.pnpm:   "^9.4.0"
+  engines.node:   "20.x"
+
+  Verdict: The project explicitly pins pnpm 9.12.2 via corepack's
+  packageManager field and restricts engines to ^9.4.0.
+
+2. COREPACK
+-----------
+  Could not verify corepack --version (sandbox blocked external dir).
+  However: the packageManager field IS the corepack mechanism. If
+  corepack is enabled (corepack enable), running `pnpm install` in
+  this directory will automatically download and use pnpm@9.12.2
+  regardless of what pnpm version is installed globally.
+
+  KEY INSIGHT: corepack makes separate branches UNNECESSARY for
+  version management. The packageManager field IS the version pin.
+
+3. LOCKFILE (pnpm-lock.yaml)
+-----------------------------
+  lockfileVersion: '9.0'
+
+  This is the pnpm 9.x lockfile format. pnpm 10 uses lockfileVersion
+  '10.0'. The two formats are NOT cross-compatible:
+  - pnpm 10 reading a v9 lockfile will silently regenerate it as v10
+  - pnpm 9 reading a v10 lockfile will fail or regenerate it as v9
+
+  This is the ONLY real friction point, and it's a one-time migration.
+
+4. EXISTING RECOMMENDATION (reports/qdd-pnpm-version-recommendation.md)
+------------------------------------------------------------------------
+  Prepared 2026-03-17. Two branches were offered to Brian:
+
+  Branch A: chore/pnpm-10-upgrade (RECOMMENDED)
+    - packageManager -> pnpm@10.32.0
+    - engines.pnpm -> ^10.0.0
+    - Lockfile regenerated (v9 -> v10)
+    - All tests pass (TSC, 11 unit, 4 integration)
+
+  Branch B: chore/pnpm-9-repin
+    - Keep pnpm@9.12.2 as-is
+    - Add "preinstall": "npx only-allow pnpm@9" for enforcement
+    - No lockfile changes
+
+  Recommendation was: do Branch A (pnpm 10). Permanent fix.
+
+5. DO WE NEED TWO BRANCHES?
+----------------------------
+  NO. Here is why:
+
+  a) The only difference between the branches is the pnpm version
+     pin and the lockfile format. There are no code changes between
+     them — same source, same tests, same dependencies.
+
+  b) Corepack solves the version problem at the tool level. Once
+     packageManager is set, every developer gets the right pnpm
+     version automatically. No branch needed.
+
+  c) Maintaining two branches means double the merge work for every
+     feature PR. The lockfile will conflict on every merge. This is
+     pure overhead with zero benefit.
+
+  d) The lockfile format change is a ONE-TIME migration. You do it
+     once (Branch A), and it's done forever.
+
+6. RECOMMENDATION
+-----------------
+  MERGE Branch A (chore/pnpm-10-upgrade) and DELETE Branch B.
+
+  Steps:
+  1. Merge chore/pnpm-10-upgrade into the main development branch
+  2. All devs run: corepack enable (once, if not already done)
+  3. Delete the ebacmap-pnpm9 worktree/clone — it's redundant
+  4. If CI uses pnpm/action-setup, update the version to 10
+  5. Done. One branch, one lockfile, one pnpm version.
+
+  If Brian's team is NOT ready for pnpm 10 yet:
+  - Still only need ONE branch (keep pnpm 9 with corepack enforcement)
+  - Merge Branch B instead
+  - But pnpm 9 will go out of support eventually, so this just delays
+
+7. RISK ASSESSMENT
+------------------
+  Risk of merging pnpm 10 upgrade: LOW
+  - Tests already pass under pnpm 10
+  - lockfileVersion change is cosmetic (same deps, same resolution)
+  - Only CI config might need a version bump
+
+  Risk of maintaining two branches: MEDIUM
+  - Lockfile merge conflicts on every PR
+  - Developer confusion about which branch to use
+  - Drift between branches over time
+
+CONCLUSION: Two branches are not needed. Merge one, delete the other.
+The packageManager field + corepack is the correct solution, not
+branch-based version management.

@@ -1,0 +1,151 @@
+QDD Report Detail Page — Rendering Dependencies
+=================================================
+File: apps/web-ebacmap/src/pages/reports/[id].tsx
+Generated: 2026-03-25
+
+OVERVIEW
+--------
+The report detail page ([id].tsx) is a thin shell. It fetches the report
+document, then delegates ALL heavy lifting to <ReportSection>, which in
+turn uses <FilterDrawer> and <CustomReportRenderer>.  Three separate API
+calls are required beyond the report document itself.
+
+
+1. PRIMARY FETCH — Report Document
+-----------------------------------
+Endpoint:  GET /api/reports/:id
+Service:   getReport(reportId) in services/reports.ts
+Returns:   ReportView — contains name, sections[], reportType, client,
+           hasNotifications, access, etc.
+The page will not render until this resolves (shows <Loading />).
+
+
+2. TEST RESULTS — YES, it fetches them
+----------------------------------------
+Endpoint:  GET /api/test-results?limit=-1&offset=0&sort=_id:-1&location=<locationId>&<filters>
+Service:   paginateTestResults() in services/testResults.ts
+Called by:  ReportSection.tsx (line 108-127) via useService hook
+Condition: Fires when locationId is set AND no testResults were passed
+           as props (they never are from the detail page).
+Filter params built by: buildTestResultFilters(selectedFilters) from
+           utils/reportFilters.ts
+Returns:   TestResultPaginateResponse { testResults: TestResultListView[] }
+
+The test results are passed into CustomReportRenderer as chartProps.testResults.
+ALL chart types consume them: line, bar, scatter, stacked, pass/fail,
+summary table, results table, pass-rate circles, EBacMap view.
+
+NOTE: limit=-1 means ALL results for the location+filter combo. This can
+be a large payload.
+
+
+3. FILTERS API — YES, it needs it
+-----------------------------------
+Endpoint:  GET /api/filters?clientId=<cid>&locationId=<lid>&plans=<bool>&maps=<bool>
+Service:   getFilters() in services/filters.ts
+Called by:  FilterDrawer.tsx (line 175-184) via useService hook
+Returns:   FiltersResponse containing:
+             - categories: CategoryFilterOption[]  (id, name, organisms[])
+             - organisms: OrganismFilterOption[]    (id, name)
+             - zones: BasicFilterOption[]           (id, name)
+             - sites: SiteFilterOption[]            (id, zoneCode, zoneId, locationId, description)
+             - groups: GroupFilterOption[]           (id, name, siteIds)
+             - testDefinitions: TestFilterOption[]   (id, subTest, organismId, categoryId, resultType)
+             - facilityMaps?: MapFilterOption[]      (id, title, url, markers)
+             - plans?: BasicFilterOption[]
+             - surfaceTypes?: BasicFilterOption[]
+             - rluRange: { min, max }
+             - facilities?: LocationFilterOption[]
+             - users?, reports?, tours?
+
+The FilterDrawer renders dropdowns for category, organism, zone, test,
+plan, surfaceType, interval, dateRange, dataType, rollingInterval,
+chartType, resultType.  Without /api/filters data, the dropdowns are
+empty but the component still renders (shows loading state).
+
+Answer: YES, the page needs categories, organisms, sites, zones, etc.
+populated to let the user interact with filters.  The charts themselves
+render from testResults, not from the filter options — so charts CAN
+render without the filters API if the default "all" filters are used,
+but the filter UI will be broken.
+
+
+4. FACILITY MAPS — YES, fetched separately
+--------------------------------------------
+Endpoint:  GET /api/facility-maps?limit=-1&offset=0&location=<lid>&clientId=<cid>
+Service:   paginateFacilityMaps() in services/facilityMaps.ts
+Called by:  ReportSection.tsx (line 132-137) — loadMaps()
+Condition: Always fires unless facilityMaps were passed as props (they
+           are NOT passed from the detail page).
+Returns:   FacilityMapPaginateResponse { facilityMaps: FacilityMapView[] }
+Used by:   CustomReportRenderer chartProps.facilityMaps, and the EBacMap
+           chart module.
+
+
+5. AGGREGATION ENDPOINTS — NO
+-------------------------------
+The report detail page does NOT call any separate aggregation endpoints.
+All chart rendering is done client-side from the raw testResults array.
+The CustomReportRenderer components (WrappedLineGraph, WrappedBarGraph,
+PassRateCircles, etc.) compute aggregations in the browser from the
+testResults data.
+
+
+6. CHART DATA — NO separate endpoint
+--------------------------------------
+There is no /api/chart-data or similar endpoint.  Chart data is derived
+entirely from the testResults array passed through chartProps.  The
+groupBySite() utility is used for EBacMap views.
+
+
+COMPONENT TREE
+--------------
+[id].tsx (ReportDetailPage)
+  └─ ReportSection (one per report.sections[])
+       ├─ FilterDrawer
+       │    ├─ BasicFiltersNew    (categories, organisms, zones, tests dropdowns)
+       │    ├─ DateFilters         (date range, interval, rolling)
+       │    ├─ NovalumFilters      (if Novalum permission)
+       │    ├─ AdvancedFilter      (nested condition builder)
+       │    ├─ MapConfig           (if isEbacMap)
+       │    └─ FilterChip          (active filter chips)
+       └─ CustomReportRenderer
+            ├─ WrappedLineGraph
+            ├─ WrappedBarGraph
+            ├─ WrappedScatterGraph
+            ├─ WrappedStackedGraph
+            ├─ WrappedPassFailSuccessGraph
+            ├─ PassRateCircles
+            ├─ SuccessGraph
+            ├─ WrappedSummaryTable
+            ├─ ReportResultsTable / ViewOnlyResultsTable
+            ├─ MapSiteResultsTable
+            └─ EBacMapView
+
+
+SUMMARY OF API CALLS NEEDED
+-----------------------------
+1. GET /api/reports/:id           — the report document (REQUIRED)
+2. GET /api/test-results?...      — all test results for location+filters (REQUIRED for charts)
+3. GET /api/filters?...           — filter option lists (REQUIRED for filter UI)
+4. GET /api/facility-maps?...     — facility maps (REQUIRED for EBacMap charts)
+
+Additional calls on user action:
+5. PUT /api/reports/:id           — save edited report
+6. POST /api/reports/:id/pdf      — download PDF
+7. POST /api/reports/:id/duplicate — duplicate report
+
+
+PERMISSIONS CHECKED
+--------------------
+- Report:View           — page-level gate (withPermissions)
+- Report:Manage         — shows save button, editable title
+- Capa:View             — hasCapaView flag passed to charts
+- Novalum:View          — hasNovalumView flag, enables surface plan filters
+
+
+CONTEXT DEPENDENCIES
+---------------------
+- useLocation() (via useBetween) — provides current location context
+- useUser()                      — provides current user for permissions
+- useRouter()                    — extracts report ID from URL

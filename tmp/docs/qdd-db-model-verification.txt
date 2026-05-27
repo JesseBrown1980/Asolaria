@@ -1,0 +1,36 @@
+QDD Database Model Verification — 2026-03-25
+=============================================
+Directory: D:\projects\QDD\ebacmap-master\libs\db\src\models\
+
+CHECK 1: 'defaultValue' instances
+  Result: PASS — 0 found
+
+CHECK 2: 'optional: true' instances
+  Result: PASS — 0 found
+
+CHECK 3: 'allowedValues' instances
+  Result: PASS — 0 found
+
+CHECK 4: 'autoValue' instances
+  Result: PASS — 0 found
+
+CHECK 5: Notification.ts clientId ref
+  Result: PASS — ref is 'Client' (line 32)
+
+CHECK 6: TestDefinition.ts organism ref
+  Result: PASS — ref is 'Organism' (line 55), not 'Organisms'
+  Note: Legacy organismId field also refs 'Organism' (line 42), with audit comment
+
+CHECK 7: EzProtectEvent.ts
+  strict:    PASS — no strict:false present (Mongoose defaults strict:true)
+  required:  PASS — clientId (line 151) and locationId (line 150) both have required: true
+  compound index: PASS — compound index at line 173: { clientId: 1, locationId: 1, ingestedAt: -1 }
+  Additional indexes: dedup unique index, plus 7 query performance indexes
+
+CHECK 8: EzProtectAlert.ts strict:false
+  Result: PASS — no strict:false found
+
+CHECK 9: EzProtectAlertHistory.ts strict:false
+  Result: PASS — no strict:false found
+
+SUMMARY: 9/9 checks PASS. All database model fixes are intact.

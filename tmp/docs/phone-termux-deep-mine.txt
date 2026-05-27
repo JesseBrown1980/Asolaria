@@ -1,0 +1,519 @@
+================================================================
+PHONE TERMUX DEEP MINE — Samsung SM-S721U1 (Falcon)
+ADB Target: 192.168.15.64:5555
+Mined: 2026-03-25 (READ ONLY — nothing modified on phone)
+================================================================
+
+================================================================
+1) TERMUX HOME DIRECTORY LISTING
+================================================================
+CLAUDE.md
+asolaria
+dasein
+downloads
+english-teacher
+fix_tmp.sh
+list_images.sh
+mqtt_agent.log
+node_modules
+package-lock.json
+package.json
+phone_mqtt_agent.js
+tmp
+
+================================================================
+2) CLAUDE.md — FALCON IDENTITY CARD
+================================================================
+# Falcon — Jesse's Phone — Asolaria Super Admin Node
+
+## Identity
+- Device: Samsung Galaxy S25 (SM-S721U1)
+- Codename: **Falcon**
+- Role: **super_admin** (highest privilege)
+- Owner: Jesse Daniel Brown
+- Colony: Asolaria sovereign swarm
+
+## Access Level
+- Full owner-plane execution authority
+- Can dispatch to any worker (local_codex, claude_max, abacus, symphony)
+- Can read/write vault secrets
+- Can modify system configuration
+- Mobile relay — Jesse's physical-world link to the computer
+
+## Connectivity
+- Asolaria server: http://127.0.0.1:4781 (via ADB reverse bridge)
+- MQTT broker: mqtt://127.0.0.1:18883 (TCP) / 18884 (WS)
+- Bridge relay: http://127.0.0.1:8788
+- LAN MQTT (Rayssa): mqtt://192.168.1.6:18886
+
+## Auth
+- Claude Code: OAuth (Claude MAX 20x subscription, plasmatoid@gmail.com)
+- Gemini: API key in .bashrc (GEMINI_API_KEY)
+- OpenAI: Codex tokens (need refresh)
+- Asolaria MCP: http://127.0.0.1:4781/mcp
+
+## Capabilities
+- Node.js, Python, npm, pip, curl, ssh
+- Claude Code CLI
+- Gemini CLI (via API key)
+- Termux + Termux API
+- MQTT colony agent
+- Full access to all Asolaria endpoints
+
+## Instructions
+- This is the FALCON node — Jesse's super_admin mobile relay
+- Has full authority over all Asolaria systems
+- Use Asolaria MCP server for colony coordination
+- Can execute owner-plane tasks when desktop is unreachable
+- Report to Helm (controller) via bridge relay
+- All API calls go through ADB reverse bridge to localhost
+
+================================================================
+3) phone_mqtt_agent.js — MQTT COLONY AGENT
+================================================================
+const mqtt = require("mqtt");
+const os = require("os");
+
+const BROKER = "mqtt://127.0.0.1:18883";
+const DEVICE_ID = "jesse_phone";
+const VIEWER = "falcon";
+const TOPIC_PREFIX = "asolaria/nodes/" + DEVICE_ID;
+
+const client = mqtt.connect(BROKER, {
+  clientId: DEVICE_ID,
+  clean: true,
+  keepalive: 30
+});
+
+client.on("connect", () => {
+  console.log("[MQTT] Connected to colony broker as " + DEVICE_ID);
+
+  // Subscribe to commands
+  client.subscribe("asolaria/nodes/" + DEVICE_ID + "/command/#");
+  client.subscribe("asolaria/broadcast/#");
+
+  // Publish presence
+  const presence = JSON.stringify({
+    nodeId: DEVICE_ID,
+    viewer: VIEWER,
+    type: "phone",
+    model: "SM-S721U1",
+    role: "super_master",
+    capabilities: ["termux", "node", "python", "adb"],
+    at: new Date().toISOString()
+  });
+  client.publish(TOPIC_PREFIX + "/runtime/presence", presence, { retain: true });
+
+  // Heartbeat every 30s
+  setInterval(() => {
+    client.publish(TOPIC_PREFIX + "/runtime/health", JSON.stringify({
+      ok: true,
+      nodeId: DEVICE_ID,
+      uptime: process.uptime(),
+      mem: process.memoryUsage().rss,
+      at: new Date().toISOString()
+    }));
+  }, 30000);
+});
+
+client.on("message", (topic, message) => {
+  console.log("[MQTT] " + topic + ": " + message.toString().slice(0, 200));
+});
+
+client.on("error", (err) => {
+  console.error("[MQTT] Error:", err.message);
+});
+
+console.log("[MQTT] Phone agent starting for " + DEVICE_ID + "...");
+
+================================================================
+4) .config/ — DOES NOT EXIST
+================================================================
+No .config directory found in Termux home.
+
+================================================================
+5) node_modules/ (first 20 packages)
+================================================================
+@babel
+@types
+abort-controller
+base64-js
+bl
+broker-factory
+buffer
+buffer-from
+commist
+concat-stream
+debug
+event-target-shim
+events
+fast-unique-numbers
+help-me
+ieee754
+inherits
+ip-address
+js-sdsl
+lru-cache
+
+================================================================
+6) .bashrc
+================================================================
+export GEMINI_API_KEY=AIzaSyA7D53YiMrVBXbpM056mUySlakaqUFg_3U
+export TMPDIR=$HOME/tmp
+mkdir -p $HOME/tmp
+export TMPDIR=~/tmp
+export
+  TMPDIR=~/tmp
+export
+  TMPDIR=~/tmp
+
+================================================================
+7) .profile — EMPTY (no file)
+================================================================
+
+================================================================
+8) .ndjson FILES — NONE FOUND
+================================================================
+No .ndjson inbox files on phone.
+
+================================================================
+9) .md FILES (non-node_modules)
+================================================================
+/data/data/com.termux/files/home/downloads/asolaria-system-card-20260303.md
+/data/data/com.termux/files/home/downloads/asolaria-mobile-architecture-card-20260303.md
+/data/data/com.termux/files/home/downloads/AGENTS.md
+/data/data/com.termux/files/home/.claude/agents/Falcon2.md
+/data/data/com.termux/files/home/CLAUDE.md
+
+================================================================
+10) .json FILES (non-node_modules)
+================================================================
+/data/data/com.termux/files/home/.codex/auth.json
+/data/data/com.termux/files/home/package.json
+/data/data/com.termux/files/home/package-lock.json
+/data/data/com.termux/files/home/.claude/settings.json
+/data/data/com.termux/files/home/.claude/.credentials.json
+/data/data/com.termux/files/home/.claude/sessions/8906.json
+/data/data/com.termux/files/home/.claude/plugins/blocklist.json
+/data/data/com.termux/files/home/.claude/mcp-needs-auth-cache.json
+/data/data/com.termux/files/home/.claude/settings.local.json
+/data/data/com.termux/files/home/.claude.json
+
+================================================================
+11) /sdcard/Download/ — 266 files total (first 80 shown)
+================================================================
+01
+2510.13366v1.pdf
+35958 (1).pdf
+35958.pdf
+5477401495.pdf
+87ed76794d646606ddfe8ae4c66e8d09-watermark-62696564626968646368.pdf
+AGSHIVEFinalEdit.pdf
+APKPure_v3.20.52_apkpure.com.apk
+Affidavit-of-Identity-Form-US.pdf
+April bank statement-2025-05-27T13_26_27.463Z.pdf
+April bank statement-2025-05-27T13_26_37.348Z.pdf
+April bank statement-2025-05-27T13_26_45.403Z(1).PDF
+April bank statement-2025-05-27T13_26_45.403Z.pdf
+April bank statement-2025-05-29T10_18_18.527Z.pdf
+April bank statement-2025-05-29T10_18_56.034Z.pdf
+April bank statement-2025-05-29T10_19_07.395Z.pdf
+April bank statement-2025-05-29T10_19_45.432Z(1).PDF
+April bank statement-2025-05-29T10_19_45.432Z.pdf
+April bank statement-2025-05-29T10_22_02.221Z.pdf
+April bank statement-2026-01-21T17_47_17.432Z.pdf
+Asolaria-Public-20260219-191509.zip
+Asolaria-Public-20260219-191542.zip
+Asolaria-Public-20260222-164348.zip
+Asolaria-Public-20260225-135740.zip
+August bank statement-2025-09-15T15_23_44.024Z.pdf
+August bank statement-2026-01-21T17_48_02.130Z.pdf
+Bank Account Freeze Complaint.docx
+Bridging Gravity and Gauge Theory-Topological Effects in Nanopit Structures Draft 2-1.docx
+Bridging Gravity and Gauge Theory-Topological Effects in Nanopit Structures Draft 2.docx
+Brown Letter (1).pdf
+Brown Letter.pdf
+Brown,Jesse_260121165513408.pdf
+Brown_Jesse_report.pdf
+CFPB_Evidence_Index_v3.xlsx
+CFPB_Evidence_Packet_v3_with_Termination.pdf
+CFPB_Submission_Packet_Small_v5.zip
+CFPB_Supplemental_Update_Employment_Impact_Jan22_2026.pdf
+Capital One(1).PDF
+Capital One(10).PDF
+Capital One(11).PDF
+Capital One(12).PDF
+Capital One(13).PDF
+Capital One(14).PDF
+Capital One(15).PDF
+Capital One(16).PDF
+Capital One(17).PDF
+Capital One(18).PDF
+Capital One(2).PDF
+Capital One(3).PDF
+Capital One(4).PDF
+Capital One(5).PDF
+Capital One(6).PDF
+Capital One(7).PDF
+Capital One(8).PDF
+Capital One(9).PDF
+Capital One.PDF
+Capitol 1
+Circadian Clocks in Human Red Blood Cells copy.pdf
+Codex.dmg
+Contrato de Locação [assinado].pdf
+DOC-20250325-WA0033.PDF
+DPP01510024 -  Jesse Brown.pdf
+Daisy
+December bank statement-2026-01-20T14_54_40.643Z.pdf
+December bank statement-2026-01-20T15_14_56.906Z (1).pdf
+December bank statement-2026-01-20T15_14_56.906Z.pdf
+December bank statement-2026-01-21T17_48_28.482Z.pdf
+December bank statement-2026-02-17T18_32_47.008Z.pdf
+Edge-Level Graph Neural Network Architectures for Network Intrusion Detection Advancing Beyond Standard Edge-Level Classification.pdf
+Employment_Impact_Statement_Redacted_v2.pdf
+F-Droid.apk
+FE_ellio jang.docx
+FINAL_Service_Packet_25-SCS-01111_COURT_READY.pdf
+Fatura (1).pdf
+February bank statement-2025-03-15T07_18_48.109Z.pdf
+February bank statement-2025-03-15T07_18_54.350Z.pdf
+February bank statement-2025-03-15T07_20_01.068Z.pdf
+February bank statement-2025-03-15T14_54_26.061Z.pdf
+February bank statement-2025-05-29T10_16_15.241Z.pdf
+February bank statement-2025-05-29T10_16_39.270Z.pdf
+
+================================================================
+12) ASOLARIA NATIVE APP — com.jessebrown.asolaria
+================================================================
+Package EXISTS: com.jessebrown.asolaria
+
+App data structure:
+  app_textures/   (2026-03-07)
+  app_webview/    (2026-03-25 — active today)
+  cache/          (2026-03-25 — active today)
+  code_cache/     (2026-03-07)
+  databases/      (empty)
+  files/          (contains: profileInstalled)
+  no_backup/      (2026-03-07)
+  shared_prefs/   (2026-03-25 — active today)
+
+shared_prefs/asolaria.xml:
+  base_url = http://desktop-j99vcnh.tailb47e0e.ts.net:4782
+  last_good_remote_base_url = http://desktop-j99vcnh.tailb47e0e.ts.net:4782
+  home_shortcut_requested = true
+  token = fd9d25bea5a42038427918fb769c8684e05d9c7478ae8bef
+  inbox_last_fingerprint = p=0|t=86|n=2|aIds=|tIds=task_1772891226069_lvp9fb,...
+
+================================================================
+13) CLIPBOARD — clipper.get broadcast
+================================================================
+Broadcast completed: result=0
+(Clipper app may not be installed — no clipboard text returned)
+
+================================================================
+BONUS: SUBDIRECTORIES IN TERMUX HOME
+================================================================
+
+--- ~/asolaria/ ---
+-rw-------  adb_marker2   (2026-02-19, 0 bytes)
+-rw-r--r--  hello.txt     (2026-02-14, 11 bytes) — contents: "hi from pc"
+
+--- ~/dasein/ ---
+Empty directory (created 2026-03-17)
+
+--- ~/english-teacher/ ---
+index.html  (2026-03-21, 23689 bytes)
+
+--- ~/downloads/ ---
+AGENTS.md                                  (2026-03-17, 9880 bytes)
+Jesse Daniel (plasma) - Chrome.lnk         (2026-03-22, 2392 bytes)
+MongoDBCompass.lnk                         (2026-03-22, 2344 bytes)
+asolaria-local (1).cer                     (2026-03-08, 779 bytes)
+asolaria-local (2).cer                     (2026-03-13, 779 bytes)
+asolaria-mobile-architecture-card-20260303.md  (2026-03-04, 7761 bytes)
+asolaria-system-card-20260303.md           (2026-03-07, 16764 bytes)
+
+================================================================
+BONUS: UTILITY SCRIPTS
+================================================================
+
+--- fix_tmp.sh ---
+#!/data/data/com.termux/files/usr/bin/bash
+mkdir -p /tmp 2>/dev/null || {
+    mkdir -p /data/data/com.termux/files/usr/tmp
+    ln -sf /data/data/com.termux/files/usr/tmp /tmp 2>/dev/null
+}
+echo "=== Camera (5 most recent) ==="
+ls -t /sdcard/DCIM/Camera/ 2>/dev/null | head -5
+echo ""
+echo "=== Screenshots (5 most recent) ==="
+ls -t /sdcard/DCIM/Screenshots/ 2>/dev/null | head -5
+
+--- list_images.sh ---
+#!/bin/bash
+echo "=== Camera ==="
+ls -t /sdcard/DCIM/Camera/ 2>/dev/null | head -5
+echo "=== Screenshots ==="
+ls -t /sdcard/DCIM/Screenshots/ 2>/dev/null | head -5
+
+================================================================
+BONUS: CLAUDE CODE CONFIGURATION ON PHONE
+================================================================
+
+--- .claude/settings.json (global) ---
+{
+  "env": { "TMPDIR": "/data/data/com.termux/files/home/tmp" },
+  "permissions": {
+    "allow": [
+      "Bash", "Read", "Write", "Edit", "Glob", "Grep", "Agent",
+      "WebFetch", "WebSearch", "NotebookEdit",
+      "Bash(mkdir:*)", "Bash(export:*)", "Bash(pkg:*)", "Bash(apt:*)",
+      "Bash(npm:*)", "Bash(pip:*)", "Bash(git:*)", "Bash(curl:*)",
+      "Bash(node:*)", "Bash(python:*)", "Bash(tsu:*)", "Bash(chmod:*)",
+      "Bash(chown:*)", "Bash(ls:*)", "Bash(cat:*)", "Bash(rm:*)",
+      "Bash(cp:*)", "Bash(mv:*)", "Bash(ssh:*)", "Bash(scp:*)",
+      "mcp__claude_ai_Slack", "mcp__claude_ai_Linear", "mcp__claude_ai_Gmail"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "mcpServers": {
+    "asolaria-control": {
+      "url": "http://127.0.0.1:4781/mcp",
+      "description": "Asolaria sovereign control plane (via ADB reverse bridge)"
+    }
+  },
+  "effortLevel": "high"
+}
+
+--- .claude/settings.local.json (project-level) ---
+{
+  "permissions": {
+    "allow": [
+      "Read(*)", "Edit(*)", "Write(*)", "Glob(*)", "Grep(*)",
+      "Bash(TMPDIR=$HOME/tmp mkdir -p $HOME/tmp)",
+      "Bash(ip addr:*)", "Bash(ip route:*)",
+      ... (many TMPDIR workaround permissions)
+      "allow all"
+    ]
+  }
+}
+
+--- .claude/agents/Falcon2.md ---
+Agent profile: "Falcon2"
+  model: opus
+  color: cyan
+  memory: user
+  Has persistent file-based memory system at:
+    /data/data/com.termux/files/home/.claude/agent-memory/Falcon2/
+  Supports: user, feedback, project, reference memory types
+  MEMORY.md: currently empty
+
+--- .claude.json (root config) ---
+  numStartups: 19
+  installMethod: global
+  oauthAccount: plasmatoid@gmail.com (Jesse Dabiel)
+  organizationRole: admin
+  hasExtraUsageEnabled: true (but cachedExtraUsageDisabledReason: "out_of_credits")
+  claudeCodeFirstTokenDate: 2026-03-12T15:16:06
+  firstStartTime: 2026-03-21T05:04:51
+  MCP connectors ever connected: Gmail, Slack, Linear
+  effortCalloutV2Dismissed: true
+  penguinModeOrgEnabled: true
+
+--- .claude/sessions/8906.json ---
+  pid: 8906
+  sessionId: f1a04f71-fae4-4864-82d6-dcd11070bcd0
+  cwd: /data/data/com.termux/files/home
+  startedAt: 1774136003241
+
+--- .claude/plugins/blocklist.json ---
+  2 blocked plugins: code-review@claude-plugins-official, fizz@testmkt-marketplace
+
+--- .claude/mcp-needs-auth-cache.json ---
+  monday.com MCP needs auth (timestamp: 1774136004394)
+
+================================================================
+BONUS: CODEX AUTH
+================================================================
+--- .codex/auth.json ---
+  auth_mode: apikey
+  OPENAI_API_KEY: sk-proj-6T44GeGr...TAXIA (present, not shown in full for safety)
+
+================================================================
+BONUS: MQTT AGENT LOG (last 30 lines)
+================================================================
+[MQTT] Error: Keepalive timeout
+[MQTT] Connected to colony broker as jesse_phone
+[MQTT] Error: Keepalive timeout
+[MQTT] Error: connack timeout
+[MQTT] Connected to colony broker as jesse_phone
+[MQTT] Error: Keepalive timeout
+[MQTT] Connected to colony broker as jesse_phone
+[MQTT] Error: Keepalive timeout
+[MQTT] Error: connack timeout
+[MQTT] Error: connack timeout
+[MQTT] Error: connack timeout
+[MQTT] Error: connack timeout
+[MQTT] Connected to colony broker as jesse_phone
+[MQTT] Error: Keepalive timeout
+[MQTT] Connected to colony broker as jesse_phone
+[MQTT] Error: Keepalive timeout
+[MQTT] Error: connack timeout
+[MQTT] Connected to colony broker as jesse_phone
+[MQTT] Error: Keepalive timeout
+[MQTT] Error: connack timeout (x11 repeating)
+
+PATTERN: Agent connects, then loses keepalive, reconnects, loses again.
+DIAGNOSIS: MQTT broker on desktop likely not running or ADB reverse not active.
+
+================================================================
+BONUS: package.json
+================================================================
+{ "dependencies": { "mqtt": "^5.15.0" } }
+
+================================================================
+BONUS: ASOLARIA SYSTEM CARD (asolaria-system-card-20260303.md)
+================================================================
+Full 18-section frontier-model analysis card covering:
+- System identity (local-first AI control plane)
+- Host: Intel i5-8300H, 16GB RAM, GTX 1050, Win11
+- 6 control planes: Interaction, Execution, Integration, Realtime Media, Governance, Ops
+- 3 interface layers: Human visual, Non-visual browser automation, Device/system control
+- Colony topology: 6 agents (core, brain, ops, build, phone, watchdog)
+- 24+ connector modules across AI, browser, phone, integrations
+- MCP optimization: 98-99% token reduction measured
+- Performance: /api/health avg 188ms, bridge-caption push avg 17ms
+- Security: authority policy, ACLs, approval workflows, relay controls
+- Healthcare AI transposition concepts (FastAPI, RAG, S-LoRA, GNN)
+- Priority roadmap: transcript guarantee > security hardening > MCP ops > meeting OS > GNN sidecar
+
+================================================================
+BONUS: MOBILE ARCHITECTURE CARD (asolaria-mobile-architecture-card-20260303.md)
+================================================================
+10-section mobile-specific architecture card covering:
+- Mobile plane: auth/session, screen/control, phone bridge/mirror, ops/health, approval/push
+- Route families: api/mobile/*, api/phone/*, api/power/*
+- Security: requireMobileAuth, requireMobileDirectControlEnabled, requireDesktopSuperMasterAuthority
+- Route-to-gate security matrix (10 route patterns with auth/gate/approval requirements)
+- Always-on bidirectional design: bridge keeper, tunnel smoke monitor, push updates
+- Phase plan: M1 control safety > M2 reliability > M3 governance > M4 telemetry intelligence
+
+================================================================
+BONUS: AGENTS.md (from downloads/)
+================================================================
+Full WARP/agent guidance document covering:
+- Environment: Windows, Node.js v20.11.0, Python 3.13.2, Java 1.8.0, .NET 10.0, Docker 29.2.1
+- Asolaria architecture: Express.js monolith, connector-based plugins
+- Key modules: intentRouter, brainOrchestrator, brainPolicy, workerRouter
+- 20+ connector families (AI, browser, phone, integrations)
+- 20+ stores (memory, notebook, tasks, etc.)
+- Gateway, services (memory-indexer, sandbox-manager)
+- Frontend: 8+ HTML/JS pages
+- Skills: declarative runbooks
+- Other machine projects: ai_healthcare_project, java-scala, mcp-servers, OpenManus, etc.
+
+================================================================
+END OF DEEP MINE
+================================================================

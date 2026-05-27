@@ -1,0 +1,978 @@
+================================================================================
+ANTIGRAVITY BRAIN DEEP MINE — COMPLETE EXTRACTION
+================================================================================
+Generated: 2026-03-25
+Source: C:\Users\acer\.gemini\antigravity\brain\
+Total sessions with task.md: 37
+Total sessions with implementation_plan.md: 32
+Total sessions with walkthrough.md: 19
+Total sessions with system_examination.md: 1
+================================================================================
+
+PROJECT CONTEXT: Nearly ALL 37 sessions relate to the AI Healthcare Project
+(ai_healthcare_project), located at C:\Users\acer\ai_healthcare_project.
+GitHub repo: https://github.com/JesseBrown1980/AI-healthCare-project.git
+One session (389e2b96) is an Asolaria system sweep.
+One session (476c3515) is a 3D Holographic Interface (React/Three.js).
+
+================================================================================
+SESSION-BY-SESSION EXTRACTION
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 01: 00692eea-87af-4484-85b4-f1b06a829d4c
+TITLE: Comparison with Original Repository
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Verification that a refactored AI Healthcare codebase preserved all original
+  features. The monolithic backend/main.py (~61KB, 1500+ lines) was split into
+  modular endpoints: auth.py, patients.py, clinical.py, system.py.
+
+DECISIONS:
+  - Confirmed all 18 endpoints preserved after modular refactor.
+  - All 10 helper functions accounted for.
+  - Frontend compatibility unchanged.
+
+APIS/SERVICES MENTIONED:
+  - FastAPI backend on port 8000
+  - FHIR patient endpoints (/api/v1/patient/{id}/fhir)
+  - SHAP explain endpoint (/api/v1/patient/{id}/explain)
+  - WebSocket: /ws/patient-updates
+  - Demo login: /auth/login with _issue_demo_token()
+
+ENDPOINTS:
+  /health, /api/v1/health, /api/v1/auth/login, /api/v1/cache/clear,
+  /api/v1/device/register, /api/v1/patients, /api/v1/patients/dashboard,
+  /api/v1/alerts, /api/v1/analyze-patient, /api/v1/dashboard-summary,
+  /api/v1/patient/{id}/fhir, /api/v1/patient/{id}/explain,
+  /api/v1/query, /api/v1/feedback, /api/v1/adapters,
+  /api/v1/adapters/activate, /api/v1/stats, /ws/patient-updates
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 02: 006214b8-1d74-4d5c-8d3d-962542b1523f
+TITLE: Agent Manager Implementation
+────────────────────────────────────────────────────────────────────────────────
+NO TASK.MD — only implementation_plan.md
+
+WHAT WAS BUILT:
+  An "Agent Manager" that automatically reviews and approves/rejects outgoing
+  notifications/mails using LLMEngine for PHI detection.
+
+DECISIONS:
+  - AgentManager class uses LLMEngine to review notification payloads.
+  - Integrated into Notifier: blocks notifications containing raw PHI.
+  - PatientAnalyzer decomposed into HistoryService + AlertService.
+  - Crypto-shredding implemented for HIPAA/GDPR audit log compliance.
+
+APIS/SERVICES:
+  - LLMEngine with query_generic method
+  - AgentManager.review_notification()
+  - ComplianceService for crypto-shredding (per-user encryption keys)
+  - AuditLogger with encrypted actor/patient_id/ip_address fields
+
+FILES CREATED:
+  backend/agent_manager.py
+  backend/compliance_service.py
+  backend/analysis/history_service.py
+  backend/analysis/alert_service.py
+  tests/test_agent_manager.py
+  tests/test_crypto_shredding.py
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 03: 12fa564c-759a-4b7e-87ec-0a6d9c651852
+TITLE: Debug and Verify Patient Analysis Flow
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Debugging 404 errors in Patient Analysis flow. Verifying frontend-backend
+  URL configuration.
+
+DECISIONS:
+  - AnalyzePatientRequest model matches frontend expectations
+  - Router confirmed at /api/v1/analyze-patient
+  - env_loader.py strips trailing slash for correct URL concatenation
+  - Backend: uvicorn backend.main:app --host 0.0.0.0 --port 8000
+  - Frontend: streamlit run frontend/app.py (Streamlit on port 8501)
+
+ENDPOINTS:
+  http://localhost:8000/api/v1/analyze-patient
+  http://localhost:8501 (Streamlit frontend)
+
+IMAGE FILES:
+  patient_analysis_flow_1766588430185.webp
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 04: 19340628-7be3-42ea-ad9a-59b8e0cc55e4
+TITLE: System Fix Tasks — Debug Code, Model Consolidation, Pydantic v2
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Full system examination + fixes: removed debug prints, consolidated duplicate
+  models, migrated Pydantic v1 to v2, removed duplicate endpoints.
+
+SYSTEM EXAMINATION FINDINGS (December 24, 2025):
+  CRITICAL:
+  - Pydantic v2 used but v1 syntax (@root_validator, @validator)
+  - Duplicate model definitions in main.py AND models.py (DeviceRegistration,
+    AnalyzePatientRequest, DemoLoginRequest, DemoLoginResponse)
+  - Debug print statements leaking ENABLE_DEMO_LOGIN and analysis internals
+  MODERATE:
+  - Duplicate load_dotenv() calls
+  - Duplicate /adapters endpoint in system.py and clinical.py
+  - Incomplete refactoring comment in system.py
+  - Missing patient_id field in models.py AnalyzePatientRequest
+  MINOR:
+  - Deprecated .dict() instead of .model_dump()
+  - Docker Compose deprecated version key
+  - Two frontends (Streamlit + React/Vite)
+
+CONFIGURATION VALUES:
+  .env: ENABLE_DEMO_LOGIN=True, FHIR_USE_SAMPLE_DATA=True, MODEL_TYPE=gsl,
+        OPENAI_API_KEY=sk-dummy (placeholder)
+
+APIS/SERVICES:
+  - FastAPI with FHIR integration
+  - GNN-based anomaly detection (EdgeLevelGCN, GSL-GNN, Contrastive-GNN, Prototype-GNN)
+  - PyTorch / torch_geometric
+  - WebSocket real-time updates
+  - Audit logging service
+
+ARCHITECTURE:
+  - Backend API (FastAPI with FHIR)
+  - Streamlit Frontend (legacy)
+  - React/Vite Frontend (modern)
+  - Anomaly Detection Service (GNN)
+  - Docker Infrastructure
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 05: 1b994a54-3593-4af3-af7a-9a7f2e496627
+TITLE: Debugging Multi-Patient Dashboard
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Fixed Multi-Patient Dashboard and Settings page errors. Added CORS fixes,
+  health endpoint fixes, adapter listing, specialty field to DashboardEntry.
+
+DECISIONS:
+  - Added specialty field to DashboardEntry model
+  - Removed DASHBOARD_PATIENT_IDS from .env to enable rich demo data
+  - Updated CORS configuration
+  - Fixed 422 Analysis error: fhir_patient_id made optional, model_validator
+    populates from patient_id
+
+CONFIGURATION:
+  - CORS_ORIGINS updated in .env
+  - DASHBOARD_PATIENT_IDS removed from .env
+
+IMAGE FILES: None (referenced in walkthrough but paths internal)
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 06: 28d333e5-9d74-448e-a4d5-e2ae705ac186
+TITLE: Master Plan — AI Healthcare Project Finalization
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Complete project finalization: test suite fix, HIPAA/GDPR compliance,
+  GitHub cleanup, documentation update, final push.
+
+STATUS (Feb 1, 2026): ALL PHASES COMPLETE
+
+DECISIONS:
+  - 605 tests passed, 12 skipped, 0 failed
+  - Crypto-shredding implemented for HIPAA/GDPR compliance
+  - Git history: reset to single commit (Dec 3, 2025)
+  - 34 dependabot branches pruned
+  - CI: Security Scanning SUCCESS, CI (lint+tests+frontend) SUCCESS,
+    Multi-Cloud Integration Tests SUCCESS
+
+COMMITS:
+  40436ea - AI Healthcare Project (Dec 3, 2025)
+  6ca717d - Gitleaks allowlist fix
+  e9db02c - CI frontend build fix
+  5750d21 - Documentation update
+
+APIS/SERVICES:
+  - GDPR/HIPAA crypto-shredding
+  - Consent API
+  - GitHub Actions CI pipeline
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 07: 37698af1-9dcf-465c-b76c-462c755e0e5c
+TITLE: Implement Anomaly Detection Service
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  New Anomaly Detector service for healthcare security monitoring using
+  Edge-Level GNN. Models entities (Users, IPs, Patients) as graph nodes.
+
+DECISIONS:
+  - Separate optional service in backend/anomaly_detector/
+  - Baseline Edge-Level GCN architecture
+  - PyTorch + torch_geometric dependencies
+  - Synchronous HTTP call (not message queue) for log ingestion
+
+STRUCTURE:
+  backend/anomaly_detector/
+    main.py — FastAPI entrypoint
+    api.py — /security/anomaly/score, /security/anomaly/health
+    models/schemas.py — LogEvent, EventBatch, ScoredEvent, ScoreResponse
+    models/gnn_baseline.py — EdgeLevelGCN (PyTorch)
+    models/graph_builder.py — Events to Graph converter
+    config.py — Thresholds, model paths
+    requirements.txt — Service-specific deps
+    Dockerfile — CPU-only PyTorch
+
+ENDPOINTS:
+  GET /security/anomaly/health — returns 200 OK or 503
+  POST /security/anomaly/score — batch event scoring
+
+WALKTHROUGH FINDINGS:
+  - Missing __init__.py files (critical)
+  - Random node features (non-deterministic scores) — fixed with hash-based features
+  - Test import path inconsistencies
+  - No empty batch validation
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 08: 389e2b96-6ca0-4a8e-bb11-3b592f5acd38
+TITLE: Asolaria System Sweep Plan *** ASOLARIA REFERENCE ***
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  System sweep of the Asolaria codebase (NOT AI Healthcare).
+
+TASKS:
+  - Read foundational documents (README.md, TASKS.md, etc.)
+  - Analyze codebase structure (src, services, public, private directories)
+  - Identify build, run, test commands from package.json
+  - Run health checks and test sweeps
+  - Compile comprehensive Sweep Report
+
+STATUS: Only foundational document reading completed.
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 09: 3ab7fef0-1c7b-4ba8-aa26-13870e04d639
+TITLE: Verify App and Code Quality
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Test suite verification for AI Healthcare project. Running pytest,
+  analyzing failures, applying fixes.
+
+STATUS: Partially complete — test suite started but not all fixes applied.
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 10: 469d482d-8e64-4f16-a251-f53aa91a932b
+TITLE: Implement European (GDPR) Compliance
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Full GDPR compliance implementation: Consent Management System, Right to be
+  Forgotten, Data Export (portability), Data Anonymization.
+
+DECISIONS:
+  - Granular consent (not all-or-nothing): data_processing, third_party_sharing
+  - Hard delete for GDPR (not soft delete)
+  - Consent database model: user_id, consent_type, granted, timestamp, ip_address
+  - Right to be Forgotten with cascading delete + anonymization
+  - Data portability via JSON export
+
+FILES CREATED:
+  backend/models/consent.py — UserConsent model
+  backend/api/v1/endpoints/consent.py — POST/GET /consent endpoints
+  backend/api/v1/endpoints/privacy.py — POST /privacy/forget-me, POST /privacy/export
+  backend/services/anonymization.py — PII scrubbing (presidio or regex)
+
+ENDPOINTS:
+  POST /consent — Update consent preferences
+  GET /consent — Current consent status
+  GET /consent/history — Audit log of consent changes
+  POST /privacy/forget-me — Data deletion
+  POST /privacy/export — Data portability (JSON)
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 11: 476c3515-b114-44dd-b61c-517de715ba94
+TITLE: 3D Holographic Interface (React/Three.js) *** NON-HEALTHCARE ***
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Web-based 3D holographic interface with floating, movable icons.
+
+TECH STACK:
+  - React (Vite)
+  - Three.js, React Three Fiber
+  - @react-three/drei (Controls)
+  - @react-three/postprocessing (Bloom)
+
+COMPONENTS:
+  src/App.jsx — Main entry, Canvas
+  src/Scene.jsx — Lighting, environment, HoloIcon components
+  src/components/HoloIcon.jsx — 3D geometry with holographic material
+  src/components/Effects.jsx — Bloom effects
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 12: 503d6a27-c58d-4ad1-97d2-e76e9b7dc4e4
+TITLE: Project Cleanup and Restoration
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Repository cleanup: removed ghost files, cleaned .cursor/worktrees,
+  pruned git worktrees, audited for personal info, ran test suite.
+
+DECISIONS:
+  - Deleted .cursor/worktrees directory
+  - Investigated suspicious commit ca3b6a9 (it removed files, safe)
+  - Frontend runs at http://localhost:8501 (Streamlit)
+  - Fixed NameError in frontend/app.py
+  - Created tests/test_rag_fusion.py and tests/test_llm_engine.py
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 13: 514df202-6489-49fd-8f9f-4da5c770603d
+TITLE: System Re-Examination and Final Fixes
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  System cleanup: removed unused patient_services.py, consolidated models,
+  verified Pydantic v2, removed debug prints.
+
+DECISIONS:
+  - Removed backend/services/patient_services.py (redundant)
+  - Removed backend/services/__init__.py
+  - Tests updated to import from individual services
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 14: 54a77542-2a2d-482c-873e-7662cdc1a3ff
+TITLE: Environment Verification
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Verification of development environment: requirements.txt consistency,
+  dependency checks, backend/frontend launch tests.
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 15: 5e44c400-3b3d-4e1b-9b1e-4f613ac780e6
+TITLE: Running and Debugging Application — Fix Test Imports
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Fixed test import errors after refactor. TokenContext moved to
+  backend.security, PatientAnalyzer to backend.patient_analyzer.
+
+DECISIONS:
+  - Tests updated: test_cache_controls.py, test_dashboard_endpoint.py,
+    test_legacy_routes_missing_services.py, test_patient_fhir_endpoint.py
+  - HTTPException bubbled up instead of caught by generic handler
+
+IMAGE FILES: (click_feedback screenshots from browser testing)
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 16: 61f2715c-1cf4-45dd-8368-9c02953f6467
+TITLE: Prompts 9-17 — Refactor, Docker, CI, Docs, Linting, Release
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Comprehensive upgrade sequence:
+  - Prompt 9: Refactored internal imports and package structure
+  - Prompt 10: Separated Backend/Frontend Docker services, env alignment
+  - Prompt 11: CI pipeline for testing
+  - Prompt 12: Code comments and docstrings
+  - Prompt 13: Code wiki automation
+  - Prompt 14: Static analysis and linting
+  - Prompt 15: Continuous documentation deployment
+  - Prompt 16: Docker image build & release validation
+  - Prompt 17: Release preparation — version bumped to 1.0.0
+
+DECISIONS:
+  - Version bumped from 0.1.0 to 1.0.0 in pyproject.toml
+  - CHANGELOG.md created summarizing Prompt 9-17 upgrade work
+  - /api/v1 prefix issue fixed
+
+FILES:
+  pyproject.toml — version 1.0.0
+  CHANGELOG.md — new
+  docker-compose.yml — separate backend/frontend services
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 17: 6481a5f4-5178-4be2-b486-fe65bb962707
+TITLE: Debugging Patient Analysis Flow (Again)
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Debug session for 404/Auth errors in Patient Analysis. Verified endpoint
+  availability, fixed identified errors.
+
+DECISIONS:
+  - /api/v1/analyze-patient confirmed available on port 8000
+  - Anomaly router mounted at /api/v1/anomaly (port 8000, not separate 8001)
+  - Frontend API_BASE_URL = http://localhost:8000/api/v1
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 18: 6d2d4b8d-c64c-4a25-8abc-89e6220792ac
+TITLE: System Scan and Documentation Audit — GNN Integration
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Integrated Anomaly Detection Service into main backend, updated documentation.
+
+DECISIONS:
+  - anomaly_router registered at /api/v1/anomaly prefix
+  - README updated with Edge-Level Anomaly Detection (GNN) capabilities
+  - PROJECT_SUMMARY updated with GNN model performance metrics
+
+ENDPOINTS:
+  /api/v1/anomaly/score
+  /api/v1/anomaly/health
+  Swagger UI: http://localhost:8000/docs
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 19: 74a05c5f-b311-4568-945b-c99fdea3b820
+TITLE: System Verification and Testing
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Full system verification: backend pytest, frontend lint/type check,
+  graph_visualization and oauth test fixes.
+
+DECISIONS:
+  - graph_visualization.py updated to accept request: Request
+  - oauth tests updated with Request mock and absolute URLs
+  - API_BASE_URL = VITE_API_BASE_URL or http://localhost:8000/api/v1
+  - Commit: "fix: Resolve backend test failures (graph_viz, oauth)"
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 20: 75aa5826-4b89-41ea-ad62-c455410c61a9
+TITLE: Phase 5-7 — Testing Coverage, Security Hardening, Final Cleanup
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Comprehensive stabilization:
+  - Graph Visualization unit tests (ClinicalGraphBuilder, ClinicalGraphStatistics)
+  - Calendar Integration tests (GoogleCalendarService)
+  - Error handling standardized across 12 API modules (ServiceErrorHandler.safe_execution)
+  - Security hardening: Input validation, XSS/SQLi prevention, CSP, HSTS
+  - Rate limiting (per-user, per-IP)
+  - Regulatory docs: TRACEABILITY_MATRIX.md, RISK_MANAGEMENT_FILE.md
+
+DECISIONS:
+  - safe_execution context manager for all endpoints
+  - Content Security Policy tightened for production (no unsafe-inline/eval)
+  - /stats and /adapters endpoints got auth_dependency()
+  - New env vars: INPUT_VALIDATION_STRICT, ENVIRONMENT, SECURITY_HEADERS_ENABLED
+  - SOC2/HIPAA compliance verified for PII crypto-shredding
+
+APIS/SERVICES:
+  - GoogleCalendarService (OAuth token refresh, pagination, event CRUD)
+  - SecurityHeadersMiddleware (CSP, HSTS, X-Frame-Options)
+  - InputValidationMiddleware (XSS, SQLi pattern detection)
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 21: 78676e42-ac4b-4374-a4b4-255cfc3f176f
+TITLE: Fix CI Test Failures and Plan GDPR
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Fixed 15 test failures: OWASP, OAuth, graph visualization, HL7, OCR.
+
+DECISIONS:
+  - 569 passed, 15 failed -> fixed to 582+ passing
+  - Test assertions updated to accept 503 status codes
+  - Fixed recommendation_service.py undefined language variable
+  - Next: Create GDPR/European version implementation plan
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 22: 7880f5ce-26e9-4b00-b75c-518ee33c1360
+TITLE: Security Implementation & CI Fixes — SOC 2
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Enterprise security infrastructure:
+  - SOC 2 compliance: 5 policy docs, CI scanning, audit logging
+  - PHI filter (detect/redact SSN, MRN, phone, email, DOB)
+  - Log sanitizer (auto-redact PHI)
+  - Security metrics endpoint: GET /api/v1/security/metrics
+  - Session management
+  - Data retention service
+  - OWASP security tests (A01, A02, A03, A07, A09)
+
+SECURITY DOCS:
+  docs/security/access-control-policy.md
+  docs/security/data-protection-policy.md
+  docs/security/incident-response-plan.md
+  docs/security/api-security.md
+  docs/security/deployment-security.md
+
+CI SECURITY:
+  .github/workflows/security.yml — Bandit, Gitleaks, CodeQL
+  .github/dependabot.yml — Auto-updates
+
+COMMITS: dc5128b, ae69c74, a5d806b, d561d28, a9efb95, 8ff09cd, b4637ce, 4fab427
+
+SECURITY STACK:
+  - JWT + SMART-on-FHIR authentication
+  - RBAC with scopes
+  - TLS + HSTS encryption
+  - PHI redaction patterns (SSN, MRN, phone, email, DOB)
+  - Security score endpoint (0-100)
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 23: 7aeceb95-f491-4dc7-acd9-cf33320b9822
+TITLE: Documentation & Demonstration — Visual Demos
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Documentation audit and visual demonstration recordings of the system.
+  API refactoring walkthrough with FHIR integration verification.
+
+DECISIONS:
+  - Modular API routers: auth.py, patients.py, clinical.py, system.py
+  - Centralized v1 router in backend/api/v1/api.py
+  - main.py reduced by ~1000 lines
+  - FHIR resource normalization verified (Patient, Condition, Medication,
+    Observation, Encounter)
+  - SMART scope validation preserved
+
+IMAGE FILES (MANY — browser screenshots of dashboard):
+  dashboard_overview_1766551390053.webp
+  multi_patient_dashboard_initial_load_1766551409314.png
+  multi_patient_dashboard_final_state_1766551504482.png
+  dashboard_overview_fixed_1766551554367.webp
+  dashboard_scroll_1_1766551732224.png
+  patient_analysis_flow_1766551766053.webp
+  patient_analysis_flow_retry_1766552362002.webp
+  streamlit_error_1766553665181.png
+  patient_analysis_flow_final_1766553652578.webp
+  patient_analysis_results_1766554874097.png
+  + many click_feedback screenshots
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 24: 7fffc83b-a7a1-47f2-9d36-a7f42777be71
+TITLE: Master Plan — AI Healthcare Project Finalization (duplicate/early version)
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Earlier version of the master finalization plan (Phase 1-5).
+  Same structure as session 28d333e5 but incomplete.
+
+DECISIONS: Same as session 06 (28d333e5)
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 25: 80912a08-eb6c-460e-9463-a76d7fe2db8b
+TITLE: Merge Privacy Fixes & Clean GitHub Repo
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Re-implemented Privacy API, database fixes, GitHub cleanup.
+
+DECISIONS:
+  - Right to be Forgotten: /api/v1/privacy/forget-me (POST)
+  - Data Export: /api/v1/privacy/export (GET)
+  - Database: StaticPool for in-memory SQLite testing
+  - get_db_session split into Generator (FastAPI Depends) + get_db_context (manual)
+  - Consent model: default UUID generation for id
+  - 21 stale PRs closed, 18 stale remote branches deleted
+  - Force-pushed clean state to main
+  - Only origin/main remains as remote branch
+
+CI ISSUES FIXED:
+  - ImportError: exported get_database_service in backend/di/__init__.py
+  - TypeError: DatabaseService updated to use get_db_context
+  - ScopeMismatch: event_loop fixture in conftest.py
+  - Remaining: sqlite3 OperationalError for analysis_history table (CI-only)
+
+IMAGE FILES: None (referenced github PR cleanup webp in walkthrough)
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 26: 83c8e800-1f4a-4a5b-b39d-995f47d1f36c
+TITLE: System PATH and Windows Search Fix *** SYSTEM MAINTENANCE ***
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Fixed system PATH for XAMPP php, mysql. Rebuilt Windows Search index (was 0 MB).
+
+DECISIONS:
+  - XAMPP php and mysql added to system PATH
+  - Windows Search index rebuilt from scratch
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 27: 8888eeea-cb2f-4f82-8d08-827ffb8d6bcb
+TITLE: Multi-Task — Cursor Fix, Tests, Git Squash, GitHub Verify
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Four tasks completed:
+  1. Fixed Cursor/VS Code configuration (python.languageServer: "None" -> "Pylance")
+  2. Ran comprehensive tests: 534->565 passed after JWT secret fix
+  3. Squashed git history: 20 commits -> 1 commit dated Dec 3, 2025
+  4. Verified on GitHub via browser
+
+DECISIONS:
+  - .vscode/settings.json: python.languageServer changed to Pylance
+  - JWT fix: DEMO_LOGIN_SECRET and DEMO_JWT_SECRET aligned in conftest.py
+  - Git history squashed and force-pushed to origin main
+  - Backup branch: backup-before-squash
+
+CONFIGURATION:
+  - .vscode/settings.json: {"python.languageServer": "Pylance"}
+  - tests/conftest.py: Both DEMO_LOGIN_SECRET and DEMO_JWT_SECRET env vars set
+
+GITHUB:
+  https://github.com/JesseBrown1980/AI-healthCare-project
+  Single commit: "AI Healthcare Project - Complete clinical decision support system
+  with React frontend, FastAPI backend, and ML-powered patient analysis"
+  Date: December 3, 2025 at 09:00:00
+
+IMAGE FILES:
+  github_verification_1768198454380.webp (browser showing 1 commit)
+  click_feedback screenshots
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 28: 8f7c74d6-878c-4add-917b-8d0ed52b02c2
+TITLE: Fix AI Healthcare Project — Dependencies, sys.path, Startup
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Fixed project startup issues: numpy version conflicts, sys.path hacks,
+  improved startup reliability.
+
+DECISIONS:
+  - numpy pinned to <2.0.0 for pytorch/tensorflow compatibility
+  - Removed sys.path.insert hacks from backend/main.py and frontend/app.py
+  - Created setup.py for pip install -e .
+  - Created run_dev.py helper script
+  - Backend: port 8000, Frontend: port 8501
+
+FILES CREATED:
+  setup.py (or pyproject.toml update)
+  run_dev.py
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 29: 90102c21-a14b-4a23-a54c-32ec211c3581
+TITLE: GNN Anomaly Detector — Baseline to Advanced Architectures
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Upgraded from baseline EdgeLevelGCN (91.87%) to three advanced GNN
+  architectures from the Yaman/Siemens paper.
+
+GNN MODELS:
+  | Model           | Accuracy | Key Mechanism                     |
+  | Baseline GCN    | 91.87%   | Standard GCN edge classification  |
+  | Prototype-GNN   | 94.24%   | Learnable prototypes for attacks  |
+  | Contrastive-GNN | 94.71%   | Supervised contrastive learning   |
+  | GSL-GNN         | 96.66%   | Adaptive graph structure learning |
+
+FILES CREATED:
+  models/prototype_gnn.py
+  models/contrastive_gnn.py
+  models/gsl_gnn.py
+  training/contrastive_loss.py (SupCon loss)
+  training/trainer.py (unified training loop)
+
+CONFIGURATION:
+  config.py: MODEL_TYPE: Literal["baseline", "prototype", "contrastive", "gsl"]
+  service.py: Dynamic model loading based on MODEL_TYPE
+
+RESEARCH PAPER:
+  "Edge-Level Graph Neural Network Architectures for Network Intrusion Detection"
+  by Yaman, Siemens
+
+IMAGE FILES:
+  github_repo_review_1766525403762.webp
+  verify_github_push_1766527790215.webp
+  fetch_main_branch_files_1766528095011.webp
+  + click_feedback screenshots
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 30: 92844762-80ea-4b31-b044-761323a1b259
+TITLE: System Stability Verification — Final Phase
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Final stability verification: full test suite, regression fixes,
+  flakey test fixes, final usage guide.
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 31: b27b8734-3380-4f0b-bd4f-9c7625b2305c
+TITLE: Debugging Patient Analysis 500 Error
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Investigated Multi-Patient Dashboard failure + Patient Analysis 500 error.
+
+DECISIONS:
+  - Fixed import errors and NoneType formatting
+  - AnalyzePatientRequest model verified
+  - Dashboard crash from None risk score formatting fixed
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 32: b6fb5227-0871-4957-8d39-d842575ad6bd
+TITLE: Debugging Patient Analysis Flow (Another attempt)
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Debug session for Patient Analysis flow: environment config verification,
+  reproduction of 404/Auth errors.
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 33: c2434d80-9a21-465f-8a93-34de9d929900
+TITLE: Live Application Debugging — Multi-Patient Dashboard
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Fixed Multi-Patient Dashboard: sys.path adjustments, None risk score
+  formatting, duplicate method cleanup.
+
+DECISIONS:
+  - sys.path adjustments added to backend/main.py, frontend/app.py,
+    frontend/pages/2_Multi_Patient_Dashboard.py
+  - None risk scores display as "N/A" or "0.00"
+  - Duplicate collect_recent_alerts method removed from patient_analyzer.py
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 34: c2e5b3cd-8a7c-4924-bf36-e3f66778debf
+TITLE: System Re-Examination and Cleanup
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Backend cleanup: debug prints removed, models consolidated, Pydantic v2
+  verified, API endpoint review, DI verification, test fixes.
+
+DECISIONS:
+  - AnalyzePatientRequest confirmed as single source of truth in models.py
+  - test_api_integration.py IndentationError fixed
+  - anomaly_service patched to bypass environment-specific startup failures
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 35: cd82daf5-707a-4904-a1ff-af5fbee777fd
+TITLE: GNN Integration — Critical Fixes + Enterprise Quality Sweep
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Fixed GNN integration issues, then full enterprise quality sweep:
+  - Structured logging throughout
+  - Custom AnomalyDetectionError hierarchy
+  - Pydantic strict Regex validation + Enums
+  - Deterministic node features (hash-based, not random)
+  - XAI: Semantic Feature Engineering, GSL Edge Importance, Technical Explanations
+
+ENTERPRISE SWEEP (v2.1.0):
+  1. Structured logging integrated
+  2. Custom exception hierarchy (AnomalyDetectionError)
+  3. Pydantic strict Regex + Enum validation for actions
+  4. GraphBuilder deterministic features
+  5. Documentation refactoring
+
+PHASE 3 — EXPLAINABILITY (XAI):
+  - Semantic Feature Engineering in GraphBuilder
+  - GSL Edge Importance Extraction
+  - Technical Explanations in API response
+  - Updated schemas for XAI fields
+
+VERIFICATION: 13/13 tests passed (11 Model + 2 API)
+
+IMAGE FILES:
+  verify_api_running_1766545416471.webp
+  verify_phase3_xai_1766547970012.webp
+  + many click_feedback screenshots
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 36: d542ba13-89ed-4b71-ad66-37b5fbd1e01d
+TITLE: Debugging Patient Analysis Flow (Visual)
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Debug session with browser screenshots. Identified URL routing mismatch.
+
+DECISIONS:
+  - Correct URL: /api/v1/analyze-patient
+  - Frontend app.py verified for matching URL
+  - env_loader.py/docker-compose.yml checked for API_BASE_URL
+
+IMAGE FILES:
+  connection_refused_1766557602470.png
+  patient_analysis_flow_1766557563360.webp
+  specialty_dropdown_1766557825948.png
+  patient_analysis_error_1766585737633.png
+  patient_analysis_verification_1766585555396.webp
+  + click_feedback screenshots
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 37: e0cb10e1-a5e9-448c-854f-dbe6e8bc3fe5
+TITLE: Debugging Patient Analysis — Frontend Config
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Verified backend API connectivity via debug_flow_urllib.py,
+  checked frontend env_loader.py for API Base URL and token passing.
+
+IMAGE FILES: None
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 38: e42a6454-985f-4712-a640-754b7ed8f243
+TITLE: Fix Remaining CI Test Failures
+────────────────────────────────────────────────────────────────────────────────
+WHAT WAS BUILT:
+  Fixed 15 CI test failures:
+  - Missing aiosqlite dependency (18 import errors)
+  - 5 graph_visualization assertions (accept 503)
+  - 2 HL7 assertions (accept 503)
+  - 2 OCR assertions (flexible for CI)
+  - 2 OAuth assertions (accept 503)
+  - 1 OWASP assertion (accept 503)
+  - recommendation_service.py undefined language variable
+  - test_analyze_patient_respects_notify_flag (accept 503)
+
+RESULT: 582+ tests passing (up from 570)
+
+DECISIONS:
+  - aiosqlite added to environment
+  - SQLAlchemy engine reset fix: _engine = None in close_database()
+  - test_consent_api.py: added test_db fixture
+  - test_privacy_api.py: refactored to use test_db + dependency overrides
+  - Tesseract OCR installed via winget, PATH configured
+  - TESSERACT_CMD environment variable added
+
+IMAGE FILES: None
+
+================================================================================
+CROSS-SESSION ANALYSIS
+================================================================================
+
+GITHUB REPOSITORY:
+  https://github.com/JesseBrown1980/AI-healthCare-project.git
+  Remote: origin
+  Branch: main
+  Final state: 1 commit dated December 3, 2025
+
+PROJECT LOCATION:
+  C:\Users\acer\ai_healthcare_project
+  (Also referenced as C:\Users\acer\.gemini\antigravity\conversations)
+
+PYTHON ENVIRONMENT:
+  C:\Users\acer\anaconda3\python.exe (Python 3.12.7)
+  Virtual environment: .venv
+  Package manager: pip
+
+KEY DEPENDENCIES:
+  fastapi, uvicorn, pydantic (v2), pytest
+  torch, torch_geometric (for GNN)
+  streamlit (frontend)
+  react, vite, three.js (react frontend)
+  aiosqlite, sqlalchemy (async)
+  transformers, numpy (<2.0.0)
+  tesseract-ocr (for OCR)
+  presidio (for PII anonymization)
+
+ARCHITECTURE SUMMARY:
+  Backend: FastAPI on port 8000
+    /api/v1/ — modular routers (auth, patients, clinical, system, consent,
+               privacy, hl7, oauth, documents, graph_visualization,
+               security_metrics)
+    /api/v1/anomaly/ — GNN Anomaly Detection Service
+    /ws/patient-updates — WebSocket
+  Frontend (Legacy): Streamlit on port 8501
+  Frontend (Modern): React/Vite
+  Anomaly Detector: EdgeLevelGCN -> Prototype-GNN -> Contrastive-GNN -> GSL-GNN
+
+FHIR INTEGRATION:
+  - FhirHttpClient + FhirResourceService
+  - Resource normalization: Patient, Condition, Medication, Observation, Encounter
+  - SMART scope validation + token handling
+  - FHIR_USE_SAMPLE_DATA=True for development
+
+GNN MODELS (RESEARCH PAPER IMPLEMENTATION):
+  Source: "Edge-Level GNN Architectures for Network Intrusion Detection" (Yaman, Siemens)
+  - Baseline EdgeLevelGCN: 91.87% accuracy
+  - Prototype-GNN: 94.24% (learnable prototypes)
+  - Contrastive-GNN: 94.71% (supervised contrastive learning)
+  - GSL-GNN: 96.66% (adaptive graph structure learning, 99.70% ROC-AUC)
+  Default: MODEL_TYPE=gsl
+
+SECURITY FEATURES:
+  - SOC 2 compliance (5 policy documents)
+  - HIPAA/GDPR crypto-shredding (per-user encryption keys)
+  - PHI filter: SSN, MRN, phone, email, DOB redaction
+  - OWASP Top 10 tests (A01, A02, A03, A07, A09)
+  - JWT + SMART-on-FHIR authentication
+  - RBAC with scopes
+  - Input validation (XSS, SQLi prevention)
+  - Content Security Policy + HSTS
+  - Rate limiting (per-user, per-IP)
+  - Security metrics endpoint (score 0-100)
+  - Session management
+  - Data retention service
+  - Audit logging (immutable JSONL with crypto-shredded PII)
+
+COMPLIANCE:
+  - GDPR: Consent management, Right to be Forgotten, Data Export
+  - HIPAA: Immutable audit logs, PHI protection, crypto-shredding
+  - SOC 2: Access control, data protection, incident response policies
+  - OWASP: Security testing for top vulnerabilities
+
+DEPLOYMENT:
+  - Docker: separate backend/frontend services
+  - GitHub Actions CI: security scanning, lint, tests, frontend build
+  - Dependabot for auto-updates
+
+CONFIGURATION VALUES FOUND:
+  ENABLE_DEMO_LOGIN=True
+  FHIR_USE_SAMPLE_DATA=True
+  MODEL_TYPE=gsl
+  OPENAI_API_KEY=sk-dummy (placeholder, will fail real calls)
+  INPUT_VALIDATION_STRICT (production toggle)
+  ENVIRONMENT (dev/prod)
+  SECURITY_HEADERS_ENABLED
+  TESSERACT_CMD (path to tesseract)
+  CORS_ORIGINS (configured in .env)
+  API_BASE_URL=http://localhost:8000/api/v1
+  VITE_API_BASE_URL (React frontend)
+  DEMO_LOGIN_SECRET / DEMO_JWT_SECRET (aligned for JWT)
+
+ASOLARIA REFERENCES:
+  - Session 389e2b96 is a direct Asolaria system sweep (read foundational docs)
+  - No other sessions directly reference Asolaria codebase
+  - The AI Healthcare project is SEPARATE from Asolaria (per IX-362)
+
+FIREBASE REFERENCES: None found in any session.
+
+DEPLOYMENT URLS: None (all localhost development).
+
+TEST RESULTS EVOLUTION:
+  Early: ~500 tests with many failures
+  Mid: 534 passed, 39 failed -> JWT fix -> 565 passed, 8 failed
+  Late: 569 passed, 15 failed -> fixed -> 582+ passed
+  Final: 605 passed, 12 skipped, 0 failed (Feb 1, 2026)
+
+================================================================================
+SESSIONS WITHOUT TASK.MD (39 directories, no task.md):
+================================================================================
+These sessions had no task.md file and were not mined:
+004217ed, 006214b8 (has impl_plan only — Agent Manager, covered above),
+02ce3179, 02ff2ae4, 06552306, 0a6bd076, 0bd89293, 13f87e24 (has walkthrough
+only — dev env fix), 153b3aa1, 1600278d, 234f1972, 2548aada, 26d78b66,
+345c54d8, 39e642cd, 4040950d, 47b76135, 4ac1fc7a, 4b328e6f, 4c4c3dd6,
+4d5e309c, 56486534, 58b82358, 5c14563a, 64aa7fe3, 7fffc83b (duplicate),
+8e617400, 97e96b84, a9bbb332, ab06ebe8, af5f62c4, b9bede96, cbbf761e,
+d7ac0ac8, da4933ab, e1ea8ed8, f3f8500e, f9441583, ff6215f5, tempmediaStorage
+
+================================================================================
+END OF EXTRACTION
+================================================================================

@@ -1,0 +1,287 @@
+================================================================================
+SYMPHONY INTEGRATION — FULL INVENTORY
+Generated: 2026-03-25
+================================================================================
+
+## 1. WHAT IS SYMPHONY
+
+Symphony is OpenAI's `openai/symphony` — an Elixir-based orchestration sidecar
+that polls a Linear project for issues, creates isolated workspaces per issue,
+and dispatches Codex agents to resolve them. Asolaria treats it as a MANAGED
+SIDECAR SERVICE, not an external model provider. It serves as the "long-running
+issue lane" in the Super-Swarm worker architecture.
+
+Runtime: Elixir (escript via `mise`)
+Default port: 4792
+Linear project slug: asolaria-symphony-e3159fb1e260
+
+================================================================================
+
+## 2. CORE SOURCE FILES
+
+### Connector (main integration logic)
+  C:\Users\acer\Asolaria\src\connectors\symphonyConnector.js
+    - 1456 lines
+    - Exports: getSymphonyIntegrationStatus, fetchSymphonyLiveState,
+      setSymphonyConfig, startSymphonyService, stopSymphonyService,
+      restartSymphonyService, submitSymphonyWorkItem, manifest
+    - Manages: vault secrets, PID lifecycle, Elixir bootstrap, Linear GraphQL,
+      workspace creation, live state polling, event graph emission
+    - Secret key: "integrations.symphony" (owner vault)
+    - Env vars: ASOLARIA_SYMPHONY_ENABLED, ASOLARIA_SYMPHONY_REPO_ROOT,
+      ASOLARIA_SYMPHONY_WORKFLOW_PATH, ASOLARIA_SYMPHONY_LOGS_ROOT,
+      ASOLARIA_SYMPHONY_RUNTIME, ASOLARIA_SYMPHONY_PORT,
+      ASOLARIA_SYMPHONY_COMMAND, ASOLARIA_SYMPHONY_WORKDIR,
+      ASOLARIA_SYMPHONY_LINEAR_PROJECT_SLUG, LINEAR_API_KEY,
+      ASOLARIA_SYMPHONY_SOURCE_REPO_URL, ASOLARIA_SYMPHONY_WORKSPACE_ROOT,
+      ASOLARIA_SYMPHONY_CODEX_COMMAND, ASOLARIA_SYMPHONY_MISE_PATH
+
+### Connector manifest schema
+  C:\Users\acer\Asolaria\tools-manifests\symphonyConnector\symphonyConnector.invoke.schema.json
+
+================================================================================
+
+## 3. CONFIGURATION FILES
+
+  C:\Users\acer\Asolaria\config\symphony\WORKFLOW.asolaria.md
+    - ACTIVE workflow definition used by Symphony
+    - Tracker: Linear, project slug asolaria-symphony-e3159fb1e260
+    - Polling interval: 5000ms
+    - Max concurrent agents: 4, max turns: 12
+    - Codex command: node.exe -> codex.js app-server (Windows WSL path)
+    - Hooks: after_create calls SymphonyBootstrapWorkspace.js
+    - NOTE: Has duplicated "command:" lines (10 copies) — likely a bug
+
+  C:\Users\acer\Asolaria\config\symphony\WORKFLOW.example.md
+    - Template/example workflow (generic placeholders)
+
+================================================================================
+
+## 4. API ROUTES (in server.js + route files)
+
+  GET  /api/integrations/symphony/status     — returns config + process + launch plan
+  POST /api/integrations/symphony/config     — loopback-only, Guardian-gated config update
+  POST /api/integrations/symphony/start      — start the Elixir sidecar
+  POST /api/integrations/symphony/stop       — stop the sidecar
+  POST /api/integrations/symphony/restart    — restart
+  POST /api/integrations/symphony/submit     — submit a work item (title + objective)
+  GET  /api/worker-runtime/symphony          — worker runtime symphony payload
+
+Route files with Symphony references:
+  C:\Users\acer\Asolaria\routes\integrationOps.js      — submit, start/stop/restart
+  C:\Users\acer\Asolaria\routes\integrationStatus.js   — status endpoint
+  C:\Users\acer\Asolaria\routes\integrationsRemaining.js — config endpoint
+  C:\Users\acer\Asolaria\routes\remaining.js           — policy summary, cockpit status
+  C:\Users\acer\Asolaria\routes\workerRuntime.js       — worker runtime symphony payload
+
+================================================================================
+
+## 5. SERVER.JS REFERENCES
+
+  C:\Users\acer\Asolaria\server.js
+    - Lazy-loads symphonyConnector via lazyConnector()
+    - Symphony appears in:
+      * Integration status summaries (symphonyConfigured, symphonyRunning)
+      * Service map as "symphony-service" with label "Symphony"
+      * Worker IDs list: ["local_codex", "claude_max", "abacus", "symphony"]
+      * Full cockpit status, world bundle, super-coder payload
+      * Intent router actions: symphony_status, symphony_start, symphony_stop, symphony_restart
+      * Route manifest listing all 6 Symphony API endpoints
+      * summarizeSymphonyStatusLite() helper
+      * buildWorkerRuntimeSymphonyPayload() builder
+      * getSymphonyPolicySummary() policy
+      * Blockers check: "Symphony is not running" blocks certain flows
+      * Mistake detection: detects Symphony running but live state unhealthy
+
+================================================================================
+
+## 6. DOCUMENTATION
+
+  C:\Users\acer\Asolaria\docs\SYMPHONY_INTEGRATION.md
+    - Main integration doc: what Asolaria stores, API, notes, Helm/Sentinel roles,
+      config example
+
+  C:\Users\acer\Asolaria\docs\SYMPHONY_HELPER_SURFACES.md
+    - Tells Symphony issue workspaces how to use Asolaria helper surfaces
+      (Abacus, Augment/Auggie, Gemini, Phone)
+    - Includes recommended order and required handoff notes
+
+  C:\Users\acer\Asolaria\docs\HELM_CONTROLLER_SURFACES.md
+    - Helm can submit work to Symphony, query status
+
+  C:\Users\acer\Asolaria\docs\claude-project\README.md
+    - Lists Symphony as one of the key integrations
+
+  C:\Users\acer\Asolaria\docs\claude-project\AGENTS.md
+    - Symphony/Linear listed as LIVE, Elixir runtime port 4792
+
+  C:\Users\acer\Asolaria\docs\claude-project\HANDOFF-20260316.md
+    - Symphony listed among integration categories
+
+  C:\Users\acer\Asolaria\docs\adr\ADR-0004-connector-manifest-registry.md
+    - Symphony is one of 13/42 connectors with manifests
+
+  C:\Users\acer\Asolaria\reports\notebooklm-core\symphony-integration.md
+    - NotebookLM sync copy of SYMPHONY_INTEGRATION.md
+
+  C:\Users\acer\Asolaria\reports\notebooklm-core\symphony-workflow.md
+    - NotebookLM sync copy of WORKFLOW.asolaria.md
+
+================================================================================
+
+## 7. STATE & RUNTIME DATA
+
+  C:\Users\acer\Asolaria\data\symphony-state.json
+    - Last started: 2026-03-16T17:37:04.454Z
+    - Last PID: 43748
+    - Launch CWD: C:\Users\acer\tmp-symphony-20260306\elixir
+    - Launch command: mise exec -- escript ./bin/symphony (with workflow, logs-root, port 4792)
+    - Resolved codex command: node.exe -> codex.js app-server
+
+================================================================================
+
+## 8. VAULT STATUS
+
+  Vault entry: "integrations.symphony"
+    - Namespace: owner
+    - Created: 2026-03-06T19:56:02.241Z
+    - Updated: 2026-03-06T21:34:09.966Z
+    - Component: symphony-integration
+    - Contains: repoRoot, workflowPath, linearProjectSlug, LINEAR_API_KEY,
+      codexCommand, and optional custom launch settings
+
+================================================================================
+
+## 9. LOGS
+
+  C:\Users\acer\Asolaria\logs\symphony.out.log           — stdout (512KB+, large)
+  C:\Users\acer\Asolaria\logs\symphony.err.log           — stderr (mise path error + Symphony guardrails warning)
+  C:\Users\acer\Asolaria\logs\symphony-service\log\
+    symphony.log.1 through symphony.log.5                 — rotated service logs
+    symphony.log.idx                                      — log index
+    symphony.log.siz                                      — log size tracker
+
+  Error log shows: mise.exe path was not recognized + Symphony Elixir guardrails warning banner
+
+================================================================================
+
+## 10. SYMPHONY REPO CHECKOUT (openai/symphony)
+
+  C:\Users\acer\tmp-symphony-20260306\
+    - Shallow clone of openai/symphony (main branch)
+    - Elixir project at: tmp-symphony-20260306\elixir\
+    - Key Elixir modules:
+      * symphony_elixir.ex — main app
+      * agent_runner.ex — agent lifecycle
+      * cli.ex — CLI entry point
+      * orchestrator.ex — main orchestration loop
+      * workflow.ex — workflow parsing
+      * prompt_builder.ex — prompt construction
+      * linear/ (adapter.ex, client.ex, issue.ex) — Linear API
+      * http_server.ex — status dashboard HTTP server
+      * status_dashboard.ex — dashboard rendering
+      * tracker.ex + tracker/memory.ex — issue tracking
+      * codex/dynamic_tool.ex — Codex tool integration
+    - Has .codex/ skills: commit, debug, land, linear, pull, push
+    - Has test fixtures for status dashboard snapshots
+
+================================================================================
+
+## 11. WORKSPACE TEST DIRECTORY
+
+  C:\Users\acer\Asolaria\tmp-symphony-workspace-test\
+    - Contains a copy of symphonyConnector.js (likely for testing)
+
+================================================================================
+
+## 12. WORKER ROUTER DISPATCHES
+
+  C:\Users\acer\Asolaria\data\integrations\worker-router\dispatches\
+    20260308015224-symphony-fix-dispatch\
+      dispatch.json — Full dispatch record with Symphony service snapshot
+      symphony-handoff.md — Handoff doc for Symphony-tracked work
+
+    20260308035142-asolaria-runtime-cleanup-and-worker-visibility-stabilization\
+      symphony-handoff.md — Symphony handoff for runtime cleanup dispatch
+
+================================================================================
+
+## 13. AGENT INDEX (IX) ENTRIES REFERENCING SYMPHONY
+
+  44 files in data\agent-index\ reference Symphony. Key entries:
+
+  IX entries:
+    IX-019 (skills) — Symphony skill reference
+    IX-036 (references) — Symphony reference
+    IX-058, IX-168, IX-189, IX-227, IX-313 (patterns) — Architecture patterns involving Symphony
+    IX-187, IX-188, IX-204, IX-208 (references) — Symphony + Auggie + Abacus integration refs
+    IX-316, IX-317, IX-318 (references/tools/plans) — System inventory with Symphony
+    IX-320 (references) — Definitive system map (~140K lines) includes Symphony
+    IX-322, IX-323 (references) — Symphony architecture refs
+    IX-334, IX-337 (tools) — Infrastructure tools mentioning Symphony
+    IX-358 (references) — Symphony reference
+    IX-361, IX-362 (mistakes) — Mistakes involving Symphony
+    IX-387 (tools) — AI workspace integrations (Abacus + Augment + Symphony + NotebookLM)
+
+  LX (Liris colony) entries:
+    LX-017, LX-022, LX-025, LX-029, LX-030, LX-053, LX-055
+    LX-109, LX-118, LX-119, LX-121, LX-128, LX-147
+
+  Cross-colony files:
+    CHAINS.md — Symphony appears in tool discovery chains and audio injection chains
+    CROSS-EXAMINATION-REPORT.md — Symphony listed in multiple exam categories
+    XREF-COLONIES.md — 3+ cross-colony pairs linking IX and LX Symphony entries
+
+================================================================================
+
+## 14. RELATED SEARCH: tmp\docs\ REFERENCES
+
+  Files in C:\Users\acer\Asolaria\tmp\docs\ mentioning Symphony:
+    abacus-in-asolaria.txt — Symphony as one of 4 worker IDs
+    Asolaria Systems Engineering Assessment.txt — Full system assessment
+    asolaria-formal-docs-summary.txt — Formal docs summary
+    I think you will need this.txt — Extensive Symphony config/state dump
+    Alright pull the Edge GNN paper from downloads.txt — Entity type references
+
+================================================================================
+
+## 15. WHATSAPP CHAT / DOWNLOADS / APPDATA
+
+  WhatsApp chat (Rayssa): Search not completed (permission issue on external paths)
+  Downloads: No symphony files found in C:\Users\acer\Downloads\
+  AppData: Search not completed (permission issue on external paths)
+
+================================================================================
+
+## 16. CURRENT STATUS SUMMARY
+
+  - CONFIGURED: Yes (vault secret present since 2026-03-06)
+  - LAST RAN: 2026-03-16 (PID 43748)
+  - CURRENTLY RUNNING: Unknown (would need live API check)
+  - LINEAR PROJECT: asolaria-symphony-e3159fb1e260
+  - REPO ROOT: C:\Users\acer\tmp-symphony-20260306
+  - WORKFLOW: C:\Users\acer\Asolaria\config\symphony\WORKFLOW.asolaria.md
+  - PORT: 4792
+  - RUNTIME: Elixir via mise
+  - ROLE IN SWARM: Long-running issue lane (not direct repo writes)
+  - KNOWN ISSUE: WORKFLOW.asolaria.md has 10 duplicate "command:" lines
+  - KNOWN ISSUE: symphony.err.log shows mise path not recognized error
+
+================================================================================
+## 17. FILE COUNT SUMMARY
+
+  Core source:           1 file  (symphonyConnector.js, 1456 lines)
+  Config:                2 files (WORKFLOW.asolaria.md, WORKFLOW.example.md)
+  Documentation:         5+ files (SYMPHONY_INTEGRATION.md, SYMPHONY_HELPER_SURFACES.md, etc.)
+  State/runtime:         1 file  (symphony-state.json)
+  Logs:                  9 files (stdout, stderr, 5 rotated logs, idx, siz)
+  Dispatch handoffs:     2 files
+  Agent index entries:   44 files referencing Symphony
+  Manifest:              1 file  (invoke schema)
+  NotebookLM copies:     2 files
+  External repo:         80+ files (openai/symphony Elixir checkout)
+  Route references:      5 route files
+  Server.js references:  100+ lines
+
+  TOTAL SYMPHONY FOOTPRINT: ~150+ files across the system
+================================================================================

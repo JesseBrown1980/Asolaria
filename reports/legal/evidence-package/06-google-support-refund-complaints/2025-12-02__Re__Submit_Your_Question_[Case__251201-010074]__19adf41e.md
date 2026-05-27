@@ -1,0 +1,402 @@
+---
+gmail_message_id: 19adf41ec27dff53
+account: jessebrown.soft1980@gmail.com
+date_header: Tue, 2 Dec 2025 10:30:31 -0300
+from: Jesse Brown <jessebrown.soft1980@gmail.com>
+to: LinkedIn Customer Support <linkedin_support@cs.linkedin.com>
+subject: Re: Submit Your Question [Case: 251201-010074]
+body_sha256: 0693d3cddc38ae31cc1923ce6ea4fd09374586969394934f1babc64c3a8ecb2a
+snippet: My account was not banned. It was merged by a linkedin Customer service representative. Jesse Daniel Brown, PhD 251 Lois Ln. Sumter, SC 29150, US + 1 408 915 0923 https://www.linkedin.com/in/jesse-
+---
+
+# Re: Submit Your Question [Case: 251201-010074]
+
+**From:** Jesse Brown <jessebrown.soft1980@gmail.com>
+**To:** LinkedIn Customer Support <linkedin_support@cs.linkedin.com>
+**Date:** Tue, 2 Dec 2025 10:30:31 -0300
+**SHA256:** `0693d3cddc38ae31cc1923ce6ea4fd09374586969394934f1babc64c3a8ecb2a`
+
+## Body (extracted text)
+
+My account was not banned. It was merged by a linkedin Customer service representative. Jesse Daniel Brown, PhD 251 Lois Ln. Sumter, SC 29150, US + 1 408 915 0923 *https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/ https://www.researchgate.net/profile/Jesse-Brown-21 * On Tue, Dec 2, 2025 at 10:23 AM Jesse Brown wrote: > Thank you, > What I wanted to know is if there was a correction route that a person can > follow to regain access to my account. > The reasoning is that the \account is very important to me, my family, and > for my business. > LEt me know. Thank you > Jesse Daniel Brown, PhD > 251 Lois Ln. Sumter, SC 29150, US > + 1 408 915 0923 > > *https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/ > https://www.researchgate.net/profile/Jesse-Brown-21 > * > > > On Tue, Dec 2, 2025 at 8:22 AM LinkedIn Customer Support linkedin_support@cs.linkedin.com> wrote: > >> [image: LinkedIn] Jesse Brown >> >> Reference # 251201-010074 >> >> Status: Closed >> View your case(s) on our Help Center >> >> You may reply to this case for up to 14 days >> Response (12/02/2025 05:22 CST) >> Hi Jesse, >> >> Thanks for contacting us. Your account has violated the LinkedIn User >> Agreement and Professional Community Policies. Due to the number and/or the >> severity of these violations, your account will remain restricted. >> >> >> >> >> Regards, >> >> Mayur >> LinkedIn Trust & Consumer Support Consultant >> Member (12/01/2025 10:47 CST) >> Thank you, I will do that. >> I choose Option 2. Affidavite form which is signed and notarized on page >> 2, >> as requested. >> >> Jesse Daniel Brown, PhD >> 251 Lois Ln. Sumter, SC 29150, US >> + 1 408 915 0923 >> *https://www.researchgate.net/profile/Jesse-Brown-21 >> * >> >> ==================== application File Attachment ==================== >> Affidavite Linkedin MEmber Identification ntarized by official in >> USA.pdf, 363298 bytes, added to ticket >> Response (12/01/2025 09:24 CST) >> >> Hi Jesse, >> >> I hope this message finds you well. >> >> I apologize for any inconvenience, but we no longer accept IDs via email >> attachment. In order for you to regain access back to this account, please >> upload a scanned image of a government issued ID (for example: a driver's >> license, passport, or country ID) through the following link: https://www.linkedin.com/checkpoint/challenge/idv-start/AgEUVazd9hsG7QAAAZraeck9xgFOaO8LAhEKOBecVlW4YJ6BLOMqYH3hnRFWb92ZURPxZa8coOC91L4p35uy-wqrGc9EI8D3vCMx_TmPNerdK08?token=AgFzQlgXew7DGwAAAZraeclIyUjXv1xLXYkWKWxHhzVbC5qkuw57g5T-Ip1hkKJV6XroN9sRurWFf4TUufIDAevcHmXobkRaakw0C3wkd4SWLoNVGKInS233a_V79b74tBTUDiYebP4n2xk1PESKZGltGYe >> U2dnGa68pAkAluTMmxByyFPEfyNYbCqBO2uqCkubEQ9B52nHGlOMVS2-m4sGAW5TNPIfhfMt3Yz_E4j62gyyxfozv57-3gu-AHg_CA-M8XEtlBurf1XyXj8SbxClZW9AZKII >> >> Please make sure that the identification used contains your photo, name, >> and signature. The verification process will be handled by Persona. If >> you'd like LinkedIn to assist directly with the process, please ensure that >> you have shared your ID data with us. >> >> Once you've completed the upload of your ID, kindly respond to this >> message, so we can help you gain access to your LinkedIn account. If we >> don't hear from you, we may need to remove your identity verification >> temporarily until this is resolved. >> >> Alternatively, if you don't wish to provide your ID, you can print the >> following Affidavit of Identity and sign before a Notary Public. Once >> notarized, this form can be scanned and attached in your response to this >> message. >> >> Affidavit of Identity form: >> https://www.linkedin.com/help/linkedin/answer/a1342243/ >> >> I understand that this may be a bit of an extra step, but it's essential >> to ensure the security and authenticity of your account. If there's >> anything unclear or if you need further assistance, please don't hesitate >> to reach out. >> >> We look forward to hearing from you soon. >> >> Regards, >> >> Mayur >> LinkedIn Trust & Consumer Support Consultant >> Auto-Response (12/01/2025 07:50 CST) >> Thanks for contacting us. Someone from our support team will get back to >> you as soon as possible. >> >> Regards, >> >> Your LinkedIn Customer Experience Team >> >> *** This message is automatically generated by our system to show we've >> received your case. In order to answer your question or troubleshoot a >> problem, a LinkedIn representative may need to access your account, >> including, as needed, your messages and settings. *** >> >> Member (12/01/2025 07:50 CST) >> *Your Question:* Hello, I noriced my acount was restricted. I would like >> to remain professional and request a review of the activities that were >> flagged, and given notice if I may somehow, retify this matter by deleting >> any content that may violate the platform's rules so that I can us my >> acount again, which has personal relavance to my life and reccomendations >> from very influencial characters. When you restricted my account, I lost >> access to that part of my social life. This is protected under consumer >> rights acts, and I was hoping that we could resolve the situation with >> professionalism. Please respond, and thank you for your time. Sincerely, >> Jesse >> *First name:* Jesse >> *Email:* jessebrown.soft1980@gmail.com >> *Last name:* Brown >> *Issue Type:* Restrictions >> *On What Device?:* Windows Laptop/Desktop >> *Is this related to Premium Business Suite?:* Yes >> *In Which App or Site?:* LinkedIn (Website) >> Privacy Policy | User >> Agreement | Copyright >> Policy >> >> This is a support email in response to your request submitted on LinkedIn. >> >> This email was intended for Jesse Brown. Learn why we include this. >> >> [image: LinkedIn] >> >> © 2025 LinkedIn Corporation, 1000 West Maude Avenue, Sunnyvale, CA 94085. >> LinkedIn and the LinkedIn logo are registered trademarks of LinkedIn. >> [---002:003910:59609---] >> > === HTML PART === My account was not banned. It was merged by a linkedin Customer service representative. Jesse Daniel Brown, PhD 251 Lois Ln. Sumter, SC 29150, US + 1 408 915 0923 https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/ https://www.researchgate.net/profile/Jesse-Brown-21 On Tue, Dec 2, 2025 at 10:23 AM Jesse Brown < jessebrown.soft1980@gmail.com > wrote: Thank you, What I wanted to know is if there was a correction route that a person can follow to regain access to my account. The reasoning is that the \account is very important to me, my family, and for my business. LEt me know. Thank you Jesse Daniel Brown, PhD 251 Lois Ln. Sumter, SC 29150, US + 1 408 915 0923 https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/ https://www.researchgate.net/profile/Jesse-Brown-21 On Tue, Dec 2, 2025 at 8:22 AM LinkedIn Customer Support < linkedin_support@cs.linkedin.com > wrote: Jesse Brown Reference # 251201-010074 Status: Closed View your case(s) on our Help Center You may reply to this case for up to 14 days Response (12/02/2025 05:22 CST) Hi Jesse, Thanks for contacting us. Your account has violated the LinkedIn User Agreement and Professional Community Policies. Due to the number and/or the severity of these violations, your account will remain restricted. Regards, Mayur LinkedIn Trust & Consumer Support Consultant Member (12/01/2025 10:47 CST) Thank you, I will do that. I choose Option 2. Affidavite form which is signed and notarized on page 2, as requested. Jesse Daniel Brown, PhD 251 Lois Ln. Sumter, SC 29150, US + 1 408 915 0923 * https://www.researchgate.net/profile/Jesse-Brown-21 * ==================== application File Attachment ==================== Affidavite Linkedin MEmber Identification ntarized by official in USA.pdf, 363298 bytes, added to ticket Response (12/01/2025 09:24 CST) Hi Jesse, I hope this message finds you well. I apologize for any inconvenience, but we no longer accept IDs via email attachment. In order for you to regain access back to this account, please upload a scanned image of a government issued ID (for example: a driver&#39;s license, passport, or country ID) through the following link: https://www.linkedin.com/checkpoint/challenge/idv-start/AgEUVazd9hsG7QAAAZraeck9xgFOaO8LAhEKOBecVlW4YJ6BLOMqYH3hnRFWb92ZURPxZa8coOC91L4p35uy-wqrGc9EI8D3vCMx_TmPNerdK08?token=AgFzQlgXew7DGwAAAZraeclIyUjXv1xLXYkWKWxHhzVbC5qkuw57g5T-Ip1hkKJV6XroN9sRurWFf4TUufIDAevcHmXobkRaakw0C3wkd4SWLoNVGKInS233a_V79b74tBTUDiYebP4n2xk1PESKZGltGYe U2dnGa68pAkAluTMmxByyFPEfyNYbCqBO2uqCkubEQ9B52nHGlOMVS2-m4sGAW5TNPIfhfMt3Yz_E4j62gyyxfozv57-3gu-AHg_CA-M8XEtlBurf1XyXj8SbxClZW9AZKII Please make sure that the identification used contains your photo, name, and signature. The verification process will be handled by Persona. If you&#39;d like LinkedIn to assist directly with the process, please ensure that you have shared your ID data with us. Once you&#39;ve completed the upload of your ID, kindly respond to this message, so we can help you gain access to your LinkedIn account. If we don&#39;t hear from you, we may need to remove your identity verification temporarily until this is resolved. Alternatively, if you don&#39;t wish to provide your ID, you can print the following Affidavit of Identity and sign before a Notary Public. Once notarized, this form can be scanned and attached in your response to this message. Affidavit of Identity form: https://www.linkedin.com/help/linkedin/answer/a1342243/ I understand that this may be a bit of an extra step, but it&#39;s essential to ensure the security and authenticity of your account. If there&#39;s anything unclear or if you need further assistance, please don&#39;t hesitate to reach out. We look forward to hearing from you soon. Regards, Mayur LinkedIn Trust & Consumer Support Consultant Auto-Response (12/01/2025 07:50 CST) Thanks for contacting us. Someone from our support team will get back to you as soon as possible. Regards, Your LinkedIn Customer Experience Team *** This message is automatically generated by our system to show we&#39;ve received your case. In order to answer your question or troubleshoot a problem, a LinkedIn representative may need to access your account, including, as needed, your messages and settings. *** Member (12/01/2025 07:50 CST) Your Question: Hello, I noriced my acount was restricted. I would like to remain professional and request a review of the activities that were flagged, and given notice if I may somehow, retify this matter by deleting any content that may violate the platform&#39;s rules so that I can us my acount again, which has personal relavance to my life and reccomendations from very influencial characters. When you restricted my account, I lost access to that part of my social life. This is protected under consumer rights acts, and I was hoping that we could resolve the situation with professionalism. Please respond, and thank you for your time. Sincerely, Jesse First name: Jesse Email: jessebrown.soft1980@gmail.com Last name: Brown Issue Type: Restrictions On What Device?: Windows Laptop/Desktop Is this related to Premium Business Suite?: Yes In Which App or Site?: LinkedIn (Website) Privacy Policy | User Agreement | Copyright Policy This is a support email in response to your request submitted on LinkedIn. This email was intended for Jesse Brown. Learn why we include this. © 2025 LinkedIn Corporation, 1000 West Maude Avenue, Sunnyvale, CA 94085. LinkedIn and the LinkedIn logo are registered trademarks of LinkedIn. [---002:003910:59609---]
+
+## Raw body (tamper-evident)
+
+```
+My account was not banned. It was merged by a linkedin Customer service
+representative.
+Jesse Daniel Brown, PhD
+251 Lois Ln. Sumter, SC 29150, US
++ 1 408 915 0923
+
+*https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/
+<https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/>https://www.researchgate.net/profile/Jesse-Brown-21
+<https://www.researchgate.net/profile/Jesse-Brown-21>*
+
+
+On Tue, Dec 2, 2025 at 10:23 AM Jesse Brown <jessebrown.soft1980@gmail.com>
+wrote:
+
+> Thank you,
+> What I wanted to know is if there was a correction route that a person can
+> follow to regain access to my account.
+> The reasoning is that the \account is very important to me, my family, and
+> for my business.
+> LEt me know. Thank you
+> Jesse Daniel Brown, PhD
+> 251 Lois Ln. Sumter, SC 29150, US
+> + 1 408 915 0923
+>
+> *https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/
+> <https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/>https://www.researchgate.net/profile/Jesse-Brown-21
+> <https://www.researchgate.net/profile/Jesse-Brown-21>*
+>
+>
+> On Tue, Dec 2, 2025 at 8:22 AM LinkedIn Customer Support <
+> linkedin_support@cs.linkedin.com> wrote:
+>
+>> [image: LinkedIn] Jesse Brown
+>>
+>> Reference # 251201-010074
+>> <https://www.linkedin.com/help/linkedin/cases/74486385>
+>> Status: Closed
+>> View your case(s) on our Help Center
+>> <https://www.linkedin.com/help/linkedin/cases>
+>> You may reply to this case for up to 14 days
+>> Response (12/02/2025 05:22 CST)
+>> Hi Jesse,
+>>
+>> Thanks for contacting us. Your account has violated the LinkedIn User
+>> Agreement and Professional Community Policies. Due to the number and/or the
+>> severity of these violations, your account will remain restricted.
+>>
+>>
+>>
+>>
+>> Regards,
+>>
+>> Mayur
+>> LinkedIn Trust & Consumer Support Consultant
+>> Member (12/01/2025 10:47 CST)
+>> Thank you, I will do that.
+>> I choose Option 2. Affidavite form which is signed and notarized on page
+>> 2,
+>> as requested.
+>>
+>> Jesse Daniel Brown, PhD
+>> 251 Lois Ln. Sumter, SC 29150, US
+>> + 1 408 915 0923
+>> *https://www.researchgate.net/profile/Jesse-Brown-21
+>> *
+>>
+>> ==================== application File Attachment ====================
+>> Affidavite Linkedin MEmber Identification ntarized by official in
+>> USA.pdf, 363298 bytes, added to ticket
+>> Response (12/01/2025 09:24 CST)
+>>
+>> Hi Jesse,
+>>
+>> I hope this message finds you well.
+>>
+>> I apologize for any inconvenience, but we no longer accept IDs via email
+>> attachment. In order for you to regain access back to this account, please
+>> upload a scanned image of a government issued ID (for example: a driver's
+>> license, passport, or country ID) through the following link: https://www.linkedin.com/checkpoint/challenge/idv-start/AgEUVazd9hsG7QAAAZraeck9xgFOaO8LAhEKOBecVlW4YJ6BLOMqYH3hnRFWb92ZURPxZa8coOC91L4p35uy-wqrGc9EI8D3vCMx_TmPNerdK08?token=AgFzQlgXew7DGwAAAZraeclIyUjXv1xLXYkWKWxHhzVbC5qkuw57g5T-Ip1hkKJV6XroN9sRurWFf4TUufIDAevcHmXobkRaakw0C3wkd4SWLoNVGKInS233a_V79b74tBTUDiYebP4n2xk1PESKZGltGYe
+>> U2dnGa68pAkAluTMmxByyFPEfyNYbCqBO2uqCkubEQ9B52nHGlOMVS2-m4sGAW5TNPIfhfMt3Yz_E4j62gyyxfozv57-3gu-AHg_CA-M8XEtlBurf1XyXj8SbxClZW9AZKII
+>> <https://www.linkedin.com/checkpoint/challenge/idv-start/AgEUVazd9hsG7QAAAZraeck9xgFOaO8LAhEKOBecVlW4YJ6BLOMqYH3hnRFWb92ZURPxZa8coOC91L4p35uy-wqrGc9EI8D3vCMx_TmPNerdK08?token=AgFzQlgXew7DGwAAAZraeclIyUjXv1xLXYkWKWxHhzVbC5qkuw57g5T-Ip1hkKJV6XroN9sRurWFf4TUufIDAevcHmXobkRaakw0C3wkd4SWLoNVGKInS233a_V79b74tBTUDiYebP4n2xk1PESKZGltGYeU2dnGa68pAkAluTMmxByyFPEfyNYbCqBO2uqCkubEQ9B52nHGlOMVS2-m4sGAW5TNPIfhfMt3Yz_E4j62gyyxfozv57-3gu-AHg_CA-M8XEtlBurf1XyXj8SbxClZW9AZKII>
+>>  Please make sure that the identification used contains your photo, name,
+>> and signature. The verification process will be handled by Persona. If
+>> you'd like LinkedIn to assist directly with the process, please ensure that
+>> you have shared your ID data with us.
+>>
+>> Once you've completed the upload of your ID, kindly respond to this
+>> message, so we can help you gain access to your LinkedIn account. If we
+>> don't hear from you, we may need to remove your identity verification
+>> temporarily until this is resolved.
+>>
+>> Alternatively, if you don't wish to provide your ID, you can print the
+>> following Affidavit of Identity and sign before a Notary Public. Once
+>> notarized, this form can be scanned and attached in your response to this
+>> message.
+>>
+>> Affidavit of Identity form:
+>> https://www.linkedin.com/help/linkedin/answer/a1342243/
+>>
+>> I understand that this may be a bit of an extra step, but it's essential
+>> to ensure the security and authenticity of your account. If there's
+>> anything unclear or if you need further assistance, please don't hesitate
+>> to reach out.
+>>
+>> We look forward to hearing from you soon.
+>>
+>> Regards,
+>>
+>> Mayur
+>> LinkedIn Trust & Consumer Support Consultant
+>> Auto-Response (12/01/2025 07:50 CST)
+>> Thanks for contacting us. Someone from our support team will get back to
+>> you as soon as possible.
+>>
+>> Regards,
+>>
+>> Your LinkedIn Customer Experience Team
+>>
+>> *** This message is automatically generated by our system to show we've
+>> received your case. In order to answer your question or troubleshoot a
+>> problem, a LinkedIn representative may need to access your account,
+>> including, as needed, your messages and settings. ***
+>>
+>> Member (12/01/2025 07:50 CST)
+>> *Your Question:* Hello, I noriced my acount was restricted. I would like
+>> to remain professional and request a review of the activities that were
+>> flagged, and given notice if I may somehow, retify this matter by deleting
+>> any content that may violate the platform's rules so that I can us my
+>> acount again, which has personal relavance to my life and reccomendations
+>> from very influencial characters. When you restricted my account, I lost
+>> access to that part of my social life. This is protected under consumer
+>> rights acts, and I was hoping that we could resolve the situation with
+>> professionalism. Please respond, and thank you for your time. Sincerely,
+>> Jesse
+>> *First name:* Jesse
+>> *Email:* jessebrown.soft1980@gmail.com
+>> *Last name:* Brown
+>> *Issue Type:* Restrictions
+>> *On What Device?:* Windows Laptop/Desktop
+>> *Is this related to Premium Business Suite?:* Yes
+>> *In Which App or Site?:* LinkedIn (Website)
+>> Privacy Policy <http://www.linkedin.com/static?key=privacy_policy> | User
+>> Agreement <http://www.linkedin.com/static?key=user_agreement> | Copyright
+>> Policy <http://www.linkedin.com/static?key=copyright_policy>
+>>
+>> This is a support email in response to your request submitted on LinkedIn.
+>>
+>> This email was intended for Jesse Brown. Learn why we include this.
+>> <https://www.linkedin.com/help/linkedin/answer/4788>
+>> [image: LinkedIn]
+>>
+>> © 2025 LinkedIn Corporation, 1000 West Maude Avenue, Sunnyvale, CA 94085.
+>> LinkedIn and the LinkedIn logo are registered trademarks of LinkedIn.
+>> [---002:003910:59609---]
+>>
+>
+
+
+=== HTML PART ===
+<div dir="ltr"><div dir="ltr"><div>My account was not banned. It was merged by a linkedin Customer service representative.</div><div><div dir="ltr" class="gmail_signature"><div dir="ltr">Jesse Daniel Brown, PhD<div>251 Lois Ln. Sumter, SC 29150, US<br><div><div>+ 1 408 915 0923</div><div><font color="#0000ee"><u><a href="https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/" target="_blank">https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/</a><br><a href="https://www.researchgate.net/profile/Jesse-Brown-21" target="_blank">https://www.researchgate.net/profile/Jesse-Brown-21</a></u></font></div></div></div></div></div></div><br></div><br><img width="0" height="0" class="mailtrack-img" alt="" style="display:flex" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs="                 ><div class="gmail_quote gmail_quote_container"><div dir="ltr" class="gmail_attr">On Tue, Dec 2, 2025 at 10:23 AM Jesse Brown &lt;<a href="mailto:jessebrown.soft1980@gmail.com">jessebrown.soft1980@gmail.com</a>&gt; wrote:<br></div><blockquote class="gmail_quote" style="margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir="ltr"><div dir="ltr"><div>Thank you,<br>What I wanted to know is if there was a correction route that a person can follow to regain access to my account.<br>The reasoning is that the \account is very important to me, my family, and for my business.<br>LEt me know. Thank you</div><div><div dir="ltr" class="gmail_signature"><div dir="ltr">Jesse Daniel Brown, PhD<div>251 Lois Ln. Sumter, SC 29150, US<br><div><div>+ 1 408 915 0923</div><div><font color="#0000ee"><u><a href="https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/" target="_blank">https://www.linkedin.com/in/jesse-daniel-brown-phd-730042387/</a><br><a href="https://www.researchgate.net/profile/Jesse-Brown-21" target="_blank">https://www.researchgate.net/profile/Jesse-Brown-21</a></u></font></div></div></div></div></div></div><br></div><br><img width="0" height="0" alt="" style="display: flex;" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><div class="gmail_quote"><div dir="ltr" class="gmail_attr">On Tue, Dec 2, 2025 at 8:22 AM LinkedIn Customer Support &lt;<a href="mailto:linkedin_support@cs.linkedin.com" target="_blank">linkedin_support@cs.linkedin.com</a>&gt; wrote:<br></div><blockquote class="gmail_quote" style="margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><u></u>
+
+
+    
+                                                                         
+    
+
+<div>
+
+<div title="rntmarker_59609" id="m_-5153679458064907225m_7577162908067137516rntmarker_59609_0CfQI8I10i0!">
+
+    <div>
+
+        <table role="presentation" style="max-width:600px;background-color:rgb(229,229,229);border-spacing:0px" align="center" bgcolor="#E5E5E5" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td>
+                        <div>
+
+
+                            <table role="presentation" style="background-color:rgb(255,255,255);border-spacing:0px" bgcolor="#FFFFFF" cellpadding="10" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td role="banner" style="text-align:left">
+                                            
+                                            <img alt="LinkedIn" height="50" src="https://help.linkedin.com/euf/assets/images/In-White-blue.png" width="50">
+                                        </td>
+                                       <td style="text-align:right">
+Jesse Brown
+</td>
+<td style="width:1%;white-space:nowrap;text-align:left">
+
+</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:10px;text-align:left" colspan="3">
+                                            
+
+
+                                                <table role="presentation" style="width:100%" align="center" border="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td style="text-align:left">
+                                                            <div> <span style="font-weight:bold"></span><a href="https://www.linkedin.com/help/linkedin/cases/74486385" target="_blank">Reference # 251201-010074</a></div>
+                                                            <div style="float:left"> </div>
+                                                            <div style="float:left"></div>
+                                                            <div style="float:left"><span style="font-weight:bold">Status:</span> Closed</div>
+                                                        </td>
+                                                        <td style="text-align:right">
+                                                            <div>
+                                                                
+                                                                
+                                                                    <span style="font-size:12px;color:rgb(0,115,177);font-style:italic"><a style="text-decoration:underline" href="https://www.linkedin.com/help/linkedin/cases" target="_blank">View your case(s) on our Help Center</a></span>
+                                                                
+                                                            </div>
+                                                            <div>
+                                                                <span style="font-size:10px">You may reply to this case for up to 14 days</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody></table>
+
+
+
+
+                                                <div style="clear:both"></div>
+                                            
+                                            
+
+                                                <div style="background-color:rgb(238,238,238);font-size:14px">Response <span style="font-size:8px;color:rgb(79,79,79)">(12/02/2025 05:22 CST)</span></div>
+
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                <div style="font-size:14px">
+<div>
+<div>
+<div>
+<div>
+<div>
+<div style="font-family:Arial;font-size:12px">Hi Jesse, <br>
+<br>
+Thanks for contacting us. Your account has violated the LinkedIn User Agreement and Professional Community Policies. Due to the number and/or the severity of these violations, your account will remain restricted.</div>
+<p><br>
+ </p>
+</div>
+</div>
+<div style="min-height:1.25em;font-family:Arial;font-size:12px"> </div>
+<div id="m_-5153679458064907225m_7577162908067137516emailSignature" style="font-family:Arial;font-size:12px">Regards,<br>
+<br>
+Mayur<br>
+LinkedIn Trust &amp; Consumer Support Consultant</div>
+</div>
+</div>
+</div>
+</div>
+                                            
+
+                                                <div style="background-color:rgb(204,204,204);font-size:14px">Member <span style="font-size:8px;color:rgb(79,79,79)">(12/01/2025 10:47 CST)</span></div>
+
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                <div style="background-color:rgb(255,255,255);font-size:14px">
+Thank you, I will do that. <br>I choose Option 2. Affidavite form which is signed and notarized on page 2, <br>as requested. <br><br>Jesse Daniel Brown, PhD <br>251 Lois Ln. Sumter, SC 29150, US <br>+ 1 408 915 0923 <br>*<a href="https://www.researchgate.net/profile/Jesse-Brown-21" target="_blank">https://www.researchgate.net/profile/Jesse-Brown-21</a> <br>*<br><br>==================== application File Attachment ====================<br>Affidavite Linkedin MEmber Identification ntarized by official in USA.pdf, 363298 bytes, added to ticket
+</div>
+                                            
+
+                                                <div style="background-color:rgb(238,238,238);font-size:14px">Response <span style="font-size:8px;color:rgb(79,79,79)">(12/01/2025 09:24 CST)</span></div>
+
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                <div style="font-size:14px">
+<div>
+<div>
+<div>
+<div style="font-family:Arial;font-size:12px">
+<p>Hi Jesse,</p>
+<p>I hope this message finds you well.</p>
+<p>I apologize for any inconvenience, but we no longer accept IDs via email attachment. In order for you to regain access back to this account, please upload a scanned image of a government issued ID (for example: a driver&#39;s license, passport, or country ID) through the following link: <a title="Click to follow link
+https://www.linkedin.com/checkpoint/challenge/idv-start/AgEUVazd9hsG7QAAAZraeck9xgFOaO8LAhEKOBecVlW4YJ6BLOMqYH3hnRFWb92ZURPxZa8coOC91L4p35uy-wqrGc9EI8D3vCMx_TmPNerdK08?token=AgFzQlgXew7DGwAAAZraeclIyUjXv1xLXYkWKWxHhzVbC5qkuw57g5T-Ip1hkKJV6XroN9sRurWFf4TUufIDAevcHmXobkRaakw0C3wkd4SWLoNVGKInS233a_V79b74tBTUDiYebP4n2xk1PESKZGltGYeU2dnGa68pAkAluTMmxByyFPEfyNYbCqBO2uqCkubEQ9B52nHGlOMVS2-m4sGAW5TNPIfhfMt3Yz_E4j62gyyxfozv57-3gu-AHg_CA-M8XEtlBurf1XyXj8SbxClZW9AZKII" href="https://www.linkedin.com/checkpoint/challenge/idv-start/AgEUVazd9hsG7QAAAZraeck9xgFOaO8LAhEKOBecVlW4YJ6BLOMqYH3hnRFWb92ZURPxZa8coOC91L4p35uy-wqrGc9EI8D3vCMx_TmPNerdK08?token=AgFzQlgXew7DGwAAAZraeclIyUjXv1xLXYkWKWxHhzVbC5qkuw57g5T-Ip1hkKJV6XroN9sRurWFf4TUufIDAevcHmXobkRaakw0C3wkd4SWLoNVGKInS233a_V79b74tBTUDiYebP4n2xk1PESKZGltGYeU2dnGa68pAkAluTMmxByyFPEfyNYbCqBO2uqCkubEQ9B52nHGlOMVS2-m4sGAW5TNPIfhfMt3Yz_E4j62gyyxfozv57-3gu-AHg_CA-M8XEtlBurf1XyXj8SbxClZW9AZKII" target="_blank">https://www.linkedin.com/checkpoint/challenge/idv-start/AgEUVazd9hsG7QAAAZraeck9xgFOaO8LAhEKOBecVlW4YJ6BLOMqYH3hnRFWb92ZURPxZa8coOC91L4p35uy-wqrGc9EI8D3vCMx_TmPNerdK08?token=AgFzQlgXew7DGwAAAZraeclIyUjXv1xLXYkWKWxHhzVbC5qkuw57g5T-Ip1hkKJV6XroN9sRurWFf4TUufIDAevcHmXobkRaakw0C3wkd4SWLoNVGKInS233a_V79b74tBTUDiYebP4n2xk1PESKZGltGYe
+U2dnGa68pAkAluTMmxByyFPEfyNYbCqBO2uqCkubEQ9B52nHGlOMVS2-m4sGAW5TNPIfhfMt3Yz_E4j62gyyxfozv57-3gu-AHg_CA-M8XEtlBurf1XyXj8SbxClZW9AZKII</a>  Please make sure that the identification used contains your photo, name, and signature. The verification process will be handled by Persona. If you&#39;d like LinkedIn to assist directly with the process, please ensure that you have shared your ID data with us.</p>
+<p>Once you&#39;ve completed the upload of your ID, kindly respond to this message, so we can help you gain access to your LinkedIn account. If we don&#39;t hear from you, we may need to remove your identity verification temporarily until this is resolved.</p>
+<p>Alternatively, if you don&#39;t wish to provide your ID, you can print the following Affidavit of Identity and sign before a Notary Public. Once notarized, this form can be scanned and attached in your response to this message.</p>
+<p>Affidavit of Identity form: <a title="Click to follow link https://www.linkedin.com/help/linkedin/answer/a1342243/" href="https://www.linkedin.com/help/linkedin/answer/a1342243/" target="_blank">https://www.linkedin.com/help/linkedin/answer/a1342243/</a></p>
+<p>I understand that this may be a bit of an extra step, but it&#39;s essential to ensure the security and authenticity of your account. If there&#39;s anything unclear or if you need further assistance, please don&#39;t hesitate to reach out.</p>
+<p>We look forward to hearing from you soon.</p>
+</div>
+<div style="min-height:1.25em;font-family:Arial;font-size:12px"> </div>
+<div id="m_-5153679458064907225m_7577162908067137516emailSignature" style="font-family:Arial;font-size:12px">Regards,<br>
+<br>
+Mayur<br>
+LinkedIn Trust &amp; Consumer Support Consultant</div>
+</div>
+</div>
+</div>
+</div>
+                                            
+
+                                                <div style="background-color:rgb(238,238,238);font-size:14px">Auto-Response <span style="font-size:8px;color:rgb(79,79,79)">(12/01/2025 07:50 CST)</span></div>
+
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                <div style="font-size:12px">
+<div><div><span style="font-family:arial;font-size:12px"></span></div>Thanks for contacting us. Someone from our support team will get back to you as soon as possible.<br><br>Regards,<br><br>Your LinkedIn Customer Experience Team<br><br>*** This message is automatically generated by our system to show we&#39;ve received your case. In order to answer your question or troubleshoot a problem, a LinkedIn representative may need to access your account, including, as needed, your messages and settings. ***<br><div><span style="font-family:arial;font-size:12px"></span></div></div> 
+</div>
+                                            
+
+                                                <div style="background-color:rgb(204,204,204);font-size:14px">Member <span style="font-size:8px;color:rgb(79,79,79)">(12/01/2025 07:50 CST)</span></div>
+
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                <div style="background-color:rgb(255,255,255);font-size:14px">
+<strong>Your Question:</strong> Hello, I noriced my acount was restricted. I would like to remain professional and request a review of the activities that were flagged, and given notice if I may somehow, retify this matter by deleting any content that may violate the platform&#39;s rules so that I can us my acount again, which has personal relavance to my life and reccomendations from very influencial characters. When you restricted my account, I lost access to that part of my social life. This is protected under consumer rights acts, and I was hoping that we could resolve the situation with professionalism. Please respond, and thank you for your time. Sincerely, Jesse<br>
+<strong>First name:</strong> Jesse<br>
+<strong>Email:</strong> <a href="mailto:jessebrown.soft1980@gmail.com" target="_blank">jessebrown.soft1980@gmail.com</a><br>
+<strong>Last name:</strong> Brown<br>
+<strong>Issue Type:</strong> Restrictions<br>
+<strong>On What Device?:</strong> Windows Laptop/Desktop<br>
+<strong>Is this related to Premium Business Suite?:</strong> Yes<br>
+<strong>In Which App or Site?:</strong> LinkedIn (Website)
+
+</div>
+                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            
+                                <div>
+                                    <a style="text-decoration:underline" href="http://www.linkedin.com/static?key=privacy_policy" target="_blank">Privacy Policy</a> | <a style="text-decoration:underline" href="http://www.linkedin.com/static?key=user_agreement" target="_blank">User Agreement</a> | <a style="text-decoration:underline" href="http://www.linkedin.com/static?key=copyright_policy" target="_blank">Copyright Policy</a>
+                                    <p style="text-decoration-line:none">This is a support email in response to your request submitted on LinkedIn.</p>
+                                    
+<p style="text-decoration-line:none">This email was intended for Jesse Brown. <a style="text-decoration:underline" href="https://www.linkedin.com/help/linkedin/answer/4788" target="_blank">Learn why we include this.</a></p>
+
+                                    <img alt="LinkedIn" height="23" src="https://help.linkedin.com/euf/assets/images/LinkedIn-Blue.png" width="95">
+                                    <p style="text-decoration-line:underline">
+                                        © 2025 LinkedIn Corporation, 1000 West Maude Avenue, Sunnyvale, CA 94085.<br>
+                                        LinkedIn and the LinkedIn logo are registered trademarks of LinkedIn.
+                                    </p>
+                                </div>
+                            
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<img alt="" height="1" width="1" style="display: none;" src="https://help.linkedin.com/rd/CvMjHwodDv80~R6xGqoW~y5J6hkqGS75Mv8C~zj~PP~L.gif"> <div id="m_-5153679458064907225m_7577162908067137516checksum" align="right"><span style="font-size:1pt">
+[---002:003910:59609---]
+</span></div>
+</div>
+</div>
+</div></blockquote></div></div>
+</blockquote></div></div>
+
+
+```

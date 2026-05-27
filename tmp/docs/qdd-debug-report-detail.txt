@@ -1,0 +1,236 @@
+QDD Debug: Report Detail Page Not Loading
+==========================================
+Date: 2026-03-25
+URL: http://localhost:3000/reports/69c4446d6ffb66267d094563
+
+1. PAGE FILE
+============
+File: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\reports\[id].tsx
+
+The page extracts `reportId` from `router.query.id`, then calls:
+
+    const { data: report, mutate, isLoading } = useService<ReportView>(
+      reportId && reportId !== 'new' ? `/api/reports/${reportId}` : null,
+      () => (reportId && reportId !== 'new' ? getReport(reportId) : undefined)
+    );
+
+`useService` is a thin SWR wrapper (useSWR). The key is `/api/reports/69c4446d6ffb66267d094563`.
+
+The page renders `<Loading />` until ALL THREE conditions pass:
+    - `isCheckingUser` is false (user session resolved)
+    - `report?.id` is truthy (API returned data with an `id` field)
+    - `isLoading` is false (SWR finished fetching)
+
+If any of those stay stuck, the page shows a spinner forever.
+
+After loading, it accesses `report.sections!.map(...)` — if `sections` is null/undefined,
+this will throw a runtime error and crash the page.
+
+
+2. API CALL CHAIN
+=================
+Frontend service (src/services/reports.ts line 157):
+
+    export const getReport = async (id: string): Promise<ReportView> => {
+      const report = await fetchJson(`/api/reports/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      return report;
+    };
+
+fetchJson (src/utils/fetchJson.ts):
+  - On 500/524: returns `false` silently (no error thrown)
+  - On non-ok with errors array: throws ResponseError
+  - On 401/403 (unauthorized): throws, alertService shows error, returns false
+  - Result: if the API returns 500, `report` stays undefined, page stays on <Loading /> forever
+  - Result: if the API returns 401/403, `report` stays undefined/false, page stays on <Loading /> forever
+
+
+3. API ROUTE
+============
+File: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\pages\api\reports\[id]\index.ts
+
+GET endpoint uses:
+  - Access control: `subjectModel: 'Report'`, domain: Report, action: View
+  - Schema validation: `{ id: yup.string() }` — just validates `id` is a string
+  - Use case: GetReportUseCase
+
+ACCESS CONTROL FLOW (Endpoint.ts lines 295-331):
+  1. If no user session → returns UnauthorizedError immediately
+  2. If user.role is company_admin:
+     - Calls `accessControlRepo.loadSubject('Report', subjectId)`
+     - loadSubject does: `models.ReportModel.findById(subjectId)`
+     - Returns `{ clientId: report.client, locationId: report.location[0] || report.location }`
+     - Then checks: `user.clientId !== subject.clientId` → if mismatch → NotFoundError
+     - Also checks: `subject.locationId && !user.locations.includes(subject.locationId)` → if mismatch → NotFoundError
+  3. If user.role is restricted_user:
+     - Needs location from request body/query/cookie
+     - If no location → UnauthorizedError
+     - Then does findTestResultClaim on the report domain (which doesn't filter reports, it filters test results)
+
+
+4. USE CASE: GetReport
+======================
+File: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\reports\use-cases\GetReport\UseCase.ts
+
+1. Validates id is a valid Mongo ObjectId via MongoIdentifier.build()
+2. Calls models.ReportModel.findById(id).populate('notifications').lean()
+3. If not found → Result.fail(NotFoundError)
+4. Queries NotificationModel for matching notifications
+5. Calls migrateReportToSections() to normalize legacy reports into section format
+6. Maps to ReportView via toView()
+
+CRITICAL: migrateReportToSections (libs/utils/src/lib/ReportMigrator.ts):
+  - If reportType is 'single' or 'multi' → returns as-is
+  - If reportType is 'ebacmap' with existing sections → returns as-is
+  - Otherwise (legacy reports): creates a single section from report.filters
+  - If report.filters is missing/undefined on a legacy report → will crash here
+
+
+5. DTO MAPPING (toView)
+========================
+File: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\reports\use-cases\GetReport\dtos.ts
+
+Maps DB document to ReportView. Key fields:
+  - id: report._id.toHexString()
+  - name: report.name
+  - client: report.client.toHexString()  ← CRASHES if client is null
+  - location: report.location?.toHexString() or mapped array
+  - sections: mapSections(report.sections)  ← returns [] if sections is null/undefined
+  - reportType: report.reportType || 'legacy'
+
+mapSections filters out null sections, so empty sections won't crash here.
+But if report.client is null/undefined, toHexString() will throw.
+
+
+6. REPORT TYPE DEFINITION (ReportView)
+=======================================
+File: D:\projects\QDD\ebacmap-master\libs\types\src\lib\Views.ts line 447
+
+Required fields for the page to render:
+  - id: string (page checks report?.id on line 165)
+  - name: string (used for header display)
+  - client: string (passed to ReportSection component)
+  - sections: ReportSectionView[] (iterated with .map() on line 268)
+  - reportType: string (used for conditional styling)
+  - access: string (used for duplicate button visibility)
+  - showOnDashboard: boolean
+  - hasNotifications: boolean (used for warning banner)
+
+
+7. MONGOOSE SCHEMA
+==================
+File: D:\projects\QDD\ebacmap-master\libs\db\src\models\Report.ts
+
+Key schema facts:
+  - `strict: false` — allows arbitrary fields
+  - `client` is ObjectId ref to Client — required for access control
+  - `location` is Mixed — can be ObjectId, array, or undefined
+  - `reportType` defaults to 'legacy' enum
+  - `sections` is array of ReportSectionSchema
+  - `filters` has nested structure — required for legacy migration
+
+
+8. LIKELY FAILURE CAUSES
+========================
+
+A) AUTHENTICATION / AUTHORIZATION (MOST LIKELY):
+   - The dev-bypass session user has clientId '69c41938d84980e337ac77cd'
+   - The report's `client` field must match this clientId
+   - The report's `location` field must be in user's locations array ['69c41938d84980e337ac77cf']
+   - If the report belongs to a DIFFERENT client → loadSubject returns NotFoundError
+   - NotFoundError returns 404, fetchJson parses the JSON error, throws ResponseError
+   - SWR catches the error, retries... page stays on <Loading />
+
+B) MISSING/NULL client FIELD ON DOCUMENT:
+   - If the report document has no `client` field
+   - loadSubject: report.client.toHexString() throws → caught, returns undefined
+   - VerifyPermissions: !subject → NotFoundError
+   - OR: GetReport use case: toView() → report.client.toHexString() throws
+
+C) LEGACY REPORT WITH MISSING filters:
+   - migrateReportToSections reads report.filters.chartType
+   - If filters is null/undefined → TypeError: Cannot read property 'chartType' of null/undefined
+   - This would be a 500 error, fetchJson returns false, page hangs
+
+D) SECTIONS NULL AFTER LOAD:
+   - Page line 268: `report.sections!.map(...)` — non-null assertion
+   - If sections is undefined (legacy report where migration failed), this crashes client-side
+   - Would show as a React error boundary or blank page, not infinite loading
+
+
+9. HOW TO TEST API DIRECTLY
+============================
+
+Step 1: Hit the dev-bypass endpoint to set session cookie:
+    curl -v http://localhost:3000/api/auth/dev-bypass
+
+Step 2: Use the cookie from step 1 to hit the report API:
+    curl -v -b "ebacmapv3=<cookie-value-from-step-1>" http://localhost:3000/api/reports/69c4446d6ffb66267d094563
+
+Or in Node.js:
+    const http = require('http');
+
+    // Step 1: Get session
+    http.get('http://localhost:3000/api/auth/dev-bypass', (res) => {
+      const cookies = res.headers['set-cookie'];
+      const sessionCookie = cookies?.find(c => c.startsWith('ebacmapv3='));
+      console.log('Session cookie:', sessionCookie);
+
+      // Step 2: Fetch report
+      const options = {
+        hostname: 'localhost',
+        port: 3000,
+        path: '/api/reports/69c4446d6ffb66267d094563',
+        headers: { 'Cookie': sessionCookie?.split(';')[0] || '' }
+      };
+      http.get(options, (res2) => {
+        let data = '';
+        res2.on('data', chunk => data += chunk);
+        res2.on('end', () => {
+          console.log('Status:', res2.statusCode);
+          console.log('Body:', data);
+        });
+      });
+    });
+
+
+10. CHECK MONGODB DOCUMENT
+===========================
+
+In mongosh or MongoDB Compass, run:
+
+    db.reports.findOne({ _id: ObjectId("69c4446d6ffb66267d094563") })
+
+Verify these fields exist:
+    - client: should be ObjectId("69c41938d84980e337ac77cd") to match dev user
+    - location: should be ObjectId("69c41938d84980e337ac77cf") or array containing it
+    - name: should be non-empty string
+    - reportType: 'single', 'multi', 'legacy', or 'ebacmap'
+    - If reportType is 'legacy': filters must exist with at least filters.type
+    - If reportType is 'single'/'multi': sections array must exist
+    - sections[].filters.dateRange must exist for single/multi reports
+
+
+11. DEBUGGING PRIORITY ORDER
+==============================
+
+1. Check browser Network tab → what status code does GET /api/reports/69c4446d6ffb66267d094563 return?
+   - 401/403 → auth issue, session not set or client/location mismatch
+   - 404 → report not found or client mismatch in access control
+   - 500 → server crash in use case (likely null field)
+   - 200 → data returned but frontend rendering crashes (check Console tab)
+
+2. If no network request at all → router.query.id is undefined on first render (Next.js hydration).
+   The code handles this: `reportId && reportId !== 'new'` check means SWR key is null until
+   router is ready. This is normal SSR behavior — should resolve on client hydration.
+   But if router never populates query.id, the page stays loading forever.
+   Check: Is the URL actually /reports/69c4446d6ffb66267d094563 or is there a redirect?
+
+3. If 200 but page still loading → check if `isCheckingUser` stays true.
+   The `useUser()` hook must resolve. If session is broken, user stays undefined,
+   isCheckingUser may stay true.
+
+4. Check browser Console for React errors (e.g., "Cannot read property 'map' of undefined")
+   which would indicate sections is null/undefined after the data loads.

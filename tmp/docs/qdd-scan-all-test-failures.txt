@@ -1,0 +1,17 @@
+=== UNIT ===
+PASS web-ebacmap-ez-protect-unit apps/web-ebacmap/src/modules/ez-protect/repos/EzProtectRepo.unit.ts
+PASS web-ebacmap-ez-protect-unit apps/web-ebacmap/src/utils/ezProtect.unit.ts
+Test Suites: 2 passed, 2 total
+Tests:       11 passed, 11 total
+=== QUEUE ===
+PASS queue-server apps/queue-server/src/utils/ezProtectParser.unit.ts
+PASS queue-server apps/queue-server/src/use-cases/SyncEzProtectToLims/UseCase.unit.ts (11.514 s)
+PASS queue-server apps/queue-server/src/use-cases/ProcessEzProtectFile/UseCase.unit.ts (11.711 s)
+      [EzProtect] Failed to create default alert rules: Error: DB error
+PASS queue-server apps/queue-server/src/use-cases/EvaluateEzProtectAlerts/UseCase.unit.ts (11.719 s)
+Test Suites: 4 passed, 4 total
+Tests:       82 passed, 82 total
+=== INTEGRATION ===
+PASS web-ebacmap-ez-protect-integration apps/web-ebacmap/src/modules/ez-protect/use-cases/GetEzProtectDashboard/route.int.ts (8.369 s)
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total

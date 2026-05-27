@@ -1,0 +1,151 @@
+QDD / eBacMap — MASTER VERIFICATION SUMMARY
+=============================================
+Date: 2026-03-25
+Source: D:\projects\QDD\ebacmap-master
+Reports synthesized: 7
+
+======================================================================
+REPORT-BY-REPORT SCORECARD
+======================================================================
+
+1. qdd-fixes-verification.txt         10/10 PASS   Wave 1+2 code fixes
+2. qdd-db-model-verification.txt       9/9  PASS   Database model checks
+3. qdd-cicd-security-verification.txt   9/10 PASS   CI/CD + security (1 fail)
+4. qdd-spec-check.txt                 11/11 PASS   Spec files (1 restored)
+5. qdd-final-api-test.txt              9/9  PASS   Live API endpoint calls
+6. qdd-page-render-verification.txt   13/14 PASS   Page render shape checks (1 fail)
+7. qdd-api-page-shape-audit.txt        4/9  PASS   Deep API-vs-page audit (5 mismatches)
+
+======================================================================
+AGGREGATE NUMBERS
+======================================================================
+
+Total checks executed:     71
+Total PASS:                65
+Total FAIL / MISMATCH:      6
+Pass rate:                 91.5%
+
+Total code fixes applied (Wave 1 + Wave 2):  10  — ALL still intact
+Total DB model fixes verified:                 9  — ALL clean
+Total API endpoints tested live (HTTP 2xx):    9  — ALL returning data
+Total spec/test files verified:               11  — ALL present (1 restored)
+Total pages audited for shape:                 9  — 4 match, 5 mismatch
+
+======================================================================
+WHAT IS SOLID — READY FOR BRIAN
+======================================================================
+
+Backend / API layer (fully working):
+  - /api/ez-protect/dashboard             200  correct shape
+  - /api/ez-protect/dashboard-corporate   200  correct shape
+  - /api/ez-protect/dashboard-facility    200  correct shape
+  - /api/ez-protect/events                200  paginated, filtered
+  - /api/ez-protect/event/[id]            200  full detail
+  - /api/ez-protect/devices               200  device list
+  - /api/ez-protect/alerts (GET)          200  alert rules
+  - /api/ez-protect/alert-history         200  alert history
+  - /api/ez-protect/export                200  CSV export
+
+Security & infrastructure:
+  - SSO callback email verification        intact
+  - Password reset expiration (2h)         intact
+  - Rate limiting on all 5 auth endpoints  intact
+  - forEach-async race conditions          fixed
+  - Queue atomic locking (findOneAndUpdate) fixed
+  - DomainEventBus timeout                 fixed
+  - validate.ts typeof                     fixed
+  - logging.ts date format                 fixed
+  - pnpm 10.32.0 pinned in pipeline        intact
+  - Sentry/nextjs removed from queue+sync  intact
+  - sync-server version 2.0.1              intact
+  - EZ Protect ingest rate limit (100/min) intact
+  - Export row cap (10,000)                 intact
+  - URL sanitization (https-only)          intact
+  - DB indexes (compound + dedup)          intact
+
+Pages that render correctly (API shape matches):
+  - /ez-protect (index) — facility dashboard      OK
+  - /ez-protect (index) — corporate dashboard     OK
+  - /ez-protect/results — events list              OK
+  - /ez-protect/results/[id] — event detail        OK
+
+======================================================================
+KNOWN REMAINING ISSUES — NOT YET READY
+======================================================================
+
+CRITICAL (pages will show blank/broken data):
+
+  1. facility.tsx — ENTIRE PAGE MISMATCH
+     API returns: {locationId, generatedAt, totalEvents, latestOccurredAt, windows}
+     Page expects: {devices, positives, invalids, errors, pmTests, windows}
+     Impact: Every section renders empty or crashes.
+     Fix: Either create a dedicated GetFacilityDashboardUseCase or rewrite
+     facility.tsx to consume EzProtectDashboardSummary.
+
+  2. devices.tsx — WRAPPING + FIELD NAME MISMATCH
+     API returns bare array [...], page expects {devices: [...]}.
+     Field mismatches: calibrationStatus vs lastCalibrationStatus,
+                       pmStatus vs lastPmStatus, id vs (missing).
+     Impact: "No devices found" on the page.
+     Fix: Wrap response as {devices: result} in use case. Rename fields.
+     Add id field (use deviceSerialNumber).
+
+  3. alerts.tsx (Rules section) — WRAPPING + FIELD MISMATCH
+     API returns bare array [...], page expects {rules: [...]}.
+     _id vs id, faqLink vs faqLinks, videoLink vs videoLinks.
+     Impact: "No alert rules configured yet."
+     Fix: Wrap response. Map _id to id.
+
+  4. alerts.tsx (History section) — KEY + FIELD RENAMES
+     API returns {alerts: [...]}, page reads {history: [...]}.
+     Field renames needed: sentAt->date, triggerType->trigger, _id->id.
+     Also: seed data uses "alertRuleName" but schema defines "alertName".
+     Impact: "No alert history" + blank alert name column.
+     Fix: Rename response key or page key. Fix field mappings. Fix seed data.
+
+  5. alerts.tsx (POST create rule) — POTENTIAL 201 EMPTY BODY ISSUE
+     Endpoint framework intercepts {created: true, url} and returns
+     HTTP 201 with empty body. fetchJson may fail parsing empty JSON.
+     Impact: "Failed to create alert rule" even on success.
+     Fix: Verify fetchJson handles empty 201, or return {created: true}
+     without url to bypass framework interception.
+
+MINOR:
+
+  6. Controller.ts mockedResponse dead code — still present (lines 123, 131).
+     Not a runtime bug, but dead code that should be cleaned up.
+
+  7. admin/next.config.js ignoreBuildErrors: true — still active with TODO.
+     Type errors are being suppressed. Should be resolved eventually.
+
+======================================================================
+BRIAN-READINESS VERDICT
+======================================================================
+
+READY for Brian (can demo NOW):
+  - All 9 API endpoints return correct data
+  - Main dashboard (facility + corporate views via index.tsx)
+  - Events list + event detail pages
+  - CSV export
+  - All security controls (auth, rate limiting, SSO, password reset)
+  - All backend fixes (queues, race conditions, validators, logging)
+  - CI/CD pipeline (pnpm pinned, Sentry cleaned, sync-server versioned)
+
+NOT READY for Brian (will show blank/broken):
+  - /ez-protect/facility page (dedicated facility drilldown)
+  - /ez-protect/devices page
+  - /ez-protect/alerts page (both rules list and history)
+  - Alert rule creation form (POST may silently fail)
+
+ESTIMATED EFFORT to fix remaining issues:
+  - Issues 2-5 (wrapping + field renames): ~2-4 hours — mostly response
+    mapping in use cases or page interface changes. Low risk.
+  - Issue 1 (facility.tsx): ~4-8 hours — needs either a new use case with
+    aggregation pipeline or a page rewrite. Medium risk.
+
+RECOMMENDATION:
+  The API layer and core pages (dashboard, events, detail, export) are
+  production-quality and safe to show Brian. The facility drilldown, devices,
+  and alerts pages need API-to-page shape alignment before demo. Prioritize
+  issues 2-4 (wrapping fixes) as quick wins, then tackle issue 1 (facility
+  page) which requires more design work.

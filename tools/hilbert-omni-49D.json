@@ -1,0 +1,80 @@
+{
+  "mapId": "hilbert-omni-49D-v1-proposal",
+  "spec": "IX-650-EXT-HYPERLANGUAGE-49D-PROPOSAL",
+  "generatedAt": "2026-04-14T23:20:00Z",
+  "generatedBy": "asolaria-chief@DESKTOP-J99VCNH",
+  "base": "hilbert-omni-47D-v1",
+  "authority": "PROPOSAL ONLY — 49D overlay is not canonical until formal signing",
+  "overlay_on": "hilbert-omni-47D.json",
+  "description": "49-Dimension Brown-Hilbert proposal overlay on the live 47D spec. Adds D48 HYPERGLYPH_ATLAS and D49 EXECUTION_PROOF_SUPERGRAPH for all-language hyperglyph control and runnable claim sealing.",
+  "runtime_policy": "47 catalogs remain live; D48-D49 travel as overlay fields, indexes, and proof packets",
+  "dimensions_additive": [
+    {
+      "D": 48,
+      "name": "HYPERGLYPH_ATLAS",
+      "prime": 223,
+      "cube": 11089567,
+      "values": [
+        "human_en",
+        "human_pt_br",
+        "human_es",
+        "agent_ix",
+        "agent_lx",
+        "device_tuple",
+        "glyph256_safe",
+        "confusable_denied",
+        "roundtrip_proved"
+      ],
+      "expandable": true,
+      "added": "2026-04-14",
+      "cosign": "PENDING_49D_001",
+      "trinity_link": "LX-491 + D22",
+      "wh": "WHICH glyph means WHAT across languages?"
+    },
+    {
+      "D": 49,
+      "name": "EXECUTION_PROOF_SUPERGRAPH",
+      "prime": 227,
+      "cube": 11697083,
+      "values": [
+        "task_graph_locked",
+        "authority_root",
+        "evidence_bundle_hash",
+        "replay_witness",
+        "white_room_attest",
+        "gc_proof_defined",
+        "kr_gate_pass",
+        "chief_sig",
+        "promotion_denied",
+        "revoke_pointer"
+      ],
+      "expandable": true,
+      "added": "2026-04-14",
+      "cosign": "PENDING_49D_001",
+      "trinity_link": "LX-489 + LX-491",
+      "wh": "IS this claim sealed enough to run now?"
+    }
+  ],
+  "address_space_49D": {
+    "formula": "47D live total + D48 cube + D49 cube",
+    "total_cubes_per_level_47D": 95764443,
+    "new_cubes_D48_D49": "11089567+11697083 = 22786650",
+    "total_cubes_per_level_49D": 118551093,
+    "full_address_space": "product of all live primes cubed, with D48-D49 carried as proposal overlays until formal expansion"
+  },
+  "wh_chain_additive": {
+    "WHICH": ["D48"],
+    "HOW": ["D48", "D49"],
+    "IS_IT": ["D49"]
+  },
+  "trinity_connections_additive": {
+    "LX-489_COMPUTE": ["D49"],
+    "LX-490_HARDWARE": ["D48"],
+    "LX-491_INFERENCE": ["D48", "D49"]
+  },
+  "hyperlanguage_value_additions": {
+    "D35": ["49D_proposal", "hyperglyph256_atlas_v1"]
+  },
+  "growth_law": "Each new prime cubed = new dimension. D50 = prime(229) = cube(12008989). 49D is the current proposal ceiling, not the final one.",
+  "status": "PROPOSAL ONLY — extends the live 47D spec without overwriting it."
+}

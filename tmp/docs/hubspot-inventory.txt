@@ -1,0 +1,213 @@
+========================================================================
+HUBSPOT INVENTORY — Asolaria System
+Generated: 2026-03-25
+Scope: Jesse's machine + Asolaria codebase (READ ONLY scan)
+========================================================================
+
+1. CONNECTOR (CORE CODE)
+------------------------------------------------------------------------
+File: C:\Users\acer\Asolaria\src\connectors\hubspotConnector.js
+Size: 792 lines (per IX-379)
+Type: Full HubSpot CRM connector with OAuth 2.0 PKCE flow
+Portal: 51209071 (Jesse's)
+
+Exports:
+  - getHubSpotConfigSummary()
+  - setHubSpotOAuthConfig()
+  - startHubSpotOAuth()
+  - completeHubSpotOAuthCallback()
+  - listHubSpotContacts()  (aliased as listContacts)
+  - listHubSpotCompanies() (aliased as listCompanies)
+  - listHubSpotDeals()     (aliased as listDeals)
+  - hubspotApiRequest()    (generic passthrough)
+  - getHubSpotIntegrationStatus()
+  - createContact()        (write, approval-gated)
+  - createDeal()           (write, approval-gated)
+  - updateContact()        (write, approval-gated)
+
+Constants:
+  - HUBSPOT_AUTH_URL = https://mcp.hubspot.com/oauth/authorize/user
+  - HUBSPOT_TOKEN_URL = https://api.hubapi.com/oauth/v1/token
+  - HUBSPOT_API_BASE  = https://api.hubapi.com
+  - Default scopes: crm.objects.contacts.read, crm.objects.companies.read,
+    crm.objects.deals.read, crm.schemas.contacts.read
+
+2. SERVER.JS WIRING
+------------------------------------------------------------------------
+File: C:\Users\acer\Asolaria\server.js
+
+Lazy-loaded at line ~275:
+  const { getHubSpotConfigSummary, setHubSpotOAuthConfig, startHubSpotOAuth,
+          completeHubSpotOAuthCallback, listContacts, listCompanies, listDeals,
+          hubspotApiRequest, getHubSpotIntegrationStatus
+        } = lazyConnector("./src/connectors/hubspotConnector");
+
+Policy (line ~2626):
+  const hubspotPolicy = {
+    enabled: readEnvBool(process.env.ASOLARIA_HUBSPOT_ENABLED, true),
+    maxResults: Math.max(5, Math.min(200, Number(process.env.ASOLARIA_HUBSPOT_MAX_RESULTS || 100)))
+  };
+
+Intent router actions:
+  - hubspot_status  (line ~21851) — returns integration status
+  - hubspot_auth_start (line ~21865) — starts OAuth flow
+
+Exported to sub-routes:
+  - hubspotPolicy, startHubSpotOAuth, completeHubSpotOAuthCallback,
+    setHubSpotOAuthConfig, getHubSpotIntegrationStatus
+
+3. ROUTE FILES
+------------------------------------------------------------------------
+a) C:\Users\acer\Asolaria\routes\integrationsRemaining.js
+   - POST /hubspot/oauth/start       (line 2377) — begin OAuth, guardian-gated
+   - GET  /hubspot/oauth/callback     (line 3175) — loopback-only callback
+   - Success page: "Asolaria HubSpot Auth" with portal/scopes display
+   - Error page: "Asolaria HubSpot Auth (Error)" with diagnostic hints
+
+b) C:\Users\acer\Asolaria\routes\integrationConfig.js
+   - POST /hubspot/config             (line 112) — admin-only config endpoint
+   - Calls setHubSpotOAuthConfig()
+
+c) C:\Users\acer\Asolaria\routes\integrationStatus.js
+   - GET  /hubspot/status             (line 115) — returns status JSON
+
+4. VAULT SECRETS
+------------------------------------------------------------------------
+Two vault entries in "owner" namespace:
+
+a) integrations.hubspot.oauth
+   - Created: 2026-03-14T19:28:05.055Z
+   - Updated: 2026-03-14T19:28:05.055Z  (never refreshed since creation)
+   - Component: hubspot-integration
+   - Contains: clientId, clientSecret, scopes
+
+b) integrations.hubspot.accounts
+   - Created: 2026-03-14T19:34:38.110Z
+   - Updated: 2026-03-14T19:34:38.110Z  (never refreshed since creation)
+   - Component: hubspot-integration
+   - Updated by: oauth-callback
+   - Contains: per-portal tokens (portal 51209071)
+
+5. ENVIRONMENT VARIABLES
+------------------------------------------------------------------------
+Referenced in code (values in .env blocked by security guard):
+  - ASOLARIA_HUBSPOT_ENABLED      (default: true)
+  - ASOLARIA_HUBSPOT_MAX_RESULTS   (default: 100, range 5-200)
+  - ASOLARIA_HUBSPOT_CLIENT_ID     (fallback from vault)
+  - ASOLARIA_HUBSPOT_CLIENT_SECRET  (fallback from vault)
+  - ASOLARIA_HUBSPOT_OAUTH_SCOPES  (fallback from vault/defaults)
+
+6. AGENT INDEX ENTRIES
+------------------------------------------------------------------------
+a) IX-379 — TOOL: HubSpot CRM integration (OAuth flow + connector, portal 51209071)
+   Path: C:\Users\acer\Asolaria\data\agent-index\tools\IX-379.md
+   Chain: IX-358, IX-320, IX-316, IX-337
+   Agents: rook, forge, vector
+   Status: Token EXPIRED 2026-03-14, needs OAuth refresh
+
+b) IX-358 — Reference: Outbound connectors inventory
+   Path: C:\Users\acer\Asolaria\data\agent-index\references\IX-358.md
+   Mentions: hubspotConnector | 792 lines | HubSpot CRM | CONFIGURED
+
+c) IX-316 — Reference: Full system inventory
+   Path: C:\Users\acer\Asolaria\data\agent-index\references\IX-316.md
+   Mentions: hubspotConnector.js | 792 | HubSpot CRM
+
+d) IX-386 — Tool: Route audit
+   Path: C:\Users\acer\Asolaria\data\agent-index\tools\IX-386.md
+   Mentions: HubSpot: IX-379 (oauth/start, oauth/callback)
+
+7. LIRIS SUB-COLONY ENTRIES (LX- prefix)
+------------------------------------------------------------------------
+a) LX-077 — Pattern: Ancestor timeline
+   Path: data\agent-index\sub-colonies\liris-merged-20260324\pattern\LX-077.md
+   Mentions: HubSpot-Meeting repo (2025-02-19), part of Jesse's early agent work
+
+b) LX-079 — Pattern: Ancestor repos deep dive
+   Path: data\agent-index\sub-colonies\liris-merged-20260324\pattern\LX-079.md
+   Key finding: "HubSpot-Meeting (Feb 2025) — THE CRM INTEGRATION"
+   - Pulls company + contact data from HubSpot CRM API
+   - Node.js, simple architecture
+   - THIS is the ancestor that evolved into hubspotConnector.js
+   - Located at: C:\Users\rayss\Asolaria\HubSpot-Meeting\ (on Rayssa/Liris machine)
+
+c) LX-084 — Skill: Chrome browser automation
+   Path: data\agent-index\sub-colonies\liris-merged-20260324\skill\LX-084.md
+   Mentions: HubSpot as one of the services accessible via Chrome session
+
+8. CROSS-COLONY REFERENCES
+------------------------------------------------------------------------
+File: C:\Users\acer\Asolaria\data\agent-index\XREF-COLONIES.md
+
+XREF pairs:
+  - IX-379 / LX-079+LX-231: "HubSpot CRM integration" — live OAuth connector maps to ancestor repo
+  - IX-366 / LX-231+LX-079: "AI Healthcare project history" — HubSpot-Meeting lineage
+  - Named cluster #31: "The Ancestors" — Healthcare + HubSpot ancestor lineage
+  - Named cluster #40: "The CRM" — HubSpot from ancestor repo to live OAuth connector
+
+File: C:\Users\acer\Asolaria\data\agent-index\CROSS-EXAMINATION-REPORT.md
+  - Row 379: HubSpot CRM integration covered by LX-079/231
+
+9. ANCESTOR REPO
+------------------------------------------------------------------------
+Location (Rayssa/Liris machine): C:\Users\rayss\Asolaria\HubSpot-Meeting\
+Location (Jesse's machine): NOT FOUND at C:\Users\acer\HubSpot-Meeting\
+Status: The original HubSpot-Meeting repo exists only on Rayssa's machine.
+        It was a Feb 2025 project that evolved into Asolaria's connector system.
+
+10. WHATSAPP CHAT MENTIONS
+------------------------------------------------------------------------
+File: C:\Users\acer\Asolaria\tmp\docs\whatsapp-rayssa\WhatsApp Chat with Rayssa.txt
+
+Key mentions:
+  - Line 19547: Rayssa's path C:\Users\rayss\Asolaria\HubSpot-Meeting\.git
+  - Line 28010: "Program: HubSpot Meeting" — listed in ancestor program inventory
+  - Line 28011: "Location: ~/HubSpot-Meeting/"
+  - Line 28061: LX-231 reference to "Ancestor Programs — Meeting Minutes + HubSpot"
+  - Lines 31390-32016: Multiple messages from 2026-03-24 about indexing HubSpot
+    as IX-379 during the integration route audit session
+
+11. OTHER DOCUMENT MENTIONS
+------------------------------------------------------------------------
+File: C:\Users\acer\Asolaria\tmp\docs\According to documents from 2026.txt
+  - Line 281: "Google/GCP/Gemini/HubSpot/etc plugins" — listed as integration category
+
+12. SKILLS DIRECTORY
+------------------------------------------------------------------------
+No HubSpot-specific skill found in C:\Users\acer\Asolaria\skills\
+
+13. DATA/INTEGRATIONS DIRECTORY
+------------------------------------------------------------------------
+C:\Users\acer\Asolaria\data\integrations\ exists but contains only:
+  - abacus/
+  - worker-router/
+No HubSpot data packets found.
+
+14. APPDATA / DOWNLOADS
+------------------------------------------------------------------------
+No HubSpot app data found in C:\Users\acer\AppData\
+No HubSpot exports found in C:\Users\acer\Downloads\
+
+========================================================================
+SUMMARY
+========================================================================
+STATUS: CONFIGURED but TOKEN EXPIRED (since 2026-03-14)
+
+Components found:
+  [x] Connector:     hubspotConnector.js (792 lines, full CRM + OAuth)
+  [x] Routes:        3 endpoints (oauth/start, oauth/callback, config, status)
+  [x] Vault secrets: 2 entries (oauth config + account tokens)
+  [x] Policy:        hubspotPolicy in server.js (enabled by default)
+  [x] Agent index:   IX-379 (primary), IX-358/316/386 (references)
+  [x] Liris index:   LX-077/079/084 (ancestor + cross-refs)
+  [x] Cross-refs:    XREF clusters #31 "The Ancestors" and #40 "The CRM"
+  [ ] Skill:         None (no dedicated skill in skills/)
+  [ ] Data packets:  None in data/integrations/
+  [ ] Local app:     No HubSpot desktop app installed
+
+ACTION NEEDED:
+  1. Re-run OAuth flow to refresh expired token (expired 2026-03-14)
+     POST http://127.0.0.1:4781/api/integrations/hubspot/oauth/start
+  2. Consider creating a dedicated HubSpot skill in skills/ directory
+  3. Ancestor repo (HubSpot-Meeting) only exists on Rayssa's machine
+========================================================================

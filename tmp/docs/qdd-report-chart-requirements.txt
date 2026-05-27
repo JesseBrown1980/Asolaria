@@ -1,0 +1,220 @@
+QDD eBacMap — Report Chart Rendering Trace
+==========================================
+Generated: 2026-03-25
+Source: D:\projects\QDD\ebacmap-master
+
+================================================================================
+1. ALL CHART COMPONENTS (11 chart modules + EZ Protect separate system)
+================================================================================
+
+Chart modules are defined in ChartModuleValues (libs/types/src/lib/Report.ts:44-59)
+and mirrored in ChartModule enum (apps/web-ebacmap/src/components/Graphs/ChartConfigTypes.ts):
+
+  1. LineGraph       — Chartist line chart (react-chartist). Primary chart type.
+  2. BarGraph        — Chartist bar chart.
+  3. ScatterGraph    — Same data structure as LineGraph, rendered differently.
+  4. SuccessGraph    — Groups by result, shows negativeCount (pass count) over time.
+  5. StackedGraph    — Stacked bar chart with result totals.
+  6. PassFailSuccessGraph — Combo: pie chart + success chart + result totals.
+  7. PassRateCircles — No chart image. Just resultTotals (pass/fail counts). No ChartDataT.
+  8. ResultsTable    — Table only. Just needs date range. No test result grouping.
+  9. SummaryTable    — Table with grouped results by plan/zone/etc + result totals.
+ 10. MapSiteResultsTable — Facility map site results table.
+ 11. EbacMap         — Special: passes raw testResults + config to a map renderer.
+
+Frontend graph components (apps/web-ebacmap/src/components/Graphs/):
+  - LineGraph.tsx, BarGraph.tsx, ScatterGraph.tsx, PieGraph.tsx
+  - ChartConfig.tsx (UI for configuring chart options)
+  - ChartConfigTypes.ts (enums, config shapes, CHART_CONFIGS feature flags)
+  - LimitLines.tsx, RegressionLine.ts (Chartist plugins)
+
+Additional dashboard modules (not in the chart enum):
+ 12. SampleSchedulerDashboard — Listed in ChartModuleValues but no buildDataForChart case.
+ 13. CapaDashboard            — Same situation.
+ 14. Tour360Dashboard         — Same situation.
+
+================================================================================
+2. ReportSectionCard
+================================================================================
+
+File: apps/web-ebacmap/src/components/Report/ReportSectionCard.tsx
+
+ReportSectionCard is the UI wrapper for configuring a single report section.
+It contains:
+  - Title field (max 80 chars)
+  - FilterDrawer (date range, interval, conditions, etc.)
+  - Notes field (max 200 chars)
+  - ChartBuilderProvider + ReportBuilder — the chart configuration UI
+
+Its data shape (ReportSectionData):
+  {
+    id: string;
+    title: string;
+    filters: SelectedFiltersType;   // interval, dateRange, conditions, dataType, etc.
+    charts: Array<{
+      module: string;               // one of ChartModuleValues
+      groupBy?: string;             // one of GroupByValues
+      dailyFailureTolerance?: number;
+      hideUntested?: boolean;
+      showTestCounts?: boolean;
+      limitLines: any[];            // { name: string, value: number, meta?: string }
+      showControlLine?: boolean;
+      showConformingPct?: boolean;
+    }>;
+    notes?: string;
+  }
+
+================================================================================
+3. HOW A CHART GETS ITS DATA
+================================================================================
+
+There are TWO data paths:
+
+PATH A — Server-side (UpdateReportChartData use case, legacy reports):
+  File: modules/reports/use-cases/UpdateReportChartData/UseCase.ts
+  1. Finds test results added today by location (TestResultModel.distinct)
+  2. Finds reports that match those locations AND have chartData already
+  3. For each report:
+     a. Calls testResultService.filterTestResults() to fetch matching test results
+     b. Calls reportService.generateChartData(report, testResults)
+     c. generateChartData groups results by subcategory using groupTestResults()
+     d. Returns ChartData { labels, series, limits } and saves to report.chartData
+
+PATH B — Client-side (ReportBuilder utility class, new/single/multi reports):
+  File: modules/reports/utils/ReportBuilder.ts
+  1. ReportBuilder.getFilteredDataForReport(testResults, chartConfig, filters)
+  2. Computes report date range from filters
+  3. Calls buildDataForChart() — a switch on chartConfig.module
+  4. Each case groups testResults using groupBy* methods (groupBySubcategory,
+     groupByZone, groupByPlan, groupByEbacmapCode, groupBySite, groupByResult, etc.)
+  5. Returns typed chart data (BarGraphData, LineGraphData, etc.)
+
+Both paths REQUIRE test results. The test results are fetched first, then grouped.
+
+================================================================================
+4. DATA FORMAT CHARTS EXPECT
+================================================================================
+
+All visual charts (Line, Bar, Scatter, Stacked, Success, PassFailSuccess) use ChartDataT:
+
+  interface ChartDataT {
+    labels: string[];              // Date labels (e.g. "01/2026", "02/2026")
+    series: Array<{
+      name: string;                // Legend name (organism, zone, site, etc.)
+      data: (SeriesDataT | null | string)[];  // One per label
+      className: string;           // CSS class for coloring ("ct-series-0", etc.)
+    }>;
+    limits?: (SeriesDataT | null)[];  // Horizontal limit lines
+    legendNames?: string[];        // Optional explicit legend
+  }
+
+  interface SeriesDataT {
+    meta?: string;     // Tooltip text, e.g. "Listeria (3 of 100)"
+    value: number;     // The Y-axis value (usually a percentage: pct field)
+    name: string;      // Series name
+  }
+
+For PassRateCircles: only needs ResultCountT (pass/fail/total counts). No ChartDataT.
+For ResultsTable: only needs date range. No ChartDataT or grouping.
+For SummaryTable: needs ResultCountT + ResultT[] (grouped results with counts).
+For EbacMap: passes raw testResults + chartConfig + dates + filters to the map component.
+
+================================================================================
+5. REQUIRED TEST RESULT FIELDS
+================================================================================
+
+TestResultListView fields used by chart grouping and rendering:
+
+  ALWAYS REQUIRED:
+  - sampleDate: Date          — Used for date grouping (interval buckets)
+  - finalRating: number       — 1 = negative/pass, >1 = positive/fail. Core metric.
+  - location / locationId     — Used to filter which reports to update
+
+  REQUIRED BY SPECIFIC groupBy OPTIONS:
+  - category?: string         — Used by groupBySubcategory (FilterRuleFieldValues.Category)
+  - organism / organismId     — Used by groupBySubcategory (groups by organism/subcategory)
+  - zone / zoneId             — Used by groupByZone
+  - site / siteId             — Used by groupBySite
+  - ebacmapCode: string       — Used by groupByEbacmapCode
+  - planId / planName         — Used by groupByPlan
+  - testNum                   — Used for retest detection in plan grouping
+  - resultType                — Used by groupByResult
+
+  USED IN DISPLAY/TOOLTIPS:
+  - siteDescription           — Site sub-name in plan tables
+  - resultValue               — Shown in results tables
+  - qualitativeValue          — Shown in results tables
+  - limit                     — Notification/limit line matching
+
+  FILTER CONDITION FIELDS (FilterParametersMap / FilterRuleFieldValues):
+  - category, organism, test, subTest, zone, plan, surfaceType, site,
+    siteGroup, facilityMap, resultRating, resultValue, testNum, testType
+
+  YES — charts NEED real test results with specific fields. There is no
+  fallback or mock data path. If testResults array is empty, the chart
+  will render empty (no series data).
+
+================================================================================
+6. CHARTS THAT WORK WITHOUT TEST RESULTS
+================================================================================
+
+Within the standard report system, NO chart type works without test results.
+Every chart module in buildDataForChart() receives testResults as input.
+If testResults is empty:
+  - Graph charts render with empty series (blank chart)
+  - PassRateCircles shows all zeros
+  - Tables show no rows
+
+HOWEVER, EZ Protect has a COMPLETELY SEPARATE reporting system:
+
+  File: modules/ez-protect/use-cases/GenerateEzProtectReport/UseCase.ts
+
+  EZ Protect reports do NOT use test results at all. They use EZ Protect events
+  (from ezProtectRepo.listNormalizedEvents). These events have different fields:
+    - completedAt, deviceSerialNumber, deviceModel, assayCode, assayName,
+      assayFamily, resultState (NEGATIVE/POSITIVE/INVALID/ERROR), resultValue,
+      resultUnit, readingValue, controlLineValid, temperatureC, pmStatus,
+      calibrationStatus, operatorId, operatorGroup, sampleId, truckId,
+      stripLot, stripRoll, stripExpiration, facilityId, organizationId, etc.
+
+  EZ Protect report types:
+    - daily_summary    — Event table + result state summary
+    - weekly_trend     — Same structure
+    - device_health    — Per-device breakdown (model, last seen, PM status, cal)
+    - compliance_audit — Lockout events, supervisor overrides, invalid control lines
+
+  EZ Protect generates HTML directly (no Chartist), then converts to PDF via
+  Playwright. Output formats: PDF (base64) or CSV.
+
+  EZ Protect reports are NOT chart modules. They are a parallel system with
+  their own API endpoint (/api/ez-protect/reports/generate).
+
+================================================================================
+SUMMARY
+================================================================================
+
+- 11 chart modules, all require TestResultListView[] with at minimum:
+  sampleDate, finalRating, and the groupBy-relevant field (organism, zone, site, etc.)
+- Charts render via Chartist.js (react-chartist) on the frontend
+- Data flows: test results -> groupBy function -> ChartDataT { labels, series, limits }
+- EZ Protect is the only reporting subsystem that works without test results;
+  it uses its own event data and generates HTML/PDF directly, not Chartist charts.
+- The three dashboard-only modules (SampleScheduler, Capa, Tour360) are declared
+  in ChartModuleValues but have no buildDataForChart implementation in ReportBuilder.
+
+KEY FILES:
+  Domain:     apps/web-ebacmap/src/modules/reports/domain/ChartConfig.ts
+  Domain:     apps/web-ebacmap/src/modules/reports/domain/ChartModuleValue.ts
+  Domain:     apps/web-ebacmap/src/modules/reports/domain/ReportSection.ts
+  Domain:     apps/web-ebacmap/src/modules/reports/domain/Report.ts
+  Types:      libs/types/src/lib/Report.ts (ChartModuleValues, GroupByValues, FilterRuleFieldValues)
+  Types:      libs/types/src/lib/Charts.ts (ChartData, SeriesData, ChartOptions)
+  Builder:    apps/web-ebacmap/src/modules/reports/utils/ReportBuilder.ts
+  Service:    apps/web-ebacmap/src/modules/reports/services/ReportService.ts
+  Use Case:   apps/web-ebacmap/src/modules/reports/use-cases/UpdateReportChartData/UseCase.ts
+  Defaults:   apps/web-ebacmap/src/modules/reports/DefaultReports.ts
+  UI Config:  apps/web-ebacmap/src/components/Graphs/ChartConfigTypes.ts
+  UI Card:    apps/web-ebacmap/src/components/Report/ReportSectionCard.tsx
+  Frontend:   apps/web-ebacmap/src/components/Graphs/LineGraph.tsx (and Bar, Scatter, Pie)
+  EZ Protect: apps/web-ebacmap/src/modules/ez-protect/use-cases/GenerateEzProtectReport/UseCase.ts
+  Test View:  apps/web-ebacmap/src/modules/test-results/domain/TestResultView.ts

@@ -1,0 +1,94 @@
+QDD Report API Full Test — 2026-03-25
+======================================
+Server: http://localhost:3000  (Next.js, ebacmap-master)
+Auth: dev-bypass session cookie (ebacmapv3), user charm-dev@quickdrawdevelopment.com
+
+=== ENDPOINT RESULTS ===
+
+1. GET /api/reports/69c4446d6ffb66267d094563
+   STATUS: 200 OK
+   BODY:   {"id":"69c4446d6ffb66267d094563","name":"Facility Comparison","client":"69c41938d84980e337ac77cd","location":["69c41938d84980e337ac77cf"],"access":"facility","createdBy":"69c41938d84980e337ac77d1","showOnDashboard
+
+2. GET /api/reports
+   STATUS: 422 (validation error — location is required)
+   BODY:   {"message":"Invalid","errors":["location is a required field"]}
+   NOTE:   This endpoint requires a location query param; bare GET is rejected by validation.
+
+3. GET /api/reports?location=69c41938d84980e337ac77cf
+   STATUS: 200 OK
+   BODY:   {"reports":[{"id":"69c4446d6ffb66267d094563","name":"Facility Comparison","client":"69c41938d84980e337ac77cd","location":["69c41938d84980e337ac77cf"],"createdBy":"69c41938d84980e337ac77d1","access":"facility","re
+   NOTE:   Returns 10 reports total.
+
+4. GET /api/reports/dashboard
+   STATUS: 422 (validation error — location is required)
+   BODY:   {"message":"Invalid","errors":["location is a required field"]}
+   RETRY with ?location=69c41938d84980e337ac77cf:
+   STATUS: 200 OK
+   BODY:   []
+   NOTE:   Empty array — no reports with showOnDashboard=true returned (dashboard may need additional query params).
+
+5. GET /api/reports/filters
+   STATUS: 422 (validation error — locationId is required)
+   BODY:   {"message":"Invalid","errors":["locationId is a required field"]}
+   RETRY with ?locationId=69c41938d84980e337ac77cf:
+   STATUS: *** 500 INTERNAL SERVER ERROR ***
+   BODY:   {"error":{}}
+   FLAG:   500 error even with correct param. Likely a backend bug — empty error object suggests unhandled exception.
+
+6. GET /api/filters?locationId=69c41938d84980e337ac77cf
+   STATUS: *** 500 INTERNAL SERVER ERROR ***
+   BODY:   {"error":{}}
+   FLAG:   500 error. Same empty error object pattern. Possible shared handler or DB query issue.
+
+7. GET /api/categories
+   STATUS: 200 OK
+   BODY:   {"categories":[{"id":"69c443d6bbdabf215406bfb9","name":"Water","clientId":"69c41938d84980e337ac77cd","organisms":[]},{"id":"69c443d6bbdabf215406bfb8","name":"Equipment","clientId":"69c41938d84980e337ac77cd","org
+   NOTE:   5 categories returned (Water, Equipment, Personnel, Product, Environmental).
+
+8. GET /api/organisms
+   STATUS: 200 OK
+   BODY:   {"organisms":[{"id":"69c443d7bbdabf215406bfbe","name":"Coliform","clientId":"69c41938d84980e337ac77cd","categories":[]},{"id":"69c443d7bbdabf215406bfbc","name":"E. coli O157:H7","clientId":"69c41938d84980e337ac
+   NOTE:   5 organisms returned (Coliform, E. coli O157:H7, Listeria monocytogenes, Salmonella spp., Staphylococcus aureus).
+
+9. GET /api/zones
+   STATUS: 200 OK
+   BODY:   {"zones":[{"id":"69c443d7bbdabf215406bfbf","name":"Zone 1 - Product Contact","clientId":"69c41938d84980e337ac77cd"},{"id":"69c443d7bbdabf215406bfc0","name":"Zone 2 - Adjacent","clientId":"69c41938d84980e337ac77
+   NOTE:   4 zones returned (Zone 1-4).
+
+10. GET /api/sites?locationId=69c41938d84980e337ac77cf
+    STATUS: 422 (validation error — expects "location" not "locationId")
+    RETRY with ?location=69c41938d84980e337ac77cf:
+    STATUS: 200 OK
+    BODY:   {"sites":[],"limit":10,"offset":0,"total":0,"sort":"zoneCode:1","hasDuplicates":[]}
+    NOTE:   0 sites returned for this location (seed data may not include sites).
+
+11. GET /api/test-definitions
+    STATUS: *** 500 INTERNAL SERVER ERROR ***
+    BODY:   {"error":{}}
+    RETRY with ?location=69c41938d84980e337ac77cf:
+    STATUS: *** 500 INTERNAL SERVER ERROR ***
+    BODY:   {"error":{}}
+    FLAG:   500 error with or without params. Unhandled exception, empty error object.
+
+=== SUMMARY ===
+
+PASS (200):  6 endpoints
+  - /api/reports/:id
+  - /api/reports?location=...
+  - /api/reports/dashboard?location=...
+  - /api/categories
+  - /api/organisms
+  - /api/zones
+
+VALIDATION (422): 2 endpoints (expected — missing required params)
+  - /api/reports (needs ?location=)
+  - /api/sites?locationId= (needs ?location= instead)
+
+*** 500 ERRORS — NEEDS INVESTIGATION: 3 endpoints ***
+  - /api/reports/filters?locationId=...    -> {"error":{}}
+  - /api/filters?locationId=...            -> {"error":{}}
+  - /api/test-definitions                  -> {"error":{}}
+
+All three 500s return {"error":{}} which suggests the catch block serializes an
+Error object to JSON (which produces {}). Check server console logs for stack traces.
+Likely causes: missing DB collection, undefined repository method, or unresolved dependency.

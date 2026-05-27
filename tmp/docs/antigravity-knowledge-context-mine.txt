@@ -1,0 +1,294 @@
+================================================================================
+ANTIGRAVITY DEEP MINE — C:\Users\acer\.gemini\antigravity\
+Mined: 2026-03-25 by Gaia (Claude Opus 4.6)
+READ ONLY EXTRACTION — No files modified
+================================================================================
+
+================================================================================
+1. INSTALLATION IDENTITY
+================================================================================
+File: installation_id
+Value: a1d82a01-bd6e-4eb6-b9a2-77b7961c136e
+
+================================================================================
+2. USER SETTINGS (user_settings.pb) — Binary Protobuf
+================================================================================
+Partial readable strings extracted:
+  H......1012.1008.1018....
+NOTE: This is a protobuf binary. Contains version numbers (1012, 1008, 1018)
+but no readable configuration text. Likely stores UI preferences, theme, etc.
+
+================================================================================
+3. MCP CONFIG (mcp_config.json)
+================================================================================
+{
+  "mcpServers": {
+    "GitKraken": {
+      "args": ["mcp", "--host=antigravity", "--source=gitlens", "--scheme=antigravity"],
+      "command": "c:\\Users\\acer\\AppData\\Roaming\\Antigravity\\User\\globalStorage\\eamodio.gitlens\\gk.exe",
+      "type": "stdio"
+    }
+  }
+}
+
+ANALYSIS:
+- Antigravity has GitKraken MCP server configured
+- Uses GitLens extension as source
+- Runs via stdio protocol
+- Binary at: c:\Users\acer\AppData\Roaming\Antigravity\User\globalStorage\eamodio.gitlens\gk.exe
+
+================================================================================
+4. BROWSER ALLOWLIST (browserAllowlist.txt)
+================================================================================
+STATUS: File exists but is EMPTY (0 content lines)
+
+================================================================================
+5. BROWSER ONBOARDING STATUS (browserOnboardingStatus.txt)
+================================================================================
+STATUS: File exists but is EMPTY (0 content lines)
+
+================================================================================
+6. KNOWLEDGE DIRECTORY — knowledge/
+================================================================================
+Files found:
+  - knowledge.lock (empty lock file)
+
+ANALYSIS: The knowledge directory contains ONLY a lock file.
+No actual knowledge entries stored. Either:
+  a) Knowledge is stored elsewhere (possibly in implicit/ as encrypted protobuf)
+  b) Antigravity hasn't accumulated persistent knowledge yet
+  c) Knowledge was wiped/reset
+
+================================================================================
+7. CONTEXT_STATE DIRECTORY — context_state/
+================================================================================
+STATUS: Directory exists but contains NO FILES.
+No session context snapshots saved.
+
+================================================================================
+8. IMPLICIT DIRECTORY — implicit/
+================================================================================
+8 files found, all binary protobuf (.pb) or temp:
+
+  1fa95be7-58f7-419a-b1b2-48c9e24173b2.pb — Small binary, fully encrypted, no readable strings
+  0d6bd50c-b627-4239-a996-c4f74bd7dff2.pb — ~605 KB, fully encrypted binary
+  376a6505-1995-4a8d-96d5-0e3daf4f491d.pb — ~1.3 MB, fully encrypted binary
+  49656519-425f-40a7-a2ac-8813d24247d5.pb — ~1.2 MB, fully encrypted binary
+  32cfde0f-ad3e-41ca-ab76-b712369a6d5f.pb — ~699 KB, fully encrypted binary
+  07b4e48e-bdef-4d1b-9efe-968cc68c38d2.pb — Small binary, fully encrypted
+  3ec414fa-0391-47df-b242-68d19ee5d75a.pb — Small binary, fully encrypted
+
+  32cfde0f-ad3e-41ca-ab76-b712369a6d5f.15b3f737-4cd6-4207-b697-091ed52cfd08.tmp — ~4.5 MB temp file
+
+ANALYSIS: All implicit memory files are ENCRYPTED protobuf.
+No readable strings could be extracted from any of them.
+Total implicit data: ~8+ MB of encrypted session memory.
+The .tmp file suggests an in-progress or interrupted write for one entry.
+
+================================================================================
+9. CODE_TRACKER DIRECTORY — code_tracker/active/
+================================================================================
+All tracked files are organized by repo. Format:
+  code_tracker/active/{repo_hash}/{content_hash}_{filename}
+
+Each file contains the tracked file's content wrapped in a protobuf-like
+envelope with metadata footer containing:
+  - cascade version markers (*cascade08)
+  - git commit hash
+  - source file URI
+  - project root URI
+
+----- 9a. NO_REPO (standalone files, not in any git repo) -----
+
+  9975413c251980885959fbcf48d0f6db_GEMINI.md
+    Content: "2'file:///c:/Users/acer/.gemini/GEMINI.md"
+    -> Points to the GEMINI.md instructions file
+
+  1ec7ae427e63fecbd9b602f4e90e8552_.obsolete
+    Content: JSON listing obsolete Cursor extensions:
+      angular.ng-template-19.2.4, davidanson.vscode-markdownlint-0.59.0,
+      ms-azuretools.vscode-docker-1.29.6, angular.ng-template-20.1.1,
+      dbaeumer.vscode-eslint-3.0.10, github.copilot-1.270.0,
+      github.copilot-chat-0.23.2
+    Source: file:///C:/Users/acer/.cursor/extensions/.obsolete
+
+  74d55ca852e20be6ff99a811d63dbed8_.obsolete
+    Content: Same obsolete extensions list (duplicate tracking)
+    Source: file:///c:/Users/acer/.cursor/extensions/.obsolete
+
+  12b8d02739a6d8d634458d4812549f10_next_agent_instructions.md
+    Content: Agent crash recovery instructions for ai_healthcare_project
+    Key info:
+      - "We are fixing the ai_healthcare_project"
+      - Main issue: ModuleNotFoundError for backend module
+      - Created Fix_it folder to maintain state across crashes
+      - Project root: c:\Users\acer\ai_healthcare_project
+    Source: file:///c:/Users/acer/Fix_it/next_agent_instructions.md
+
+  523fb366b01119ded891faf4a99c9706_status.md
+    Content: Detailed debugging status for ai_healthcare_project
+    Key findings:
+      - Error: ModuleNotFoundError: No module named 'backend'
+      - Reason: Root dir not in PYTHONPATH
+      - Running backend/main.py adds backend/ to sys.path, not parent
+      - Therefore 'from backend.anomaly_detector...' fails
+      - .venv\Scripts\python.exe exists and is the active interpreter
+      - Fix needed: PYTHONPATH=. or proper package configuration
+    Source: file:///c:/Users/acer/Fix_it/status.md
+
+  07f5bd31822d1a8cc97af9ddd9ca8eba_Fix_Indexing_Performance.ps1
+    Content: Windows Search indexing performance fix script
+    What it does:
+      1. Re-enables backoff throttling (DisableBackoff = 0)
+      2. Sets BackOffFlushInterval to 300000ms (5 min)
+      3. Resets BackOffUserEventsLimit to 100
+      4. Restarts WSearch service
+    Purpose: Fixes aggressive Windows indexing that was causing system lag
+    Source: file:///C:/Users/acer/Desktop/Fix_Indexing_Performance.ps1
+
+----- 9b. AI_HEALTHCARE_PROJECT — Multiple Commits Tracked -----
+
+Commit: 2f95fe867e958283b69ce08e58fa6ce32c3115e9
+  Files tracked:
+    - graph_visualization.py (FastAPI endpoints for patient clinical graph viz)
+      3 endpoints:
+        GET /patients/{patient_id}/graph — Full graph with nodes/edges/anomalies
+        GET /patients/{patient_id}/anomaly-timeline — Anomaly trends over time
+        POST /patients/compare-graphs — Compare graphs across patients
+      Uses: GNN anomaly detection, ClinicalGraphBuilder, FHIR data
+      Node types: patient, medication, condition, provider, lab_value
+      Edge types: prescribed, diagnosed, measured, interacts_with, treats
+    - test_graph_visualization.py (Tests for graph viz endpoints)
+    - test_oauth.py (OAuth tests: Google/Apple, state management, callbacks)
+
+Commit: 2edd31c8b1a4d160b6a1181b09332c67d745d001
+  Files tracked:
+    - client.ts (React frontend API client)
+      Features: retry with exponential backoff + jitter, auth token management,
+      FormData support, configurable retry statuses (429, 500-504)
+
+Commit: dbff6a4e8eea17da343fded0f1861ab7e9da80a6
+  Files tracked:
+    - multi-cloud.yml (GitHub Actions CI/CD workflow)
+      Jobs: Firebase tests, AWS/LocalStack tests, Azure/Azurite tests,
+      Cross-platform matrix build (3 OS x 3 Python versions),
+      Database compatibility (SQLite, PostgreSQL)
+    - __init__.py (Cloud testing utilities: skip decorators, availability checks)
+
+Commit: ff2b223e5bdfd81d8ac8af54594dc6872ac94e07
+  Files tracked:
+    - pytest.ini (Test configuration: markers, async mode, coverage settings)
+
+Commit: 40436ea4c5dd0442529031ab19ffa505626d67a4
+  Files tracked:
+    - .gitleaks.toml (Secret scanning config: allowlists for demo credentials)
+      2 copies tracked (different content hashes, same file)
+
+Commit: aa34b8ce66e8e42b08f11ea3f5c81ffd0376fe2b
+  Files tracked:
+    - clinical_graph_builder.py (CORE MODULE — ~718 lines)
+      Converts patient FHIR data to graph structure for GNN anomaly detection
+      ClinicalNode/ClinicalEdge dataclasses
+      ClinicalGraphBuilder class with:
+        - Patient/medication/condition/provider/lab_value node creation
+        - Edge creation with recency-weighted edges
+        - Drug interaction detection (known interaction database)
+        - Treatment matching (condition -> medication)
+        - Medication-lab effect detection
+        - Feature vector encoding (type one-hot + metadata features)
+    - test_graph_visualization_unit.py (Unit tests for graph builder)
+      Tests: structure generation, metadata extraction, drug interactions,
+      treatment matching, medication-lab effects, statistics
+
+Commit: b712c742202cd56cc2a316c9c6136fc211de3425
+  Files tracked:
+    - test_calendar_integration_enhanced.py (Google Calendar integration tests)
+      Tests: token refresh, event listing with pagination, event deletion,
+      event creation with custom reminders
+
+Commit: 80fe1ee9ccfcfa51ca59ae665da960f8b1a7ade4
+  LARGEST commit — 28 files tracked:
+    - security_metrics.py
+    - input_validation.py
+    - patients.py
+    - documents.py
+    - patient_analyzer.py
+    - test_security_hardening.py
+    - graph_visualization.py
+    - test_service_error_handler_unit.py
+    - README.md
+    - SOFTWARE_VERIFICATION_REPORT.md
+    - oauth.py
+    - RISK_MANAGEMENT_FILE.md
+    - .env.example
+    - TRACEABILITY_MATRIX.md
+    - service_error_handler.py
+    - auth.py
+    - security_headers.py
+    - system.py
+    - test_compliance_phase4.py
+    - testing-validation.md
+    - privacy.py
+    - clinical.py
+    - consent.py
+    - hl7.py
+    - api.py
+    - phi_filter.py
+    - data_retention.py
+    - test_owasp_security.py
+    - test_security_compliance.py
+    - api-security.md
+    - llm_engine.py
+    - api.py (second copy, different path)
+    - main.py (two copies, different paths)
+
+  ANALYSIS: This is a massive healthcare compliance commit covering:
+    - HIPAA/GDPR compliance (PHI filter, consent, data retention, privacy)
+    - Security hardening (OWASP tests, security headers, input validation)
+    - HL7 FHIR integration
+    - OAuth authentication
+    - GNN anomaly detection
+    - LLM engine integration
+    - IEC 62304 medical device compliance (software verification, risk management, traceability)
+
+================================================================================
+10. SUMMARY — WHAT ANTIGRAVITY KNOWS
+================================================================================
+
+A. EXPLICIT KNOWLEDGE: EMPTY
+   - knowledge/ has only a lock file
+   - context_state/ is empty
+   - browserAllowlist and browserOnboardingStatus are empty
+
+B. IMPLICIT KNOWLEDGE: ~8 MB ENCRYPTED
+   - 7 protobuf files + 1 temp file in implicit/
+   - All fully encrypted, no readable strings
+   - Likely contains session context, learned patterns, user preferences
+
+C. CODE TRACKING: EXTENSIVE (ai_healthcare_project)
+   - 8 different git commits tracked
+   - ~50+ files total
+   - All from c:\Users\acer\ai_healthcare_project
+   - Project focus: Healthcare platform with GNN anomaly detection,
+     FHIR integration, OAuth, Google Calendar, multi-cloud CI/CD,
+     HIPAA/GDPR compliance, medical device software verification
+   - Also tracks: Cursor .obsolete extensions, GEMINI.md pointer,
+     Fix_it crash recovery notes, Windows indexing fix script
+
+D. MCP INTEGRATION: GitKraken only
+   - Single MCP server: GitKraken via GitLens
+   - stdio transport
+
+E. NOTABLE FINDINGS:
+   1. Antigravity was primarily used for ai_healthcare_project work
+   2. It created a "Fix_it" folder recovery system for crash resilience
+   3. The main debugging issue was PYTHONPATH not including project root
+   4. Windows indexing was causing system lag (was set to unlimited throttle)
+   5. The healthcare project is substantial: GNN models, FHIR, OAuth,
+      multi-cloud, medical device compliance (IEC 62304)
+   6. Cursor extensions tracked as obsolete: Copilot 1.270.0, ESLint 3.0.10, etc.
+   7. No Asolaria-related knowledge found in Antigravity
+
+================================================================================
+END OF MINE
+================================================================================

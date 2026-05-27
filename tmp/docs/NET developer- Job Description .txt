@@ -1,0 +1,45 @@
+Client: Navitus Health
+Contract Length: 12 months
+Location: Remote
+Role Overview
+Navitus is undergoing a major cloud and platform modernisation programme, moving critical pharmacy benefit management (PBM) systems into AWS and uplifting legacy .NET services into scalable, cloud-native architectures.
+A major focus of this initiative is the modernisation of adjudication platforms that power high-volume pharmacy claims processing.
+They are hiring an experienced AWS / Full Stack Engineer (.NET / C# / React) to take ownership of backend microservices, adjudication workflows, cloud infrastructure, and modern frontend delivery.
+This is a hands-on contract role suited to engineers who can work independently, move fast, and deliver production-ready solutions in regulated healthcare environments.
+The platform is built on a serverless AWS architecture supporting adjudication services, including technologies such as Lambda, API Gateway, RDS Cluster, DynamoDB, S3, Kinesis / Firehose, Glue, SQS, SNS, and EventBridge.
+What You’ll Be Doing
+Designing and building modern .NET / C# microservices supporting pharmacy benefit and adjudication systems
+Developing and migrating services into AWS serverless architecture using Lambda, API Gateway, SQS, SNS, and EventBridge
+Building scalable data and event pipelines using Kinesis / Firehose and AWS Glue
+Working with AWS data stores including DynamoDB, S3, and RDS clusters
+Developing full stack functionality across backend services and React.js front-end applications
+Supporting real-time claims adjudication workflows and distributed PBM platform services
+Developing ETL pipelines and distributed workflows supporting high-volume pharmacy claims processing
+Improving CI/CD pipelines, monitoring, and platform reliability
+Working closely with QA, Data, and Architecture teams to deliver end-to-end platform capabilities
+Implementing secure and compliant engineering practices aligned with HIPAA standards
+Required Skills & Experience
+Strong production experience with .NET / C# backend development
+Experience building full stack applications using React.js
+Hands-on experience with AWS cloud platforms, particularly serverless architectures
+Experience with AWS services such as:
+Lambda
+API Gateway
+SQS / SNS
+EventBridge
+DynamoDB
+S3
+RDS Clusters
+Kinesis / Firehose
+AWS Glue
+Experience working with microservices, APIs, and distributed systems
+Exposure to event-driven architectures and data streaming
+Experience building high-throughput platforms supporting transactional systems
+Familiarity with CI/CD pipelines, monitoring, and cloud-native best practices
+Comfortable working autonomously in fast-moving engineering teams
+Why This Role
+12-month contract with high-impact, business-critical work
+Opportunity to help modernise PBM adjudication systems used by millions of members
+Work on greenfield cloud architecture alongside legacy modernisation
+Strong autonomy — trusted to deliver without heavy oversight
+Immediate interview process and quick decision-making

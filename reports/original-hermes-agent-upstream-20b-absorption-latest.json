@@ -1,0 +1,1306 @@
+{
+  "id": "original-hermes-agent-upstream-compact-absorption",
+  "generatedAt": "2026-04-25T02:53:10.203Z",
+  "startedAt": "2026-04-25T02:53:10.203Z",
+  "finishedAt": "2026-04-25T02:53:19.893Z",
+  "status": "ORIGINAL_HERMES_AGENT_COMPACT_ABSORBED_RUNTIME_BLOCKED",
+  "logicalAgents": "10000000000",
+  "logicalGulps": 5000000,
+  "compactMode": "10b_compact_ranges_real_gulp_proof_upstream_clone_absorption",
+  "elapsedMs": 9690,
+  "manifest": {
+    "id": "original-hermes-agent-source-manifest",
+    "generatedAt": "2026-04-25T02:53:10.203Z",
+    "upstreamUrl": "https://github.com/NousResearch/hermes-agent.git",
+    "localClone": "D:/Asolaria-External/hermes-agent-upstream",
+    "requestedDStage": {
+      "path": "D:\\Asolaria-External\\hermes-agent-upstream",
+      "status": "D_STAGE_READY",
+      "replacement": "D:\\Asolaria-External\\hermes-agent-upstream shallow filtered clone for inspection"
+    },
+    "branch": "main",
+    "head": "2182de55bb7734b804abd3403570ec45428feece",
+    "latestTag": "v2026.4.23",
+    "version": "0.11.0",
+    "release": {
+      "file": "RELEASE_v0.11.0.md",
+      "title": "Hermes Agent v0.11.0 (v2026.4.23)",
+      "since": "1,556 commits · 761 merged PRs · 1,314 files changed · 224,174 insertions · 29 community contributors (290 including co-authors)",
+      "sha256": "d16b682b558cadeba8134009161b5a27e854dc359e1ac6468d0c7ffe8304d980"
+    },
+    "sourceEntries": [
+      {
+        "path": "README.md",
+        "exists": true,
+        "bytes": 11470,
+        "sha256": "700e2392191eefa61dd36e2e6d90f61c8c1864115893a10abaa82acc1856cd5b",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "RELEASE_v0.11.0.md",
+        "exists": true,
+        "bytes": 43890,
+        "sha256": "d16b682b558cadeba8134009161b5a27e854dc359e1ac6468d0c7ffe8304d980",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "RELEASE_v0.10.0.md",
+        "exists": true,
+        "bytes": 1795,
+        "sha256": "bbc8c0854677d7d79389b6a8ab22c397fb9a8f68807abe3286065e89da4885c5",
+        "sensitiveSurface": false,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "pyproject.toml",
+        "exists": true,
+        "bytes": 6215,
+        "sha256": "e8ff1f1c04f626131520349e84596d653d31e1ca61bde0de3fd5b04abe108be8",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "cli.py",
+        "exists": true,
+        "bytes": 511182,
+        "sha256": "65cff960590d06a03cc68b12238a97306fb80b58750dbfcf3628b555db0c8561",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "run_agent.py",
+        "exists": true,
+        "bytes": 669995,
+        "sha256": "3afdf4929ed649a7719ec9b6839f88d01f25669424fdc3f993a6f1bd73c6cd04",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "hermes_state.py",
+        "exists": true,
+        "bytes": 70138,
+        "sha256": "17653bb5754d62bfa0348d53feccd715aff43f66e1b3dd65035ffbd22f351d52",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/transports/base.py",
+        "exists": true,
+        "bytes": 3113,
+        "sha256": "f7f7a819569d4bbaac4a47b8bb970eb175559b1c8a7a035b9414e549fa0d1bee",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/transports/chat_completions.py",
+        "exists": true,
+        "bytes": 16524,
+        "sha256": "37cd6aa4502e7e203eebf75541e534adc40a25e77bc906c66d96e3b61ded2e8c",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/transports/anthropic.py",
+        "exists": true,
+        "bytes": 6763,
+        "sha256": "10d8173cf290d3d7e6a7ec5fb572e83925d138c908682f6995ba7adcd43896b2",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/transports/codex.py",
+        "exists": true,
+        "bytes": 9407,
+        "sha256": "6a7de51c1b320105bcc33b55983af059c7ce87383071a6530f5535a2de399d7e",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/transports/bedrock.py",
+        "exists": true,
+        "bytes": 5613,
+        "sha256": "5068451f7b140b4e83014dfc578015e431e6b8db44ce13a0376db1cd2c45da3f",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/context_compressor.py",
+        "exists": true,
+        "bytes": 60845,
+        "sha256": "d14ff439bb77eb47057de71b8fe67a77d2f3c3c0f7177649bbd58febd5b021ea",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/memory_manager.py",
+        "exists": true,
+        "bytes": 16104,
+        "sha256": "f472b6c39aed429858160e7be1b95e2d66479fc9db066265bea900415abe2cb9",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/memory_provider.py",
+        "exists": true,
+        "bytes": 10426,
+        "sha256": "a9d2c776ce2a82c3e102090cb230a7ca208df404e717cb18fb42afbb2b332be6",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/shell_hooks.py",
+        "exists": true,
+        "bytes": 30222,
+        "sha256": "8ea00b580ccad1e822e44f267c066e535cfcb7142e0eedc0c0f8ca73116c2223",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "agent/skill_commands.py",
+        "exists": true,
+        "bytes": 14911,
+        "sha256": "091693002dc5fe3be48edf24619bdbc060edf0751376fe8d43b74a4370705374",
+        "sensitiveSurface": false,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "gateway/run.py",
+        "exists": true,
+        "bytes": 536505,
+        "sha256": "4072e4081869f2c8ebe96892a093fe2b8174baf870c48ca9a1164e45dd46370c",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "gateway/config.py",
+        "exists": true,
+        "bytes": 61969,
+        "sha256": "438f0af2705c0889dc9e7481d558c8e7433fccbb20114fed6bea8b300f0d3ce9",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "gateway/platforms/api_server.py",
+        "exists": true,
+        "bytes": 118474,
+        "sha256": "a6a8398c1d0acf97bf408732946761ef69059882d06d1001d4028afb14ab8aeb",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "cron/scheduler.py",
+        "exists": true,
+        "bytes": 54131,
+        "sha256": "1e7e8e27de0dd042dc626b9a91a1b067ac1ad287216b6cb4705db548565c822f",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "cron/jobs.py",
+        "exists": true,
+        "bytes": 30954,
+        "sha256": "80ddb37211cd6e0712dae3d444b5de3ad0f5e68717942a670f863795d62290d9",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "hermes_cli/plugins.py",
+        "exists": true,
+        "bytes": 47315,
+        "sha256": "95a72f0ae96e365ec9f4ea194b54f1d80697d298adad69a8f7efc1c86d92f593",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "tools/checkpoint_manager.py",
+        "exists": true,
+        "bytes": 25163,
+        "sha256": "2f2aed54be3bcb5c47120bc307399a8e7f7f218912b0e106fcad916121cb558d",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "tools/delegate_task.py",
+        "exists": false,
+        "bytes": 0,
+        "sha256": null,
+        "sensitiveSurface": false,
+        "persistedContent": "digest_and_capsule_summary_only"
+      },
+      {
+        "path": "skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "exists": true,
+        "bytes": 28723,
+        "sha256": "6434472259d6d678a2200413acd785067298e4b6476cdd2bd2d8969f3692ffd2",
+        "sensitiveSurface": true,
+        "persistedContent": "digest_and_capsule_summary_only"
+      }
+    ],
+    "counts": {
+      "sourceEntries": 26,
+      "present": 25,
+      "sensitiveSurfaces": 23
+    },
+    "digest": "9277ba7a493010f3242199ddd3012afafca2ce8fecdb6f925333fefbbd77eb6b"
+  },
+  "architecture": {
+    "id": "original-hermes-agent-architecture-capsules",
+    "generatedAt": "2026-04-25T02:53:10.203Z",
+    "upstreamHead": "2182de55bb7734b804abd3403570ec45428feece",
+    "capsules": [
+      {
+        "id": "self_improving_learning_loop",
+        "lane": "memory_skills",
+        "source": "README.md",
+        "essence": "Creates skills from experience, improves skills during use, nudges memory persistence, searches prior sessions, and builds long-lived user context.",
+        "asolariaFit": "Map to BEHCS mistake-ledger, reverse-gain promotion, Atlas Store, and supervisor-created skill contracts.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": "700e2392191eefa61dd36e2e6d90f61c8c1864115893a10abaa82acc1856cd5b",
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "memory_skills",
+          "self_improving_learning_loop"
+        ]
+      },
+      {
+        "id": "sqlite_wal_session_memory",
+        "lane": "memory_ledger",
+        "source": "hermes_state.py",
+        "essence": "Thread-safe SQLite state with WAL, checkpoints, session lineage, child sessions, usage, memories, and startup VACUUM/prune.",
+        "asolariaFit": "Use as design input for Asolaria memoryStore/taskLedgerStore/mistakeLedgerStore WAL-backed evolution.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": "17653bb5754d62bfa0348d53feccd715aff43f66e1b3dd65035ffbd22f351d52",
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "memory_ledger",
+          "sqlite_wal_session_memory"
+        ]
+      },
+      {
+        "id": "transport_abc_provider_router",
+        "lane": "model_routing",
+        "source": "agent/transports/",
+        "essence": "Provider-specific HTTP/API conversion moved behind transport classes: Anthropic, chat completions, Responses/Codex, Bedrock.",
+        "asolariaFit": "Map into brainPolicy/workerRouter as pluggable cognitive-engine transport contracts.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": "f7f7a819569d4bbaac4a47b8bb970eb175559b1c8a7a035b9414e549fa0d1bee",
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "model_routing",
+          "transport_abc_provider_router"
+        ]
+      },
+      {
+        "id": "plugin_hook_surface",
+        "lane": "plugins_hooks",
+        "source": "hermes_cli/plugins.py + agent/shell_hooks.py",
+        "essence": "Plugins and shell hooks can register commands, dispatch tools, block tool calls, transform tool results, and alter terminal output.",
+        "asolariaFit": "Map to GAC-governed connector hooks with fail-closed pre-tool policy and audit logging.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": "95a72f0ae96e365ec9f4ea194b54f1d80697d298adad69a8f7efc1c86d92f593",
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "plugins_hooks",
+          "plugin_hook_surface"
+        ]
+      },
+      {
+        "id": "gateway_multi_platform",
+        "lane": "gateway",
+        "source": "gateway/",
+        "essence": "Unified gateway for Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Email, SMS, Feishu, WeCom, QQBot, webhooks, and more.",
+        "asolariaFit": "Crosswalk to Asolaria connectors and mobile/guardian surfaces with platform-specific session keys.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": "4072e4081869f2c8ebe96892a093fe2b8174baf870c48ca9a1164e45dd46370c",
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "gateway",
+          "gateway_multi_platform"
+        ]
+      },
+      {
+        "id": "cron_scheduler",
+        "lane": "scheduler",
+        "source": "cron/",
+        "essence": "Natural-language scheduled jobs with platform delivery, skills, pause/resume/run/remove flows.",
+        "asolariaFit": "Map to OmniScheduler and taskLedgerStore, gated by Law001 and resource-budget guard.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": "1e7e8e27de0dd042dc626b9a91a1b067ac1ad287216b6cb4705db548565c822f",
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "scheduler",
+          "cron_scheduler"
+        ]
+      },
+      {
+        "id": "checkpoint_rollback",
+        "lane": "filesystem_safety",
+        "source": "tools/checkpoint_manager.py + cli.py",
+        "essence": "Filesystem checkpoints and rollback surfaces before destructive operations.",
+        "asolariaFit": "Bind to C-drive pressure guard, Brown-Hilbert file identity, and pre-mutation approval snapshots.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": "2f2aed54be3bcb5c47120bc307399a8e7f7f218912b0e106fcad916121cb558d",
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "filesystem_safety",
+          "checkpoint_rollback"
+        ]
+      },
+      {
+        "id": "delegate_orchestrator_subagents",
+        "lane": "omnispindle",
+        "source": "tools/delegate_task.py + RELEASE_v0.11.0.md",
+        "essence": "Subagents can run as orchestrators with configurable spawn depth and file coordination.",
+        "asolariaFit": "Map to Omnispindle/Omniflywheel coupled workers with supervisor fanout limits.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": null,
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "omnispindle",
+          "delegate_orchestrator_subagents"
+        ]
+      },
+      {
+        "id": "ink_tui_jsonrpc",
+        "lane": "operator_interface",
+        "source": "ui-tui/ + tui_gateway/",
+        "essence": "React/Ink TUI backed by Python JSON-RPC, streaming status, slash completion, picker, and subagent observability.",
+        "asolariaFit": "Design input for Asolaria worker-runtime/graph-runtime frontends and terminal dashboards.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": null,
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "operator_interface",
+          "ink_tui_jsonrpc"
+        ]
+      },
+      {
+        "id": "release_v011_security_hardening",
+        "lane": "security",
+        "source": "RELEASE_v0.11.0.md + SECURITY.md",
+        "essence": "Security hardening spans API auth, path traversal, sandbox writes, SSRF, webhook signature validation, OAuth lifecycle, and interrupt scoping.",
+        "asolariaFit": "Map directly to GAC, riskEngine, gateway/toolAuthority, and hookwall hardening lanes.",
+        "generatedAt": "2026-04-25T02:53:10.203Z",
+        "sourceSha256": "d16b682b558cadeba8134009161b5a27e854dc359e1ac6468d0c7ffe8304d980",
+        "cubeCoordinates": [
+          "original_hermes_agent",
+          "security",
+          "release_v011_security_hardening"
+        ]
+      }
+    ],
+    "digest": "19ef8c7462f1bff42b1f9178db1bba24d16afbfae0d049bc3ca6ea9e856c594b"
+  },
+  "risks": [
+    {
+      "id": "native_windows_not_supported",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "severity": "HARD",
+      "lane": "runtime",
+      "evidence": "README states Windows native is not supported and recommends WSL2.",
+      "action": "DO_NOT_INSTALL_NATIVE_WINDOWS; STAGE_AS_CONTRACT_OR_WSL_ONLY"
+    },
+    {
+      "id": "provider_secret_surface",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "severity": "CRITICAL",
+      "lane": "secrets",
+      "evidence": "23 inspected source files mention credential/token/OAuth surfaces.",
+      "action": "NO_SECRET_IMPORT; MAP_CONFIG_CONTRACTS_ONLY"
+    },
+    {
+      "id": "shell_hooks_can_execute_code",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "severity": "CRITICAL",
+      "lane": "plugins_hooks",
+      "evidence": "Hermes plugin/shell hook surface can block, dispatch, transform, and execute lifecycle hooks.",
+      "action": "REQUIRE_GAC_PRE_TOOL_AND_AUDIT_BEFORE_ANY_HOOK_BRIDGE"
+    },
+    {
+      "id": "gateway_platform_sprawl",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "severity": "HIGH",
+      "lane": "gateway",
+      "evidence": "17 messaging platforms plus webhooks and API server imply broad credential and inbound-event surface.",
+      "action": "CONNECTOR_BY_CONNECTOR_QUARANTINE; NO_BULK_GATEWAY_ENABLE"
+    },
+    {
+      "id": "optional_dependency_explosion",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "severity": "HIGH",
+      "lane": "dependency",
+      "evidence": "pyproject includes large optional extras: all, messaging, voice, web, rl, matrix, bedrock, termux.",
+      "action": "NO_PIP_ALL_ON_C; USE_MANIFEST_AND_SELECTIVE_WSL_INSTALL_ONLY"
+    },
+    {
+      "id": "remote_memory_provider_exfiltration",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "severity": "HIGH",
+      "lane": "memory",
+      "evidence": "Honcho and provider/router surfaces can transmit conversation or memory data when configured.",
+      "action": "LOCAL_MEMORY_DEFAULT; EXPLICIT_OPERATOR_APPROVAL_FOR_REMOTE_MEMORY"
+    },
+    {
+      "id": "subagent_file_coordination_conflict",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "severity": "MEDIUM",
+      "lane": "omnispindle",
+      "evidence": "v0.11 adds orchestrator subagents and concurrent filesystem coordination.",
+      "action": "MAP_TO_OMNIFLYWHEEL_COUPLING_GATES_BEFORE_USE"
+    }
+  ],
+  "queue": [
+    {
+      "id": "hermes_learning_loop_to_reverse_gain",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P0",
+      "lane": "memory_skills",
+      "action": "Map Hermes self-improving skill loop into BEHCS mistake ledger, reverse-gain sieve, and Atlas Store.",
+      "status": "queued_requires_supervisor",
+      "supervisor": "original_hermes_memory_skills_supervisor",
+      "capsuleIds": [
+        "self_improving_learning_loop",
+        "sqlite_wal_session_memory",
+        "transport_abc_provider_router",
+        "plugin_hook_surface"
+      ],
+      "riskIds": [
+        "native_windows_not_supported",
+        "provider_secret_surface",
+        "shell_hooks_can_execute_code",
+        "gateway_platform_sprawl"
+      ],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "memory_skills",
+        "1"
+      ]
+    },
+    {
+      "id": "hermes_wal_state_contract",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P0",
+      "lane": "memory_ledger",
+      "action": "Extract SQLite WAL/session lineage ideas into Asolaria memory/task/mistake store migration contract.",
+      "status": "queued_requires_supervisor",
+      "supervisor": "original_hermes_memory_ledger_supervisor",
+      "capsuleIds": [
+        "self_improving_learning_loop",
+        "sqlite_wal_session_memory",
+        "transport_abc_provider_router",
+        "plugin_hook_surface"
+      ],
+      "riskIds": [
+        "native_windows_not_supported",
+        "provider_secret_surface",
+        "shell_hooks_can_execute_code",
+        "gateway_platform_sprawl"
+      ],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "memory_ledger",
+        "2"
+      ]
+    },
+    {
+      "id": "hermes_transport_router_adapter",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P0",
+      "lane": "model_routing",
+      "action": "Bind transport ABC patterns into brainPolicy/workerRouter/cognitive engine backend registry.",
+      "status": "queued_requires_supervisor",
+      "supervisor": "original_hermes_model_routing_supervisor",
+      "capsuleIds": [
+        "self_improving_learning_loop",
+        "sqlite_wal_session_memory",
+        "transport_abc_provider_router",
+        "plugin_hook_surface"
+      ],
+      "riskIds": [
+        "native_windows_not_supported",
+        "provider_secret_surface",
+        "shell_hooks_can_execute_code",
+        "gateway_platform_sprawl"
+      ],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "model_routing",
+        "3"
+      ]
+    },
+    {
+      "id": "hermes_plugin_hook_gac_gate",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P0",
+      "lane": "plugins_hooks",
+      "action": "Create a GAC pre-tool/post-tool hook contract before any Hermes plugin or shell hook bridge.",
+      "status": "queued_requires_supervisor",
+      "supervisor": "original_hermes_plugins_hooks_supervisor",
+      "capsuleIds": [
+        "self_improving_learning_loop",
+        "sqlite_wal_session_memory",
+        "transport_abc_provider_router",
+        "plugin_hook_surface"
+      ],
+      "riskIds": [
+        "native_windows_not_supported",
+        "provider_secret_surface",
+        "shell_hooks_can_execute_code",
+        "gateway_platform_sprawl"
+      ],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "plugins_hooks",
+        "4"
+      ]
+    },
+    {
+      "id": "hermes_gateway_connector_crosswalk",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P1",
+      "lane": "gateway",
+      "action": "Crosswalk 17 Hermes gateway platforms to Asolaria connector inventory one by one.",
+      "status": "queued",
+      "supervisor": "original_hermes_gateway_supervisor",
+      "capsuleIds": [
+        "gateway_multi_platform"
+      ],
+      "riskIds": [
+        "gateway_platform_sprawl"
+      ],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "gateway",
+        "5"
+      ]
+    },
+    {
+      "id": "hermes_cron_to_omnischeduler",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P1",
+      "lane": "scheduler",
+      "action": "Map Hermes cron scheduler to OmniScheduler with pause/resume/run/remove and skills support.",
+      "status": "queued",
+      "supervisor": "original_hermes_scheduler_supervisor",
+      "capsuleIds": [
+        "cron_scheduler"
+      ],
+      "riskIds": [],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "scheduler",
+        "6"
+      ]
+    },
+    {
+      "id": "hermes_checkpoint_to_brown_hilbert_snapshots",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P1",
+      "lane": "filesystem_safety",
+      "action": "Map checkpoint/rollback behavior to Brown-Hilbert file identity and C-drive pressure guard.",
+      "status": "queued",
+      "supervisor": "original_hermes_filesystem_safety_supervisor",
+      "capsuleIds": [
+        "checkpoint_rollback"
+      ],
+      "riskIds": [],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "filesystem_safety",
+        "7"
+      ]
+    },
+    {
+      "id": "hermes_delegate_to_omnispindle_supervisors",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P1",
+      "lane": "omnispindle",
+      "action": "Map orchestrator subagents and spawn depth to Omnispindle supervisors and coupling gates.",
+      "status": "queued",
+      "supervisor": "original_hermes_omnispindle_supervisor",
+      "capsuleIds": [
+        "delegate_orchestrator_subagents"
+      ],
+      "riskIds": [
+        "subagent_file_coordination_conflict"
+      ],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "omnispindle",
+        "8"
+      ]
+    },
+    {
+      "id": "hermes_tui_dashboard_operator_surface",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P2",
+      "lane": "operator_interface",
+      "action": "Use Ink TUI/dashboard concepts for Asolaria graph runtime and worker runtime panels.",
+      "status": "queued",
+      "supervisor": "original_hermes_operator_interface_supervisor",
+      "capsuleIds": [
+        "ink_tui_jsonrpc"
+      ],
+      "riskIds": [],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "operator_interface",
+        "9"
+      ]
+    },
+    {
+      "id": "hermes_security_hardening_backport",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "priority": "P0",
+      "lane": "security",
+      "action": "Backport security hardening ideas into GAC, riskEngine, gateway authority, hookwall, and audit logs.",
+      "status": "queued_requires_supervisor",
+      "supervisor": "original_hermes_security_supervisor",
+      "capsuleIds": [
+        "self_improving_learning_loop",
+        "sqlite_wal_session_memory",
+        "transport_abc_provider_router",
+        "plugin_hook_surface"
+      ],
+      "riskIds": [
+        "native_windows_not_supported",
+        "provider_secret_surface",
+        "shell_hooks_can_execute_code",
+        "gateway_platform_sprawl"
+      ],
+      "cubeCoordinates": [
+        "original_hermes_agent",
+        "implementation_queue",
+        "security",
+        "10"
+      ]
+    }
+  ],
+  "supervisors": [
+    {
+      "id": "original_hermes_agent_supervisor_of_supervisors",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "upstream_absorption_root",
+      "scope": "Original NousResearch Hermes Agent v0.11.0 architecture absorption into BEHCS-256.",
+      "gates": [
+        "source_digest",
+        "license",
+        "gac",
+        "shannon",
+        "gnn",
+        "reverse_gain",
+        "no_native_windows_install",
+        "no_secret_import"
+      ]
+    },
+    {
+      "id": "original_hermes_memory_skills_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "memory_skills",
+      "ordinal": 1,
+      "queueItems": [
+        "hermes_learning_loop_to_reverse_gain"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    },
+    {
+      "id": "original_hermes_memory_ledger_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "memory_ledger",
+      "ordinal": 2,
+      "queueItems": [
+        "hermes_wal_state_contract"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    },
+    {
+      "id": "original_hermes_model_routing_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "model_routing",
+      "ordinal": 3,
+      "queueItems": [
+        "hermes_transport_router_adapter"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    },
+    {
+      "id": "original_hermes_plugins_hooks_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "plugins_hooks",
+      "ordinal": 4,
+      "queueItems": [
+        "hermes_plugin_hook_gac_gate"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    },
+    {
+      "id": "original_hermes_gateway_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "gateway",
+      "ordinal": 5,
+      "queueItems": [
+        "hermes_gateway_connector_crosswalk"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    },
+    {
+      "id": "original_hermes_scheduler_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "scheduler",
+      "ordinal": 6,
+      "queueItems": [
+        "hermes_cron_to_omnischeduler"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    },
+    {
+      "id": "original_hermes_filesystem_safety_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "filesystem_safety",
+      "ordinal": 7,
+      "queueItems": [
+        "hermes_checkpoint_to_brown_hilbert_snapshots"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    },
+    {
+      "id": "original_hermes_omnispindle_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "omnispindle",
+      "ordinal": 8,
+      "queueItems": [
+        "hermes_delegate_to_omnispindle_supervisors"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    },
+    {
+      "id": "original_hermes_operator_interface_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "operator_interface",
+      "ordinal": 9,
+      "queueItems": [
+        "hermes_tui_dashboard_operator_surface"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    },
+    {
+      "id": "original_hermes_security_supervisor",
+      "generatedAt": "2026-04-25T02:53:10.203Z",
+      "role": "lane_supervisor",
+      "lane": "security",
+      "ordinal": 10,
+      "queueItems": [
+        "hermes_security_hardening_backport"
+      ],
+      "gates": [
+        "capsule_digest",
+        "risk_register",
+        "bounded_gulp_proof",
+        "manual_enable_before_runtime"
+      ]
+    }
+  ],
+  "map": {
+    "id": "original-hermes-agent-map",
+    "generatedAt": "2026-04-25T02:53:10.203Z",
+    "nodes": [
+      {
+        "id": "upstream_repo",
+        "type": "source",
+        "label": "https://github.com/NousResearch/hermes-agent.git",
+        "digest": "2182de55bb7734b804abd3403570ec45428feece"
+      },
+      {
+        "id": "release_v011",
+        "type": "release",
+        "label": "Hermes Agent v0.11.0 (v2026.4.23)",
+        "digest": "d16b682b558cadeba8134009161b5a27e854dc359e1ac6468d0c7ffe8304d980"
+      },
+      {
+        "id": "architecture_capsules",
+        "type": "capsule",
+        "label": "Original Hermes architecture capsules",
+        "count": 10
+      },
+      {
+        "id": "risk_register",
+        "type": "risk",
+        "label": "Risk register",
+        "count": 7
+      },
+      {
+        "id": "implementation_queue",
+        "type": "queue",
+        "label": "Integration queue",
+        "count": 10
+      },
+      {
+        "id": "supervisors",
+        "type": "supervisor",
+        "label": "Supervisors",
+        "count": 11
+      },
+      {
+        "id": "real_gulp_proof",
+        "type": "proof",
+        "label": "BEHCS Gulp proof slice"
+      },
+      {
+        "id": "self_improving_learning_loop",
+        "type": "capsule",
+        "label": "memory_skills"
+      },
+      {
+        "id": "sqlite_wal_session_memory",
+        "type": "capsule",
+        "label": "memory_ledger"
+      },
+      {
+        "id": "transport_abc_provider_router",
+        "type": "capsule",
+        "label": "model_routing"
+      },
+      {
+        "id": "plugin_hook_surface",
+        "type": "capsule",
+        "label": "plugins_hooks"
+      },
+      {
+        "id": "gateway_multi_platform",
+        "type": "capsule",
+        "label": "gateway"
+      },
+      {
+        "id": "cron_scheduler",
+        "type": "capsule",
+        "label": "scheduler"
+      },
+      {
+        "id": "checkpoint_rollback",
+        "type": "capsule",
+        "label": "filesystem_safety"
+      },
+      {
+        "id": "delegate_orchestrator_subagents",
+        "type": "capsule",
+        "label": "omnispindle"
+      },
+      {
+        "id": "ink_tui_jsonrpc",
+        "type": "capsule",
+        "label": "operator_interface"
+      },
+      {
+        "id": "release_v011_security_hardening",
+        "type": "capsule",
+        "label": "security"
+      }
+    ],
+    "edges": [
+      {
+        "from": "upstream_repo",
+        "to": "release_v011",
+        "relation": "contains"
+      },
+      {
+        "from": "release_v011",
+        "to": "architecture_capsules",
+        "relation": "summarizes"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "implementation_queue",
+        "relation": "feeds"
+      },
+      {
+        "from": "risk_register",
+        "to": "implementation_queue",
+        "relation": "gates"
+      },
+      {
+        "from": "implementation_queue",
+        "to": "supervisors",
+        "relation": "assigned_to"
+      },
+      {
+        "from": "supervisors",
+        "to": "real_gulp_proof",
+        "relation": "proves"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "self_improving_learning_loop",
+        "relation": "contains"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "sqlite_wal_session_memory",
+        "relation": "contains"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "transport_abc_provider_router",
+        "relation": "contains"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "plugin_hook_surface",
+        "relation": "contains"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "gateway_multi_platform",
+        "relation": "contains"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "cron_scheduler",
+        "relation": "contains"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "checkpoint_rollback",
+        "relation": "contains"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "delegate_orchestrator_subagents",
+        "relation": "contains"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "ink_tui_jsonrpc",
+        "relation": "contains"
+      },
+      {
+        "from": "architecture_capsules",
+        "to": "release_v011_security_hardening",
+        "relation": "contains"
+      }
+    ],
+    "counts": {
+      "nodes": 17,
+      "edges": 16
+    },
+    "digest": "b96652b8cf0d466752d9b5b6a1cda192721d0c253e64bab98ffed0569e4e7b6a"
+  },
+  "shards": [
+    {
+      "shard": 0,
+      "queueItem": "hermes_learning_loop_to_reverse_gain",
+      "lane": "memory_skills",
+      "logicalRange": "1..1000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "a7cde3a261d0b6a53f441ec277568fc481081432e22bee05038ca1138aaa3869"
+    },
+    {
+      "shard": 1,
+      "queueItem": "hermes_wal_state_contract",
+      "lane": "memory_ledger",
+      "logicalRange": "1000000001..2000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "1a162187a202bfb349cd9fb367c7f9d1fdf0ff651e853565b3a1fa7d8ed832bf"
+    },
+    {
+      "shard": 2,
+      "queueItem": "hermes_transport_router_adapter",
+      "lane": "model_routing",
+      "logicalRange": "2000000001..3000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "b7eb785dccceda734ed92ac561be3db1f933d908e7e32a672673afccf2daaaa4"
+    },
+    {
+      "shard": 3,
+      "queueItem": "hermes_plugin_hook_gac_gate",
+      "lane": "plugins_hooks",
+      "logicalRange": "3000000001..4000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "6d0ba2a87741efd4d3126e011f120c3e8798fd107877109f0a1248b5041bda18"
+    },
+    {
+      "shard": 4,
+      "queueItem": "hermes_gateway_connector_crosswalk",
+      "lane": "gateway",
+      "logicalRange": "4000000001..5000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "05d56ef887aa66e9af8e8b90a17a9d4ae24805b942c3482c249c7ea63a560085"
+    },
+    {
+      "shard": 5,
+      "queueItem": "hermes_cron_to_omnischeduler",
+      "lane": "scheduler",
+      "logicalRange": "5000000001..6000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "0c7c629382b2e88f1f29440fdb1c6c313b7a77e9cbf4d8b4e6396912674afda8"
+    },
+    {
+      "shard": 6,
+      "queueItem": "hermes_checkpoint_to_brown_hilbert_snapshots",
+      "lane": "filesystem_safety",
+      "logicalRange": "6000000001..7000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "6901fe061b2fabddf609995160000f6929c7d1873316ef5f84e2661587538347"
+    },
+    {
+      "shard": 7,
+      "queueItem": "hermes_delegate_to_omnispindle_supervisors",
+      "lane": "omnispindle",
+      "logicalRange": "7000000001..8000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "69cb9588211290c36d7c51f036a327b31db1fbbc14cdcb89394c716b62b27697"
+    },
+    {
+      "shard": 8,
+      "queueItem": "hermes_tui_dashboard_operator_surface",
+      "lane": "operator_interface",
+      "logicalRange": "8000000001..9000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "0b7a2e3b67ea35f93646d98aea25d3fe6529891719c6422dd918de9b5bfd513d"
+    },
+    {
+      "shard": 9,
+      "queueItem": "hermes_security_hardening_backport",
+      "lane": "security",
+      "logicalRange": "9000000001..10000000000",
+      "logicalAgents": "1000000000",
+      "logicalGulpWindows": 500000,
+      "digest": "02e99c0a25d9e268265cf0142776c3fc79d84a2a27d2295068d6664dfbae77cf"
+    }
+  ],
+  "counts": {
+    "sourceEntries": 26,
+    "architectureCapsules": 10,
+    "risks": 7,
+    "criticalRisks": 2,
+    "queueItems": 10,
+    "supervisors": 11,
+    "shards": 10,
+    "proofMessages": 2000
+  },
+  "behcsGulp": {
+    "ok": true,
+    "gulpId": "gulp-2026-04-25T025316933Z-614002",
+    "reportPath": "C:\\Users\\acer\\Asolaria\\data\\behcs\\garbage-collector\\reports\\gulp-2026-04-25T025316933Z-614002.json",
+    "processedMessages": 2000,
+    "mistakesDetected": 0,
+    "activePatterns": 8,
+    "gnnEdges": 1,
+    "reason": "original_hermes_agent_upstream_compact_absorption",
+    "fileCap": {
+      "policyId": "behcs-file-cap.v1",
+      "scope": "BEHCS important-data, codex, cube, state, and garbage-collector surfaces on C:",
+      "mode": "fail_closed",
+      "reason": "original_hermes_agent_upstream_compact_absorption",
+      "status": "pass",
+      "trackedFiles": 598,
+      "projectedFiles": 602,
+      "plannedCreates": 4,
+      "maxTrackedFiles": 2000,
+      "warnAt": 1800,
+      "gcTriggerMessages": 2000,
+      "remaining": 1398,
+      "labels": {
+        "spec": "IX-700",
+        "dialect": "IX",
+        "hyperlanguage": "47D",
+        "wave": "cube_cube_cubed",
+        "room": "whiteroom",
+        "translation": "glyph",
+        "boundary": "boundary_typed",
+        "inferenceSurface": "gnn_local",
+        "chain": "ix-chain-fabricate",
+        "skillId": "behcs_file_cap",
+        "toolId": "behcs_file_cap",
+        "reason": "original_hermes_agent_upstream_compact_absorption",
+        "status": "pass",
+        "taskManager": "linked",
+        "taskPressure": "medium",
+        "processMode": "cautious",
+        "gcAction": "prepare_gc_window",
+        "explorationMode": "small_batches_with_checkpoints"
+      },
+      "language": {
+        "human": "File cap guard pass: 602/2000 tracked files after planned writes for original_hermes_agent_upstream_compact_absorption; remaining 1398.",
+        "agent": "(chief, guard.file_cap, omniverse.file_budget, 2, runtime, hookwall, completed, [count], cube_cube_cubed, IX, log, persistent, whiteroom, light)",
+        "device": "file_cap status=pass tracked=598 projected=602 max=2000 remaining=1398 reason=original_hermes_agent_upstream_compact_absorption",
+        "process": {
+          "human": "Task Manager linked: pressure medium (54.7), busiest Memory Compression:1073.2MB, advisory cautious/small_batches_with_checkpoints.",
+          "agent": "(chief, guard.process_truth, taskmanager.linked, pressure.medium, advise.cautious, gc.prepare_gc_window, glyph, cube_cube_cubed, log, persistent)",
+          "device": "task_manager linked=yes pressure=medium source=windows_get_process families=other:229|chrome:13|powershell:5|node:4|cmd:2|codex:1 advisory=cautious gc=prepare_gc_window"
+        }
+      },
+      "taskManager": {
+        "available": true,
+        "source": "windows_get_process",
+        "snapshotPath": "C:\\Users\\acer\\Asolaria\\data\\behcs\\resource-budget-snapshot.json",
+        "snapshotGeneratedAt": "2026-04-24T23:08:17.769Z",
+        "sampledAt": "2026-04-24T20:08:11.3369381-03:00",
+        "fresh": false,
+        "coverage": "full_named_families",
+        "pressureLevel": "medium",
+        "pressureScore": 54.7,
+        "dispatchReady": true,
+        "linkedDevices": 1,
+        "busiestProcess": {
+          "name": "Memory Compression",
+          "family": "memory compression",
+          "pid": 3188,
+          "workingSetMb": 1073.2
+        },
+        "managedFamilies": {
+          "codex": 1,
+          "node": 4,
+          "powershell": 5,
+          "cmd": 2,
+          "chrome": 13,
+          "mongod": 1,
+          "adb": 1,
+          "python": 1,
+          "explorer": 1,
+          "other": 229
+        },
+        "namedFamilyTotal": 258
+      },
+      "processAware": true,
+      "advisoryMode": "cautious",
+      "explorationAdvisory": {
+        "mode": "small_batches_with_checkpoints",
+        "recommendedCreates": 12,
+        "checkpointEvery": 6,
+        "useProcessTruth": true
+      },
+      "gcAdvisory": {
+        "action": "prepare_gc_window",
+        "trigger": false,
+        "reason": "medium_process_pressure"
+      },
+      "surfaces": [
+        {
+          "id": "behcs_index",
+          "label": "BEHCS Index",
+          "relativePath": "data/behcs/index",
+          "fileCount": 16
+        },
+        {
+          "id": "behcs_codex",
+          "label": "BEHCS Codex",
+          "relativePath": "data/behcs/codex",
+          "fileCount": 25
+        },
+        {
+          "id": "behcs_cubes",
+          "label": "BEHCS Cubes",
+          "relativePath": "data/behcs/cubes",
+          "fileCount": 189
+        },
+        {
+          "id": "ix_codex",
+          "label": "IX Codex",
+          "relativePath": "data/behcs/sovereignty/ix/codex",
+          "fileCount": 10
+        },
+        {
+          "id": "ix_cubes",
+          "label": "IX Cubes",
+          "relativePath": "data/behcs/sovereignty/ix/cubes",
+          "fileCount": 144
+        },
+        {
+          "id": "behcs_state",
+          "label": "BEHCS State",
+          "relativePath": "data/behcs/state",
+          "fileCount": 73
+        },
+        {
+          "id": "ix_state",
+          "label": "IX State",
+          "relativePath": "data/behcs/sovereignty/ix/state",
+          "fileCount": 18
+        },
+        {
+          "id": "behcs_gc",
+          "label": "BEHCS Garbage Collector",
+          "relativePath": "data/behcs/garbage-collector",
+          "fileCount": 123
+        }
+      ]
+    },
+    "bulkProofRetainedAfterAppend": 2500,
+    "bulkProofLinesWritten": 2000
+  },
+  "digest": "0f7aaedca2db527642fdfe6530126aa0014d5861cfb4dda6d6a93042eb451ff3"
+}

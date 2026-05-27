@@ -4,6 +4,7 @@ const { resolveDataPath } = require("../runtimePaths");
 const { resolveToolPaths } = require("./systemPaths");
 const { runCodex } = require("./codexConnector");
 const { runAnthropicCli } = require("./anthropicCliConnector");
+const { runOpenCode, isShelllessOpenCodeExecutable } = require("./opencodeConnector");
 const {
   getAbacusIntegrationStatus,
   getAbacusOperatingStrategy,
@@ -22,10 +23,11 @@ const {
 } = require("../taskLedgerStore");
 const { appendGraphEvent, appendActionManifest } = require("../graphRuntimeStore");
 const { getProjectById } = require("../projectStore");
+const { getIxSelfBuildControllerPacket } = require("../ixFabricAtlasStore");
 
 const ROUTER_ROOT = resolveDataPath("integrations", "worker-router");
 const ROUTER_DISPATCH_ROOT = path.join(ROUTER_ROOT, "dispatches");
-const WORKER_IDS = ["local_codex", "claude_max", "abacus", "symphony"];
+const WORKER_IDS = ["opencode", "local_codex", "claude_max", "abacus", "symphony"];
 const TASK_TYPES = new Set([
   "quick_chore",
   "patch",
@@ -37,6 +39,28 @@ const TASK_TYPES = new Set([
 ]);
 const SENSITIVITY_LEVELS = new Set(["public", "sanitized", "internal", "privileged", "owner_plane"]);
 const SIZE_LEVELS = new Set(["small", "medium", "large"]);
+const EXTERNAL_WORKER_IDS = new Set(["abacus", "claude_max", "symphony"]);
+function isOpenCodeDirectEnabled(toolPaths = resolveToolPaths()) {
+  return (
+    process.env.ASOLARIA_OPENCODE_DIRECT_ENABLED === "1"
+    && isShelllessOpenCodeExecutable(toolPaths.opencodePath)
+  );
+}
+const SELF_BUILD_HINTS = Object.freeze([
+  "self-build",
+  "self build",
+  "build itself",
+  "master os",
+  "system build",
+  "fabric",
+  "omnispindle",
+  "map map map",
+  "cube cube cube",
+  "glyph",
+  "falcon",
+  "behcs",
+  "hyperlanguage"
+]);
 
 function cleanText(value) {
   return String(value || "").replace(/\r/g, "").trim();
@@ -76,6 +100,7 @@ function normalizeWorkerId(value) {
   const normalized = cleanText(value).toLowerCase().replace(/[\s-]+/g, "_");
   if (normalized === "codex" || normalized === "local_codex") return "local_codex";
   if (normalized === "claude" || normalized === "anthropic" || normalized === "claude_max") return "claude_max";
+  if (normalized === "opencode" || normalized === "open_code" || normalized === "open_code_cli" || normalized === "open code") return "opencode";
   return WORKER_IDS.includes(normalized) ? normalized : "";
 }
 
@@ -98,6 +123,136 @@ function normalizeTimeoutMs(value, fallback = 240000, min = 15000, max = 1800000
     return fallback;
   }
   return Math.max(min, Math.min(max, Math.round(numeric)));
+}
+
+function normalizeGuardGate(value) {
+  const normalized = cleanText(value).toLowerCase();
+  if (normalized === "pass") return "pass";
+  if (normalized === "warn") return "warn";
+  if (normalized === "deny") return "deny";
+  return "hold";
+}
+
+function inferSelfBuildIntent(normalizedInput = {}) {
+  const haystack = [
+    normalizedInput.title,
+    normalizedInput.objective,
+    normalizedInput.instructions,
+    ...(Array.isArray(normalizedInput.expectedArtifacts) ? normalizedInput.expectedArtifacts : [])
+  ].join("\n").toLowerCase();
+  const keywordHits = SELF_BUILD_HINTS.filter((token) => haystack.includes(token));
+  const orchestrationShape = normalizedInput.taskType === "orchestration";
+  const isSelfBuild = orchestrationShape || keywordHits.length > 0;
+  return {
+    isSelfBuild,
+    shape: orchestrationShape ? "orchestration" : (keywordHits.length > 0 ? "self_build" : "general"),
+    keywordHits: keywordHits.slice(0, 8)
+  };
+}
+
+function getWorkerRouterSelfBuildPosture() {
+  const fallbackLabels = {
+    spec: "IX-712",
+    dialect: "IX",
+    hyperlanguage: "47D",
+    wave: "cube_cube_cubed",
+    room: "whiteroom",
+    translation: "glyph",
+    boundary: "boundary_typed",
+    chain: "worker-router-self-build",
+    status: "hold"
+  };
+  try {
+    const packet = getIxSelfBuildControllerPacket({ taskLimit: 6 });
+    const guardGate = normalizeGuardGate(packet?.guardPosture?.gateStatus);
+    const controllerStatus = cleanText(packet?.controllerStatus || "unknown").toLowerCase() || "unknown";
+    const activeLaneId = cleanText(packet?.activeLane?.id);
+    const nextLaneId = cleanText(packet?.nextQueueReadyLane?.id);
+    const activeLaneIds = activeLaneId ? [activeLaneId] : [];
+    const queueReadyLaneIds = nextLaneId ? [nextLaneId] : [];
+    const labels = {
+      spec: cleanText(packet?.labels?.spec || fallbackLabels.spec) || fallbackLabels.spec,
+      dialect: cleanText(packet?.labels?.dialect || fallbackLabels.dialect) || fallbackLabels.dialect,
+      hyperlanguage: cleanText(packet?.labels?.hyperlanguage || fallbackLabels.hyperlanguage) || fallbackLabels.hyperlanguage,
+      wave: cleanText(packet?.labels?.wave || fallbackLabels.wave) || fallbackLabels.wave,
+      room: cleanText(packet?.labels?.room || fallbackLabels.room) || fallbackLabels.room,
+      translation: cleanText(packet?.labels?.translation || fallbackLabels.translation) || fallbackLabels.translation,
+      boundary: cleanText(packet?.labels?.boundary || fallbackLabels.boundary) || fallbackLabels.boundary,
+      chain: cleanText(packet?.labels?.chain || fallbackLabels.chain) || fallbackLabels.chain,
+      status: guardGate
+    };
+    const issues = [];
+    if (!packet?.ok) {
+      issues.push("IX self-build controller packet is unavailable.");
+    }
+    if (guardGate === "hold" || guardGate === "deny") {
+      issues.push(`Controller guard gate is ${guardGate}; self-build dispatch should stay local and bounded.`);
+    }
+    return {
+      ok: Boolean(packet?.ok),
+      source: "ix_self_build_controller_packet",
+      generatedAt: nowIso(),
+      controller: {
+        status: controllerStatus,
+        activeLaneIds,
+        queueReadyLaneIds,
+        nextLaneId,
+        nextLaneStage: cleanText(packet?.nextQueueReadyLane?.nextStage || packet?.nextQueueReadyLane?.currentStage),
+        proofBudget: packet?.proofBudget || null
+      },
+      guards: {
+        gateStatus: guardGate,
+        guardCount: Number(packet?.guardPosture?.passCount || 0)
+          + Number(packet?.guardPosture?.warnCount || 0)
+          + Number(packet?.guardPosture?.holdCount || 0)
+          + Number(packet?.guardPosture?.denyCount || 0),
+        summary: {
+          gateStatus: guardGate,
+          passCount: Number(packet?.guardPosture?.passCount || 0),
+          warnCount: Number(packet?.guardPosture?.warnCount || 0),
+          holdCount: Number(packet?.guardPosture?.holdCount || 0),
+          denyCount: Number(packet?.guardPosture?.denyCount || 0)
+        }
+      },
+      labels,
+      language: {
+        human: cleanText(packet?.language?.human || `Self-build controller ${controllerStatus}; guard ${guardGate}; active lanes ${activeLaneIds.length}; queue-ready lanes ${queueReadyLaneIds.length}.`),
+        agent: cleanText(packet?.language?.agent || `(chief, worker.router.self_build, omniverse.fabric, 5, runtime, hookwall, ${guardGate === "pass" ? "completed" : "executing"}, [route], ${labels.wave}, ${labels.dialect}, log, persistent, ${labels.room}, light)`),
+        device: cleanText(packet?.language?.device || `worker_router_self_build status=${controllerStatus} gate=${guardGate} active_lanes=${activeLaneIds.length} queue_ready_lanes=${queueReadyLaneIds.length}`)
+      },
+      issues,
+      packetType: cleanText(packet?.packetType || "self_build_controller_packet.v1"),
+      recommendedTasks: Array.isArray(packet?.recommendedTasks) ? packet.recommendedTasks.slice(0, 6) : []
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      source: "ix_self_build_controller_packet",
+      generatedAt: nowIso(),
+      controller: {
+        status: "unknown",
+        activeLaneIds: [],
+        queueReadyLaneIds: [],
+        nextLaneId: "",
+        nextLaneStage: "",
+        proofBudget: null
+      },
+      guards: {
+        gateStatus: "hold",
+        guardCount: 0,
+        summary: {}
+      },
+      labels: fallbackLabels,
+      language: {
+        human: cleanText("Self-build controller truth unavailable; worker-router stays bounded and truthful."),
+        agent: cleanText("(chief, worker.router.self_build, omniverse.fabric, 5, runtime, hookwall, executing, [route], map_map_mapped, IX, log, persistent, whiteroom, light)"),
+        device: cleanText("worker_router_self_build status=unknown gate=hold")
+      },
+      packetType: "self_build_controller_packet.v1",
+      recommendedTasks: [],
+      issues: [clipText(error?.message || error, 220)]
+    };
+  }
 }
 
 function normalizeList(value, maxItems = 16) {
@@ -233,6 +388,37 @@ function buildLocalCodexProfile() {
   };
 }
 
+function buildOpenCodeProfile() {
+  const toolPaths = resolveToolPaths();
+  const available = Boolean(toolPaths.opencodePath);
+  const shellless = isShelllessOpenCodeExecutable(toolPaths.opencodePath);
+  const dispatchable = available && shellless && isOpenCodeDirectEnabled(toolPaths);
+  return {
+    id: "opencode",
+    title: "OpenCode Local",
+    available,
+    dispatchable,
+    directDispatchSupported: dispatchable,
+    shellless,
+    directGate: process.env.ASOLARIA_OPENCODE_DIRECT_ENABLED === "1" ? "enabled" : "disabled",
+    strengths: [
+      "Low-cost local worker lane for bounded chores, research packets, and orchestration prep.",
+      "Uses the locally installed OpenCode CLI without adding another long-lived server surface.",
+      "Good fit for fast local work that does not require owner-plane Codex authority."
+    ],
+    limitations: [
+      "Depends on the local OpenCode CLI and its configured provider credentials being healthy.",
+      "Direct execution is disabled unless ASOLARIA_OPENCODE_DIRECT_ENABLED=1 and the resolved path is shellless.",
+      "Not the default owner-plane mutation lane for privileged repo work.",
+      "Reply structure can vary by provider/model and is normalized from CLI output."
+    ],
+    mistakes: [
+      "Do not assume OpenCode is free just because it is local; it still consumes configured provider quota.",
+      "Do not route privileged or owner-plane writes here when Local Codex is the safer lane."
+    ]
+  };
+}
+
 function buildAbacusProfile() {
   const status = getAbacusIntegrationStatus();
   const strategy = getAbacusOperatingStrategy();
@@ -314,7 +500,7 @@ function buildSymphonyProfile() {
 }
 
 function getWorkerProfiles() {
-  return [buildLocalCodexProfile(), buildClaudeMaxProfile(), buildAbacusProfile(), buildSymphonyProfile()];
+  return [buildOpenCodeProfile(), buildLocalCodexProfile(), buildClaudeMaxProfile(), buildAbacusProfile(), buildSymphonyProfile()];
 }
 
 function getWorkerProfile(workerId) {
@@ -329,11 +515,24 @@ function getWorkerRouterStatus() {
   const geminiApi = getGeminiApiConfigSummary();
   const qddProject = getProjectById("qdd", { includeArchived: true });
   const toolPaths = resolveToolPaths();
+  const selfBuild = getWorkerRouterSelfBuildPosture();
+  const knownIssues = [
+    "OpenCode is a low-cost local lane, but it still depends on configured provider quota and credentials.",
+    "Claude Max is a review/advisory lane here, not the owner-plane write authority.",
+    "Symphony submission is now wired through Linear, but pickup still depends on Symphony's own project queue logic.",
+    "Abacus CLI is still limited here, so Abacus dispatch means packet handoff rather than fully headless autonomy.",
+    "Augment remains a read-only sidecar and Gemini API is a coordination surface, not a repo-write worker lane.",
+    "Direct local Codex execution can consume local quota and should be used deliberately."
+  ];
+  if (Array.isArray(selfBuild?.issues) && selfBuild.issues.length > 0) {
+    knownIssues.push(...selfBuild.issues.slice(0, 3));
+  }
   return {
     generatedAt: nowIso(),
     defaultWorker: "claude_max",
     workers,
     integrationSummary: {
+      openCodeAvailable: Boolean(toolPaths.opencodePath),
       localCodexAvailable: Boolean(toolPaths.codexPath),
       claudeMaxReady: Boolean(toolPaths.claudePath),
       abacusReady: Boolean(abacus?.capabilities?.browser?.ready || abacus?.surfaces?.desktop?.installed),
@@ -342,9 +541,17 @@ function getWorkerRouterStatus() {
       augmentContextReady: Boolean(augment?.configured),
       augmentContextMode: String(augment?.mode || ""),
       geminiApiConfigured: Boolean(geminiApi?.configured),
-      qddProjectRegistered: Boolean(qddProject && !qddProject.archived)
+      qddProjectRegistered: Boolean(qddProject && !qddProject.archived),
+      selfBuildControllerReady: Boolean(selfBuild?.ok),
+      selfBuildGuardGate: cleanText(selfBuild?.guards?.gateStatus || "hold")
     },
     coordinationSurfaces: [
+      {
+        id: "opencode",
+        role: "low_cost_local_worker",
+        ready: Boolean(toolPaths.opencodePath),
+        writeCapable: isOpenCodeDirectEnabled(toolPaths)
+      },
       {
         id: "claude_max",
         role: "review_lane",
@@ -368,15 +575,16 @@ function getWorkerRouterStatus() {
         role: "long_running_issue_lane",
         ready: Boolean(symphony?.configured),
         writeCapable: false
+      },
+      {
+        id: "self_build_controller",
+        role: "controller_guard_posture",
+        ready: Boolean(selfBuild?.ok),
+        writeCapable: false
       }
     ],
-    knownIssues: [
-      "Claude Max is a review/advisory lane here, not the owner-plane write authority.",
-      "Symphony submission is now wired through Linear, but pickup still depends on Symphony's own project queue logic.",
-      "Abacus CLI is still limited here, so Abacus dispatch means packet handoff rather than fully headless autonomy.",
-      "Augment remains a read-only sidecar and Gemini API is a coordination surface, not a repo-write worker lane.",
-      "Direct local Codex execution can consume local quota and should be used deliberately."
-    ]
+    selfBuild,
+    knownIssues
   };
 }
 
@@ -428,12 +636,21 @@ function normalizeRouterInput(input = {}) {
     instructions: clipText(input.instructions || "", 6000),
     expectedArtifacts: normalizeList(input.expectedArtifacts || input.artifacts, 16),
     presetId: cleanText(input.presetId || ""),
-    taskId: cleanText(input.taskId || "")
+    taskId: cleanText(input.taskId || ""),
+    model: cleanText(input.model || ""),
+    agent: cleanText(input.agent || ""),
+    variant: cleanText(input.variant || ""),
+    opencodeModel: cleanText(input.opencodeModel || ""),
+    opencodeAgent: cleanText(input.opencodeAgent || ""),
+    opencodeVariant: cleanText(input.opencodeVariant || "")
   };
 }
 
 function recommendWorker(input = {}) {
   const normalized = normalizeRouterInput(input);
+  const selfBuildIntent = inferSelfBuildIntent(normalized);
+  const selfBuildPosture = getWorkerRouterSelfBuildPosture();
+  const selfBuildGuardGate = normalizeGuardGate(selfBuildPosture?.guards?.gateStatus);
   const profiles = getWorkerProfiles();
   const byId = new Map(profiles.map((item) => [item.id, item]));
   const reasons = [];
@@ -448,6 +665,15 @@ function recommendWorker(input = {}) {
     recommendedWorkerId = "local_codex";
     fallbackWorkerId = byId.get("abacus")?.dispatchable ? "abacus" : "symphony";
     reasons.push("Privileged or owner-plane work should stay on the highest-trust local lane.");
+  } else if (
+    !normalized.requiresRepoWrite
+    && (normalized.taskType === "quick_chore" || normalized.taskType === "research" || normalized.taskType === "orchestration")
+    && byId.get("opencode")?.dispatchable
+    && !normalized.needsCloudWorker
+  ) {
+    recommendedWorkerId = "opencode";
+    fallbackWorkerId = byId.get("local_codex")?.dispatchable ? "local_codex" : "abacus";
+    reasons.push("Bounded local work should prefer the low-cost OpenCode lane before consuming higher-trust Codex capacity.");
   } else if (normalized.taskType === "review" && byId.get("claude_max")?.dispatchable) {
     recommendedWorkerId = "claude_max";
     fallbackWorkerId = "local_codex";
@@ -478,6 +704,52 @@ function recommendWorker(input = {}) {
   if (normalized.size === "large" && recommendedWorkerId === "local_codex" && byId.get("abacus")?.dispatchable) {
     warnings.push("Large tasks on local Codex can take longer; consider Abacus for bounded sanitized subtasks.");
   }
+  if (normalized.size === "large" && recommendedWorkerId === "opencode") {
+    warnings.push("Large tasks on OpenCode can still burn provider quota; move up to Local Codex if the lane stalls or the task becomes write-heavy.");
+  }
+
+  const selfBuildPolicy = {
+    mode: selfBuildIntent.isSelfBuild ? "self_build_guarded" : "standard",
+    guardGate: selfBuildGuardGate,
+    allowExternalDispatch: true,
+    rerouteToLocal: false
+  };
+
+  if (selfBuildIntent.isSelfBuild) {
+    reasons.push("Self-build shaped work reads IX controller/guard posture before lane recommendation.");
+    if (selfBuildIntent.keywordHits.length > 0) {
+      reasons.push(`Self-build hints: ${selfBuildIntent.keywordHits.join(", ")}.`);
+    }
+    if (!selfBuildPosture.ok) {
+      warnings.push("Self-build controller posture is unavailable; routing stays local-first until controller truth recovers.");
+    }
+    if (selfBuildGuardGate === "warn") {
+      warnings.push("Controller guard is warn; keep self-build increments small and checkpointed.");
+    }
+    if (selfBuildGuardGate === "hold" || selfBuildGuardGate === "deny") {
+      selfBuildPolicy.allowExternalDispatch = false;
+      if (EXTERNAL_WORKER_IDS.has(recommendedWorkerId)) {
+        const rerouteWorkerId = byId.get("local_codex")?.dispatchable
+          ? "local_codex"
+          : recommendedWorkerId;
+        if (rerouteWorkerId !== recommendedWorkerId) {
+          warnings.push(`Controller guard ${selfBuildGuardGate} rerouted self-build recommendation from ${recommendedWorkerId} to ${rerouteWorkerId}.`);
+          recommendedWorkerId = rerouteWorkerId;
+          selfBuildPolicy.rerouteToLocal = true;
+        }
+      }
+    } else if (
+      normalized.taskType === "orchestration"
+      && !normalized.requiresRepoWrite
+      && !normalized.needsCloudWorker
+      && recommendedWorkerId === "local_codex"
+      && byId.get("opencode")?.dispatchable
+    ) {
+      recommendedWorkerId = "opencode";
+      fallbackWorkerId = byId.get("local_codex")?.dispatchable ? "local_codex" : fallbackWorkerId;
+      reasons.push("Controller guard allows low-cost orchestration, so bounded self-build prep prefers OpenCode.");
+    }
+  }
 
   const recommendedWorker = byId.get(recommendedWorkerId) || buildLocalCodexProfile();
   const fallbackWorker = byId.get(fallbackWorkerId) || null;
@@ -494,7 +766,20 @@ function recommendWorker(input = {}) {
     mistakes: recommendedWorker?.mistakes || [],
     limitations: recommendedWorker?.limitations || [],
     directDispatchSupported: Boolean(recommendedWorker?.directDispatchSupported),
-    presetId
+    presetId,
+    selfBuild: {
+      intent: selfBuildIntent,
+      dispatchPolicy: selfBuildPolicy,
+      posture: {
+        source: cleanText(selfBuildPosture?.source || "ix_controller_guard_posture"),
+        ok: Boolean(selfBuildPosture?.ok),
+        controller: selfBuildPosture?.controller || {},
+        guards: selfBuildPosture?.guards || { gateStatus: "hold" },
+        labels: selfBuildPosture?.labels || {},
+        language: selfBuildPosture?.language || {},
+        issues: Array.isArray(selfBuildPosture?.issues) ? selfBuildPosture.issues.slice(0, 6) : []
+      }
+    }
   };
 }
 
@@ -521,6 +806,26 @@ function buildLocalCodexPrompt(input, recommendation) {
     "- Do not widen scope beyond the requested objective.",
     "- Do not assume external workers are needed if the task is local and bounded.",
     "- Call out uncertainty or blockers instead of guessing."
+  ].filter(Boolean);
+  if (recommendation?.warnings?.length) {
+    sections.push(`Router warnings:\n- ${recommendation.warnings.join("\n- ")}`);
+  }
+  return sections.join("\n\n");
+}
+
+function buildOpenCodePrompt(input, recommendation) {
+  const sections = [
+    `Objective: ${input.objective || input.title}`,
+    input.instructions ? `Instructions:\n${input.instructions}` : "",
+    input.allowedPaths.length ? `Allowed paths:\n- ${input.allowedPaths.join("\n- ")}` : "",
+    `Task type: ${input.taskType}`,
+    `Sensitivity: ${input.sensitivity}`,
+    `Size: ${input.size}`,
+    input.expectedArtifacts.length ? `Expected artifacts:\n- ${input.expectedArtifacts.join("\n- ")}` : "",
+    "Lane policy:",
+    "- Stay bounded and cost-aware.",
+    "- Prefer concise, high-signal output.",
+    "- Do not widen into owner-plane work unless the prompt explicitly requires it."
   ].filter(Boolean);
   if (recommendation?.warnings?.length) {
     sections.push(`Router warnings:\n- ${recommendation.warnings.join("\n- ")}`);
@@ -749,6 +1054,146 @@ async function dispatchToLocalCodex(input, recommendation, dispatchId, dispatchF
   }
 }
 
+async function dispatchToOpenCode(input, recommendation, dispatchId, dispatchFolder, task) {
+  const prompt = buildOpenCodePrompt(input, recommendation);
+  const promptPath = path.join(dispatchFolder, "prompt.md");
+  safeWriteText(promptPath, prompt);
+
+  const baseResult = {
+    workerId: "opencode",
+    dispatchMode: input.executeNow ? "direct_run" : "queued_local",
+    promptPath,
+    resultSummary: input.executeNow ? "OpenCode run requested." : "Prepared OpenCode prompt."
+  };
+
+  if (input.executeNow && !isOpenCodeDirectEnabled()) {
+    addTaskLedgerEvent(task.id, {
+      type: "worker_routed",
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode direct execution blocked; prepared prompt for manual or deferred shellless execution.",
+      detail: {
+        workerId: "opencode",
+        promptPath,
+        gate: "ASOLARIA_OPENCODE_DIRECT_ENABLED"
+      }
+    });
+    updateTaskLedgerTask(task.id, {
+      status: "ready",
+      owner: "opencode"
+    }, {
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode prompt prepared; direct execution gate is closed."
+    });
+    return {
+      ...baseResult,
+      dispatchMode: "queued_local",
+      resultSummary: "OpenCode direct execution blocked; prompt prepared."
+    };
+  }
+
+  if (!input.executeNow) {
+    addTaskLedgerEvent(task.id, {
+      type: "worker_routed",
+      actor: "worker-router",
+      source: "worker-router",
+      note: "Prepared OpenCode prompt for manual or deferred execution.",
+      detail: {
+        workerId: "opencode",
+        promptPath
+      }
+    });
+    updateTaskLedgerTask(task.id, {
+      status: "ready",
+      owner: "opencode"
+    }, {
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode prompt prepared."
+    });
+    return baseResult;
+  }
+
+  updateTaskLedgerTask(task.id, {
+    status: "in_progress",
+    owner: "opencode",
+    progress: 20
+  }, {
+    actor: "worker-router",
+    source: "worker-router",
+    note: "OpenCode execution started."
+  });
+
+  try {
+    const run = await runOpenCode({
+      prompt,
+      model: cleanText(input.model || input.opencodeModel || ""),
+      agent: cleanText(input.agent || input.opencodeAgent || ""),
+      variant: cleanText(input.variant || input.opencodeVariant || (input.size === "large" ? "high" : "")),
+      dir: process.cwd(),
+      timeoutMs: Math.max(60000, Math.min(Number(input.timeoutMs || 120000), 300000))
+    });
+    const responsePath = path.join(dispatchFolder, "response.md");
+    safeWriteText(responsePath, String(run.reply || "").trim());
+    safeWriteJson(path.join(dispatchFolder, "run.json"), {
+      provider: run.provider || "opencode",
+      model: String(run.model || "").trim(),
+      agent: String(run.agent || "").trim(),
+      variant: String(run.variant || "").trim(),
+      dispatchId,
+      taskId: task.id,
+      completedAt: nowIso()
+    });
+    addTaskLedgerEvent(task.id, {
+      type: "worker_completed",
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode execution completed.",
+      detail: {
+        workerId: "opencode",
+        responsePath
+      }
+    });
+    updateTaskLedgerTask(task.id, {
+      status: "review",
+      progress: 90,
+      owner: "opencode"
+    }, {
+      actor: "worker-router",
+      source: "worker-router",
+      note: "OpenCode result ready for review."
+    });
+    return {
+      ...baseResult,
+      responsePath,
+      reply: String(run.reply || "").trim(),
+      model: String(run.model || "").trim(),
+      resultSummary: "OpenCode execution completed."
+    };
+  } catch (error) {
+    addTaskLedgerEvent(task.id, {
+      type: "worker_failed",
+      actor: "worker-router",
+      source: "worker-router",
+      note: `OpenCode execution failed: ${clipText(error?.message || error, 240)}`,
+      detail: {
+        workerId: "opencode"
+      }
+    });
+    updateTaskLedgerTask(task.id, {
+      status: "blocked",
+      owner: "opencode",
+      progress: 0
+    }, {
+      actor: "worker-router",
+      source: "worker-router",
+      note: `OpenCode failed: ${clipText(error?.message || error, 220)}`
+    });
+    throw error;
+  }
+}
+
 function buildClaudeMaxPrompt(input, recommendation) {
   const sections = [
     "You are the Claude Max review lane inside Asolaria super swarm.",
@@ -881,7 +1326,21 @@ async function dispatchToClaudeMax(input, recommendation, dispatchId, dispatchFo
 
 async function dispatchWorkerTask(input = {}) {
   const recommendation = recommendWorker(input);
-  const workerId = normalizeWorkerId(input.workerId || recommendation.recommendedWorkerId) || recommendation.recommendedWorkerId;
+  let workerId = normalizeWorkerId(input.workerId || recommendation.recommendedWorkerId) || recommendation.recommendedWorkerId;
+  if (
+    recommendation?.selfBuild?.intent?.isSelfBuild
+    && recommendation?.selfBuild?.dispatchPolicy?.allowExternalDispatch === false
+    && EXTERNAL_WORKER_IDS.has(workerId)
+  ) {
+    const localCodex = getWorkerProfile("local_codex");
+    const openCode = getWorkerProfile("opencode");
+    const rerouteWorkerId = localCodex?.dispatchable ? "local_codex" : (openCode?.dispatchable ? "opencode" : "");
+    if (rerouteWorkerId) {
+      recommendation.warnings = Array.isArray(recommendation.warnings) ? recommendation.warnings.slice() : [];
+      recommendation.warnings.push(`Dispatch policy rerouted self-build task from ${workerId} to ${rerouteWorkerId} because guard=${recommendation.selfBuild.dispatchPolicy.guardGate}.`);
+      workerId = rerouteWorkerId;
+    }
+  }
   const worker = getWorkerProfile(workerId);
   if (!worker?.dispatchable) {
     throw new Error(`Worker ${workerId} is not dispatchable on this machine.`);
@@ -920,7 +1379,12 @@ async function dispatchWorkerTask(input = {}) {
     routeAction: "dispatch",
     detail: {
       recommendation: recommendation.recommendedWorkerId,
-      executeNow: recommendation.input.executeNow
+      executeNow: recommendation.input.executeNow,
+      selfBuild: recommendation?.selfBuild?.intent?.isSelfBuild ? {
+        shape: recommendation.selfBuild.intent.shape,
+        guardGate: cleanText(recommendation?.selfBuild?.dispatchPolicy?.guardGate || ""),
+        allowExternalDispatch: Boolean(recommendation?.selfBuild?.dispatchPolicy?.allowExternalDispatch)
+      } : null
     }
   });
 
@@ -930,12 +1394,15 @@ async function dispatchWorkerTask(input = {}) {
     workerId,
     taskId: task.id,
     title: recommendation.input.title,
-    recommendation
+    recommendation,
+    selfBuild: recommendation?.selfBuild || null
   });
 
   try {
     let result;
-    if (workerId === "abacus") {
+    if (workerId === "opencode") {
+      result = await dispatchToOpenCode(recommendation.input, recommendation, dispatchId, dispatchFolder, task);
+    } else if (workerId === "abacus") {
       result = await dispatchToAbacus(recommendation.input, recommendation, dispatchId, task);
     } else if (workerId === "claude_max") {
       result = await dispatchToClaudeMax(recommendation.input, recommendation, dispatchId, dispatchFolder, task);
@@ -953,7 +1420,8 @@ async function dispatchWorkerTask(input = {}) {
       taskId: task.id,
       title: recommendation.input.title,
       recommendation,
-      result
+      result,
+      selfBuild: recommendation?.selfBuild || null
     };
     safeWriteJson(path.join(dispatchFolder, "dispatch.json"), payload);
     emitRouterEvent("worker_dispatch_completed", workerId, {
@@ -993,7 +1461,8 @@ async function dispatchWorkerTask(input = {}) {
       taskId: task.id,
       title: recommendation.input.title,
       recommendation,
-      error: message
+      error: message,
+      selfBuild: recommendation?.selfBuild || null
     };
     safeWriteJson(path.join(dispatchFolder, "dispatch.json"), payload);
     emitRouterEvent("worker_dispatch_failed", workerId, {
@@ -1042,6 +1511,7 @@ function getWorkerDispatch(dispatchId) {
 
 module.exports = {
   getWorkerRouterStatus,
+  getWorkerRouterSelfBuildPosture,
   recommendWorker,
   dispatchWorkerTask,
   listWorkerDispatches,

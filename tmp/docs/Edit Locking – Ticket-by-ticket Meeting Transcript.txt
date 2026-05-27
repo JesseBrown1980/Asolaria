@@ -1,0 +1,89 @@
+Edit Locking – Ticket-by-Ticket Meeting Transcript
+Meeting Type: Dev Brainstorming (No Screen Sharing)
+Goal: Walk through each ticket step by step, align on behavior, and gather feedback
+Ticket 1111 – Acquire Lock on Edit
+Context
+When a user opens a record and intends to edit it, we need a clear ownership model so only one person can make changes at a time.
+Proposed Behavior
+As soon as a user enters edit mode, the system attempts to acquire an edit lock for that specific entity and record ID.
+How It Works
+The lock represents ownership of the edit session and stores: - entity type - record ID - user ID - user display name - lock start time - last activity timestamp
+If the lock is successfully acquired, the user can edit normally.
+Discussion Prompt
+Should the lock be acquired immediately on page load, or only when the user explicitly clicks an “Edit” button?
+Ticket 1112 – Block Concurrent Editing
+Context
+Multiple users may open the same record at the same time. Only one should be allowed to edit.
+Proposed Behavior
+If a lock already exists and belongs to another user, the record opens in read-only mode.
+How It Works
+The user can view the data, but: - form fields are disabled - save or update actions are disabled or hidden - no changes can be submitted
+This prevents accidental overwrites while still allowing visibility.
+Discussion Prompt
+Is everyone aligned that read-only access is preferable to blocking access to the page entirely?
+Ticket 1113 – Warning / Conflict Messaging
+Context
+Users need to clearly understand why they cannot edit a record.
+Proposed Behavior
+When a user attempts to edit a locked record, a warning modal or message is shown.
+How It Works
+The message explains: - who currently has the record locked - when editing started - that editing is temporarily unavailable
+The user can then choose to: - continue viewing in read-only mode - leave and return later
+Discussion Prompt
+How much detail should we show here? Just the user name, or also timestamps?
+Ticket 1114 – Release Lock
+Context
+Locks should only exist while a user is actively editing.
+Proposed Behavior
+The lock is released as soon as it is no longer needed.
+How It Works
+The lock is released when: - the user successfully saves - the user exits edit mode without saving - the user navigates away or closes the page cleanly
+Once released, another user can immediately acquire the lock.
+Discussion Prompt
+Should a successful save always release the lock, or are there cases where it should remain active?
+Ticket 1115 – Auto-Expire Locks
+Context
+Users may abandon tabs, lose connection, or walk away without releasing a lock.
+Proposed Behavior
+Locks automatically expire after a period of inactivity.
+How It Works
+The system tracks last activity time
+After a configurable timeout (for example 10–15 minutes), the lock expires
+The expiration event is logged
+This prevents dead locks and blocked records.
+Discussion Prompt
+Should the timeout be global, or configurable per entity type?
+Ticket 1116 – Enforce Lock Ownership on Save
+Context
+UI safeguards alone are not sufficient.
+Proposed Behavior
+The backend enforces lock ownership for all save operations.
+How It Works
+Before saving: - the backend verifies the lock exists - it confirms the current user owns the lock - if validation fails, the save is rejected
+The user receives a clear error that their edit session is no longer valid.
+Discussion Prompt
+Is everyone comfortable rejecting saves outright if the lock is lost mid-edit?
+Ticket 1117 – Audit Logging
+Context
+Lock behavior must be traceable for support and debugging.
+Proposed Behavior
+All lock-related actions are logged.
+How It Works
+Audit events include: - lock acquired - lock released - lock expired - lock denied
+Each event records the user, entity, record ID, and timestamp.
+Discussion Prompt
+Should these logs remain backend-only, or eventually surface in an admin UI?
+Ticket 1118 – Reusable Locking Pattern
+Context
+This solution should not be limited to a single feature or entity.
+Proposed Behavior
+The locking mechanism is generic and reusable.
+How It Works
+The lock system is parameterized by: - entity type - record ID - user context
+Any editable entity can opt into the same locking behavior without custom logic.
+Discussion Prompt
+Are there any entities that should explicitly opt out of this locking pattern?
+Closing Statement
+This walkthrough covers all tickets at a behavioral level.
+The goal of this meeting is to confirm alignment on: - when locks are acquired - how conflicts are handled - how strict enforcement should be
+Once aligned, these behaviors can be translated directly into implementation tasks.

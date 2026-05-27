@@ -1,0 +1,64 @@
+=== QDD EZ Protect API Endpoint Test ===
+Date: 2026-03-25T19:50:46.829Z
+Server: 127.0.0.1:3000
+Auth: dev-bypass cookie
+============================================================
+
+--- /api/ez-protect/dashboard ---
+Full path: /api/ez-protect/dashboard?locationId=69c41938d84980e337ac77cf
+Status: 200
+Shape: {"locationId":"string","generatedAt":"string","totalEvents":"number","latestOccurredAt":"string","windows":"array(4)"}
+Preview: {"locationId":"69c41938d84980e337ac77cf","generatedAt":"2026-03-25T19:50:45.105Z","totalEvents":150,"latestOccurredAt":"2026-03-25T14:16:43.500Z","windows":[{"windowDays":1,"totalEvents":4,"byResultState":{"UNKNOWN":1,"INVALID":1,"NEGATIVE":1,"CALIBRATION_FAIL":1}},{"windowDays":7,"totalEvents":32,"
+
+--- /api/ez-protect/dashboard-corporate ---
+Full path: /api/ez-protect/dashboard-corporate
+Status: 200
+Shape: {"clientId":"string","generatedAt":"string","totalEvents":"number","totalDevices":"number","alertCount":"number","positiveRate":"number","connectedDevices24h":"number","disconnectedDevices":"number","windows":"array(4)","byFacility":"object{69c41938d84980e337ac77cf,69c42817238048400fc80851,69c42817238048400fc80850}","errorCategories":"object{procedural,equipment,unknown}","byLotRoll":"array(50)","pmTesting":"object{tested,passed,failed,notTested}"}
+Preview: {"clientId":"69c41938d84980e337ac77cd","generatedAt":"2026-03-25T19:50:45.264Z","totalEvents":300,"totalDevices":10,"alertCount":80,"positiveRate":0.24333333333333335,"connectedDevices24h":4,"disconnectedDevices":6,"windows":[{"windowDays":1,"totalEvents":4,"byResultState":{"NEGATIVE":1,"INVALID":1,
+
+--- /api/ez-protect/dashboard-facility ---
+Full path: /api/ez-protect/dashboard-facility?locationId=69c41938d84980e337ac77cf
+Status: 200
+Shape: {"locationId":"string","generatedAt":"string","totalEvents":"number","latestOccurredAt":"string","windows":"array(4)"}
+Preview: {"locationId":"69c41938d84980e337ac77cf","generatedAt":"2026-03-25T19:50:45.640Z","totalEvents":150,"latestOccurredAt":"2026-03-25T14:16:43.500Z","windows":[{"windowDays":1,"totalEvents":4,"byResultState":{"UNKNOWN":1,"INVALID":1,"NEGATIVE":1,"CALIBRATION_FAIL":1}},{"windowDays":7,"totalEvents":32,"
+
+--- /api/ez-protect/events ---
+Full path: /api/ez-protect/events?locationId=69c41938d84980e337ac77cf&page=1&limit=10
+Status: 200
+Shape: {"events":"array(10)","total":"number","page":"number","limit":"number","totalPages":"number"}
+Preview: {"events":[{"id":"69c42817238048400fc80925","eventVersion":1,"sourceSystem":"seed-script","organizationId":"69c41938d84980e337ac77cd","facilityId":"69c41938d84980e337ac77cf","deviceSerialNumber":"SN-1002","deviceModel":"3M MDS","assayCode":"ASY-002","assayName":"Listeria spp.","lotNumber":"LOT-2028-
+
+--- /api/ez-protect/events ---
+Full path: /api/ez-protect/events?locationId=69c41938d84980e337ac77cf&deviceSerialNumber=SN-1001
+Status: 200
+Shape: {"events":"array(20)","total":"number","page":"number","limit":"number","totalPages":"number"}
+Preview: {"events":[{"id":"69c42817238048400fc80974","eventVersion":1,"sourceSystem":"seed-script","organizationId":"69c41938d84980e337ac77cd","facilityId":"69c41938d84980e337ac77cf","deviceSerialNumber":"SN-1001","deviceModel":"PathogenDx EnviroX","assayCode":"ASY-001","assayName":"Salmonella spp.","lotNumb
+
+--- /api/ez-protect/devices ---
+Full path: /api/ez-protect/devices?locationId=69c41938d84980e337ac77cf
+Status: 200
+Shape: {"devices":"array(10)"}
+Preview: {"devices":[{"id":"SN-3002","deviceSerialNumber":"SN-3002","deviceModel":"3M MDS","lastSeenAt":"2026-03-23T19:19:54.873Z","status":"error","calibrationStatus":"PASS","pmStatus":"PASS","lastControlStatus":"FAIL","lastCalibrationStatus":"PASS","lastPmStatus":"PASS","facilityId":"69c41938d84980e337ac77
+
+--- /api/ez-protect/alert-history ---
+Full path: /api/ez-protect/alert-history?locationId=69c41938d84980e337ac77cf&page=1&limit=10
+Status: 200
+Shape: {"alerts":"array(10)","total":"number","page":"number","limit":"number","totalPages":"number"}
+Preview: {"alerts":[{"_id":"69c42817238048400fc80985","clientId":"69c41938d84980e337ac77cd","locationId":"69c41938d84980e337ac77cf","alertRuleId":null,"alertRuleName":"Positive Detection Alert","triggerType":"result_state","channel":"email","message":"Alert triggered: Positive Detection Alert — Device SN-100
+
+--- /api/ez-protect/alerts ---
+Full path: /api/ez-protect/alerts?locationId=69c41938d84980e337ac77cf
+Status: 200
+Shape: [1 items] first keys: {_id, clientId, locationId, name, enabled, isDefault, triggerType, triggerConfig, channel, recipients, notifyFacilityContacts, faqLinks, videoLinks, createdBy, createdAt, updatedAt, __v}
+Preview: [{"_id":"69c434fe8d2a10ab25131550","clientId":"69c41938d84980e337ac77cd","locationId":"69c41938d84980e337ac77cf","name":"Positive","enabled":true,"isDefault":false,"triggerType":"threshold","triggerConfig":{"resultStates":[]},"channel":"email","recipients":["plasmatoid@gmail.com","dev@me.com"],"noti
+
+--- /api/ez-protect/export ---
+Full path: /api/ez-protect/export?locationId=69c41938d84980e337ac77cf&limit=5
+Status: 200
+Shape: string
+Preview: completedAt,deviceSerialNumber,deviceModel,assayCode,assayName,assayFamily,resultState,resultValue,resultUnit,readingValue,controlLineValid,temperatureC,pmStatus,calibrationStatus,operatorId,operatorGroup,sampleId,truckId,stripLot,stripRoll,stripExpiration,facilityId,organizationId,sourceSystem,tran
+
+=== SUMMARY ===
+Total: 9
+Passed (2xx): 9
+Failed (4xx/5xx/ERR): 0

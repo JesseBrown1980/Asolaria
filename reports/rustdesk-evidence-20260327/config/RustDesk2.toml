@@ -1,0 +1,9 @@
+rendezvous_server = ''
+nat_type = 0
+serial = 0
+unlock_pin = ''
+trusted_devices = ''
+
+[options]
+stop-service = 'Y'
+av1-test = 'N'

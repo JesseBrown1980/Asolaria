@@ -1,0 +1,271 @@
+QDD/eBacMap — Sentry, Environment & Deployment Configuration
+=============================================================
+Generated: 2026-03-25 (READ-ONLY research document)
+Source: D:\projects\QDD\ebacmap-pnpm9
+
+NOTE: Bash was blocked by sandbox, so git log history could not be retrieved.
+All data below is from file inspection (Glob/Grep/Read).
+
+================================================================================
+1. SENTRY CONFIG FILES (6 files)
+================================================================================
+
+ROOT (legacy):
+  sentry.client.config.js          — identical to web-ebacmap version minus telemetry/sourcemap opts
+
+APPS/WEB-EBACMAP:
+  sentry.client.config.js          — browser init
+  sentry.server.config.js          — server init (+ @sentry/profiling-node)
+  sentry.edge.config.ts            — edge init (minimal, tracesSampleRate 0.2)
+
+APPS/ADMIN:
+  sentry.server.config.js          — same as web-ebacmap server config
+  sentry.edge.config.ts            — same as web-ebacmap edge config
+  (NO sentry.client.config.js for admin)
+
+INSTRUMENTATION (apps/web-ebacmap/src/instrumentation.ts):
+  - Loads sentry.server.config on "nodejs" runtime
+  - Loads sentry.edge.config on "edge" runtime
+  - Exports onRequestError = Sentry.captureRequestError
+
+================================================================================
+2. SENTRY DSN & AUTH CONFIGURATION
+================================================================================
+
+DSN resolution: process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
+  - Both vars defined in apps/web-ebacmap/.env.example (empty values)
+
+Sentry tunnel API: apps/web-ebacmap/src/pages/api/tunnel.ts
+  - Hardcoded sentryHost = 'sentry.io'
+  - Hardcoded projectId = '6653692'
+  - Proxies Sentry envelopes server-side to bypass ad blockers
+
+.env.example (apps/web-ebacmap/.env.example) contains:
+  SENTRY_DSN=
+  NEXT_PUBLIC_SENTRY_DSN=
+  SENTRY_AUTH_TOKEN=
+  (Hook blocked reading .env files — values not visible)
+
+No .sentryclirc file found.
+
+================================================================================
+3. SENTRY SDK VERSIONS (from package.json)
+================================================================================
+
+apps/web-ebacmap:
+  @sentry/nextjs          ^8.19.0
+  @sentry/node            ^8.19.0
+  @sentry/profiling-node  ^8.48.0
+  @sentry/react           ^8.19.0
+
+apps/admin:
+  @sentry/nextjs          8.55.0  (pinned, not caret)
+  @sentry/node            8.55.0
+  @sentry/profiling-node  8.55.0
+  @sentry/react           8.55.0
+
+apps/sync-server:
+  @sentry/nextjs          ^8.19.0
+  @sentry/node            ^8.19.0
+  @sentry/profiling-node  ^8.48.0
+  @sentry/react           ^8.19.0
+
+apps/queue-server:
+  @sentry/nextjs          ^8.19.0
+  @sentry/node            ^8.19.0
+  @sentry/profiling-node  ^8.48.0
+  @sentry/react           ^8.19.0
+
+libs/utils:    @sentry/node  8.55.0
+libs/common:   @sentry/node  8.55.0
+
+NOTE: Version mismatch — admin & libs pinned at 8.55.0, web-ebacmap/sync/queue at ^8.19.0
+
+================================================================================
+4. SENTRY CLIENT CONFIG DETAILS (web-ebacmap — the most complete)
+================================================================================
+
+- Guard: Only initializes when APP_ENV !== 'local'
+- tracesSampleRate: 0.5
+- environment: process.env.APP_ENV || 'local'
+- sendClientReports: false
+- tunnel: '/api/tunnel' (proxied to avoid ad blockers)
+- replaysSessionSampleRate: staging=1.0, production=0.3
+- replaysOnErrorSampleRate: 1.0
+- Integrations:
+    replayIntegration (maskAllText: false, blockAllMedia: true)
+    feedbackIntegration (colorScheme: light, autoInject: false, enableScreenshot: true)
+    replayCanvasIntegration()
+    browserTracingIntegration()
+    browserProfilingIntegration()
+- tracePropagationTargets: ["localhost", /^\//]
+- profilesSampleRate: 1.0
+- telemetry: false (web-ebacmap only, not root)
+- sourcemaps: { disable: true, deleteSourcemapsAfterUpload: true } (web-ebacmap only)
+
+SERVER CONFIG (web-ebacmap & admin):
+- tracesSampleRate: 0.5
+- ignoreErrors: ['NotFoundError']
+- Integrations: nodeProfilingIntegration()
+- profilesSampleRate: 1.0
+- telemetry: false
+
+EDGE CONFIG:
+- tracesSampleRate: 0.2
+- Minimal config, no profiling
+
+================================================================================
+5. NEXT.CONFIG.JS — SENTRY WEBPACK PLUGIN
+================================================================================
+
+apps/web-ebacmap/next.config.js:
+  const { withSentryConfig } = require('@sentry/nextjs');
+
+  SentryWebpackPluginOptions = {
+    hideSourceMaps: process.env.APP_ENV === 'production',
+    silent: !process.env.CI,
+  };
+
+  Export chain:
+    if APP_ENV !== 'local':  withSentryConfig(withPWA(configWithNextIntl), SentryWebpackPluginOptions)
+    else:                    withBundleAnalyzer(configWithNextIntl)
+
+  Webpack ignoreWarnings includes: /@opentelemetry|require-in-the-middle|sentry|instrumentation/i
+  Client externals: '@sentry/node': 'commonjs @sentry/node'
+  Headers: Document-Policy: js-profiling (for browser profiling)
+
+apps/admin/next.config.js:
+  - NO Sentry webpack plugin wrapping
+  - Has sentry config files but no withSentryConfig in next.config
+
+================================================================================
+6. APP_ENV ENVIRONMENT VALUES
+================================================================================
+
+Known APP_ENV values used in codebase:
+  'local'       — skips Sentry init entirely
+  'staging'     — full replay sampling (1.0)
+  'production'  — lower replay sampling (0.3), hides source maps
+  'test'        — used in unit tests
+  'development' — fallback in scripts
+
+In development (NODE_ENV=development), dotenv loads from ../../.env.local (monorepo root)
+
+================================================================================
+7. SENTRY USAGE ACROSS CODEBASE (captureException/withScope/setTag)
+================================================================================
+
+47 files reference Sentry. Key usage areas:
+
+queue-server (heaviest user):
+  - ImportFtpResults/UseCase.ts — 6 captureException calls
+  - SendReportPdf/UseCase.ts — captureException with contexts
+  - SendPendingTestResultNotification — captureException with contexts
+  - ExportToFtp, SendIntervalReports — captureException
+  - NotifyUserCapaClosed, NotifyAssignedActionPastDue — captureException
+  - Queue.ts — captureException in error handlers
+  - ChangeStreamMonitor.ts — captureException for MongoDB errors
+  - index.ts — Sentry.setTag('queue_version'), Sentry.withScope
+
+sync-server:
+  - SyncClient.ts — captureException (some commented out)
+  - socket.ts — captureException for socket errors
+
+web-ebacmap:
+  - pages/api/tunnel.ts — captureException
+  - pages/_error.js — Sentry error boundary (captureUnderscoreErrorException commented out)
+  - Various use-cases via libs/common UseCase base class
+  - Endpoint.ts, connection.ts
+
+libs:
+  - utils/queue.ts — captureException
+  - common/UseCase.ts — Sentry error capture
+  - common/MongoIdentifier.ts — Sentry
+  - db/connection.ts — Sentry
+
+================================================================================
+8. RELEASE NOTES MENTIONING SENTRY
+================================================================================
+
+From ReleaseNotes.md:
+  - "Add sentry logging for errors in bulk sample schedule complete to help debug"
+  - "Fixes numerous small bugs found in sentry logs"
+  - "Hotfixes galore - resolving bugs found in sentry."
+
+================================================================================
+9. DEPLOYMENT CONFIGURATION
+================================================================================
+
+Dockerfiles found (non-node_modules):
+  ./Dockerfile                      — Legacy: node:20.14-slim, yarn, playwright chromium
+  apps/web-ebacmap/Dockerfile       — pnpm 9.12.2, node:20.14, playwright, EXPOSE 3000
+  apps/admin/Dockerfile             — exists (not read)
+  apps/queue-server/Dockerfile      — exists (not read)
+  apps/sync-server/Dockerfile       — exists (not read)
+  apps/sync-server/src/Dockerfile   — exists (secondary, not read)
+
+No docker-compose files found.
+No .github/workflows in project root (only in node_modules).
+No vercel.json found.
+
+web-ebacmap Dockerfile details:
+  - FROM node:20.14
+  - corepack enable + pnpm 9.12.2
+  - ARG APP_PATH (set by CI)
+  - ARG INSTALL_PLAYWRIGHT=false
+  - pnpm install --prod --frozen-lockfile
+  - pnpm exec playwright install --with-deps chromium
+  - EXPOSE 3000, CMD ["pnpm","start"]
+
+================================================================================
+10. ENV TEMPLATE FILES
+================================================================================
+
+apps/web-ebacmap/.env.example    — exists (blocked by hook)
+apps/web-ebacmap/.env.local      — exists (blocked by hook)
+apps/admin/src/.env.example      — exists (blocked by hook)
+
+Known env vars from grep:
+  SENTRY_DSN, NEXT_PUBLIC_SENTRY_DSN, SENTRY_AUTH_TOKEN
+  APP_ENV (local|staging|production|test)
+  MONGODB_URI
+  MONGOOSE_DEBUG
+  NODE_ENV
+  ANALYZE (bundle analyzer)
+  CI (Sentry plugin silence)
+  SENTRY_RELEASE (override release value)
+  NEXT_PUBLIC_APP_VERSION
+
+================================================================================
+11. DEV DOCS
+================================================================================
+
+No CONTRIBUTING.md or DEVELOPMENT.md in project root.
+No README.md in project root.
+ReleaseNotes.md exists at root and in apps/web-ebacmap/ (changelog only).
+
+================================================================================
+12. OBSERVATIONS / GAPS
+================================================================================
+
+a) VERSION MISMATCH: admin pins @sentry/* at 8.55.0 while other apps use ^8.19.0.
+   libs (utils, common) also pin 8.55.0. This could cause runtime conflicts.
+
+b) ROOT sentry.client.config.js is a stale copy — nearly identical to web-ebacmap's
+   but missing telemetry:false and sourcemaps config. Likely leftover from pre-monorepo.
+
+c) ADMIN has no sentry.client.config.js and no withSentryConfig in next.config.js,
+   but HAS sentry.server.config.js and sentry.edge.config.ts. Client-side errors
+   in admin are NOT captured by Sentry.
+
+d) Tunnel API hardcodes projectId '6653692'. If Sentry project changes, this breaks.
+
+e) _error.js has Sentry capture commented out — custom error page does NOT report
+   to Sentry. Only the instrumentation.ts onRequestError does server-side capture.
+
+f) No CI/CD config files found in repo root — deployment pipeline is likely external
+   (AWS CodePipeline, or similar) or in a separate repo.
+
+g) No .sentryclirc — source map upload auth likely via SENTRY_AUTH_TOKEN env var only.
+
+END OF DOCUMENT

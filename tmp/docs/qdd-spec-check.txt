@@ -1,0 +1,28 @@
+QDD EZ Protect Spec File Check — 2026-03-25
+============================================
+
+Checked 11 files in D:\projects\QDD\ebacmap-master
+
+PRESENT (10/11):
+  1. apps/queue-server/src/use-cases/EvaluateEzProtectAlerts/UseCase.unit.ts    OK
+  2. apps/queue-server/src/use-cases/ProcessEzProtectFile/UseCase.unit.ts       OK
+  3. apps/queue-server/src/use-cases/SyncEzProtectToLims/UseCase.unit.ts        OK
+  4. apps/queue-server/tsconfig.spec.json                                        OK
+  5. apps/queue-server/jest.config.ts                                            OK
+  6. jest.preset.js                                                              OK
+  7. apps/web-ebacmap/jest.ez-protect.unit.config.js                             OK
+  8. apps/web-ebacmap/jest.ez-protect.integration.config.js                      OK
+  9. apps/web-ebacmap/jest.ez-protect.base.js                                    OK
+ 10. apps/web-ebacmap/tsconfig.ez-protect.integration.json                       OK
+
+MISSING (1/11):
+  4. apps/web-ebacmap/src/modules/ez-protect/use-cases/SyncToLims/route.int.ts  MISSING
+
+RESTORATION:
+  - Source: D:\projects\QDD\ebacmap-pnpm9\apps\web-ebacmap\src\modules\ez-protect\use-cases\SyncToLims\route.int.ts
+  - Target: D:\projects\QDD\ebacmap-master\apps\web-ebacmap\src\modules\ez-protect\use-cases\SyncToLims\route.int.ts
+  - Status: RESTORED (135 lines, 5 integration tests)
+  - Tests: auth check, authorized scaffold, empty eventIds, eventCount reflection, LIMS message check
+
+The SyncToLims directory in master had UseCase.ts but was missing the integration test spec.
+All other 10 files were intact.

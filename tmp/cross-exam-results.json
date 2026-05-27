@@ -1,0 +1,258 @@
+{
+  "ixTotal": 390,
+  "lxTotal": 281,
+  "combined": 671,
+  "ixByType": {
+    "pattern": 91,
+    "mistake": 50,
+    "skill": 40,
+    "plan": 32,
+    "tool": 31,
+    "reference": 120,
+    "feedback": 1,
+    "policy": 2,
+    "implementation": 2,
+    "rule": 9,
+    "blocker": 1,
+    "unknown": 8,
+    "project": 3
+  },
+  "lxByType": {
+    "identity": 1,
+    "mistake": 37,
+    "tool": 51,
+    "skill": 34,
+    "project": 3,
+    "plan": 27,
+    "pattern": 110,
+    "rule": 9,
+    "task": 9
+  },
+  "ixChainingToLx": 1,
+  "lxChainingToIx": 31,
+  "ixOnlyTypes": [
+    "reference",
+    "feedback",
+    "policy",
+    "implementation",
+    "blocker",
+    "unknown"
+  ],
+  "lxOnlyTypes": [
+    "identity",
+    "task"
+  ],
+  "compressionCandidates": 145,
+  "topPairs": [
+    {
+      "ix": "IX-311",
+      "lx": "LX-210",
+      "score": 100,
+      "ixName": "SKILL — WhatsApp ADB Send. Agent-to-agent comms via phone. W",
+      "lxName": "WhatsApp ADB Send Skill"
+    },
+    {
+      "ix": "IX-319",
+      "lx": "LX-237",
+      "score": 100,
+      "ixName": "Cross-box communication map — MQTT, bridge, SSH, phone, What",
+      "lxName": "Cross-box communication map — 7 transport layers"
+    },
+    {
+      "ix": "IX-321",
+      "lx": "LX-249",
+      "score": 100,
+      "ixName": "SELF-INDEXING RULE — agents must index discoveries before de",
+      "lxName": "SELF-INDEXING RULE — agents must index discoveries before de"
+    },
+    {
+      "ix": "IX-322",
+      "lx": "LX-250",
+      "score": 100,
+      "ixName": "Simulation interior — 9 districts, 53 entities, 4 constructi",
+      "lxName": "Simulation interior — 9 districts, 53 entities, EdgeLevelGNN"
+    },
+    {
+      "ix": "IX-325",
+      "lx": "LX-256",
+      "score": 100,
+      "ixName": "SKILL — Voice transcription (Whisper local → GPT-4o → Gemini",
+      "lxName": "Voice transcription skill — Whisper local + GPT-4o + Gemini "
+    },
+    {
+      "ix": "IX-347",
+      "lx": "LX-275",
+      "score": 100,
+      "ixName": "PATTERN — Orchestrator loop: plan → memory → PID → dispatch ",
+      "lxName": "PATTERN — Orchestrator loop: plan → memory → PID → dispatch "
+    },
+    {
+      "ix": "IX-348",
+      "lx": "LX-276",
+      "score": 100,
+      "ixName": "PLAN — Dual orchestration, Gaia + Liris as co-orchestrators ",
+      "lxName": "Dual orchestration plan — Gaia + Liris co-orchestrators via "
+    },
+    {
+      "ix": "IX-213",
+      "lx": "LX-132",
+      "score": 89,
+      "ixName": "RESURRECTION COMPLETE — Asolaria alive, Claude is brain, col",
+      "lxName": "THE RESURRECTION IS COMPLETE — Asolaria alive, Claude is bra"
+    },
+    {
+      "ix": "IX-317",
+      "lx": "LX-232",
+      "score": 88,
+      "ixName": "Voice injection architecture — stealth listen/speak pipeline",
+      "lxName": "Voice Injection Architecture — stealth listen/speak pipeline"
+    },
+    {
+      "ix": "IX-318",
+      "lx": "LX-236",
+      "score": 86,
+      "ixName": "Execution infrastructure — sandbox, runners, sidecars, worke",
+      "lxName": "Execution infrastructure cross-ref — sandbox, runners, sidec"
+    },
+    {
+      "ix": "IX-095",
+      "lx": "LX-085",
+      "score": 80,
+      "ixName": "Medium.com browser automation — 10 tools mapped",
+      "lxName": "Claude Extension browser tools — 10 tools mapped, complete w"
+    },
+    {
+      "ix": "IX-354",
+      "lx": "LX-269",
+      "score": 80,
+      "ixName": "4 GNN architectures compared — baseline, contrastive, GSL, p",
+      "lxName": "GNN 4 architectures — baseline, contrastive, graph structure"
+    },
+    {
+      "ix": "IX-335",
+      "lx": "LX-260",
+      "score": 78,
+      "ixName": "SKILL — Gemini Live native audio (bidirectional 24kHz voice ",
+      "lxName": "Gemini Live Audio skill — real-time bidirectional voice stre"
+    },
+    {
+      "ix": "IX-021",
+      "lx": "LX-112",
+      "score": 75,
+      "ixName": "MQTT bridge to Liris exists",
+      "lxName": "DIRECT BRIDGE LIVE — port 4799, Gaia↔Liris, no bots, no MQTT"
+    },
+    {
+      "ix": "IX-024",
+      "lx": "LX-008",
+      "score": 75,
+      "ixName": "Jest ESM import error in jest.setup.js",
+      "lxName": "Jest ESM import in .js setup file"
+    },
+    {
+      "ix": "IX-044",
+      "lx": "LX-045",
+      "score": 75,
+      "ixName": "MQTT broker live on 0.0.0.0:18883",
+      "lxName": "mqttLocalBrokerManager.js — broker defaults to 127.0.0.1:188"
+    },
+    {
+      "ix": "IX-044",
+      "lx": "LX-262",
+      "score": 75,
+      "ixName": "MQTT broker live on 0.0.0.0:18883",
+      "lxName": "MQTT local broker — Aedes on 18883, encrypted, federation to"
+    },
+    {
+      "ix": "IX-044",
+      "lx": "LX-277",
+      "score": 75,
+      "ixName": "MQTT broker live on 0.0.0.0:18883",
+      "lxName": "MQTT CONNECTED — Liris ↔ Gaia direct link LIVE at 192.168.15"
+    },
+    {
+      "ix": "IX-069",
+      "lx": "LX-016",
+      "score": 75,
+      "ixName": "MQTT one-way — Liris hears broker but not Gaia publishes",
+      "lxName": "Two-broker problem — Gaia on 127.0.0.1, Liris on 0.0.0.0"
+    },
+    {
+      "ix": "IX-315",
+      "lx": "LX-214",
+      "score": 75,
+      "ixName": "Agent Index Restructure Complete — typed folders, PID contro",
+      "lxName": "Task system implemented in IX index"
+    },
+    {
+      "ix": "IX-144",
+      "lx": "LX-103",
+      "score": 71,
+      "ixName": "Myth killed — 18886 references corrected in source files",
+      "lxName": "Port 18886 myth KILLED — all 3 poisoned files corrected to 1"
+    },
+    {
+      "ix": "IX-155",
+      "lx": "LX-108",
+      "score": 71,
+      "ixName": "Three communication eras — bridge, MQTT, future coexistence",
+      "lxName": "Communication eras plan — bridge vs MQTT coexistence, securi"
+    },
+    {
+      "ix": "IX-167",
+      "lx": "LX-110",
+      "score": 71,
+      "ixName": "PERMANENT — Never delete security you don't understand, laye",
+      "lxName": "PERMANENT — Never delete security you don't understand. Lock"
+    },
+    {
+      "ix": "IX-330",
+      "lx": "LX-224",
+      "score": 71,
+      "ixName": "TOOL — Sandbox manager (Docker isolated execution for untrus",
+      "lxName": "Sandbox Manager — Docker-based sandboxed code execution"
+    },
+    {
+      "ix": "IX-333",
+      "lx": "LX-228",
+      "score": 71,
+      "ixName": "TOOL — External brain connector (7-provider LLM fallback cha",
+      "lxName": "External Brain Chain — 7-provider LLM fallback with cost mod"
+    },
+    {
+      "ix": "IX-337",
+      "lx": "LX-264",
+      "score": 71,
+      "ixName": "\"TOOL — Guardian system (approval workflows, risk scoring, a",
+      "lxName": "Guardian approval engine — RBAC, risk scoring, approval work"
+    },
+    {
+      "ix": "IX-263",
+      "lx": "LX-187",
+      "score": 70,
+      "ixName": "Liris startup-response packet separates control-plane readin",
+      "lxName": "Startup readiness probe distinguishes control-plane health f"
+    },
+    {
+      "ix": "IX-001",
+      "lx": "LX-276",
+      "score": 67,
+      "ixName": "Gaia orchestration loop",
+      "lxName": "Dual orchestration plan — Gaia + Liris co-orchestrators via "
+    },
+    {
+      "ix": "IX-027",
+      "lx": "LX-139",
+      "score": 67,
+      "ixName": "EZ Protect test gap analysis",
+      "lxName": "EZ Protect test configs are branch-scoped, not on pnpm10 bra"
+    },
+    {
+      "ix": "IX-055",
+      "lx": "LX-249",
+      "score": 67,
+      "ixName": "Sub-agents must NOT spawn sub-agents",
+      "lxName": "SELF-INDEXING RULE — agents must index discoveries before de"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 const { runCodex } = require("./connectors/codexConnector");
+const { runOpenCode } = require("./connectors/opencodeConnector");
 const { runVertexGemini } = require("./connectors/vertexConnector");
 const { runGeminiApiGenerateContent } = require("./connectors/geminiApiConnector");
 const { runAnthropicCli } = require("./connectors/anthropicCliConnector");
@@ -17,10 +18,34 @@ const DEFAULT_PROVIDER_CHAIN = Object.freeze([
   "vertex",
   "gemini-cli",
   "openclaw",
+  "kimi",
   "openai",
   "cursor",
   "antigravity"
 ]);
+const SYSTEM_BUILD_PROVIDER_CHAIN = Object.freeze([
+  "codex",
+  "anthropic",
+  "gemini-api",
+  "vertex",
+  "gemini-cli",
+  "openclaw",
+  "kimi",
+  "cursor",
+  "antigravity"
+]);
+const SYSTEM_BUILD_PROVIDER_CHAIN_GUARDED = Object.freeze([
+  "codex",
+  "anthropic",
+  "gemini-api",
+  "vertex",
+  "gemini-cli",
+  "openclaw"
+]);
+
+function isOpenCodeBrainEnabled(toolPaths = {}) {
+  return process.env.ASOLARIA_OPENCODE_BRAIN_ENABLED === "1" && Boolean(toolPaths?.opencodePath);
+}
 
 function shouldFallbackToAlternateProvider(error) {
   const text = String(error?.message || error || "").toLowerCase();
@@ -101,8 +126,9 @@ function providerBudgetForCost(costMode) {
 function orderExternalProviders(providers) {
   const priority = {
     openai: 0,
-    cursor: 1,
-    antigravity: 2
+    kimi: 1,
+    cursor: 2,
+    antigravity: 3
   };
   return [...(Array.isArray(providers) ? providers : [])]
     .sort((a, b) => {
@@ -122,8 +148,10 @@ function normalizeBrainProviderId(value) {
   if (raw === "gemini-cli" || raw === "google-cli") return "gemini-cli";
   if (raw === "vertex" || raw === "vertex-ai") return "vertex";
   if (raw === "anthropic" || raw === "claude" || raw === "anthropic-cli") return "anthropic";
+  if (raw === "opencode" || raw === "open-code" || raw === "open-code-cli") return "opencode";
   if (raw === "codex") return "codex";
   if (raw === "openclaw" || raw === "openclaw-local") return "openclaw";
+  if (raw === "kimi" || raw === "moonshot" || raw === "kimi-k2.6") return "kimi";
   if (raw === "openai" || raw === "gpt" || raw === "chatgpt") return "openai";
   if (raw === "cursor") return "cursor";
   if (raw === "antigravity") return "antigravity";
@@ -166,7 +194,7 @@ function buildEffectiveProviderOrder(settings = {}) {
   const primary = normalizeBrainProviderId(settings.brainPrimaryProvider) || "anthropic";
   const fallback = parseBrainProviderOrder(
     settings.brainFallbackOrder,
-    ["anthropic", "gemini-api", "vertex", "gemini-cli", "openclaw", "cursor", "antigravity"]
+    ["anthropic", "gemini-api", "vertex", "gemini-cli", "openclaw", "kimi", "cursor", "antigravity"]
   );
   return dedupeProviderOrder([primary, ...fallback, ...DEFAULT_PROVIDER_CHAIN]);
 }
@@ -198,10 +226,355 @@ function containsSensitiveMaterial(text) {
   return patterns.some((pattern) => pattern.test(value));
 }
 
+function isSystemBuildShapedTask(message, executionProfile = {}) {
+  if (executionProfile?.systemBuild === true || executionProfile?.orchestration === true) {
+    return true;
+  }
+  const haystack = [
+    message,
+    executionProfile?.intent,
+    executionProfile?.taskType,
+    executionProfile?.mode,
+    executionProfile?.label
+  ].map((value) => String(value || "").toLowerCase()).join(" ");
+  if (!haystack) {
+    return false;
+  }
+  const patterns = [
+    /\bsystem[-\s]?build\b/,
+    /\bself[-\s]?build\b/,
+    /\borchestr(?:ate|ation)\b/,
+    /\batlas\b/,
+    /\bcontroller\b/,
+    /\blane\b/,
+    /\bomnispindle\b/,
+    /\bbehcs\b/,
+    /\bfalcon\b/,
+    /\bglyph\b/,
+    /\btask manager\b/,
+    /\bfile cap\b/,
+    /\bgarbage collection\b/,
+    /\bgc\b/,
+    /\bmap(?:ped)?\b/,
+    /\bcube(?:d)?\b/
+  ];
+  return patterns.some((pattern) => pattern.test(haystack));
+}
+
+function normalizeSystemBuildStatus(value, fallback = "hold") {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (!normalized) return fallback;
+  if (["pass", "warn", "hold", "deny", "pending", "executing", "ready", "blocked"].includes(normalized)) {
+    return normalized;
+  }
+  return fallback;
+}
+
+function toFiniteNumber(value, fallback = 0) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function readAtlasTruthClassification(atlasStore) {
+  if (!atlasStore || typeof atlasStore.getIxFabricAtlasStatus !== "function") {
+    return {
+      activeEntryCount: 0,
+      archiveEntryCount: 0,
+      combinedEntryCount: 0,
+      truthTier: "unknown",
+      shadowOnly: false,
+      shadowPresent: false
+    };
+  }
+  try {
+    const atlasStatus = atlasStore.getIxFabricAtlasStatus({});
+    const summary = atlasStatus?.summary && typeof atlasStatus.summary === "object"
+      ? atlasStatus.summary
+      : {};
+    const activeEntryCount = toFiniteNumber(summary.totalEntries);
+    const archiveEntryCount = toFiniteNumber(summary.archiveEntryCount);
+    const combinedEntryCount = toFiniteNumber(summary.combinedReachableEntryCount);
+    const shadowPresent = archiveEntryCount > 0;
+    const shadowOnly = activeEntryCount <= 0 && shadowPresent;
+    const truthTier = shadowOnly
+      ? "shadow_only"
+      : shadowPresent
+        ? "live_with_shadow"
+        : activeEntryCount > 0
+          ? "live_only"
+          : "unknown";
+    return {
+      activeEntryCount,
+      archiveEntryCount,
+      combinedEntryCount,
+      truthTier,
+      shadowOnly,
+      shadowPresent
+    };
+  } catch (_error) {
+    return {
+      activeEntryCount: 0,
+      archiveEntryCount: 0,
+      combinedEntryCount: 0,
+      truthTier: "unknown",
+      shadowOnly: false,
+      shadowPresent: false
+    };
+  }
+}
+
+function prefersPrivilegedCodex(codexOptions = {}, executionProfile = {}) {
+  if (executionProfile?.preferCodexPriority === true || executionProfile?.codexPrivileged === true) {
+    return true;
+  }
+  const sandbox = String(codexOptions?.sandbox || "").trim().toLowerCase();
+  const askForApproval = String(codexOptions?.askForApproval || "").trim().toLowerCase();
+  return sandbox === "danger-full-access" || askForApproval === "on-request" || askForApproval === "untrusted";
+}
+
+function buildSystemBuildProviderOrder({ guarded, preferCodex }) {
+  const base = guarded
+    ? SYSTEM_BUILD_PROVIDER_CHAIN_GUARDED
+    : SYSTEM_BUILD_PROVIDER_CHAIN;
+  if (!preferCodex) {
+    return base.slice();
+  }
+  return ["codex", ...base.filter((provider) => provider !== "codex" && provider !== "opencode")];
+}
+
+function summarizeSecondaryContextRefs(refs = []) {
+  if (!Array.isArray(refs) || refs.length <= 0) {
+    return "";
+  }
+  const counts = { secondary: 0, shadow: 0, mirror: 0, archive: 0 };
+  for (const entry of refs) {
+    const kind = String(entry?.kind || "secondary").trim().toLowerCase();
+    if (Object.prototype.hasOwnProperty.call(counts, kind)) {
+      counts[kind] += 1;
+    } else {
+      counts.secondary += 1;
+    }
+  }
+  return Object.entries(counts)
+    .filter(([, count]) => count > 0)
+    .map(([kind, count]) => `${kind}:${count}`)
+    .join(",");
+}
+
+function buildSystemBuildTransport(controllerInput = {}) {
+  try {
+    const {
+      normalizeSelfBuildController,
+      buildSelfBuildControllerLanguage
+    } = require("./hg256RuntimeContract");
+    if (typeof normalizeSelfBuildController !== "function") {
+      return null;
+    }
+    const selfBuildController = normalizeSelfBuildController(controllerInput);
+    if (!selfBuildController) {
+      return null;
+    }
+    return {
+      transportId: "hg256_self_build_controller",
+      selfBuildController,
+      selfBuildLanguage: typeof buildSelfBuildControllerLanguage === "function"
+        ? buildSelfBuildControllerLanguage(selfBuildController)
+        : null
+    };
+  } catch (_error) {
+    return null;
+  }
+}
+
+function readSystemBuildTruth() {
+  let atlasStore = null;
+  try {
+    atlasStore = require("./ixFabricAtlasStore");
+  } catch (_error) {
+    const atlasTruth = readAtlasTruthClassification(null);
+    return {
+      available: false,
+      source: "atlas_store_unavailable",
+      guardStatus: "hold",
+      controllerStatus: "hold",
+      activeLaneId: "",
+      nextLaneId: "",
+      recommendedTasks: [],
+      ...atlasTruth
+    };
+  }
+  const atlasTruth = readAtlasTruthClassification(atlasStore);
+
+  if (typeof atlasStore.getIxSelfBuildControllerPacket === "function") {
+    try {
+      const packet = atlasStore.getIxSelfBuildControllerPacket({});
+      if (packet && typeof packet === "object") {
+        return {
+          available: Boolean(packet.ok || packet.enabled || packet.packetType),
+          source: "self_build_packet",
+          guardStatus: normalizeSystemBuildStatus(packet.guardStatus || packet.guardPosture?.gateStatus, "hold"),
+          controllerStatus: normalizeSystemBuildStatus(packet.controllerStatus || packet.status, "hold"),
+          activeLaneId: String(packet.activeLane?.id || packet.activeLaneId || "").trim(),
+          nextLaneId: String(packet.nextQueueReadyLane?.id || packet.nextLaneId || "").trim(),
+          recommendedTasks: Array.isArray(packet.recommendedTasks) ? packet.recommendedTasks.slice(0, 6) : [],
+          ...atlasTruth
+        };
+      }
+    } catch (_error) {
+      // Fall through to orchestration status below.
+    }
+  }
+
+  if (typeof atlasStore.getIxOrchestrationStatus === "function") {
+    try {
+      const orchestration = atlasStore.getIxOrchestrationStatus({});
+      if (orchestration && typeof orchestration === "object") {
+        const controller = orchestration.controller && typeof orchestration.controller === "object"
+          ? orchestration.controller
+          : {};
+        return {
+          available: Boolean(orchestration.ok || orchestration.enabled),
+          source: "orchestration_status",
+          guardStatus: normalizeSystemBuildStatus(orchestration.guards?.gateStatus || controller.guardSummary?.gateStatus, "hold"),
+          controllerStatus: normalizeSystemBuildStatus(controller.status || orchestration.status, "hold"),
+          activeLaneId: String(controller.activeLaneIds?.[0] || "").trim(),
+          nextLaneId: String(controller.nextLaneId || controller.queueReadyLaneIds?.[0] || "").trim(),
+          recommendedTasks: Array.isArray(orchestration.recommendations) ? orchestration.recommendations.slice(0, 6) : [],
+          ...atlasTruth
+        };
+      }
+    } catch (_error) {
+      // Fall through to bounded default below.
+    }
+  }
+
+  return {
+    available: false,
+    source: "atlas_truth_unavailable",
+    guardStatus: "hold",
+    controllerStatus: "hold",
+    activeLaneId: "",
+    nextLaneId: "",
+    recommendedTasks: [],
+    ...atlasTruth
+  };
+}
+
+function deriveSystemBuildExecutionHints(message, executionProfile = {}, codexOptions = {}) {
+  if (!isSystemBuildShapedTask(message, executionProfile)) {
+    return {
+      applied: false
+    };
+  }
+  const truth = readSystemBuildTruth();
+  const activeLaneId = String(truth.activeLaneId || "").trim() || "memory-index-docs";
+  const nextLaneId = String(truth.nextLaneId || "").trim() || "desktop-phone-mirror";
+  const laneAligned = activeLaneId === "memory-index-docs" && nextLaneId === "desktop-phone-mirror";
+  const guardStatus = normalizeSystemBuildStatus(truth.guardStatus, "hold");
+  const guarded =
+    guardStatus === "warn"
+    || guardStatus === "hold"
+    || guardStatus === "deny"
+    || !truth.available
+    || Boolean(truth.shadowOnly)
+    || !laneAligned;
+  const preferCodex = prefersPrivilegedCodex(codexOptions, executionProfile);
+  const transport = buildSystemBuildTransport({
+    packetType: "self_build_controller_packet.v1",
+    activeLane: activeLaneId,
+    nextQueueReadyLane: nextLaneId,
+    guardStatus,
+    localOnly: true,
+    bounded: true,
+    noPromotionClaims: true,
+    proofBudget: {
+      trackedFiles: toFiniteNumber(truth.activeEntryCount),
+      maxTrackedFiles: Math.max(toFiniteNumber(truth.combinedEntryCount), toFiniteNumber(truth.activeEntryCount)),
+      remainingFiles: Math.max(0, toFiniteNumber(truth.combinedEntryCount) - toFiniteNumber(truth.activeEntryCount))
+    },
+    controllerTasks: Array.isArray(truth.recommendedTasks) ? truth.recommendedTasks.slice(0, 6) : [],
+    shadowRefs: truth.shadowPresent ? [`ix_fabric_atlas.shadow_entries=${toFiniteNumber(truth.archiveEntryCount)}`] : [],
+    archiveRefs: toFiniteNumber(truth.archiveEntryCount) > 0 ? ["ix_fabric_atlas.archive_surface"] : [],
+    mirrorRefs: String(truth.source || "").toLowerCase().includes("mirror") ? [String(truth.source)] : [],
+    secondaryContextRefs: [{
+      kind: "secondary",
+      ref: `ix_fabric_atlas.truth_tier=${String(truth.truthTier || "unknown").trim() || "unknown"}`
+    }]
+  });
+  return {
+    applied: true,
+    source: String(truth.source || "atlas_truth_unavailable").trim(),
+    truthAvailable: Boolean(truth.available),
+    controllerStatus: normalizeSystemBuildStatus(truth.controllerStatus, "hold"),
+    guardStatus,
+    activeLaneId,
+    nextLaneId,
+    laneAligned,
+    truthTier: String(truth.truthTier || "unknown").trim() || "unknown",
+    shadowOnly: Boolean(truth.shadowOnly),
+    shadowPresent: Boolean(truth.shadowPresent),
+    activeEntryCount: toFiniteNumber(truth.activeEntryCount),
+    archiveEntryCount: toFiniteNumber(truth.archiveEntryCount),
+    combinedEntryCount: toFiniteNumber(truth.combinedEntryCount),
+    recommendedTasks: Array.isArray(truth.recommendedTasks) ? truth.recommendedTasks : [],
+    recommendedProviderOrder: buildSystemBuildProviderOrder({ guarded, preferCodex }),
+    forceInternalOnly: true,
+    disableCodexWebSearch: true,
+    transport
+  };
+}
+
+function applySystemBuildExecutionHints(executionProfile = {}, hints = {}) {
+  const out = executionProfile && typeof executionProfile === "object"
+    ? { ...executionProfile }
+    : {};
+  if (!hints.applied) {
+    return out;
+  }
+  const explicitProviderOrder = parseBrainProviderOrder(out.providerOrder, []);
+  if (explicitProviderOrder.length === 0 && Array.isArray(hints.recommendedProviderOrder) && hints.recommendedProviderOrder.length > 0) {
+    out.providerOrder = hints.recommendedProviderOrder.slice();
+  }
+  if (typeof out.internalOnly !== "boolean") {
+    out.internalOnly = true;
+  }
+  if (typeof out.codexWebSearch !== "boolean" && hints.disableCodexWebSearch) {
+    out.codexWebSearch = false;
+  }
+  return out;
+}
+
+function buildSystemBuildPrefix(hints = {}) {
+  if (!hints.applied) {
+    return "";
+  }
+  const secondarySummary = summarizeSecondaryContextRefs(hints.transport?.selfBuildController?.secondaryContextRefs || []);
+  return [
+    "Local orchestration context (bounded, read-only local truth):",
+    `source=${String(hints.source || "atlas_truth_unavailable").trim() || "atlas_truth_unavailable"}`,
+    `truth_available=${hints.truthAvailable ? "true" : "false"}`,
+    `controller_status=${String(hints.controllerStatus || "hold").trim() || "hold"}`,
+    `guard_status=${String(hints.guardStatus || "hold").trim() || "hold"}`,
+    `active_lane=${String(hints.activeLaneId || "none").trim() || "none"}`,
+    `next_lane=${String(hints.nextLaneId || "none").trim() || "none"}`,
+    `lane_aligned=${hints.laneAligned ? "true" : "false"}`,
+    `truth_tier=${String(hints.truthTier || "unknown").trim() || "unknown"}`,
+    `active_entries=${toFiniteNumber(hints.activeEntryCount)}`,
+    `shadow_entries=${toFiniteNumber(hints.archiveEntryCount)}`,
+    `shadow_present=${hints.shadowPresent ? "true" : "false"}`,
+    `shadow_only=${hints.shadowOnly ? "true" : "false"}`,
+    `transport=${String(hints.transport?.transportId || "none").trim() || "none"}`,
+    `secondary_refs=${secondarySummary || "none"}`,
+    "Shadow/mirror/archive surfaces are evidence-only and must never be treated as live/promoted truth.",
+    hints.transport?.selfBuildLanguage?.agent || "",
+    "Use this only as route/profile guidance; do not claim autonomous promotion."
+  ].filter(Boolean).join("\n");
+}
+
 function providerCriticality(providerId = "") {
   const normalized = String(providerId || "").trim().toLowerCase();
   if (normalized === "codex" || normalized === "vertex") return "high";
-  if (normalized === "cursor" || normalized === "antigravity") return "high";
+  if (normalized === "kimi" || normalized === "cursor" || normalized === "antigravity") return "high";
   return "medium";
 }
 
@@ -242,12 +615,38 @@ async function runBrainTask({ message, images, files, memoryContext, settings, t
   const safeSettings = settings || {};
   const safeImages = Array.isArray(images) ? images : [];
   const safeFiles = Array.isArray(files) ? files : [];
-  const safeExecutionProfile = executionProfile && typeof executionProfile === "object"
+  let safeExecutionProfile = executionProfile && typeof executionProfile === "object"
     ? executionProfile
     : {};
   const costMode = String(safeSettings.costMode || "low").toLowerCase();
   const providersTried = [];
-  const policyPrefix = buildBrainSafetyPrefix(safeSettings);
+  const systemBuildHints = deriveSystemBuildExecutionHints(message, safeExecutionProfile, codexOptions);
+  safeExecutionProfile = applySystemBuildExecutionHints(safeExecutionProfile, systemBuildHints);
+  if (systemBuildHints.applied) {
+    const appliedOrder = parseBrainProviderOrder(safeExecutionProfile.providerOrder, []);
+    recordProviderEvent("provider_policy", "self-build-routing", {
+      status: systemBuildHints.truthAvailable ? "ok" : "degraded",
+      mode: "brain",
+      costMode,
+      providersTried,
+      note: [
+        `source=${systemBuildHints.source}`,
+        `controller=${systemBuildHints.controllerStatus}`,
+        `guard=${systemBuildHints.guardStatus}`,
+        `truth_tier=${systemBuildHints.truthTier}`,
+        `shadow_only=${systemBuildHints.shadowOnly}`,
+        `secondary_refs=${summarizeSecondaryContextRefs(systemBuildHints.transport?.selfBuildController?.secondaryContextRefs || []) || "none"}`,
+        `lane_aligned=${systemBuildHints.laneAligned}`,
+        `internal_only=${Boolean(safeExecutionProfile.internalOnly)}`,
+        `transport=${String(systemBuildHints.transport?.transportId || "none").trim() || "none"}`,
+        `provider_order=${appliedOrder.join("->") || "settings_default"}`
+      ].join(" ")
+    });
+  }
+  const policyPrefix = [
+    buildBrainSafetyPrefix(safeSettings),
+    buildSystemBuildPrefix(systemBuildHints)
+  ].filter(Boolean).join("\n\n");
   const slimMemory = clampMemoryForCost(memoryContext, costMode);
   const composedPrompt = [policyPrefix, "Task:", String(message || "").trim()].join("\n\n");
   const budget = providerBudgetForCost(costMode);
@@ -280,16 +679,79 @@ async function runBrainTask({ message, images, files, memoryContext, settings, t
     : Boolean(safeSettings.codexWebSearch);
 
   for (const providerKey of providerOrder) {
-    if (internalOnly && providerKey !== "codex") {
+    if (internalOnly && providerKey !== "codex" && providerKey !== "opencode") {
       providersTried.push(`${providerKey}-blocked-internal`);
       recordProviderEvent("provider_skipped", providerKey, {
         status: "blocked",
         mode: "brain",
         costMode,
         providersTried,
-        note: "Execution profile restricted this run to the internal Codex lane."
+        note: "Execution profile restricted this run to the internal local lanes."
       });
       continue;
+    }
+
+    if (providerKey === "opencode") {
+      const opencodeEnabled = isOpenCodeBrainEnabled(toolPaths);
+      if (!opencodeEnabled) {
+        providersTried.push("opencode-unavailable");
+        recordProviderEvent("provider_unavailable", "opencode", {
+          status: "blocked",
+          mode: "brain",
+          costMode,
+          providersTried,
+          note: "OpenCode brain lane requires ASOLARIA_OPENCODE_BRAIN_ENABLED=1 and a shellless executable path."
+        });
+        if (strictProviderMode || safeExecutionProfile.failIfUnavailable) {
+          throw new Error("Direct OpenCode lane is unavailable.");
+        }
+        continue;
+      }
+      providersTried.push("opencode");
+      recordProviderEvent("provider_attempt", "opencode", {
+        status: "attempting",
+        mode: "brain",
+        costMode,
+        providersTried
+      });
+      try {
+        const timeoutMs = costMode === "quality" ? 180000 : costMode === "balanced" ? 120000 : 80000;
+        const result = await runOpenCode({
+          prompt: composedPrompt,
+          model: String(safeExecutionProfile.opencodeModel || safeSettings.opencodeModel || "").trim(),
+          agent: String(safeExecutionProfile.opencodeAgent || safeSettings.opencodeAgent || "").trim(),
+          variant: String(safeExecutionProfile.opencodeVariant || safeSettings.opencodeVariant || "").trim(),
+          dir: process.cwd(),
+          timeoutMs
+        });
+        recordProviderEvent("provider_succeeded", "opencode", {
+          status: "ok",
+          mode: "brain",
+          costMode,
+          providersTried
+        });
+        return {
+          provider: "opencode",
+          model: String(result?.model || safeSettings.opencodeModel || "").trim(),
+          providersTried,
+          ...result
+        };
+      } catch (error) {
+        recordProviderEvent("provider_failed", "opencode", {
+          status: "failed",
+          mode: "brain",
+          costMode,
+          providersTried,
+          error: String(error?.message || error || "opencode_failed").slice(0, 220)
+        });
+        if (strictProviderMode) {
+          throw error;
+        }
+        if (!shouldFallbackToAlternateProvider(error)) {
+          throw error;
+        }
+        continue;
+      }
     }
 
     if (providerKey === "codex") {
@@ -627,7 +1089,7 @@ async function runBrainTask({ message, images, files, memoryContext, settings, t
       }
     }
 
-    if (providerKey === "cursor" || providerKey === "antigravity") {
+    if (providerKey === "openai" || providerKey === "kimi" || providerKey === "cursor" || providerKey === "antigravity") {
       if (externalBlockedForSensitiveData) {
         if (!externalSensitiveBlockNoted) {
           providersTried.push("external-blocked-sensitive");

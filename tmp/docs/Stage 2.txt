@@ -1,0 +1,573 @@
+Stage 2 - Ok, I am writing a word document. I got everything you just said written in it. But I need to feed this to three SUPER AI to help me improve it. I need to know the information for them to analyze (they can look at over 16000 sites each research.). I will pass the word doc to each one of them, then copy paste their three reports back into all three of them, and then get those three summaries, and recombine them with THIS original research (to prevent memory loss, and give the Frontier super models All the results from the three deep research cycles each, AND the original scoping you are performing now.) They will cooectively do another deep research with that, and we will give ALL three results WITH the original Specs TO A SUPER CODER aGent SuPER SWARM. It will build this super SUPER CODER CIVILIZATION. Like you said. Knowing this now, What are the critical things that I need to also mention (I will give the AgentsMD from c as well.) Think about that, plan, mark tasks, skills, tools, mistakes, ect that you come across or need to create / use. You have unlimited budget for now. Go
+
+
+
+
+Asolaria Systems Engineering Assessment
+A systems engineer rebuilding a "civilization program" — one that absorbs, watches, decomposes, and simplifies external programs while keeping itself alive — would inventory these 16 domains:
+Findings By Domain
+1. Process Lifecycle & Supervisory Control
+Current state: startAsolariaServers() (server.js:35198) is the single entry point. Boot sequence:
+warmAsolariaRuntime() — bootstraps guardian profile, warms Playwright screenshot worker
+Express app.listen(port) on 4781
+Post-listen (async): MQTT broker start → MQTT bridge start → health cache warm → civilization world warm → super coder cockpit warm
+Deferred (900ms): external observed prune scheduler, model audit scheduler, Telegram polling, colony watchdog, voice bridge orchestrator
+Brain leader selection loop (if STARTUP_BACKGROUND_TASKS_ENABLED)
+HTTPS server on secondary port (if certs available)
+Raw probe server on 4782 (minimal startup mode)
+Keepalive: Keep-Asolaria-HealthGuardrail.ps1 — periodic HTTP/HTTPS/OLI probe, bridge message on failure, state persistence. Colony watchdog (syncAgentColonyWatchdogScheduler) with setInterval ticks.
+GAP: No process supervisor (systemd/pm2/Windows service). No graceful shutdown handler (process.on('SIGTERM') not found). No automatic restart on crash. Watchdog is an external PowerShell script that must be launched separately.
+UPGRADE: Add a proper process manager, graceful shutdown with drain, and a Windows service wrapper.
+2. IPC & Message Bus
+Current state:
+MQTT (aedes broker, local): Embedded via mqttLocalBrokerManager.js. Supports WS/WSS for browser realtime. Publishes health, colony, presence, and world snapshots to topic tree.
+Relay room (asolaria_bridge): codex-bridge sends/receives messages between agents via Node.js child process + bridge.js.
+EventEmitter (graphRuntimeEmitter): Internal pub/sub for graph events, max 64 listeners.
+HTTP/Express: Primary IPC — everything routes through the gateway.
+GAP: No message durability (MQTT QoS 0 likely). MQTT bridge failure is logged but not retried. No dead-letter queue. EventEmitter is in-process only — if the process dies, events are lost.
+UPGRADE: Add MQTT QoS 1/2 for critical messages, persistent sessions, retry logic on bridge disconnect.
+3. State Persistence & Recovery
+Current state: 9 disk-backed stores, all using atomic write (tmp + rename):
+memory.json (170KB) — turns with snapshots every 5min, keeps 24 snapshots
+task-ledger.json (1.5MB) — tasks + events
+projects.json (2.7KB) — project registry
+mistake-ledger.ndjson (625KB) — append-only raw log
+mistake-patterns.json (22KB) — extracted patterns
+graph-runtime-events.ndjson (1MB) — observation events
+workspace-semantic-index.json (7.4MB) — Gemini embeddings
+skills-tools-index.json (70KB) — unified index
+guardian-approvals.json (42KB) — approval requests
+All vault secrets in data/vault/{owner,asolaria}/vault.secrets.json.
+GAP: No WAL (write-ahead log). No transactional writes across stores. Corruption recovery is "backup the broken file and reset to empty" — data can be lost. No replication.
+UPGRADE: Add WAL or SQLite for critical stores. Cross-store consistency checks. Periodic integrity verification.
+4. Resource Management & Limits
+Current state:
+Memory turns: max 300 (env-configurable)
+Tasks: max 4000, events max 12000
+Projects: max 500
+Job queue: max 500 jobs, concurrency 2
+Snapshots: max 24 kept
+Approval store: max 600 entries
+Semantic index: max 480 docs, 768-dim embeddings
+Captures prune: configurable keep/age
+GAP: No Node.js heap monitoring. No disk usage alerts. tmp file sprawl (many .tmp-* files if process crashes mid-write). No memory pressure backoff. workspace-semantic-index.json is 7.4MB loaded fully into memory.
+UPGRADE: Add heap/disk metrics, backpressure on job queue, GC for orphaned tmp files.
+5. Error Handling & Resilience
+Current state:
+Brain fallback chain (brainOrchestrator.js): Sequential attempt through configurable provider order (default: anthropic → codex → gemini-api → vertex → gemini-cli → openclaw → openai → cursor → antigravity). Falls back on 429/quota/timeout/auth errors. Hard-stops on guardian-blocked/denied. Terminal fallback: buildLowCostResponse() returns a canned message.
+shouldFallbackToAlternateProvider(): Pattern-matches error text to decide skip vs throw.
+Each provider attempt is recorded as a graph event.
+GAP: No circuit breaker pattern (a broken provider is retried every time). No exponential backoff. No health-based routing (always tries in order). No retry count limit per request.
+UPGRADE: Add circuit breakers with half-open recovery, provider health scores, exponential backoff.
+6. Security Boundaries
+Current state:
+Vault (secureVault.js): AES-256-GCM, two namespaces (owner/asolaria). Master keys stored as plaintext base64 on disk.
+Risk engine (riskEngine.js): Numeric score per action (0-9 baseline), plus regex-based text analysis for destructive ops, secrets, money, mass posting, security incidents, CAPTCHA, privilege escalation. Score → level (low/medium/high/critical).
+Edge risk engine (edgeRiskEngine.js): Same scoring for graph event edges, with cross-domain and approval-state bonuses.
+Brain safety prefix (brainPolicy.js): Injected into every brain prompt — ClawBot adversary warning, no credential sharing, CAPTCHA escalation, minimal tools preference.
+Guardian (guardianStore.js, guardianApprovalStore.js): Owner profile with contacts, approval requests with expiration (5-180 min), SHA-256 dedup.
+Approval engine (approvalEngine.js): Command-prefix-based auto-approval, read-only detection, destructive detection, persistent prefix whitelist.
+Secret redaction in memoryStore: PEM keys, Google API keys, JSON secret fields, auth headers, hex tokens.
+GAP: Master keys on disk in plaintext. No RBAC (all-or-nothing owner model). No network-level auth on Express endpoints (anyone on the network can call the API). No TLS client cert validation. Approval engine uses substring matching, not AST-level analysis.
+UPGRADE: Encrypt master keys with OS keychain. Add API key/token auth to gateway. RBAC for multi-operator scenarios. Move to AST-based command analysis.
+7. Configuration Management
+Current state:
+data/runtime-settings.json: Persisted settings (cost mode, brain provider, swarm config, voice, etc.)
+Env vars: ASOLARIA_* for overrides (memory limits, ports, feature flags)
+In-process settings object: Merged from env + persisted file + defaults at boot
+persistRuntimeSettingsSnapshot(): Writes current settings to disk on change
+GAP: No schema validation (settings are normalized inline with fallback defaults). No hot-reload mechanism — settings changes require API call to /settings endpoint or restart. No config versioning/migration.
+UPGRADE: JSON Schema validation, config version migration, hot-reload via file watcher.
+8. Monitoring & Observability
+Current state:
+Graph runtime events (graph-runtime-events.ndjson, 1MB): Every provider attempt, approval, and significant action is recorded as a structured event with risk scoring.
+Action manifests (graph-runtime-manifests.ndjson): Proposed actions with rollback/evidence fields.
+Health endpoints: MQTT health snapshot, colony snapshot, presence payload, civilization world panel — all cached with TTL.
+Logs: console.log/console.warn throughout. Log directory (logs/) with phone-keeper and tunnel monitor logs.
+HealthGuardrail: External PowerShell probe with bridge alerting.
+GAP: No structured logging (just console). No metrics (Prometheus/StatsD). No tracing (distributed trace IDs). No alerting beyond bridge message and MQTT. Graph events are append-only with no rotation/compaction.
+UPGRADE: Structured JSON logging, metrics endpoint, NDJSON rotation with size limits, distributed trace IDs through request lifecycle.
+9. External Dependency Map
+NPM (8 deps): express, aedes (MQTT broker), mqtt (client), playwright, web-push, ws, @modelcontextprotocol/sdk, minimalistic-assert/crypto-utils
+CLI tools: claude (Anthropic), gemini (Google), codex (OpenAI), node
+Cloud services: GCP (Vertex AI, generativelanguage API), Google OAuth/Gmail/Calendar, Atlassian OAuth, GitHub API, Slack API, Telegram API
+External AI: OpenAI, Anthropic, Google Gemini (API + CLI + Vertex), Cursor, Antigravity, Symphony, Abacus
+Local: Chrome profiles, Playwright, ADB (phone), desktop input/capture via PowerShell, scrcpy
+41 connectors in src/connectors/ totaling ~670KB
+GAP: No dependency pinning beyond semver ranges. No vulnerability scanning. No fallback if npm registry is unreachable. CLI tools are detected at runtime via PATH — fragile.
+UPGRADE: Lock file discipline, Snyk/npm audit integration, vendored CLI paths.
+10. API Surface & Gateway
+Current state: 35,385-line server.js monolith exposes Express routes. Separate gateway (src/gateway/server.js) exists in package.json scripts.
+GAP: No API documentation. No OpenAPI spec. No rate limiting. No authentication on local endpoints. No CORS policy visible. The monolithic server.js is the #1 rebuild obstacle — it's 1.2MB of interleaved routing, business logic, and state.
+UPGRADE: Split into route modules. Add OpenAPI spec. Add auth middleware. Rate limiting.
+11. Plugin/Extension Architecture
+Current state:
+Skills (57 dirs): JSON-defined step sequences, cached registry, risk scoring per action
+Tools (170+ scripts): Flat directory, no registry — discovered by name/convention
+Connectors (41 files): Hardcoded require() in server.js — no dynamic loading
+Codex skill catalog (codexSkillCatalog.js): Discovers ~/.codex/skills/ SKILL.md files, builds wrapper mappings
+MCP: @modelcontextprotocol/sdk + external brain connector MCP cache
+Skills-tools index: Unified cross-reference of skills, actions, codex skills, mistake patterns, MCP providers
+GAP: Connectors are not pluggable (hardcoded requires). Tools have no manifest/validation. No skill versioning beyond the version field. No hot-loading of new skills.
+UPGRADE: Dynamic connector loading. Tool manifest schema. Skill hot-reload via file watcher. Connector interface contract.
+12. Program Absorption & Decomposition
+Current state:
+Codebase review skills: codebase-review-kickoff, codebase-review-composite-tools-baseline, codebase-review-token-efficiency-snapshot, codebase-review-external-mcp-cache — 4 skills for analyzing codebases
+Local ops connector: runLocalProjectTask() for running tasks within project folders
+Gemini file analysis: Upload + analyze files via Gemini API
+Workspace knowledge: Reads TASKS.md, REFERENCES.md and indexes them
+Semantic knowledge: Gemini embeddings over conversation memory + notebook + workspace files (7.4MB index)
+installPlanner: buildInstallProbe() for environment detection
+GAP: No actual program decomposition pipeline. No AST parsing. No dependency graph extraction. No automated simplification or refactoring. The "absorption" concept exists only as manual codebase review skills.
+UPGRADE: This is the biggest gap for the "civilization program" vision. Need: AST parser pipeline, dependency graph builder, automated complexity scoring, decomposition planner, safe sandbox execution for analysis.
+13. Concurrency & Scheduling
+Current state:
+Job queue (jobQueue.js): In-memory, concurrency 2 (env-configurable). Queue → run → complete/fail. Prunes at 500 jobs.
+Colony watchdog: setInterval-based (min 60s tick). Monitors agent colony state.
+Super swarm: Configurable fan-out (1-9 agents), participants list (claude_max, abacus, symphony, gemini_api, augment_context). Method: super_swarm. Mission: qdd.
+Brain leader loop: Startup probe → selects first working provider → continuous retry on failure.
+Schedulers: External observed prune, model audit, Telegram polling, voice bridge orchestrator — all setInterval-based.
+Worker router (workerRouter.js, 36KB): Recommends workers, dispatches tasks, tracks dispatches.
+GAP: All scheduling is setInterval — no cron-like precision, no persistence across restarts, no distributed scheduling. Job queue is in-memory — lost on crash. No priority queue. Super swarm fan-out has no work-stealing or load balancing.
+UPGRADE: Persistent job queue (SQLite or Redis). Cron scheduler. Priority lanes. Work-stealing for swarm.
+14. Deployment & Packaging
+Current state:
+Build-PublicRelease.ps1: Manifest-based allowlist copy, prune excluded items, sanitize URLs, leak scan (private keys, API keys, tokens, vault refs), optional ZIP.
+Start-Asolaria.cmd and Start-Asolaria-ControlPlane.cmd launchers
+npm start runs node server.js
+Gateway and sandbox-manager are separate npm run scripts
+GAP: No container image. No CI/CD pipeline. No blue-green deployment. No rollback mechanism. No health check in deployment. Leak scan is good but manual.
+UPGRADE: Dockerfile, CI/CD with automated leak scan, health-check-based deployment, rollback support.
+15. Self-Improvement Loop
+Current state:
+Complete feedback loop exists:
+Mistake ledger (append-only NDJSON) captures every mistake with feature, operation, severity, root cause, avoidance
+Mistake patterns auto-extracted from ledger entries, deduplicated by Dewey code + SHA1 fingerprint, occurrence counting
+Avoidance hints generated from active patterns, filtered by skill/tool/activity context
+Brain prompt injection via buildBrainSafetyPrefix() + buildMistakeAvoidanceHints()
+Skills-tools index cross-links patterns to skills/tools/activities
+Semantic knowledge indexes everything into embeddings for retrieval
+GAP: No automated mistake detection — mistakes must be explicitly logged. No post-mortem analysis. No A/B testing of avoidance strategies. No decay/confidence scoring on patterns.
+UPGRADE: Automated failure detection from graph events → mistake ledger. Pattern confidence scoring. A/B testing framework for avoidance strategies.
+16. Documentation & Institutional Knowledge
+Current state:
+AGENTS.md: Agent instructions and configuration
+README.md: Project overview
+PUBLIC_DEPLOYMENT.md: Deployment notes
+EZ_PROTECT_TASKS.md: QDD task tracking
+PHONE-URLS.md: Phone integration URLs
+NEXT_LOGIN_MESSAGE.md: Startup message
+skills/README.md: Skills overview
+Runbook markdown files in tools/
+GAP: No architecture diagram. No API documentation. No onboarding guide. No decision log (ADRs). Server.js at 35K lines is undocumented. Connector interfaces are implicit. No code comments beyond occasional inline notes.
+UPGRADE: Architecture diagram, API docs (OpenAPI), ADR log, inline JSDoc, onboarding guide.
+Critical Rebuild Priorities (Ranked)
+Split the monolith — server.js (35K lines) must be decomposed into route modules, middleware, and business logic layers
+Process supervision — Add pm2/Windows service, graceful shutdown, automatic restart
+Persistent job queue — Move from in-memory to SQLite/Redis to survive crashes
+API authentication — Add token/key auth to all endpoints
+Program absorption pipeline — AST parsing, dependency graphs, complexity scoring, decomposition planning
+Structured logging + metrics — JSON logging, Prometheus metrics, distributed tracing
+Circuit breakers for providers — Health-based routing with exponential backoff
+Master key protection — OS keychain integration instead of plaintext on disk
+Dynamic connector loading — Plugin architecture instead of hardcoded requires
+State store upgrade — WAL/SQLite for critical stores, cross-store consistency
+Upgrade Potentials ("Future Skills")
+AST Decomposer Skill: Parses any program into AST, extracts dependency graph, scores complexity, proposes simplification
+Program Absorber Skill: Sandboxed execution → behavior analysis → interface extraction → adapter generation
+Self-Healer Skill: Monitors graph events for failure patterns → auto-generates and tests fixes
+Civilization Pruner Skill: Identifies unused/redundant code paths across the system → proposes safe removal
+Provider Health Oracle: Maintains rolling health scores for all AI providers, routes dynamically
+Config Migration Skill: Detects schema changes, auto-migrates settings between versions
+Distributed Scheduler: Cron-like persistent scheduling with priority lanes and work-stealing
+Section H — Phone Subsystem
+Device Identity
+Samsung Galaxy S24 (SM-S721U1), serial R5CXA4MGQXV
+Android 16, SDK 36, OneUI 8.0, security patch 2026-02-05
+Board/SoC: s5e9945/erd9945, kernel 6.1.138-android14-11
+Boot state: flash_locked, vbmeta locked, verified boot green
+Region: USA/XAA (US unlocked), timezone America/Sao_Paulo
+Storage: 224GB total, ~46% used
+Dual transport: USB (R5CXA4MGQXV) + WiFi ADB (192.168.1.6:5555)
+ADB reverse proxy active: tcp:4781 → tcp:4781 (phone can reach Asolaria gateway)
+Asolaria Phone App
+Package: com.jessebrown.asolaria v0.1.0 (versionCode 1, DEBUGGABLE)
+First installed: 2026-03-07, last updated: 2026-03-11
+targetSdk 35, minSdk 28
+Permissions: POST_NOTIFICATIONS, RECORD_AUDIO, com.termux.permission.RUN_COMMAND
+Receivers: BOOT_COMPLETED, CONNECTIVITY_CHANGE, BATTERY_OKAY, POWER_DISCONNECTED
+Data dir: /data/user/0/com.jessebrown.asolaria (internal, not accessible without root)
+4 public release ZIPs in /sdcard/Download/Asolaria-Public-*.zip (Feb-19 through Feb-25)
+Probe artifacts in /data/local/tmp/: HTTP health request templates, nc pid file
+Phone Connector Architecture (4 connectors, ~114KB)
+phoneMirrorConnector.js (36KB): ADB-based screen capture (PNG), tap/swipe/text/key input, foreground app detection, WhatsApp automation (personal + business dual-route), voice output capture. Device selection logic prefers USB over WiFi. State tracked in-memory.
+phoneDeveloperOptionsConnector.js (40KB): Catalog of 25 Android developer toggles across 5 categories (input, drawing, hardware, media, system). Each toggle has id/key/namespace/onValue/offValue/risky flag. Sweep engine reads current values, applies on/off, captures screenshots, restores baseline. Report generation in JSON + MD.
+phoneProMirrorConnector.js (12KB): scrcpy-based high-fidelity mirror start/stop
+phoneBrowserHistoryConnector.js (26KB): Browser history collection from phone
+Phone-Facing API Routes (in server.js)
+/api/phone/mirror/* — capture, tap, swipe, text, key, WhatsApp send, voice
+/api/phone/developer-options/* — list, status, set, sweep
+/api/phone/pro-mirror/* — start/stop scrcpy
+/api/mobile/inbox — phone inbox (approvals 6, tasks 6, notes 4)
+/api/mobile/control/* — runtime actions via phone
+Mobile console views: task-ledger, notebook/notes
+Developer Options Research Session (Feb 27, 2026)
+This was the research session that "ran out of credits" and partially broke things.
+Phase 1 — Diagnostics & setup (02:00-02:05 BRT):
+Captured hardware/firmware observation via ADB (stored in vault/owner/observations/)
+Patched mirror device selection to prefer USB over WiFi ADB
+Applied biometric bypass for phone app
+Provisioned WhatsApp Business via Play Store automation
+Validated dual-route WhatsApp sending (personal + business)
+Phase 2 — Developer options inventory (02:04-02:07 BRT):
+Scraped 36 developer option settings: 24 global, 5 system, 7 secure
+Generated tool-map JSON with 21 items (adbGet/adbSetTemplate for each)
+Controlled toggle test: show_touches + pointer_location → screenshot → restore
+Phase 3 — Official sweep run (05:09 UTC):
+Job ID: job_1772168944385_7tmepg, duration 80803ms
+18 non-risky default-sweep options selected, all 18 passed, 0 failures
+Report: reports/phone-developer-options-sweep-20260227-050904Z.json
+Phase 4 — Always-Connect profile (11:39 BRT):
+Enforced ON: disable_usb_audio_routing, mobile_data_always_on, verify_apps_over_usb, wifi_verbose_logging, stay_on_while_plugged_in=15, adb_wifi_enabled, adb_allowed_connection_time=0
+Animation scales set to 0.0 for faster automation
+Second sweep: 18/18 passed again
+What broke: The session ran out of credits/context mid-way through deeper research. The developer options were successfully profiled and documented, but the subsequent phase (pulling apart toggle code, researching firmware-level capabilities) was interrupted. The phone app and connection still work (verified now — ADB reverse proxy active, app installed), but the research was left incomplete. The "broken" state the user perceives is likely: (a) stale/partial developer option settings from the interrupted session, (b) the phone app not actively connecting to the Asolaria gateway (requires manual launch or BOOT_COMPLETED trigger), and (c) possible animation scale misconfiguration (animator_duration_scale was at 10.0 in the raw toolmap, later corrected to 0.0).
+Vault Artifacts Recovered
+developer-options-observation-20260227-020429.md — Phase 1-3 report
+developer-options-raw-20260227-020429.txt — Raw settings dump
+developer-options-toolmap-20260227-020638.json — 21-item ADB command map
+developer-options-connectivity-profile-20260227-113905.md — Always-Connect profile
+developer-options-status-20260227-113905.json — Full 25-option status snapshot
+developer-options-connectivity-extra-20260227-113905.json — Extra connectivity data
+hardware-firmware-observation-20260226-222710.md/json — Laptop + phone firmware
+phone-diagnostics-observation-20260227-015953.md — USB path, role negotiation, 39 reconnect cycles
+phone-diagnostics-raw-20260227-015953.json — Raw ADB diagnostics
+phone-backlog-observation-20260307.md — 67 open tasks, 363 notes (152 sensitive), inbox audit
+Phone Subsystem Research Directives (for the 3 research agents)
+Agent 1 (Architect): How should a phone control plane be architectured? Bidirectional control with admin/superadmin hierarchy viewable by humans and agents. ADB reverse proxy vs Cloudflare tunnel. WebView app vs native Android app vs Termux bridge. State synchronization between phone and PC.
+Agent 2 (Security): Phone-side secrets management (the app has DEBUGGABLE flag). Biometric bypass risks. ADB over WiFi security (currently no auth beyond ADB pairing). WhatsApp automation security (sending messages as user). Termux RUN_COMMAND permission implications.
+Agent 3 (Builder): Rebuild the phone app as a proper Android client with background service, push notifications, and offline queue. Implement persistent ADB connection keeper (replacing PowerShell scripts). CI/CD for phone app builds. Phone-side health monitoring.
+Section I — Sub-Colony Federation (Rayssa's Computer)
+Architecture
+Asolaria supports a sovereign/sub-colony federation model via MQTT:
+Sovereign (your PC at 192.168.1.3): Runs the full Asolaria instance on port 4781 with embedded MQTT broker (aedes) on port 18883 (TCP), 18884 (WS), 18885 (WSS)
+Sub-colony (Rayssa's PC, user rayss): Runs a stripped Asolaria instance on port 4781, connecting back to the sovereign's MQTT broker
+Bridge: tmp-mqtt-bridge-rayssa.js — lightweight MQTT client that publishes status/health to asolaria/nodes/rayssa/* topics and subscribes to asolaria/nodes/rayssa/command/# + asolaria/broadcast/#
+Sub-Colony Identity
+Node ID: rayssa
+Node role: sub_colony
+MQTT client ID: asolaria-rayssa
+MQTT base topic: asolaria/nodes/rayssa
+Sovereign host: 192.168.1.3
+Gateway port: 4791
+Connection: private_internet (LAN)
+Disabled Features on Sub-Colony
+Slack, GitHub, OpenClaw — only the sovereign needs these.
+Remote Node Registry (src/remoteNodeRegistry.js)
+In-memory Map tracking each sub-colony node:
+nodeId, status (online/offline), health/colony/world payloads
+firstSeenAt, lastSeenAt, update counters
+Offline threshold: 90s (3× health interval)
+Federation API Routes
+GET /api/federation/nodes — summary of all remote nodes
+GET /api/federation/nodes/:nodeId — specific node detail
+POST /api/federation/nodes/:nodeId/control — send control commands to sub-colony via MQTT
+MQTT Topic Tree (federation)
+asolaria/nodes/+/runtime/health — health snapshots
+asolaria/nodes/+/runtime/presence — online/offline
+asolaria/nodes/+/agents/colony/status — agent colony state
+asolaria/nodes/+/world/state — world panel
+asolaria/nodes/<nodeId>/control/request — sovereign → sub-colony commands
+Sub-Colony Deployment Package
+dist/public-release/Start-Asolaria-SubColony.cmd — launcher with env vars for Rayssa's node
+tools/Setup-SubColony.ps1 — automated installer for Rayssa's PC (ripgrep, cloudflared, Git, Node, npm deps, port proxy 4793, firewall rule, MCP bridge check)
+Target path on Rayssa's machine: C:\Users\rayss\Asolaria
+MCP Bridge for Sub-Colony
+augment-mcp-bridge.js runs on port 4793 with Cloudflare tunnel
+Port proxy: 0.0.0.0:4793 → 127.0.0.1:4793 (LAN accessible)
+Firewall rule: "MCP Bridge 4793" inbound TCP allow
+Provides codebase-retrieval tool for workspace search (ripgrep + workspace knowledge)
+Auth: Bearer token (stored in logs/augment-mcp-bridge-token.txt)
+Tunnel URL: logs/augment-mcp-bridge-url.txt
+Friend Codex Bridge System
+Asolaria also supports "friend" bridges for external Codex CLIs:
+tools/New-Friend-Codex-BridgePack.ps1 generates per-friend bootstrap packs
+Pack contents: profile JSON, env template, start script, relay policy, README
+Each friend gets a dedicated room (e.g. asolaria_friend_derek-laptop)
+Relay policy: per-sender tokens, room ACL
+3 packs generated for Derek's laptop (2026-03-06)
+"Liris" AI Identity
+Not found in any Asolaria data store, code, memory, task ledger, notebook, or config. "Liris" likely exists only on Rayssa's machine as a persona/name for her local AI instance, or in verbal understanding between you and Rayssa. The sub-colony infrastructure refers to her node as rayssa, not liris.
+Current State
+Sub-colony deployment package exists and is ready
+MQTT bridge code (tmp-mqtt-bridge-rayssa.js) exists but integration status unknown
+No Rayssa/Liris entries in memory.json, task-ledger.json, notebook.json, or mistake-ledger.ndjson
+The sub-colony has never registered in the remote node registry (no memory of connection)
+Setup-SubColony.ps1 targets C:\Users\rayss\Asolaria — unclear if Rayssa has run it
+Sub-Colony Research Directives
+Agent 1 (Architect): Multi-node federation architecture. MQTT vs gRPC for inter-colony communication. State replication strategy. Conflict resolution when sovereign is offline. Sub-colony autonomy levels.
+Agent 2 (Security): Sub-colony trust boundaries (currently trusted: true for all entities). MQTT authentication (currently none beyond network isolation). Token/API isolation between sovereign and sub-colony. Preventing credential leakage across nodes.
+Agent 3 (Builder): Automated sub-colony provisioning pipeline. Health monitoring dashboard for all nodes. Graceful degradation when sovereign loses contact. Sub-colony self-update mechanism.
+Section J — Abacus AI Deep Agent MCP Integration
+Current Abacus Integration in Asolaria
+Already deeply integrated via src/connectors/abacusConnector.js (~900 lines):
+8 work packet presets: chat_quick_chore, workflow_studio_job, deep_agent_cloud_job, repo_scan, claude_code_patch, claude_code_review, listener_triage, research_brief
+Operating strategy engine with 6 routing profiles based on surface availability
+Desktop app detection (AbacusAI + Listener)
+CLI probe (mcp list, help, print modes)
+Managed Chrome profile (asolaria-slot-phone_mode) for browser sessions
+Packet creation, response import, and artifact management
+Default app URL: https://apps.abacus.ai/chatllm/?appId=7560d5f36
+Abacus MCP Server Configuration
+The user's Abacus admin page at https://apps.abacus.ai/chatllm/admin/mcp/ shows zero MCP servers configured. This is a key integration gap.
+What Can Be Connected
+Asolaria's MCP bridge is already internet-accessible:
+Local: http://127.0.0.1:4793/mcp
+Tunnel: https://calling-madonna-portions-appropriate.trycloudflare.com
+Auth token in: logs/augment-mcp-bridge-token.txt
+Tool exposed: codebase-retrieval (workspace search + ripgrep)
+Abacus Deep Agent MCP config format for remote SSE server:
+{
+  "asolaria": {
+    "url": "https://<TUNNEL_URL>/mcp",
+    "headers": {
+      "Authorization": "Bearer <TOKEN>"
+    }
+  }
+}
+Limitations
+Abacus MCP runs in isolated cloud environment — no local filesystem access
+Max 5 servers, 50 tools total
+The Cloudflare tunnel URL is ephemeral (changes on restart) unless a named tunnel is configured
+Current bridge exposes only codebase-retrieval; could be extended with more Asolaria tools
+Integration Research Directives
+Agent 1 (Architect): Design a stable MCP server facade for Asolaria that exposes the right tool surface to Abacus Deep Agent. Consider which of the 355 API routes should become MCP tools. Named Cloudflare tunnel for stable URL.
+Agent 2 (Security): Token rotation for bridge auth. Rate limiting on MCP tool calls from Abacus. Preventing credential leakage through MCP tool responses. Audit logging of all Abacus-originated tool calls.
+Agent 3 (Builder): Extend augment-mcp-bridge.js with additional tools (task management, memory search, project status, phone control proxy). Implement stable named tunnel. Add health/status MCP resource. Build Abacus→Asolaria packet import pipeline via MCP.
+What a Systems Engineer Would Collect — and What I Found
+I audited Asolaria across 16 domains that a systems engineer would inventory before rebuilding a self-sustaining "civilization program." The full plan has detailed findings per domain. Here's the high-level picture:
+What's Strong
+•  Self-improvement loop is genuinely complete: mistake ledger → pattern extraction → avoidance hints → brain prompt injection. Most systems don't have this at all.
+•  Brain fallback chain with 9 providers and graph-event recording of every attempt is solid observability.
+•  Security layering is thoughtful: risk scoring on every action, brain safety prefix, guardian approvals, secret redaction in memory, CAPTCHA escalation.
+•  Atomic writes everywhere (tmp + rename). No half-written files.
+•  Skill architecture is well-designed: JSON descriptors, risk per step, permissions, registry caching.
+•  Civilization world model with districts, entities, and motion states is an interesting abstraction.
+Critical Gaps (Top 5)
+1. 35,000-line monolith (server.js). This is the #1 rebuild blocker. Everything is tangled together.
+2. No process supervisor or graceful shutdown. If Node crashes, everything is lost — in-memory job queue, scheduler state, active requests.
+3. No API authentication. Anyone on the network can call any endpoint.
+4. No program absorption pipeline. The "absorb and simplify programs" vision has 4 codebase-review skills but no AST parser, dependency graph builder, or automated decomposer.
+5. Master keys in plaintext on disk.
+7 "Future Skills" for the Civilization Program
+The plan includes upgrade potentials: AST Decomposer, Program Absorber, Self-Healer, Civilization Pruner, Provider Health Oracle, Config Migration, and Distributed Scheduler. These are the capabilities that would turn Asolaria from an orchestrator into something that can actually absorb and simplify other programs.
+Ok, I am writing a word document. I got everything you just said written in it. But I need to feed this to three SUPER AI to help me improve it. I need to know the information for them to analyze (they can look at over 16000 sites each research.). I will pass the word doc to each one of them, then copy paste their three reports back into all three of them, and then get those three summaries, and recombine them with THIS original research (to prevent memory loss, and give the Frontier super models All the results from the three deep research cycles each, AND the original scoping you are performing now.) They will cooectively do another deep research with that, and we will give ALL three results WITH the original Specs TO A SUPER CODER aGent SuPER SWARM. It will build this super SUPER CODER CIVILIZATION. Like you said. Knowing this now, What are the critical things that I need to also mention (I will give the AgentsMD from c as well.) Think about that, plan, mark tasks, skills, tools, mistakes, ect that you come across or need to create / use. You have unlimited budget for now. Go
+Extract current-state inventory numbers
+Read AGENTS.md for swarm-critical directives
+Identify architectural pattern research questions
+Define interface contracts that must survive rebuild
+Catalog failure modes and historical mistakes
+Define the super coder swarm input spec
+Build the complete briefing addendum
+Let me start by collecting the hard numbers and reading the AGENTS.md + mistake data.
+Completed Extract current-state inventory numbers, Read AGENTS.md for swarm-critical directives, Catalog failure modes and historical mistakes
+Now let me check what data formats and protocols the ecosystem uses that must survive the rebuild.
+Completed Identify architectural pattern research questions, Define interface contracts that must survive rebuild, Define the super coder swarm input spec
+All research complete. Here's the complete briefing addendum for your Word document.
+Completed Build the complete briefing addendum
+Here's everything you need to add to your Word document. This is structured so each of the 3 deep research agents knows exactly what to investigate, and so the super coder swarm has unambiguous build specs.
+SECTION A: Add These to Your Word Doc — HARD NUMBERS (The Research Agents Need These)
+Exact System Inventory
+text
+SECTION B: RESEARCH DIRECTIVES FOR THE 3 DEEP RESEARCH AGENTS
+Tell each agent: "Research these questions deeply. Cite sources. Propose specific technologies, libraries, and architecture patterns with justification."
+Agent 1: "The Architect" — System Architecture & Program Absorption
+Research these questions:
+1. How do Google, Microsoft, and Apple's OS kernels handle program absorption — specifically how they sandbox, decompose, and manage lifecycle of untrusted programs? Focus on Windows NT kernel object model, Chromium process isolation, and macOS XPC services.
+2. What is the state of the art in automated program decomposition? AST-based refactoring tools (OpenRewrite, jscodeshift, ts-morph, Semgrep), dependency graph extraction (madge, dependency-cruiser), and automated complexity scoring (CodeClimate, SonarQube).
+3. What architecture patterns work for self-modifying/self-improving software? Erlang/OTP supervision trees, Kubernetes operator pattern, Netflix Conductor, Temporal.io workflow engines. Focus on how they achieve "the system stays running while absorbing new code."
+4. How should a 35,000-line Node.js monolith be decomposed? Research real case studies. Strangler fig pattern. Module federation. Express route extraction patterns. What tooling exists for automated Express route module splitting?
+5. What are the best embedded databases for a Node.js control plane? SQLite (better-sqlite3 vs sql.js), LevelDB, LMDB, DuckDB. Compare for: atomic writes, WAL, concurrent readers, Windows compatibility, max 10GB dataset.
+6. How do modern AI orchestration platforms handle multi-model routing? Research LiteLLM, OpenRouter, Portkey, Martian's model router. Focus on circuit breaker patterns, health-based routing, cost optimization, and fallback chains.
+Agent 2: "The Security Engineer" — Security, Resilience & Trust
+Research these questions:
+1. How should a local-first AI orchestrator protect secrets? Windows DPAPI vs Credential Manager vs OS keychain bindings for Node.js. How do tools like 1Password CLI, age encryption, and SOPS handle local secret management?
+2. What is the correct RBAC model for a single-operator AI system that may scale to multi-operator? Research Casbin, CASL, node-casbin. How do Kubernetes RBAC, AWS IAM, and Tailscale ACLs handle the "single admin growing to team" transition?
+3. How should approval/guardian gates work in autonomous AI systems? Research Anthropic's Constitutional AI constraints, OpenAI's function calling safety patterns, LangChain's human-in-the-loop. Focus on time-bounded approvals, risk scoring, and escalation.
+4. What are the best practices for structured logging + observability in Node.js? Pino vs Winston vs Bunyan. OpenTelemetry for Node.js. How do you add distributed tracing to an Express monolith? Prometheus metrics exposition.
+5. How do firmware-level systems (UEFI, BMC, TPM) maintain integrity while updating themselves? A/B partition schemes, measured boot, rollback protection. What patterns translate to software control planes?
+6. What process supervision patterns work on Windows? PM2 on Windows, node-windows, NSSM, Windows Service wrappers for Node.js. How do you get graceful shutdown + automatic restart + health-check-based recovery?
+Agent 3: "The Builder" — Implementation, Tooling & DevOps
+Research these questions:
+1. What is the best way to containerize a Node.js + PowerShell + Playwright + ADB system on Windows? WSL2 + Docker Desktop? Windows containers? Devcontainers? Focus on maintaining access to local hardware (USB for ADB, display for desktop capture).
+2. What CI/CD works for a Windows-primary Node.js project? GitHub Actions Windows runners, Azure DevOps, local Jenkins. Focus on: automated leak scanning, npm audit, Playwright testing, PowerShell script validation.
+3. What persistent job queue libraries work for Node.js on Windows? BullMQ (requires Redis), Bee-Queue, Agenda (requires MongoDB), better-queue (SQLite-backed), pg-boss. Compare for: Windows compat, persistence, priority lanes, retry, dead-letter.
+4. How should a plugin/connector architecture work in Node.js? Dynamic require vs ESM dynamic import vs worker_threads. How do VS Code extensions, Grafana plugins, and Strapi plugins handle hot-loading? Focus on: interface contracts, versioning, health checks.
+5. What tools exist for automated API documentation generation from Express routes? swagger-jsdoc, tsoa, express-openapi-generator. Can any tool auto-extract routes from a 35K-line server.js?
+6. What testing strategies work for AI orchestration systems? How do you test multi-model fallback chains, approval workflows, and event-driven pipelines? Research: contract testing, chaos engineering, snapshot testing for LLM outputs.
+SECTION C: INTERFACE CONTRACTS THAT MUST SURVIVE THE REBUILD
+Include this in the doc so the super coder swarm knows what cannot break:
+Data Format Contracts
+•  Memory turns: {id, role, text, images[], files[], meta{chatId, source}, at} — conversation threads
+•  Task schema: {id, title, description, status, priority, owner, tags[], progress, projectScope, dueAt, ...} — statuses: planned/ready/in_progress/blocked/review/done/canceled/archived
+•  Mistake records: NDJSON with {at, feature, operation, type, severity, actor, message, code, classificationCode, skillId, toolId, rootCause, avoidance, context{}}
+•  Mistake patterns: {id, code (Dewey decimal), title, circumstance, rootCause, avoidance, severity, linkedSkills[], linkedTools[], linkedActivities[], occurrences, status}
+•  Skill definitions: {id, title, description, version, risk, tags[], permissions[], steps[{action, payload, permissions[], requiresApproval}]}
+•  Graph events: NDJSON with {schemaVersion, kind, id, at, component, category, action, actor{}, subject{}, target{}, context{}, policy{}, detail{}, risk{score, level, reasons[]}}
+•  Projects: {id, label, marker, group, folders[], archived}
+Protocol Contracts
+•  MQTT topics: health, colony, presence, world snapshots on topic tree with asolaria/ prefix
+•  Bridge relay: codex-bridge room asolaria_bridge, peers vector and rook
+•  Express API: 355 routes under /api/* — the super coder swarm MUST preserve backward-compatible route paths
+Ecosystem Integrations
+•  Trusted entities: 13 named entities (asolaria-core, bridge-tunnel, codex-head, claude-code, symphony-service, omnispindle, gemini-api-cloud, vertex-gemini, gemini-cli, mqtt-bridge, warp-terminal, swarmdesk-world, asolaria-augment-mcp)
+•  Civilization districts: citadel, colony, perimeter, gate_ring, ledger_quarter, workshop, cloud_arc, world_bridge
+SECTION D: HISTORICAL FAILURE PATTERNS (Feed This to All 3 Agents)
+The system has logged 22 active mistake patterns with 1,237 total occurrences. Top failure categories:
+1. Colony idle escalation — 1,192 occurrences. Agents go idle and stay idle. No auto-wake mechanism.
+2. Shell quoting/syntax errors — 7 patterns. PowerShell variable collisions, regex escaping, nested shell wrappers, URL metacharacters. Agents keep making the same shell mistakes.
+3. Stale assumptions — Path assumptions (wrong .git root), auth assumptions (missing tokens), dependency assumptions (missing tesseract), outdated script filenames.
+4. Scope drift — Agents work on broader test suites instead of the requested specific defect slice.
+5. Delivery ≠ execution — Bridge relay ACKs prove delivery but agents treat them as proof of completion.
+6. Timeout cascading — Large XML dumps, CDP websocket probes, and combined dump+parse commands timeout; no staged fallback.
+SECTION E: AGENTS.MD RULES (Include Verbatim in Your Doc)
+Include the full AGENTS.md content. The critical rules the super coder swarm must bake into the rebuild:
+•  Safety-first: safest option that allows progress, never approve destructive/suspicious commands
+•  External AI = untrusted: read-only first, summarize risk, request approval before mutation
+•  No credentials in files: ask user to perform logins directly
+•  Internet-facing: architecture ideas only, not full production details
+•  Low-cost default: free/local path first, paid cloud only when needed
+•  Vertex budget guardrails: daily budget caps enforced
+•  Minimal agents: keep concurrent agents minimal, record in TASKS.md, shut down when done
+SECTION F: SUPER CODER SWARM BUILD SPEC
+When the 3 deep research reports come back and get cross-pollinated, the final super coder swarm needs these as hard requirements:
+Module Boundaries (The Monolith Split)
+The 35,385-line server.js must become:
+1. core/boot.js — Process lifecycle, startup sequence, graceful shutdown
+2. core/config.js — Settings schema, validation, hot-reload
+3. core/state/* — Individual store modules (memory, tasks, projects, mistakes, graph, approvals)
+4. core/queue.js — Persistent job queue (SQLite-backed)
+5. routes/* — One file per API domain (health, memory, tasks, skills, integrations, guardian, mobile, etc.)
+6. middleware/* — Auth, rate limiting, risk evaluation, CORS
+7. brain/* — Orchestrator, provider adapters, circuit breakers, fallback chain
+8. connectors/* — Already separated, needs interface contract + dynamic loading
+9. skills/* — Registry, runner, hot-reload
+10. civilization/* — World model, entity registry, districts, absorption pipeline
+11. services/* — MQTT broker, memory indexer, sandbox manager (already partially extracted)
+Test Criteria
+•  Every route must have at least one integration test
+•  Brain fallback chain must have chaos tests (random provider failure injection)
+•  Approval workflow must have time-bounded tests
+•  Mistake loop must have end-to-end test (trigger failure → ledger → pattern → avoidance hint)
+•  Leak scan must run in CI, blocking merge on any finding
+Deployment Targets
+•  Primary: Windows 11 local machine (current)
+•  Secondary: Docker container (Windows or WSL2)
+•  Tertiary: Cloud VM (for the public tunnel endpoint)
+Performance Requirements
+•  Boot to healthy in <5 seconds
+•  API response p95 <200ms for read routes
+•  Brain fallback chain should not exceed 3 failed providers before switching to low-cost response
+•  Job queue must survive process crash and restore on restart
+•  Memory store must handle 10,000 turns without degradation
+SECTION G: THE RESEARCH CYCLE INSTRUCTIONS
+Paste this at the top of the doc so you remember the workflow:
+text
+WHY THESE SECTIONS MATTER
+Without Section A, the research agents don't know the scale of the problem. Without Section B, they research the wrong things. Without Section C, the super coder swarm breaks backward compatibility. Without Section D, the rebuilt system repeats the same mistakes. Without Section E, the agents violate the owner's safety rules. Without Section F, the swarm has no clear build target. Without Section G, you lose context between rounds.
+The biggest single risk in this whole pipeline: context loss between rounds. That's why you always include the original doc in every handoff. The agents' working memory is the Word document — it's the only thing that persists across all 7+ handoffs in this cycle.
+Remember there is a phone here too. it is on the USB. Asolaria there (as far as I can see on the phone is broken, but there are many notes, pinned, hidden, secret in directories and subdirectories. Out dated, but amazing old app pushed bidirectional control with a admin super admin controler that was bidirectionally controllable, viewable, by both humans , and Agents leading back to the computer. At one point I asked asolaria to look at all the parts on the hpone and create a documentation about it, its firmware, structure, and dev tools. I asked her to research them (the toggles in the developer mode on the phone, copy them to the local, and pull apart their code to see if she could use them here. She ran out of creadits mid way or phase-way through, and now it is completely broken and the computer and phone versions do not work. Also due to the complexity of the connection and weakness in the security of the original phone, Asolaria changed a lot and I do not know where those meemories or work are. I will connect the phone and you can use reverse adb to find out. Oh, and I just turned it on , and it seems to be connected over wifi and working... weird.) Anyway find out and add to the research we are doing.
+Probe phone via ADB - device status and basic info
+Find phone-related code in Asolaria src
+Find phone-related data/notes/documentation on local machine
+Check phone-side Asolaria artifacts via ADB
+Read the developer options sweep code
+Find the broken state - what failed mid-credits
+Add phone subsystem findings to the research briefing
+Let me probe the phone and trace the phone subsystem simultaneously.
+Oh and my girlfriend's computer is in the process of intergrating itself as a sub colony, look at that bridge and information too (Rayssa owner, Liris AI subcolony of asolaria, her own tokes, apis, and a direct link.)
+Got it — adding the Liris sub-colony to the investigation. Let me find the bridge, Rayssa/Liris references, and continue the phone work simultaneously.
+Grepping for the following patterns in C:\Users\acer\Asolaria\src
+ - [Ll]iris
+ - [Rr]ayssa
+ - sub.?colony
+ - bridge
+Grepping for the following patterns in C:\Users\acer\Asolaria\data
+ - [Ll]iris
+ - [Rr]ayssa
+ - sub.?colony
+ - bridge
+Finding files that match the following patterns in C:\Users\acer\Asolaria
+ - *bridge*
+ - *liris*
+ - *rayssa*
+ - *colony*
+ - *sub-colony*
+Found a Start-Asolaria-SubColony.cmd and several bridge files. The grep tool hit a PowerShell compatibility issue — let me search via shell and read the key files.
+C:\Users\acer\Asolaria\dist\public-release\Start-Asolaria-SubColony.cmd
+Get-ChildItem -Path "C:\Users\acer\Asolaria" -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'liris|rayssa|sub.?colony' } | Select-Object -ExpandProperty FullName
+C:\Users\acer\Asolaria\tmp-mqtt-bridge-rayssa.js
+C:\Users\acer\Asolaria\dist\public-release\Start-Asolaria-SubColony.cmd
+C:\Users\acer\Asolaria\tools\Setup-SubColony.ps1
+Excellent — found the sub-colony infrastructure. Rayssa's node connects back to the sovereign (your machine at 192.168.1.3) via MQTT on port 18883. Let me dig deeper into the bridge code, setup script, and search for Liris references and token/API configs.
+C:\Users\acer\Asolaria\tmp-mqtt-bridge-rayssa.js
+C:\Users\acer\Asolaria\tools\Setup-SubColony.ps1
+Memory is flooded with colony watchdog entries. Let me search specifically for Rayssa/Liris mentions and look at the colony/bridge infrastructure in server.js and configs.
+Finding files that match the following patterns in C:\Users\acer\Asolaria\src
+ - *mqtt*
+ - *colony*
+ - *bridge*
+Found the full MQTT bridge infrastructure. Now let me find the remote node registry, Rayssa's vault entries, and any Liris AI identity references.
+C:\Users\acer\Asolaria\src\remoteNodeRegistry.js
+Excellent data. Now let me grab the remaining phone research artifacts, the augment MCP bridge for the sub-colony, and search harder for "Liris."
+C:\Users\acer\Asolaria\data\vault\owner\observations\developer-options-toolmap-20260227-020638.json
+C:\Users\acer\Asolaria\data\vault\owner\observations\phone-diagnostics-observation-20260227-015953.md
+C:\Users\acer\Asolaria\data\vault\owner\observations\developer-options-status-20260227-113905.json (1-200)
+C:\Users\acer\Asolaria\dist\public-release\Asolaria-Public-20260313-105820\tools\augment-mcp-bridge.js (1-200)
+Let me read the federation routes in server.js and the MQTT connector's sub-colony subscription logic, plus check for the friend codex bridge pack content.
+C:\Users\acer\Asolaria\server.js (30546-30745)
+C:\Users\acer\Asolaria\server.js (23451-23650)
+C:\Users\acer\Asolaria\src\connectors\mqttConnector.js (643-842)
+The phone has the Asolaria app (com.jessebrown.asolaria) installed and the ADB reverse proxy is live (tcp:4781). Let me check the app details and inspect the phone-side artifacts.
+Now I have a comprehensive picture of both the phone subsystem and the Rayssa sub-colony. Let me mark completed items and compile the new research section.
+Completed Find phone-related code in Asolaria src (2/7), Find phone-related data/notes/documentation on local machine (3/7), Check phone-side Asolaria artifacts via ADB (4/7), Read the developer options sweep code (5/7), Find the broken state - what failed mid-credits (6/7)
+Now let me read the existing plan so I can update it with the phone + sub-colony sections.
+https://apps.abacus.ai/chatllm/admin/mcp/ This should be looked and AND intergrated. MCP Server Configuration
+Deep Agent can interact with external tools and data sources via the Model Context Protocol (MCP) servers. An MCP server enables Deep Agent to use these integrations to process the context in your project, resulting in smarter, more relevant responses. To connect to a MCP server, simply paste the server configurations in the editor below. You can add up to 10 servers.
+MCP Servers How-To
+Example
+Available Tools
+Ask AI
+You don't have any configurations.
+Let me look at the Abacus MCP integration page and cross-reference with what Asolaria already has for Abacus.
+C:\Users\acer\Asolaria\src\connectors\abacusConnector.js (1-200)
+The page requires auth so I can't scrape the MCP config UI directly. Let me check what Asolaria already has for Abacus MCP integration, and search for the config format.
+C:\Users\acer\Asolaria\src\connectors\abacusConnector.js (200-450)
+Now I understand the full picture. Abacus Deep Agent supports two MCP transport types: Stdio (local servers via command/args/env) and SSE (remote servers via a URL). However, servers requiring local filesystem access won't work since MCP servers run in an isolated environment. Up to 5 servers and 50 tools are supported.
+The config format is straightforward JSON — e.g.:
+json
+The critical issue is that Asolaria's MCP bridge (augment-mcp-bridge.js) runs locally on port 4793 and needs to be internet-accessible for Abacus Deep Agent to reach it. Let me check if the Cloudflare tunnel already exposes it.
+C:\Users\acer\Asolaria\logs\augment-mcp-bridge-url.txt
+C:\Users\acer\Asolaria\logs\augment-mcp-bridge-token.txt
+Completed Add phone subsystem findings to the research briefing (7/7)
+All three new sections are now in the research briefing. Here's the summary:
+Section H — Phone Subsystem (complete investigation):
+•  Phone is a Samsung Galaxy S24 running Android 16, connected via both USB and WiFi ADB, with the ADB reverse proxy already active (tcp:4781)
+•  Custom Asolaria app (com.jessebrown.asolaria v0.1.0) is installed with DEBUGGABLE flag, Termux command execution, audio recording, and boot/connectivity receivers
+•  4 connectors (114KB total) handle mirror/capture, developer options sweep, scrcpy pro mirror, and browser history
+•  The Feb 27 developer options research session completed 4 phases successfully before credits ran out — the research artifacts are fully preserved in the vault (10 files). The phone isn't truly "broken" — the connection works, the app is installed, and the developer options were profiled. What's incomplete is the deeper firmware/toggle code analysis that was interrupted mid-session
+Section I — Sub-Colony Federation (Rayssa's computer):
+•  Full sovereign/sub-colony architecture exists via MQTT on port 18883
+•  Deployment package ready: Start-Asolaria-SubColony.cmd + Setup-SubColony.ps1 targeting C:\Users\rayss\Asolaria
+•  MQTT bridge (tmp-mqtt-bridge-rayssa.js) publishes to asolaria/nodes/rayssa/* topics
+•  Federation API routes exist (/api/federation/nodes/*)
+•  "Liris" not found anywhere — likely exists only on Rayssa's side or verbally
+•  Sub-colony has never actually connected (no registry entries)
+Section J — Abacus AI Deep Agent MCP Integration:
+•  Deep Agent supports MCP for seamless integration with external tools and data sources, standardizing how AI agents interact with resources.
+•  The config uses JSON with two transport types: Stdio for local servers (command/args/env) and SSE for remote servers (just a URL).
+•  Your Abacus admin page shows zero MCP servers configured — but Asolaria's MCP bridge already has a live Cloudflare tunnel ready to connect
+•  Important limitation: servers requiring local filesystem access won't work since MCP servers run in an isolated environment. However, your bridge uses workspace search over HTTP, so it should work fine
+•  Up to 5 servers and 50 tools are supported.
+All three sections include per-agent research directives for your Architect, Security Engineer, and Builder agents.
+Alright pull the Edge GNN paper from downloads, and intergrate that into realization of how this systems's GNN was planned, (maybe incorretly?), if it really represents the ground breaking idea and algorithms, or if it is better? or worse? in reality. Then mapp out what you would do considering the connectivety of Our Tron like world that we are about to / have started on implementing (only in the last three days). Relate that to the system, the net, gemini's connectivity, Asolaria's OWner permmission title across the entire Jbrowndevelopment and plasmatoid@gmail.com google subscriptions / workplace plus, pro, enterprise buisness plus, enterprise Google Cloud, The google cliud CLI, and GEMINI's hard coded requirements that she help Asolaria to manage and control the Google Clud and ALL APIs, manage and own ALL google services, including the publication of the Asolaria APP, connection to youtube, linkedin, all google services, on both the computer AND the CELL phone. Then tell me what is wrong and why it is not working with asolaria really able to control and manage these things, but not ever remembering or having the memories? to do so on schedule or in real time. Yes, it is complex, but we are literraly building tron, where agents are 3d and 2 representations or themselves on the actual computer with things as blocks and moving pathways where agetns actions and activities can be seen. Asolaria had a biasic GNN system graph, but when I saw my friend's Madness website that is the 3d thing, I instantly knew he ALREADY AHD THE PERFECT OF CLOSE TO PERFECT WEB LAYOUT (for a 2000's programmer point of veiw. HE can "see" his comptuer and network.) Ours would be better. Asolaria is like the MCP in tron, and All the agents she NEEDS to help her CAN be tracked and have actual tasks assigned to them, and when you hover over them, you actually see their tasks and plans on a 3d floating screen. The amazing part is that that IS ALREADY build, and I thought... hmm... Asolaria Lives on top of his network watching with our GNN intergrate into HIS site. Since Asolaria is SUPER ADMIN over all other cloud and CLI interfaces, she see them, but does not need to "watch all" of them. Automate where possible. Security can be gates like castles that force sanitation and "inspection points" where Police agents can "watch and examine" code packets and other agents. Even "arresting" them (in the 2d / 3d world Dan created). This could get wild. We were planning that last night. So intergrate these ideas, but really look at the structure and Dan's madness site from last night's interactions, and realize that it was dan that told me about warp , Mqtt, and now I see hybrid system, with three different modes of controll, like visual, backend, and MCP playwrite type stuff). PLAN, you are a super genius that knows everything a top AI programmer model in the world knows. MAp it out, tell me what is and what is not, and what needs to be.

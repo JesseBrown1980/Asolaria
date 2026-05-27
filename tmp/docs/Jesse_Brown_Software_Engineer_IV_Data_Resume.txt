@@ -1,0 +1,62 @@
+Jesse Daniel Brown, PhD
+
+Senior Software Engineer / Data Platform Engineer
+Sumter, SC, USA | +1 408 915 0923 | jessebrown.soft1980@gmail.com
+LinkedIn: https://linkedin.com/in/jesse-daniel-brown-phd
+GitHub: https://github.com/JesseBrown1980
+
+Professional Summary
+Senior Software Engineer with 15+ years of experience designing and building scalable backend systems,
+data pipelines, and distributed cloud platforms across healthcare, telecom, and SaaS industries.
+Strong expertise in Java/JVM ecosystems, Python data processing, event‑driven architectures,
+and large‑scale cloud platforms on AWS.
+
+Proven track record delivering high‑throughput APIs, batch and streaming pipelines, and
+mission‑critical distributed services. Founder and principal engineer at J Brown Development LLC,
+delivering enterprise platforms for clients including Cisco, T‑Mobile, and healthcare organizations.
+Experienced technical leader who mentors engineers and drives architecture decisions for
+high‑availability production systems.
+
+Core Technical Skills
+Languages: Java, Python, TypeScript, JavaScript, C#, Go, SQL
+Data Engineering: Apache Spark, Kafka, ETL Pipelines, Batch & Streaming Processing
+Cloud Platforms: AWS (Lambda, S3, SQS, SNS, API Gateway, CloudWatch), Azure
+Backend Frameworks: Spring Boot, Node.js, Express, FastAPI, Django, Flask, .NET Core
+Architecture: Distributed Systems, Event‑Driven Architecture, Microservices
+Databases: PostgreSQL, MongoDB, DynamoDB, Redis, MySQL
+DevOps: Docker, Kubernetes, Terraform, CI/CD, GitHub Actions, Jenkins
+Observability: CloudWatch, Prometheus, Grafana
+Professional Experience
+Founder / Principal Software Engineer – J Brown Development LLC
+2017 – Present | Remote
+Architect distributed backend systems and large‑scale data pipelines for telecom, healthcare, and SaaS clients.
+Design cloud‑native microservices using Java, Python, and Node.js deployed on AWS.
+Build batch and streaming pipelines processing high‑volume operational data.
+Implement event‑driven architectures using Kafka and asynchronous messaging patterns.
+Mentor engineers and establish engineering standards across projects.
+Selected Client Engagements
+Cisco (2025)
+Designed backend microservices supporting cloud networking infrastructure automation.
+Developed event‑driven data services integrating distributed APIs and message pipelines.
+T‑Mobile (2024–2025)
+Built scalable backend services supporting telecom analytics and operational reporting.
+Developed data processing workflows handling large‑scale network and customer data.
+PureIntegration (2025)
+Delivered streaming platform integrations and backend data services.
+Implemented distributed processing pipelines for media analytics.
+CIS Pharmacy (2025)
+Developed secure healthcare data pipelines supporting compliance and reporting workflows.
+Built backend APIs for sensitive provider and pharmacy data systems.
+Upright Labs (2025)
+Architected SaaS backend systems supporting nonprofit retail logistics platforms.
+Technology Consultant – D & J Idiomas
+2017 – 2024 | Remote / International
+Built distributed SaaS platforms and analytics systems supporting global education clients.
+Developed backend services and data pipelines for international digital publishing platforms.
+Integrated cloud infrastructure and automated deployment pipelines across AWS environments.
+Lead Developer – Design Concepts
+2009 – 2017 | Charleston, SC
+Developed enterprise web platforms and data‑driven business applications for regional and national clients.
+Designed relational database schemas and backend APIs supporting large transactional workloads.
+Education
+Bachelor of Science in Computer Science – Armstrong Atlantic State University

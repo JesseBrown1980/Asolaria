@@ -1,0 +1,334 @@
+========================================================================
+ABACUS AI + CLAUDE COWORK/COLLABORATION DEEP MINE
+Scanned: 2026-03-25  |  READ-ONLY audit
+========================================================================
+
+EXECUTIVE SUMMARY
+------------------------------------------------------------------------
+There is NO direct "Claude Cowork" feature inside Abacus AI itself.
+The phrase "Claude Cowork" found in evidence refers to Anthropic's own
+product announcement (Claude Desktop + phone pairing, code-named
+"Dispatch"), NOT an Abacus AI feature.
+
+What DOES exist: Abacus AI's desktop app (a VS Code fork called
+"CodeLLM") has a "Claude Code" surface/mode built in, and Asolaria's
+worker router treats Abacus as one of 4 dispatch targets alongside
+claude_max. This means Claude and Abacus collaborate at the ASOLARIA
+orchestration layer, not inside Abacus itself.
+
+========================================================================
+SECTION 1: WHAT ABACUS AI ACTUALLY IS ON THIS MACHINE
+========================================================================
+
+Product: AbacusAI v1.106.21004
+  - A VS Code fork (repository: github.com/microsoft/vscode)
+  - Win32 registry name: "CodeLLM"
+  - Darwin bundle: com.codellm
+  - URL protocol: abacusai://
+  - Installed: 2026-03-07
+  - Desktop app path: C:\Users\acer\AppData\Local\Programs\AbacusAI\
+  - User data: C:\Users\acer\AppData\Roaming\AbacusAI\
+  - CLI config: C:\Users\acer\AppData\Roaming\abacusai-cli-nodejs\Config\storage.json
+  - CLI endpoints: api.abacus.ai, dashboard at abacus.ai
+  - Account: plasmatoid@gmail.com (Google auth)
+  - App URL: https://apps.abacus.ai/chatllm/?appId=7560d5f36
+  - MCP admin: https://apps.abacus.ai/chatllm/admin/mcp/ (zero servers configured)
+
+What Abacus AI offers:
+  1. ChatLLM — browser-based chat with multiple models
+  2. Workflow Studio — multi-step canvas orchestration
+  3. Deep Agent — cloud-capable agent with web/research execution
+  4. Code Mode — VS Code-based coding surface (Claude Code compatible)
+  5. Listener — meeting/transcript/screen-aware session tool
+  6. MCP support — up to 10 servers, 50 tools (currently unconfigured)
+
+========================================================================
+SECTION 2: "CLAUDE CODE" SURFACE INSIDE ABACUS
+========================================================================
+
+Abacus AI desktop app has a BUILT-IN "Claude Code" / "Code Mode" surface.
+This is the closest thing to "Claude working alongside Abacus."
+
+Evidence from abacusConnector.js:
+
+  Line 84-97: Packet preset "claude_code_patch"
+    - id: "claude_code_patch"
+    - title: "Claude Code patch"
+    - description: "Bounded coding packet targeting the Claude Code /
+      Code Mode surface inside Abacus desktop."
+    - workerMode: "claude_code"
+    - surfaceHints: ["claude_code", "code_mode"]
+
+  Line 99-112: Packet preset "claude_code_review"
+    - id: "claude_code_review"
+    - title: "Claude Code review"
+    - description: "Read-only review packet focused on bugs, regressions,
+      and missing verification."
+    - workerMode: "claude_code_review"
+    - surfaceHints: ["claude_code", "code_mode"]
+
+  Operating strategy (lines 326-343):
+    - primaryCodingLane: "claude_code"
+    - coding_patch profile: preferredSurface = "claude_code"
+    - code_review profile: preferredSurface = "claude_code_review"
+
+This means Abacus AI desktop app wraps Claude's coding capabilities
+inside its VS Code fork. When Asolaria sends a "claude_code_patch" work
+packet, it opens inside Abacus's Code Mode where Claude handles the task.
+
+========================================================================
+SECTION 3: MULTI-MODEL ROUTING (AT ASOLARIA LEVEL, NOT ABACUS)
+========================================================================
+
+The worker router (src/connectors/workerRouter.js) dispatches to 4 workers:
+
+  const WORKER_IDS = ["local_codex", "claude_max", "abacus", "symphony"];
+
+  - local_codex: OpenAI Codex (GPT-5.4) — local CLI
+  - claude_max: Anthropic Claude — review-first lane via Claude CLI
+  - abacus: Abacus AI — bounded external worker (browser/desktop/workflow)
+  - symphony: OpenAI Symphony — long-running issue lane
+
+Domain classification:
+  - abacus and claude_max are both "external" domain
+  - local_codex and symphony are "local" domain
+
+This is ASOLARIA'S multi-model routing, not Abacus's. Asolaria decides
+whether to dispatch work to Claude directly or to Abacus (which may
+internally use Claude Code mode). The routing logic is in workerRouter.js
+lines 478-532.
+
+========================================================================
+SECTION 4: "CLAUDE COWORK" MENTIONS — WHAT THEY ACTUALLY REFER TO
+========================================================================
+
+Three references found in WhatsApp Chat with Rayssa:
+
+REFERENCE 1 (line 11474):
+  "Cloudflare tunnel, cowork-svc (9636s CPU), plus Claude Code -- all on
+   what's likely also a consumer laptop. It ran out of RAM or CPU"
+
+  VERDICT: "cowork-svc" is a SEPARATE PROCESS running on Jesse's machine
+  that was consuming excessive CPU (9636s). It was eating 90%+ of Rayssa's
+  CPU. Recommendation was to SKIP it on restart. This appears to be a
+  background service, NOT an Abacus feature.
+
+REFERENCE 2 (line 11481):
+  "Skip cowork-svc -- it was eating 90%+ of Rayssa's CPU and probably
+   doing the same on his"
+
+  VERDICT: Same "cowork-svc" process — a resource hog to be skipped.
+
+REFERENCE 3 (line 13373) — THE KEY ONE:
+  "We're shipping a new feature in Claude Cowork as a research preview
+   that I'm excited about: Dispatch!
+
+   One persistent conversation with Claude that runs on your computer.
+   Message it from your phone. Come back to finished work.
+
+   To try it out, download Claude Desktop, then pair your phone."
+
+  VERDICT: This is ANTHROPIC'S OWN PRODUCT ANNOUNCEMENT for "Claude
+  Cowork" — a feature where Claude Desktop runs persistently on your
+  computer and you can message it from your phone. This is NOT an Abacus
+  AI feature. Jesse was sharing this Anthropic news in the WhatsApp chat.
+  "Dispatch" is the feature name within Claude Cowork.
+
+========================================================================
+SECTION 5: MULTI-MODEL LLM REFERENCE IN INTERVIEW COPILOT
+========================================================================
+
+WhatsApp line 29028:
+  "public/interview-copilot.js — 15,619 LINES. Full meeting copilot with
+   STEALTH MODE toggle, voice injection wizard, multi-model LLM (GPT-5,
+   Claude 4.5, Gemini 3), caption OCR bridge, audio device injection"
+
+VERDICT: The interview copilot inside Asolaria supports multiple LLMs
+including Claude. This is Asolaria's own multi-model capability, not an
+Abacus feature. The copilot works with GPT-5, Claude 4.5, and Gemini 3.
+
+========================================================================
+SECTION 6: ABACUS MCP INTEGRATION — POTENTIAL CLAUDE BRIDGE
+========================================================================
+
+From Stage 2.txt (lines 311-346):
+  - Abacus Deep Agent supports MCP for external tool/data integration
+  - Transport types: Stdio (local) and SSE (remote URL)
+  - Abacus admin page shows ZERO MCP servers configured
+  - Asolaria's MCP bridge is internet-accessible via Cloudflare tunnel
+  - Limitation: servers requiring local filesystem access won't work
+    (MCP runs in isolated cloud environment)
+  - Max 10 servers, 50 tools
+
+This means Abacus COULD connect to Asolaria's MCP bridge, giving Abacus
+access to Asolaria tools (which include Claude-powered capabilities).
+But this integration is NOT yet configured.
+
+========================================================================
+SECTION 7: MODEL ROUTER IN ASOLARIA GATEWAY CONFIG
+========================================================================
+
+config/asolaria.gateway.json line 60:
+  "model_router_check_daily": "0 6 * * *"
+
+This is a daily cron job that checks model routing health. It runs at
+6 AM. This is part of Asolaria's own orchestration scheduler, not an
+Abacus feature.
+
+========================================================================
+SECTION 8: "LLM ROUTER" DISCUSSION IN ASSESSMENT
+========================================================================
+
+From Asolaria Systems Engineering Assessment (tmp/docs/):
+
+  Jesse: "Ahh, like an llm router model?"
+
+  Response: "Not quite—it's simpler than an LLM router. The 'auto' model
+  just means Warp will use the best available model for your particular
+  task. Rather than you having to pick a specific model like 'GPT-4' or
+  'Claude 3.5,' the system automatically selects what works best."
+
+  Further: "That's a common challenge with multi-model systems!"
+  "Why local multi-model setups collapse: [explanation follows]"
+
+VERDICT: This discusses Warp's model selection, not Abacus. The
+multi-model routing challenge is acknowledged but refers to general
+AI orchestration, not a specific Abacus feature.
+
+========================================================================
+SECTION 9: PRODUCT.JSON — ABACUS DESKTOP APP INTERNALS
+========================================================================
+
+File: C:\Users\acer\AppData\Local\Programs\AbacusAI\resources\app\product.json
+
+Key findings:
+  - win32RegValueName: "CodeLLM" (Abacus desktop is CodeLLM)
+  - Has extensions with "languageModelDataPart", "languageModelSystem",
+    "languageModelCapabilities" API proposals
+  - Has "lramos15.model-playground" extension with "chatProvider" capability
+  - Repository links to github.com/microsoft/vscode.git (confirmed fork)
+
+The "model-playground" extension with "chatProvider" suggests Abacus
+supports multiple model providers through its VS Code extension system.
+This is how Claude Code mode works inside Abacus — as an extension/
+provider in the CodeLLM platform.
+
+========================================================================
+SECTION 10: CLI CONFIG
+========================================================================
+
+File: C:\Users\acer\AppData\Roaming\abacusai-cli-nodejs\Config\storage.json
+  {
+    "codellm": {
+      "endpoints": {
+        "apiEndpoint": "https://api.abacus.ai",
+        "dashboardEndpoint": "https://abacus.ai",
+        "publicHostingDomain": ".b.abacusai.app"
+      }
+    }
+  }
+
+File: C:\Users\acer\.abacusai\config.json
+  {"allow-editing": []}
+
+No model routing, cowork, or multi-model configuration in either file.
+
+========================================================================
+SECTION 11: WORK PACKETS — EVIDENCE OF CLAUDE INSIDE ABACUS
+========================================================================
+
+9 work packets exist in data/integrations/abacus/packets/:
+
+1. 20260307235254-abacus-integration-smoke-packet
+   - Smoke test. Response says "wire a real desktop response harvester,
+     link source task IDs, add packet presets for Claude Code workflow jobs"
+
+2. 20260308002117-abacus-preset-smoke
+   - Preset smoke test
+
+3. 20260308002230-workflow-studio-surface-map
+   - Objective: "Map the authenticated Abacus Workflow Studio and Claude
+     Code surfaces now visible in the desktop app"
+   - This confirms Claude Code IS a visible surface inside Abacus desktop
+
+4. 20260308014943-abacus-router-smoke
+   - Router smoke test through unified worker dispatch
+
+5. 20260308015042-symphony-router-smoke
+   - Symphony dispatch through router
+
+6. 20260308015101-symphony-direct-smoke / abacus-direct-smoke
+   - Direct dispatch tests
+
+7. 20260314035030-security-review-of-qdd-ebacmap...
+   - Real work: security review of QDD module
+
+8. 20260317192700-qdd-pre-commit-hook-fix
+   - Real work: QDD pre-commit hook fix
+   - Has .claude/ directory (Claude Code settings inside the packet)
+
+========================================================================
+DEFINITIVE FINDINGS
+========================================================================
+
+1. NO "Claude Cowork" feature exists inside Abacus AI.
+   "Claude Cowork" is Anthropic's own product (Claude Desktop + phone
+   pairing with "Dispatch" feature). Jesse shared this news in WhatsApp.
+
+2. "cowork-svc" is a separate background process (not Abacus) that was
+   consuming excessive CPU on both Jesse's and Rayssa's machines.
+
+3. Abacus AI DOES have a "Claude Code" / "Code Mode" surface built into
+   its desktop app (CodeLLM, a VS Code fork). This is the collaboration
+   point — Claude runs INSIDE Abacus as one of its available coding
+   surfaces.
+
+4. Asolaria's worker router dispatches to both "claude_max" (direct
+   Claude CLI) and "abacus" (which internally uses Claude Code mode).
+   This is multi-model routing at the Asolaria level.
+
+5. Abacus's MCP integration could bridge to Asolaria's tools (including
+   Claude-powered ones), but zero MCP servers are currently configured.
+
+6. The interview copilot in Asolaria supports multi-model LLM (GPT-5,
+   Claude 4.5, Gemini 3) — this is Asolaria's own capability.
+
+7. The "model-playground" extension in Abacus desktop supports
+   "chatProvider" — suggesting multiple model providers are available
+   through the CodeLLM platform, including Claude.
+
+========================================================================
+KEY FILES REFERENCED
+========================================================================
+
+Core connector:
+  C:\Users\acer\Asolaria\src\connectors\abacusConnector.js (1,423 lines)
+  C:\Users\acer\Asolaria\src\connectors\workerRouter.js
+
+UI:
+  C:\Users\acer\Asolaria\public\abacus-worker.html
+  C:\Users\acer\Asolaria\public\abacus-worker.js
+
+Abacus app:
+  C:\Users\acer\AppData\Local\Programs\AbacusAI\product.json
+  C:\Users\acer\AppData\Local\Programs\AbacusAI\resources\app\product.json
+  C:\Users\acer\AppData\Local\Programs\AbacusAI\resources\app\package.json
+  C:\Users\acer\.abacusai\config.json
+  C:\Users\acer\AppData\Roaming\abacusai-cli-nodejs\Config\storage.json
+
+Work packets:
+  C:\Users\acer\Asolaria\data\integrations\abacus\packets\ (9 packets)
+
+WhatsApp evidence:
+  C:\Users\acer\Asolaria\tmp\docs\whatsapp-rayssa\WhatsApp Chat with Rayssa.txt
+  Lines 11474, 11481 (cowork-svc), 13373-13379 (Claude Cowork/Dispatch)
+
+Previous audits:
+  C:\Users\acer\Asolaria\tmp\docs\abacus-ai-inventory.txt
+  C:\Users\acer\Asolaria\tmp\docs\abacus-in-asolaria.txt
+  C:\Users\acer\Asolaria\tmp\docs\Stage 2.txt (lines 311-571)
+  C:\Users\acer\Asolaria\tmp\docs\Asolaria Systems Engineering Assessment.txt
+
+========================================================================
+END OF DEEP MINE
+========================================================================

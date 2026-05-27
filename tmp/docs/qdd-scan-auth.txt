@@ -1,0 +1,255 @@
+QDD/eBacMap Auth Module Deep Scan
+==================================
+Date: 2026-03-25
+Scope: modules/users/ + pages/api/auth/
+Files scanned: 55
+
+================================================================================
+CRITICAL SECURITY ISSUES
+================================================================================
+
+[CRIT-01] SSO Callback: Email verification commented out
+  File: modules/users/use-cases/SsoCallback/UseCase.ts:60-62
+  The code that verifies the SAML response email matches the requested email is
+  commented out:
+    // if (email !== request.email) {
+    //   return Result.fail(new ValidationError('Invalid email', 'email'));
+    // }
+  IMPACT: An attacker who controls a valid SSO account could authenticate as ANY
+  user within the same client by manipulating the SAMLResponse. The callback just
+  looks up whatever email the IdP returns and logs that user in, with no check
+  that it matches who initiated the flow.
+
+[CRIT-02] SSO Login: User email appended to redirect URL in plaintext
+  File: modules/users/use-cases/Login/UseCase.ts:146
+    return Result.ok({ ssoRedirect: `${url}?clientId=${client.id.toString()}&email=${email}` });
+  The user's email is appended as a query parameter to the SSO redirect URL.
+  This leaks PII in browser history, server logs, and referrer headers. The email
+  parameter is not used for validation anyway (see CRIT-01), making this doubly
+  wasteful and risky.
+
+[CRIT-03] SSO Metadata endpoint: no authentication, no rate limiting
+  File: pages/api/auth/sso-metadata.ts
+  The sso-metadata handler has:
+  - No auth check (anyone can request SP metadata for any client)
+  - No rate limiting
+  - No HTTP method restriction (accepts GET, POST, PUT, DELETE, etc.)
+  - No input validation on req.query.clientId
+  - Uses client!.ssoConfig with a non-null assertion on a possibly-null client
+  IMPACT: Unauthenticated information disclosure of SSO configuration. If clientId
+  is invalid/missing, will throw unhandled exception (crash).
+
+[CRIT-04] Reset password token has no expiration check
+  File: modules/users/repos/UserRepo.ts:630-636
+  findByResetPasswordToken() queries by token only. It does not check
+  resetPasswordExpires. The ResetPassword UseCase (ResetPassword/UseCase.ts)
+  also does not verify expiration. A leaked or old reset token works forever.
+
+[CRIT-05] Reset password endpoint has no rate limiting
+  File: pages/api/auth/reset.ts
+  Unlike login (3 per 60s) and forgot (3 per 60s), the reset endpoint has zero
+  rate limiting. An attacker with a valid token can brute-force password resets
+  or replay the token indefinitely.
+
+[CRIT-06] Commented-out dev password override in Login UseCase
+  File: modules/users/use-cases/Login/UseCase.ts:76-78
+  Commented-out code that would bypass password validation with hardcoded
+  password "D3velopment!":
+    // if(process.env.APP_ENV === 'local' && password === 'D3velopment!') {
+    //   devOverride = true;
+    // }
+  While currently disabled, this is a ticking time bomb. If uncommented or if
+  APP_ENV is misconfigured, it creates a universal backdoor.
+
+[CRIT-07] SSO endpoints have no rate limiting
+  Files: pages/api/auth/sso.ts, pages/api/auth/sso-callback.ts
+  Neither the SSO login nor callback endpoints use rate limiting. An attacker
+  could flood these endpoints or attempt SAML replay attacks without throttling.
+
+================================================================================
+BUGS
+================================================================================
+
+[BUG-01] ForgotPassword: reveals user existence
+  File: modules/users/use-cases/ForgotPassword/UseCase.ts:24-26
+  Returns NotFoundError('User') when user doesn't exist. This allows user
+  enumeration. Should return a generic "if account exists, email sent" response.
+
+[BUG-02] SsoCallback: email field in request type but never validated
+  File: modules/users/use-cases/SsoCallback/UseCase.ts:15
+  SsoCallbackRequest declares `email: string` but the sso-callback.ts endpoint
+  schema only validates SAMLResponse and clientId -- email is not required.
+  Inside the use case, request.email is never used (the check is commented out).
+  Dead code that creates false expectations.
+
+[BUG-03] Login: validatePasswordResult cast to any
+  File: modules/users/use-cases/Login/UseCase.ts:83
+  `return validatePasswordResult as any;` -- if validatePassword returns a
+  failure, it's cast to any and returned. The error message/type may not match
+  what the Endpoint error handler expects, potentially causing a 500 instead
+  of 401.
+
+[BUG-04] SSO redirect URL inconsistency
+  Login/UseCase.ts:146 appends: `?clientId=...&email=...`
+  SsoLogin/UseCase.ts:59 appends: `&clientId=...` (no email)
+  These are two different SSO login paths that construct the redirect URL
+  differently. The Login path overwrites query params with `?`, the SsoLogin
+  path appends with `&`. If the SAML authorize URL already has query params,
+  one of these will break.
+
+[BUG-05] migrateExistingUser auto-logs in without checking suspended status
+  File: modules/users/use-cases/Login/UseCase.ts:149-183
+  When a user has status "imported", the migrateExistingUser flow sets password
+  and changes status to "active", then returns isLoggedIn:true. It never checks
+  if the user was suspended between import and migration. The suspended check
+  at line 91 only runs for non-imported users.
+
+[BUG-06] Logout does not check HTTP method
+  File: pages/api/auth/logout.ts
+  Accepts any HTTP method (GET, POST, etc). A GET request from an <img> tag or
+  link could log users out (CSRF via GET). Should be POST-only.
+
+[BUG-07] CreateUser: missing await on addExistingUserToLocations commit
+  File: modules/users/use-cases/CreateUser/UseCase.ts:50
+  `userRepo.commit(user!);` -- missing `await`. The database write may not
+  complete before the response is sent, potentially losing the location update.
+
+[BUG-08] Duplicate UserSuspendedError class definition
+  File: modules/users/use-cases/ForgotPassword/UseCase.ts:10-15
+  Defines its own UserSuspendedError class identical to Login/UseCase.ts:36-41.
+  The ForgotPassword version is never actually used in its own use case (forgot
+  password doesn't check suspended status). Dead code duplication.
+
+================================================================================
+MISSING ERROR HANDLING
+================================================================================
+
+[ERR-01] SsoCallback: unhandled case when SAML validates but no profile
+  File: modules/users/use-cases/SsoCallback/UseCase.ts:56-106
+  If result.profile is falsy but result exists and !result.loggedOut, the code
+  falls through to the generic "SSO Login Failed" at line 106 with no logging
+  or details. Should log the partial result for debugging.
+
+[ERR-02] sso-metadata: no try-catch, no null checks
+  File: pages/api/auth/sso-metadata.ts:9-11
+  MongoIdentifier.build(req.query.clientId) can fail. client can be null.
+  client!.ssoConfig uses non-null assertion. Any of these will throw an
+  unhandled exception resulting in a 500 with stack trace leak.
+
+[ERR-03] Login: no error handling around SAML URL generation
+  File: modules/users/use-cases/Login/UseCase.ts:143-144
+  `saml.getAuthorizeUrlAsync()` can throw if ssoConfig is malformed. No
+  try-catch around it. Will bubble up as unhandled.
+
+[ERR-04] ForgotPassword: email send failure returns opaque error
+  File: modules/users/use-cases/ForgotPassword/UseCase.ts:54-56
+  If sendEmail fails, it returns the Postmark error directly. This could leak
+  internal email service details (API keys, error messages) to the client.
+
+[ERR-05] NotifyAssociateUserOfResponse: sends email to approver, not user
+  File: modules/users/use-cases/NotifyAssociateUserOfResponse/UseCase.ts:71-72
+  The notification email about the user's request status is sent to the
+  approver's email (`approver.email!`) instead of the user's email. The user
+  who requested access never gets notified of the response.
+
+[ERR-06] hydrateUser: unchecked null dereferences
+  File: common/core/Endpoint.ts:70-78
+  `user!._id`, `user!.firstName`, etc. use non-null assertions. If the user was
+  deleted between session creation and request, this crashes with no graceful
+  error handling.
+
+================================================================================
+SESSION / COOKIE ISSUES
+================================================================================
+
+[SESS-01] Session TTL set to 0 (never expires server-side)
+  File: hooks/session.ts:50
+  `ttl: 0` means the iron-session never expires on the server. Combined with
+  maxAge of 7 days on the cookie, a stolen session cookie is valid forever until
+  the server restarts or the cookie expires naturally.
+
+[SESS-02] Cookie missing httpOnly and sameSite flags
+  File: hooks/session.ts:52-54
+  The cookie options only set `secure` (in production) and `maxAge`. Missing:
+  - httpOnly: true (iron-session may default this, but it's not explicit)
+  - sameSite: 'lax' or 'strict' (no CSRF protection from cookie flags)
+  Should explicitly set these for defense in depth.
+
+[SESS-03] /api/auth/me leaks full session data
+  File: pages/api/auth/me.ts:8-9
+  Returns the entire sessionUser object. If session data grows to include
+  sensitive fields, they'll be exposed. Should return only needed fields.
+
+================================================================================
+SSO FLOW ANALYSIS
+================================================================================
+
+Flow: Login -> check if client has SSO forced -> redirect to IdP -> callback
+
+Issues found in the SSO flow:
+1. No CSRF protection on SSO initiation (no state/nonce parameter)
+2. The clientId is passed as a URL query parameter on the callback URL, making
+   it susceptible to tampering
+3. disableRequestAcsUrl:true and disableRequestedAuthnContext:true weaken SAML
+   security validation
+4. No signature verification configuration visible (depends on ssoConfig from DB
+   but no validation that cert/signing is properly configured)
+5. Three separate places construct the SAML options object identically
+   (Login/UseCase.ts, SsoLogin/UseCase.ts, SsoCallback/UseCase.ts) -- DRY
+   violation that will cause config drift
+
+================================================================================
+AUTHORIZATION GAPS
+================================================================================
+
+[AUTH-01] UpdateUser role change logic has operator precedence bug
+  File: modules/users/use-cases/UpdateUser/UseCase.ts:71-74
+  ```
+  if (
+    (request.role && loggedInUserRole === 'admin') ||
+    loggedInUserRole === 'company_admin' ||
+    loggedInUserRole === 'company_user'
+  )
+  ```
+  Due to operator precedence, if loggedInUserRole is 'company_admin' or
+  'company_user', the outer if-block is entered regardless of whether
+  request.role exists. A company_user can enter the role-change code path.
+
+[AUTH-02] ValidateUser exposes user existence
+  File: modules/users/use-cases/ValidateUser/UseCase.ts
+  Returns { valid: true/false } indicating whether an email is registered.
+  No auth required. Enables user enumeration.
+
+[AUTH-03] DeleteUser is a soft delete with no authorization check in UseCase
+  File: modules/users/use-cases/DeleteUser/UseCase.ts
+  The use case itself has no authorization check. It relies entirely on the
+  Endpoint access control layer. If the endpoint is misconfigured or the
+  access control is bypassed, any user can delete any other user.
+
+================================================================================
+CODE QUALITY CONCERNS
+================================================================================
+
+- 15+ instances of `as any` type casts, suppressing TypeScript safety
+- 4 uses of @ts-ignore on SAML constructor calls
+- Commented-out Sentry error reporting in SsoCallback (line 103)
+- Commented-out console.log debugging in multiple files
+- No input sanitization on SSO-related string inputs
+- RegisterUserSchema: firstName is optional but no minimum length on password
+- CreateUser sends generated password in plaintext email (POSTMARK_TEMPLATES.userCreated)
+- No password complexity validation in the reset flow (ResetPassword/UseCase.ts)
+
+================================================================================
+SUMMARY: TOP 5 FIXES (priority order)
+================================================================================
+
+1. CRIT-01: Restore email verification in SSO callback -- this is an account
+   takeover vulnerability
+2. CRIT-04: Add token expiration check to password reset
+3. CRIT-03: Add auth + validation to sso-metadata endpoint
+4. BUG-01: Fix user enumeration in forgot password
+5. CRIT-05: Add rate limiting to reset password endpoint
+
+================================================================================
+END OF SCAN
+================================================================================

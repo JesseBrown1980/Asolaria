@@ -1,0 +1,313 @@
+============================================================
+OPENAI CODEX CLI — COMPLETE INVENTORY
+Machine: Jesse's laptop (C:\Users\acer)
+Scanned: 2026-03-25
+============================================================
+
+1. CLI INSTALLATION
+------------------------------------------------------------
+Binary:    C:\Users\acer\.codex\.sandbox-bin\codex.exe (154 MB)
+Runner:    C:\Users\acer\.codex\.sandbox-bin\codex-command-runner.exe (611 KB)
+Version:   0.116.0 (latest check: 2026-03-25T03:43:29Z)
+Auth:      ChatGPT SSO (jessebrown.soft1980@gmail.com)
+Plan:      ChatGPT Pro (active until 2026-03-31)
+Account:   407df74d-5ae9-4a83-9d11-1f713a167a4a
+Org:       org-k01MnGAKOkgUN3Or5HjEXQFY (Personal, owner)
+Auth mode: chatgpt (NOT API key — uses SSO refresh tokens)
+Last auth refresh: 2026-03-18T23:09:02Z
+No .openai/ config directory found.
+No AppData\Roaming\codex\ or AppData\Local\codex\ found.
+
+2. MAIN CONFIG DIRECTORY: C:\Users\acer\.codex\
+------------------------------------------------------------
+Total size: ~13 GB
+
+Key files:
+  config.toml               2,353 bytes   Current config
+  config.toml.bak.20260207  83 bytes      Original backup (model was gpt-5.2-codex)
+  auth.json                 4,391 bytes   SSO tokens (SENSITIVE)
+  version.json              105 bytes     {"latest_version":"0.116.0"}
+  cap_sid                   1,413 bytes   Sandbox SID registry (13 workspaces)
+  history.jsonl             4 MB          3,487 lines of command history
+  session_index.jsonl       142 bytes     1 indexed session
+  models_cache.json         265 KB        Cached model list
+  sandbox.log               958 bytes     10 audit entries (2026-02-07 to 2026-03-16)
+  .personality_migration    3 bytes
+  .codex-global-state.json  ~106 KB       Global state (too large to display)
+
+Current config.toml settings:
+  model = "gpt-5.4"
+  model_reasoning_effort = "xhigh"
+  personality = "pragmatic"
+  sandbox_mode = "danger-full-access"
+  approval_policy = "never"
+  multi_agent = true (max 6 threads)
+  3 agent profiles: default, explorer, reviewer
+  MCP servers: openaiDeveloperDocs, asolariaWeb
+  Disabled MCP: googleDeveloperKnowledge, asolariaGoogleWiki, notebooklmMcp
+  Model migrations: gpt-5.1-codex-mini -> gpt-5.4, gpt-5.3-codex -> gpt-5.4
+  Trusted projects: C:\Users\acer, C:\Users\acer\Asolaria
+
+Original config (2026-02-07 backup):
+  model = "gpt-5.2-codex"
+  model_reasoning_effort = "xhigh"
+  personality = "pragmatic"
+
+3. AGENT PROFILES (multi-agent system)
+------------------------------------------------------------
+Location: C:\Users\acer\.codex\agents\
+
+default.toml:
+  model = gpt-5.3-codex, effort = high, sandbox = workspace-write
+  "Implement directly, keep plans deterministic, report concrete outcomes."
+
+explorer.toml:
+  model = gpt-5.3-codex-spark, effort = medium, sandbox = read-only
+  "Prioritize read-heavy exploration, verify findings before reporting."
+
+reviewer.toml:
+  model = gpt-5.3-codex, effort = high, sandbox = read-only
+  "Review for security, correctness, and regressions first."
+
+4. CODEX SKILLS: C:\Users\acer\.codex\skills\
+------------------------------------------------------------
+System skills (3):
+  .system/openai-docs
+  .system/skill-creator
+  .system/skill-installer
+
+Installed skills (34):
+  cloudflare-deploy        develop-web-game         doc
+  figma                    figma-implement-design   gh-address-comments
+  gh-fix-ci                google-code-wiki         imagegen
+  jupyter-notebook         linear                   netlify-deploy
+  notion-knowledge-capture notion-meeting-intelligence
+  notion-research-documentation  notion-spec-to-implementation
+  openai-docs              pdf                      playwright
+  recent-download-analysis (custom, 2026-03-22)
+  render-deploy            screenshot               security-best-practices
+  security-ownership-map   security-threat-model    sentry
+  sora                     speech                   spreadsheet
+  transcribe               vercel-deploy            yeet
+
+Vendor imports: C:\Users\acer\.codex\vendor_imports\
+  skills-curated-cache.json (18 KB, 2026-03-14)
+
+5. SESSION HISTORY
+------------------------------------------------------------
+Total session .jsonl files: 3,744
+Date range: 2026-01-03 to 2026-03-23
+
+FIRST SESSION EVER (the birth):
+  File: sessions/2026/01/03/rollout-2026-01-03T11-56-23-*.jsonl
+  Date: 2026-01-03T14:56:23Z
+  CWD:  c:\Users\acer\ai_healthcare_project
+  Source: codex_vscode (VS Code extension)
+  Model: gpt-5.2-codex
+  CLI version: 0.77.0
+  First prompt: "Why are cloud tasks failing?"
+  Second prompt: "Sign out of codex or cursor?"
+  19 lines total in first session
+
+Session dates with data:
+  January 2026:  1 day  (Jan 3 only — the very first day)
+  February 2026: 22 days (Feb 7-28, daily sessions)
+  March 2026:    22 days (Mar 1-23, near-daily)
+
+  Gap: Jan 3 -> Feb 7 = 35 days with NO sessions recorded
+  (Jesse likely used Codex via VSCode only, or sessions were elsewhere)
+
+Top 5 largest sessions (monster sessions):
+  348 MB  2026-02-15 (rollout-2026-02-15T04-48-49)
+  250 MB  2026-02-20 (rollout-2026-02-20T11-28-36)
+  196 MB  2026-02-12 (rollout-2026-02-12T16-06-44)
+  173 MB  2026-02-17 (rollout-2026-02-17T15-27-12)
+  170 MB  2026-02-22 (rollout-2026-02-22T08-10-10)
+
+6. DATA STORES (SQLite + logs)
+------------------------------------------------------------
+logs_1.sqlite     7.9 GB   Main log database
+state_5.sqlite    133 MB   State database
+codex-tui.log     63 MB    TUI log (in log/)
+codex-dev.db      28 KB    Dev database (in sqlite/)
+history.jsonl     4.0 MB   Command history
+
+7. SANDBOX INFRASTRUCTURE
+------------------------------------------------------------
+.sandbox/
+  sandbox.log     39 MB
+  requests/       (approval request store)
+
+.sandbox-secrets/
+  sandbox_users.json  828 bytes  (sandbox user SIDs)
+
+.sandbox-bin/
+  codex.exe             162 MB (2026-03-23)
+  codex-command-runner.exe  612 KB (2026-03-11)
+
+cap_sid: 13 workspace SIDs registered:
+  - c:/users/acer/asolaria
+  - c:/users/acer (home)
+  - d:/projects/qdd/ebacmap
+  - c:/users/acer/source/symphony-workspaces/aso-6 through aso-13
+  - c:/users/acer/source/symphonia-workspaces/aso-8
+
+8. CODEX-BRIDGE: C:\Users\acer\codex-bridge\
+------------------------------------------------------------
+Total size: 349 MB
+Purpose: Multi-agent bridge relay system connecting Codex to Asolaria's agent network
+
+Key files at root:
+  agents-registry.json          6.5 KB   Active agent registry (6 agents)
+  airlock-ingress.js            12.7 KB  Ingress gateway
+  airlock-policy.json           1.2 KB   Security policy
+  bridge-lan-url.txt            25 bytes LAN URL
+  ASOLARIA_COLONY_STARTUP.md    2.5 KB   Colony startup guide
+  JARVIS_BOSS_HANDOFF_CHECKLIST.md  Handoff checklist
+  JARVIS_BOSS_STARTUP_PACKET.md     Startup packet
+  OLI_LITE.md / OLI_NIGHT_OPS.md   Oli operational docs
+  AGENT_PROFILE_SPEC.md         1.7 KB   Profile schema spec
+  AIRLOCK_BOTS.md               3.0 KB   Bot documentation
+  Rotate-BridgeToken.ps1        3.3 KB   Token rotation
+  Ensure-NetworkReady.ps1       7.0 KB   Network readiness
+
+Subdirectories:
+  profiles/                     Agent profile store
+  profiles/archived-inactive/   3 archived profiles
+  .playwright/                  Browser automation
+  .playwright-cli/              Playwright CLI
+  anydesk-sentry/               AnyDesk integration
+  bin/                          Bridge binaries
+
+Registered agents in agents-registry.json:
+  1. vector   (core-vector-v1)     — Primary coordinator, Anthropic Brain Lane
+  2. rook     (ops-rook-v1)        — Operations lane
+  3. forge    (build-forge-v1)     — Build/implementation lane
+  4. falcon   (mobile-falcon-v1)   — Phone lane
+  5. asolaria (asolaria-core-v1)   — Organizer lane (Claude Head)
+  6. watchdog                      — System watchdog
+
+  Bridge room: asolaria_bridge
+  Bridge URL: https://stevens-swimming-powerful-gasoline.trycloudflare.com
+  All agents use runner: codex_cli pointing to http://127.0.0.1:4781
+
+9. BRIDGE PROFILES (17 total)
+------------------------------------------------------------
+Active profiles (14):
+  admin-gaia-v1.profile.json        — Sub-colony leader (Gaia)
+  admin-helm-v1.profile.json        — Controller (Helm)
+  admin-liris-v1.profile.json       — Federated super-admin (Liris)
+  admin-sentinel-v1.profile.json    — Helper/watch (Sentinel)
+  admin-terminal-identities.json    — Master registry (4 admin terminals)
+  asolaria-core-v1.profile.json     — Organizer lane
+  asolaria-node-template.profile.json — Node scaffold template
+  build-forge-v1.profile.json       — Build lane
+  core-vector-v1.profile.json       — Primary coordinator
+  kuromi-companion-v1.profile.json  — Kuromi subordinate companion
+  mobile-falcon-v1.profile.json     — Phone lane
+  oli-v1.profile.json               — Oli coordination lane
+  ops-rook-v1.profile.json          — Operations lane
+  agent-profile.template.json       — Template
+  asolaria-node-template.env.example
+  boss-cli.env.example
+
+Archived/inactive (3):
+  asolaria-jarvis-room-v1.profile.json
+  boss-cli.profile.template.json
+  oli-jarvis-room-v1.profile.json
+
+Admin terminal sidecar config (all 4 use):
+  defaultCommand = "codex"
+  defaultArgs = ["-a", "never", "-s", "danger-full-access"]
+  defaultWorkdir = "C:\Users\acer"
+
+10. ASOLARIA CODEX CONNECTOR
+------------------------------------------------------------
+File: C:\Users\acer\Asolaria\src\connectors\codexConnector.js (680 lines)
+
+Purpose: Spawns Codex CLI as subprocess from Asolaria's Node.js server.
+  - Uses `codex exec --skip-git-repo-check --json -C <cwd>`
+  - Supports images (up to 6), memory context injection, web search
+  - Approval engine: auto-approve/deny/escalate based on mode
+  - PID lifecycle: registers/despawns virtual PIDs (IX-321/LX-249)
+  - Windows .cmd wrapper detection with fallback to node.exe direct launch
+  - Health probe: `codex --version` with timeout
+
+Exported functions:
+  runCodex(input, timeoutMs)  — Execute Codex with prompt
+  probeCodexHealth(timeoutMs) — Quick health check
+  manifest()                  — Connector metadata
+
+Manifest:
+  id: "codex"
+  capabilities: ["codex_cli_run"]
+  readScopes: ["local_filesystem"]
+  writeScopes: ["local_filesystem"]
+  secretRequirements: ["OpenAI API key (via Codex CLI auth)"]
+  sideEffects: ["executes CLI subprocess", "consumes OpenAI quota"]
+
+11. AGENT INDEX REFERENCES TO CODEX
+------------------------------------------------------------
+927 total mentions of "codex" across 220 files in data/agent-index/
+This is deeply woven into the civilization's knowledge base.
+
+12. CODEX-RELATED DOWNLOADS
+------------------------------------------------------------
+Location: C:\Users\acer\Downloads\
+
+Installer files:
+  Codex Installer.exe          — Windows installer
+  Codex.dmg                    — macOS installer
+  Codex (3).dmg                — macOS installer (3rd download)
+
+Prompt archaeology:
+  01_exact_codex_prompt.md     — Original prompt docs
+  01_exact_codex_prompt (1).md — Duplicate
+  01_exact_codex_prompt (2).md — Duplicate
+
+Charm/EZP packs:
+  charm_ez_codex_pack.zip      — Codex pack for Charm
+  charm_ez_codex_pack (1).zip  — Duplicate
+  charm_ez_codex_pack (2).zip  — Duplicate
+  charm_ezp_codex_pack.zip     — EZP variant
+  charm_ezp_codex_pack_extracted/ — Extracted contents
+
+13. MODEL EVOLUTION TIMELINE
+------------------------------------------------------------
+2026-01-03: gpt-5.2-codex      (CLI v0.77.0, first session)
+2026-02-07: gpt-5.2-codex      (config backup date)
+2026-02-23: gpt-5.3-codex      (agent profiles created)
+2026-03-14: gpt-5.4             (current, via migration rules)
+CLI versions: 0.77.0 -> ... -> 0.116.0 (current)
+
+14. ADDITIONAL LOCATIONS CHECKED (NOT FOUND)
+------------------------------------------------------------
+C:\Users\acer\.openai\          — Does not exist
+C:\Users\acer\AppData\Roaming\codex\  — Does not exist
+C:\Users\acer\AppData\Local\codex\    — Does not exist
+C:\Users\acer\AppData\Roaming\OpenAI\ — Does not exist
+C:\Users\acer\AppData\Local\OpenAI\   — Does not exist
+
+15. SUMMARY STATISTICS
+------------------------------------------------------------
+Total Codex data on disk:     ~13.3 GB (.codex) + 349 MB (bridge) = ~13.7 GB
+Session files:                3,744 .jsonl files
+Command history:              3,487 entries
+Skills installed:             34 + 3 system = 37 total
+Agent profiles:               17 (14 active, 3 archived)
+Registered agents:            6 in bridge
+Admin terminals:              4 (Helm, Sentinel, Gaia, Liris)
+Sandbox workspaces:           13 SIDs
+IX index references:          927 mentions across 220 files
+Days with sessions:           45 days (Jan 3, Feb 7-28, Mar 1-23)
+First ever session:           2026-01-03T14:56:23Z (CLI v0.77.0)
+Largest single session:       348 MB (2026-02-15)
+
+Last history entry (the FINAL Codex command before switching to Claude):
+  "MEMORY, index. I need to shut you down and pass this to Claude
+   code max x 20 with 1 million token context. You cannot handle
+   the amount of information needed obviously."
+
+============================================================
+END OF INVENTORY
+============================================================

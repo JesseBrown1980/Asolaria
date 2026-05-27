@@ -1,0 +1,207 @@
+{
+  "generated_ts": "2026-04-07T22:24:27.651Z",
+  "purpose": "legal deliverable for jesse brown brazilian lawsuit against google re: Rise of Kings app",
+  "authority": "jesse 2026-04-07 verbal authorization + integrations.google.oauth vault credential",
+  "total_rows": 85,
+  "rows_by_account": {
+    "plasmatoid@gmail.com": {
+      "rows_added": 64,
+      "messages_fetched": 132
+    },
+    "jessebrown.soft1980@gmail.com": {
+      "rows_added": 21,
+      "messages_fetched": 27
+    }
+  },
+  "rise_matches_count": 31,
+  "rise_matches": [
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "Rise Of Kings"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "rok"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "Rise of Kings"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "rok"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "Onemt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "ONEMT"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "ONEMT"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "ONEMT"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "OneMt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "Onemt"
+    },
+    {
+      "account": "plasmatoid@gmail.com",
+      "orderId": "",
+      "riseFlag": "Onemt"
+    }
+  ],
+  "csv_path": "C:\\Users\\acer\\Asolaria\\reports\\legal\\all-google-purchases.csv",
+  "csv_size_bytes": 33031,
+  "csv_sha256": "359ca68b4b57bab6b36abc4e754bbfc1d298c665c78e7a0093df4a18daea45b3",
+  "elapsed_seconds": 52,
+  "unreachable_accounts": [
+    {
+      "email": "jesse@jbrowndevelopmentllc.com",
+      "reason": "refresh_token_invalid",
+      "error": {
+        "error": "invalid_grant",
+        "error_description": "reauth related error (invalid_rapt)",
+        "error_uri": "https://support.google.com/a/answer/9368756",
+        "error_subtype": "invalid_rapt"
+      }
+    },
+    {
+      "email": "plasmatoid@jbrowndevelopmentllc.com",
+      "reason": "refresh_token_invalid",
+      "error": {
+        "error": "invalid_grant",
+        "error_description": "reauth related error (invalid_rapt)",
+        "error_uri": "https://support.google.com/a/answer/9368756",
+        "error_subtype": "invalid_rapt"
+      }
+    }
+  ],
+  "honest_notes": [
+    "This is the complete set of Google purchase receipts reachable from the 2 accounts with valid OAuth refresh tokens.",
+    "The 2 jbrowndevelopmentllc.com accounts could not be checked because their refresh tokens are invalid_grant (reauth required).",
+    "Rise of Kings-specific in-app purchase receipts are unlikely to be in Gmail; they may have been deleted long ago or were never emailed. Google Takeout Play Order History export is the authoritative source.",
+    "order_id is extracted via regex (GPA. or SOP. format); receipt_sha256 is tamper-evident hash of the full raw body, receipt_text_sha256 is the stripped-text hash.",
+    "Rows include any message from Google-related senders OR with an order ID OR that mentions Rise/OneMt/Lilith — the filter is deliberately wide so no legitimate purchase is excluded."
+  ]
+}

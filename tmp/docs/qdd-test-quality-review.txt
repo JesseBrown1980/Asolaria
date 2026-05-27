@@ -1,0 +1,385 @@
+================================================================================
+ QDD EZ PROTECT TEST QUALITY REVIEW
+ Date: 2026-03-25
+================================================================================
+
+FILES REVIEWED:
+  1. queue-server/.../EvaluateEzProtectAlerts/UseCase.unit.ts  (955 lines, 35 tests)
+  2. queue-server/.../ProcessEzProtectFile/UseCase.unit.ts      (549 lines, 22 tests)
+  3. queue-server/.../SyncEzProtectToLims/UseCase.unit.ts       (101 lines, 5 tests)
+  4. queue-server/.../utils/ezProtectParser.unit.ts             (215 lines, 12 tests)
+  5. web-ebacmap/.../repos/EzProtectRepo.unit.ts                (50 lines, 7 tests)
+  6. web-ebacmap/.../utils/ezProtect.unit.ts                    (87 lines, 4 tests)
+  7. web-ebacmap/.../domain/EzProtectEvent.unit.ts              (does NOT exist)
+  8. web-ebacmap/.../use-cases/SyncToLims/route.int.ts          (134 lines, 4 tests)
+  9. web-ebacmap/.../use-cases/GetEzProtectDashboard/route.int.ts (117 lines, 4 tests)
+
+TOTAL: 89 tests across 8 files
+
+================================================================================
+ OVERALL VERDICT: GOOD foundation, but meaningful gaps exist
+================================================================================
+
+The tests are well-structured with clear naming, proper mock isolation, and
+good happy-path coverage. However, several production code paths have ZERO
+test coverage, and one file is misplaced.
+
+
+================================================================================
+ FILE-BY-FILE ANALYSIS
+================================================================================
+
+------------------------------------------------------------------------
+1. EvaluateEzProtectAlerts/UseCase.unit.ts — GRADE: A-
+------------------------------------------------------------------------
+
+STRENGTHS:
+  - All 5 trigger types tested (result_state, control_failure, calibration_failure,
+    pm_failure, threshold, device_offline)
+  - Threshold: all 5 operators tested (gt, gte, lt, lte, eq) including boundary
+  - Deduplication tested (recent alert skips firing)
+  - Email delivery: success, failure (non-fatal), both channel, sms-only, empty
+    recipients
+  - Alert history shape validated with objectContaining
+  - Device offline: default minutes, missing deviceModel, locationId omission
+  - Unknown trigger type handled
+  - Multiple rules evaluated correctly
+  - buildAlertMessage: faqLinks, videoLinks, device_offline message with details
+
+COVERAGE GAPS:
+  - No test for disabled rules (enabled: false) — the source filters by
+    {enabled: true}, but no test verifies disabled rules are excluded.
+  - No test for rules with locationId: null/$exists:false matching the $or filter.
+    The source queries {$or: [{locationId}, {locationId: {$exists: false}},
+    {locationId: null}]} but tests only use matching locationId.
+  - No test for alert history creation failure (e.g., create() throws). This
+    path is NOT wrapped in try/catch in the source — it would propagate up
+    and return Result.fail. This is potentially a BUG: a single failed
+    history write kills the entire evaluation loop.
+  - No test for sendPlainEmail throwing (vs returning Result.fail). The mock
+    uses mockResolvedValue(Result.fail(...)) but never mockRejectedValue.
+    If sendPlainEmail throws, the error propagates differently.
+  - The email failure test asserts console.error with `expect.any(Error)` but
+    the source passes `emailResult.error` which is the Result error string,
+    not an Error object. This assertion may be fragile.
+  - No test for events with multiple matching result states (e.g., one event
+    matches two rules of different trigger types).
+
+MOCK REALISM:
+  - Mocks are realistic. lean() chaining matches Mongoose patterns.
+  - The `null as any` for queue parameter is fine since alerts don't use queue.
+
+POTENTIAL FALSE POSITIVES:
+  - The aggregate mock in device_offline tests returns static data. The test
+    verifies the aggregate was called but does NOT verify the pipeline shape
+    (except for the locationId omission test). If the pipeline changes, tests
+    still pass.
+
+------------------------------------------------------------------------
+2. ProcessEzProtectFile/UseCase.unit.ts — GRADE: A
+------------------------------------------------------------------------
+
+STRENGTHS:
+  - JSON single event, array, CSV, CSV with BOM, CSV with quoted fields
+  - Empty CSV, header-only CSV, invalid JSON
+  - Duplicate detection: both updatedExisting and E11000 error code
+  - Non-duplicate DB errors recorded in errorDetails
+  - Validation failures (missing required fields)
+  - Alert rule creation: new facility creates 5 defaults, existing skips
+  - Alert rules NOT created when all events are duplicates
+  - Queue job: fires when imported, skips when no imports, non-fatal failure
+  - Alert rule creation failure is non-fatal
+  - Upsert filter fields verified (deviceSerialNumber, completedAt, sampleId)
+  - Document shape: locationId/clientId, Date conversions
+  - Warnings propagation from parser
+
+COVERAGE GAPS:
+  - No test for CSV with \r\n line endings (Windows). The source uses
+    split('\n') and .trim() which handles it, but no test proves it.
+  - No test for CSV rows with fewer columns than headers (mismatched column
+    count). parseCsvLine would produce undefined values.
+  - No test for very large file (performance/memory concern not testable in
+    unit tests, but row count limits should be documented).
+  - No test for the `parseCsvLine` function's escaped quote handling ("").
+    CSV with `""` inside quoted fields. Source handles it (line 20-22) but
+    no test exercises it.
+  - No test for fileType other than 'json' or 'csv' — but TypeScript type
+    narrows this, so it's a low risk.
+  - No test for stripExpiration Date conversion in the document shape.
+
+MOCK REALISM:
+  - Queue mock is appropriately shaped. DB mock returns proper
+    lastErrorObject structure.
+  - Warning: the test "validates events missing required fields" sets
+    deviceModel to '' (empty string), relying on the parser's truthy check.
+    A real-world scenario might have whitespace-only strings.
+
+POTENTIAL FALSE POSITIVES:
+  - None identified. Assertions are specific and check both positive/negative.
+
+------------------------------------------------------------------------
+3. SyncEzProtectToLims/UseCase.unit.ts — GRADE: B-
+------------------------------------------------------------------------
+
+STRENGTHS:
+  - Happy path (2 events synced) with correct count
+  - Query filter verified
+  - Empty results handled with error message
+  - DB throw returns failure
+  - Single event id works
+
+COVERAGE GAPS:
+  - The source is a SCAFFOLD (TODO comments, no actual LIMS API call).
+    Tests verify the scaffold behavior, which is appropriate for now.
+  - No test for empty eventIds array. The source would call find() with
+    {$in: []} which returns nothing, hitting the "No matching events found"
+    path. This is tested implicitly but not explicitly.
+  - No test for partial failure (some events fail, some succeed) — but this
+    doesn't apply yet since it's a scaffold.
+  - No test for the console.log output verifying LIMS pending message.
+  - Missing: the source does NOT validate that request.clientId is present.
+    A test with undefined clientId would reveal this.
+
+MOCK REALISM:
+  - lean() chaining is correct. MongoIdentifier usage is realistic.
+
+------------------------------------------------------------------------
+4. ezProtectParser.unit.ts — GRADE: B+
+------------------------------------------------------------------------
+
+STRENGTHS:
+  - Negative and invalid fixture events with full field coverage
+  - Multiple events at once
+  - Result state normalization (NEG -> NEGATIVE)
+  - Unknown result state -> UNKNOWN with warning
+  - Missing required fields produce errors
+  - Default organizationId/facilityId fallback
+  - rawPayload preservation
+  - CSV with camelCase and snake_case headers
+  - validateEvent: complete and incomplete
+
+COVERAGE GAPS:
+  - normalizeResultState: only NEG and WEIRD_STATE tested. Missing coverage for:
+    * POS/POSITIVE -> INITIAL_POSITIVE
+    * PRESUMPTIVE/PRESUMPT_POS -> PRESUMPTIVE_POSITIVE
+    * PRODUCT_POS/CONFIRMED -> PRODUCT_POSITIVE
+    * INV/VOID -> INVALID
+    * CAL_FAIL/CALFAIL -> CALIBRATION_FAIL
+    * PMFAIL -> PM_FAIL
+    * PASS -> NEGATIVE
+    These are 12+ aliases that are untested.
+  - No test for invalid completedAt date (e.g., "not-a-date"). The source
+    throws "Invalid completedAt date" but no test covers this.
+  - No test for missing completedAt (empty string). Source throws
+    "Missing completedAt".
+  - No test for missing deviceSerialNumber. Source throws
+    "Missing deviceSerialNumber".
+  - No test for the case where assayCode is provided but assayName is not
+    (and vice versa). Source uses assayCode || assayName for both.
+  - No test for unrecognized sourceSystem warning.
+  - CSV: no test for mixed case headers like 'DeviceSerial', 'TestCode',
+    'DateTime', 'OperatorID', etc.
+  - CSV: no test for safeNum with non-numeric strings (e.g., "abc" for
+    readingValue). safeNum returns undefined for NaN.
+  - parseCsvRows: no test for rows where a required CSV column is missing
+    entirely from the header.
+  - validateEvent: no test for events missing individual fields one at a time
+    (currently only tests with multiple missing fields).
+
+MOCK REALISM:
+  - No mocks needed (pure functions). Fixture data is realistic.
+
+POTENTIAL FALSE POSITIVES:
+  - "reports errors for missing required fields" test (line 117-121) creates
+    a row with only resultState. The assertion checks errors.length === 1,
+    but the function could produce 1 error by throwing on the first missing
+    field rather than collecting all. If behavior changes, this test is fragile.
+
+------------------------------------------------------------------------
+5. EzProtectRepo.unit.ts — GRADE: D (MISPLACED FILE)
+------------------------------------------------------------------------
+
+CRITICAL ISSUE:
+  This file is located at repos/EzProtectRepo.unit.ts but contains
+  IDENTICAL content to what should be domain/EzProtectEvent.unit.ts.
+  It imports from '../domain/EzProtectEvent' and tests domain functions
+  (RESULT_STATES, categorizeError, buildEmptyEzProtectWindowSummary).
+
+  The ACTUAL EzProtectRepo class (repos/EzProtectRepo.ts) has ZERO test
+  coverage. This is a significant gap:
+
+  UNTESTED REPO METHODS:
+    - listNormalizedEvents() — pagination, filtering, sorting, escapeRegex
+    - getEventById() — single event retrieval
+    - getDashboardSummary() — 4-window summary with date windowing
+    - getCorporateDashboard() — complex aggregation pipeline, error
+      categories, lot/roll, PM testing, device connectivity
+    - getDevices() — device health aggregation with online/offline/error
+    - upsertEvent() — dedup logic
+    - docToNormalized() — document mapping with toHexString/toISOString
+    - buildWindowSummary() — private method for window calculations
+    - escapeRegex() — regex escaping for deviceSerialNumber search
+
+  RECOMMENDATION: Rename this file to EzProtectEvent.unit.ts (or move its
+  content there) and create a real EzProtectRepo.unit.ts with proper tests.
+
+------------------------------------------------------------------------
+6. ezProtect.unit.ts (web-ebacmap utils) — GRADE: B+
+------------------------------------------------------------------------
+
+STRENGTHS:
+  - Feature flag detection from both env vars
+  - Facility-specific permission check
+  - Global fallback permission
+  - Rollout flag does not bypass permission check
+
+COVERAGE GAPS:
+  - No test for null user (hasEzProtectEntitlement returns false).
+  - No test for isEzProtectModuleEnabled with user who HAS permission AND
+    rollout enabled (full happy path through both checks).
+  - No test for resolveLocationId with a string location argument.
+  - No test for Admin/CompanyAdmin roles — only User role tested for
+    hasEzProtectEntitlement.
+  - No test for 'manage' permission level (tests only 'view' and 'noaccess').
+  - afterEach restores env vars correctly — good hygiene.
+
+MOCK REALISM:
+  - buildUser helper creates realistic user objects. The `as any` cast is
+    necessary for the test-only shape.
+
+------------------------------------------------------------------------
+7. EzProtectEvent.unit.ts (web-ebacmap domain) — DOES NOT EXIST
+------------------------------------------------------------------------
+
+  The file path specified (domain/EzProtectEvent.unit.ts) does not exist.
+  The domain tests exist only in the misplaced repos/EzProtectRepo.unit.ts.
+
+  UNTESTED DOMAIN CODE:
+    - EZ_PROTECT_DASHBOARD_WINDOWS constant (tested indirectly via summary)
+    - EZ_PROTECT_PLAN_TIERS type/constant
+    - SOURCE_SYSTEMS, TRANSPORT_MODES constants
+    - EzProtectNormalizedEvent interface (not testable directly)
+    - DeviceInfo interface
+    - DeviceHealthStatus type
+    - categorizeError with calibrationStatus and pmStatus parameters
+      (only resultState and controlLineValid are tested; the function
+      accepts 4 params but tests only use 2)
+
+------------------------------------------------------------------------
+8. SyncToLims/route.int.ts — GRADE: B
+------------------------------------------------------------------------
+
+STRENGTHS:
+  - Unauthenticated request returns failure
+  - Authorized user gets scaffold response with queued=true
+  - Empty eventIds returns eventCount=0
+  - Correct eventCount from request
+  - LIMS reference in scaffold message
+
+COVERAGE GAPS:
+  - No test for user with 'noaccess' permission for EZ Protect (should fail
+    authorization).
+  - No test for user with 'manage' permission level.
+  - No test for non-existent location ID.
+  - Note: @ts-nocheck at top suggests type issues in the test setup.
+    This should be addressed — type safety in tests catches regressions.
+
+------------------------------------------------------------------------
+9. GetEzProtectDashboard/route.int.ts — GRADE: A-
+------------------------------------------------------------------------
+
+STRENGTHS:
+  - Missing locationId returns 422 with validation error
+  - Unauthenticated returns 403
+  - User without EZ Protect permission returns 401
+  - Happy path returns 200 with correct dashboard shape
+  - Response shape validated with objectContaining (windows, byResultState)
+
+COVERAGE GAPS:
+  - No test for non-existent locationId (valid format but no matching location).
+  - No test for CompanyAdmin or Admin role with global access.
+  - Dashboard with actual event data is not tested — only empty dashboard
+    verified (totalEvents will be 0 since no events are inserted).
+  - No test for query parameter injection or invalid locationId format.
+  - @ts-nocheck — same concern as SyncToLims.
+
+
+================================================================================
+ CROSS-CUTTING ISSUES
+================================================================================
+
+1. MISPLACED FILE (CRITICAL):
+   repos/EzProtectRepo.unit.ts contains domain tests, not repo tests.
+   The actual EzProtectRepo class (650+ lines, 6 public methods, complex
+   aggregation pipelines) has ZERO unit test coverage.
+
+2. NO INTEGRATION TESTS FOR QUEUE-SERVER USE CASES:
+   All queue-server tests are unit tests with mocked DB. No integration
+   tests verify actual MongoDB queries, aggregation pipelines, or upsert
+   behavior. The EzProtectRepo's aggregation pipeline in
+   getCorporateDashboard is particularly complex and error-prone.
+
+3. @ts-nocheck IN INTEGRATION TESTS:
+   Both route.int.ts files use @ts-nocheck, suppressing type checking.
+   This risks missing type regressions in the API layer.
+
+4. PARSER ALIAS COVERAGE:
+   The normalizeResultState function has 14 aliases mapped to 8 canonical
+   states. Only 2 are tested (NEG, WEIRD_STATE). This is the most likely
+   place for real-world breakage when Charm devices send variant strings.
+
+5. CSV EDGE CASES UNDER-TESTED:
+   - Windows line endings (\r\n)
+   - Escaped quotes in quoted fields ("")
+   - Header-column mismatch
+   - Non-numeric values in numeric columns
+   - Alternate header formats (DeviceSerial, TestCode, etc.)
+
+6. NO CONCURRENCY TESTS:
+   ProcessEzProtectFile processes events sequentially in a for loop.
+   No test verifies behavior if two files are processed simultaneously
+   for the same facility (race condition on default alert rule creation).
+
+
+================================================================================
+ PRIORITY RECOMMENDATIONS
+================================================================================
+
+P0 — Fix immediately:
+  [ ] Create real EzProtectRepo.unit.ts (or .int.ts) for the repo class
+  [ ] Move domain tests from repos/ to domain/ (or rename correctly)
+
+P1 — High value:
+  [ ] Add normalizeResultState tests for ALL 14 aliases
+  [ ] Add invalid completedAt date test to parser
+  [ ] Test alert history creation failure in EvaluateEzProtectAlerts
+  [ ] Remove @ts-nocheck from integration tests
+
+P2 — Good coverage improvements:
+  [ ] CSV edge cases: \r\n, "", missing columns, non-numeric values
+  [ ] CSV alternate headers (DeviceSerial, TestCode, DateTime)
+  [ ] Dashboard integration test with actual event data inserted
+  [ ] categorizeError with all 4 parameters
+  [ ] hasEzProtectEntitlement with null user
+  [ ] sendPlainEmail throwing (vs Result.fail)
+
+P3 — Nice to have:
+  [ ] Verify aggregate pipeline shape in device_offline tests
+  [ ] Test disabled alert rules exclusion
+  [ ] Rules with locationId: null matching the $or filter
+  [ ] stripExpiration Date conversion
+  [ ] escapeRegex for special characters in device serial search
+
+
+================================================================================
+ SUMMARY STATISTICS
+================================================================================
+
+  Files reviewed:        8 (+ 1 missing)
+  Total tests:           89
+  Average grade:         B+
+  Critical issues:       1 (misplaced file / zero repo coverage)
+  Coverage gaps found:   47 specific scenarios
+  False positive risks:  2 (email error assertion, parser error count)
+  Mock quality:          Generally good; Mongoose patterns followed
+================================================================================

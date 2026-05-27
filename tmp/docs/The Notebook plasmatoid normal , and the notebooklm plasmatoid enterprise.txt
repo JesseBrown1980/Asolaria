@@ -1,0 +1,256 @@
+Skip to main content
+Technology areasCross-product tools
+Parte superior do formulário
+/
+Parte inferior do formulário
+ConsoleEnglish
+Gemini Enterprise
+NotebookLM Enterprise
+Configure Gemini EnterpriseUse Gemini EnterpriseNotebookLM EnterpriseReferenceResources
+Home
+Documentation
+AI and ML
+Gemini Enterprise
+NotebookLM Enterprise
+Was this helpful?
+Send feedback
+Create and manage notebooks (API)
+Preview
+This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the Service Specific Terms. Pre-GA features are available "as is" and might have limited support. For more information, see the launch stage descriptions.
+NotebookLM Enterprise is a powerful tool for generating insights and summaries from your documents. This page describes the APIs that let you perform the following notebook management tasks programmatically:
+Create a notebook
+Retrieve a notebook
+List recently viewed notebooks
+Delete a notebook
+Share a notebook
+Before you begin
+Before you start working with your notebooks, do the following:
+Set up NotebookLM Enterprise
+Get licenses for NotebookLM Enterprise
+Create a notebook
+To create a new notebook, use the notebooks.create method.
+REST
+curl -X POST \
+  -H "Authorization:Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json" \
+  "https://ENDPOINT_LOCATION-discoveryengine.googleapis.com/v1alpha/projects/PROJECT_NUMBER/locations/LOCATION/notebooks" \
+  -d '{
+  "title": "NOTEBOOK_TITLE",
+  }'
+Replace the following:
+ENDPOINT_LOCATION: the multi-region for your API request. Specify one of the following values:
+us for the US multi-region
+eu for the EU multi-region
+global for the Global location
+For more information, see Specify a multi-region for your data store.
+PROJECT_NUMBER: the number of your Google Cloud project.
+LOCATION: the geographic location of your data store, such as global. For more information, see Locations.
+NOTEBOOK_TITLE: a UTF-8 encoded string used as a title for the notebook that you want to create.
+If the request is successful, you should receive a JSON similar to the following.
+{
+"title": "NOTEBOOK_TITLE",
+"notebookId": "NOTEBOOK_ID",
+"emoji": "",
+"metadata": {
+  "userRole": "PROJECT_ROLE_OWNER",
+  "isShared": false,
+  "isShareable": true
+},
+"name": "NOTEBOOK_NAME"
+}
+Note the following:
+NOTEBOOK_ID: a unique ID to identify the created notebook. You need the notebook ID for other notebook management tasks, such as sharing or retrieving.
+NOTEBOOK_NAME: the complete resource name of the notebook. This field has the following pattern: projects/PROJECT_NUMBER/locations/LOCATION/notebooks/NOTEBOOK_ID
+Access the created notebook and get its ID in a browser
+To access the created notebook and get its ID using a browser, do the following.
+Go to the NotebookLM Enterprise homepage that's available at one of the following URLs:
+If you're using a Google identity, go to:
+https://notebooklm.cloud.google.com/LOCATION/?project=PROJECT_NUMBER
+If you're using a third-party identity, go to:
+https://notebooklm.cloud.google/LOCATION/?project=PROJECT_NUMBER
+Select the created notebook. The URL of the selected notebook has the following pattern:
+If you're using a Google identity:
+https://notebooklm.cloud.google.com/LOCATION/notebook/NOTEBOOK_ID?project=PROJECT_NUMBER
+If you're using a third-party identity:
+https://notebooklm.cloud.google/LOCATION/notebook/NOTEBOOK_ID?project=PROJECT_NUMBER
+Note the URL and the notebook ID, which are useful for other notebook management tasks, such as sharing.
+Retrieve a notebook
+To retrieve a specific notebook using its notebook ID, use the notebooks.get method.
+REST
+curl -X GET \
+  -H "Authorization:Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json" \
+  "https://ENDPOINT_LOCATION-discoveryengine.googleapis.com/v1alpha/projects/PROJECT_NUMBER/locations/LOCATION/notebooks/NOTEBOOK_ID"
+Replace the following:
+ENDPOINT_LOCATION: the multi-region for your API request. Specify one of the following values:
+us for the US multi-region
+eu for the EU multi-region
+global for the Global location
+For more information, see Specify a multi-region for your data store.
+PROJECT_NUMBER: the number of your Google Cloud project.
+LOCATION: the geographic location of your data store, such as global. For more information, see Locations.
+NOTEBOOK_ID: the notebook's unique identifier that you received when you created the notebook.
+If the request is successful, you should get a JSON response similar to the following for an empty notebook. If you call this method after you add sources to your notebook, you receive details about all the sources added to the retrieved notebook. If you have configured CMEK details, you also receive CMEK-related information for the notebook.
+{
+"title": "NOTEBOOK_TITLE",
+"notebookId": "NOTEBOOK_ID",
+"emoji": "",
+"metadata": {
+  "userRole": "PROJECT_ROLE_OWNER",
+  "isShared": false,
+  "isShareable": true,
+  "lastViewed": "LAST_VIEWED_TIME",
+  "createTime": "LAST_CREATED_TIME"
+},
+"name": "NOTEBOOK_NAME"
+}
+List recently viewed notebooks
+To get a list of all notebooks in a project that were recently viewed, use the notebooks.listRecentlyViewed method. By default, the response lists the last 500 notebooks. You can choose to paginate the responses with the pageSize query parameter.
+REST
+curl -X GET \
+  -H "Authorization:Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json" \
+  "https://ENDPOINT_LOCATION-discoveryengine.googleapis.com/v1alpha/projects/PROJECT_NUMBER/locations/LOCATION/notebooks:listRecentlyViewed"
+Replace the following:
+ENDPOINT_LOCATION: the multi-region for your API request. Specify one of the following values:
+us for the US multi-region
+eu for the EU multi-region
+global for the Global location
+For more information, see Specify a multi-region for your data store.
+PROJECT_NUMBER: the number of your Google Cloud project.
+LOCATION: the geographic location of your data store, such as global. For more information, see Locations.
+If the request is successful, you should get a JSON response similar to the following. The response contains up to last 500 notebooks that a user accessed recently.
+{
+  "notebooks": [
+    {
+      "title": "NOTEBOOK_TITLE_1",
+      "notebookId": "NOTEBOOK_ID_1",
+      "emoji": "",
+      "metadata": {
+        "userRole": "PROJECT_ROLE_OWNER",
+        "isShared": false,
+        "isShareable": true,
+        "lastViewed": "LAST_VIEWED_TIME",
+        "createTime": "LAST_CREATED_TIME"
+      },
+      "name": "NOTEBOOK_NAME_1"
+    },
+    {
+      "title": "NOTEBOOK_TITLE_2",
+      "notebookId": "NOTEBOOK_ID_2",
+      "emoji": "",
+      "metadata": {
+        "userRole": "PROJECT_ROLE_OWNER",
+        "isShared": false,
+        "isShareable": true,
+        "lastViewed": "LAST_VIEWED_TIME",
+        "createTime": "LAST_CREATED_TIME"
+      },
+      "name": "NOTEBOOK_NAME_2"
+    }
+  ]
+}
+Delete a notebook
+To delete a notebook, use the notebooks.batchDelete method.
+REST
+curl -X POST \
+  -H "Authorization:Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json" \
+  "https://ENDPOINT_LOCATION-discoveryengine.googleapis.com/v1alpha/projects/PROJECT_NUMBER/locations/LOCATION/notebooks:batchDelete" \
+  -d '{
+    "names": [
+      "NOTEBOOK_NAME"
+    ]
+  }'
+Replace the following:
+ENDPOINT_LOCATION: the multi-region for your API request. Specify one of the following values:
+us for the US multi-region
+eu for the EU multi-region
+global for the Global location
+For more information, see Specify a multi-region for your data store.
+PROJECT_NUMBER: the number of your Google Cloud project.
+LOCATION: the geographic location of your data store, such as global. For more information, see Locations.
+NOTEBOOK_NAME: the complete resource name of the notebook to be deleted. This field has the pattern: projects/PROJECT_NUMBER/locations/LOCATION/notebooks/NOTEBOOK_ID.
+If the request is successful, you receive an empty JSON object. If the notebook doesn't exist, you also receive an empty JSON object, so make sure to specify the notebook name correctly.
+Share a notebook
+To share a new notebook, use the notebooks.share method.
+The user with whom you want to share the notebook must be granted the Cloud Notebook User role.
+REST
+In your Google Cloud project, assign the Cloud NotebookLM User Identity and Access Management (IAM) role to the users with whom you want to share the notebook.
+Call the following method.
+curl -X POST \
+  -H "Authorization:Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json" \
+  "https://ENDPOINT_LOCATION-discoveryengine.googleapis.com/v1alpha/projects/PROJECT_NUMBER/locations/LOCATION/notebooks/NOTEBOOK_ID:share" \
+  -d '{
+    "accountAndRoles": [
+     {
+        "email":"USER_EMAIL_1",
+        "role":"USER_ROLE_1",
+     },
+     {
+        "email":"USER_EMAIL_2",
+        "role":"USER_ROLE_2",
+     },
+    ]
+  }'
+Replace the following:
+ENDPOINT_LOCATION: the multi-region for your API request. Specify one of the following values:
+us for the US multi-region
+eu for the EU multi-region
+global for the Global location
+For more information, see Specify a multi-region for your data store.
+PROJECT_NUMBER: the number of your Google Cloud project.
+LOCATION: the geographic location of your data store, such as global. For more information, see Locations.
+NOTEBOOK_ID: a unique ID to identify the notebook that you want to share. You need the notebook ID for other notebook management tasks, such as sharing or retrieving.
+USER_EMAIL: the email address of the user with whom you want to share the notebook.
+USER_ROLE: a role that you want to assign to the user. It can be one of the following:
+PROJECT_ROLE_OWNER: The user owns the project.
+PROJECT_ROLE_WRITER: The user has write permissions on the project.
+PROJECT_ROLE_READER: The user has read permissions on the project.
+PROJECT_ROLE_NOT_SHARED:The user has no access to the project.
+If the request is successful, you receive an empty JSON object.
+Verify users using a browser
+To verify whether you've shared the notebook with the correct users and assigned them correct roles, do the following:
+Open the notebook in your browser. A notebook has the following URL pattern:
+If you're using a Google identity:
+https://notebooklm.cloud.google.com/LOCATION/notebook/NOTEBOOK_ID?project=PROJECT_NUMBER
+If you're using a third-party identity:
+https://notebooklm.cloud.google/LOCATION/notebook/NOTEBOOK_ID?project=PROJECT_NUMBER
+Click Share.
+Verify the users listed as People with access and their assigned roles.
+What's next
+Add data sources of different types to your notebooks programmatically.
+Was this helpful?
+Send feedback
+Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates.
+Last updated 2026-03-16 UTC.
+Products and pricing
+See all products
+Google Cloud pricing
+Google Cloud Marketplace
+Contact sales
+Support
+Community forums
+Support
+Release Notes
+System status
+Resources
+GitHub
+Getting Started with Google Cloud
+Code samples
+Cloud Architecture Center
+Training and Certification
+Engage
+Blog
+Events
+X (Twitter)
+Google Cloud on YouTube
+Google Cloud Tech on YouTube
+About Google
+Privacy
+Site terms
+Google Cloud terms
+Our third decade of climate action: join us
+Sign up for the Google Cloud newsletterSubscribe
+English

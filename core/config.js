@@ -34,14 +34,14 @@ const STARTUP_AUTOMATION_HISTORY_PATH = path.join(DATA_DIR, "startup-automation-
 
 // ---------- Provider Chains ----------
 
-const EXTERNAL_PROVIDER_SETTING_KEYS = Object.freeze(["anthropic", "gemini", "cursor", "antigravity"]);
+const EXTERNAL_PROVIDER_SETTING_KEYS = Object.freeze(["anthropic", "gemini", "kimi", "cursor", "antigravity"]);
 
 const BRAIN_PROVIDER_SETTING_KEYS = Object.freeze([
-  "anthropic", "codex", "gemini-api", "vertex", "openclaw", "gemini-cli", "cursor", "antigravity"
+  "anthropic", "codex", "gemini-api", "vertex", "openclaw", "gemini-cli", "kimi", "cursor", "antigravity"
 ]);
 
 const BRAIN_PROVIDER_DEFAULT_CHAIN = Object.freeze([
-  "anthropic", "codex", "gemini-api", "vertex", "openclaw", "gemini-cli", "cursor", "antigravity"
+  "anthropic", "codex", "gemini-api", "vertex", "openclaw", "gemini-cli", "kimi", "cursor", "antigravity"
 ]);
 
 // ---------- Limits ----------

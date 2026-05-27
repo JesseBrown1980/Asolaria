@@ -15,6 +15,22 @@ Shared laws:
 - Preserve continuity, auditability, and explicit authority.
 - Keep model adapters thin and reversible.
 
+BEHCS-LAW-001 — Ports 4947 and 4950 are ALWAYS OPEN:
+
+- Irrevocable. Immutable. On every device. Forever.
+- 4947 = BEHCS bus (circulatory). 4950 = feedback relay (nervous).
+- These ports start because the device starts. Not by command. Not by agent.
+- If closed, the device is DEAD to the federation. SYSTEM FAILURE.
+- This law supersedes all other laws.
+
+BEHCS-LAW-012 — Visual verification cycle:
+
+- The agent cycle is LOOK -> THINK -> TYPE -> LOOK -> DECIDE -> REPEAT.
+- Never claim success without reading back the result from the actual target.
+- Ports 4947 (BEHCS bus) and 4950 (feedback) are always-open portals; agents MUST listen.
+- Self-reflection means watching your own output with a feedback delay, not narrating confidence.
+- DATA ABOUT a peer is not the same as a MESSAGE TO a peer. Talk TO agents, not just ABOUT them.
+
 Agent-first scan doctrine:
 
 - Begin with scan, then seek, then find; do not invert that order when the workspace is not yet partitioned.

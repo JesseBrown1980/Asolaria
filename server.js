@@ -42,6 +42,7 @@ function lazyConnector(modulePath) {
 const sovereigntyBoot = require("./src/sovereignty-boot");
 const { resolveToolPaths } = require("./src/connectors/systemPaths");
 const { runBrainTask } = require("./src/brainOrchestrator");
+const { getCacheStatus } = require("./src/agentCacheSharing");
 const {
   getOmnispindle,
   VALID_LANE_IDS: OMNISPINDLE_LANE_IDS
@@ -135,6 +136,9 @@ const {
   runGeminiCli,
   getGeminiCliStatus
 } = lazyConnector("./src/connectors/geminiCliConnector");
+const {
+  getKimiCodeStatus
+} = lazyConnector("./src/connectors/kimiCodeConnector");
 const {
   runGoogleWorkspaceCli,
   getGoogleWorkspaceCliStatus
@@ -1863,18 +1867,21 @@ function normalizeExternalProviderFallbackOrder(value, primaryProvider = "", fal
 function defaultExternalProviderFallbackOrder(primaryProvider = "") {
   const provider = normalizeExternalProviderId(primaryProvider, "");
   if (provider === "anthropic") {
-    return ["antigravity", "gemini", "cursor"];
+    return ["kimi", "antigravity", "gemini", "cursor"];
+  }
+  if (provider === "kimi") {
+    return ["gemini", "cursor", "antigravity", "anthropic"];
   }
   if (provider === "cursor") {
-    return ["antigravity", "gemini", "anthropic"];
+    return ["kimi", "antigravity", "gemini", "anthropic"];
   }
   if (provider === "gemini") {
-    return ["antigravity", "cursor", "anthropic"];
+    return ["kimi", "antigravity", "cursor", "anthropic"];
   }
   if (provider === "antigravity") {
-    return ["cursor", "gemini", "anthropic"];
+    return ["kimi", "cursor", "gemini", "anthropic"];
   }
-  return ["antigravity", "cursor", "gemini", "anthropic"];
+  return ["kimi", "antigravity", "cursor", "gemini", "anthropic"];
 }
 
 function isRateLimitedOrQuotaError(value) {
@@ -3011,8 +3018,8 @@ const settings = {
     "codex"
   ),
   brainFallbackOrder: normalizeBrainFallbackOrder(
-    process.env.ASOLARIA_BRAIN_FALLBACK_ORDER || "anthropic,gemini-api,vertex,openclaw,gemini-cli,cursor,antigravity",
-    ["anthropic", "gemini-api", "vertex", "openclaw", "gemini-cli", "cursor", "antigravity"]
+    process.env.ASOLARIA_BRAIN_FALLBACK_ORDER || "anthropic,gemini-api,vertex,openclaw,gemini-cli,kimi,cursor,antigravity",
+    ["anthropic", "gemini-api", "vertex", "openclaw", "gemini-cli", "kimi", "cursor", "antigravity"]
   ),
   openclawMode: String(process.env.ASOLARIA_OPENCLAW_MODE || "read_only").toLowerCase(),
   allowExternalPosting: String(process.env.ASOLARIA_ALLOW_EXTERNAL_POSTING || "false").toLowerCase() === "true",
@@ -6738,6 +6745,16 @@ const MODEL_ALIAS_TABLE = Object.freeze({
     "gemini-flash-latest": "gemini-2.5-flash",
     "gemini-2.5-flash-latest": "gemini-2.5-flash"
   }),
+  kimi: Object.freeze({
+    "k2.6": "kimi-k2.6",
+    k26: "kimi-k2.6",
+    "kimi-k2.6": "kimi-k2.6",
+    "kimi-2.6": "kimi-k2.6",
+    "k2.5": "kimi-k2.5",
+    k25: "kimi-k2.5",
+    "kimi-k2.5": "kimi-k2.5",
+    "kimi-2.5": "kimi-k2.5"
+  }),
   cursor: Object.freeze({
     opus: "opus",
     "opus-4.6": "opus",
@@ -6758,6 +6775,7 @@ const MODEL_ALIAS_TABLE = Object.freeze({
 const MODEL_ALIAS_HINTS = Object.freeze({
   anthropic: Object.freeze(["opus", "sonnet", "haiku", "claude-sonnet-4-5-20250929"]),
   gemini: Object.freeze(["gemini-pro", "gemini-flash", "pro", "flash", "gemini-2.5-pro", "gemini-2.5-flash"]),
+  kimi: Object.freeze(["kimi-k2.6", "k2.6", "kimi-k2.5", "k2.5"]),
   cursor: Object.freeze(["opus", "opus-4.6", "sonnet", "sonnet-4.6", "gemini-pro", "gemini-flash"]),
   antigravity: Object.freeze([])
 });
@@ -6884,6 +6902,9 @@ function looksLikeVersionedModelId(providerName, rawToken) {
   }
   if (providerName === "gemini" || providerName === "cursor") {
     return /^gemini[-a-z0-9.]+$/.test(key);
+  }
+  if (providerName === "kimi") {
+    return /^kimi[-a-z0-9.]+$/.test(key);
   }
   return false;
 }
@@ -22985,6 +23006,7 @@ async function runRoutedIntent(message) {
     || routed.action === "cursor_status"
     || routed.action === "anthropic_status"
     || routed.action === "gemini_cli_status"
+    || routed.action === "kimi_status"
   ) {
     const providerId = routed.action.startsWith("antigravity")
       ? "antigravity"
@@ -22992,7 +23014,9 @@ async function runRoutedIntent(message) {
         ? "cursor"
         : routed.action.startsWith("anthropic")
           ? "anthropic"
-          : "gemini";
+          : routed.action.startsWith("kimi")
+            ? "kimi"
+            : "gemini";
 
     if (providerId === "anthropic") {
       const cliStatus = await getAnthropicCliStatus({
@@ -23019,6 +23043,23 @@ async function runRoutedIntent(message) {
           provider: providerId,
           transport: "cli-only",
           aliases: MODEL_ALIAS_HINTS[providerId] || [],
+          cli: cliStatus
+        })
+      };
+    }
+
+    if (providerId === "kimi") {
+      const apiStatus = providerStatusById(providerId);
+      const cliStatus = await getKimiCodeStatus({
+        timeoutMs: 3000
+      });
+      return {
+        mode: "routed",
+        reply: toJsonText({
+          provider: providerId,
+          transport: cliStatus.available ? "api-or-kimi-code-cli" : "api-only",
+          aliases: MODEL_ALIAS_HINTS[providerId] || [],
+          api: apiStatus,
           cli: cliStatus
         })
       };
@@ -23059,6 +23100,7 @@ async function runRoutedIntent(message) {
     || routed.action === "cursor_ask"
     || routed.action === "anthropic_ask"
     || routed.action === "gemini_cli_ask"
+    || routed.action === "kimi_ask"
   ) {
     const providerId = routed.action.startsWith("antigravity")
       ? "antigravity"
@@ -23066,7 +23108,9 @@ async function runRoutedIntent(message) {
         ? "cursor"
         : routed.action.startsWith("anthropic")
           ? "anthropic"
-          : "gemini";
+          : routed.action.startsWith("kimi")
+            ? "kimi"
+            : "gemini";
     const job = enqueueExternalProvider({
       provider: providerId,
       prompt: String(routed.payload?.prompt || "").trim(),
@@ -23468,6 +23512,26 @@ app.get("/api/sovereignty/status", (_req, res) => {
   res.json(sovereigntyBoot.status());
 });
 
+app.get("/api/cache/status", (req, res) => {
+  const payload = getCacheStatus();
+  if (isLoopbackRequest(req)) {
+    return res.json({
+      ok: true,
+      scope: "loopback",
+      ...payload
+    });
+  }
+
+  return res.json({
+    ok: true,
+    scope: "summary",
+    activeCaches: payload.activeCaches,
+    maxCaches: payload.maxCaches,
+    ttlMs: payload.ttlMs,
+    metrics: payload.metrics
+  });
+});
+
 app.get("/api/health", async (req, res) => {
   const loopback = isLoopbackRequest(req);
   const redactTokens = !loopback;
@@ -23842,7 +23906,7 @@ function handleCompanyPrimarySigninReveal(req, res, source) {
 // ── Captures routes extracted to routes/captures.js (ADR-0001 Phase 3) ──
 
 // ── Hooks Connector Routes (extracted to routes/hooks.js — ADR-0001 Phase 3) ──
-app.use("/api/hooks", require("./routes/hooks"));
+app.use("/api/hooks", requireLoopbackOnly, require("./routes/hooks"));
 // ── End Hooks Connector Routes ──────────────────────────────────────────
 
 // ── Extracted Routes (ADR-0001 Phase 3 — strangler fig) ─────────────────

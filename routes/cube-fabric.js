@@ -14,10 +14,18 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const { execSync } = require("child_process");
+const { execFileSync } = require("child_process");
 const fs = require("fs");
 
 const ROOT = path.resolve(__dirname, "..");
+
+function cubeEngineExecutionEnabled() {
+  return String(process.env.ASOLARIA_CUBE_ENGINE_EXECUTION_ENABLED || "").trim() === "1";
+}
+
+function gnnWatcherStartEnabled() {
+  return String(process.env.ASOLARIA_GNN_WATCHER_START_ENABLED || "").trim() === "1";
+}
 
 // ═══ SAFE REQUIRE — never crash server on missing module ═══
 function safeRequire(modPath, label) {
@@ -207,6 +215,26 @@ router.post("/gnn/watcher/predict", (req, res) => {
   }
 });
 
+router.post("/gnn/watcher/start", (_req, res) => {
+  if (!gnnWatcher) return res.status(503).json({ ok: false, error: "gnnConstructionWatcher not loaded" });
+  if (!gnnWatcherStartEnabled()) {
+    return res.status(403).json({
+      ok: false,
+      held: true,
+      preview: true,
+      reason: "gnn_watcher_start_disabled",
+      enableWith: "ASOLARIA_GNN_WATCHER_START_ENABLED=1"
+    });
+  }
+  try {
+    gnnWatcher.startWatcher();
+    res.json({ ok: true, ...gnnWatcher.getWatcherStatus() });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
+
 // ── Hook events ──
 router.get("/hook-events", (req, res) => {
   if (!hookEvents) return res.status(503).json({ ok: false, error: "hookEventStore not loaded" });
@@ -313,8 +341,20 @@ router.get("/index/search", (req, res) => {
 // ═══════════════════════════════════════════════════════════
 
 function runCubeEngine(script, args) {
-  const cmd = `node "${path.join(ROOT, 'tools/cube', script)}" ${args}`;
-  return JSON.parse(execSync(cmd, { cwd: ROOT, encoding: "utf8", timeout: 300000 }));
+  if (!cubeEngineExecutionEnabled()) {
+    return {
+      ok: false,
+      held: true,
+      preview: true,
+      reason: "cube_engine_execution_disabled",
+      enableWith: "ASOLARIA_CUBE_ENGINE_EXECUTION_ENABLED=1",
+      script,
+      args: String(args || "")
+    };
+  }
+  const scriptPath = path.join(ROOT, "tools", "cube", script);
+  const argv = String(args || "").trim() ? String(args || "").trim().split(/\s+/) : [];
+  return JSON.parse(execFileSync(process.execPath, [scriptPath, ...argv], { cwd: ROOT, encoding: "utf8", timeout: 300000 }));
 }
 
 router.get("/engine/self-diagnose", (_req, res) => {

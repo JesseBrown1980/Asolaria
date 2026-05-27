@@ -1,0 +1,3 @@
+Google auth-capable local automation is intentionally disabled on this checkout.
+Reason: unexpected Google-account access prompt observed on 2026-03-23.
+Re-enable only after owner approval and incident review.

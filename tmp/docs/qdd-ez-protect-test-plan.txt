@@ -1,0 +1,280 @@
+EZ Protect Web-eBacMap — Unit Test Plan
+=======================================
+Generated: 2026-03-25
+Status: PLAN ONLY — tests not yet written
+Scope: 11 use cases in apps/web-ebacmap/src/modules/ez-protect/use-cases/
+Reference pattern: apps/queue-server/src/use-cases/EvaluateEzProtectAlerts/UseCase.unit.ts
+
+Mocking strategy (common to all):
+  - jest.mock('@/modules/ez-protect/repos') for use cases that import ezProtectRepo
+  - jest.mock('@ebacmap/db') for use cases that import models directly
+  - ctx.user = { id: 'user-1', clientId: 'client-1' } for authed calls
+  - ctx.user = undefined/null for unauthed calls
+  - All use cases extend UseCase<Req, Res> and expose executeImpl(request, ctx)
+  - Test via the class directly: new XxxUseCase().executeImpl(request, ctx)
+  - Result.ok() / Result.fail() — check result.isSuccess / result.isFailure + result.value / result.error
+
+================================================================================
+1. GetEzProtectDashboard/UseCase.ts
+   File: use-cases/GetEzProtectDashboard/UseCase.unit.ts
+   Priority: 1 (primary dashboard entry point)
+   Complexity: LOW — thin wrapper delegating to ezProtectRepo.getDashboardSummary
+
+   Mock: ezProtectRepo.getDashboardSummary
+
+   Tests (4):
+   a) Happy path — returns dashboard summary with locationId + ctx.user.clientId
+   b) Unauthed — returns UnauthorizedError when ctx.user is null
+   c) Passes locationId from request to repo call
+   d) Repo throws — propagates error (no try/catch in use case)
+
+================================================================================
+2. GetCorporateDashboard/UseCase.ts
+   File: use-cases/GetCorporateDashboard/UseCase.unit.ts
+   Priority: 2 (corporate-level aggregation)
+   Complexity: LOW — thin wrapper with clientId fallback logic
+
+   Mock: ezProtectRepo.getCorporateDashboard
+
+   Tests (5):
+   a) Happy path — uses request.clientId when provided
+   b) Falls back to ctx.user.clientId when request.clientId is absent
+   c) Unauthed — returns UnauthorizedError when ctx.user is null
+   d) No clientId anywhere — returns UnauthorizedError('Client')
+   e) Repo throws — propagates error
+
+================================================================================
+3. ManageAlertRules/UseCase.ts
+   File: use-cases/ManageAlertRules/UseCase.unit.ts
+   Priority: 3 (CRUD — 4 classes, URL validation, tenant isolation)
+   Complexity: HIGH — 4 use case classes + validateUrls helper
+
+   Mock: models.EzProtectAlertRuleModel (.find, .create, .findOneAndUpdate, .deleteOne)
+
+   Tests — ListAlertRulesUseCase (4):
+   a) Happy path — returns rules for ctx.user.clientId
+   b) Filters by locationId when provided
+   c) Falls back to ctx.user.clientId when request.clientId absent
+   d) Unauthed — returns UnauthorizedError
+
+   Tests — CreateAlertRuleUseCase (6):
+   a) Happy path — creates rule with all fields, returns { created: true, url }
+   b) Sets defaults (enabled=true, isDefault=false, channel='dashboard', etc.)
+   c) Rejects non-https faqLinks — returns Error with message
+   d) Rejects non-https videoLinks — returns Error with message
+   e) Accepts valid https URLs in faqLinks and videoLinks
+   f) Unauthed — returns UnauthorizedError
+
+   Tests — UpdateAlertRuleUseCase (5):
+   a) Happy path — updates existing rule, returns updated doc
+   b) Not found — returns NotFoundError when findOneAndUpdate returns null
+   c) Tenant isolation — passes clientId to query (cannot update other tenant's rules)
+   d) Rejects non-https URLs in faqLinks/videoLinks
+   e) Unauthed — returns UnauthorizedError
+
+   Tests — DeleteAlertRuleUseCase (4):
+   a) Happy path — deletes rule, returns { deleted: true }
+   b) Not found — returns NotFoundError when deletedCount === 0
+   c) Cannot delete default alerts — isDefault: false in query
+   d) Unauthed — returns UnauthorizedError
+
+   Tests — validateUrls helper (4):
+   a) Returns null for undefined/empty array
+   b) Returns null for valid https URLs
+   c) Returns error string for http:// URL
+   d) Returns error string for non-URL string
+
+   Total for ManageAlertRules: 23 tests
+
+================================================================================
+4. GetDeviceHealth/UseCase.ts
+   File: use-cases/GetDeviceHealth/UseCase.unit.ts
+   Priority: 4
+   Complexity: LOW — thin wrapper around ezProtectRepo.getDevices
+
+   Mock: ezProtectRepo.getDevices
+
+   Tests (4):
+   a) Happy path — returns { devices } with clientId from ctx.user
+   b) Passes locationId filter when provided
+   c) Omits locationId filter when not provided
+   d) Unauthed — returns UnauthorizedError
+
+================================================================================
+5. ListEzProtectEvents/UseCase.ts
+   File: use-cases/ListEzProtectEvents/UseCase.unit.ts
+   Priority: 5
+   Complexity: MEDIUM — date string-to-Date conversion, filter passthrough
+
+   Mock: ezProtectRepo.listNormalizedEvents
+
+   Tests (7):
+   a) Happy path — returns paginated events
+   b) Passes all filter fields through to repo
+   c) Converts dateFrom/dateTo strings to Date objects
+   d) Falls back to ctx.user.clientId when request.clientId absent
+   e) Passes pagination (page, limit) and sort (sortBy, sortOrder) through
+   f) Handles missing optional fields (undefined stays undefined)
+   g) Unauthed — returns UnauthorizedError
+
+================================================================================
+6. GetEzProtectEvent/UseCase.ts
+   File: use-cases/GetEzProtectEvent/UseCase.unit.ts
+   Priority: 6
+   Complexity: LOW — single fetch + not-found check + tenant isolation
+
+   Mock: ezProtectRepo.getEventById
+
+   Tests (4):
+   a) Happy path — returns event when found
+   b) Not found — returns NotFoundError when repo returns null
+   c) Tenant isolation — passes ctx.user.clientId to repo (cannot read other tenant's events)
+   d) Unauthed — returns UnauthorizedError
+
+================================================================================
+7. ExportEvents/UseCase.ts
+   File: use-cases/ExportEvents/UseCase.unit.ts
+   Priority: 7
+   Complexity: MEDIUM — CSV generation, row cap (MAX_EXPORT_ROWS = 10000), escaping
+
+   Mock: ezProtectRepo.listNormalizedEvents
+
+   Tests (8):
+   a) Happy path — returns CSV string with headers + data rows
+   b) Row cap — limit is clamped to MAX_EXPORT_ROWS (10000) even if request.limit > 10000
+   c) Default limit — uses 10000 when request.limit is undefined
+   d) Custom limit — uses request.limit when <= 10000
+   e) CSV escaping — values with commas/quotes are properly quoted/escaped
+   f) Null values — null fields become empty strings in CSV
+   g) Filename — contains date stamp
+   h) Unauthed — returns UnauthorizedError
+
+================================================================================
+8. GenerateEzProtectReport/UseCase.ts
+   File: use-cases/GenerateEzProtectReport/UseCase.unit.ts
+   Priority: 8
+   Complexity: HIGH — PDF via Playwright, CSV fallback, HTML builder, 4 report types
+
+   Mock: ezProtectRepo.listNormalizedEvents, generatePdfWithRetry (@ebacmap/utils/pdf)
+
+   Tests (10):
+   a) CSV format — returns CSV data with correct mimeType 'text/csv'
+   b) PDF format — calls generatePdfWithRetry with HTML, returns base64 + mimeType 'application/pdf'
+   c) PDF failure — catches error, returns ValidationError
+   d) Report filename — includes reportType and date
+   e) Uses request.clientId, falls back to ctx.user.clientId
+   f) Passes dateFrom/dateTo to repo as Date objects
+   g) HTML includes report title from REPORT_TYPE_LABELS
+   h) device_health report type — includes device health section in HTML
+   i) compliance_audit report type — includes compliance section in HTML
+   j) Unauthed — returns UnauthorizedError
+
+   Private method coverage (via integration through executeImpl):
+   - esc() — HTML entity escaping (tested indirectly via HTML output)
+   - countByField() — grouping logic (tested indirectly)
+   - formatDateRange() — date formatting (tested indirectly)
+   - buildDeviceHealthSection() — device table (tested via device_health report type)
+   - buildComplianceSection() — lockout/override/control-line counts (tested via compliance_audit)
+
+================================================================================
+9. RouteMsaResult/UseCase.ts
+   File: use-cases/RouteMsaResult/UseCase.unit.ts
+   Priority: 9
+   Complexity: HIGH — MSA config check, event lookup, anonymization, email, audit trail
+
+   Mock: models.EzProtectMsaConfigModel (.findOne),
+         models.EzProtectEventModel (.findById),
+         models.EzProtectAlertHistoryModel (.create),
+         sendEmail (@ebacmap/common)
+
+   Tests (12):
+   a) Happy path — MSA enabled, INVALID event with shareInvalidAlerts, email sent, audit created, returns { routed: true }
+   b) MSA not enabled — returns { routed: false, reason: 'MSA opt-in not active...' }
+   c) MSA config not found — returns { routed: false, reason: 'MSA opt-in not active...' }
+   d) Event not found — returns { routed: false, reason: 'Event not found' }
+   e) Event type not configured for sharing — INVALID but shareInvalidAlerts=false → routed=false
+   f) CALIBRATION_FAIL sharing — shareCalibrationAlerts=true triggers routing
+   g) PM_FAIL sharing — sharePmAlerts=true triggers routing
+   h) No charmContactEmail — returns { routed: false, reason: 'Charm contact email not configured' }
+   i) Anonymization ON (default) — anonymizeEvent strips PII fields
+   j) Anonymization OFF — anonymizeData=false passes full event
+   k) Email fails — returns Result.fail with email error
+   l) Unauthed — returns UnauthorizedError
+
+   Also test anonymizeEvent function (exported at module level):
+   m) Retains device/assay/result fields, excludes operatorId/sampleId/truckId/clientId/etc.
+
+   Total for RouteMsaResult: 13 tests
+
+================================================================================
+10. SyncToLims/UseCase.ts
+    File: use-cases/SyncToLims/UseCase.unit.ts
+    Priority: 10
+    Complexity: TRIVIAL — scaffold/stub, no real logic
+
+    Mock: none needed (no external deps beyond auth check)
+
+    Tests (3):
+    a) Happy path — returns { queued: true, eventCount: N, message: '...scaffolded...' }
+    b) eventCount matches request.eventIds.length
+    c) Unauthed — returns UnauthorizedError
+
+================================================================================
+11. ListAlertHistory/UseCase.ts (not in original list but exists)
+    File: use-cases/ListAlertHistory/UseCase.unit.ts
+    Priority: 11
+    Complexity: MEDIUM — pagination, filtering, Mongoose query building
+
+    Mock: models.EzProtectAlertHistoryModel (.find, .countDocuments)
+
+    Tests (7):
+    a) Happy path — returns paginated alerts
+    b) Falls back to ctx.user.clientId when request.clientId absent
+    c) Filters by locationId when provided
+    d) Default pagination — page=1, limit=50
+    e) Custom pagination — uses request.page and request.limit
+    f) Calculates totalPages correctly (Math.ceil)
+    g) Unauthed — returns UnauthorizedError
+
+================================================================================
+
+SUMMARY
+-------
+Use Case                       | Tests | Complexity | File to create
+-------------------------------|-------|------------|-----------------------------------
+GetEzProtectDashboard          |   4   | LOW        | UseCase.unit.ts
+GetCorporateDashboard          |   5   | LOW        | UseCase.unit.ts
+ManageAlertRules (4 classes)   |  23   | HIGH       | UseCase.unit.ts
+GetDeviceHealth                |   4   | LOW        | UseCase.unit.ts
+ListEzProtectEvents            |   7   | MEDIUM     | UseCase.unit.ts
+GetEzProtectEvent              |   4   | LOW        | UseCase.unit.ts
+ExportEvents                   |   8   | MEDIUM     | UseCase.unit.ts
+GenerateEzProtectReport        |  10   | HIGH       | UseCase.unit.ts
+RouteMsaResult                 |  13   | HIGH       | UseCase.unit.ts
+SyncToLims                     |   3   | TRIVIAL    | UseCase.unit.ts
+ListAlertHistory               |   7   | MEDIUM     | UseCase.unit.ts
+-------------------------------|-------|------------|-----------------------------------
+TOTAL                          |  88   |            | 11 new test files
+
+Estimated implementation time:
+  - LOW/TRIVIAL (5 files, 24 tests): ~2 hours
+  - MEDIUM (3 files, 22 tests): ~2 hours
+  - HIGH (3 files, 42 tests): ~4 hours
+  - Total: ~8 hours of focused work
+
+Recommended execution order:
+  1. GetEzProtectDashboard + GetCorporateDashboard + GetDeviceHealth (thin wrappers, same mock pattern)
+  2. ListEzProtectEvents + GetEzProtectEvent + ListAlertHistory (pagination/filter patterns)
+  3. ExportEvents (CSV logic)
+  4. ManageAlertRules (4 classes, URL validation — largest single file)
+  5. GenerateEzProtectReport (PDF mock setup)
+  6. RouteMsaResult (most mocks, most branches)
+  7. SyncToLims (trivial, do last)
+
+Notes:
+  - All test files follow the naming convention UseCase.unit.ts (co-located with UseCase.ts)
+  - Mock pattern from queue-server: jest.mock('@ebacmap/db', () => ({ models: mockModels }))
+  - For web-ebacmap use cases using ezProtectRepo: jest.mock('@/modules/ez-protect/repos')
+  - For RouteMsaResult: also mock sendEmail from @ebacmap/common
+  - For GenerateEzProtectReport: also mock generatePdfWithRetry from @ebacmap/utils/pdf
+  - Mongoose chaining pattern: model.find().sort().skip().limit().lean() — mock the chain

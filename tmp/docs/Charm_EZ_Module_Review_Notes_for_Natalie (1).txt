@@ -1,0 +1,32 @@
+Charm EZ Module Proposal
+Review notes and suggested revision
+Context
+I reviewed the Charm EZ module proposal package (proposal document, accompanying presentation, and device-outputs appendix). Overall, the content aligns with what Charm is asking for.
+Summary assessment
+The proposal is directionally solid and broadly consistent with Charm’s stated requirements.
+Main opportunity: mirror Charm’s terminology and make scope boundaries explicit to avoid misinterpretation.
+Recommended edits before sending to Charm
+Scope clarity
+Explicitly state this phase covers EZ Protect / EZ Protect+ (including EZP+M antibiotics).
+Call out EZ / EZ-M as future integrations and not in the current scope.
+Multilingual + secure login
+Note that secure login is already provided by eBacMap.
+State that multilingual support is either already handled by the existing platform or reserved as a future enhancement.
+Dashboards wording (mirror Charm terms)
+Use the time windows: 1 / 7 / 14 / 30 days.
+Use their positive result labels: Initial Pos / Presumptive Pos / Prod Positive.
+Alerts and notifications
+Call out email alerts explicitly.
+Mention default rules (invalids, positives, calibration/PM failures).
+Include opt-in routing to Charm technical support via MSA.
+Appendix: device outputs
+Attach the CharmDevice_Outputs appendix.
+Remove citation noise (e.g., "+15", etc.).
+Label EZ-M and EZ sections clearly as "future integration".
+Add a short note that EZP logs include timestamp, operator, sample ID, device serial number, and test status.
+Navigation / wireframes wording
+Align "Mycotoxin results" wording with the antibiotic terminology Charm uses, or clarify that this section is the antibiotics module.
+Effort estimate (current scope)
+Present the estimate as phased work for EZ Protect / EZ Protect+ (including antibiotics), with future EZ/EZ-M support planned as a later phase.
+Total (current scope): ~880-1,280 hours for EZ Protect / EZ Protect+ (including antibiotics).
+Out of scope for this phase: EZ and EZ-M integrations (to be estimated and scheduled as a later phase).

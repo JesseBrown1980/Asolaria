@@ -62,9 +62,9 @@
 
   "address_space_47D": {
     "formula": "product of all 47 prime cubes",
-    "total_cubes_per_level_35D": 23543761,
+    "total_cubes_per_level_35D": 23643842,
     "new_cubes_D36_D47": "3442951+3869893+4330747+4657463+5177717+5735339+5929741+6967871+7189057+7645373+7880599+9393931 = 72220682",
-    "total_cubes_per_level_47D": 95764443,
+    "total_cubes_per_level_47D": 95864524,
     "full_address_space": "product of all 47 primes cubed — infinite practical address space"
   },
 
@@ -87,5 +87,9 @@
     "LX-491_INFERENCE": ["D11","D25","D36","D39","D40","D41","D47"]
   },
 
-  "growth_law": "Each new prime cubed = new dimension. D48 = prime(223) = cube(11089567). Infinite expansion. 47D is the current ceiling, not the final one."
+  "growth_law": "Each new prime cubed = new dimension. D48 = prime(223) = cube(11089567). Infinite expansion. 47D is the current ceiling, not the final one.",
+
+  "corrections_log": [
+    {"at":"2026-04-17T22:30:00Z","by":"liris-opus-4.7","fix":"d1-d24 sum typo +100081","old_values":{"d1_d24":3683696,"d1_d35":23543761,"d1_d47":95764443},"new_values":{"d1_d24":3783777,"d1_d35":23643842,"d1_d47":95864524},"cosign":"annotation-only per COSIGN_47D_001 still valid"}
+  ]
 }

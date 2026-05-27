@@ -1,0 +1,217 @@
+30-Minute Screen-Share Transcript
+US1072 – Background Job: Upload CSI Nursing Notes to CareTend
+
+Opening & Context
+
+Screen action:
+- Open Azure DevOps
+- Navigate to Work Items
+- Open US1072
+
+What you say:
+“Alright, thanks everyone for joining. Today I’ll walk through US1072, which is the background job for uploading CSI Nursing Notes from AlayaCare into CareTend as PDFs.
+
+I’ll show:
+- The business requirement from the ticket
+- The proposed technical design
+- How we prevent duplicates
+- And how we monitor and troubleshoot it
+
+Please stop me anytime if something needs clarification.”
+
+
+3–6 min — Review the Ticket & Acceptance Criteria
+
+Screen action:
+- Scroll to Acceptance Criteria in the ticket
+
+What you say:
+“I want to start by grounding us in the acceptance criteria, so we’re aligned on what this ticket must deliver.
+
+The key requirements are:
+- A background job with visibility so we know it’s running
+- Upload Nursing Notes from AlayaCare to CareTend as PDFs
+- Prevent duplicate uploads
+- Track what has and hasn’t been uploaded
+
+Everything I’ll show next is designed specifically to satisfy these points.”
+
+
+6–9 min — Open the Design Document
+
+Screen action:
+- Open CSI-Nursing-Note-Upload-Background-Job.md
+- Scroll to Executive Summary
+
+What you say:
+“This document is the proposed implementation plan. I’ll walk through it top-down, starting with the executive summary.”
+
+
+9–12 min — Executive Summary & Data Source
+
+Screen action:
+- Scroll through Executive Summary
+- Scroll to Business Requirements → Data Source
+
+What you say:
+“At a high level, this job:
+- Pulls CSI Nursing Note submissions from our database
+- Uses AlayaCare’s print API to generate PDFs
+- Uploads those PDFs to CareTend as patient documents
+- Tracks everything to prevent duplicates
+
+The data source is the PatientFormSubmissions table, filtered by FormName = 'CSI Nursing Note'.
+
+Each submission is uniquely identified by ClientFormSubmissionId, which maps cleanly to the AlayaCare submission.”
+
+
+12–15 min — Architecture Overview
+
+Screen action:
+- Scroll to Architecture Overview diagram
+
+What you say:
+“This diagram shows the architecture at a glance.
+
+At the top, we have our ASP.NET Core host running a background service.
+That service:
+- Runs on a timer
+- Creates a scoped processing service
+- Coordinates database access, AlayaCare calls, and CareTend uploads
+
+Nothing here is ad-hoc or manual — it’s all automated and observable.”
+
+
+15–18 min — Workflow Walkthrough (Core Logic)
+
+Screen action:
+- Scroll to Background Job Workflow diagram
+
+What you say:
+“Let me walk through a single run step by step.
+
+First, the job starts — by default every 15 minutes.
+
+It queries CSI Nursing Note submissions that haven’t already been successfully uploaded.
+
+For each unprocessed submission:
+- Create a tracking record in Pending state
+- Resolve the patient using MRN
+- Call AlayaCare to generate the PDF
+- Upload the PDF to CareTend
+- Update status to Success or Failed
+
+This gives us full traceability for every submission.”
+
+
+18–21 min — Duplicate Prevention & Status Flow
+
+Screen action:
+- Scroll to Status Flow
+- Scroll to Database Changes
+
+What you say:
+“Duplicate prevention is handled through the tracking table.
+
+Each ClientFormSubmissionId is stored once and indexed as unique.
+If a submission has already been successfully uploaded, it’s skipped automatically.
+
+Statuses move from Pending to Success or Failed, with retries up to a configurable limit.
+
+This ensures idempotency — the same nursing note can’t be uploaded twice.”
+
+Configuration & Safety Controls
+
+Screen action:
+- Scroll to Configuration
+- Show appsettings.json snippet
+
+What you say:
+“All key behavior is configurable:
+- Enable or disable the job
+- Run interval
+- Batch size
+- Retry behavior
+
+This allows environment-level tuning without code changes.”
+
+
+Tracking Table & Visibility
+
+Screen action:
+- Scroll through NursingNoteUploadTracking schema
+- Open database to show tables
+
+What you say:
+“This table is the heart of visibility.
+
+It tells us:
+- What was processed
+- What succeeded
+- What failed
+- Why it failed
+- How many attempts were made
+
+This is what operations and support teams rely on when something goes wrong.
+I added one test data in PatientFormSubmssions. This table is populated by AlayaCare sync. Real data come from the AlayaCare integration.”
+Screen action:
+ - show the nursing notes waiting to be uploaded
+What you say:
+"Here are the CSI Bursing Notes from AlayaCare that need to be uploaded to CareTend."
+
+API Endpoints & Monitoring
+
+Screen action:
+Open Swagger UI
+Run Nursing Note Upload Job
+Click Try it out
+Click Execute
+
+
+What you say:
+“We expose APIs for visibility and control.
+
+There’s a status endpoint for counts and recent activity.
+Admin endpoints allow retrying failed uploads.
+
+Logging is explicit, showing when the job starts, what it processes, and where failures occur.
+Normally this runs on a schedule, but for testing we can trigger it manually so we don’t wait.”
+Pause and let it run.
+"Let me trigger one upload right now so we can see it work.
+ProcessdCound is 0 in the response. Because it is using a fake data for test.
+So the job attempted to process the submission but it failed. The tracking record captures the failed attempt."
+Show Tracking Table Updated
+Screen action
+Go back to SQL
+Re-run the tracking query
+What you say
+“Now we can see the record was created and marked as Success, with the CareTend document ID stored.”
+Point to:
+Status
+AttemptCount
+CareTendDocumentId
+“This is what prevents duplicates and gives us auditability.”
+Prove Duplicate Prevention
+Screen action
+Trigger the job again (same button)
+Then Re-run the tracking query
+What you say
+“Running the job again does not create a new record. The submission is skipped because it’s already marked as successful.”
+This is a huge confidence moment — pause here.
+Show Updated Status
+Screen action:
+What you say:
+"See how the pending count went down and success count went up."
+Simulate a Failure (Optional but Powerful)
+Screen action
+Call failure api for a tracking record with Status = Failed
+What you say
+“When something fails, we don’t lose it. The error is captured, the attempt count increments, and it’s eligible for retry.”
+Close
+What you say:
+“To summarize:
+The job runs on schedule or manually
+It uploads only new CSI Nursing Notes
+It prevents duplicates
+And it gives us clear visibility into success and failure
+This fully satisfies the acceptance criteria for US1072.”

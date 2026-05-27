@@ -1,0 +1,7 @@
+task_id,stage,layer,actor,score,level,mode,verdict,finding
+IX-540,pre-dev,scope,shannon,7,high,full,changes_requested,slice crosses the full-audit threshold
+IX-540,dev,build,shannon,6,high,dry_run,changes_requested,slice stays in dry-run audit territory
+IX-540,pre-staging,integration,shannon,7,high,full,changes_requested,slice crosses the full-audit threshold
+IX-540,staging,verification,shannon,5,medium,dry_run,changes_requested,slice stays in dry-run audit territory
+IX-540,pre-prod,risk,shannon,6,high,dry_run,changes_requested,slice stays in dry-run audit territory
+IX-540,prod,operations,shannon,6,high,dry_run,changes_requested,slice stays in dry-run audit territory

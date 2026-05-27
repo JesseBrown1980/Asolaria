@@ -1,0 +1,40 @@
+Jesse Daniel Brown, PhD
+Principal / Lead Software Engineer  |  .NET, AWS, React, Healthcare Systems
+Indaiatuba, São Paulo, Brazil  |  Remote  |  github.com/JesseBrown1980  |  Email / phone available on request
+PROFESSIONAL SUMMARY
+Lead software engineer and consultant with 15+ years building regulated, data-intensive platforms across healthcare, telecom, SaaS, and product engineering. Background spans C#/.NET, Python, TypeScript/JavaScript, React, SQL, AWS cloud services, distributed APIs, microservices, CI/CD, and secure cloud delivery. Recent work includes FHIR-connected healthcare platforms, clinician alerts and decision-support workflows, event-driven backend services, and compliance-sensitive data systems. Known for architecture ownership, hands-on delivery, and fast execution with minimal oversight in remote environments.
+CORE COMPETENCIES
+Languages: C#, .NET, Python, TypeScript, JavaScript, SQL, Java
+Frontend: React, component-driven UI, responsive web applications
+Backend / APIs: REST APIs, microservices, distributed systems, JWT / OAuth2, event-driven workflows
+Cloud / DevOps: AWS (Lambda, API Gateway, SQS, DynamoDB, S3, Step Functions), Azure, Docker, Kubernetes, Jenkins, GitHub Actions, CI/CD, observability
+Data / Storage: PostgreSQL, SQL Server, DynamoDB, Redis, ETL and analytics pipelines
+Healthcare / Security: FHIR, HL7, EHR integration, HIPAA-aware design, audit logging, RBAC, secure patient-data handling
+AI / Analytics: LLM integration, RAG, explainability, anomaly detection, clinician-facing insights
+PROFESSIONAL EXPERIENCE
+J Brown Development LLC  |  Founder / Principal Software Engineer  |  2017–Present  |  Remote
+• Lead architecture and hands-on implementation across healthcare, telecom, SaaS, nonprofit, and media engagements, owning discovery, solution design, API contracts, implementation, testing, and release readiness.
+• Build distributed cloud systems, backend APIs, data platforms, and modern full-stack applications using AWS / Azure patterns, event-driven architecture, and production-focused engineering practices.
+• Work directly with product, QA, architecture, and business stakeholders while mentoring collaborators and translating ambiguous requirements into reliable, maintainable systems.
+Selected Recent Engagement Highlights
+Healthcare AI / FHIR Platform
+• Architected an AI-enabled healthcare platform that integrates EHR data via FHIR APIs and generates patient summaries, risk flags, alerts, and clinician-facing decision support.
+• Built secure service workflows including JWT-protected APIs, real-time dashboard updates, device registration, push notifications, and Slack / webhook alerting for cross-application communication.
+• Drove HIPAA-aware security and operational readiness with OAuth2 or token-based access, RBAC, audit logging, Docker delivery, Kubernetes-ready deployment paths, and production validation / troubleshooting guidance.
+Healthcare / Pharmacy Data Workflows
+• Built compliance-driven healthcare and pharmacy data workflows and backend systems for regulated environments, emphasizing secure data handling and dependable delivery.
+• Designed scheduling and device-integration workflows for lab and operations platforms, including schema rollout, pricing-by-condition logic, and multi-channel operational processes.
+Cloud Microservices / Event-Driven Delivery
+• Designed backend microservices, scalable APIs, and event-driven processing for clients including Cisco, T-Mobile, and PureIntegration.
+• Delivered cloud-native analytics and integration pipelines that supported streaming and event workflows, platform operations, and stakeholder-facing demos across remote teams.
+• Improved delivery workflows through CI/CD-minded engineering, architecture reviews, and phased implementation in fast-moving environments.
+D & J Idiomas  |  Technology Consultant / Founder  |  2017–2024  |  Remote
+• Built cloud platforms, analytics pipelines, and distributed backend systems for global clients including Goodwill, SmartNews, T-Mobile, and international universities.
+• Delivered SaaS education and digital-publishing systems, data workflows, and event-driven services across multidisciplinary, geographically distributed teams.
+• Led full lifecycle delivery from architecture through implementation, client communication, and iterative product improvement across long-running consulting engagements.
+Design Concepts  |  Lead Developer  |  2009–2017  |  Charleston, SC
+• Developed enterprise web platforms, business software, and automation systems for clients including Walmart, RadioShack, and regional businesses.
+• Owned end-to-end design and development of customer-facing and operational systems, building a strong foundation in full-stack delivery, stakeholder communication, and maintainable engineering practices.
+EDUCATION
+PhD, Armstrong State University
+B.S., Computer Science

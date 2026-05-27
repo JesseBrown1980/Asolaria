@@ -1,0 +1,432 @@
+QDD / eBacMap — Missing Unit Tests Full-App Audit
+==================================================
+Generated: 2026-03-25
+Source: D:\projects\QDD\ebacmap-master
+
+================================================================================
+SUMMARY
+================================================================================
+
+  web-ebacmap use cases:  168 total
+  web-ebacmap with tests:   0 UseCase unit tests (0 UseCase.unit.ts files)
+  web-ebacmap integration:  7 route integration tests (route.int.ts)
+  web-ebacmap other units:  3 non-UseCase unit tests (domain/repo/utils)
+
+  queue-server use cases:  19 total (excluding QueueUseCase base class)
+  queue-server with tests:  8 UseCase unit tests
+  queue-server missing:    11 UseCase unit tests
+
+  OVERALL: 8 / 187 use cases have unit tests = 4.3% coverage
+  MISSING: 179 use cases have NO unit test
+
+================================================================================
+A. WEB-EBACMAP — ALL 168 USE CASES (ZERO have UseCase.unit.ts)
+================================================================================
+
+Module: access-control (1 use case)
+  [ ] VerifyPermissions
+
+Module: activity-logs (1 use case)
+  [ ] PaginateActivityByType
+
+Module: capas (11 use cases)
+  [ ] CloseCapa
+  [ ] CreateCapa
+  [ ] DeleteCapa
+  [ ] DownloadCapaPDF
+  [ ] GetCapa
+  [ ] GetCapaDashboard
+  [ ] ListCapas
+  [ ] ListExistingCapas
+  [ ] NotifyAssignedUser
+  [ ] ReopenCapa
+  [ ] UpdateCapa
+  [ ] UpdateCapaTestResult
+
+Module: categories (5 use cases)
+  [ ] CreateCategory
+  [ ] DeleteCategory
+  [ ] GetCategory
+  [ ] ListCategories
+  [ ] UpdateCategory
+
+Module: channels (5 use cases)
+  [ ] CreateChannel
+  [ ] DeleteChannel
+  [ ] GetChannel
+  [ ] PaginateChannels
+  [ ] UpdateChannel
+
+Module: clients (10 use cases)
+  [ ] CreateClient
+  [ ] DeleteClient
+  [ ] GetClient
+  [ ] ListClients
+  [ ] LoginStats
+  [ ] MapStats
+  [ ] MostActiveStats
+  [ ] RegisterClient
+  [ ] UpdateClient
+  [ ] ValidateClient
+
+Module: correctivenotes (5 use cases)
+  [ ] CreateCorrectiveNote
+  [ ] DeleteCorrectiveNote
+  [ ] GetCorrectiveNote
+  [ ] PaginateCorrectiveNotes
+  [ ] UpdateCorrectiveNote
+
+Module: ez-protect (10 use cases) *** EZ PROTECT — DELIVERY CRITICAL ***
+  [ ] ExportEvents
+  [ ] GenerateEzProtectReport
+  [ ] GetCorporateDashboard
+  [ ] GetDeviceHealth
+  [ ] GetEzProtectDashboard          (has route.int.ts only)
+  [ ] GetEzProtectEvent
+  [ ] ListAlertHistory
+  [ ] ListEzProtectEvents
+  [ ] ManageAlertRules
+  [ ] RouteMsaResult
+  [ ] SyncToLims                     (has route.int.ts only)
+
+Module: facility-maps (7 use cases)
+  [ ] CreateFacilityMap
+  [ ] DeleteFacilityMap
+  [ ] DeleteRelatedFacilityMapMarkers
+  [ ] GetFacilityMap
+  [ ] ListFacilityMaps               (has route.int.ts only)
+  [ ] UpdateFacilityMap
+  [ ] UpdateMarkerZoneCodes
+
+Module: locations (10 use cases)
+  [ ] CreateFieldMapping
+  [ ] CreateLocation
+  [ ] DeleteLocation
+  [ ] GetLocation
+  [ ] ListFieldMapping
+  [ ] ListLocations
+  [ ] TestFtpConnection
+  [ ] UpdateFtpConfig
+  [ ] UpdateFtpHeaders
+  [ ] UpdateLocation
+
+Module: notifications (6 use cases)
+  [ ] CreateNotification
+  [ ] DeleteNotification
+  [ ] GetNotificationsForUser
+  [ ] PaginateNotifications
+  [ ] UpdateNotification
+  [ ] UpdateUserNotifications
+
+Module: organisms (5 use cases)
+  [ ] CreateOrganism
+  [ ] DeleteOrganism
+  [ ] GetOrganism
+  [ ] ListOrganisms
+  [ ] UpdateOrganism
+
+Module: plans (13 use cases)
+  [ ] CheckBrokenPlans
+  [ ] CreatePlan
+  [ ] DeletePlan
+  [ ] GetPlan
+  [ ] GetPlanFilters
+  [ ] ImportPlans
+  [ ] PaginatePlans
+  [ ] SearchPlans
+  [ ] UpdatePlan
+  [ ] UpdatePlanSwabScheduleUseCase
+  [ ] UpdatePlansChannelData
+  [ ] UpdatePlansSiteData
+  [ ] UpdatePlansSurfaceTypeData
+
+Module: reports (18 use cases)
+  [ ] AccessTemporaryDownloadLink
+  [ ] CreateReport
+  [ ] CreateReportTemplate
+  [ ] DeleteReport
+  [ ] DeleteReportRelatedNotifications
+  [ ] DeleteReportTemplate
+  [ ] DownloadEBacMapPDF
+  [ ] DownloadReportPDF
+  [ ] DuplicateReport
+  [ ] GetFilters
+  [ ] GetReport
+  [ ] GetReportTemplate
+  [ ] ListDefaultReports
+  [ ] ListReportTemplates
+  [ ] ListReports
+  [ ] SaveReportToDashboard
+  [ ] UpdateReport
+  [ ] UpdateReportChartData
+
+Module: s3 (3 use cases)
+  [ ] DeleteFile
+  [ ] GetPresignedFileUrl
+  [ ] GetPresignedUploadUrl
+
+Module: sites (25 use cases)
+  [ ] BulkDeleteSites
+  [ ] BulkUpdateSites
+  [ ] CreateSite
+  [ ] CreateSiteGroup
+  [ ] CreateZone
+  [ ] DeleteRelatedPlanSites
+  [ ] DeleteRelatedSiteGroupSites
+  [ ] DeleteSite
+  [ ] DeleteSiteGroup
+  [ ] DeleteZone
+  [ ] GenerateSiteGroupsTemplate
+  [ ] GenerateSitesTemplate
+  [ ] GetSite
+  [ ] GetSiteGroup
+  [ ] GetZone
+  [ ] ImportGroups
+  [ ] ImportSites
+  [ ] ListSiteGroups
+  [ ] ListSites
+  [ ] ListZones
+  [ ] UpdateSite
+  [ ] UpdateSiteGroup
+  [ ] UpdateSiteGroupSwabScheduleUseCase
+  [ ] UpdateSiteSwabScheduleUseCase
+  [ ] UpdateZone
+
+Module: store (12 use cases)
+  [ ] CreatePaymentMethod
+  [ ] CreateProduct
+  [ ] CreatePurchase
+  [ ] CreateSetupIntent
+  [ ] DeleteProduct
+  [ ] GetProduct
+  [ ] GetPurchase
+  [ ] ListProducts
+  [ ] ListPurchases
+  [ ] UpdateBilling
+  [ ] UpdateProduct
+  [ ] UpdatePurchase
+
+Module: subscriptions (7 use cases)
+  [ ] CreateSubscription
+  [ ] ListSubscriptions
+  [ ] RemindSubscriptions
+  [ ] RenewalSubscriptions
+  [ ] UpdateSubscriptionDates
+  [ ] UpdateSubscriptionLocationUseCase
+  [ ] UpdateSubscriptions
+
+Module: surfacetypes (5 use cases)
+  [ ] CreateSurfaceType
+  [ ] DeleteSurfaceType
+  [ ] GetSurfaceType
+  [ ] PaginateSurfaceTypes
+  [ ] UpdateSurfaceType
+
+Module: swab-schedule (27 use cases)
+  [ ] BulkChangeSwabDates
+  [ ] BulkDeleteSwabSchedules
+  [ ] BulkUpdateSwabDatesStatus
+  [ ] CheckSwabsForExistingTest
+  [ ] CreateBlackoutDate
+  [ ] CreateSwabSchedule
+  [ ] DeleteBlackoutDate
+  [ ] DeleteRelatedSwabSchedules
+  [ ] DeleteSwabDate
+  [ ] DeleteSwabSchedule
+  [ ] ExportSchedule
+  [ ] GetSchedulesPendingApproval
+  [ ] GetSubmittedWithoutResultsReport
+  [ ] GetSwabCalendar
+  [ ] GetSwabDashboard
+  [ ] GetSwabReport
+  [ ] GetSwabSchedule
+  [ ] GetSwabScheduleDates
+  [ ] ListBlackoutDates
+  [ ] ListSwabSchedules
+  [ ] PendingSchedulesCountUseCase
+  [ ] RepeatSwabSchedules
+  [ ] SendApprovalNotification
+  [ ] UpdateCompletedImage
+  [ ] UpdateSwabDate
+  [ ] UpdateSwabSchedule
+
+Module: test-results (27 use cases)
+  [ ] BulkDeleteTestResults
+  [ ] BulkDisregardTests
+  [ ] CreateFieldMapping
+  [ ] CreateTestDefnition
+  [ ] CreateTestResult
+  [ ] DeletePendingTestResult
+  [ ] DeleteRelatedTestResults
+  [ ] DeleteTestDefinition
+  [ ] DeleteTestResult
+  [ ] DisregardNonconformance
+  [ ] DownloadTestResultPDF
+  [ ] GenerateTemplate
+  [ ] GetTestDefinition
+  [ ] GetTestResult
+  [ ] GetTestResultFilters
+  [ ] GetTestResultOptions
+  [ ] ImportPendingResults
+  [ ] ImportResults                   (has route.int.ts only)
+  [ ] ListFieldMappings
+  [ ] ListNonConformances
+  [ ] ListPendingTestResults
+  [ ] ListTestDefinitions
+  [ ] ListTests
+  [ ] PendingResultsCountUseCase
+  [ ] UpdateNonconformanceStatus
+  [ ] UpdateTestDefinition
+  [ ] UpdateTestDefinitionSwabScheduleUseCase
+  [ ] UpdateTestResult
+  [ ] UpdateTestResultRating
+  [ ] UpdateTestResultSiteData
+
+Module: tours (5 use cases)
+  [ ] CreateTour
+  [ ] DeleteTour
+  [ ] GetTour
+  [ ] PaginateTours
+  [ ] UpdateTour
+
+Module: units (6 use cases)
+  [ ] CreateUnit
+  [ ] DeleteUnit
+  [ ] GetUnit
+  [ ] GetUnitOptions
+  [ ] ListUnits
+  [ ] UpdateUnit
+
+Module: users (19 use cases)
+  [ ] AddPushSubscription
+  [ ] CreateUser                      (has route.int.ts only)
+  [ ] DeleteUser
+  [ ] ForgotPassword
+  [ ] GetUser                         (has route.int.ts only)
+  [ ] GetUserFilters
+  [ ] GetUserPreferences
+  [ ] GetUserReports
+  [ ] ListAssociateUsers
+  [ ] ListUsers
+  [ ] Login                           (has route.int.ts only)
+  [ ] NotifyAssociateUserOfResponse
+  [ ] ResetPassword
+  [ ] SaveUserPreferences
+  [ ] SendAssociateUserRequest
+  [ ] SsoCallback
+  [ ] SsoLogin
+  [ ] UpdateDashboardWidgets
+  [ ] UpdateUser
+  [ ] ValidateAssociateUser
+  [ ] ValidateUser
+
+Existing non-UseCase unit tests in web-ebacmap:
+  [x] swab-schedule/domain/SwabSchedule.unit.ts
+  [x] swab-schedule/utils/WizardScheduleUtils.unit.ts
+  [x] ez-protect/repos/EzProtectRepo.unit.ts
+
+================================================================================
+B. QUEUE-SERVER — 19 USE CASES
+================================================================================
+
+WITH unit tests (8):
+  [x] EvaluateEzProtectAlerts       *** EZ PROTECT ***
+  [x] ExportToFtp
+  [x] ImportFtpResults
+  [x] ImportTestResult
+  [x] ProcessEzProtectFile           *** EZ PROTECT ***
+  [x] SendIntervalReports
+  [x] SendReportPdf
+  [x] SyncEzProtectToLims            *** EZ PROTECT ***
+
+WITHOUT unit tests (11):
+  [ ] CheckSwabsForCompletedTests
+  [ ] CreateScheduleFromRules
+  [ ] GenerateTemporaryDownloadLink
+  [ ] GetOverdueAssignedActions
+  [ ] NotifyAssignedActionPastDue
+  [ ] NotifyEndingSchedules
+  [ ] NotifyUserCapaClosed
+  [ ] QueueFtpLocationImports
+  [ ] SendNotifications
+  [ ] SendPendingTestResultNotification
+  [ ] TestFtpConnection
+
+Other queue-server unit tests (not use cases):
+  [x] Queue.unit.ts
+  [x] utils/ezProtectParser.unit.ts
+  [x] utils/pendingTestResult.unit.ts
+
+================================================================================
+C. PRIORITY — CRITICAL MISSING TESTS FOR EZ PROTECT DELIVERY
+================================================================================
+
+EZ Protect is the delivery-critical module. Here is the test gap:
+
+QUEUE-SERVER EZ PROTECT (3/3 covered — GOOD):
+  [x] EvaluateEzProtectAlerts.UseCase.unit.ts
+  [x] ProcessEzProtectFile.UseCase.unit.ts
+  [x] SyncEzProtectToLims.UseCase.unit.ts
+  [x] ezProtectParser.unit.ts (utils)
+
+WEB-EBACMAP EZ PROTECT (0/10 covered — ALL MISSING):
+  Priority 1 (core business logic):
+    [ ] RouteMsaResult          — routes MSA file results, core ingestion pipeline
+    [ ] GetEzProtectDashboard   — main dashboard aggregation (has int test, no unit)
+    [ ] GetCorporateDashboard   — corporate-level dashboard view
+    [ ] ManageAlertRules        — alert rule CRUD, critical for monitoring
+    [ ] GenerateEzProtectReport — PDF/report generation
+
+  Priority 2 (supporting features):
+    [ ] ListEzProtectEvents     — event listing/pagination
+    [ ] GetEzProtectEvent       — single event retrieval
+    [ ] ListAlertHistory        — alert history queries
+    [ ] ExportEvents            — event data export
+    [ ] GetDeviceHealth         — device health status
+    [ ] SyncToLims              — LIMS sync (has int test, no unit)
+
+================================================================================
+D. BROADER PRIORITY RANKING — MOST CRITICAL MISSING TESTS
+================================================================================
+
+Tier 1: EZ Protect web-ebacmap (10 use cases, 0 tested) — see section C above
+
+Tier 2: Test Results (27 use cases, 0 unit tests)
+  - ImportResults, ImportPendingResults, CreateTestResult — data ingestion
+  - ListNonConformances, DisregardNonconformance — compliance workflow
+  - UpdateNonconformanceStatus — state machine transitions
+
+Tier 3: Swab Schedule (27 use cases, 0 unit tests)
+  - CreateSwabSchedule, RepeatSwabSchedules — scheduling engine
+  - BulkChangeSwabDates, BulkUpdateSwabDatesStatus — bulk operations
+  - GetSwabDashboard, GetSwabReport — reporting
+
+Tier 4: CAPAs (11 use cases, 0 unit tests)
+  - CreateCapa, CloseCapa, ReopenCapa — corrective action lifecycle
+  - NotifyAssignedUser — notification triggers
+
+Tier 5: Users/Auth (19 use cases, 0 unit tests)
+  - Login, SsoLogin, SsoCallback — authentication paths
+  - ForgotPassword, ResetPassword — security-critical
+
+Tier 6: Queue-Server gaps (11 use cases missing)
+  - NotifyAssignedActionPastDue, NotifyEndingSchedules — cron jobs
+  - CheckSwabsForCompletedTests — data integrity
+
+================================================================================
+E. SCORECARD
+================================================================================
+
+                        Use Cases   Tested   Missing   Coverage
+  web-ebacmap              168        0       168        0.0%
+  queue-server              19        8        11       42.1%
+  ─────────────────────────────────────────────────────────────
+  TOTAL                    187        8       179        4.3%
+
+  Integration tests (route.int.ts):  7 (web-ebacmap only)
+  Non-UseCase unit tests:            6 (3 web + 3 queue)
+
+  EZ Protect specifically:
+    queue-server:   3/3 = 100%   (GOOD)
+    web-ebacmap:    0/10 = 0%    (CRITICAL GAP)
+    combined:       3/13 = 23.1%

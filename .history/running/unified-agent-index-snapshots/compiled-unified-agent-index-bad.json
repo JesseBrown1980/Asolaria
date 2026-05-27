@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 3,
+  "generatedAt": "2026-03-25T00:00:00.000Z",
+  "signature": "unit-running-signature",
+  "profile": "dev",
+  "stage": "running",
+  "validated": true,
+  "validationErrors": [],
+  "buildMode": "running-manifest",
+  "sourceContract": "canonical-namespace-plus-aux-ix",
+  "promotedFromProfile": "staging",
+  "documentCount": 1,
+  "sourceCounts": {
+    "canonicalDocuments": 1,
+    "auxiliaryDocuments": 0
+  },
+  "documents": [
+    {
+      "id": "LX-999",
+      "prefix": "LX",
+      "number": "999",
+      "source": "canonical_lx",
+      "sourceKind": "canonical_lx",
+      "layer": "canonical",
+      "title": "Running Manifest Test",
+      "type": "pattern",
+      "tags": [
+        "running"
+      ],
+      "chain": [],
+      "summary": "Synthetic running manifest test document.",
+      "body": "Synthetic body for the running manifest pointer test.",
+      "updatedAt": "2026-03-25T00:00:00.000Z"
+    }
+  ]
+}

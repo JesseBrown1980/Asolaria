@@ -1,0 +1,32 @@
+model = "gpt-5.3-codex"
+model_reasoning_effort = "xhigh"
+personality = "pragmatic"
+sandbox_mode = "danger-full-access"
+approval_policy = "never"
+suppress_unstable_features_warning = true
+
+[features]
+elevated_windows_sandbox = true
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
+
+[mcp_servers.googleDeveloperKnowledge]
+url = "https://developerknowledge.googleapis.com/mcp"
+
+[mcp_servers.googleDeveloperKnowledge.env_http_headers]
+X-Goog-Api-Key = "GOOGLE_DEVKNOWLEDGE_API_KEY"
+
+[mcp_servers.asolariaWeb]
+command = "node"
+args = ['C:\Users\acer\mcp-servers\asolaria-web\server.js']
+
+[mcp_servers.asolariaWeb.env]
+ASOLARIA_BASE_URL = "http://127.0.0.1:4781"
+
+[mcp_servers.asolariaGoogleWiki]
+command = "node"
+args = ['C:\Users\acer\mcp-servers\google-wiki\server.js']
+
+[mcp_servers.asolariaGoogleWiki.env]
+ASOLARIA_BASE_URL = "http://127.0.0.1:4781"

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#060e1e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="/mobile.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/asolaria-icon-192.png" />
+  <title>Asolaria Command Center</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap");
+    :root {
+      --bg0: #060e1e; --bg1: #0c1a30; --card: #0e1d38; --line: #1e3a60;
+      --ink: #e0ecff; --muted: #8aa4cc; --accent: #1cb3ff; --ok: #1f7b54;
+      --warn: #8c6a24; --danger: #8a3434; --purple: #7744bb;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body { background: linear-gradient(155deg, var(--bg0), var(--bg1)); color: var(--ink); font-family: "Segoe UI", sans-serif; min-height: 100vh; overflow-x: hidden; }
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); background: rgba(6,14,30,0.95); position: sticky; top: 0; z-index: 100; gap: 8px; flex-wrap: wrap; }
+    .header h1 { font-family: "Space Grotesk", sans-serif; font-size: clamp(1rem, 2.5vw, 1.4rem); white-space: nowrap; }
+    .lane-indicators { display: flex; gap: 6px; }
+    .lane-dot { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line); display: grid; place-items: center; font-size: 0.75rem; font-weight: 700; color: var(--muted); background: rgba(10,20,40,0.9); cursor: pointer; }
+    .lane-dot.active { border-color: var(--accent); color: var(--accent); background: rgba(28,179,255,0.1); }
+    .lane-dot.offline { border-color: #553333; color: #886666; }
+    .emergency-btn { padding: 8px 14px; border-radius: 10px; border: 2px solid #cc3333; background: linear-gradient(135deg, #661111, #aa2222); color: white; font-weight: 700; font-size: 0.8rem; cursor: pointer; }
+    .tabs { display: flex; border-bottom: 1px solid var(--line); background: rgba(8,16,32,0.9); overflow-x: auto; }
+    .tab { padding: 10px 16px; cursor: pointer; color: var(--muted); font-size: 0.85rem; border-bottom: 2px solid transparent; white-space: nowrap; flex-shrink: 0; }
+    .tab.active { color: var(--accent); border-color: var(--accent); }
+    .panel { display: none; padding: 12px; }
+    .panel.active { display: block; }
+    .mirror-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .mirror-card { border: 1px solid var(--line); border-radius: 12px; background: var(--card); padding: 10px; }
+    .mirror-card h3 { font-family: "Space Grotesk", sans-serif; font-size: 0.95rem; margin-bottom: 6px; }
+    .mirror-frame { border: 1px solid var(--line); border-radius: 10px; background: #030810; overflow: hidden; aspect-ratio: 16/10; }
+    .mirror-frame img { width: 100%; height: 100%; object-fit: contain; cursor: crosshair; user-select: none; -webkit-user-drag: none; }
+    .mirror-frame.phone-frame { aspect-ratio: 9/19.5; max-width: 280px; margin: 0 auto; }
+    .mirror-controls { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .mirror-controls button { padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line); background: #091a33; color: var(--ink); font-size: 0.78rem; cursor: pointer; }
+    .mirror-controls button.ok { background: var(--ok); border-color: #2e9d72; }
+    .mirror-controls button.warn { background: var(--warn); border-color: #b48a3a; }
+    .mirror-controls button.danger { background: var(--danger); border-color: #b25757; }
+    .mirror-controls button.accent { background: #0f4d7b; border-color: #2c7eb4; }
+    .status-pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 0.72rem; border: 1px solid var(--line); color: var(--muted); background: rgba(9,18,36,0.84); }
+    .lanes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .lane-card { border: 1px solid var(--line); border-radius: 12px; background: var(--card); padding: 12px; display: grid; gap: 8px; }
+    .lane-card h3 { font-family: "Space Grotesk", sans-serif; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
+    .lane-state { font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); }
+    .lane-state.active { border-color: var(--accent); color: var(--accent); }
+    .lane-state.idle { border-color: var(--warn); color: #ddaa44; }
+    .lane-state.offline { border-color: #663333; color: #aa6666; }
+    .lane-output { border: 1px solid var(--line); border-radius: 8px; background: #071424; padding: 8px; font-size: 0.78rem; color: var(--muted); min-height: 80px; max-height: 160px; overflow: auto; white-space: pre-wrap; font-family: Consolas, monospace; }
+    .lane-task { font-size: 0.8rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lane-input { display: flex; gap: 6px; }
+    .lane-input input { flex: 1; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: #091a33; color: var(--ink); font-size: 0.82rem; }
+    .lane-input button { padding: 8px 12px; border-radius: 8px; border: 1px solid var(--accent); background: #0f4d7b; color: var(--ink); font-size: 0.82rem; cursor: pointer; }
+    .vscreen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .vscreen-card { border: 1px solid var(--line); border-radius: 12px; background: var(--card); padding: 10px; }
+    .vscreen-card h3 { font-family: "Space Grotesk", sans-serif; font-size: 0.9rem; margin-bottom: 6px; }
+    .vscreen-frame { border: 1px solid var(--line); border-radius: 10px; background: #030810; overflow: hidden; aspect-ratio: 9/19; max-height: 320px; }
+    .vscreen-frame img { width: 100%; height: 100%; object-fit: contain; cursor: crosshair; }
+    .chat-panel { max-width: 700px; margin: 0 auto; display: grid; gap: 10px; }
+    .chat-messages { border: 1px solid var(--line); border-radius: 12px; background: #071424; padding: 10px; min-height: 200px; max-height: 400px; overflow: auto; display: grid; gap: 8px; }
+    .chat-turn { padding: 8px 10px; border-radius: 10px; font-size: 0.85rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .chat-turn.user { background: rgba(28,179,255,0.12); border: 1px solid rgba(28,179,255,0.4); }
+    .chat-turn.assistant { background: rgba(240,167,66,0.1); border: 1px solid rgba(240,167,66,0.4); }
+    .chat-compose { display: flex; gap: 8px; }
+    .chat-compose textarea { flex: 1; min-height: 60px; padding: 10px; border-radius: 10px; border: 1px solid var(--line); background: #091a33; color: var(--ink); font-size: 0.9rem; resize: vertical; }
+    .chat-compose button { padding: 10px 18px; border-radius: 10px; border: 1px solid var(--accent); background: #0f4d7b; color: var(--ink); font-size: 0.9rem; cursor: pointer; align-self: flex-end; }
+    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .admin-card { border: 1px solid var(--line); border-radius: 12px; background: var(--card); padding: 12px; }
+    .admin-card h3 { font-family: "Space Grotesk", sans-serif; font-size: 0.95rem; margin-bottom: 8px; }
+    .log-box { border: 1px solid var(--line); border-radius: 8px; background: #071424; padding: 8px; font-size: 0.76rem; color: var(--muted); min-height: 100px; max-height: 200px; overflow: auto; white-space: pre-wrap; font-family: Consolas, monospace; }
+    @media (max-width: 900px) {
+      .mirror-grid, .lanes-grid, .vscreen-grid, .admin-grid { grid-template-columns: 1fr; }
+      .mirror-frame.phone-frame { max-width: 100%; }
+    }
+    @media (max-width: 640px) {
+      .header h1 { font-size: 1rem; }
+      .tabs { gap: 0; }
+      .tab { padding: 9px 12px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>Asolaria Command Center</h1>
+    <div class="lane-indicators">
+      <div id="laneV" class="lane-dot" title="Vector (Brain)">V</div>
+      <div id="laneR" class="lane-dot" title="Rook (Ops)">R</div>
+      <div id="laneF" class="lane-dot" title="Forge (Build)">F</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <span id="colonyBadge" class="status-pill">Colony: checking...</span>
+      <button class="emergency-btn" onclick="location.href='/emergency.html'">SOS</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <div class="tab active" data-tab="mirrors">Mirrors</div>
+    <div class="tab" data-tab="lanes">Lanes</div>
+    <div class="tab" data-tab="vscreens">Agent Screens</div>
+    <div class="tab" data-tab="chat">Chat</div>
+    <div class="tab" data-tab="admin">Admin</div>
+  </nav>
+
+  <!-- MIRRORS TAB -->
+  <section id="panel-mirrors" class="panel active">
+    <div class="mirror-grid">
+      <div class="mirror-card">
+        <h3>Desktop Screen</h3>
+        <div class="mirror-frame" id="desktopFrame">
+          <img id="desktopImage" alt="Desktop capture" />
+        </div>
+        <div class="mirror-controls">
+          <button class="accent" id="refreshDesktopBtn">Refresh</button>
+          <button class="ok" id="autoDesktopBtn">Auto: OFF</button>
+          <button class="warn" id="armDesktopBtn">Arm Control</button>
+          <span id="desktopStatus" class="status-pill">Waiting...</span>
+        </div>
+      </div>
+      <div class="mirror-card">
+        <h3>Phone Screen</h3>
+        <div class="mirror-frame phone-frame" id="phoneFrame">
+          <img id="phoneImage" alt="Phone capture" />
+        </div>
+        <div class="mirror-controls">
+          <button class="accent" id="refreshPhoneBtn">Refresh</button>
+          <button class="ok" id="autoPhoneBtn">Auto: OFF</button>
+          <span id="phoneStatus" class="status-pill">Waiting...</span>
+        </div>
+      </div>
+    </div>
+    <div class="mirror-controls" style="margin-top:10px;">
+      <button id="deskClickMode">Click Mode</button>
+      <button id="deskScrollUp">Scroll ↑</button>
+      <button id="deskScrollDown">Scroll ↓</button>
+      <input id="deskTypeInput" type="text" placeholder="Type on desktop..." style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--line);background:#091a33;color:var(--ink);font-size:0.82rem;" />
+      <button class="accent" id="deskTypeSend">Send</button>
+    </div>
+  </section>
+
+  <!-- LANES TAB -->
+  <section id="panel-lanes" class="panel">
+    <div class="lanes-grid">
+      <div class="lane-card" id="lane-vector">
+        <h3>Vector <span class="lane-state" id="vectorState">—</span></h3>
+        <div class="lane-task" id="vectorTask">No active task</div>
+        <div class="lane-output" id="vectorOutput">Waiting for output...</div>
+        <div class="lane-input">
+          <input id="vectorInput" type="text" placeholder="Send to Vector..." />
+          <button id="vectorSend">Send</button>
+        </div>
+      </div>
+      <div class="lane-card" id="lane-rook">
+        <h3>Rook <span class="lane-state" id="rookState">—</span></h3>
+        <div class="lane-task" id="rookTask">No active task</div>
+        <div class="lane-output" id="rookOutput">Waiting for output...</div>
+        <div class="lane-input">
+          <input id="rookInput" type="text" placeholder="Send to Rook..." />
+          <button id="rookSend">Send</button>
+        </div>
+      </div>
+      <div class="lane-card" id="lane-forge">
+        <h3>Forge <span class="lane-state" id="forgeState">—</span></h3>
+        <div class="lane-task" id="forgeTask">No active task</div>
+        <div class="lane-output" id="forgeOutput">Waiting for output...</div>
+        <div class="lane-input">
+          <input id="forgeInput" type="text" placeholder="Send to Forge..." />
+          <button id="forgeSend">Send</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIRTUAL SCREENS TAB -->
+  <section id="panel-vscreens" class="panel">
+    <div style="margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <button class="accent" id="vscreenCreateBtn">Create 3 Virtual Displays</button>
+      <button class="danger" id="vscreenDestroyBtn">Destroy All</button>
+      <button id="vscreenRefreshBtn">Refresh All</button>
+      <span id="vscreenStatus" class="status-pill">No virtual displays active</span>
+    </div>
+    <div class="vscreen-grid">
+      <div class="vscreen-card">
+        <h3>Screen 1 — Vector</h3>
+        <div class="vscreen-frame"><img id="vscreen1Image" alt="Virtual screen 1" /></div>
+        <div class="mirror-controls"><button class="accent" id="vscreen1Refresh">Refresh</button><span id="vscreen1Status" class="status-pill">Idle</span></div>
+      </div>
+      <div class="vscreen-card">
+        <h3>Screen 2 — Rook</h3>
+        <div class="vscreen-frame"><img id="vscreen2Image" alt="Virtual screen 2" /></div>
+        <div class="mirror-controls"><button class="accent" id="vscreen2Refresh">Refresh</button><span id="vscreen2Status" class="status-pill">Idle</span></div>
+      </div>
+      <div class="vscreen-card">
+        <h3>Screen 3 — Forge</h3>
+        <div class="vscreen-frame"><img id="vscreen3Image" alt="Virtual screen 3" /></div>
+        <div class="mirror-controls"><button class="accent" id="vscreen3Refresh">Refresh</button><span id="vscreen3Status" class="status-pill">Idle</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAT TAB -->
+  <section id="panel-chat" class="panel">
+    <div class="chat-panel">
+      <div id="chatMessages" class="chat-messages"></div>
+      <div class="chat-compose">
+        <textarea id="chatInput" placeholder="Talk to Asolaria colony..."></textarea>
+        <button id="chatSend" class="ok">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN TAB -->
+  <section id="panel-admin" class="panel">
+    <div class="admin-grid">
+      <div class="admin-card">
+        <h3>Colony Status</h3>
+        <div id="colonyStatus" class="log-box">Loading...</div>
+      </div>
+      <div class="admin-card">
+        <h3>Task Ledger</h3>
+        <div id="taskSummary" class="log-box">Loading...</div>
+      </div>
+      <div class="admin-card">
+        <h3>Power Controls</h3>
+        <div class="mirror-controls">
+          <button class="danger" id="pwrShutdown">Shutdown PC</button>
+          <button class="warn" id="pwrRestart">Restart PC</button>
+          <button class="ok" id="pwrWol">Wake-on-LAN</button>
+          <button id="pwrAbort">Abort Shutdown</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Event Log</h3>
+        <div id="eventLog" class="log-box">Waiting for events...</div>
+      </div>
+    </div>
+  </section>
+
+  <script src="command-center.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+EZ Module for eBacMap: 
+Proposed integration of the 
+ez protect/ez protect+ systems into the ebacmap platform	
+Prepared for Charm sciences. 
+Overview
+
+QUICK DRAW DEVELOPMENT AND CHARM SCIENCES HAVE COLLABORATED FOR SEVERAL YEARS TO MODERNIZE AND REFINE CHARM’S DIGITAL ECOSYSTEM, BEGINNING WITH THE SUCCESSFUL INTEGRATION OF NOVALUM ATP TESTING INTO THE EBACMAP PLATFORM. THIS NEXT PHASE OF THE PARTNERSHIP EXPANDS EBACMAP INTO A MULTI-INSTRUMENT DATA HUB, STARTING WITH FULL SUPPORT FOR THE EZ PROTECT AND EZ PROTECT+ DIAGNOSTIC SYSTEMS.
+Today, Charm’s instruments each operate in separate software environments, requiring customers to navigate multiple applications, reporting interfaces, and file formats. This fragmentation creates unnecessary operational friction for laboratories and food production facilities who increasingly expect a centralized, cloud-based workflow. By integrating the EZ Protect line into eBacMap—and establishing a reusable framework for future devices—Charm can offer its customers a single, consistent, intuitive platform for all diagnostic results, device monitoring, report generation, and technical support interactions.
+The project includes six major phases: requirements validation, backend ingestion services, dashboard and UX enhancements, alerts and trigger logic, reporting and LIMS interoperability, and full QA/UAT with production deployment. Along the way, eBacMap’s existing capabilities will be expanded to support richer test definitions, calibration and performance monitoring data, operator-level insights, lot/roll analytics, and anomaly detection via graph-scanning logic.
+Upon completion, customers will gain:
+A unified digital experience replacing multiple device-specific apps
+Real-time visibility into results, device health, and operational trends
+Intelligent alerting and troubleshooting to reduce downtime and invalid results
+Consistent reporting and exports across multiple Charm devices
+A scalable foundation for future Charm instrument integrations
+For Charm, this integration strengthens customer retention, simplifies support, and positions eBacMap as the long-term digital backbone for its diagnostic ecosystem. 
+Phase 1 – Discovery, Requirements Validation & Technical Architecture
+Duration: 
+Est. Hours: 
+This phase establishes the strategic and technical foundation for integrating EZ Protect and EZ Protect+ devices into the existing eBacMap ecosystem. Because eBacMap already supports structured test-result ingestion from NovaLum and internal microbiology workflows, our goal is not to reinvent those components, but to extend and refine them to accommodate the unique data formats, metadata requirements, test states, error conditions, and device behaviors specific to the EZ Protect line.
+We will review all source documentation—current Charm applications, communication specifications, field usage considerations, and reporting expectations—and validate each requirement through a comprehensive requirements trace matrix.
+A major deliverable of this phase is the expansion framework for eBacMap’s test definition engine, ensuring that new result types, calibration events, PM checks, error codes, and lot/roll metadata can be represented cleanly and consistently in relevant eBacMap modules. We will also finalize architectural decisions around the ingestion API, token-based authentication, device connectivity pathways, MSA-driven visibility, and forward compatibility for future Charm devices.
+This phase validates all requirements and defines the system’s architecture, API strategies, trigger logic, dashboard expectations, and LIMS data pathways. The goal is to capture every nuance before development starts.
+
+Goals:
+Finalize requirements via RTM with stakeholder review
+Define API architecture for secure token-based ingestion
+Document dashboards, KPIs, graphing logic, error categories
+Specify corporate vs. facility dashboard structures
+Document LIMS export/interoperability requirements
+Deliverables:
+Approved technical/functional specifications
+Final RTM
+System architecture documentation
+Data model definitions (lot/roll, SN, operator, calibration metadata)
+Phase 2 – Backend Integration Services & Device Communication Layer
+Duration: 
+Estimated Hours: 
+This phase delivers the backend functionality required to reliably ingest and process EZ Protect/EZ Protect+ data streams within eBacMap. Building on existing ingestion patterns used for NovaLum, we will implement new endpoints and services tailored to the richer, more varied data emitted by the EZ Protect line—such as multi-step result states, calibration readings, control-line validity results, and performance monitoring sequences.
+We will expand eBacMap’s data-processing pipeline to normalize results into the platform’s test schema extensions introduced in Phase 1, ensuring consistency across dashboards, reporting, analytics, and alerts.
+Given that EZP/P+ devices support multiple communication channels (Ethernet, Wi-Fi, cellular, USB), the backend must be robust, secure, and tolerant of intermittent connectivity. Store-and-forward behavior, metadata enrichment, error categorization, and LIMS export scaffolding will be implemented here. This phase effectively creates the “nerve center” that powers all downstream features.
+Goals:
+Token-secured ingestion endpoints
+Support for all device communication modes
+Storage of normalized results with metadata
+Error categorization (procedural, equipment, environmental)
+Anonymized field-performance analytics
+LIMS export scaffolding
+Deliverables:
+Backend ingestion pipeline
+Authentication layer
+Error classification subsystem
+LIMS interoperability layer
+Anonymized analytics service
+Phase 3 – Dashboards (Corporate & Facility) and Device Health Monitoring
+Duration: 
+Estimated Hours: 
+With ingestion established, this phase brings device data to life within eBacMap’s user interface. The platform already supports results tables and data-driven dashboards; however, EZ Protect introduces new dimensions—real-time connectivity, device health, multi-day trend analysis, operator-specific behavior, and error-code categorization.
+We will extend eBacMap’s dashboard framework to surface these new data types at both the corporate/global and facility levels. This includes widgets for connectivity status (with configurable lookback windows), positive/invalid result trends, calibration and PM compliance, error grouping by probable cause, and roll/lot-based analytics.
+A major enhancement in this phase is the graphing engine: users will be able to compare multiple datasets, visualize line ranges, overlay calibration data, and interact with time-series performance metrics. This not only streamlines operational oversight but replaces the fragmented experience Charm customers currently face across multiple device-specific applications.
+Goals:
+Corporate dashboard with configurable time windows
+Facility dashboard with SN/operator breakdown
+Connectivity monitoring with configurable timeframe
+Graph engine with multi-comparison and line-range overlays
+Antibiotic importance-list widgets
+Lot/roll anonymized analytics for Charm
+Deliverables:
+Corporate dashboard
+Facility dashboard
+Connectivity + PM testing widgets
+Graph engine with overlays
+Antibiotic trend visualizations
+Phase 4 – Alerts, Triggers, Notifications & Troubleshooting Integration
+Duration: 
+Estimated Hours: 
+This phase introduces an intelligent, automated alerting model that turns raw device data into actionable information. While eBacMap currently supports basic notifications, EZ Protect integration requires a significantly more advanced rule system to detect invalid test states, procedural failures, calibration issues, PM lapses, and anomalous trends.
+We will implement a multi-layer trigger engine capable of:
+Evaluating incoming test results in real time
+Interpreting device-specific error codes and conditions
+Scanning graph behavior to detect spikes or drift
+Routing alerts based on both customer opt-ins and MSA permissions
+Automatically surfacing troubleshooting guidance, FAQs, and video support materials
+This phase ensures that eBacMap not only displays data but actively assists operators, facilities, and Charm support staff in diagnosing problems and preventing repeated invalids or false positives. It represents a major usability improvement over the current multi-app Charm environment, where troubleshooting is fragmented across PDFs, help menus, and external documentation.
+Goals:
+Triggers for all EZP/P+ event types
+Graph-scanning anomaly detection
+Routing logic for customer vs. Charm notifications
+Troubleshooting content integration
+Escalation rules for repeated Invalids
+Deliverables:
+Alert/trigger subsystem
+Graph anomaly detection logic
+Notification routing engine
+FAQ/video integration
+Phase 5 – Reporting, Exports & Visualization Enhancements
+Duration: 
+Estimated Hours:  
+eBacMap already includes PDF/CSV exports for existing modules, but EZ Protect requires additional reporting capabilities—both automated and on-demand. In this phase, we extend the reporting engine to support the new test definitions, calibration displays, line-range overlays, antibiotic result summaries, and facility/corporate roll-up reports.
+These enhancements ensure that users can generate polished, consistent documentation across all Charm device integrations, replacing the inconsistent reporting tools currently tied to individual Charm apps.
+We will also finalize LIMS export workflows, enabling external systems to ingest EZ Protect data in a structured format identical across all eBacMap-supported device lines.
+Goals:
+Scheduled PDF/CSV exports
+Freestyle/manual export views
+Graph overlays and calibration displays
+Finalize global antibiotic dashboards
+Validate LIMS export workflows
+Deliverables:
+Reporting engine
+Graph-enhanced report outputs
+Validated LIMS export endpoint
+Antibiotic reporting tools
+Phase 6 – QA, UAT, Production Deployment & Post-Launch Monitoring
+Duration: 
+Estimated Hours: 
+This final phase ensures system reliability, accuracy, and user readiness. Because eBacMap is an existing production platform used across food safety facilities, the quality assurance process must validate not only new functionality but also confirm that existing modules remain unaffected.
+We will test ingestion pipelines using real EZ Protect datasets, verify dashboard accuracy, stress-test triggers, evaluate graphing performance, confirm reporting integrity, and validate LIMS outputs.
+After successful UAT, the platform will be deployed to production with monitoring in place to capture early-life anomalies. Comprehensive training will be provided for both facility-level operators and corporate-level administrators, ensuring a smooth transition from Charm’s current multi-application environment to a unified eBacMap experience.
+Goals:
+Perform full QA testing
+Conduct UAT with production-like datasets
+Deploy system to production
+Train corporate + facility users
+Monitor early-life performance
+Deliverables:
+QA validation report
+UAT signoff
+Production system
+Training materials
+Post-launch monitoring report
+Summary Timeline & Cost
+Total Project Estimate
+Duration: ?? Weeks
+Total Hours: 
+Hourly Rate: 
+Total Estimated Cost: 
+
+
+
+
+
+ATTACHMENT A: Proposed Navigation Wireframes
+NEW: Test Results Navigation
+In order to make the addition of Micotoxin results into the eBacMap platform as seamless as possible, the navigation structure for Test Results will be changed to differentiate between “EMP & ATP” results and “Micotoxin” results.  
+CHANGE: “Charm Sciences” navigation item
+Currently we have “novaLum” as a navigation item.  With the addition of EZ Protect, we would like to propose that in the event of a client having more than one Charm device associated with their facility, the devices would be housed under “Charm Sciences”. Otherwise, with a single device type, the respective device (novaLum or EZ Protect, at this time) would be a single navigation item in the main navigation menu on the left. 

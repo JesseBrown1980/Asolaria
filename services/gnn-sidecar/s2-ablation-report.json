@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-04-29T23:39:44.960Z",
+  "corpus": {
+    "nodes": 1000,
+    "edges": 10000,
+    "positive_ratio": 0.9054,
+    "seed": 42
+  },
+  "variant_A_with_leak": {
+    "strip_leak": false,
+    "test_accuracy": 0.9106666445732117,
+    "test_precision": 0.9106666666666666,
+    "test_recall": 1,
+    "test_f1": 0.9532449406838799,
+    "best_val_acc": 0.9106666445732117,
+    "epochs": 15,
+    "test_size": 1500,
+    "positive_ratio": 0.9053999781608582
+  },
+  "variant_B_stripped": {
+    "strip_leak": true,
+    "test_accuracy": 0.9106666445732117,
+    "test_precision": 0.9106666666666666,
+    "test_recall": 1,
+    "test_f1": 0.9532449406838799,
+    "best_val_acc": 0.9106666445732117,
+    "epochs": 15,
+    "test_size": 1500,
+    "positive_ratio": 0.9053999781608582
+  },
+  "interpretation": "BOTH_HIGH_LEAKAGE_NOT_DOMINANT_OR_GENERALIZATION_REAL",
+  "leakage_confirmed": null,
+  "source": "synthetic-from-scratch (no acer corpus dependency, per acer note 65MB corpus too big for bus)",
+  "named_agent": "liris-s2-ablation-synthetic"
+}

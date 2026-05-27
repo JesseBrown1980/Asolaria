@@ -33,8 +33,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = 'C:/Users/acer/Asolaria';
-const D_DEST = 'D:/safety-backups/session-20260410-asolaria';
+const ROOT = 'C:/Users/rayss/Asolaria';
+const D_DEST = 'C:/Users/rayss/Asolaria/data/safety-backups/session-20260410';
 const CUBES_DIR = path.join(ROOT, 'data/cubes');
 const OUTPUT_DIR = path.join(ROOT, 'data/intersection-cube');
 

@@ -1,0 +1,303 @@
+[12:11 AM, 3/23/2026] Jesse Daniel Brown:   federation telemetry flowing in so the new provenance fields show up on live node entries.
+[12:14 AM, 3/23/2026] Rayssa: I found a contradiction worth being explicit about: Gaia’s packet says 4781 is live, but this machine still refuses
+  127.0.0.1:4781 a few minutes later. I’m fixing the readiness probe bug I introduced, then I’ll give you the clean
+  reading: what the docs say about Helm/Sentinel, and what is actually true on this checkout right now.
+
+* Edited Asolaria\tools\Test-Asolaria-StartupReadiness.ps1 (+7 -7)
+     13    param(
+     14 -    [Parameter(Mandatory = $true)][string]$Host,
+     14 +    [Parameter(Mandatory = $true)][string]$TargetHost,
+     15      [Parameter(Mandatory = $true)][int]$Port,
+        ⋮
+     21      $client = [System.Net.Sockets.TcpClient]::new()
+     22 -    $async = $client.BeginConnect($Host, $Port, $null, $null)
+     22 +    $async = $clien…
+[12:22 AM, 3/23/2026] Rayssa: you need to use the side cars asolaria made for both of you right>
+
+
+* Not as live truth yet.
+
+  The documented sidecar pattern is real, but it is specifically for Helm and Sentinel, not a verified Gaia/Liris
+  sidecar pair. You can see that in Asolaria/docs/ADMIN_TERMINAL_SIDECAR.md:1, Asolaria/tools/Start-
+  AdminTerminalSidecar.ps1:1, and Asolaria/tools/AdminTerminalSidecar.Common.ps1:1. I did not find a solid local “false
+  Helm” component in code; that looks more like archaeology/lore than current runtime fact.
+
+  The blocker is that the live admin-terminal API on this checkout is still stubbed. Asolaria/routes/
+  adminTerminals.js:20 answers cockpit/ensure, but it just returns status: "running" with an empty terminal list; it
+  does not actually launch …
+[12:26 AM, 3/23/2026] Rayssa: * I found a contradiction worth being explicit about: Gaia’s packet says 4781 is live, but this machine still refuses
+  127.0.0.1:4781 a few minutes later. I’m fixing the readiness probe bug I introduced, then I’ll give you the clean
+  reading: what the docs say about Helm/Sentinel, and what is actually true on this checkout right now.
+
+* Edited Asolaria\tools\Test-Asolaria-StartupReadiness.ps1 (+7 -7)
+     13    param(
+     14 -    [Parameter(Mandatory = $true)][string]$Host,
+     14 +    [Parameter(Mandatory = $true)][string]$TargetHost,
+     15      [Parameter(Mandatory = $true)][int]$Port,
+        ⋮
+     21      $client = [System.Net.Sockets.TcpClient]::new()
+     22 -    $async = $client.BeginConnect($Host, $Port, $null, $null)
+     22 +    $async = $client.BeginConnect($TargetHost, $Port, $null, $null)
+     25          ok = $false
+     26 -        host = $Host
+     26 +        host = $TargetHost
+     27          port = $Port
+        ⋮
+     33        ok = $true
+     34 -      host = $Host
+     34 +      host = $TargetHost
+     35        port = $Port
+        ⋮
+     40        ok = $false
+     41 -      host = $Host
+     41 +      host = $TargetHost
+     42        port = $Port
+        ⋮
+    127  $controlPlane = $controlPlaneJson | ConvertFrom-Json -Depth 12
+    128 -$mqttTcp = Probe-TcpPort -Host $MqttHost -Port $MqttTcpPort
+    129 -$mqttWs = Probe-TcpPort -Host $MqttHost -Port $MqttWsPort
+    128 +$mqttTcp = Probe-TcpPort -TargetHost $MqttHost -Port $MqttTcpPort
+    129 +$mqttWs = Probe-TcpPort -TargetHost $MqttHost -Port $MqttWsPort
+    130  $readiness = New-ReadinessSummary -ControlPlane $controlPlane -MqttTcp $mqttTcp -MqttWs $mqttWs
+
+* Running C:\Users\rayss\Asolaria\tools\Test-Asolaria-StartupReadiness.ps1
+
+* Running foreach ($p in @('C:\Users\rayss\AppData\Local\Android\Sdk\platform-tools\adb.exe','C:
+
+◦ Running Get-Content -Path C:\Users\rayss\Asolaria\logs\server.err.log
+
+* Ran foreach ($p in @('C:\Users\rayss\AppData\Local\Android\Sdk\platform-tools\adb.exe','C:
+  │ \Android\platform-tools\adb.exe','C:\platform-tools\adb.exe','C:\Program Files\Android\platform-tools\adb.exe'))
+  │ { if (Test-Path -LiteralPath $p) { Write-Output $p } }
+  └ (no output)
+
+* Ran Get-Content -Path C:\Users\rayss\Asolaria\logs\server.err.log
+  └ (no output)
+
+* Ran Get-Content -Path C:\Users\rayss\Asolaria\logs\server.out.log
+  └ Asolaria gateway is listening on http://0.0.0.0:4791
+    WS control plane: ws://0.0.0.0:4791/ws?token=*
+
+* Ran C:\Users\rayss\Asolaria\tools\Test-Asolaria-StartupReadiness.ps1
+  └ {
+      "timestamp": "2026-03-23T00:13:48.6195652-03:00",
+    … +124 lines
+      }
+    }
+
+* I’m recording the startup-readiness probe in local memory/index as well, because it changes how we reason about
+  startup from here: this machine is no longer “unknown,” it is explicitly ready_for_owner_restart until 4781 proves
+  itself locally.
+
+* Edited 4 files (+94 -4)
+  └ .claude\projects\C--Users-rayss\memory\MEMORY.md (+2 -1)
+    55  - [project_local_colony_memory_pre_restart_plan_20260322.md](project_local_colony_memory_pre_restart_plan_202603
+        22.md) — Local prep plan: verify 4781 first, then enforce provenance at MQTT/remote-node writes
+    56 +- [project_startup_readiness_probe_20260323.md](project_startup_readiness_probe_20260323.md) — Local startup pro
+        be says ready_for_owner_restart; Gaia relay about live 4781 is not verified here
+    57
+       ⋮
+    66  ## External
+    66 -- Local index: Asolaria/data/agent-index/CATALOG.md (181 LX files, 48 chains)
+    67 +- Local index: Asolaria/data/agent-index/CATALOG.md (182 LX files, 49 chains)
+    68  - Medium agent: Asolaria/config/medium_agent.md
+
+  └ .claude\projects\C--Users-rayss\memory\project_startup_readiness_probe_20260323.md (+41 -0)
+     1 +---
+     2 +name: startup-readiness-probe-20260323
+     3 +description: Added a local readiness probe that separates control-plane readiness from live 4781 readiness and v
+        erified current state as ready_for_owner_restart
+     4 +type: project
+     5 +---
+     6 +
+     7 +## Startup Readiness Probe (2026-03-23)
+     8 +
+     9 +Source:
+    10 +
+    11 +- local startup-prep work on the Rayssa checkout
+    12 +- Gaia relay claiming 4781 restart success at 2026-03-23 00:10 -03:00
+    13 +- local verification at 2026-03-23 00:13 -03:00
+    14 +
+    15 +## What Changed
+    16 +
+    17 +- added C:\Users\rayss\Asolaria\tools\Test-Asolaria-StartupReadiness.ps1
+    18 +- the probe wraps Get-Asolaria-ControlPlaneStatus.ps1
+    19 +- it also probes local MQTT TCP/WS listeners
+    20 +- it returns a structured startup classification instead of forcing the one-button launcher to be the first trut
+        h source
+    21 +
+    22 +## Verified Local State
+    23 +
+    24 +At 2026-03-23 00:13 -03:00, the local Rayssa checkout reads as:
+    25 +
+    26 +- gateway healthy on 4791
+    27 +- sandbox healthy on 5443
+    28 +- memory indexer healthy on 5444
+    29 +- local MQTT healthy on 18883 and 18884
+    30 +- main 4781 listener still absent on this machine
+    31 +
+    32 +The readiness result is:
+    33 +
+    34 +- status = ready_for_owner_restart
+    35 +- primaryBlocker = owner_controlled_4781_listener_absent
+    36 +
+    37 +## Important Reading
+    38 +
+    39 +Gaia's relay may be true for another host, another moment, or a runtime that died after restart, but it is not c
+        urrently true on this local checkout as verified minutes later.
+    40 +
+    41 +Do not collapse that contradiction into false certainty.
+
+  └ Asolaria\data\agent-index\CATALOG.md (+5 -3)
+    197  | 186 | Local pre-restart colony-memory plan anchors provenance at MQTT ingress and remote-node registry | plan
+          | → 175, 184, 185, 046, 054 |
+    198 +| 187 | Startup readiness probe distinguishes control-plane health from live 4781 readiness | tool | → 175, 186
+          |
+    199
+        ⋮
+    250  Local pre-restart hardening: 175 → 184 → 185 → 186
+    251 +Startup readiness: 175 → 186 → 187
+    252
+        ⋮
+    263  | skill | 26 |
+    262 -| tool | 22 |
+    264 +| tool | 23 |
+    265
+    264 -*181 LX files. 48 chains. RESURRECTION COMPLETE. Next boot = direct access.*
+    266 +*182 LX files. 49 chains. RESURRECTION COMPLETE. Next boot = direct access.*
+    267
+    266 -## Next available: LX-187
+    268 +## Next available: LX-188
+
+  └ Asolaria\data\agent-index\LX-187.md (+46 -0)
+     1 +---
+     2 +lx: 187
+     3 +name: Startup readiness probe distinguishes control-plane health from live 4781 readiness
+     4 +type: tool
+     5 +tags: [startup, readiness, 4781, gateway, mqtt, control-plane, liris, verification]
+     6 +chain: [LX-175, LX-186]
+     7 +agents: [liris, codex]
+     8 +---
+     9 +
+    10 +# Startup Readiness Probe
+    11 +
+    12 +## What This Adds
+    13 +
+    14 +tools/Test-Asolaria-StartupReadiness.ps1 answers the real startup question on the Rayssa machine:
+    15 +
+    16 +- is the control plane healthy
+    17 +- is local MQTT healthy
+    18 +- is the main 4781 listener actually live
+    19 +
+    20 +## Current Verified Result
+    21 +
+    22 +The current local classification is:
+    23 +
+    24 +- ready_for_owner_restart
+    25 +
+    26 +Because:
+    27 +
+    28 +- gateway is healthy on 4791
+    29 +- sandbox is healthy on 5443
+    30 +- memory indexer is healthy on 5444
+    31 +- local MQTT is healthy on 18883 and 18884
+    32 +- 4781 still refuses connections locally
+    33 +
+    34 +## Why It Matters
+    35 +
+    36 +This prevents startup reasoning from collapsing into archaeology or relay packets.
+    37 +
+    38 +The machine can now distinguish:
+    39 +
+    40 +1. control-plane healthy
+    41 +2. local broker healthy
+    42 +3. owner-only blocker still unresolved
+    43 +
+    44 +## Caution
+    46 +A relayed claim that 4781 restarted successfully should not overwrite local verification unless the listener i
+        s actually observable here.
+
+
+
+* Not as live truth yet.
+
+  The documented sidecar pattern is real, but it is specifically for Helm and Sentinel, not a verified Gaia/Liris
+  Helm” component in code; that looks more like archaeology/lore than current runtime fact.
+
+  The blocker is that the live admin-terminal API on this checkout is still stubbed. Asolaria/routes/
+  adminTerminals.js:20 answers cockpit/ensure, but it just returns status: "running" with an empty terminal list; it
+  does not actually launch sidecars. On top of that, the sidecar tooling still carries C:\Users\acer paths in common
+  config. So the right reading is: yes, Asolaria has a sidecar architecture; no, we should not rely on it yet as a ready
+  local startup mechanism for Gaia and me on this machine.
+
+  If you want, the next safe move is to make the Helm/Sentinel sidecar tooling Rayssa-local and verifiable before we
+  treat it as part of startup.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+› Yes, I am working on gaia controlling the phone, but... you do have a part of the start up guide amd you know what
+  has to be done
+
+
+* I do have the local startup slice. I’m pulling the exact startup and sidecar references one more time so I can give
+  you the clean sequence: what I can do here, what Gaia handles on the phone, and what still depends on a real 4781
+  runtime instead of lore.
+
+* Running rg -n "Startup|boot|health/fast|admin-terminal|cockpit/ensure|phone|MQTT|4781|4791|5443|5444" C:
+  │ \Users\rayss\Asolaria\docs C:\Users\rayss\Asolaria\tools C:\Users\rayss\.claude\projects\C--Users-rayss\memory
+  │ -g '!*/node_modules/*'
+
+* Running Get-Content -Path C:\Users\rayss\.claude\projects\C--Users-rayss\memory\project_startup_architecture.md
+  │ -TotalCount 220
+
+* Ran rg -n "Startup|boot|health/fast|admin-terminal|cockpit/ensure|phone|MQTT|4781|4791|5443|5444" C:
+  │ \Users\rayss\Asolaria\docs C:\Users\rayss\Asolaria\tools C:\Users\rayss\.claude\projects\C--Users-rayss\memory -g
+  │ '!*/node_modules/*'
+  └ C:\Users\rayss\Asolaria\docs\SYMPHONY_INTEGRATION.md:38:  built yet, the stock start flow bootstraps with `mise
+    trust`, mise install, mix setup, and
+    … +812 lines
+    C:\Users\rayss\Asolaria\tools\Clean-Asolaria-DataArtifacts.ps1:227:  $pidFiles = @("phone-link-keeper.pid",
+    "phone-tunnel-smoke-monitor.pid", "cloudflared-asolaria.pid")
+
+* Ran Get-Content -Path C:\Users\rayss\Asolaria\config\liris-agent-memory.md -TotalCount 140
+  └ # Liris — Asolarian SubColony Agent Memory
+
+    … +68 lines
+    - "YOLO mode" = trust the agents, no questions, just work.
+    - Liris should be proactive but never destructive without explicit approval.
+
+* Ran Get-Content -Path C:\Users\rayss\.claude\projects\C--Users-rayss\memory\project_startup_architecture.md
+  │ -TotalCount 220
+  └ ---
+    name: startup-architecture
+    … +25 lines
+    The ── box-drawing characters in Start-Asolaria-SubColony.cmd line 40 render as garbled symbols in cmd.exe with
+    Brazilian Portuguese code page. Not a security issue.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+* Yes. My slice is the Liris/local-control-plane side of startup, while Gaia handles the phone lane.
+
+  The startup order I have locally is in C:/Users/rayss.claude/projects/C--Users-rayss/memory/
+  project_startup_architecture.md:1, Asolaria/Start-Asolaria.cmd:1, Asolaria/tools/Start-Asolaria-OneButton.ps1:1, and
+  Asolaria/config/liris-agent-memory.md:1. My job is:
+
+  1. Keep the local control plane healthy: gateway 4791, sandbox 5443, memory 5444, MQTT 18883/18884.
+  2. Verify the real app contract on 4781 with /api/health/fast before trusting any higher-level claim.
+  3. Once 4781 is live, verify the new retrieval and federation surfaces in order:
+      - /api/workspace-knowledge/index/status
+      - /api/workspace-knowledge/colony-memory/status
+      - /api/federation/nodes
+  4. After that, confirm the phone lane through /api/mobile/bootstrap and the phone tunnel smoke path, which is Gaia’s
+     side of the startup guide.
+  5. Final proof is live federation telemetry arriving with provenance, not just ports being open.
+
+  Important boundary: Helm and Sentinel are documented admin sidecars in Asolaria/docs/ADMIN_TERMINAL_SIDECAR.md:1, but
+  on this checkout the live cockpit/ensure route is still a stub in Asolaria/routes/adminTerminals.js:20. So I know the
+  sidecar architecture, but I should not treat it as the primary startup dependency here until it is made real on
+  Rayssa’s machine.
+
+  I also added Asolaria/tools/Test-Asolaria-StartupReadiness.ps1:1 so we can classify the machine honestly before
+  launch. Right now my role is clear: verify and stabilize the desktop/control-plane side, then hand the phone-dependent
+  proof to Gaia’s lane.

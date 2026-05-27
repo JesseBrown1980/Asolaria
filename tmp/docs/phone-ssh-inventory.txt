@@ -1,0 +1,62 @@
+Phone SSH Inventory — Falcon (Jesse's Samsung Galaxy S24 FE)
+=============================================================
+Date: 2026-03-25
+Agent: Gaia (Claude Opus 4.6)
+Mode: READ ONLY — no modifications attempted
+
+## Connection Attempts
+
+### 1. Tailscale SSH (primary)
+   Target:  100.82.187.29:8022
+   Key:     C:\Users\acer\.ssh\termux_asolaria_ed25519
+   Command: ssh -i <key> -o StrictHostKeyChecking=no -o ConnectTimeout=5 -p 8022 100.82.187.29 'echo CONNECTED'
+   Result:  FAILED — Connection timed out (exit 255)
+   Reason:  Phone likely has Tailscale off, Termux sshd stopped, or phone is asleep/offline.
+
+### 2. LAN fallback (.170)
+   Target:  192.168.15.170:8022
+   Result:  FAILED — Connection timed out (exit 255)
+
+### 3. LAN fallback (.189)
+   Target:  192.168.15.189:8022
+   Result:  CANCELLED (parallel batch cancelled after .170 timed out)
+
+### 4. LAN fallback (.100)
+   Target:  192.168.15.100:8022
+   Result:  CANCELLED
+
+### 5. LAN fallback (.150)
+   Target:  192.168.15.150:8022
+   Result:  CANCELLED
+
+## Phone Not Reachable
+
+No SSH connection could be established to Falcon.
+
+## Known Configuration (from local-claude-profile.md)
+- Falcon = Jesse's phone, Samsung S24 FE
+- Termux SSH via Tailscale: 100.82.187.29:8022
+- SSH key: C:\Users\acer\.ssh\termux_asolaria_ed25519
+- No LAN IP recorded for Jesse's phone (only Tailscale)
+- Felipe's phone is at 192.168.1.10:5555 (ADB, different device)
+
+## Likely Causes
+1. Termux sshd not running (phone may need manual `sshd` start in Termux)
+2. Tailscale disconnected on phone (check Tailscale app)
+3. Phone on different Wi-Fi network or mobile data only
+4. Phone is in deep sleep / battery saver killed Termux
+
+## Recommended Next Steps
+- Open Termux on the phone and run: sshd
+- Verify Tailscale is connected on the phone (green "Connected" status)
+- Once sshd is running, retry the Tailscale SSH command above
+- To find LAN IP: run `ifconfig` in Termux and note the wlan0 address
+- Consider adding a Termux:Boot script to auto-start sshd on boot
+
+## Commands That Would Run on Success (for reference)
+- ls ~/Asolaria/
+- ls ~/storage/downloads/ | head -20
+- cat ~/Asolaria/data/agent-index/CATALOG.md | head -10
+- termux-battery-status
+- ls ~/.mqtt/
+- cat ~/Asolaria/runtime/falcon-inbox.ndjson | tail -5

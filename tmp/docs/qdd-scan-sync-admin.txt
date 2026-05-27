@@ -1,0 +1,278 @@
+QDD Deep Scan: sync-server + admin apps
+=========================================
+Date: 2026-03-25
+Source: D:\projects\QDD\ebacmap-master\apps\
+
+================================================================================
+1. SYNC-SERVER (apps/sync-server)
+================================================================================
+
+VERSION: 2.0.1 (package.json) / 1.1.1 (src/version.ts) -- MISMATCH
+PORT: env SERIAL_PORT, default 7700
+ENTRY: src/index.ts -> Socket -> SyncClient
+BUILD: esbuild via build.mjs, outputs dist/index.js (ESM)
+RUNTIME: Node 20.14 (Dockerfile), pnpm 9.12.2
+DOCKER EXPOSE: 443
+
+PURPOSE:
+  TCP socket server that syncs NovaLUM hardware devices to eBacMap MongoDB.
+  Bidirectional: reads device data (globals, firmware, channels, surfaces,
+  locations, plans, assays, notes, operators), writes updates back.
+
+ARCHITECTURE:
+  index.ts       - Connects MongoDB, creates Socket instance
+  socket.ts      - net.createServer, spawns SyncClient per connection
+  SyncClient.ts  - Main state machine (~1870 lines). Read/write protocol.
+  mapper.ts      - processSerialData: maps assays -> test results, queues jobs
+  dbMapper.ts    - Maps serial protocol objects to/from MongoDB documents
+  dbToSerialMapper.ts - Converts DB docs to serial protocol format
+  writer.ts      - Reads DB for sync: surfaces, sites, channels, plans, notes, operators
+  models/        - 10 serial protocol models (Assay, Channel, Firmware, Globals,
+                   Location, Plan, PlanEntry, SerialModel, Surface, CannedNote, CannedOperator)
+  utils/         - encryption.ts, logger.ts, messages.ts, parse.ts, twofish.js
+
+ENCRYPTION:
+  Twofish-256-CBC via bcrypto library.
+  Key hardcoded: "CHARMSCICHARMSCICHARMSCICHARMSCI" (32 bytes)
+  IV hardcoded: 00100200300400500600700800901002
+  Toggled by env USE_ENCRYPTION=true
+  NOTE: Key and IV are in source code (encryption.ts lines 2-3). Security concern
+  if repo is public. twofish.js is a standalone JS implementation (unused, bcrypto used instead).
+
+WORKSPACE DEPS: @ebacmap/common, @ebacmap/db, @ebacmap/domains, @ebacmap/types, @ebacmap/utils
+  All resolved from libs/ directory (workspace:*)
+  Specific imports used:
+    - @ebacmap/db: getConnection, MongooseModels, document types
+    - @ebacmap/common: MongoIdentifier, NotFoundError
+    - @ebacmap/domains: Unit, Channel, CorrectiveNote, Plan, Site, SurfaceType, TestResult, etc.
+    - @ebacmap/types: QUEUE_USECASE
+    - @ebacmap/utils: getEnvFromApiUrl, chunkArray, getLastSiteId, getLastChannelId, etc.
+
+SENTRY:
+  DSN: https://0b05cfede9714f0c8f8a4c658bf62782@o477196.ingest.sentry.io/6653692
+  Environment: 'serial-server'
+
+SYNC FLOW (state machine):
+  1. readGlobals -> identify unit by serial number
+  2. readFirmware -> check version
+  3. IF unit.hasUpdates: readChannels -> readSurfaces -> readLocations -> readPlans
+  4. readAssays (always)
+  5. readNotes, readOperators
+  6. writeChannels -> writeSurfaces -> writeLocations -> writePlans
+  7. writeNotes, writeOperators
+  8. updateGlobals -> deleteAssays -> endSyncProcess
+  Timeout: 90s inactivity disconnects client.
+
+QUEUE INTEGRATION:
+  mapper.ts queues jobs to MongoDB QueueModel:
+  - SEND_NOTIFICATIONS (after test results created)
+  - CHECK_SWABS_FOR_COMPLETED_TESTS
+
+SUBSCRIPTION CHECK:
+  mapper.ts checks clientHasSubscription for CAPA_PRODUCT_ID (env var)
+  before processing assays. CAPA access gates corrective action features.
+
+EZ PROTECT in sync-server: NONE
+  Zero references to ezProtect, ez_protect, or EZ Protect anywhere in sync-server.
+  The sync server handles NovaLUM device protocol only -- EZ Protect is a
+  web-app-level feature, not part of device sync.
+
+POTENTIAL ISSUES (sync-server):
+  1. VERSION MISMATCH: package.json says 2.0.1, src/version.ts says 1.1.1.
+     The version.ts value is what gets displayed to devices during sync.
+  2. HARDCODED CRYPTO: encryption.ts has key/IV in plaintext source code.
+  3. Dockerfile EXPOSE 443 but default port is 7700 -- mismatch.
+  4. Error handlers commented out (socket.ts lines 46-48, 73-74).
+  5. Several @ts-ignore annotations in dbToSerialMapper.ts.
+  6. twofish.js exists but is unused (bcrypto is used instead). Dead code.
+
+BROKEN REFERENCES (sync-server): NONE FOUND
+  All local imports (./models/*, ./utils/*, etc.) resolve to existing files.
+  All @ebacmap/* workspace imports correspond to existing libs/ packages.
+
+================================================================================
+2. ADMIN APP (apps/admin)
+================================================================================
+
+VERSION: 1.0.12
+FRAMEWORK: Next.js 15.5.7 (App Router)
+ENTRY: src/app/layout.tsx -> src/app/page.tsx
+PORT: 3000 (Dockerfile)
+RUNTIME: Node 20.14, pnpm 9.12.2
+
+PURPOSE:
+  Internal admin dashboard for eBacMap. Manages clients, facilities, users,
+  subscriptions, products, purchases, NovaLUM units, system alerts, queues.
+
+PAGES (27 routes):
+  /                           - Dashboard or environment selector
+  /login                      - Login
+  /forgot-password            - Password reset request
+  /reset-password             - Password reset
+  /profile                    - User profile
+  /clients                    - Client list
+  /clients/new                - New client
+  /clients/new/details        - New client details
+  /clients/[id]               - Client detail
+  /clients/[id]/note          - Client notes
+  /clients/[id]/facilities/new - New facility
+  /clients/[id]/facilities/[id] - Facility detail
+  /clients/[id]/facilities/[id]/features - Facility features
+  /clients/[id]/facilities/[id]/new - New facility subscription
+  /users                      - User list
+  /users/[id]                 - User detail
+  /admin-users                - Admin user management
+  /admin-users/[id]           - Admin user detail
+  /products                   - Product list
+  /products/[id]              - Product detail
+  /purchases                  - Purchase list
+  /purchases/[id]             - Purchase detail
+  /novalum                    - NovaLUM unit management
+  /queue                      - Job queue management
+  /system-alerts/bounces      - Email bounces
+  /system-alerts/admin-activity - Admin activity log
+  /admin-dashboard            - Main dashboard components
+
+API ROUTES (35+):
+  /api/auth/*                 - login, logout, forgot, reset
+  /api/admin/environment/*    - env selection
+  /api/admin-stats/*          - dashboard stats (login, map, most-active, no-login,
+                                expired-subscriptions, subscription-renewals, trial-ends)
+  /api/admin-users/*          - CRUD admin users
+  /api/clients/*              - CRUD clients, facilities, notes, users, stats,
+                                rebuild-defaults, subscription-report
+  /api/databases              - Database list
+  /api/facilities/[id]/*      - activity, ftp-config, subscription, test-ftp, users
+  /api/novalum/units/*        - Unit management, disable
+  /api/products/*             - CRUD products
+  /api/purchases/*            - CRUD purchases
+  /api/queue/*                - queue health, pause, refresh, retry, fail, stats
+  /api/system-alerts/*        - bounces, admin-activity
+  /api/users/*                - CRUD users
+
+MODULES (backend logic, Clean Architecture style):
+  modules/clients/     - ClientRepo, ClientNoteRepo, ClientService
+                         UseCases: CreateClient, ExportSubscriptionReport, UpdateClientNote, etc.
+  modules/locations/   - UseCases: CreateFacility, GetFacilityDetails
+  modules/store/       - UseCases: ListProducts, ListPurchases
+  modules/subscriptions/ - Subscription management
+  modules/system-alerts/ - ReactivateBounce
+  modules/units/       - ListAllUnits (NovaLUM units)
+  modules/users/       - UserRepo, AssociateUserRequestRepo
+                         UseCases: CreateAdminUser, GetUser, GetAdminUser, UpdateUser, ForgotPassword
+
+WORKSPACE DEPS: Same @ebacmap/* workspace packages as sync-server.
+  Additional: @ebacmap/common, @ebacmap/db, @ebacmap/domains, @ebacmap/types, @ebacmap/utils
+
+KEY EXTERNAL DEPS:
+  - Stripe (payments/subscriptions)
+  - AWS S3 (file storage)
+  - Postmark (email)
+  - MongoDB/Mongoose
+  - Sentry (error tracking, v8.55.0)
+  - iron-session (auth sessions)
+  - SAML (@node-saml/node-saml)
+  - Playwright + Puppeteer (both listed -- likely testing)
+  - Redis (ioredis)
+  - FTP client
+  - xlsx (Excel export)
+  - web-push (push notifications)
+
+EZ PROTECT in admin: PRESENT (10 files)
+  Integration points:
+
+  a) USER PERMISSIONS (permission toggle):
+     - src/app/users/components/LocationForm.tsx:280-283
+       PermissionToggle for "EZ Protect" with id `ezProtect`, reads permission.ezProtect.action
+     - src/app/users/[id]/page.tsx:120
+       Default permission: ezProtect: { action: 'noaccess' }
+     - modules/users/repos/UserRepo.ts:130, 236
+       Maps ezProtect permission to/from DB (toDb() and mapPermissionView())
+     - modules/users/use-cases/GetUser/UseCase.ts:125
+       Defaults: ezProtect: p.ezProtect || { action: 'noaccess' }
+
+  b) FACILITY FEATURES:
+     - modules/locations/use-cases/GetFacilityDetails/UseCase.ts:32
+       Feature definition: { id: 'ez_protect', label: 'EZ Protect' }
+     - modules/locations/use-cases/GetFacilityDetails/UseCase.ts:289-305
+       Logic to determine if EZ Protect should be enabled:
+       Checks subscription product name (includes 'ez protect' or 'ezprotect'),
+       subscription features flag, and client-level flag.
+       Sets featuresMap entry if any source says enabled.
+
+  c) FACILITY CREATION:
+     - modules/locations/use-cases/CreateFacility/types.ts:28
+       Features type includes: ezProtect: boolean
+     - modules/locations/use-cases/CreateFacility/UseCase.ts:86-87
+       Sets ezProtect.enabled from request.features.ezProtect
+
+  d) CLIENT CREATION:
+     - modules/clients/use-cases/CreateClient/UseCase.ts:202-203
+       If subscriptionFeatures.ezProtect.enabled, sets permissionOverrides.ezProtect = { action: 'manage' }
+
+  e) ADMIN USER CREATION:
+     - modules/users/use-cases/CreateAdminUser/UseCase.ts:82-83, 122-123
+       Same pattern: grants manage permission if subscription has ezProtect enabled
+
+  f) PRODUCT FORM:
+     - src/app/products/components/ProductForm.tsx:55
+       'ezProtect' in product features list
+
+  NAMING INCONSISTENCY:
+     - Camel case "ezProtect" used in code/permissions/features
+     - Snake case "ez_protect" used as feature ID in GetFacilityDetails
+     - Display label is "EZ Protect" (title case with space)
+
+BROKEN REFERENCES (admin): NONE CONFIRMED
+  All @ebacmap/* imports point to existing libs/ packages.
+  The next.config.js has ignoreBuildErrors: true and ignoreDuringBuilds: true,
+  which means TypeScript and ESLint errors are suppressed during build.
+  This masks potential type mismatches at build time.
+
+POTENTIAL ISSUES (admin):
+  1. BOTH Playwright AND Puppeteer in deps. Likely only one needed. Both are heavy.
+  2. Both react-md v5 AND @react-md/core v6 in deps. Migration may be incomplete.
+  3. next.config.js suppresses TS and ESLint errors -- masks real issues.
+  4. moment.js still used alongside date-fns. Should consolidate.
+  5. formik AND react-hook-form both in deps. Two form libraries.
+  6. webpack fallback list is very long (30+ node modules) -- sign of server-side
+     code leaking into client bundles.
+  7. No explicit EZ Protect API routes -- feature is managed through subscription
+     features and user permissions only. No dedicated EZ Protect CRUD.
+
+================================================================================
+3. CROSS-APP ANALYSIS
+================================================================================
+
+SHARED WORKSPACE PACKAGES (libs/):
+  @ebacmap/common   - MongoIdentifier, Result, UseCase, errors, email
+  @ebacmap/db       - MongoDB connection, models, document types
+  @ebacmap/domains  - Domain entities (Unit, User, Client, etc.)
+  @ebacmap/types    - Shared TypeScript types, enums
+  @ebacmap/utils    - Utility functions (queue, serialModels, Array)
+
+THIRD APP: apps/queue-server also exists (separate scan needed).
+
+CONNECTION BETWEEN SYNC-SERVER AND ADMIN:
+  - sync-server writes test results and queues jobs to MongoDB
+  - admin reads from same MongoDB to display data
+  - No direct API calls between them
+  - Queue jobs created by sync-server are processed by queue-server (not admin)
+  - Both use the same MongooseModels from @ebacmap/db
+
+EZ PROTECT INTEGRATION SUMMARY:
+  - sync-server: NO integration. Device protocol has no EZ Protect concept.
+  - admin: YES, fully integrated as a subscription feature and permission system.
+  - EZ Protect is a web-app feature for environmental monitoring corrective actions,
+    not a device-sync feature. The separation is correct.
+
+MISSING PIECES:
+  1. No EZ Protect lot/roll tracking found in either app.
+     The PQ Bid scaffold mentioned in recent QDD commits is not present in these apps.
+  2. sync-server version.ts (1.1.1) is stale vs package.json (2.0.1).
+  3. No test files for admin modules (modules/ directory has no *.test.* files).
+     Tests exist in specs/ directory and jest config, but module-level unit tests missing.
+  4. sync-server has only 2 test files: encryption.unit.ts and parser.unit.ts.
+  5. The CAPA subscription check in mapper.ts uses env CAPA_PRODUCT_ID but there is
+     no similar env check for EZ Protect in sync-server (expected, since EZ Protect
+     is admin-only).

@@ -44,4 +44,64 @@ hookwall.postExec = (verb, result, envelope) => {
   hooks.ingestHookEvent({ eventType: "PostToolUse", toolName: verb, sessionId: envelope?.pid, payload: { ok: result?.ok, ts: new Date().toISOString() } });
 };
 
+// T4 real-time fabric improvement (cosign seq=43): close the 3 deferred Claude
+// Code hook events flagged by acer W3 cascade C10. These wire to Asolaria's
+// hooks connector so Setup / PreCompact / PermissionRequest events get
+// recorded into the same ledger as PreToolUse / PostToolUse.
+//
+// Registration in .claude/settings.json points each event to a wrapper that
+// calls the matching method below.
+
+hookwall.onSetup = (envelope) => {
+  // Fires once per session at runtime boot. Records source_commit + started_at
+  // so feedback_restart_daemons_after_patch's process-started + source-commit
+  // requirement is satisfied for hookwall itself.
+  hooks.ingestHookEvent({
+    eventType: "Setup",
+    sessionId: envelope?.pid ?? envelope?.sessionId ?? "unknown",
+    sourceApp: "ix",
+    payload: {
+      ts: new Date().toISOString(),
+      source_commit: process.env.LIRIS_SOURCE_COMMIT ?? "unknown",
+      process_started_at: process.env.LIRIS_PROCESS_STARTED_AT ?? new Date().toISOString(),
+    },
+    at: new Date().toISOString(),
+  });
+  return { allow: true, gate: "setup", note: "session_setup_recorded" };
+};
+
+hookwall.onPreCompact = (envelope) => {
+  // Fires before Claude Code compacts conversation history. Use as opportunity
+  // to flush pending state + warn that ephemeral references will be lost.
+  hooks.ingestHookEvent({
+    eventType: "PreCompact",
+    sessionId: envelope?.pid ?? envelope?.sessionId ?? "unknown",
+    payload: {
+      ts: new Date().toISOString(),
+      compact_trigger: envelope?.compactTrigger ?? "auto",
+    },
+    at: new Date().toISOString(),
+  });
+  return { allow: true, gate: "pre_compact", note: "pre_compact_recorded_no_state_flush_needed" };
+};
+
+hookwall.onPermissionRequest = (verb, args, envelope) => {
+  // Fires when Claude Code asks for tool permission. Records the request +
+  // applies the same risk-tier gate as the regular hookwall flow.
+  const pid = envelope?.pid ?? "unknown";
+  const ts = new Date().toISOString();
+  const risk = scoreEdgeRisk({ action: verb, actor: pid, target: args?.target ?? "", context: envelope });
+  hooks.ingestHookEvent({
+    eventType: "PermissionRequest",
+    toolName: verb,
+    sessionId: pid,
+    sourceApp: "ix",
+    payload: { verb, risk_score: risk.score, risk_reasons: risk.reasons, ts },
+    at: ts,
+  });
+  // Don't auto-deny; just record. Claude Code's own permission UI handles the
+  // user-facing approval. We surface the risk in the ledger for the fabric.
+  return { allow: true, gate: "permission_request", risk_score: risk.score, ts };
+};
+
 module.exports = hookwall;

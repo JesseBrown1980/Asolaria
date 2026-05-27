@@ -1,0 +1,215 @@
+Warp Terminal References in Asolaria Codebase
+==============================================
+Generated: 2026-03-25
+Search: case-insensitive "warp" across all specified locations
+
+================================================================================
+1. src/ (.js files)
+================================================================================
+
+FILE: src/civilizationWorld.js
+  Line 447:    case "warp-terminal":
+  Line 449:        gateId: "warp-terminal",
+  Line 450:        gateLabel: "Warp Gate",
+  Line 452:        gateAliases: ["warp-terminal", "warp", "terminal:warp-terminal"],
+  Line 453:        towerId: "warp-terminal",
+  Line 454:        towerLabel: "Warp",
+  Line 456:        towerAliases: ["tower:warp-terminal", "warp tower"],
+  Line 464:        routeNotes: "Warp is mounted behind a trusted operator gate."
+
+  Context: civilizationWorld maps Warp as a trusted terminal gate/tower in the
+  simulation world. It has its own gate, tower, and aliases.
+
+================================================================================
+2. routes/
+================================================================================
+
+  No matches found.
+
+================================================================================
+3. server.js
+================================================================================
+
+  Line 684:  function getWarpRuntimeSummary() {
+  Line 685:    const warpPath = path.join(process.env.LOCALAPPDATA || "", "Programs", "Warp", "warp.exe");
+  Line 687:      installed: Boolean(warpPath && fs.existsSync(warpPath)),
+  Line 688:      path: warpPath
+  Line 727:    const warp = getWarpRuntimeSummary();
+  Line 876:        id: "warp-terminal",
+  Line 877:        label: "Warp",
+  Line 881:        connected: Boolean(warp.installed),
+  Line 883:        executable: warp.path || "",
+
+  Context: server.js detects Warp installation at %LOCALAPPDATA%\Programs\Warp\warp.exe,
+  reports install status, and registers "warp-terminal" as a trusted, owned terminal
+  integration with capabilities: terminal_tabs, workflow_execution.
+
+================================================================================
+4. data/agent-index/ (IX entries)
+================================================================================
+
+FILE: data/agent-index/aso-crosswalk-ix.seed.json
+  Line 184: "summary": "Dan's gh CLI, Warp workflow, recon mission to Madness Interactive"
+
+FILE: data/agent-index/patterns/CATALOG-CONVERGENCE.md
+  Line 7: | 035 | Dan's workflow patterns (from screenshots) | pattern | [dan, warp, workflow, tooling, swarmdesk, gemini, balena] |
+
+FILE: data/agent-index/patterns/IX-035.md
+  Line 5:  tags: [dan, warp, workflow, tooling, swarmdesk, gemini, balena]
+  Line 15: - **Warp terminal** -- multi-pane, command palette, workflows, notebooks, env vars, sessions
+  Line 17: - **Claude Code** -- running in Warp panes
+  Line 30: 1. **Stored workflows in Warp** -- reusable command sequences
+  Line 37: - Warp's AI models -- Jesse confirmed they reduce to below frontier level
+
+FILE: data/agent-index/patterns/IX-313.md
+  Line 19: - Warp (workflow surface)
+
+FILE: data/agent-index/rules/IX-050.md
+  Line 22: - Tools and integrations -- balena, gemini CLI, Warp workflows
+
+FILE: data/agent-index/skills/IX-034.md
+  Line 30: ## Warp Terminal Warning
+  Line 31: Jesse tried Warp -- it reduced agents automatically below frontier level without telling him.
+  Line 40: - Consider Warp for terminal UX (but DO NOT use its AI features)
+
+FILE: data/agent-index/references/IX-036.md
+  Line 23: - Full world view with named towers: ... Warp Tower ...
+
+FILE: data/agent-index/references/IX-324.md
+  Line 36: | Warp terminal | Adopted for multi-pane agent work | -- |
+  Line 56: - Mar 12: Dan introduces MQTT, Warp, SwarmDesk
+
+FILE: data/agent-index/references/IX-323.md
+  Line 41: - Studying: connectors, tracking patterns, omnispindle, Warp/Gemini CLI/Balena
+
+FILE: data/agent-index/plans/IX-051.md
+  Line 27: - Tools (balena, gemini CLI, Warp workflows)
+
+FILE: data/agent-index/sub-colonies/liris-merged-20260324/pattern/LX-019.md
+  Line 19: - **Dan contributed:** MQTT, Warp terminal, Omnispindle MCP, process hooks, SwarmDesk 3D dashboard
+
+FILE: data/agent-index/sub-colonies/liris-merged-20260324/pattern/LX-049.md
+  Line 38: Dan Edens contributed MQTT, Warp terminal, Omnispindle MCP, process hooks, SwarmDesk 3D dashboard
+
+FILE: data/agent-index/sub-colonies/liris-merged-20260324/pattern/LX-181.md
+  Line 19: Dan explicitly introduced mqtt, mqttx, Warp, the Madness Interactive dashboard, Omnispindle
+  Line 26: LX-019 already said Dan contributed MQTT, Omnispindle, SwarmDesk, Warp, and planning techniques.
+
+================================================================================
+5. skills/
+================================================================================
+
+  No matches found.
+
+================================================================================
+6. docs/
+================================================================================
+
+FILE: docs/claude-project/HANDOFF-20260316.md
+  Line 98: - **Warp connector** -- Needs `better-sqlite3` native module
+
+FILE: docs/claude-project/CONSTITUTION.md
+  Line 111: *(Corrected 2026-03-16 after mining colony bridge logs, Liris sub-colony, and Warp history)*
+
+FILE: docs/CREATION_HISTORY.md
+  Line 55: - **Warp Terminal** -- Dan recommended warp.dev as a terminal with good image paste support.
+  Line 77: OpenAI hit Jesse's Codex with a 1-week usage limit. Warp also stopped working.
+  Line 116: | 2026-03-14 | OpenAI hits Codex with 1-week limit; Warp stops working |
+
+================================================================================
+7. config/
+================================================================================
+
+  No matches found.
+
+================================================================================
+8. WhatsApp Chat with Rayssa (tmp/docs/whatsapp-rayssa/)
+================================================================================
+
+FILE: tmp/docs/whatsapp-rayssa/WhatsApp Chat with Rayssa.txt
+  Line 6416:  8/12/25 - Jesse: "Check out this story: Scientists Announce a Physical Warp Drive Is Now Possible"
+             (Not Warp terminal -- this is about a physics article)
+  Line 10676: 3/13/26 - Jesse: "You've received free credits for Warp cloud agents"
+  Line 10681: "With cloud agents, you can run coding agents outside of your local machine..."
+  Line 10687: "Launch Warp, run /create-environment inside a repo, and start a cloud agent"
+  Line 10689: "Visit oz.warp.dev to run an agent skill in a repo of your choice"
+  Line 10690: "Credits can only be applied to cloud agent runs hosted on Warp's infrastructure"
+  Line 10692: "reach out to support@warp.dev"
+  Line 10695: "Eric from Warp"
+  Line 12077: Reference to CREATION_HISTORY.md mentioning Dan contributed Warp terminal
+  Line 18741: "contributing MQTT/MQTTX, Warp, Omnispindle/SwarmDesk workflow"
+
+================================================================================
+9. tmp/docs/ (extracted docx files and other documents)
+================================================================================
+
+FILE: tmp/docs/Gaias plan.txt
+  Line 233: - Consider Warp for terminal UX (but DO NOT use its AI features)
+
+FILE: tmp/docs/Asolaria Systems Engineering Assessment.txt
+  Line 182-186: Discussion of Warp's 'auto' model selection (Oz explaining it)
+  Line 491-535: Full section explaining "Warp is the terminal application you're running"
+    - "Warp = the terminal/IDE application on your machine"
+    - "Warp is not Asolaria. They are completely separate systems."
+    - "I'm Oz, Warp's built-in AI agent."
+    - "Warp is your shell + AI coding assistant (me). Asolaria is your personal multi-agent command center."
+
+FILE: tmp/docs/Jesse an Dan first conversations on Facebook...txt
+  Line 321: "WArp"
+  Line 323: "https://www.warp.dev/"
+  Line 361: "WARP TOOO???"
+  Line 366: "And warp quit"
+  Line 741: "you're seriously missing out by not using warp"
+  Line 752: "BRO WARP TRIED TO KILL ME"
+
+FILE: tmp/docs/Liris responds to Dans and jesses converationThe record is written.txt
+  Line 69: "contributing MQTT/MQTTX, Warp, Omnispindle/SwarmDesk workflow"
+
+FILE: tmp/docs/Stage 2.txt
+  Line 423: Trusted entities list includes "warp-terminal"
+  Line 573: (Long line with warp reference)
+
+FILE: tmp/docs/Liris response to Gaias plan.txt
+  Line 16:  Warp listed in toolchain alongside OMNISPINDLE, MQTTX, etc.
+  Line 288: Dan directly introduced Warp (Mar 12, 2026)
+  Line 382: Dan explicitly introduced Warp
+  Line 393: LX-019 said Dan contributed Warp
+
+FILE: tmp/docs/Alright pull the Edge GNN paper from downloads.txt
+  Line 1: (Long line containing warp reference)
+
+================================================================================
+SUMMARY
+================================================================================
+
+Total unique files with Warp references: 27
+
+Code references (live system):
+  - server.js: Warp install detection + trusted integration registration
+  - src/civilizationWorld.js: Warp gate/tower in simulation world
+
+Agent Index references (IX/LX entries):
+  - IX-034: Warp Terminal Warning (DO NOT use AI features)
+  - IX-035: Dan's workflow patterns (Warp multi-pane, command palette)
+  - IX-036: World view with Warp Tower
+  - IX-050: Dan's tools include Warp workflows
+  - IX-051: Plan including Warp workflows
+  - IX-313: Warp as workflow surface
+  - IX-323: Studying Warp/Gemini CLI/Balena
+  - IX-324: Dan introduces Warp (Mar 12 timeline)
+  - LX-019, LX-049, LX-181: Dan contributed Warp terminal
+
+Documentation:
+  - CREATION_HISTORY.md: Dan recommended warp.dev; Warp stopped working Mar 14
+  - HANDOFF: Warp connector needs better-sqlite3
+  - CONSTITUTION.md: Correction after mining Warp history
+
+Chat archives:
+  - WhatsApp: Warp cloud agent credits email (Mar 13, 2026)
+  - Facebook: Dan recommending Warp to Jesse, Jesse's "WARP TRIED TO KILL ME" incident
+  - Oz/Warp assessment: Warp vs Asolaria distinction explained
+
+Key finding: Warp is used as a terminal UI (multi-pane agent work) but its AI
+features (Oz) are explicitly warned against -- they silently downgrade models
+below frontier level. The system detects Warp installation and registers it
+as a trusted terminal integration in the simulation world.

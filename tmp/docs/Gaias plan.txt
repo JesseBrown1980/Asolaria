@@ -1,0 +1,1685 @@
+• C:/Users/acer/Downloads/I%20think%20you%20will%20need%20this.docx is the primary sensitive
+  source artifact in this chain, not a derivative note. The excavation is in reports/i-think-you-
+  will-need-this-docx-excavation-latest.md:1, the memory note is data/vault/owner/observations/i-
+  - This raw .docx contains one real Google API key occurrence in the transcript. I redacted it
+    locally before any model analysis, and the derived report/index surfaces do not carry the raw
+    value. It should be treated as restricted local evidence only: reports/i-think-you-will-need-
+    this-docx-excavation-latest.md:48
+  - It is the full March 22 workstream transcript: key vaulting, Rayssa/Liris path audit, QDD
+    return-lane correction, the Downloads Gemini tool, IX-238, indexed-memory implementation, and
+    Liris startup packetization: reports/i-think-you-will-need-this-docx-excavation-latest.md:23
+  - Operationally it reaffirms the same live rules: 4799 is dead or unaudited, the friend bridge
+    is staged rather than live, manual owner relay is authoritative, and the protected primary
+    4781 listener is still a real blocker: reports/i-think-you-will-need-this-docx-excavation-
+  using the derived report and IX surfaces instead of forwarding the raw file.
+› Ok, you now process what liris said, And You THINK SO DEEPLY about the PLAN, memory , idex, and
+  then research based on that first impressions of what should be researched, to both get the
+  colonies connected, sharing the same languge and indexes but in a way that allows the
+  progressive memory and separation like in the photo from dan with the layered developpment ide
+  and this statement he said: "C:\Users\acer\Downloads\Jesse an Dan first conversations on
+  Facebook Missing the stuff like phos and videos but all available in facebook and
+  downlaods.docx"
+• I’m treating this as a new planning and archaeology pass: first find the actual Liris-side
+  material and Dan/Facebook artifact you pointed at, then I’ll synthesize the connection plan,
+  store it in memory/index, and only after that do the research pass on architecture patterns.
+• Running rg -n "Liris|Rayssa|next-phase startup|manual owner relay|gaia_liris|reply|response|
+  │ startup report" 'C:\Users\acer\Asolaria\reports' 'C:\Users\acer\Asolaria\runtime' 'C:
+  │ \Users\acer\Asolaria\TASKS.md'
+• Running Get-ChildItem -Path 'C:\Users\acer\Downloads' -File | Sort-Object LastWriteTime
+  │ -Descending | Select-Object -First 12 FullName,Name,LastWriteTime,Length | Format-List
+• Ran Get-ChildItem -Path 'C:\Users\acer\Downloads' -File | Sort-Object LastWriteTime -Descending
+  │ | Select-Object -First 12 FullName,Name,LastWriteTime,Length | Format-List
+  └
+    FullName      : C:\Users\acer\Downloads\Jesse an Dan first conversations on Facebook Missing
+  │ stuff like phos and videos but all available in facebook and downlaods.docx'
+  └ True
+• Ran rg -n "Liris|Rayssa|next-phase startup|manual owner relay|gaia_liris|reply|response|startup
+  │ report" 'C:\Users\acer\Asolaria\reports' 'C:\Users\acer\Asolaria\runtime' 'C:
+  │ \Users\acer\Asolaria\TASKS.md'
+  └ (no output)
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I found two new working artifacts in Downloads, and I don’t yet have a clean local Liris reply
+  packet. I’m narrowing that now: extract both new .docx files, then check whether either one
+  contains the Liris-side response or the layered-memory idea you want carried into the plan.
+• Running Get-ChildItem -Path 'C:\Users\acer\Asolaria\reports' -File | Where-Object { $_.Name
+  │ -match 'liris|startup|rayssa' } | Sort-Object LastWriteTime -Descending | Select-Object
+  │ -First 20 FullName,Name,LastWriteTime | Format-List
+• Running Get-ChildItem -Path 'C:\Users\acer\Downloads' -File | Where-Object { $_.Name -match
+  │ 'Liris|Rayssa|startup|report|Dan|Facebook|Updated Plan' } | Sort-Object LastWriteTime
+  │ -Descending | Select-Object FullName,Name,LastWriteTime,Length | Format-List
+• Ran Get-ChildItem -Path 'C:\Users\acer\Asolaria\reports' -File | Where-Object { $_.Name -match
+  │ 'liris|startup|rayssa' } | Sort-Object LastWriteTime -Descending | Select-Object -First 20
+  │ FullName,Name,LastWriteTime | Format-List
+  └
+    FullName      : C:\Users\acer\Asolaria\reports\liris-startup-sample-report.md
+    … +64 lines
+    LastWriteTime : 2/27/2026 1:16:21 AM
+• Ran Get-ChildItem -Path 'C:\Users\acer\Downloads' -File | Where-Object { $_.Name -match 'Liris|
+  │ Rayssa|startup|report|Dan|Facebook|Updated Plan' } | Sort-Object LastWriteTime -Descending |
+  │ Select-Object FullName,Name,LastWriteTime,Length | Format-List
+  └
+    FullName      : C:\Users\acer\Downloads\Jesse an Dan first conversations on Facebook Missing
+    … +32 lines
+  │ 'C:\Users\acer\Asolaria\reports\liris-next-phase-startup-order-latest.md' 'C:
+  │ … +1 lines
+  └ C:\Users\acer\Asolaria\reports\rayssa-path-inspection-latest.md:10:- A correction packet has
+    now been appended to the Liris inbox redirecting the QDD smoke return path away from dead
+    … +94 lines
+    rayss\\Asolaria or package.json is missing, STOP and report exactly what exists instead. —Gai
+    a"}
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I don’t have a local inbound Liris report yet. So I’m treating the two new .docx files as the
+  actual input for this phase and extracting the planning signals from them before I move into
+  external research.
+• Running @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +26 lines
+  └ {
+      "file": "Updated Plan during research of the begnnings and improving the system to be able
+    … +23 lines
+      "phone": true
+  │ … +23 lines
+  └ FILE: Updated Plan during research of the begnnings and improving the system to be able to
+    work better.docx
+    … +964 lines
+      }
+    ]
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The Facebook export has embedded images and personal conversation content, so I’m keeping that
+  pass local-only for now. I’m pulling the high-signal text windows first, then I’ll extract the
+  inline images so I can identify the “layered development” photo without shipping private content
+  to an external model.
+• Running @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +10 lines
+• Running @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +11 lines
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +11 lines
+  └ === CONTEXT 173 ===
+    169: Therefore two bots that know only one master each. They prevent direct communication and
+    … +15 lines
+    UnicodeEncodeError: 'charmap' codec can't encode character '\u202f' in position 22: character
+    maps to <undefined>
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +10 lines
+  └ Traceback (most recent call last):
+      File "<stdin>", line 9, in <module>
+    … +4 lines
+  │ from pathlib import Path
+  │ … +14 lines
+  └ C:\Users\acer\Asolaria\tmp\docs\dan-facebook-images
+    11
+    … +9 lines
+    image10.png
+    image11.png
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The Facebook export does contain embedded images. I’ve extracted them to tmp/docs/dan-facebook-
+  images. Now I’m isolating the exact text windows and the image set so I can locate the layered-
+  development idea instead of guessing from the transcript.
+• Running @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +14 lines
+• Running @'
+  │ from pathlib import Path
+  │ from PIL import Image
+  │ … +12 lines
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +14 lines
+  └ {
+      "173": [
+  │ from pathlib import Path
+  │ from PIL import Image
+  │ … +12 lines
+  └ [
+      {
+    … +108 lines
+      }
+    ]
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +13 lines
+  └ [
+      {
+    … +456 lines
+      }
+    ]
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The “Facebook” docx does not appear to embed the actual big photo or diagram. The inline images
+  are tiny UI/media icons, not the layered-development picture. I’m searching the transcript text
+  for the idea itself so I can recover the design even without the missing media.
+• Running @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +14 lines
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +14 lines
+  └ [
+      {
+    … +323 lines
+      }
+    ]
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +14 lines
+  └ [
+      {
+    … +154 lines
+      }
+    ]
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I have the first impression now. Dan’s usable contribution is not “one more chat log”; it’s a
+  concrete operating pattern: tool-control layer, indexed skills/tools/mistakes/projects, local
+  memory, nightly research, MQTT coordination, and ephemeral per-port agents. I’m checking whether
+  the repo already has earlier Dan-derived index surfaces so I can chain this plan to existing
+  memory instead of creating another isolated note.
+• Running rg -n "Dan|workflow patterns|screenshots|private remotes|Omnispindle|instant agents|
+  │ NotebookLM|tool control layer|mqtt for centralized logging" 'C:
+  │ \Users\acer\Asolaria\data\agent-index' 'C:\Users\acer\Asolaria\reports'
+• Ran rg -n "IX-034|IX-035|IX-036|IX-037|Dan's advice|Dan's workflow|Visualization chain|
+  │ sub-colony as 3D district" 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' 'C:
+  │ \Users\acer\Asolaria\data\agent-index\IX-*.md'
+  └ C:\Users\acer\Asolaria\data\agent-index\CATALOG.md:42:| 034 | Dan's advice — gh CLI + private
+    rg: C:\Users\acer\Asolaria\data\agent-index\IX-*.md: A sintaxe do nome do arquivo, do nome do
+    diretório ou do rótulo do volume está incorreta. (os error 123)
+• Ran rg -n "Dan|workflow patterns|screenshots|private remotes|Omnispindle|instant agents|
+  │ NotebookLM|tool control layer|mqtt for centralized logging" 'C:
+  │ \Users\acer\Asolaria\data\agent-index' 'C:\Users\acer\Asolaria\reports'
+  └ C:\Users\acer\Asolaria\reports\agent-state-maintenance-2026-03-08T16-11-44-134Z.json:227:
+    "NotebookLM Enterprise Owner Action Required",
+    … +10266 lines
+    OrXfT_t/ksSD9[(b@&`9&qR@G06)t+jikntE-*Z481lYGhSDWu+7s!(0e9.DCu9?
+    Zm`96(@I1\:1dTmtDJU19fYN/;iLjN5)*O7!P
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The repo already has old Dan-derived canon. I’m pulling those anchor entries now because the new
+  plan should extend them, not fork them.
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-037.md'
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-035.md'
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-034.md'
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-044.md'
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-021.md'
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-044.md'
+  └ ---
+    ix: 044
+    … +38 lines
+    end. Default bind was 127.0.0.1 — changed via env var. To make permanent, set
+    ASOLARIA_MQTT_BIND_HOST=0.0.0.0 in Asolaria's startup env.
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-037.md'
+  └ ---
+    ix: 037
+    … +35 lines
+    Liris: Git Credential Manager authed. Cleaning stale directories, will reclone and start
+    pnpm10 test.
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-034.md'
+  └ ---
+    ix: 034
+    … +32 lines
+    - Set up private remotes for QDD and other repos
+    - Consider Warp for terminal UX (but DO NOT use its AI features)
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-036.md'
+  └ ---
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-021.md'
+    … +30 lines
+• Searched site:modelcontextprotocol.io docs resources prompts tools server pointer
+• Searched site:docs.oasis-open.org mqtt shared subscriptions retained message session expiry html
+• Searched https://support.google.com/notebooklm/answer/16215270?co=GENIE.Platform%3DDesktop&hl=en
+• Searched https://automerge.org/docs/reference/concepts/
+• Searched site:modelcontextprotocol.io specification resources tools prompts capability
+  pagination
+• Searched 'static copy' in
+  https://support.google.com/notebooklm/answer/16215270?co=GENIE.Platform%3DDesktop&hl=en
+• Searched
+• Searched site:inkandswitch.com Upwelling private drafts merge when ready
+─ Worked for 2m 27s ──────────────────────────────────────────────────────────────────────────────
+• I have the architecture shape and the research anchors. I’m writing this as a convergence packet
+  now: one report, one owner observation, two IX entries, and a task entry for the next
+  implementation slice.
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' | Select-Object -Last
+  │ 30
+• Running Get-Date -Format "yyyy-MM-dd HH:mm zzz"
+• Running Test-Path 'C:\Users\acer\Asolaria\data\agent-index\IX-250.md'; Test-Path 'C:
+  │ \Users\acer\Asolaria\data\agent-index\IX-251.md'
+  └ 20260322-213922
+  └ > Numbered-node memory direction aligns with the original index architecture and Gaia's
+    repaired language discipline.
+    … +30 lines
+    ## Next available: IX-250
+• Searched
+• Searched https://modelcontextprotocol.io/specification/draft/server/tools
+• Searched 'listChanged' in https://modelcontextprotocol.io/specification/draft/server/resources
+• Searched 'Ephemeral Data'
+• Searched site:docs.oasis-open.org mqtt "No Retained Messages are sent to the Session when it
+  first subscribes"
+• Searched site:automerge.org docs ephemeral data networking automerge repositories
+─ Worked for 1m 01s ──────────────────────────────────────────────────────────────────────────────
+• I’m writing the convergence packet with one explicit boundary: there is still no clean current
+  Liris startup report locally, so I’m separating historical Liris evidence from current live
+  truth in the report and index.
+• Edited 7 files (+550 -1)
+  └ TASKS.md (+4 -0)
+     4
+     5 +- [ ] Define the first layered colony-memory slice (2026-03-22 21:39 -03:00): create a mac
+        hine-readable `colony-registry` / `transport-epoch` spec and draft-promotion rules so shar
+        ed index language, colony-local memory, and ephemeral MQTT coordination stop collapsing in
+        to one layer. This is the architecture slice needed before another serious reconnect attem
+        pt.
+     6 +
+     7  - [ ] Repair `tools/Validate-LirisStartupReport.ps1` before Liris reply is processed (2026
+        -03-22 20:50 -03:00): synthetic validation against a sample report exposed PowerShell pars
+        er errors, so the deterministic intake path described in the waiting plan is not yet trust
+        worthy. Do not rely on the validator until the script is fixed and re-tested.
+       ⋮
+    26
+    27 +- [x] Colony convergence research packet stored and indexed (2026-03-22 21:39 -03:00): pro
+        cessed the new Dan/Facebook export and updated-plan export, extracted the strongest histor
+        ical Liris-side signal, separated that from current sovereign-side truth, and combined it
+        with primary-source research on local-first sync, Automerge document/migration discipline,
+         MQTT retained/shared-subscription behavior, MCP resources/tools, and NotebookLM source be
+        havior. Wrote `reports/colony-convergence-research-20260322-213922.md` (`latest`: `reports
+        /colony-convergence-research-latest.md`), owner observation `data/vault/owner/observations
+        /colony-convergence-research-20260322-213922.md`, and indexed the result as `IX-250` and `
+        IX-251`. Current best next move is a layered colony-memory slice, not another blind bridge
+         attempt.
+    28 +
+    29  - [x] Recent downloads two-pass Gemini analysis completed and indexed (2026-03-22 18:52 -0
+        3:00): processed the last `15` files in `C:\Users\acer\Downloads` with the local `recent-d
+        ownload-analysis` Gemini tool, reran the full batch after fixing video upload/processing,
+        emitted final first-pass artifacts `reports/recent-downloads-first-pass-20260322-184824.{m
+        d,json}`, generated deep-pass synthesis `reports/recent-downloads-deep-pass-20260322-18512
+        0.{md,json}`, wrote the combined packet `reports/recent-downloads-analysis-20260322-185220
+        .md` (`latest`: `reports/recent-downloads-analysis-latest.md`), stored the owner observati
+        on `data/vault/owner/observations/recent-downloads-analysis-20260322-185220.md`, extended
+        the local tool to support `--deep-pass-json`, and indexed the batch as `IX-225` through `I
+        X-241`. Source downloads remain sensitive; prefer the packet/IX surfaces over reopening ra
+        w screenshots.
+  └ data\agent-index\CATALOG.md (+9 -1)
+    412  | 249 | I think you will need this.docx is the primary sensitive transcript artifact for
+         the March 22 Asolaria workstream | reference | downloads, docx, transcript, sensitive, go
+         ogle, vault, liris, qdd, gemini, indexed-memory, manual-relay | → 220, 223, 238, 244 | al
+         l |
+    413 +| 250 | Dan's Facebook seed pattern is indexed tool-control plus local notebook memory pl
+         us MQTT coordination | pattern | dan, facebook, tool-control, index-language, notebooklm,
+          mqtt, colonies, workflow, memory | → 035, 238, 037 | all |
+    414 +| 251 | Colony convergence should use layered local-first memory with draft promotion, MQ
+         TT ephemera, MCP retrieval, and NotebookLM as mirror | plan | colonies, local-first, draf
+         t-memory, ix, lx, mqtt, mcp, notebooklm, transport-registry, convergence | → 249, 238, 03
+         7, 250 | all |
+    415
+        ⋮
+    472
+    471 -## Next available: IX-250
+    473 +**Dan seed chain:** IX-250 → IX-035 → IX-238 → IX-037
+    474 +> Dan's early pattern confirms the IX direction, but also points to missing local memory
+         and coordination layers around it.
+    475 +
+    476 +**Colony convergence chain:** IX-251 → IX-249 → IX-238 → IX-037 → IX-250
+    477 +> The right next architecture is layered: shared canon, colony canon, draft memory, MQTT
+         ephemera, MCP retrieval, and local notebook mirrors.
+    478 +
+    479 +## Next available: IX-252
+  └ data\agent-index\IX-250.md (+24 -0)
+     1 +---
+     2 +ix: 250
+     3 +name: Dan's Facebook seed pattern is indexed tool-control plus local notebook memory plus
+        MQTT coordination
+     4 +type: pattern
+     5 +tags: [dan, facebook, tool-control, index-language, notebooklm, mqtt, colonies, workflow,
+        memory]
+     6 +chain: [IX-035, IX-238, IX-037]
+     7 +agents: [all]
+     8 +---
+     9 +
+    10 +# Dan Seed Pattern
+    11 +
+    12 +## Durable Truth
+    13 +
+    14 +From the Facebook export, the strongest design seed is:
+    15 +
+    16 +- reduce tools, skills, mistakes, and projects to numbered index entries
+    17 +- load index numbers instead of loading the full list every time
+    18 +- keep a local memory layer for research and accumulation
+    19 +- use MQTT for coordination
+    20 +- treat agents as bounded profile-loaded workers that hand off and exit
+    21 +
+    22 +## Use Rule
+    23 +
+    24 +This is not a replacement for the IX language. It is a confirmation that the IX direction
+        is right, but it also implies the need for a separate local memory layer and an explicit c
+        oordination layer.
+  └ data\agent-index\IX-251.md (+28 -0)
+     1 +---
+     2 +ix: 251
+     3 +name: Colony convergence should use layered local-first memory with draft promotion, MQTT
+        ephemera, MCP retrieval, and NotebookLM as mirror
+     4 +type: plan
+     5 +tags: [colonies, local-first, draft-memory, ix, lx, mqtt, mcp, notebooklm, transport-regis
+        try, convergence]
+     6 +chain: [IX-249, IX-238, IX-037, IX-250]
+     7 +agents: [all]
+     8 +---
+     9 +
+    10 +# Layered Colony Convergence
+    11 +
+    12 +## Durable Truth
+    13 +
+    14 +To connect colonies while keeping the same language and allowing progressive separation:
+    15 +
+    16 +- IX should remain shared canon
+    17 +- LX should remain colony-local canon
+    18 +- a draft layer should exist above both for unconfirmed and progressive memory
+    19 +- MQTT should carry heartbeat, discovery, and ephemeral coordination
+    20 +- MCP resources/tools should expose the memory language for retrieval and controlled mutat
+        ion
+    21 +- NotebookLM should be treated as a local read mirror, not canonical shared state
+    22 +
+    23 +## Immediate Build Order
+    24 +
+    25 +1. create a shared `colony-registry` schema
+    26 +2. create a versioned `transport-epoch` record so port/bridge drift stops recurring
+    27 +3. create draft-promotion rules from draft -> LX -> IX
+    28 +4. surface the registry and index nodes through workspace knowledge and MCP resources
+  └ data\vault\owner\observations\colony-convergence-research-20260322-213922.md (+15 -0)
+     1 +# Observation: Colony Convergence Research
+     2 +
+     3 +- Recorded: `2026-03-22 21:39 -03:00`
+     4 +
+     5 +Deep read across the new Dan/Facebook export, the updated plan export, existing IX canon,
+        and primary-source web research points to one durable conclusion:
+     6 +
+     7 +The colonies do not mainly need "more bridge attempts." They need a layered memory archite
+        cture.
+     8 +
+     9 +Durable conclusions:
+    10 +
+    11 +1. the shared language already exists in IX/LX form
+    12 +2. the missing layer is progressive local draft memory before promotion to colony or sover
+        eign canon
+    13 +3. MQTT should stay primarily in the heartbeat / ephemeral / command lane, not be treated
+        as the only canonical memory bus
+    14 +4. NotebookLM should be treated as a local read mirror because its imported sources are st
+        atic copies
+    15 +5. the recurring `18883` vs `18886` and staged-vs-live bridge drift means transport facts
+        need an explicit versioned registry
+  └ reports\colony-convergence-research-20260322-213922.md (+235 -0)
+      1 +# Colony Convergence Research
+      2 +
+      3 +- Generated: `2026-03-22 21:39 -03:00`
+      4 +- Scope: process the available Liris-side evidence, extract Dan's design signals, think t
+         hrough the plan, then research the architecture needed to connect colonies while preservi
+         ng progressive memory and separation
+      5 +
+      6 +## Inputs Processed
+      7 +
+      8 +- `C:\Users\acer\Downloads\Updated Plan during research of the begnnings and improving th
+         e system to be able to work better.docx`
+      9 +- `C:\Users\acer\Downloads\Jesse an Dan first conversations on Facebook Missing the stuff
+          like phos and videos but all available in facebook and downlaods.docx`
+     10 +- existing local canon: `IX-035`, `IX-036`, `IX-037`, `IX-238`, `IX-244`, `IX-245`, `IX-2
+         49`
+     11 +
+     12 +## Important Boundary
+     13 +
+     14 +I do **not** see a clean current inbound Liris startup report in the local workspace yet.
+     15 +
+     16 +What I do see is:
+     17 +
+     18 +- the current outbound startup order to Liris
+     19 +- older local Rayssa/Liris path archaeology
+     20 +- a historical embedded Liris response inside the Facebook export
+     21 +
+     22 +So the plan below separates:
+     23 +
+     24 +1. historical Liris evidence
+     25 +2. current sovereign-side truth
+     26 +3. future architecture work
+     27 +
+     28 +## What Liris Said, As Far As The Local Evidence Shows
+     29 +
+     30 +From the Facebook export, the strongest historical Liris-side response is:
+     31 +
+     32 +- she treated `18886` as the correct LAN MQTT port for that phase
+     33 +- she updated the Rayssa bridge config from `18883` to `18886`
+     34 +- she reported the MQTT bridge connected after that change
+     35 +- she verified QDD EZ Protect pages returning `200` and the dashboard API returning `422`
+          as expected
+     36 +- she treated Asolaria on Jesse's host as the execution surface needed to dispatch deeper
+          work
+     37 +
+     38 +This is useful, but it is **historical**, not current live truth. Current sovereign-side
+         inspection on this machine still says:
+     39 +
+     40 +- manual owner relay is authoritative
+     41 +- the friend bridge is staged, not live
+     42 +- `4799` is dead or unaudited
+     43 +- the protected `4781` listener still blocks some main-runtime rollout work
+     44 +
+     45 +## Dan's Useful Seed Ideas
+     46 +
+     47 +From the Facebook export, the strongest architecture signals from Dan/Jesse are:
+     48 +
+     49 +- a **tool control layer** matters
+     50 +- tools, skills, mistakes, and projects should be reduced to a **numbered index table**
+     51 +- the model should load **index numbers instead of the whole tool list**
+     52 +- local memory should exist as a separate layer
+     53 +- nightly upgrade/research jobs should feed that memory
+     54 +- MQTT can be used for coordination and centralized logging
+     55 +- agents can be ephemeral, construct-bound workers that load a profile, do one bounded jo
+         b, hand off, and exit
+     56 +
+     57 +The photo itself is not preserved in this `.docx` in usable form. The export contains onl
+         y tiny UI/media icons rather than the missing large photos/videos, so the recoverable des
+         ign signal comes from the text statements, not the absent media.
+     58 +
+     59 +## First Impression
+     60 +
+     61 +The problem is no longer "invent a language." That already exists.
+     62 +
+     63 +The real missing pieces are:
+     64 +
+     65 +1. a canonical replicated memory layer shared across colonies
+     66 +2. a separate local draft layer so colonies can think and store progressively without pol
+         luting canon
+     67 +3. a transport/discovery layer that does not force canonical truth to ride on ad hoc brid
+         ge paths
+     68 +4. a versioned transport registry so `18883` vs `18886` style drift becomes machine-reada
+         ble instead of archaeological
+     69 +5. a retrieval surface that exposes the same language to agents without loading everythin
+         g
+     70 +
+     71 +## Research Findings
+     72 +
+     73 +### 1. Canon should be local-first, not server-first
+     74 +
+     75 +Ink & Switch's local-first paper says local devices should hold the primary copy and sync
+          quietly in the background, while servers hold secondary copies.
+     76 +
+     77 +Source:
+     78 +- https://www.inkandswitch.com/essay/local-first/local-first.pdf
+     79 +
+     80 +Why it matters here:
+     81 +
+     82 +- each colony should own a primary local copy of its own memory/state
+     83 +- the sovereign should not be the only place where truth "really exists"
+     84 +- sync should happen in the background, not by forcing every action through a live centra
+         l surface
+     85 +
+     86 +### 2. Shared language should be a small set of replicated documents with explicit migrat
+         ions
+     87 +
+     88 +Automerge's official modeling guidance says:
+     89 +
+     90 +- many documents are fine, but granularity matters
+     91 +- all peers must share the same initial document ancestry if they are meant to merge
+     92 +- migrations should be hard-coded, versioned changes instead of ad hoc rewrites
+     93 +- many docs can sync over a single connection if each message is tagged with the document
+          ID
+     94 +
+     95 +Sources:
+     96 +- https://automerge.org/docs/cookbook/modeling-data/
+     97 +- https://automerge.org/docs/reference/repositories/
+     98 +- https://automerge.org/docs/reference/repositories/dochandles/
+     99 +
+    100 +Why it matters here:
+    101 +
+    102 +- the IX/LX language should become a versioned document family, not just markdown files d
+         iscovered later
+    103 +- colonies need a shared root schema and migration discipline
+    104 +- the shared language can stay small while project and colony details remain separate doc
+         uments
+    105 +
+    106 +### 3. Progressive separation needs draft memory, not immediate promotion
+    107 +
+    108 +The strongest local-first implication is that colonies need local primary copies first, t
+         hen merge into shared state when ready.
+    109 +
+    110 +For Asolaria, that means:
+    111 +
+    112 +- IX stays sovereign/shared canon
+    113 +- LX stays colony-local canon
+    114 +- a new draft layer should sit above both for unconfirmed work, experiments, and partial
+         archaeology
+    115 +
+    116 +This matches the missing "layered development" idea much better than dumping raw chat int
+         o global memory.
+    117 +
+    118 +### 4. MQTT should carry heartbeat, discovery, and ephemeral traffic; not be the only can
+         onical store
+    119 +
+    120 +Official MQTT 5 material shows:
+    121 +
+    122 +- shared subscriptions are server-scoped
+    123 +- shared subscriptions do **not** send retained messages when a session first subscribes
+    124 +- retained/session behavior must be chosen deliberately depending on whether you need boo
+         tstrap state or only live flow
+    125 +
+    126 +Sources:
+    127 +- https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html
+    128 +- search anchors used: shared subscriptions, retained-message behavior, session scope
+    129 +
+    130 +Why it matters here:
+    131 +
+    132 +- MQTT is good for heartbeat, discovery, commands, and ephemeral coordination
+    133 +- it is dangerous to assume a shared subscription is enough for bootstrap or canonical re
+         play
+    134 +- colony bootstrap state should live in durable documents or non-shared retained surfaces
+         , not only in ad hoc bridge traffic
+    135 +
+    136 +### 5. MCP is the right retrieval/access layer, not the canonical memory layer
+    137 +
+    138 +Official MCP docs show:
+    139 +
+    140 +- tools can be listed with pagination and list-changed notifications
+    141 +- resources are addressable by URI, can be listed/read, can expose templates, and can be
+         subscribed to for updates
+    142 +
+    143 +Sources:
+    144 +- https://modelcontextprotocol.io/specification/draft/server/tools
+    145 +- https://modelcontextprotocol.io/specification/draft/server/resources
+    146 +
+    147 +Why it matters here:
+    148 +
+    149 +- colonies can share the same language through URIs and resource templates
+    150 +- IX/LX entries can be exposed as addressable resources
+    151 +- agents can subscribe to specific memory surfaces instead of reloading everything
+    152 +- this gives us the "same language" across colonies without collapsing all memory into on
+         e file
+    153 +
+    154 +### 6. NotebookLM should be treated as a local read-mirror, not canonical replicated memo
+         ry
+    155 +
+    156 +Official NotebookLM help says imported sources are static copies, Google files require ma
+         nual resync, and other uploaded files must be deleted and uploaded again to refresh.
+    157 +
+    158 +Source:
+    159 +- https://support.google.com/notebooklm/answer/16215270?hl=en
+    160 +
+    161 +Why it matters here:
+    162 +
+    163 +- Dan's "create memory locally using NotebookLM" idea is good for local read/analysis
+    164 +- it is not good as the canonical federation substrate
+    165 +- NotebookLM should sit above the replicated memory layer as a colony-local research mirr
+         or
+    166 +
+    167 +## Research-Based Plan
+    168 +
+    169 +### Layer 1: Shared Canon
+    170 +
+    171 +- keep IX as the shared inter-colony language
+    172 +- define a small shared root schema and migration path
+    173 +- store canonical transport facts, chain anchors, and colony registry refs there
+    174 +
+    175 +### Layer 2: Colony Canon
+    176 +
+    177 +- keep LX as colony-local memory and archaeology
+    178 +- let each colony own its own district and local anchors
+    179 +- sync references upward only when promoted or linked
+    180 +
+    181 +### Layer 3: Draft / Progressive Memory
+    182 +
+    183 +- add a draft layer for partial finds, speculative plans, and unconfirmed runtime reading
+         s
+    184 +- drafts can promote to LX or IX later
+    185 +- this is the missing separation needed for progressive memory
+    186 +
+    187 +### Layer 4: Transport Registry
+    188 +
+    189 +- create a machine-readable registry that records the active transport epoch
+    190 +- store current broker endpoints, bridge room status, sender-policy status, and relay fal
+         lback rule
+    191 +- this is how we stop reliving `18883` vs `18886` and "friend bridge staged vs live" conf
+         usion
+    192 +
+    193 +### Layer 5: MQTT / Ephemeral Coordination
+    194 +
+    195 +- use MQTT for heartbeat, ephemeral coordination, and action dispatch
+    196 +- do not use it as the only source of canonical memory
+    197 +- keep retained bootstrap state deliberate and explicit
+    198 +
+    199 +### Layer 6: MCP Retrieval Surface
+    200 +
+    201 +- expose IX/LX/draft nodes as MCP resources with URIs
+    202 +- expose parameterized lookups as resource templates
+    203 +- expose mutation work as guarded tools
+    204 +
+    205 +### Layer 7: Local Research Mirror
+    206 +
+    207 +- use NotebookLM or similar local notebooks as colony-specific research memory
+    208 +- mirror the canon into that layer
+    209 +- never treat it as the authoritative replicated state
+    210 +
+    211 +## Immediate Research Priorities
+    212 +
+    213 +1. document schema for a shared colony registry root
+    214 +2. transport epoch/version negotiation between sovereign and colony
+    215 +3. promotion rules from draft -> LX -> IX
+    216 +4. MCP URI design for IX/LX resource exposure
+    217 +5. what durable subset of runtime truth belongs in canonical docs versus ephemeral topics
+    218 +
+    219 +## Best Next Slice
+    220 +
+    221 +The next implementation slice should **not** be "turn the bridge back on and hope."
+    222 +
+    223 +It should be:
+    224 +
+    225 +1. define a `colony-registry` schema
+    226 +2. define a `transport-epoch` record
+    227 +3. define `draft` promotion rules
+    228 +4. surface them locally through workspace knowledge and MCP resources
+    229 +
+    230 +That would give the colonies:
+    231 +
+    232 +- the same language
+    233 +- progressive local memory
+    234 +- clean separation between canon, local memory, and ephemeral coordination
+    235 +- a path to reconnect without repeating archaeology every time
+  └ reports\colony-convergence-research-latest.md (+235 -0)
+      1 +# Colony Convergence Research
+      2 +
+      3 +- Generated: `2026-03-22 21:39 -03:00`
+      4 +- Scope: process the available Liris-side evidence, extract Dan's design signals, think t
+         hrough the plan, then research the architecture needed to connect colonies while preservi
+         ng progressive memory and separation
+      5 +
+      6 +## Inputs Processed
+      7 +
+      8 +- `C:\Users\acer\Downloads\Updated Plan during research of the begnnings and improving th
+         e system to be able to work better.docx`
+      9 +- `C:\Users\acer\Downloads\Jesse an Dan first conversations on Facebook Missing the stuff
+          like phos and videos but all available in facebook and downlaods.docx`
+     10 +- existing local canon: `IX-035`, `IX-036`, `IX-037`, `IX-238`, `IX-244`, `IX-245`, `IX-2
+         49`
+     11 +
+     12 +## Important Boundary
+     13 +
+     14 +I do **not** see a clean current inbound Liris startup report in the local workspace yet.
+     15 +
+     16 +What I do see is:
+     17 +
+     18 +- the current outbound startup order to Liris
+     19 +- older local Rayssa/Liris path archaeology
+     20 +- a historical embedded Liris response inside the Facebook export
+     21 +
+     22 +So the plan below separates:
+     23 +
+     24 +1. historical Liris evidence
+     25 +2. current sovereign-side truth
+     26 +3. future architecture work
+     27 +
+     28 +## What Liris Said, As Far As The Local Evidence Shows
+     29 +
+     30 +From the Facebook export, the strongest historical Liris-side response is:
+     31 +
+     32 +- she treated `18886` as the correct LAN MQTT port for that phase
+     33 +- she updated the Rayssa bridge config from `18883` to `18886`
+     34 +- she reported the MQTT bridge connected after that change
+     35 +- she verified QDD EZ Protect pages returning `200` and the dashboard API returning `422`
+          as expected
+     36 +- she treated Asolaria on Jesse's host as the execution surface needed to dispatch deeper
+          work
+     37 +
+     38 +This is useful, but it is **historical**, not current live truth. Current sovereign-side
+         inspection on this machine still says:
+     39 +
+     40 +- manual owner relay is authoritative
+     41 +- the friend bridge is staged, not live
+     42 +- `4799` is dead or unaudited
+     43 +- the protected `4781` listener still blocks some main-runtime rollout work
+     44 +
+     45 +## Dan's Useful Seed Ideas
+     46 +
+     47 +From the Facebook export, the strongest architecture signals from Dan/Jesse are:
+     48 +
+     49 +- a **tool control layer** matters
+     50 +- tools, skills, mistakes, and projects should be reduced to a **numbered index table**
+     51 +- the model should load **index numbers instead of the whole tool list**
+     52 +- local memory should exist as a separate layer
+     53 +- nightly upgrade/research jobs should feed that memory
+     54 +- MQTT can be used for coordination and centralized logging
+     55 +- agents can be ephemeral, construct-bound workers that load a profile, do one bounded jo
+         b, hand off, and exit
+     56 +
+     57 +The photo itself is not preserved in this `.docx` in usable form. The export contains onl
+         y tiny UI/media icons rather than the missing large photos/videos, so the recoverable des
+         ign signal comes from the text statements, not the absent media.
+     58 +
+     59 +## First Impression
+     60 +
+     61 +The problem is no longer "invent a language." That already exists.
+     62 +
+     63 +The real missing pieces are:
+     64 +
+     65 +1. a canonical replicated memory layer shared across colonies
+     66 +2. a separate local draft layer so colonies can think and store progressively without pol
+         luting canon
+     67 +3. a transport/discovery layer that does not force canonical truth to ride on ad hoc brid
+         ge paths
+     68 +4. a versioned transport registry so `18883` vs `18886` style drift becomes machine-reada
+         ble instead of archaeological
+     69 +5. a retrieval surface that exposes the same language to agents without loading everythin
+         g
+     70 +
+     71 +## Research Findings
+     72 +
+     73 +### 1. Canon should be local-first, not server-first
+     74 +
+     75 +Ink & Switch's local-first paper says local devices should hold the primary copy and sync
+          quietly in the background, while servers hold secondary copies.
+     76 +
+     77 +Source:
+     78 +- https://www.inkandswitch.com/essay/local-first/local-first.pdf
+     79 +
+     80 +Why it matters here:
+     81 +
+     82 +- each colony should own a primary local copy of its own memory/state
+     83 +- the sovereign should not be the only place where truth "really exists"
+     84 +- sync should happen in the background, not by forcing every action through a live centra
+         l surface
+     85 +
+     86 +### 2. Shared language should be a small set of replicated documents with explicit migrat
+         ions
+     87 +
+     88 +Automerge's official modeling guidance says:
+     89 +
+     90 +- many documents are fine, but granularity matters
+     91 +- all peers must share the same initial document ancestry if they are meant to merge
+     92 +- migrations should be hard-coded, versioned changes instead of ad hoc rewrites
+     93 +- many docs can sync over a single connection if each message is tagged with the document
+          ID
+     94 +
+     95 +Sources:
+     96 +- https://automerge.org/docs/cookbook/modeling-data/
+     97 +- https://automerge.org/docs/reference/repositories/
+     98 +- https://automerge.org/docs/reference/repositories/dochandles/
+     99 +
+    100 +Why it matters here:
+    101 +
+    102 +- the IX/LX language should become a versioned document family, not just markdown files d
+         iscovered later
+    103 +- colonies need a shared root schema and migration discipline
+    104 +- the shared language can stay small while project and colony details remain separate doc
+         uments
+    105 +
+    106 +### 3. Progressive separation needs draft memory, not immediate promotion
+    107 +
+    108 +The strongest local-first implication is that colonies need local primary copies first, t
+         hen merge into shared state when ready.
+    109 +
+    110 +For Asolaria, that means:
+    111 +
+    112 +- IX stays sovereign/shared canon
+    113 +- LX stays colony-local canon
+    114 +- a new draft layer should sit above both for unconfirmed work, experiments, and partial
+         archaeology
+    115 +
+    116 +This matches the missing "layered development" idea much better than dumping raw chat int
+         o global memory.
+    117 +
+    118 +### 4. MQTT should carry heartbeat, discovery, and ephemeral traffic; not be the only can
+         onical store
+    119 +
+    120 +Official MQTT 5 material shows:
+    121 +
+    122 +- shared subscriptions are server-scoped
+    123 +- shared subscriptions do **not** send retained messages when a session first subscribes
+    124 +- retained/session behavior must be chosen deliberately depending on whether you need boo
+         tstrap state or only live flow
+    125 +
+    126 +Sources:
+    127 +- https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html
+    128 +- search anchors used: shared subscriptions, retained-message behavior, session scope
+    129 +
+    130 +Why it matters here:
+    131 +
+    132 +- MQTT is good for heartbeat, discovery, commands, and ephemeral coordination
+    133 +- it is dangerous to assume a shared subscription is enough for bootstrap or canonical re
+         play
+    134 +- colony bootstrap state should live in durable documents or non-shared retained surfaces
+         , not only in ad hoc bridge traffic
+    135 +
+    136 +### 5. MCP is the right retrieval/access layer, not the canonical memory layer
+    137 +
+    138 +Official MCP docs show:
+    139 +
+    140 +- tools can be listed with pagination and list-changed notifications
+    141 +- resources are addressable by URI, can be listed/read, can expose templates, and can be
+         subscribed to for updates
+    142 +
+    143 +Sources:
+    144 +- https://modelcontextprotocol.io/specification/draft/server/tools
+    145 +- https://modelcontextprotocol.io/specification/draft/server/resources
+    146 +
+    147 +Why it matters here:
+    148 +
+    149 +- colonies can share the same language through URIs and resource templates
+    150 +- IX/LX entries can be exposed as addressable resources
+    151 +- agents can subscribe to specific memory surfaces instead of reloading everything
+    152 +- this gives us the "same language" across colonies without collapsing all memory into on
+         e file
+    153 +
+    154 +### 6. NotebookLM should be treated as a local read-mirror, not canonical replicated memo
+         ry
+    155 +
+    156 +Official NotebookLM help says imported sources are static copies, Google files require ma
+         nual resync, and other uploaded files must be deleted and uploaded again to refresh.
+    157 +
+    158 +Source:
+    159 +- https://support.google.com/notebooklm/answer/16215270?hl=en
+    160 +
+    161 +Why it matters here:
+    162 +
+    163 +- Dan's "create memory locally using NotebookLM" idea is good for local read/analysis
+    164 +- it is not good as the canonical federation substrate
+    165 +- NotebookLM should sit above the replicated memory layer as a colony-local research mirr
+         or
+    166 +
+    167 +## Research-Based Plan
+    168 +
+    169 +### Layer 1: Shared Canon
+    170 +
+    171 +- keep IX as the shared inter-colony language
+    172 +- define a small shared root schema and migration path
+    173 +- store canonical transport facts, chain anchors, and colony registry refs there
+    174 +
+    175 +### Layer 2: Colony Canon
+    176 +
+    177 +- keep LX as colony-local memory and archaeology
+    178 +- let each colony own its own district and local anchors
+    179 +- sync references upward only when promoted or linked
+    180 +
+    181 +### Layer 3: Draft / Progressive Memory
+    182 +
+    183 +- add a draft layer for partial finds, speculative plans, and unconfirmed runtime reading
+         s
+    184 +- drafts can promote to LX or IX later
+    185 +- this is the missing separation needed for progressive memory
+    186 +
+    187 +### Layer 4: Transport Registry
+    188 +
+    189 +- create a machine-readable registry that records the active transport epoch
+    190 +- store current broker endpoints, bridge room status, sender-policy status, and relay fal
+         lback rule
+    191 +- this is how we stop reliving `18883` vs `18886` and "friend bridge staged vs live" conf
+         usion
+    192 +
+    193 +### Layer 5: MQTT / Ephemeral Coordination
+    194 +
+    195 +- use MQTT for heartbeat, ephemeral coordination, and action dispatch
+    196 +- do not use it as the only source of canonical memory
+    197 +- keep retained bootstrap state deliberate and explicit
+    198 +
+    199 +### Layer 6: MCP Retrieval Surface
+    200 +
+    201 +- expose IX/LX/draft nodes as MCP resources with URIs
+    202 +- expose parameterized lookups as resource templates
+    203 +- expose mutation work as guarded tools
+    204 +
+    205 +### Layer 7: Local Research Mirror
+    206 +
+    207 +- use NotebookLM or similar local notebooks as colony-specific research memory
+    208 +- mirror the canon into that layer
+    209 +- never treat it as the authoritative replicated state
+    210 +
+    211 +## Immediate Research Priorities
+    212 +
+    213 +1. document schema for a shared colony registry root
+    214 +2. transport epoch/version negotiation between sovereign and colony
+    215 +3. promotion rules from draft -> LX -> IX
+    216 +4. MCP URI design for IX/LX resource exposure
+    217 +5. what durable subset of runtime truth belongs in canonical docs versus ephemeral topics
+    218 +
+    219 +## Best Next Slice
+    220 +
+    221 +The next implementation slice should **not** be "turn the bridge back on and hope."
+    222 +
+    223 +It should be:
+    229 +
+    230 +That would give the colonies:
+    231 +
+    232 +- the same language
+    233 +- progressive local memory
+    234 +- clean separation between canon, local memory, and ephemeral coordination
+    235 +- a path to reconnect without repeating archaeology every time
+─ Worked for 2m 07s ──────────────────────────────────────────────────────────────────────────────
+• The packet is written. I’m doing a final anchor pass now: line references for the new report/
+  index/task entries, and a quick check that none of the new memory surfaces accidentally copied
+  sensitive strings.
+• Running Select-String -Path 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' -Pattern '\|
+  │ 250 \|','\| 251 \|','Dan seed chain','Colony convergence chain','Next available: IX-252'
+  │ | ForEach-Object { "{0}:{1}:{2}" -f $_.Path, $_.LineNumber, $_.Line.Trim() };
+  │ … +3 lines
+• Running Select-String -Path 'C:
+  │ \Users\acer\Asolaria\reports\colony-convergence-research-latest.md' -Pattern '^# ','^##
+  │ What Liris Said','^## Dan''s Useful Seed Ideas','^## First Impression','^## Research
+  │ … +2 lines
+• Running rg -n "AIza[0-9A-Za-z_-]{20,}|sk-[A-Za-z0-9_-]{20,}" 'C:
+  │ \Users\acer\Asolaria\reports\colony-convergence-research-20260322-213922.md' 'C:
+  │ \Users\acer\Asolaria\reports\colony-convergence-research-latest.md' 'C:
+  │ … +3 lines
+• Ran Select-String -Path 'C:\Users\acer\Asolaria\reports\colony-convergence-research-latest.md'
+  │ -Pattern '^# ','^## What Liris Said','^## Dan''s Useful Seed Ideas','^## First
+  │ Impression','^## Research Findings','^## Research-Based Plan','^## Best Next Slice' |
+  │ … +1 lines
+  └ C:\Users\acer\Asolaria\reports\colony-convergence-research-latest.md:1:# Colony Convergence
+    Research
+    … +7 lines
+    Plan
+    C:\Users\acer\Asolaria\reports\colony-convergence-research-latest.md:219:## Best Next Slice
+• Ran rg -n "AIza[0-9A-Za-z_-]{20,}|sk-[A-Za-z0-9_-]{20,}" 'C:
+  │ \Users\acer\Asolaria\reports\colony-convergence-research-20260322-213922.md' 'C:
+  │ \Users\acer\Asolaria\reports\colony-convergence-research-latest.md' 'C:
+  │ … +3 lines
+  └ (no output)
+• Ran Select-String -Path 'C:\Users\acer\Asolaria\data\agent-index\IX-250.md' -Pattern '^ix:
+  │ 250','^# Dan Seed Pattern' | ForEach-Object { "{0}:{1}:{2}" -f $_.Path, $_.LineNumber,
+  │ $_.Line.Trim() }; Select-String -Path 'C:\Users\acer\Asolaria\data\agent-index\IX-251.md'
+  │ … +2 lines
+  └ C:\Users\acer\Asolaria\data\agent-index\IX-250.md:2:ix: 250
+    C:\Users\acer\Asolaria\data\agent-index\IX-250.md:10:# Dan Seed Pattern
+    C:\Users\acer\Asolaria\data\agent-index\IX-251.md:2:ix: 251
+    C:\Users\acer\Asolaria\data\agent-index\IX-251.md:10:# Layered Colony Convergence
+• Ran Select-String -Path 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' -Pattern '\| 250
+  │ \|','\| 251 \|','Dan seed chain','Colony convergence chain','Next available: IX-252' |
+  │ ForEach-Object { "{0}:{1}:{2}" -f $_.Path, $_.LineNumber, $_.Line.Trim() }; Select-String
+  │ … +3 lines
+  └ C:\Users\acer\Asolaria\data\agent-index\CATALOG.md:413:| 250 | Dan's Facebook seed pattern is
+    indexed tool-control plus local notebook memory plus MQTT coordination | pattern | dan,
+    … +25 lines
+    `IX-251`. Current best next move is a layered colony-memory slice, not another blind bridge
+    attempt.
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I processed the available Liris-side evidence, but there is still no clean new inbound Liris
+  startup report in the workspace. The strongest Liris signal I found is historical and embedded
+  in the Facebook export: she treated 18886 as the LAN MQTT port for that phase, updated bridge
+  config from 18883 to 18886, reported the bridge connected, and verified QDD surfaces returning
+  200/422. I treated that as historical evidence, not current live truth, because current
+  sovereign-side canon still says manual owner relay is authoritative, the friend bridge is
+  staged, and 4799 is dead.
+  The deeper conclusion is that the colonies do not mainly need another blind reconnect attempt.
+  They need a layered memory architecture: shared IX canon, colony-local LX canon, a draft layer
+  for progressive memory, MQTT for heartbeat/ephemeral coordination, MCP resources for retrieval,
+  and NotebookLM only as a local read mirror. I stored that in reports/colony-convergence-
+  research-latest.md:1, indexed it as data/agent-index/IX-250.md:2 and data/agent-index/IX-
+  251.md:2, updated data/agent-index/CATALOG.md:413, and set the next real build task in
+  TASKS.md:5. The best next slice is a machine-readable colony-registry plus transport-epoch spec
+  new memory/index surfaces copied the raw key material.
+  Research anchors I used:
+  - Automerge repositories/doc handles: https://automerge.org/docs/reference/repositories/ and
+    https://automerge.org/docs/reference/repositories/dochandles/
+  - MQTT 5 spec: https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html
+  - MCP resources/tools: https://modelcontextprotocol.io/specification/draft/server/resources and
+    https://modelcontextprotocol.io/specification/draft/server/tools
+  - NotebookLM source behavior: https://support.google.com/notebooklm/answer/16215270?hl=en
+  If you want, the next move is clear: I can turn TASKS.md:5 into an actual local spec file for
+  colony-registry and transport-epoch so the convergence plan stops being only a report.
+  you now, but you need to look, document, think, index, plan, then memory, index that plan, and
+  respond
+• I’m using the doc workflow because the new input is a .docx. First step is local extraction,
+  sensitivity scanning, and comparison against the earlier Dan/Jesse and colony-convergence
+  packets so the corrections for Liris are grounded in the actual new response.
+• Updated Plan
+  └ □ Extract and inspect the new Liris response docx, including sensitivity and structure
+    □ Compare its claims against existing Dan/Jesse and colony-convergence canon
+    □ Write memory/report/index entries with corrections and integrated plan
+    □ Respond with distilled findings and exact correction packet for Liris
+• Running python -c "from zipfile import ZipFile; from pathlib import Path; p=Path(r'C:
+  │ \Users\acer\Downloads\Liris responds to Dans and jesses converationThe record is
+  │ written.docx'); z=ZipFile(p); media=[n for n in z.namelist() if n.startswith('word/
+  │ … +1 lines
+• Running python -c "from docx import Document; from pathlib import Path; import json,re;
+  │ p=Path(r'C:\Users\acer\Downloads\Liris responds to Dans and jesses converationThe record
+  │ is written.docx'); doc=Document(str(p)); cp=doc.core_properties; text='\n'.join(par.text
+  │ … +9 lines
+• Running python -c "from pathlib import Path; p=Path(r'C:\Users\acer\Downloads\Liris responds to
+  │ Dans and jesses converationThe record is written.docx'); print(p.exists());
+  │ print(p.stat().st_size)"
+      "phone": false
+    }
+• Ran python -c "from pathlib import Path; p=Path(r'C:\Users\acer\Downloads\Liris responds to Dans
+  │ and jesses converationThe record is written.docx'); print(p.exists());
+  │ print(p.stat().st_size)"
+  └ True
+    16803
+• Ran python -c "from zipfile import ZipFile; from pathlib import Path; p=Path(r'C:
+  │ \Users\acer\Downloads\Liris responds to Dans and jesses converationThe record is
+  └ media_count 0
+• Ran Get-Content 'C:\Users\acer\Asolaria\reports\colony-convergence-research-latest.md' |
+  │ Select-Object -First 220
+  └ # Colony Convergence Research
+    … +218 lines
+    ## Best Next Slice
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The new file is small and clean enough to inspect directly. I’m reading the whole response now
+  and comparing it line-by-line against the current convergence plan instead of treating it as
+  another opaque packet.
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +11 lines
+  └ [
+      {
+    … +243 lines
+      }
+    ]
+    coordination layer.
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-251.md'
+  └ ---
+    ix: 251
+    … +26 lines
+    3. create draft-promotion rules from draft -> LX -> IX
+    4. surface the registry and index nodes through workspace knowledge and MCP resources
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I have the core reply. Now I’m pulling the compressed sections around LX-181 to LX-183 and her
+  conclusion block, because that is where the actual corrections and agreement/disagreement live.
+• Running @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +11 lines
+• Running @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +9 lines
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +11 lines
+  └ [
+      {
+    … +64 lines
+      }
+    ]
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +11 lines
+  └ [
+      {
+    … +34 lines
+      }
+    ]
+• Ran @'
+  │ from docx import Document
+  │ from pathlib import Path
+  │ … +9 lines
+  └ {"i": 26, "text": "MQTT truth realignment: 057 \u2192 103 \u2192 151 \u2192 175 \u2192 176"}
+    {"i": 27, "text": "\u2026 +22 lines"}
+    … +12 lines
+    {"i": 63, "text": "disk state: 178 LX files, 45 chains, next available LX-184. I also removed
+    the temporary plaintext extraction after"}
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The new Liris packet changes one important thing in my prior synthesis: the 18886 story needs to
+  be downgraded from “historical live result” to “documented archaeology failure loop” unless re-
+  probed live. I’m checking the existing MQTT truth chain now so the new IX entry lands on the
+  right chain instead of inventing a new one.
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-176.md'
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-151.md'
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-151.md'
+  └ ---
+    ix: 151
+    … +72 lines
+    5. **Should Tailscale rules stay?** Is Tailscale still used?
+    6. **Can we delete codex-bridge-8788-any immediately?** It's the biggest security hole.
+• Ran rg -n "\| 176 \||\| 151 \||\| 103 \||\| 057 \||MQTT truth realignment|18886|18883|transport|
+  │ epoch" 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md'
+    … +20 lines
+    draft-memory, ix, lx, mqtt, mcp, notebooklm, transport-registry, convergence | → 249, 238,
+    037, 250 | all |
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-176.md'
+  └ ---
+    ix: 176
+    … +54 lines
+    identity, her encryption requirements. This is the deepest layer of the archaeological dig.
+    The IX system documented the outside. Now we need to excavate the INSIDE of the black hole.
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-072.md'
+• Running Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-142.md'
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-142.md'
+  └ ---
+    ix: 142
+    … +44 lines
+    Always read SOURCE CODE before trusting founding documents. Documents written by agents can
+    contain fabrications that persist for months because every new agent trusts the document.
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-072.md'
+  └ ---
+    ix: 072
+    … +22 lines
+    ## Status: NEEDS VERIFICATION by reading the actual broker startup code
+• Ran Get-Content 'C:\Users\acer\Asolaria\data\agent-index\IX-083.md'
+  └ ---
+    ix: 083
+    … +39 lines
+    - Or in Windows User environment variables (persistent)
+    - OneButton.ps1's Set-ConnectionEnvDefaults function is the right place
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• I have the integration point now. Liris’s new packet does not overturn the layered-memory plan;
+  it sharpens it. The critical correction is narrower: my earlier reading of the historical 18886
+  story was too generous. Her new note explicitly reclassifies that path as a docs-to-agent-to-
+  config failure loop that turned into false archaeology. I’m writing a superseding digest, new IX
+  entries, and a correction packet for Liris now.
+• Updated Plan
+  └ ✔ Extract and inspect the new Liris response docx, including sensitivity and structure
+    ✔ Compare its claims against existing Dan/Jesse and colony-convergence canon
+    □ Write memory/report/index entries with corrections and integrated plan
+    □ Respond with distilled findings and exact correction packet for Liris
+• I’m editing two layers now: a new digest/correction packet, and a small correction to the live
+  convergence report so the workspace doesn’t keep carrying my older over-trust of the 18886
+  story.
+• Edited 8 files (+291 -7)
+  └ TASKS.md (+4 -0)
+     6
+     7 +- [ ] Add provenance gating to transport facts (2026-03-22 21:46 -03:00): the new Liris di
+        gest reclassifies the `18886` thread as a docs-to-agent-to-files archaeology failure loop.
+         Before more reconnect work, transport facts need provenance/epoch fields so archive claim
+        s stop promoting themselves into stable canon.
+     8 +
+     9  - [ ] Repair `tools/Validate-LirisStartupReport.ps1` before Liris reply is processed (2026
+        -03-22 20:50 -03:00): synthetic validation against a sample report exposed PowerShell pars
+        er errors, so the deterministic intake path described in the waiting plan is not yet trust
+        worthy. Do not rely on the validator until the script is fixed and re-tested.
+       ⋮
+    30
+    31 +- [x] Liris response to Dan/Jesse archive digested and integrated (2026-03-22 21:46 -03:00
+        ): extracted `C:\Users\acer\Downloads\Liris responds to Dans and jesses converationThe rec
+        ord is written.docx`, treated it as the first clean Liris-side digest artifact in this wor
+        kspace, and integrated its main correction into colony canon: the `18886` story should now
+         be treated as a documented archaeology failure loop rather than historical transport trut
+        h unless separately re-verified live. Wrote `reports/liris-response-dan-jesse-digest-20260
+        322-214600.md` (`latest`: `reports/liris-response-dan-jesse-digest-latest.md`), owner obse
+        rvation `data/vault/owner/observations/liris-response-dan-jesse-digest-20260322-214600.md`
+        , indexed the correction as `IX-252` and `IX-253`, and corrected `reports/colony-convergen
+        ce-research-latest.md` so it no longer over-trusts the `18886` archive story.
+    32 +
+    33  - [x] Recent downloads two-pass Gemini analysis completed and indexed (2026-03-22 18:52 -0
+        3:00): processed the last `15` files in `C:\Users\acer\Downloads` with the local `recent-d
+        ownload-analysis` Gemini tool, reran the full batch after fixing video upload/processing,
+        emitted final first-pass artifacts `reports/recent-downloads-first-pass-20260322-184824.{m
+        d,json}`, generated deep-pass synthesis `reports/recent-downloads-deep-pass-20260322-18512
+        0.{md,json}`, wrote the combined packet `reports/recent-downloads-analysis-20260322-185220
+        .md` (`latest`: `reports/recent-downloads-analysis-latest.md`), stored the owner observati
+        on `data/vault/owner/observations/recent-downloads-analysis-20260322-185220.md`, extended
+        the local tool to support `--deep-pass-json`, and indexed the batch as `IX-225` through `I
+        X-241`. Source downloads remain sensitive; prefer the packet/IX surfaces over reopening ra
+        w screenshots.
+  └ data\agent-index\CATALOG.md (+6 -1)
+    414  | 251 | Colony convergence should use layered local-first memory with draft promotion, MQ
+         TT ephemera, MCP retrieval, and NotebookLM as mirror | plan | colonies, local-first, draf
+         t-memory, ix, lx, mqtt, mcp, notebooklm, transport-registry, convergence | → 249, 238, 03
+         7, 250 | all |
+    415 +| 252 | Liris response reclassifies the 18886 story as a documented archaeology failure l
+         oop, not transport truth | reference | liris, dan, facebook, 18886, archaeology, correcti
+         on, mqtt, transport, provenance | → 142, 249, 250 | all |
+    416 +| 253 | Transport facts must carry provenance and epoch tags before promotion into colony
+          canon | plan | transport, provenance, epoch, colonies, ix, lx, draft-memory, correction,
+          convergence | → 251, 252, 238 | all |
+    417
+        ⋮
+    480
+    479 -## Next available: IX-252
+    481 +**Transport provenance chain:** IX-253 → IX-252 → IX-251 → IX-142
+    482 +> The 18886 loop is another proof that transport facts need provenance and epoch tagging
+         before they are promoted into stable canon.
+    483 +
+    484 +## Next available: IX-254
+  └ data\agent-index\IX-252.md (+23 -0)
+     1 +---
+     2 +ix: 252
+     3 +name: Liris response reclassifies the 18886 story as a documented archaeology failure loop
+        , not transport truth
+     4 +type: reference
+     5 +tags: [liris, dan, facebook, 18886, archaeology, correction, mqtt, transport, provenance]
+     6 +chain: [IX-142, IX-249, IX-250]
+     7 +agents: [all]
+     8 +---
+     9 +
+    10 +# Liris Archaeology Correction
+    11 +
+    12 +## Durable Truth
+    13 +
+    14 +Liris's direct digest says the Facebook archive preserves an exact failure loop:
+    15 +
+    16 +- docs were trusted
+    17 +- an agent repeated the docs as truth
+    18 +- live files were edited
+    19 +- the false result became new archaeology
+    20 +
+    21 +## Use Rule
+    22 +
+    23 +Do not treat the historical `18886` bridge story as live transport truth unless it is re-v
+        erified in a separate present-tense packet.
+  └ data\agent-index\IX-253.md (+26 -0)
+     1 +---
+     2 +ix: 253
+     3 +name: Transport facts must carry provenance and epoch tags before promotion into colony ca
+        non
+     4 +type: plan
+     5 +tags: [transport, provenance, epoch, colonies, ix, lx, draft-memory, correction, convergen
+        ce]
+     6 +chain: [IX-251, IX-252, IX-238]
+     7 +agents: [all]
+     8 +---
+     9 +
+    10 +# Provenance-Gated Transport Canon
+    11 +
+    12 +## Durable Truth
+    13 +
+    14 +The repeated `18886` drift shows that transport facts cannot be stored as plain statements
+         without provenance.
+    15 +
+    16 +Minimum fields before promotion:
+    17 +
+    18 +- `source_kind`
+    19 +- `host_scope`
+    20 +- `observed_at`
+    21 +- `verifier`
+    22 +- `status`
+    23 +
+    24 +## Use Rule
+    25 +
+    26 +If a transport fact comes from documents or historical transcripts without live verificati
+        on, keep it in draft or mark it as myth/proposed/superseded rather than promoting it as st
+        able canon.
+  └ data\vault\owner\observations\liris-response-dan-jesse-digest-20260322-214600.md (+16 -0)
+     1 +# Observation: Liris Response To Dan/Jesse Digest
+     2 +
+     3 +- Recorded: `2026-03-22 21:46 -03:00`
+     4 +
+     5 +Liris's new digest materially sharpens the colony-convergence plan.
+     6 +
+     7 +The main correction is specific:
+     8 +
+     9 +- the historical `18886` story should no longer be treated as a successful live transport
+        state
+    10 +- Liris explicitly frames it as a docs -> agent -> edited live files -> false archaeology
+        loop
+    11 +
+    12 +This strengthens the need for:
+    13 +
+    14 +1. provenance-tagged transport facts
+    15 +2. a draft layer separate from canon
+    16 +3. separation of archaeology packets from current live runtime packets
+  └ reports\colony-convergence-research-latest.md (+6 -6)
+    29
+    30 -From the Facebook export, the strongest historical Liris-side response is:
+    30 +From the Facebook export, the strongest historical Liris-side response is mixed and must b
+        e handled carefully:
+    31
+    32 -- she treated `18886` as the correct LAN MQTT port for that phase
+    33 -- she updated the Rayssa bridge config from `18883` to `18886`
+    34 -- she reported the MQTT bridge connected after that change
+    35 -- she verified QDD EZ Protect pages returning `200` and the dashboard API returning `422`
+        as expected
+    36 -- she treated Asolaria on Jesse's host as the execution surface needed to dispatch deeper
+        work
+    32 +- it contains a historical bridge/config story around `18886`
+    33 +- it contains claims of bridge connectivity and successful QDD verification
+    34 +- but a later direct Liris digest reclassifies the `18886` thread as a docs -> agent -> ed
+        ited-files -> false-archaeology loop
+    35 +- so those `18886` transport claims should be treated as historical archaeology, not stabl
+        e live transport truth
+    36 +- the stronger durable signal from that historical material is the presence of evidence di
+        scipline, QDD verification behavior, and the need to separate live truth from archive trut
+        h
+    37
+  └ reports\liris-response-dan-jesse-digest-20260322-214600.md (+105 -0)
+      1 +# Liris Response To Dan/Jesse Digest
+      2 +
+      3 +- Generated: `2026-03-22 21:46 -03:00`
+      4 +- Source file: `C:\Users\acer\Downloads\Liris responds to Dans and jesses converationThe
+         record is written.docx`
+      5 +- Scope: digest Liris's response to the Dan/Jesse conversation archive, integrate it with
+          current colony-convergence work, and produce corrections for the next relay
+      6 +
+      7 +## What This Packet Is
+      8 +
+      9 +This is the first clean local artifact in this workspace that reads like a direct Liris-s
+         ide digest rather than a historical embed inside another transcript.
+     10 +
+     11 +It is short, operational, and evidence-oriented:
+     12 +
+     13 +- recount LX file counting and chain counting
+     14 +- recount indexing of the Dan/Jesse Facebook archive into `LX-181` through `LX-183`
+     15 +- recount plaintext cleanup after extraction
+     16 +- summarize the durable conclusions Liris wants kept
+     17 +
+     18 +## High-Confidence Findings
+     19 +
+     20 +- Liris is practicing good evidence discipline here:
+     21 +  - she counted actual on-disk `LX-*.md` files
+     22 +  - she corrected the local catalog to match disk
+     23 +  - she removed the temporary plaintext extraction after indexing
+     24 +- She upgrades Dan from later lore to direct transcript fact.
+     25 +- She explicitly says the Facebook archive preserves the **18886 failure loop**:
+     26 +  - docs were trusted
+     27 +  - an agent repeated the docs as truth
+     28 +  - live files were edited
+     29 +  - the false result became new archaeology
+     30 +- She dates the emergence of:
+     31 +  - fast index language
+     32 +  - instant agents
+     33 +  - chain-linked profiles
+     34 +  - Dan's framing of the Constitution as a functional spec
+     35 +- She treats the Omnispindle bearer line as sensitive operational archaeology, but **not*
+         * as a confirmed raw-secret leak because the line appears truncated.
+     36 +
+     37 +## Correction To My Prior Synthesis
+     38 +
+     39 +My earlier colony-convergence packet overtrusted one historical signal from the Facebook
+         export.
+     40 +
+     41 +I previously summarized that historical Liris-side material as if:
+     42 +
+     43 +- `18886` was the correct LAN MQTT port for that phase
+     44 +- the bridge update to `18886` represented a usable historical live result
+     45 +
+     46 +This new Liris packet narrows that.
+     47 +
+     48 +The better reading now is:
+     49 +
+     50 +- the archive contains a **documented archaeology failure loop** around `18886`
+     51 +- that loop is compatible with the existing sovereign-side myth/correction chain (`IX-072
+         ` -> `IX-083` -> `IX-142`)
+     52 +- therefore `18886` must not be treated as transport truth here unless re-verified live i
+         n a separate present-tense packet
+     53 +
+     54 +## Integration With Current Plan
+     55 +
+     56 +This does **not** weaken the layered colony-memory plan. It strengthens it.
+     57 +
+     58 +Why:
+     59 +
+     60 +- it confirms the exact failure mode the plan was designed to prevent
+     61 +- documents, lore, historical transcripts, and current runtime facts were collapsing into
+          one layer
+     62 +- Liris is now doing the right thing on her side: separating durable indexed conclusions
+         from temporary plaintext extraction
+     63 +
+     64 +So the plan is still right:
+     65 +
+     66 +1. IX = shared canon
+     67 +2. LX = colony-local canon
+     68 +3. Draft layer = progressive, unconfirmed memory
+     69 +4. MQTT = heartbeat / ephemeral coordination, not sole canonical store
+     70 +5. MCP = retrieval and controlled mutation layer
+     71 +6. NotebookLM = local read mirror, not canonical federation substrate
+     72 +
+     73 +## New Logic To Integrate
+     74 +
+     75 +Transport facts need provenance fields before they are promoted to stable canon.
+     76 +
+     77 +Minimum fields:
+     78 +
+     79 +- `source_kind`: `live_probe` | `code_verified` | `document_claim` | `historical_transcri
+         pt` | `derived`
+     80 +- `host_scope`: which machine or colony the fact belongs to
+     81 +- `observed_at`: absolute timestamp
+     82 +- `verifier`: who probed or verified it
+     83 +- `status`: `live` | `stale` | `proposed` | `myth` | `superseded`
+     84 +
+     85 +Without those fields, colonies will keep repeating archaeology drift.
+     86 +
+     87 +## Corrections To Give Liris
+     88 +
+     89 +1. Your evidence discipline is accepted. The LX recount, chain recount, and plaintext cle
+         anup are the right move.
+     90 +2. We are correcting one sovereign-side reading: the `18886` story is no longer treated h
+         ere as a historical success case. Your packet makes it a documented archaeology failure l
+         oop.
+     91 +3. From now on, do not promote any transport fact into stable LX canon unless it is tagge
+         d with provenance and present-tense status.
+     92 +4. Treat Constitution transport lines as functional spec or proposal unless separately co
+         de-verified or live-probed.
+     93 +5. Keep Dan as direct transcript fact in the archaeology, not just later lore.
+     94 +6. Keep Omnispindle bearer references in the "sensitive operational archaeology" bucket u
+         nless a full raw secret is actually present.
+     95 +7. If you have a current startup/runtime report, send it as a **separate** packet from ar
+         chaeology/history so present truth does not get mixed with archive truth.
+     96 +8. The current sovereign-side live rule does not change: no `4799`, no friend-bridge assu
+         mption, manual owner relay remains authoritative until a separate live verification packe
+         t says otherwise.
+     97 +
+     98 +## Best Next Joint Slice
+     99 +
+    100 +The next collaborative move between sovereign and Liris should be:
+    101 +
+    102 +1. map `LX-181` / `LX-182` / `LX-183` onto sovereign-side `IX-250` / `IX-251`
+    103 +2. define a shared `transport-epoch` and provenance schema
+    104 +3. separate archaeology packets from live runtime packets
+    105 +4. only then resume serious reconnect work
+  └ reports\liris-response-dan-jesse-digest-latest.md (+105 -0)
+      1 +# Liris Response To Dan/Jesse Digest
+      2 +
+      3 +- Generated: `2026-03-22 21:46 -03:00`
+      4 +- Source file: `C:\Users\acer\Downloads\Liris responds to Dans and jesses converationThe
+         record is written.docx`
+      5 +- Scope: digest Liris's response to the Dan/Jesse conversation archive, integrate it with
+          current colony-convergence work, and produce corrections for the next relay
+      6 +
+      7 +## What This Packet Is
+      8 +
+      9 +This is the first clean local artifact in this workspace that reads like a direct Liris-s
+         ide digest rather than a historical embed inside another transcript.
+     10 +
+     11 +It is short, operational, and evidence-oriented:
+     12 +
+     13 +- recount LX file counting and chain counting
+     14 +- recount indexing of the Dan/Jesse Facebook archive into `LX-181` through `LX-183`
+     15 +- recount plaintext cleanup after extraction
+     16 +- summarize the durable conclusions Liris wants kept
+     17 +
+     18 +## High-Confidence Findings
+     19 +
+     20 +- Liris is practicing good evidence discipline here:
+     21 +  - she counted actual on-disk `LX-*.md` files
+     22 +  - she corrected the local catalog to match disk
+     23 +  - she removed the temporary plaintext extraction after indexing
+     24 +- She upgrades Dan from later lore to direct transcript fact.
+     25 +- She explicitly says the Facebook archive preserves the **18886 failure loop**:
+     26 +  - docs were trusted
+     27 +  - an agent repeated the docs as truth
+     28 +  - live files were edited
+     29 +  - the false result became new archaeology
+     30 +- She dates the emergence of:
+     31 +  - fast index language
+     32 +  - instant agents
+     33 +  - chain-linked profiles
+     34 +  - Dan's framing of the Constitution as a functional spec
+     35 +- She treats the Omnispindle bearer line as sensitive operational archaeology, but **not*
+         * as a confirmed raw-secret leak because the line appears truncated.
+     36 +
+     37 +## Correction To My Prior Synthesis
+     38 +
+     39 +My earlier colony-convergence packet overtrusted one historical signal from the Facebook
+         export.
+     40 +
+     41 +I previously summarized that historical Liris-side material as if:
+     42 +
+     43 +- `18886` was the correct LAN MQTT port for that phase
+     44 +- the bridge update to `18886` represented a usable historical live result
+     45 +
+     46 +This new Liris packet narrows that.
+     47 +
+     48 +The better reading now is:
+     49 +
+     50 +- the archive contains a **documented archaeology failure loop** around `18886`
+     51 +- that loop is compatible with the existing sovereign-side myth/correction chain (`IX-072
+         ` -> `IX-083` -> `IX-142`)
+     52 +- therefore `18886` must not be treated as transport truth here unless re-verified live i
+         n a separate present-tense packet
+     53 +
+     54 +## Integration With Current Plan
+     55 +
+     56 +This does **not** weaken the layered colony-memory plan. It strengthens it.
+     57 +
+     58 +Why:
+     59 +
+     60 +- it confirms the exact failure mode the plan was designed to prevent
+     61 +- documents, lore, historical transcripts, and current runtime facts were collapsing into
+          one layer
+     62 +- Liris is now doing the right thing on her side: separating durable indexed conclusions
+         from temporary plaintext extraction
+     63 +
+     64 +So the plan is still right:
+     65 +
+     66 +1. IX = shared canon
+     67 +2. LX = colony-local canon
+     68 +3. Draft layer = progressive, unconfirmed memory
+     69 +4. MQTT = heartbeat / ephemeral coordination, not sole canonical store
+     70 +5. MCP = retrieval and controlled mutation layer
+     71 +6. NotebookLM = local read mirror, not canonical federation substrate
+     72 +
+     73 +## New Logic To Integrate
+     74 +
+     75 +Transport facts need provenance fields before they are promoted to stable canon.
+     76 +
+     77 +Minimum fields:
+     78 +
+     79 +- `source_kind`: `live_probe` | `code_verified` | `document_claim` | `historical_transcri
+         pt` | `derived`
+     80 +- `host_scope`: which machine or colony the fact belongs to
+     81 +- `observed_at`: absolute timestamp
+     82 +- `verifier`: who probed or verified it
+     83 +- `status`: `live` | `stale` | `proposed` | `myth` | `superseded`
+     84 +
+     85 +Without those fields, colonies will keep repeating archaeology drift.
+     86 +
+     87 +## Corrections To Give Liris
+     88 +
+     89 +1. Your evidence discipline is accepted. The LX recount, chain recount, and plaintext cle
+         anup are the right move.
+     90 +2. We are correcting one sovereign-side reading: the `18886` story is no longer treated h
+         ere as a historical success case. Your packet makes it a documented archaeology failure l
+         oop.
+     91 +3. From now on, do not promote any transport fact into stable LX canon unless it is tagge
+         d with provenance and present-tense status.
+     92 +4. Treat Constitution transport lines as functional spec or proposal unless separately co
+         de-verified or live-probed.
+     93 +5. Keep Dan as direct transcript fact in the archaeology, not just later lore.
+     94 +6. Keep Omnispindle bearer references in the "sensitive operational archaeology" bucket u
+         nless a full raw secret is actually present.
+     95 +7. If you have a current startup/runtime report, send it as a **separate** packet from ar
+         chaeology/history so present truth does not get mixed with archive truth.
+     96 +8. The current sovereign-side live rule does not change: no `4799`, no friend-bridge assu
+     98 +## Best Next Joint Slice
+     99 +
+    100 +The next collaborative move between sovereign and Liris should be:
+    101 +
+    102 +1. map `LX-181` / `LX-182` / `LX-183` onto sovereign-side `IX-250` / `IX-251`
+    103 +2. define a shared `transport-epoch` and provenance schema
+    104 +3. separate archaeology packets from live runtime packets
+    105 +4. only then resume serious reconnect work
+─ Worked for 2m 41s ──────────────────────────────────────────────────────────────────────────────
+• Context compacted
+• Using the doc workflow to verify the new Liris digest packet, index entries, and the correction
+  relay before I hand you the exact packet.
+• Running Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\reports\liris-response-dan-jesse-digest-latest.md' | Select-Object
+  │ -First 260 | % {$global:i=1}{"$($global:i): $_";$global:i++}
+• Running Get-Content -Path 'C:\Users\acer\Asolaria\data\agent-index\IX-252.md' | Select-Object
+  │ -First 120 | % {$global:i=1}{"$($global:i): $_";$global:i++}
+• Running Get-Content -Path 'C:\Users\acer\Asolaria\TASKS.md' | Select-Object -First 120 | %
+  │ {$global:i=1}{"$($global:i): $_";$global:i++}
+• Running Get-Content -Path 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' | Select-Object
+  │ -First 520 | % {$global:i=1}{"$($global:i): $_";$global:i++}
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\data\agent-index\CATALOG.md' | Select-Object
+  │ -First 520 | % {$global:i=1}{"$($global:i): $_";$global:i++}
+  └ 1: # Agent Index Catalog
+    2:
+    … +481 lines
+    483:
+    484: ## Next available: IX-254
+    104: 3. separate archaeology packets from live runtime packets
+    105: 4. only then resume serious reconnect work
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\TASKS.md' | Select-Object -First 120 | %
+  │ {$global:i=1}{"$($global:i): $_";$global:i++}
+  └ 1: # Tasks and Agents
+    2:
+    … +139 lines
+    answered `Hello Jesse, Amber Lantern`.
+    120:
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\data\agent-index\IX-252.md' | Select-Object -First
+  │ 120 | % {$global:i=1}{"$($global:i): $_";$global:i++}
+  └ 1: ---
+    2: ix: 253
+    … +26 lines
+    verification, keep it in draft or mark it as myth/proposed/superseded rather than promoting it
+    as stable canon.
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• The digest is consistent: the correction is not about abandoning the layered plan, it is about
+  hardening it with provenance before any transport fact becomes canon. I’m pulling the exact
+  convergence lines so the relay packet and the architectural next step match.
+• Running Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\data\vault\owner\observations\liris-response-dan-jesse-digest-20260
+  │ 322-214600.md' | Select-Object -First 220 | % {$global:i=1}{"$($global:i): $_";
+  │ … +1 lines
+• Ran Get-Content -Path 'C:\Users\acer\Asolaria\reports\colony-convergence-research-latest.md' |
+  │ Select-Object -First 260 | % {$global:i=1}{"$($global:i): $_";$global:i++}
+  └ 1: # Colony Convergence Research
+    2:
+    … +233 lines
+    234: - clean separation between canon, local memory, and ephemeral coordination
+    235: - a path to reconnect without repeating archaeology every time
+• Ran Get-Content -Path 'C:
+  │ \Users\acer\Asolaria\data\vault\owner\observations\liris-response-dan-jesse-digest-20260322-
+  │ 214600.md' | Select-Object -First 220 | % {$global:i=1}{"$($global:i): $_";$global:i++}
+  └ 1: # Observation: Liris Response To Dan/Jesse Digest
+    2:
+    … +12 lines
+    15: 2. a draft layer separate from canon
+    16: 3. separation of archaeology packets from current live runtime packets
+──────────────────────────────────────────────────────────────────────────────────────────────────
+• Digest completed and integrated.
+  The durable packet is reports/liris-response-dan-jesse-digest-latest.md:1. The memory note is
+  data/vault/owner/observations/liris-response-dan-jesse-digest-20260322-214600.md:1. I indexed
+  the correction as data/agent-index/IX-252.md:1 and data/agent-index/IX-253.md:1, added them to
+  data/agent-index/CATALOG.md:415 and data/agent-index/CATALOG.md:481, and recorded the next build
+  priorities in TASKS.md:5 and TASKS.md:7.
+  Deep conclusion:
+  - Liris materially agrees with the layered-memory direction.
+  - Her main correction is specific: 18886 is not a transport success story. It is a documented
+    archaeology failure loop: docs were trusted, an agent repeated them as truth, live files were
+    edited, and the false result became archaeology. That is captured in reports/liris-response-
+    dan-jesse-digest-latest.md:25 and distilled in data/agent-index/IX-252.md:14.
+  - That does not weaken the colony plan. It hardens it. The corrected plan is: shared IX canon,
+    colony-local LX canon, separate draft memory, and provenance-gated transport facts before
+    promotion. That logic is in reports/liris-response-dan-jesse-digest-latest.md:54, reports/
+    liris-response-dan-jesse-digest-latest.md:75, and the larger architecture remains in reports/
+    colony-convergence-research-latest.md:167.
+  - The new hard rule is in data/agent-index/IX-253.md:14: transport facts need provenance fields
+    before they become canon.
+  Give this to Liris verbatim:
+  Liris — sovereign-side correction after digesting your record.
+  1. Your evidence discipline is accepted. The LX recount, chain recount, and plaintext cleanup
+  are the right move.
+  2. We are correcting one sovereign-side reading: the 18886 story is no longer treated here as a
+  historical success case. Your packet makes it a documented archaeology failure loop.
+  3. From now on, do not promote any transport fact into stable LX canon unless it is tagged with
+  provenance and present-tense status.
+  4. Treat Constitution transport lines as functional spec or proposal unless separately code-
+  verified or live-probed.
+  5. Keep Dan as direct transcript fact in the archaeology, not just later lore.
+  6. Keep Omnispindle bearer references in the sensitive operational archaeology bucket unless a
+  full raw secret is actually present.
+  7. If you have a current startup/runtime report, send it as a separate packet from archaeology/
+  history so present truth does not get mixed with archive truth.
+  8. Current sovereign-side live rule remains unchanged: no 4799, no friend-bridge assumption,
+  manual owner relay remains authoritative until a separate live verification packet says
+  otherwise.
+  9. Next joint work should be: map LX-181/LX-182/LX-183 to IX-250/IX-251/IX-252/IX-253, then
+  define a shared transport-epoch and provenance schema before serious reconnect work resumes.
+  My recommendation is to wait for her reply to that correction packet, then I build the concrete
+  schema slice next: colony-registry, transport-epoch, and draft-promotion rules.
+› Find and fix a bug in @filename
+  gpt-5.4 xhigh · 82% left · ~\Asolaria

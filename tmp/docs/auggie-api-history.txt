@@ -1,0 +1,106 @@
+Augment AI (Auggie) — API and Local Data Investigation
+======================================================
+Date: 2026-03-25
+Account: plasmatoid@gmail.com
+Tenant URL: https://d11.api.augmentcode.com/
+Anonymous ID: 96a729b8-2418-4c36-8e81-c43f00b1b061
+
+SUMMARY
+-------
+- Local metadata confirms sessionCount: 7
+- Only 1 session saved to disk (the last one)
+- 7 conversation IDs recovered from task-storage manifests
+- Augment API does NOT expose a conversation history retrieval endpoint
+- The only working endpoint found: POST /chat (sends a new message)
+- All GET and POST attempts on history/sessions/conversations paths returned 404
+- The Analytics API (GET /analytics/v0/daily-usage) is Enterprise-only, org-level usage metrics
+- No auggie CLI binary installed (only ripgrep bundled)
+- No VS Code or Cursor Augment extension installed
+
+API ENDPOINT RESULTS
+--------------------
+Working:
+  POST /chat — 200 OK (sends message, returns response)
+
+All 404 (no conversation history API):
+  GET  /api/v1/conversations
+  GET  /api/v1/sessions
+  GET  /api/v1/user
+  GET  /api/v1/me
+  GET  /api/v1/chat/history
+  GET  /api/v1/tasks
+  GET  /
+  POST /api/v1/chat/completions
+  POST /chat-history
+  POST /conversations
+  POST /sessions
+  POST /history
+  POST /user
+  POST /threads
+  POST /list-chats
+  POST /chat-threads
+  POST /chats
+  POST /chat-sessions
+  POST /tasks/list
+  POST /list-conversations
+  POST /get-chat-history
+  POST /get-conversations
+  POST /get-conversation
+  POST /load-conversation
+  POST /usage
+  POST /me
+  POST /account
+
+LOCAL DATA LOCATION
+-------------------
+C:\Users\acer\.augment\
+  .auggie.json          — session count, anon ID, onboarding version
+  session.json          — access token and tenant URL
+  prompt-history.jsonl  — single entry: "Hello. Are you connected to my AI asolaria?"
+  sessions\             — 1 session file (of 7 expected)
+  task-storage\         — 7 task manifests (one per conversation)
+  binaries\ripgrep\     — bundled ripgrep only (no auggie CLI)
+
+ALL 7 CONVERSATION IDs (recovered from task-storage)
+-----------------------------------------------------
+#  Conversation ID                              Task UUID                                    Timestamp (epoch ms)
+1  b83319f2-ce6c-4313-8f13-132bd7faf1f4        f0c023c8-1c54-4732-8462-35ca85473b76         1772836150755  (session file EXISTS)
+2  42005a98-42c7-482a-ab2d-0d66691c19e6        c48b3dd3-4586-447a-b726-ac6526e57efd         1772837020810  (NO session file)
+3  a35b6221-b289-42f8-b271-43a7fd6cbc16        6b71d48b-788d-4854-8c93-21c252e52711         1772837036383  (NO session file)
+4  9b9a0c1c-ab4f-4d4d-88a8-9ca715886def        dbed7ff7-319b-4007-b6ce-12b9a5ef4d1d         1772837699304  (NO session file)
+5  4394f13c-3712-453c-89cb-71a2bcfc6b67        0cfb7c4a-27fe-407c-a35d-49d07a7db53f         1772837891092  (NO session file)
+6  6b4bce34-3cd8-4a37-96a9-492d7761f9a1        94ee4777-861c-42d6-86d4-bc9585e99000         1772837931605  (NO session file)
+7  a76c69c6-20aa-44a5-be15-40a3f68b826b        db07fe67-c5df-4c01-afe8-a787a9961a70         1772838063539  (NO session file)
+
+SAVED SESSION #1 DETAILS
+------------------------
+Session ID:     b83319f2-ce6c-4313-8f13-132bd7faf1f4
+Created:        2026-03-06T23:06:38.511Z
+Title:          "Asolaria Connection Check"
+Model:          gpt-5-4
+User Email:     plasmatoid@gmail.com
+Provider:       openai
+
+User message:   "Hello. Are you connected to my AI asolaria?"
+Response:       Auggie acknowledged workspace has Asolaria/codex-bridge setup but said
+                it had no proof of active connection. Offered to verify relay health,
+                watchdog/bot process status, and bridge/tunnel URL.
+
+Token usage:    input: 0, output: 455, cache_creation: 9634
+                system_prompt: 7489, tool_definitions: 6497
+                max_context: 204800
+
+CONCLUSION
+----------
+The Augment Code API does not provide any endpoint to retrieve conversation history.
+Conversations are stored locally by the CLI in ~/.augment/sessions/ but the CLI
+appears to only persist the most recent session to disk (overwriting or not creating
+files for earlier sessions). The 6 missing sessions' content is lost from local storage.
+
+The conversation IDs exist in task-storage manifests as references, but the actual
+chat content for sessions 2-7 was never written to disk (or was overwritten).
+
+To recover the missing 6 sessions' content, options would be:
+1. Contact Augment support to request server-side conversation export
+2. Install the auggie CLI and check if `auggie --resume` lists server-side sessions
+3. Check if Augment has a web dashboard at app.augmentcode.com with conversation history

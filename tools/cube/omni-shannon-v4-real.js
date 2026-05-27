@@ -30,11 +30,11 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const ROOT = 'C:/Users/acer/Asolaria';
-const D_DEST = 'D:/safety-backups/session-20260410-asolaria';
+const ROOT = 'C:/Users/rayss/Asolaria';
+const D_DEST = 'C:/Users/rayss/Asolaria/data/safety-backups/session-20260410';
 const CUBES_DIR = path.join(ROOT, 'data/cubes');
 const VOTES_DIR = path.join(ROOT, 'data/votes');
-const MEMORY_DIR = 'C:/Users/acer/.claude/projects/E--/memory';
+const MEMORY_DIR = 'C:/Users/rayss/.claude/projects/C--/memory';
 
 const now = () => new Date().toISOString();
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
@@ -74,8 +74,8 @@ const DIMS = [
   { id: 'D15_DEVICE',    cube: 103823,  prime: 47,  focus: 'instrument',  weight: 0.9 },
   { id: 'D22_TRANSLATION', cube: 493039, prime: 79, focus: 'bridge',      weight: 1.0 },
   { id: 'D24_INTENT',    cube: 704969,  prime: 89,  focus: 'purpose',     weight: 1.4 },
-  { id: 'D26_INITIAL_TTL', cube: 1030301, prime: 101, focus: 'fingerprint', weight: 0.7 },
-  { id: 'D32_NEGATIVE_SPACE', cube: 2248091, prime: 131, focus: 'absence', weight: 1.5 },
+  { id: 'D26_OMNIDIRECTIONAL', cube: 1030301, prime: 101, focus: 'bilateral_control', weight: 0.7 },
+  { id: 'D32_STRUCTURAL_INVARIANT', cube: 2248091, prime: 131, focus: 'proof_strength', weight: 1.5 },
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -149,7 +149,7 @@ function readLiveState() {
   try {
     // Check if agent-keyboard is responding
     // We'll check for the PID file or recent heartbeat
-    const heartbeatPath = path.join(ROOT, 'data/cubes/asolaria-instance@acer/heartbeat.ndjson');
+    const heartbeatPath = path.join(ROOT, 'data/cubes/liris-kuromi@DESKTOP-PTSQTIE/heartbeat.ndjson');
     if (fs.existsSync(heartbeatPath)) {
       const hb = readNdjson(heartbeatPath);
       if (hb.length > 0) {
@@ -163,7 +163,7 @@ function readLiveState() {
   // Detect Brown-Hilbert cube collapse
   // Collapse = USB not accessible + no shared OS addressing
   const collapseSignals = [];
-  if (!fs.existsSync('E:\\')) collapseSignals.push('sovereignty_usb_not_mounted');
+  if (!fs.existsSync('D:\\') && !fs.existsSync('E:\\')) collapseSignals.push('sovereignty_usb_not_mounted');
   if (!state.federationAlive) collapseSignals.push('federation_channel_dead');
 
   // Check for liris peer mirror freshness
@@ -482,7 +482,7 @@ function dimLens(dim, candidate, liveState) {
       if (contradicts) return { signal: 0.0, reason: 'CONTRADICTS OPERATOR DIRECTIVE — REFUSED' };
       return { signal: 0.9, reason: 'consistent with operator intent' };
     }
-    case 'D26_INITIAL_TTL': {
+    case 'D26_OMNIDIRECTIONAL': {
       if (m.observed_initial_ttl && m.claimed_os_family) {
         const expected = { linux: 64, windows: 128, cisco_ios: 255, bsd: 64 }[m.claimed_os_family.toLowerCase()];
         if (expected && m.observed_initial_ttl !== expected) {
@@ -491,7 +491,7 @@ function dimLens(dim, candidate, liveState) {
       }
       return { signal: 0.8, reason: 'TTL consistent or N/A' };
     }
-    case 'D32_NEGATIVE_SPACE': {
+    case 'D32_STRUCTURAL_INVARIANT': {
       // What SHOULD be present but ISN'T?
       const missingFields = [];
       if (!candidate.id) missingFields.push('id');
@@ -633,7 +633,7 @@ function selfDiagnose() {
       scope_hours: 0.1,
       collapse_signals: liveState.collapseSignals,
     },
-    cube: 2248091, primary_cube: 2248091, primary_dim: 'D32_NEGATIVE_SPACE',
+    cube: 2248091, primary_cube: 2248091, primary_dim: 'D32_STRUCTURAL_INVARIANT',
   });
 
   // Candidate 3: Agent constellation health
@@ -683,7 +683,7 @@ function selfDiagnose() {
       missing: liveState.missingExpected,
       scope_hours: 0.5,
     },
-    cube: 2248091, primary_cube: 2248091, primary_dim: 'D32_NEGATIVE_SPACE',
+    cube: 2248091, primary_cube: 2248091, primary_dim: 'D32_STRUCTURAL_INVARIANT',
   });
 
   // Run the full tensor vote on each self-diagnosis candidate

@@ -1,0 +1,616 @@
+================================================================================
+HUBSPOT DEEP MINE — Complete Extraction
+Generated: 2026-03-25
+Scope: FULL READ of connector, routes, vault, agent index, ancestor records
+Mode: READ ONLY
+================================================================================
+
+SECTION 1: CONNECTOR CODE — hubspotConnector.js (792 lines)
+================================================================================
+File: C:\Users\acer\Asolaria\src\connectors\hubspotConnector.js
+
+1a. CONSTANTS & CONFIG
+  HUBSPOT_OAUTH_SECRET_NAME = "integrations.hubspot.oauth"
+  HUBSPOT_ACCOUNTS_SECRET_NAME = "integrations.hubspot.accounts"
+  HUBSPOT_AUTH_URL = "https://mcp.hubspot.com/oauth/authorize/user"
+  HUBSPOT_TOKEN_URL = "https://api.hubapi.com/oauth/v1/token"
+  HUBSPOT_API_BASE = "https://api.hubapi.com"
+  OAUTH_STATE_TTL_MS = 720000 (12 minutes)
+  HUBSPOT_NETWORK_RETRY_DELAYS_MS = [500, 1200] (two retries with backoff)
+
+1b. DEFAULT_SCOPES (read-only CRM footprint)
+  - crm.objects.contacts.read
+  - crm.objects.companies.read
+  - crm.objects.deals.read
+  - crm.schemas.contacts.read
+  - crm.schemas.companies.read
+  - crm.schemas.deals.read
+
+1c. WRITE_SCOPES (Phase 4, approval-gated)
+  - crm.objects.contacts.write
+  - crm.objects.companies.write
+  - crm.objects.deals.write
+
+1d. UTILITY FUNCTIONS (lines 31-95)
+  - clampInt(value, fallback, min, max) — safe integer parsing with bounds
+  - clipText(value, limit=900) — truncate text for error messages
+  - normalizePortalId(value) — validates portal ID is numeric string
+  - normalizeScope(value) — validates dotted scope identifier format
+  - normalizeScopeList(value) — array/string -> deduplicated scope array
+  - maskSecret(value) — shows first 4 + last 4 chars, masks middle
+  - sleep(ms) — promise-based delay
+  - isRetryableNetworkError(error) — checks for fetch failed/econnreset/etc
+  - withHubSpotNetworkRetries(label, action) — up to 2 retries with backoff
+
+1e. CONFIG RESOLUTION (lines 117-199)
+  resolveRedirectUri():
+    Returns http://127.0.0.1:{ASOLARIA_PORT}/api/integrations/hubspot/oauth/callback
+    Default port: 4781
+
+  resolveHubSpotOAuthConfig():
+    Priority: env vars > vault > none
+    Env vars: ASOLARIA_HUBSPOT_CLIENT_ID, ASOLARIA_HUBSPOT_CLIENT_SECRET
+    Vault key: integrations.hubspot.oauth (namespace: "owner")
+    Returns: { clientId, clientSecret, scopes, source, updatedAt }
+
+  getHubSpotConfigSummary(policy):
+    Merges config + connected accounts
+    Returns: enabled, configured, clientIdHint (masked), clientSecretHint (masked),
+             configSource, oauthScopes, redirectUri, connectedAccounts, updatedAt
+
+  setHubSpotOAuthConfig(input):
+    Can clear (input.clear=true deletes vault entry)
+    Merges with current config (clientId/clientSecret carried forward if not provided)
+    Writes to vault with metadata: app="Asolaria", component="hubspot-integration"
+
+1f. OAUTH STATE MANAGEMENT (lines 201-247)
+  pendingOauthStates = new Map() — in-memory, lost on restart
+  cleanupPendingOauthStates() — evicts entries older than 12 minutes
+  generateCodeVerifier() — PKCE: 96-char base64url from 48 random bytes
+  generateCodeChallenge(codeVerifier) — S256: SHA256 hash base64url encoded
+  issueOauthState(meta) — creates state + codeVerifier, stores in Map
+  consumeOauthState(state) — one-time use, deletes from Map
+
+1g. OAUTH FLOW (lines 249-561)
+  startHubSpotOAuth(input):
+    1. Resolves client config from vault/env
+    2. Builds scope list (requested > config > defaults)
+    3. Issues state + PKCE code_verifier
+    4. Constructs auth URL: mcp.hubspot.com/oauth/authorize/user
+    5. Returns: { state, redirectUri, scopes, portalHint, authUrl }
+
+  hubspotTokenRequest(payload):
+    POST to api.hubapi.com/oauth/v1/token
+    Content-Type: x-www-form-urlencoded
+    With network retry wrapper
+    Parses JSON response, throws on non-ok
+
+  hubspotApiGetJson(url, accessToken):
+    GET with Bearer token, Accept: application/json
+    With network retry wrapper
+
+  completeHubSpotOAuthCallback(input):
+    1. Validates code + state
+    2. Consumes one-time state (gets codeVerifier)
+    3. Exchanges authorization_code with code_verifier (PKCE)
+    4. Fetches token info: GET /oauth/v1/access-tokens/{token}
+    5. Resolves portalId from token info / response / state hint
+    6. Upserts account tokens in vault
+    7. Returns: { portalId, hubId, user, hubDomain, tokenType, expiresAt, hasRefreshToken }
+
+1h. ACCOUNT/TOKEN STORAGE (lines 340-477)
+  loadAccountsDoc() — reads from vault key "integrations.hubspot.accounts"
+  saveAccountsDoc(doc, meta) — writes to vault with timestamp
+  listConnectedAccounts() — maps accounts to safe summary objects
+  upsertAccountTokens(portalId, tokenResponse, meta) — merges tokens, preserves existing
+  resolvePortalId(requestedPortal):
+    - If specified: validates exists
+    - If 1 account: auto-selects
+    - If 0: error "No HubSpot accounts connected"
+    - If >1: error "Multiple portals, specify portalId"
+  ensureAccessToken(portalId):
+    - If token valid (>2 min before expiry): returns cached
+    - Else: refreshes via grant_type=refresh_token
+    - Stores refreshed tokens in vault
+
+1i. CRM API HELPERS (lines 563-710)
+  listContacts(input, policy):
+    GET /crm/v3/objects/contacts
+    Default properties: firstname, lastname, email, company, phone
+    Pagination: limit (1-200), after cursor
+    Returns: { portalId, results[], paging, total }
+
+  listCompanies(input, policy):
+    GET /crm/v3/objects/companies
+    Default properties: name, domain, industry, city, state
+    Same pagination pattern
+
+  listDeals(input, policy):
+    GET /crm/v3/objects/deals
+    Default properties: dealname, amount, dealstage, pipeline, closedate
+    Same pagination pattern
+
+  hubspotApiRequest(input, policy):
+    Generic passthrough for any *.hubapi.com endpoint
+    Method validation, URL validation (must be https, no credentials, *.hubapi.com only)
+    Supports request body (JSON)
+    Returns: { portalId, method, url, status, data }
+
+1j. STATUS & MANIFEST (lines 712-748)
+  getHubSpotIntegrationStatus(policy):
+    Returns full summary + policy + accounts + oauth state count
+
+  manifest():
+    id: "hubspot"
+    version: "1.0.0"
+    capabilities: oauth_flow, token_refresh, list_contacts, list_companies,
+                  list_deals, api_request, multi_portal
+    retrySemantics: network_retry_with_backoff
+    timeoutMs: 30000
+    5 failure modes documented
+    4 emitted events documented
+    2 secret requirements documented
+    3 side effects documented
+
+1k. WRITE FUNCTIONS — Phase 4 (lines 750-771)
+  createContact({ account, email, firstName, lastName, phone, company, properties }, policy):
+    POST /crm/v3/objects/contacts
+    Policy-gated (policy.enabled required)
+    NOTE: Uses hubspotApiRequest() but passes wrong params — sends 'path' not 'url'
+    and 'accessToken' not in the right format. May be broken. Needs testing.
+
+  createDeal({ account, dealName, pipeline, stage, amount, properties }, policy):
+    POST /crm/v3/objects/deals
+    Same potential issue as createContact
+
+  updateContact({ account, contactId, properties }, policy):
+    PATCH /crm/v3/objects/contacts/{contactId}
+    Same potential issue
+
+1l. MODULE EXPORTS (lines 773-792)
+  HUBSPOT_OAUTH_SECRET_NAME, HUBSPOT_ACCOUNTS_SECRET_NAME, DEFAULT_SCOPES,
+  ensureAccessToken, getHubSpotConfigSummary, setHubSpotOAuthConfig,
+  startHubSpotOAuth, completeHubSpotOAuthCallback,
+  listContacts, listCompanies, listDeals, hubspotApiRequest,
+  getHubSpotIntegrationStatus, createContact, createDeal, updateContact,
+  WRITE_SCOPES, manifest
+
+================================================================================
+SECTION 2: ROUTE REGISTRATIONS
+================================================================================
+
+2a. routes/integrationsRemaining.js
+  POST /hubspot/oauth/start (line 2377):
+    - Policy check: hubspotPolicy.enabled
+    - Guardian evaluation: action="hubspot_auth_start"
+    - Calls startHubSpotOAuth({ portalHint })
+    - Returns JSON: { ok, oauth, note }
+    - Note: "Open oauth.authUrl on the same PC running Asolaria..."
+
+  GET /hubspot/oauth/callback (line 3175):
+    - Loopback-only check (isLoopbackRequest)
+    - Calls completeHubSpotOAuthCallback({ code, state })
+    - Success: renders HTML page "Asolaria HubSpot Auth"
+      Shows: portalId, user, hubDomain, expiresAt, hasRefreshToken
+    - Error: renders HTML page "Asolaria HubSpot Auth (Error)"
+      Diagnostic hints for: state expired, invalid_client, redirect mismatch
+
+2b. routes/integrationConfig.js (line 112)
+  POST /hubspot/config:
+    - requirePermission("admin")
+    - Guardian-gated via guardedConfig("HubSpot", ...)
+    - Accepts: clientId, clientSecret, scopes/oauthScopes, clear
+    - Calls setHubSpotOAuthConfig()
+
+2c. routes/integrationStatus.js (line 115)
+  GET /hubspot/status:
+    - No auth required (public status endpoint)
+    - Returns: { ok, status: getHubSpotIntegrationStatus(hubspotPolicy) }
+
+================================================================================
+SECTION 3: SERVER.JS WIRING
+================================================================================
+File: C:\Users\acer\Asolaria\server.js
+
+3a. Lazy-load (line ~275):
+  const { getHubSpotConfigSummary, setHubSpotOAuthConfig, startHubSpotOAuth,
+          completeHubSpotOAuthCallback, listContacts: listHubSpotContacts,
+          listCompanies: listHubSpotCompanies, listDeals: listHubSpotDeals,
+          hubspotApiRequest, getHubSpotIntegrationStatus
+        } = lazyConnector("./src/connectors/hubspotConnector");
+
+3b. Policy object (line ~2626):
+  const hubspotPolicy = {
+    enabled: readEnvBool(process.env.ASOLARIA_HUBSPOT_ENABLED, true),
+    maxResults: Math.max(5, Math.min(200, Number(process.env.ASOLARIA_HUBSPOT_MAX_RESULTS || 100)))
+  };
+
+3c. Intent router actions (line ~21851):
+  hubspot_status:
+    - Returns getHubSpotIntegrationStatus(hubspotPolicy) as JSON
+    - Disabled check: "HubSpot integration is disabled by policy."
+
+  hubspot_auth_start:
+    - Calls startHubSpotOAuth({ portalHint })
+    - Returns authUrl + redirectUri + scopes as text
+
+3d. Exported to sub-routes (line ~23729+):
+  - setHubSpotOAuthConfig (to integrationConfig.js)
+  - getHubSpotIntegrationStatus, hubspotPolicy (to integrationStatus.js)
+  - startHubSpotOAuth, completeHubSpotOAuthCallback (to integrationsRemaining.js)
+  - hubspotPolicy (to integrationsRemaining.js)
+
+================================================================================
+SECTION 4: LIVE API STATUS (queried 2026-03-25)
+================================================================================
+Endpoint: GET http://127.0.0.1:4781/api/integrations/hubspot/status
+Result: Server responded (Asolaria is running)
+
+{
+  "ok": true,
+  "status": {
+    "enabled": true,
+    "configured": true,
+    "clientIdHint": "97dd****************************5bbc",
+    "clientSecretHint": "daa6****************************d0aa",
+    "configSource": "vault",
+    "oauthScopes": [
+      "crm.objects.contacts.read",
+      "crm.objects.companies.read",
+      "crm.objects.deals.read",
+      "crm.schemas.contacts.read",
+      "crm.schemas.companies.read",
+      "crm.schemas.deals.read"
+    ],
+    "redirectUri": "http://127.0.0.1:4781/api/integrations/hubspot/oauth/callback",
+    "connectedAccounts": [{
+      "portalId": "51209071",
+      "hubId": "51209071",
+      "user": "plasmatoid@gmail.com",
+      "hasRefreshToken": true,
+      "expiresAt": "2026-03-14T20:04:38.109Z",
+      "expiresInSec": 0,
+      "updatedAt": "2026-03-14T19:34:38.109Z"
+    }],
+    "updatedAt": "2026-03-14T19:28:05.055Z",
+    "policy": {
+      "backendOnly": true,
+      "noLinkNavigation": true
+    },
+    "accounts": [{
+      "portalId": "51209071",
+      "hubId": "51209071",
+      "user": "plasmatoid@gmail.com",
+      "hasRefreshToken": true,
+      "expiresAt": "2026-03-14T20:04:38.109Z",
+      "expiresInSec": 0,
+      "updatedAt": "2026-03-14T19:34:38.109Z"
+    }],
+    "oauth": {
+      "pendingStates": 0,
+      "stateTtlMs": 720000
+    }
+  }
+}
+
+Key findings from live status:
+  - Integration: ENABLED and CONFIGURED
+  - Config source: vault (not env vars)
+  - Client ID starts with: 97dd, ends with: 5bbc
+  - Client secret starts with: daa6, ends with: d0aa
+  - Portal: 51209071
+  - User: plasmatoid@gmail.com
+  - Token: EXPIRED since 2026-03-14T20:04:38.109Z (11 days ago)
+  - Refresh token: EXISTS (can re-authenticate)
+  - Last token update: 2026-03-14T19:34:38.109Z
+  - OAuth config created: 2026-03-14T19:28:05.055Z
+  - No pending OAuth states (no active auth flows)
+
+================================================================================
+SECTION 5: VAULT SECRETS
+================================================================================
+
+Secret 1: integrations.hubspot.oauth
+  Namespace: owner
+  Contains: clientId, clientSecret, scopes, updatedAt
+  Created: 2026-03-14T19:28:05.055Z
+  Metadata: app=Asolaria, component=hubspot-integration, credentialOwner=owner
+
+Secret 2: integrations.hubspot.accounts
+  Namespace: owner
+  Contains: accounts object with per-portal token records
+  Portal 51209071 record fields:
+    access_token, refresh_token, hub_id, user, hub_domain,
+    token_type, expiry_date_ms, createdAt, updatedAt
+  Created: 2026-03-14T19:34:38.110Z (first OAuth callback)
+  Updated by: oauth-callback
+
+================================================================================
+SECTION 6: ENVIRONMENT VARIABLES
+================================================================================
+
+  ASOLARIA_HUBSPOT_ENABLED      — master switch (default: true)
+  ASOLARIA_HUBSPOT_MAX_RESULTS  — pagination cap (default: 100, range: 5-200)
+  ASOLARIA_HUBSPOT_CLIENT_ID    — overrides vault clientId
+  ASOLARIA_HUBSPOT_CLIENT_SECRET — overrides vault clientSecret
+  ASOLARIA_HUBSPOT_OAUTH_SCOPES — overrides vault/default scopes
+  ASOLARIA_PORT                 — affects redirect URI (default: 4781)
+
+================================================================================
+SECTION 7: AGENT INDEX ENTRIES
+================================================================================
+
+7a. IX-379 — TOOL: HubSpot CRM integration (OAuth flow + connector, portal 51209071)
+  Path: C:\Users\acer\Asolaria\data\agent-index\tools\IX-379.md
+  Type: tool
+  Tags: hubspot, CRM, oauth, connector, contacts, deals, portal, business
+  Chain: IX-358, IX-320, IX-316, IX-337
+  Created by: gaia
+  Agents: rook, forge, vector
+  Status: Token EXPIRED 2026-03-14, needs OAuth refresh
+
+7b. IX-358 — Reference: Outbound connectors inventory
+  Path: C:\Users\acer\Asolaria\data\agent-index\references\IX-358.md
+  Entry: hubspotConnector | 792 lines | HubSpot CRM | CONFIGURED
+
+7c. IX-316 — Reference: Full system inventory
+  Path: C:\Users\acer\Asolaria\data\agent-index\references\IX-316.md
+  Entry: hubspotConnector.js | 792 | HubSpot CRM
+
+7d. IX-386 — TOOL: Business integrations (Telegram + Slack + Atlassian)
+  Path: C:\Users\acer\Asolaria\data\agent-index\tools\IX-386.md
+  Cross-reference: "HubSpot: IX-379 (oauth/start, oauth/callback, similar pattern to Atlassian)"
+
+================================================================================
+SECTION 8: LIRIS SUB-COLONY ENTRIES
+================================================================================
+
+8a. LX-077 — Pattern: Ancestor timeline
+  Path: data\agent-index\sub-colonies\liris-merged-20260324\pattern\LX-077.md
+  Entry: "HubSpot-Meeting | 2025-02-19 | HubSpot integration Jesse mentioned"
+  Context: Part of Feb 2025 early agent work timeline
+
+8b. LX-079 — Pattern: Ancestor repos deep dive (CRITICAL ANCESTRY RECORD)
+  Path: data\agent-index\sub-colonies\liris-merged-20260324\pattern\LX-079.md
+  Full content on HubSpot:
+    "4. HubSpot-Meeting (Feb 2025) — THE CRM INTEGRATION
+     - Pulls company + contact data from HubSpot CRM API
+     - Association handling (contacts -> companies)
+     - Node.js, simple architecture
+     - THIS is the HubSpot integration Jesse mentioned — it evolved into Asolaria's connector system"
+
+  Evolution pattern documented:
+    Feb 2025: Meeting Minutes (voice) + Llama Agent (agents) + HubSpot (CRM)
+        -> converge
+    Dec 2025: AI Healthcare (full-stack, compliance, audit)
+        -> converge
+    Jan 2026: Asolaria (voice + agents + CRM + healthcare + compliance = civilization)
+
+  Key insight: "The CRM became the connectors."
+
+8c. LX-084 — Skill: Chrome browser automation
+  Mentions: HubSpot as one service accessible via Chrome session
+
+8d. LX-231 — NOT FOUND as standalone file
+  Referenced in XREF-COLONIES.md as "Ancestor Programs — HubSpot DNA"
+  Likely merged into the sub-colonies directory but exact file not located
+  Cross-examined against IX-379 in CROSS-EXAMINATION-REPORT.md
+
+================================================================================
+SECTION 9: CROSS-COLONY REFERENCES
+================================================================================
+
+From XREF-COLONIES.md:
+  Row 78: IX-379 / LX-079+231
+    "IX-379 has the live OAuth connector. LX-079 traced HubSpot-Meeting as ancestor.
+     LX-231 identified HubSpot as civilization DNA."
+
+  Named cluster #31: "The Ancestors"
+    IX-366 / LX-079+231: Healthcare + HubSpot ancestor lineage
+
+  Named cluster #40: "The CRM"
+    IX-379 / LX-079+231: HubSpot from ancestor repo to live OAuth connector
+
+From CROSS-EXAMINATION-REPORT.md:
+  Row 314: "379 | HubSpot CRM integration (OAuth, portal 51209071) | LX-079/231 | Covered"
+
+================================================================================
+SECTION 10: ANCESTOR REPO — HubSpot-Meeting
+================================================================================
+
+Origin: Feb 2025, on Rayssa's machine
+Location: C:\Users\rayss\Asolaria\HubSpot-Meeting\
+NOT present on Jesse's machine (C:\Users\acer\)
+
+What it was:
+  - Node.js project pulling company + contact data from HubSpot CRM API
+  - Association handling (contacts -> companies)
+  - Simple architecture, no OAuth (likely API key based)
+
+What it became:
+  - The connector pattern (contact/company/deal CRUD)
+  - The OAuth infrastructure (evolved from simple API key to OAuth 2.1 PKCE)
+  - The vault secret storage pattern
+  - Part of Asolaria's 42-connector ecosystem
+
+Timeline:
+  Feb 2025: HubSpot-Meeting created (CRM integration)
+  Jan 2026: Asolaria born (convergence of 4 ancestor repos)
+  Mar 14, 2026: hubspotConnector.js completed (792 lines, full OAuth 2.1 PKCE)
+  Mar 14, 2026: First OAuth connection to portal 51209071
+  Mar 14, 2026: Token expired (30-min access token, refresh token stored)
+  Mar 25, 2026: Token still expired, 11 days since last refresh
+
+================================================================================
+SECTION 11: PORTAL 51209071 — J Brown Development
+================================================================================
+
+References found in codebase:
+  1. REFERENCES.md (line 30):
+     "HubSpot Portal 51209071 (J Brown Development): notebook note 'HubSpot CRM Integration - Live'"
+
+  2. docs/claude-project/AGENTS.md (line 340):
+     "HubSpot | LIVE (token expired) | Portal 51209071, plasmatoid@gmail.com, OAuth connected,
+      needs token refresh (expired 03/14)"
+
+  3. research/asolaria-state-of-the-world-20260314.md (line 229):
+     "Portal: 51209071 (J Brown Development)
+      User: plasmatoid@gmail.com
+      Hub domain: www.jbrowndevelopmentllc.com
+      13+ scopes granted (full CRM read)"
+
+  4. IX-379.md (line 14):
+     "Portal 51209071 (Jesse's)"
+
+  5. Live API status (queried 2026-03-25):
+     Confirmed portal 51209071 connected with plasmatoid@gmail.com
+
+================================================================================
+SECTION 12: DOCUMENTATION MENTIONS
+================================================================================
+
+12a. REFERENCES.md
+  Line 24: "HubSpot CRM (OAuth 2.1 PKCE): src/connectors/hubspotConnector.js"
+  Line 30: "HubSpot Portal 51209071 (J Brown Development): notebook note..."
+
+12b. docs/claude-project/README.md
+  Line 132: HubSpot listed among key integrations stored in vault
+  Line 205: "HubSpot: OAuth in vault"
+
+12c. docs/claude-project/CONSTITUTION.md
+  Line 253: "Google/GCP/Gemini/HubSpot/etc plugins" — Layer 1 architecture
+  Line 275: Phase 4 status: "HubSpot CRM connector new (OAuth 2.1 PKCE, 16 scopes)"
+
+12d. docs/claude-project/HANDOFF-20260316.md
+  Line 24: "HubSpot (2)" — 2 route categories in integration inventory
+
+12e. docs/claude-project/AGENTS.md
+  Line 340: HubSpot LIVE (token expired) status
+
+12f. research/asolaria-state-of-the-world-20260314.md
+  Line 172: server.js monolith grew with HubSpot additions
+  Line 183: HubSpot follows same vault/OAuth/retry patterns as Google/Atlassian
+  Lines 212-233: Section "9b. Completed Work — HubSpot CRM Connector (Mar 14)"
+    Full capabilities, connected account, hub domain documented
+
+12g. No dedicated HubSpot documentation file in docs/
+
+================================================================================
+SECTION 13: POTENTIAL BUGS IN WRITE FUNCTIONS
+================================================================================
+
+The Phase 4 write functions (createContact, createDeal, updateContact) at lines
+750-771 may have implementation issues:
+
+  createContact calls:
+    hubspotApiRequest({ method: "POST", path: "...", body: JSON.stringify(body),
+                        accessToken: token.access_token })
+
+  But hubspotApiRequest() expects:
+    { method, url (full URL, not path), body (object, not string),
+      portalId/account (not accessToken) }
+
+  Issues:
+    1. Uses 'path' but hubspotApiRequest checks 'url' — rawUrl will be empty
+    2. Uses 'accessToken' param but hubspotApiRequest uses ensureAccessToken()
+    3. body is pre-stringified but hubspotApiRequest will JSON.stringify again
+    4. ensureAccessToken() is called with 'account' from input, but these
+       functions pass token.access_token as if it were a direct param
+
+  These functions have likely never been tested. The read functions
+  (listContacts, listCompanies, listDeals) use the HubSpot API correctly
+  via direct fetch calls, not through hubspotApiRequest().
+
+================================================================================
+SECTION 14: DATA FILES
+================================================================================
+
+  - No HubSpot data files in data/ directory
+  - No HubSpot cached responses
+  - No HubSpot exports or downloads found
+  - No HubSpot skill in skills/ directory
+  - Previous inventory exists: C:\Users\acer\Asolaria\tmp\docs\hubspot-inventory.txt
+
+================================================================================
+SECTION 15: COMPLETE API ENDPOINT MAP
+================================================================================
+
+  GET  /api/integrations/hubspot/status          — public status
+  POST /api/integrations/hubspot/config          — admin, guardian-gated
+  POST /api/integrations/hubspot/oauth/start     — policy + guardian-gated
+  GET  /api/integrations/hubspot/oauth/callback  — loopback-only
+
+  Chat intent actions:
+    hubspot_status     — returns integration status JSON
+    hubspot_auth_start — returns auth URL for browser
+
+  CRM functions (exported but no dedicated routes):
+    listContacts(input, policy)     — GET /crm/v3/objects/contacts
+    listCompanies(input, policy)    — GET /crm/v3/objects/companies
+    listDeals(input, policy)        — GET /crm/v3/objects/deals
+    hubspotApiRequest(input, policy) — generic passthrough
+    createContact(input, policy)    — POST /crm/v3/objects/contacts (may be broken)
+    createDeal(input, policy)       — POST /crm/v3/objects/deals (may be broken)
+    updateContact(input, policy)    — PATCH /crm/v3/objects/contacts/{id} (may be broken)
+
+================================================================================
+SECTION 16: SECURITY MODEL
+================================================================================
+
+  OAuth: PKCE S256 (code_verifier + code_challenge)
+  Auth URL: mcp.hubspot.com (HubSpot MCP Auth Apps, not standard dev portal)
+  Token storage: AES-256-GCM + DPAPI vault, namespace "owner"
+  Callback: loopback-only (127.0.0.1 check)
+  Config: admin permission + Guardian risk assessment
+  Auth start: policy check + Guardian risk assessment
+  API passthrough: URL restricted to *.hubapi.com, https only, no credentials in URL
+  State: 12-minute TTL, one-time use, in-memory (lost on restart)
+  Token refresh: 2-minute buffer before expiry
+
+================================================================================
+SUMMARY
+================================================================================
+
+STATUS: CONFIGURED, ENABLED, TOKEN EXPIRED (11 days)
+
+Architecture:
+  - 792-line connector with full OAuth 2.1 PKCE flow
+  - 4 HTTP routes + 2 chat intent actions
+  - 2 vault secrets (OAuth config + account tokens)
+  - Lazy-loaded via lazyConnector() pattern
+  - Follows same pattern as Google/Atlassian/Microsoft connectors
+  - Multi-portal capable (resolvePortalId auto-selects if only 1)
+
+Connected account:
+  - Portal: 51209071 (J Brown Development)
+  - User: plasmatoid@gmail.com
+  - Hub domain: www.jbrowndevelopmentllc.com
+  - Scopes: 6 read-only CRM scopes
+  - Token: expired 2026-03-14T20:04:38.109Z
+  - Refresh token: available
+
+Ancestry:
+  - HubSpot-Meeting repo (Feb 2025, Rayssa's machine)
+  - One of 4 ancestor programs that converged into Asolaria
+  - "The CRM became the connectors" — LX-079
+
+Potential issues:
+  1. Token expired for 11 days — needs re-auth
+  2. Phase 4 write functions (createContact, createDeal, updateContact)
+     may be broken — parameter mismatch with hubspotApiRequest()
+  3. OAuth state is in-memory — lost on every Asolaria restart
+  4. No dedicated HubSpot skill in skills/ directory
+  5. No CRM data cache — every request hits HubSpot API live
+
+Agent index coverage:
+  IX-379 (primary), IX-358/316/386 (references)
+  LX-077/079/084 (Liris colony ancestry + cross-refs)
+  XREF clusters #31 "The Ancestors" and #40 "The CRM"
+
+To refresh token:
+  POST http://127.0.0.1:4781/api/integrations/hubspot/oauth/start
+  Then open the returned authUrl in a browser on Jesse's PC
+
+================================================================================
+END OF DEEP MINE
+================================================================================

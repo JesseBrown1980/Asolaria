@@ -1,0 +1,35 @@
+{
+  "generated_ts": "2026-04-07T22:12:43.648Z",
+  "authority": "jesse 2026-04-07 verbal authorization + vault integrations.google.oauth credential for plasmatoid@gmail.com",
+  "account": "plasmatoid@gmail.com",
+  "search_queries": [
+    "from:googleplay-noreply@google.com \"Rise of Kingdoms\" after:2017/01/01",
+    "from:googleplay-noreply@google.com \"Rise of Civilizations\" after:2017/01/01",
+    "from:googleplay-noreply@google.com \"Rise of Kings\" after:2017/01/01"
+  ],
+  "date_range": "2017-01-01 to today",
+  "total_rows": 0,
+  "csv_path": "C:\\Users\\acer\\Asolaria\\reports\\legal\\rise-of-kingdoms-purchases.csv",
+  "csv_size_bytes": 111,
+  "csv_sha256": "3a268f046e622bee500877ccd6806109fcbc8a76db56a51f412b004b36e4e813",
+  "progress_path": "C:\\Users\\acer\\Asolaria\\reports\\legal\\rise-of-kingdoms-purchases.progress.json",
+  "elapsed_seconds": 1,
+  "purpose": "legal deliverable for jesse case vs Google started ~2017",
+  "fields": [
+    "order_id",
+    "date_utc",
+    "product_title",
+    "sku",
+    "price_usd",
+    "payment_method_last4",
+    "receipt_sha256",
+    "gmail_message_id",
+    "raw_subject"
+  ],
+  "honest_notes": [
+    "Receipt field extraction uses regex best-effort; some fields may be blank if the receipt format varied over time",
+    "Receipts matched by (a) sender googleplay-noreply@google.com AND (b) body text contains \"Rise of Kingdoms\" or \"Rise of Civilizations\" or \"Rise of Kings\"",
+    "date_utc is raw format from receipt text, not normalized",
+    "receipt_sha256 is tamper-evident fingerprint of the full Gmail body text for legal exhibit purposes"
+  ]
+}

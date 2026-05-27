@@ -1,0 +1,22 @@
+[
+  {
+    "email": "jesse@jbrowndevelopmentllc.com",
+    "reason": "refresh_token_invalid",
+    "error": {
+      "error": "invalid_grant",
+      "error_description": "reauth related error (invalid_rapt)",
+      "error_uri": "https://support.google.com/a/answer/9368756",
+      "error_subtype": "invalid_rapt"
+    }
+  },
+  {
+    "email": "plasmatoid@jbrowndevelopmentllc.com",
+    "reason": "refresh_token_invalid",
+    "error": {
+      "error": "invalid_grant",
+      "error_description": "reauth related error (invalid_rapt)",
+      "error_uri": "https://support.google.com/a/answer/9368756",
+      "error_subtype": "invalid_rapt"
+    }
+  }
+]

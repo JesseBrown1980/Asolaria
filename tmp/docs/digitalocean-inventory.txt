@@ -1,0 +1,151 @@
+================================================================
+DIGITALOCEAN INVENTORY — Asolaria + Jesse's Machine
+Scanned: 2026-03-25
+Status: READ-ONLY AUDIT
+================================================================
+
+SUMMARY
+-------
+- NO DigitalOcean CLI (doctl) installed
+- NO DigitalOcean config directories (~/.doctl, ~/.config/doctl)
+- NO DigitalOcean files in Downloads or AppData
+- NO DO tokens in Asolaria vault (44 entries, none DO-related)
+- NO DO references in Asolaria src/, routes/, server.js, config/, skills/
+- Vault is LIVE at 127.0.0.1:4781 — confirmed zero DO entries
+- ALL references are QDD/eBacMap project documentation (Charm Sciences client work)
+
+================================================================
+SECTION 1: Asolaria Codebase (src/, routes/, server.js, config/, docs/)
+================================================================
+RESULT: ZERO matches.
+DigitalOcean is not used anywhere in Asolaria's own code or configuration.
+
+================================================================
+SECTION 2: Agent Index (data/agent-index/)
+================================================================
+7 matches across 4 IX/LX entries — all QDD/eBacMap project references:
+
+1. IX-361 (mistakes) — Lines 47, 92, 100
+   File: data\agent-index\mistakes\IX-361.md
+   Context: "Brian's ACTUAL blockers were upstream: DigitalOcean access"
+   Context: "remaining 11% is blocked on Brian's DigitalOcean access"
+   Context: "Integration tests for routes that need real env vars and DigitalOcean access are premature"
+
+2. IX-362 (mistakes)
+   File: data\agent-index\mistakes\IX-362.md
+   Context: "Ebac map stuff is on digital ocean, in emails, across messages"
+
+3. IX-368 (projects)
+   File: data\agent-index\projects\IX-368.md
+   Context: "EZ Protect: 89% done, needs Brian's visual testing + DigitalOcean access"
+
+4. IX-377 (tools)
+   File: data\agent-index\tools\IX-377.md
+   Context: "For QDD: connection string from DigitalOcean (Brian has credentials)"
+
+5. LX-150 (Liris sub-colony, plan)
+   File: data\agent-index\sub-colonies\liris-merged-20260324\plan\LX-150.md
+   Context: "EZ Protect Blockers: 1. DigitalOcean access"
+
+================================================================
+SECTION 3: AppData
+================================================================
+RESULT: No digitalocean or doctl files found.
+(Searched C:\Users\acer\AppData, 4 levels deep)
+
+================================================================
+SECTION 4: Downloads
+================================================================
+RESULT: No digitalocean, doctl, or droplet files found.
+(Searched C:\Users\acer\Downloads, 2 levels deep)
+
+================================================================
+SECTION 5: CLI Config (~/.doctl, ~/.config/)
+================================================================
+RESULT: No doctl CLI installed.
+- C:\Users\acer\.doctl — does not exist
+- C:\Users\acer\.config\doctl — does not exist
+- C:\Users\acer\.config\digitalocean — does not exist
+
+================================================================
+SECTION 6: Vault Status
+================================================================
+RESULT: Vault LIVE (44 entries, 2 namespaces). ZERO DigitalOcean tokens.
+Scanned all 43 owner entries + 1 asolaria entry.
+No entry names contain "digital", "ocean", "do_", "doctl", "spaces", or "droplet".
+
+Notable: credentials.ebacmap.staging EXISTS in vault but contains
+no DO-specific naming. This may hold the staging MongoDB connection
+string (which points to *.mongo.ondigitalocean.com — see Section 9).
+
+================================================================
+SECTION 7: WhatsApp Chat (Rayssa)
+================================================================
+2 matches for "digital ocean", 0 matches for "droplet":
+
+Line 31236 (Jesse, 3/24/26 5:03 AM):
+  "Ebac map stuff is on digital ocean, in emaisl, across messages,
+   but all documented DIFFERENT PROJECt."
+
+Line 31250 (Gaia's clarification question):
+  "- On Digital Ocean?"
+
+Context: Jesse correcting agents who confused QDD with AI Healthcare.
+The QDD/eBacMap infrastructure runs on DigitalOcean (Brian's access).
+
+================================================================
+SECTION 8: Extracted Docs (tmp/docs/)
+================================================================
+RESULT: Only the WhatsApp chat matches (covered in Section 7).
+No other .md or .txt files in tmp/docs/ mention DigitalOcean.
+
+================================================================
+SECTION 9: Skills
+================================================================
+RESULT: ZERO matches. No deployment skills reference DigitalOcean or droplets.
+
+================================================================
+SECTION 10: Other Notable Finds
+================================================================
+
+A. tmp-qdd-doc.txt (line 506) — CRITICAL INFRASTRUCTURE DETAIL:
+   Contains actual DigitalOcean Managed MongoDB connection string:
+   mongodb+srv://ebacmap:u2p9071zcO3Vi6v8@ebacmap-stg-0a849e03.mongo.ondigitalocean.com/ebacmap?authSource=admin&tls=true&replicaSet=ebacmap-stg
+   NOTE: This is the QDD STAGING database. Brian has production credentials.
+
+B. EZ_PROTECT_TASKS.md (+ 2 worktree copies) — Lines 72, 83:
+   "Brian's DigitalOcean deployment steps" — listed as TODO
+   "Deployment | Brian's DigitalOcean access | Brian" — blocked on Brian
+
+C. research-nl2xsyncapp-20260322.md (line 202) — Agent research log:
+   Contains embedded .env.example from QDD showing:
+     S3_ENDPOINT=https://sfo3.digitaloceanspaces.com
+     S3_SPACES_ENDPOINT=https://tours.ebacmap.sfo3.digitaloceanspaces.com
+     S3_CDN_ENDPOINT=https://tours.ebacmap.com
+   These are DigitalOcean Spaces (S3-compatible object storage) for
+   eBacMap tour file hosting. CDN fronted by tours.ebacmap.com.
+
+D. research-charm-docs-20260322.md (line 106) — Agent research log:
+   References DigitalOcean in context of Brian's deployment blockers.
+
+================================================================
+CONCLUSION
+================================================================
+
+DigitalOcean is used EXCLUSIVELY by the QDD/eBacMap client project:
+
+1. MANAGED MONGODB — ebacmap-stg-0a849e03.mongo.ondigitalocean.com
+   (staging DB, Brian controls production)
+
+2. SPACES (S3) — sfo3.digitaloceanspaces.com
+   (tour file storage for eBacMap, CDN at tours.ebacmap.com)
+
+3. DEPLOYMENT — Brian's responsibility, blocked/pending his access
+
+Asolaria itself has ZERO DigitalOcean dependencies.
+Jesse's machine has NO doctl CLI, NO DO config, NO DO tokens in vault.
+All DO access is through the QDD project codebase at D:\projects\QDD\.
+
+================================================================
+END OF INVENTORY
+================================================================
