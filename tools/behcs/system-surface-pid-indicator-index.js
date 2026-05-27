@@ -219,8 +219,34 @@ function collectLiveOsRecords(generatedAt) {
 $ErrorActionPreference = 'SilentlyContinue'
 $out = [ordered]@{}
 $out.Processes = @(Get-Process | Sort-Object ProcessName,Id | Select-Object -First 500 -Property Id,ProcessName,CPU,WorkingSet64,Path,Company,FileVersion)
-$out.SystemDrivers = @(Get-CimInstance Win32_SystemDriver | Select-Object -Property Name,DisplayName,State,StartMode,PathName,ServiceType)
-$out.PnPSignedDrivers = @(Get-CimInstance Win32_PnPSignedDriver | Select-Object -Property DeviceName,Manufacturer,DriverProviderName,DriverVersion,DriverDate,DeviceClass,InfName,IsSigned,Signer,DeviceID)
+# Delta L2 non-CIM rewrite 2026-05-26 — replaces Get-CimInstance Win32_SystemDriver + Win32_PnPSignedDriver
+# per feedback_avoid_WMI_CIM_probes_on_liris Class-1 hazard. Path B pattern bilateral parity (Delta L1).
+# Field-coverage trade-off: PathName/Signer/DriverVersion/DriverDate/InfName/IsSigned/DriverProviderName not directly
+# exposed by non-CIM primitives; set null. Upgrade path: pnputil /enum-drivers /format:csv if fidelity needed.
+$out.SystemDrivers = @(Get-Service -ServiceType KernelDriver,FileSystemDriver -ErrorAction SilentlyContinue | ForEach-Object {
+  [PSCustomObject]@{
+    Name = $_.Name
+    DisplayName = $_.DisplayName
+    State = $_.Status
+    StartMode = $_.StartType
+    PathName = $null
+    ServiceType = $_.ServiceType
+  }
+})
+$out.PnPSignedDrivers = @(Get-PnpDevice -PresentOnly -ErrorAction SilentlyContinue | ForEach-Object {
+  [PSCustomObject]@{
+    DeviceName = $_.FriendlyName
+    Manufacturer = $_.Manufacturer
+    DriverProviderName = $null
+    DriverVersion = $null
+    DriverDate = $null
+    DeviceClass = $_.Class
+    InfName = $null
+    IsSigned = $null
+    Signer = $null
+    DeviceID = $_.InstanceId
+  }
+})
 $uninstallRoots = @(
   'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*',
   'HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*',

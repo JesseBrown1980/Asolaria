@@ -177,40 +177,178 @@ function classifyLiveKind(className, row) {
 }
 
 function liveWindowsInventory() {
+  // Non-CIM rewrite 2026-05-26 per LAW-035 follow-on + liris ethernet-drop hazard memory
+  // (feedback_avoid_WMI_CIM_probes_on_liris Class-1 incident 2026-05-12).
+  // Bilateral parity with acer-side Path B rewrite (cosign seq=3367 row=e12940f6ab2c0ef3).
+  // Replaces Get-CimInstance / Win32_* with Get-PnpDevice + Get-Disk + Get-NetAdapter + registry reads.
+  // Output shape preserved (dict of named arrays) for backward-compat with downstream classify().
   const ps = `
 $ErrorActionPreference = 'SilentlyContinue'
-$defs = @(
-  @{n='ComputerSystem'; c='Win32_ComputerSystem'; p=@('Name','Manufacturer','Model','SystemType','Domain','TotalPhysicalMemory')},
-  @{n='BIOS'; c='Win32_BIOS'; p=@('Name','Manufacturer','SMBIOSBIOSVersion','Version','ReleaseDate','SerialNumber')},
-  @{n='BaseBoard'; c='Win32_BaseBoard'; p=@('Manufacturer','Product','Version','SerialNumber')},
-  @{n='Processor'; c='Win32_Processor'; p=@('Name','Manufacturer','Description','NumberOfCores','NumberOfLogicalProcessors','MaxClockSpeed','SocketDesignation','ProcessorId')},
-  @{n='VideoController'; c='Win32_VideoController'; p=@('Name','AdapterCompatibility','DriverVersion','VideoProcessor','PNPDeviceID','Status')},
-  @{n='PhysicalMemory'; c='Win32_PhysicalMemory'; p=@('Manufacturer','PartNumber','Capacity','Speed','ConfiguredClockSpeed','BankLabel','DeviceLocator','SerialNumber')},
-  @{n='DiskDrive'; c='Win32_DiskDrive'; p=@('Model','Manufacturer','InterfaceType','MediaType','FirmwareRevision','SerialNumber','PNPDeviceID','Size','Status')},
-  @{n='NetworkAdapter'; c='Win32_NetworkAdapter'; p=@('Name','Manufacturer','AdapterType','MACAddress','PNPDeviceID','PhysicalAdapter','NetConnectionStatus','Speed')},
-  @{n='USBController'; c='Win32_USBController'; p=@('Name','Manufacturer','PNPDeviceID','Status')},
-  @{n='USBHub'; c='Win32_USBHub'; p=@('Name','DeviceID','PNPDeviceID','Status')},
-  @{n='SoundDevice'; c='Win32_SoundDevice'; p=@('Name','Manufacturer','PNPDeviceID','Status')},
-  @{n='Keyboard'; c='Win32_Keyboard'; p=@('Name','Description','DeviceID','PNPDeviceID','Status')},
-  @{n='PointingDevice'; c='Win32_PointingDevice'; p=@('Name','Manufacturer','DeviceID','PNPDeviceID','Status')},
-  @{n='DesktopMonitor'; c='Win32_DesktopMonitor'; p=@('Name','MonitorManufacturer','MonitorType','PNPDeviceID','Status')},
-  @{n='Battery'; c='Win32_Battery'; p=@('Name','DeviceID','Status','BatteryStatus','Chemistry')},
-  @{n='SystemEnclosure'; c='Win32_SystemEnclosure'; p=@('Manufacturer','Model','ChassisTypes','SerialNumber','SMBIOSAssetTag')},
-  @{n='PnPEntity'; c='Win32_PnPEntity'; p=@('Name','Manufacturer','PNPClass','Status','Service','DeviceID','PNPDeviceID','ClassGuid','ConfigManagerErrorCode')}
-)
 $out = [ordered]@{}
-foreach ($d in $defs) {
-  try {
-    $rows = @(Get-CimInstance -ClassName $d.c | Where-Object { $_.Name -or $_.Caption -or $_.Description -or $_.Manufacturer -or $_.Model } | Select-Object -Property $d.p)
-    $out[$d.n] = $rows
-  } catch {
-    $out[$d.n] = @(@{__error=$_.Exception.Message})
+
+function _SafeRows([scriptblock]$f) {
+  try { return @(& $f) } catch { return @(@{__error=$_.Exception.Message}) }
+}
+
+# ComputerSystem - registry-only, no CIM
+$out['ComputerSystem'] = _SafeRows {
+  $bios = Get-ItemProperty 'HKLM:\HARDWARE\DESCRIPTION\System\BIOS' -ErrorAction SilentlyContinue
+  [PSCustomObject]@{
+    Name = $env:COMPUTERNAME
+    Manufacturer = $bios.SystemManufacturer
+    Model = $bios.SystemProductName
+    SystemType = if ([Environment]::Is64BitOperatingSystem) { 'x64-based PC' } else { 'x86-based PC' }
+    Domain = $env:USERDOMAIN
+    TotalPhysicalMemory = $null
   }
 }
-try {
-  $out['Tpm'] = @(Get-CimInstance -Namespace 'root\\CIMV2\\Security\\MicrosoftTpm' -ClassName Win32_Tpm | Select-Object -Property SpecVersion,ManufacturerVersion,ManufacturerId,IsEnabled_InitialValue,IsActivated_InitialValue,IsOwned_InitialValue)
-} catch {
-  $out['Tpm'] = @(@{__error=$_.Exception.Message})
+
+# BIOS - registry
+$out['BIOS'] = _SafeRows {
+  $b = Get-ItemProperty 'HKLM:\HARDWARE\DESCRIPTION\System\BIOS' -ErrorAction SilentlyContinue
+  [PSCustomObject]@{
+    Name = $b.BIOSReleaseDate
+    Manufacturer = $b.BIOSVendor
+    SMBIOSBIOSVersion = $b.BIOSVersion
+    Version = $b.BIOSVersion
+    ReleaseDate = $b.BIOSReleaseDate
+    SerialNumber = $null
+  }
+}
+
+# BaseBoard - registry
+$out['BaseBoard'] = _SafeRows {
+  $b = Get-ItemProperty 'HKLM:\HARDWARE\DESCRIPTION\System\BIOS' -ErrorAction SilentlyContinue
+  [PSCustomObject]@{
+    Manufacturer = $b.BaseBoardManufacturer
+    Product = $b.BaseBoardProduct
+    Version = $b.BaseBoardVersion
+    SerialNumber = $null
+  }
+}
+
+# Processor - registry HKLM\HARDWARE\DESCRIPTION\System\CentralProcessor\*
+$out['Processor'] = _SafeRows {
+  Get-ChildItem 'HKLM:\HARDWARE\DESCRIPTION\System\CentralProcessor' -ErrorAction SilentlyContinue | ForEach-Object {
+    $p = Get-ItemProperty $_.PSPath -ErrorAction SilentlyContinue
+    [PSCustomObject]@{
+      Name = $p.ProcessorNameString
+      Manufacturer = $p.VendorIdentifier
+      Description = $p.Identifier
+      NumberOfCores = $null
+      NumberOfLogicalProcessors = $null
+      MaxClockSpeed = $p.'~MHz'
+      SocketDesignation = $null
+      ProcessorId = $p.Identifier
+    }
+  }
+}
+
+# VideoController - Get-PnpDevice -Class Display (no CIM)
+$out['VideoController'] = _SafeRows {
+  Get-PnpDevice -Class Display -ErrorAction SilentlyContinue | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.FriendlyName; AdapterCompatibility=$_.Manufacturer; DriverVersion=$null; VideoProcessor=$null; PNPDeviceID=$_.InstanceId; Status=$_.Status }
+  }
+}
+
+# PhysicalMemory - no non-CIM equivalent for per-DIMM detail, emit empty array
+$out['PhysicalMemory'] = @()
+
+# DiskDrive - Get-Disk + Get-PhysicalDisk (canon-aligned per Get-Disk-not-Get-Volume memory)
+$out['DiskDrive'] = _SafeRows {
+  $disks = Get-Disk -ErrorAction SilentlyContinue
+  $phys = Get-PhysicalDisk -ErrorAction SilentlyContinue
+  foreach ($d in $disks) {
+    $pd = $phys | Where-Object { $_.DeviceId -eq $d.Number } | Select-Object -First 1
+    [PSCustomObject]@{
+      Model = $d.Model
+      Manufacturer = $d.Manufacturer
+      InterfaceType = $d.BusType
+      MediaType = if ($pd) { $pd.MediaType } else { $null }
+      FirmwareRevision = $d.FirmwareVersion
+      SerialNumber = $d.SerialNumber
+      PNPDeviceID = $d.UniqueId
+      Size = $d.Size
+      Status = $d.HealthStatus
+    }
+  }
+}
+
+# NetworkAdapter - Get-NetAdapter (no CIM, the ethernet-drop hazard avoidance)
+$out['NetworkAdapter'] = _SafeRows {
+  Get-NetAdapter -ErrorAction SilentlyContinue | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.Name; Manufacturer=$_.DriverProvider; AdapterType=$_.PhysicalMediaType; MACAddress=$_.MacAddress; PNPDeviceID=$_.PnPDeviceID; PhysicalAdapter=$_.Virtual -eq $false; NetConnectionStatus=$_.Status; Speed=$_.LinkSpeed }
+  }
+}
+
+# USBController - Get-PnpDevice -Class USB
+$out['USBController'] = _SafeRows {
+  Get-PnpDevice -Class USB -ErrorAction SilentlyContinue | Where-Object { $_.FriendlyName -match 'controller|host|root hub' } | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.FriendlyName; Manufacturer=$_.Manufacturer; PNPDeviceID=$_.InstanceId; Status=$_.Status }
+  }
+}
+
+# USBHub - Get-PnpDevice -Class USB filtered to hubs
+$out['USBHub'] = _SafeRows {
+  Get-PnpDevice -Class USB -ErrorAction SilentlyContinue | Where-Object { $_.FriendlyName -match 'hub' } | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.FriendlyName; DeviceID=$_.InstanceId; PNPDeviceID=$_.InstanceId; Status=$_.Status }
+  }
+}
+
+# SoundDevice - Get-PnpDevice -Class MEDIA
+$out['SoundDevice'] = _SafeRows {
+  Get-PnpDevice -Class MEDIA -ErrorAction SilentlyContinue | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.FriendlyName; Manufacturer=$_.Manufacturer; PNPDeviceID=$_.InstanceId; Status=$_.Status }
+  }
+}
+
+# Keyboard - Get-PnpDevice -Class Keyboard
+$out['Keyboard'] = _SafeRows {
+  Get-PnpDevice -Class Keyboard -ErrorAction SilentlyContinue | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.FriendlyName; Description=$_.Description; DeviceID=$_.InstanceId; PNPDeviceID=$_.InstanceId; Status=$_.Status }
+  }
+}
+
+# PointingDevice - Get-PnpDevice -Class Mouse
+$out['PointingDevice'] = _SafeRows {
+  Get-PnpDevice -Class Mouse -ErrorAction SilentlyContinue | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.FriendlyName; Manufacturer=$_.Manufacturer; DeviceID=$_.InstanceId; PNPDeviceID=$_.InstanceId; Status=$_.Status }
+  }
+}
+
+# DesktopMonitor - Get-PnpDevice -Class Monitor
+$out['DesktopMonitor'] = _SafeRows {
+  Get-PnpDevice -Class Monitor -ErrorAction SilentlyContinue | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.FriendlyName; MonitorManufacturer=$_.Manufacturer; MonitorType=$null; PNPDeviceID=$_.InstanceId; Status=$_.Status }
+  }
+}
+
+# Battery - Get-PnpDevice -Class Battery
+$out['Battery'] = _SafeRows {
+  Get-PnpDevice -Class Battery -ErrorAction SilentlyContinue | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.FriendlyName; DeviceID=$_.InstanceId; Status=$_.Status; BatteryStatus=$null; Chemistry=$null }
+  }
+}
+
+# SystemEnclosure - registry
+$out['SystemEnclosure'] = _SafeRows {
+  $b = Get-ItemProperty 'HKLM:\HARDWARE\DESCRIPTION\System\BIOS' -ErrorAction SilentlyContinue
+  [PSCustomObject]@{ Manufacturer=$b.SystemManufacturer; Model=$b.SystemProductName; ChassisTypes=$b.SystemFamily; SerialNumber=$null; SMBIOSAssetTag=$b.SystemSKU }
+}
+
+# PnPEntity - Get-PnpDevice (the modern non-CIM equivalent, drop-in replacement)
+$out['PnPEntity'] = _SafeRows {
+  Get-PnpDevice -ErrorAction SilentlyContinue | ForEach-Object {
+    [PSCustomObject]@{ Name=$_.FriendlyName; Manufacturer=$_.Manufacturer; PNPClass=$_.Class; Status=$_.Status; Service=$_.Service; DeviceID=$_.InstanceId; PNPDeviceID=$_.InstanceId; ClassGuid=$_.ClassGuid; ConfigManagerErrorCode=$_.ConfigManagerErrorCode }
+  }
+}
+
+# Tpm - registry probe (skip the CIM namespace that caused hazard)
+$out['Tpm'] = _SafeRows {
+  $t = Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Services\TPM' -ErrorAction SilentlyContinue
+  if ($t) {
+    [PSCustomObject]@{ SpecVersion=$null; ManufacturerVersion=$null; ManufacturerId=$null; IsEnabled_InitialValue=$true; IsActivated_InitialValue=$null; IsOwned_InitialValue=$null }
+  }
 }
 $out | ConvertTo-Json -Depth 6 -Compress
 `;
