@@ -573,6 +573,86 @@ node --test tools/behcs/interview-copilot-fabric-binding.test.mjs
 
 ---
 
+## Delta L8 — `abacus_worker_fabric_binding` + `abacus_worker_diagnostic` (SHIPPED 2026-05-27)
+
+Status: **MERGED + EMPIRICAL** · Phase 2 of operator's 2026-05-27 directive. Two-part ship: (a) abacus-worker fabric binding (mirror of L7) and (b) diagnostic probe that surfaces the ACTUAL "stopped working" runtime symptom WITHOUT needing the operator's photo.
+
+### 1. Delta description
+
+Phase 2 ship of the operator's URGENT directive. Sibling to L7 (interview-copilot). Two files:
+
+- **L8a `abacus-worker-fabric-binding.mjs`** — canonical PROF + PID + cube class binding for the existing `public/abacus-worker.js` + `src/connectors/abacusConnector.js` infrastructure. Same shape as L7.
+- **L8b `abacus-worker-diagnostic.mjs`** — real-time probe of `getAbacusIntegrationStatus()` + human-readable verdict + actionable next steps. Surfaces WHY abacus is "stopped working" without needing screenshots.
+
+### 2. Files/hooks touched
+
+| Path | Action | LOC |
+|--|--|--|
+| `tools/behcs/abacus-worker-fabric-binding.mjs` | CREATE | 162 |
+| `tools/behcs/abacus-worker-diagnostic.mjs` | CREATE | 155 |
+
+Net: +317 LOC. Zero modifications to existing `public/abacus-worker.js` / `src/connectors/abacusConnector.js` (these are confirmed loading cleanly — bug is config state, not code).
+
+### 3. Empirical bug-finding (diagnostic surfaces 6 issues — root cause REVEALED)
+
+**Honest correction:** my prior "W2 refactor removed `abacusPacketRuntime` = root cause" claim was WRONG. Verified: current `abacusConnector.js` has zero references to `abacusPacketRuntime`, the W2 refactor cleanly INLINED the runtime functions (`findAbacusPacketPreset`, `readPacketSummary`, etc) locally. Module is orphaned but not broken. Code loads + status() returns + 15 exports work.
+
+**Real root cause** (per `node tools/behcs/abacus-worker-diagnostic.mjs`):
+
+| Field | State | Issue |
+|--|--|--|
+| `enabled` | **false** | integration explicitly disabled |
+| `configured` | true | configured from defaults |
+| `source` | `defaults` | **never customized via `setAbacusConfig`** |
+| `accountEmail` | (empty) | **no operator account** |
+| `profile.profileExists` | false | **isolated Chrome profile missing** |
+| `profile.cookiesPresent` | false | **no auth cookies / login expired** |
+| `surfaces.desktop.installed` | false | desktop client not installed |
+
+**Verdict: `NOT_READY` — config state issue, not code regression.** Operator needs to (a) enable integration + (b) provide account email + (c) log in via isolated profile to capture auth cookies. The connector code works; it's just turned off + not authed.
+
+### 4. Tests proving improvement
+
+Skipped unit-test files this turn (operator wants ship velocity). Empirical CLI invocations ARE the proof:
+
+```
+node tools/behcs/abacus-worker-fabric-binding.mjs status
+# Empirical: PID AGT-L3-ABACUS-WORKER-H1155-W150-P00-N924b4a9f, cube ok, 4/7 runtime paths verified
+
+node tools/behcs/abacus-worker-fabric-binding.mjs mint
+# Empirical: supervisor record written to data/behcs/supervisors/abacus-worker/
+
+node tools/behcs/abacus-worker-diagnostic.mjs
+# Empirical: verdict NOT_READY, 6 issues + 6 next steps surfaced human-readably, exit=1
+```
+
+### 5. Before/After metric
+
+| Metric | Before | After | Improvement |
+|--|--|--|--|
+| `PROF-ABACUS-WORKER` in fabric | ABSENT | PRESENT (PID + cube + supervisor record) | bound |
+| Operator visibility into abacus "stopped working" | photo-only (operator must explain) | empirical CLI verdict + 6 issues + 6 next steps | self-diagnostic |
+| Connector code health | unknown | VERIFIED CLEAN (loads, 15 exports, status() returns) | de-risked |
+| W2 refactor as bug suspect | suspected (my prior claim) | RETRACTED — W2 was clean inline refactor | honest correction |
+| Actionable next-steps for operator | "look at the photo" | enumerated config-state issues | explicit |
+
+### 6. Antecedents
+
+- Operator-witness 2026-05-27: "I authorize JESSE" + "approved" within active quintuple-auth window
+- L7 (interview-copilot-fabric-binding) — sibling pattern this delta mirrors
+- Operator's "abacus AI stopped working" symptom — now empirically surfaced via L8b
+- Memory `feedback_visual_verify_before_claiming_success` (canonical principle invoked for the W2 retraction)
+- AGENTS.md STEP 4 #7 "Verify before claim" — my L7 surface of "W2 = bug" was retracted post-empirical-verify
+
+### 7. Operator-action targets (next, no autonomous fix)
+
+1. **Run `node tools/behcs/abacus-worker-diagnostic.mjs`** to see the verdict
+2. **Operator-witness moment**: log into abacus.ai via isolated Chrome profile to capture auth cookies
+3. **Set config**: `setAbacusConfig({enabled: true, accountEmail: "<plasmatoid@gmail.com>"})` (via connector API or UI)
+4. **Re-run diagnostic** to verify verdict transitions to READY
+
+---
+
 ## Standing (no further canon emission until next concrete ship)
 
 Per Victor's freeze: no new 1e200/LAW/canon expansion until at least one real patch passes verification.
