@@ -1,0 +1,4 @@
+# Byte-exact canonical encoder — git must NEVER apply line-ending conversion to it.
+# ONE-TONGUE bilateral requirement: acer and liris must hold identical bytes so the
+# ALPHABET fingerprint sha256(JSON.stringify(ALPHABET))=c03e329d... matches byte-for-byte.
+GLYPH-GENESIS.js -text
