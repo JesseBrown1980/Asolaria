@@ -27,6 +27,10 @@ Read-only dashboard routes:
 - `/api/asolaria-task-manager`
 - `/task-manager`
 
+Route hardening:
+- `:name` must match `^[a-z0-9_-]+$`.
+- The super-dashboard default bind should stay loopback unless the operator intentionally overrides it.
+
 Rules:
 - Dashboard never starts producers.
 - Aggregator reads feed files only.

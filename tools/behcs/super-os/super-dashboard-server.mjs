@@ -14,13 +14,18 @@ import { sendAsolariaTaskManagerPage, sendRuntimeWatchFeed, sendRuntimeWatchSnap
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = parseInt(process.env.LIRIS_DASHBOARD_PORT || "4944", 10);
-const HOST = "0.0.0.0";
+const HOST = process.env.LIRIS_DASHBOARD_HOST || "127.0.0.1";
 const APEX = "COL-ASOLARIA";
 const STARTED_AT = new Date().toISOString();
 const RUNTIMEWATCH_DATA_ROOT = process.env.ASOLARIA_RUNTIMEWATCH_ROOT || path.resolve(__dirname, "../../../data/runtimewatch");
 const ACER_PEER_HOST = process.env.ACER_PEER_HOST || "192.168.1.50";
 const ACER_DASHBOARD_PORT = process.env.ACER_DASHBOARD_PORT || "4949";
 const ACER_FEDERATION_PORT = process.env.ACER_FEDERATION_PORT || "9996";
+
+function isLoopbackRequest(req) {
+  const remote = String(req?.socket?.remoteAddress || "").trim();
+  return remote === "127.0.0.1" || remote === "::1" || remote === "::ffff:127.0.0.1";
+}
 
 // ─── Bilateral 3D voxel join-contract (DEV-ACER spec 2026-05-21) ────────────
 // Schema: { pid, vantage, supervisor, lane, prof, cp, bh_coord, bh_dim,
@@ -2440,6 +2445,10 @@ setInterval(refresh, 5000);
     return res.end(JSON.stringify(usb));
   }
   if (p === "/api/hidden-layer") {
+    if (!isLoopbackRequest(req)) {
+      res.writeHead(403, { "Content-Type": "application/json" });
+      return res.end(JSON.stringify({ ok: false, reason: "loopback_only" }));
+    }
     const t = readText("C:/Users/rayss/.claude/projects/C--/memory/project_hidden_layer_shadow_vaults_highways_ocr_crypto.md");
     res.setHeader("Content-Type", "application/json");
     return res.end(JSON.stringify({ canon_file: "project_hidden_layer_shadow_vaults_highways_ocr_crypto.md", bytes: t ? t.length : 0, content: t || "(canon not loaded)" }));

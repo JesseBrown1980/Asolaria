@@ -4,6 +4,7 @@ import { DEFAULT_DATA_ROOT, feedPath, nowIso, readJson, readText, snapshotPath }
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TASK_MANAGER_PAGE_PATH = path.join(__dirname, 'asolaria-task-manager.html');
+const FEED_NAME_RE = /^[a-z0-9_-]+$/i;
 
 function runtimeWatchAuthority(authority = {}) {
   return {
@@ -50,6 +51,10 @@ export function missingRuntimeWatchFeed(feedName, dataRoot = DEFAULT_DATA_ROOT) 
   };
 }
 
+export function isSafeRuntimeWatchFeedName(feedName) {
+  return FEED_NAME_RE.test(String(feedName || ''));
+}
+
 export function readRuntimeWatchSnapshot(dataRoot = DEFAULT_DATA_ROOT) {
   const snapshot = readJson(snapshotPath(dataRoot), null);
   if (!snapshot || typeof snapshot !== 'object') return missingRuntimeWatchSnapshot(dataRoot);
@@ -60,6 +65,7 @@ export function readRuntimeWatchSnapshot(dataRoot = DEFAULT_DATA_ROOT) {
 }
 
 export function readRuntimeWatchFeed(feedName, dataRoot = DEFAULT_DATA_ROOT) {
+  if (!isSafeRuntimeWatchFeedName(feedName)) return null;
   const feed = readJson(feedPath(feedName, dataRoot), null);
   if (!feed || typeof feed !== 'object') return missingRuntimeWatchFeed(feedName, dataRoot);
   return {
@@ -87,6 +93,11 @@ export function sendRuntimeWatchSnapshot(req, res, dataRoot = DEFAULT_DATA_ROOT)
 }
 
 export function sendRuntimeWatchFeed(req, res, feedName, dataRoot = DEFAULT_DATA_ROOT) {
+  if (!isSafeRuntimeWatchFeedName(feedName)) {
+    res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ ok: false, reason: 'invalid_feed_name', feed: String(feedName || '') }, null, 2));
+    return;
+  }
   const payload = readRuntimeWatchFeed(feedName, dataRoot);
   res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
   res.end(JSON.stringify(payload, null, 2));
