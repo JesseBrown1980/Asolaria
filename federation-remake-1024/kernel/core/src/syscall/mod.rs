@@ -41,7 +41,25 @@ pub enum HookwallVerdict {
     Block,
 }
 
-/// Six tier-classes per REPO_LAW Invariant 5.
+/// Seven tier-classes per REPO_LAW Invariant 5 + dashboard constitutional directive.
+///
+/// Cycle-72 extension: liris dashboard Drive Registry showed `SOVEREIGNTY` as a
+/// 7th tier above `Secret` — "operator-physical-only / NEVER agent-driven".
+///
+/// **Per-vantage instance asymmetry (operator clarification cycle-72):**
+/// The `Sovereignty` tier-CLASS is universal across all federation vantages, but
+/// the drive INSTANCES are vantage-specific. Liris's sovereignty drives
+/// (USB-SOVLINUX-2TB, D-DRIVE-LIRIS) physically live on liris hardware. Acer has
+/// different sovereignty instances. **Cross-vantage access requires physical
+/// transport (air-gap, human-mediated rehydration)** — this is the operator's
+/// stated "one of the key problems" of the federation architecture.
+///
+/// The tier semantics (no quintuple-cosign override; no agent access; physical
+/// boundary) are canon federation-wide; the per-vantage drive-list mapping is
+/// dashboard-rendered context, not kernel canon.
+///
+/// Ordering (lowest → highest):
+///   Public < Restricted < Stealth < Hidden < Shadow < Secret < Sovereignty
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AccessTier {
     Public,
@@ -50,50 +68,72 @@ pub enum AccessTier {
     Hidden,
     Shadow,
     Secret,
+    /// Operator-physical-only · NEVER agent-driven. No quintuple-cosign override.
+    /// Per-vantage instance: liris has USB-SOVLINUX-2TB + D-DRIVE-LIRIS; acer's
+    /// sovereignty drives are different (cross-vantage = physical transport).
+    Sovereignty,
 }
 
 // ===== 16 canonical syscalls =====
 
 /// 1. Read `len` bytes from handle `fd` into `buf`. Returns bytes read.
 ///
-/// Phase-3 v0.1.9: input-validation half-wire. Rejects `len > buf.len()` at the
-/// signature level (signature soundness — buffer overrun would be UB). Conservative
-/// choice: compare against `buf.len()` rather than a kernel-defined max, since the
-/// VFS-side max is a v0.2 kernel-state singleton. Returns `Unimplemented` for valid
-/// inputs until the VFS handle table lands in v0.2.
-pub fn sys_read(_fd: Handle, buf: &mut [u8], len: usize) -> Result<usize, SyscallErr> {
+/// Phase-3 v0.3.2: FULL WIRE to `crate::vfs::vfs_read`. Keeps the `len > buf.len()`
+/// signature-level guard (buffer overrun would be UB), then routes by fd value:
+/// STDIN_FD (0) returns Ok(0) (EOF; no input plumbed in v0.1); STDOUT/STDERR
+/// return InvalidOpForFd; all other fds return InvalidFd. Errors mapped at the
+/// syscall boundary: any `VfsErr` → `SyscallErr::Invalid`.
+pub fn sys_read(fd: Handle, buf: &mut [u8], len: usize) -> Result<usize, SyscallErr> {
     if len > buf.len() {
         return Err(SyscallErr::Invalid);
     }
-    Err(SyscallErr::Unimplemented)
+    match crate::vfs::vfs_read(fd, buf, len) {
+        Ok(n) => Ok(n),
+        Err(_) => Err(SyscallErr::Invalid),
+    }
 }
 
 /// 2. Write `buf` to handle `fd`. Returns bytes written.
 ///
-/// Phase-3 v0.1.10: input-validation half-wire. Rejects empty `buf` at the signature
-/// level (a zero-byte write is meaningless per POSIX-style semantics — distinct from
-/// fsync). Returns `Unimplemented` for valid inputs until the VFS handle table lands
-/// in v0.2.
-pub fn sys_write(_fd: Handle, buf: &[u8]) -> Result<usize, SyscallErr> {
+/// Phase-3 v0.3.2: FULL WIRE to `crate::vfs::vfs_write`. Keeps the empty-buf
+/// signature-level guard, then routes by fd value: STDOUT_FD (1) and STDERR_FD
+/// (2) accept with Ok(buf.len()); STDIN_FD returns InvalidOpForFd; all other
+/// fds return InvalidFd. Errors mapped at the syscall boundary: any `VfsErr`
+/// → `SyscallErr::Invalid`.
+pub fn sys_write(fd: Handle, buf: &[u8]) -> Result<usize, SyscallErr> {
     if buf.is_empty() {
         return Err(SyscallErr::Invalid);
     }
-    Err(SyscallErr::Unimplemented)
+    match crate::vfs::vfs_write(fd, buf) {
+        Ok(n) => Ok(n),
+        Err(_) => Err(SyscallErr::Invalid),
+    }
 }
 
 /// 3. Execute a BEHCS-1024 envelope. NOT a path — envelopes are the dispatch unit.
 ///
-/// Phase-3 v0.1.8: input-validation half-wire. BEHCS-1024 envelopes always carry
-/// at minimum: `{"from":"","to":"","type":"","id":"","pid":""}` JSON shell ≥ ~40
-/// bytes. Reject obviously-malformed inputs at signature level. Real dispatch via
-/// `envelope::dispatch_enqueue` lands in v0.2 once the bus queue exists.
+/// Phase-3 v0.3.0: FULL WIRE to envelope module. Keeps the input-validation floor
+/// (rejects envelopes shorter than `MIN_ENVELOPE_BYTES` = 32, same lower bound
+/// `sys_envelope_send` enforces), then dispatches via
+/// `crate::envelope::dispatch_enqueue_bytes(envelope_bytes, 0)` (route_hint 0 = local
+/// default; same convention as `kernel/boot/src/init.rs::ROUTE_HINT_LOCAL`). On
+/// success, mints a fresh monotonic handle from `EXEC_HANDLE_NEXT` (starts at 1;
+/// 0 reserved as "no handle"). Errors mapped at the syscall boundary:
+/// `QueueFull` → `Exhausted`, `PayloadOversize` → `Invalid`, others → `Invalid`.
 pub fn sys_exec(envelope_bytes: &[u8]) -> Result<Handle, SyscallErr> {
     /// Lower bound: minimal envelope JSON shell needs at least this many bytes.
     const MIN_ENVELOPE_BYTES: usize = 32;
     if envelope_bytes.len() < MIN_ENVELOPE_BYTES {
         return Err(SyscallErr::Invalid);
     }
-    Err(SyscallErr::Unimplemented)
+    use core::sync::atomic::{AtomicU64, Ordering};
+    static EXEC_HANDLE_NEXT: AtomicU64 = AtomicU64::new(1);
+    match crate::envelope::dispatch_enqueue_bytes(envelope_bytes, 0) {
+        Ok(()) => Ok(EXEC_HANDLE_NEXT.fetch_add(1, Ordering::Relaxed)),
+        Err(crate::envelope::EnvelopeErr::QueueFull) => Err(SyscallErr::Exhausted),
+        Err(crate::envelope::EnvelopeErr::PayloadOversize) => Err(SyscallErr::Invalid),
+        Err(_) => Err(SyscallErr::Invalid),
+    }
 }
 
 /// 4. Process clone. Returns child PID on parent, 0 on child.
@@ -121,10 +161,12 @@ pub fn sys_exit(_status: i32) -> ! {
 
 /// 6. Map anonymous pages. v0.1 supports anonymous only.
 ///
-/// Phase-3 v0.1.11: input-validation half-wire. Rejects `len == 0` (zero-byte
-/// mapping is meaningless) and `prot == 0` (no permissions requested — mapping
-/// with no access bits is a no-op trap). Returns `Unimplemented` for valid inputs
-/// until the frame allocator (kernel-state singleton) lands in v0.2.
+/// Phase-3 v0.3.1: FULL WIRE to `crate::frame_alloc::alloc_pages`. Keeps the
+/// input-validation floor (rejects `len == 0` and `prot == 0`), then dispatches
+/// to the frame allocator. v0.1 of the frame allocator hands out **virtual** addresses
+/// from a synthetic `[0x1000, 0x1000 + 64MB)` range; pointers MUST NOT be dereferenced
+/// in kernel-core until v0.2 plumbs UEFI memory-map regions. Errors mapped at the
+/// syscall boundary: `PoolExhausted` → `Exhausted`, others → `Invalid`.
 pub fn sys_mmap(len: usize, prot: u32) -> Result<*mut u8, SyscallErr> {
     if len == 0 {
         return Err(SyscallErr::Invalid);
@@ -132,14 +174,20 @@ pub fn sys_mmap(len: usize, prot: u32) -> Result<*mut u8, SyscallErr> {
     if prot == 0 {
         return Err(SyscallErr::Invalid);
     }
-    Err(SyscallErr::Unimplemented)
+    match crate::frame_alloc::alloc_pages(len) {
+        Ok(p) => Ok(p),
+        Err(crate::frame_alloc::FrameErr::PoolExhausted) => Err(SyscallErr::Exhausted),
+        Err(_) => Err(SyscallErr::Invalid),
+    }
 }
 
 /// 7. Unmap previously-mapped region.
 ///
-/// Phase-3 v0.1.7: input-validation half-wire. Rejects null pointer + zero-length
-/// at the signature level. Returns `Unimplemented` for valid-looking inputs since
-/// the frame allocator (kernel-state singleton) lands in v0.2.
+/// Phase-3 v0.3.1: FULL WIRE to `crate::frame_alloc::free_pages`. Keeps the
+/// input-validation floor (rejects null pointer + zero-length), then dispatches
+/// to the frame allocator. v0.1 free is a no-op on success (bump allocator does
+/// not reclaim); ptr must be in the synthetic virtual range AND page-aligned.
+/// Errors mapped at the syscall boundary: any `FrameErr` → `Invalid`.
 pub fn sys_munmap(addr: *mut u8, len: usize) -> Result<(), SyscallErr> {
     if addr.is_null() {
         return Err(SyscallErr::Invalid);
@@ -147,7 +195,10 @@ pub fn sys_munmap(addr: *mut u8, len: usize) -> Result<(), SyscallErr> {
     if len == 0 {
         return Err(SyscallErr::Invalid);
     }
-    Err(SyscallErr::Unimplemented)
+    match crate::frame_alloc::free_pages(addr, len) {
+        Ok(()) => Ok(()),
+        Err(_) => Err(SyscallErr::Invalid),
+    }
 }
 
 /// 8. Monotonic nanoseconds since boot.
@@ -325,9 +376,22 @@ pub fn sys_gnn_infer(input: &[u8], out: &mut [u8]) -> Result<usize, SyscallErr> 
 /// Compile-time enforcement: this list MUST equal exactly 16 entries.
 /// Adding any syscall here without a tier-2 cosign in AUTHORIZATION.ndjson violates Invariant 9.
 pub const CANONICAL_SYSCALLS: [&str; 16] = [
-    "read", "write", "exec", "fork", "exit", "mmap", "munmap", "time",
-    "pid_current", "envelope_send", "envelope_recv", "hookwall_pre",
-    "hookwall_post", "cosign_append", "tier_query", "gnn_infer",
+    "read",
+    "write",
+    "exec",
+    "fork",
+    "exit",
+    "mmap",
+    "munmap",
+    "time",
+    "pid_current",
+    "envelope_send",
+    "envelope_recv",
+    "hookwall_pre",
+    "hookwall_post",
+    "cosign_append",
+    "tier_query",
+    "gnn_infer",
 ];
 
 #[cfg(test)]
@@ -351,10 +415,43 @@ mod tests {
         //   sys_envelope_send (cycle-67 v0.2.1 → envelope::dispatch_enqueue_bytes)
         //   sys_envelope_recv (cycle-67 v0.2.2 → envelope::dispatch_dequeue_bytes)
         //   sys_fork          (cycle-67 v0.2.4 → agent_runtime::spawn_child_agent)
-        // Remaining half-wires (Invalid on bad input; Unimplemented on valid):
+        //   sys_exec          (2026-05-13 v0.3.0 → envelope::dispatch_enqueue_bytes + EXEC_HANDLE_NEXT)
+        //   sys_mmap          (2026-05-13 v0.3.1 → frame_alloc::alloc_pages, virtual-range scaffold)
+        //   sys_munmap        (2026-05-13 v0.3.1 → frame_alloc::free_pages, v0.1 no-op release)
+        //   sys_read          (2026-05-13 v0.3.2 → vfs::vfs_read, routing-by-fd-value scaffold)
+        //   sys_write         (2026-05-13 v0.3.2 → vfs::vfs_write, routing-by-fd-value scaffold)
+        // All 16 canonical syscalls are now FULL-wired (or DIVERGING STUB for sys_exit).
+        // No `assert sys_X returns Unimplemented for valid inputs` assertions remain.
+    }
+
+    #[test]
+    fn sys_read_stdin_returns_eof_v0_3_2() {
+        // Phase-3 v0.3.2: FULL WIRE — fd 0 (stdin) returns Ok(0) (no input source v0.1).
         let mut buf = [0u8; 16];
-        assert_eq!(sys_read(0, &mut buf, 8), Err(SyscallErr::Unimplemented));
-        assert_eq!(sys_write(0, &buf), Err(SyscallErr::Unimplemented));
+        assert_eq!(sys_read(0, &mut buf, 8), Ok(0));
+    }
+
+    #[test]
+    fn sys_read_invalid_fd_returns_invalid() {
+        // Phase-3 v0.3.2: FULL WIRE — fds outside reserved range return Invalid.
+        let mut buf = [0u8; 16];
+        assert_eq!(sys_read(99, &mut buf, 8), Err(SyscallErr::Invalid));
+        assert_eq!(sys_read(1, &mut buf, 8), Err(SyscallErr::Invalid)); // stdout
+        assert_eq!(sys_read(2, &mut buf, 8), Err(SyscallErr::Invalid)); // stderr
+    }
+
+    #[test]
+    fn sys_write_stdout_returns_buf_len_v0_3_2() {
+        // Phase-3 v0.3.2: FULL WIRE — fd 1 (stdout) accepts; returns buf.len().
+        assert_eq!(sys_write(1, b"hello"), Ok(5));
+        assert_eq!(sys_write(2, b"err msg"), Ok(7)); // stderr
+    }
+
+    #[test]
+    fn sys_write_invalid_fd_returns_invalid() {
+        // Phase-3 v0.3.2: FULL WIRE — fds outside reserved range OR stdin return Invalid.
+        assert_eq!(sys_write(0, b"x"), Err(SyscallErr::Invalid)); // stdin
+        assert_eq!(sys_write(99, b"x"), Err(SyscallErr::Invalid));
     }
 
     #[test]
@@ -367,19 +464,44 @@ mod tests {
     #[test]
     fn sys_munmap_rejects_null_pointer() {
         // Phase-3 v0.1.7: input-validation half-wire.
-        assert_eq!(sys_munmap(core::ptr::null_mut(), 4096), Err(SyscallErr::Invalid));
+        assert_eq!(
+            sys_munmap(core::ptr::null_mut(), 4096),
+            Err(SyscallErr::Invalid)
+        );
     }
 
     #[test]
     fn sys_munmap_rejects_zero_length() {
         let mut byte: u8 = 0;
-        assert_eq!(sys_munmap(&mut byte as *mut u8, 0), Err(SyscallErr::Invalid));
+        assert_eq!(
+            sys_munmap(&mut byte as *mut u8, 0),
+            Err(SyscallErr::Invalid)
+        );
     }
 
     #[test]
-    fn sys_munmap_returns_unimplemented_for_valid_inputs() {
+    fn sys_munmap_releases_allocated_page_v0_3_1() {
+        // Phase-3 v0.3.1: FULL WIRE — alloc a real virtual page via sys_mmap,
+        // then release it via sys_munmap. v0.1 free is a no-op on success so
+        // releasing the same page twice ALSO succeeds (bitmap reclaim lands v0.2).
+        crate::frame_alloc::reset_for_tests();
+        let p = sys_mmap(4096, 0x3).expect("sys_mmap must allocate");
+        assert_eq!(
+            sys_munmap(p, 4096),
+            Ok(()),
+            "sys_munmap of a fresh allocation must succeed"
+        );
+    }
+
+    #[test]
+    fn sys_munmap_out_of_range_pointer_returns_invalid() {
+        // A stack-resident byte is non-null + non-zero-len but outside the synthetic
+        // virtual range. Frame allocator maps InvalidPointer → SyscallErr::Invalid.
         let mut byte: u8 = 0;
-        assert_eq!(sys_munmap(&mut byte as *mut u8, 4096), Err(SyscallErr::Unimplemented));
+        assert_eq!(
+            sys_munmap(&mut byte as *mut u8, 4096),
+            Err(SyscallErr::Invalid)
+        );
     }
 
     #[test]
@@ -390,10 +512,20 @@ mod tests {
     }
 
     #[test]
-    fn sys_exec_returns_unimplemented_for_valid_size_envelope() {
-        let env = b"{\"from\":\"X\",\"to\":\"Y\",\"type\":\"Z\"}padding-padding";
+    fn sys_exec_dispatches_valid_envelope_and_returns_monotonic_handle() {
+        // Phase-3 v0.3.0: FULL WIRE — a valid (≥ 32 byte) envelope must enqueue
+        // and return Ok(handle). Handle ≥ 1 (0 reserved as "no handle") and
+        // strictly increases across consecutive successful calls.
+        crate::envelope::reset_slot_for_tests();
+        let env = b"{\"from\":\"X\",\"to\":\"Y\",\"type\":\"EXEC\"}padding";
         assert!(env.len() >= 32);
-        assert_eq!(sys_exec(env), Err(SyscallErr::Unimplemented));
+        let h1 = sys_exec(env).expect("valid envelope must dispatch");
+        assert!(h1 >= 1, "first exec handle must be >= 1 (0 is reserved)");
+        // Drain the slot between sends — single-slot SPSC queue per v0.2.1.
+        crate::envelope::reset_slot_for_tests();
+        let h2 = sys_exec(env).expect("second valid envelope must dispatch");
+        assert!(h2 > h1, "exec handles must be monotonically increasing");
+        crate::envelope::reset_slot_for_tests();
     }
 
     #[test]
@@ -405,10 +537,12 @@ mod tests {
     }
 
     #[test]
-    fn sys_read_returns_unimplemented_for_valid_inputs() {
+    fn sys_read_stdin_returns_ok_zero_v0_3_2() {
+        // Phase-3 v0.3.2: FULL WIRE — sys_read on STDIN_FD (0) returns Ok(0) (EOF).
+        // No source plumbed in v0.1; vfs::vfs_read backs this.
         let mut buf = [0u8; 8];
-        assert_eq!(sys_read(0, &mut buf, 8), Err(SyscallErr::Unimplemented));
-        assert_eq!(sys_read(0, &mut buf, 0), Err(SyscallErr::Unimplemented));
+        assert_eq!(sys_read(0, &mut buf, 8), Ok(0));
+        assert_eq!(sys_read(0, &mut buf, 0), Ok(0));
     }
 
     #[test]
@@ -418,9 +552,11 @@ mod tests {
     }
 
     #[test]
-    fn sys_write_returns_unimplemented_for_valid_inputs() {
+    fn sys_write_to_stdin_returns_invalid_v0_3_2() {
+        // Phase-3 v0.3.2: FULL WIRE — sys_write on STDIN_FD (0) returns Invalid
+        // (can't write to stdin). vfs::vfs_write returns InvalidOpForFd, mapped to Invalid.
         let buf = [1u8, 2, 3];
-        assert_eq!(sys_write(0, &buf), Err(SyscallErr::Unimplemented));
+        assert_eq!(sys_write(0, &buf), Err(SyscallErr::Invalid));
     }
 
     #[test]
@@ -436,8 +572,25 @@ mod tests {
     }
 
     #[test]
-    fn sys_mmap_returns_unimplemented_for_valid_inputs() {
-        assert_eq!(sys_mmap(4096, 0x3), Err(SyscallErr::Unimplemented));
+    fn sys_mmap_allocates_non_null_page_aligned_pointer_v0_3_1() {
+        // Phase-3 v0.3.1: FULL WIRE — valid (len > 0, prot > 0) inputs return a
+        // non-null, page-aligned, in-range virtual pointer from the frame allocator.
+        crate::frame_alloc::reset_for_tests();
+        let p = sys_mmap(4096, 0x3).expect("sys_mmap of one page with prot=R|W must succeed");
+        assert!(!p.is_null(), "sys_mmap must return non-null on success");
+        assert_eq!(
+            (p as usize) % 4096,
+            0,
+            "returned pointer must be page-aligned"
+        );
+        let p2 = sys_mmap(8192, 0x7).expect("second sys_mmap (two pages, prot=R|W|X) must succeed");
+        assert!(
+            (p2 as usize) > (p as usize),
+            "second alloc address must be higher than first"
+        );
+        // Round-trip via sys_munmap.
+        assert_eq!(sys_munmap(p, 4096), Ok(()));
+        assert_eq!(sys_munmap(p2, 8192), Ok(()));
     }
 
     #[test]
@@ -506,7 +659,11 @@ mod tests {
         // may have already bumped the counter).
         let row = [0u8; 16];
         let seq = sys_cosign_append(&row).expect("valid 16-byte row must append");
-        assert!(seq >= 1, "first append must return a sequence number ≥ 1, got {}", seq);
+        assert!(
+            seq >= 1,
+            "first append must return a sequence number ≥ 1, got {}",
+            seq
+        );
     }
 
     #[test]
@@ -550,7 +707,11 @@ mod tests {
         let after = crate::agent_runtime::spawn_child_agent_count();
         match res {
             Ok(_) => {
-                assert_eq!(after, before + 1, "child counter must increment by exactly 1 on Ok");
+                assert_eq!(
+                    after,
+                    before + 1,
+                    "child counter must increment by exactly 1 on Ok"
+                );
             }
             Err(SyscallErr::Exhausted) => {
                 // Saturated state: counter already pinned at AGENT_REGISTRY_MAX; no increment.

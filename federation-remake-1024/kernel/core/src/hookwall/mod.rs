@@ -9,7 +9,7 @@
 //!
 //! v0.1 stub: API surface only. Real verdict-emission + tier-gate enforcement lands in Phase-3.
 
-use crate::syscall::{HookwallVerdict, AccessTier, SyscallErr};
+use crate::syscall::{AccessTier, HookwallVerdict, SyscallErr};
 
 /// Reserved hookwall slot count per federation cross-vantage agreement.
 /// Slots 0-15 map 1:1 to canonical 16 syscalls; slots 16-63 reserved for Phase-3 expansion (tier-2 cosign required).
@@ -67,15 +67,69 @@ pub fn hookwall_pre(ctx: &HookContext) -> Result<HookwallVerdict, SyscallErr> {
     })
 }
 
-/// Post-exec hookwall stub.
-/// v0.1.6: validates slot bounds + accepts any verdict locally (no cosign-chain append
-/// until Phase-3 wires append-only ndjson writer). Returns Ok(()) on valid context.
-/// Verdict::Block is observational here — caller decided pre-exec; post-hook merely records.
-pub fn hookwall_post(ctx: &HookContext, _verdict: HookwallVerdict) -> Result<(), SyscallErr> {
+/// Post-exec hookwall.
+///
+/// v0.2 (2026-05-13): validates slot bounds, composes a 16-byte verdict row via
+/// [`compose_verdict_row`], and persists it through `crate::cosign_chain::append`
+/// (Invariant 4 — append-only audit chain). Returns the verdict-row sequence number
+/// implicitly via `Ok(())`; the chain-side sequence is observable via
+/// `sys_cosign_append` semantics.
+///
+/// Errors:
+/// - `SyscallErr::Invalid` if `ctx.slot` is out of range
+/// - `SyscallErr::CosignReject` if the chain append fails
+pub fn hookwall_post(ctx: &HookContext, verdict: HookwallVerdict) -> Result<(), SyscallErr> {
     if ctx.slot as usize >= HOOKWALL_SLOT_COUNT {
         return Err(SyscallErr::Invalid);
     }
+    let row = compose_verdict_row(ctx, verdict);
+    crate::cosign_chain::append(&row).map_err(|_| SyscallErr::CosignReject)?;
     Ok(())
+}
+
+/// Compose the canonical 16-byte verdict-row wire form for `cosign_chain::append`.
+///
+/// Layout (little-endian numerics):
+/// - byte 0: `ctx.slot` (0..64)
+/// - byte 1: `ctx.syscall_no` (0..16)
+/// - byte 2: tier code — Micro=1, Cosign=2, Firmware=3
+/// - byte 3: verdict code — Proceed=1, Hold=2, Block=3
+/// - bytes 4..12: `ctx.caller_pid` as u64-LE
+/// - byte 12: target-tier code — Public=0, Restricted=1, Stealth=2, Hidden=3, Shadow=4, Secret=5, Sovereignty=6
+/// - bytes 13..16: `b"HVD"` ASCII magic — "Hookwall Verdict Digest" marker
+///
+/// 16 bytes is the minimum size accepted by `cosign_chain::append` for chain-row hash
+/// material (`MIN_COSIGN_ROW_BYTES`). This layout is the canonical hookwall-verdict
+/// witness format; future chain consumers grep for the HVD magic to identify them.
+pub fn compose_verdict_row(ctx: &HookContext, verdict: HookwallVerdict) -> [u8; 16] {
+    let mut row = [0u8; 16];
+    row[0] = ctx.slot;
+    row[1] = ctx.syscall_no;
+    row[2] = match ctx.tier {
+        HookTier::Micro => 1,
+        HookTier::Cosign => 2,
+        HookTier::Firmware => 3,
+    };
+    row[3] = match verdict {
+        HookwallVerdict::Proceed => 1,
+        HookwallVerdict::Hold => 2,
+        HookwallVerdict::Block => 3,
+    };
+    let pid_bytes = ctx.caller_pid.to_le_bytes();
+    row[4..12].copy_from_slice(&pid_bytes);
+    row[12] = match ctx.target_tier {
+        AccessTier::Public => 0,
+        AccessTier::Restricted => 1,
+        AccessTier::Stealth => 2,
+        AccessTier::Hidden => 3,
+        AccessTier::Shadow => 4,
+        AccessTier::Secret => 5,
+        AccessTier::Sovereignty => 6,
+    };
+    row[13] = b'H';
+    row[14] = b'V';
+    row[15] = b'D';
+    row
 }
 
 /// Cross-vantage agreement marker — embedded so future peers can grep for this constant
@@ -132,7 +186,7 @@ mod tests {
     #[test]
     fn slot_out_of_range_returns_invalid() {
         let ctx = HookContext {
-            slot: 64,  // out of range (0-63)
+            slot: 64, // out of range (0-63)
             syscall_no: 1,
             caller_pid: 0,
             tier: HookTier::Micro,

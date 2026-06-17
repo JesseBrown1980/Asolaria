@@ -2,8 +2,39 @@
 
 **Anchor PID:** `ASOLARIA-FEDERATION-REMAKE-1024-PID-2026-05-11`
 **Phase:** 3 · Steps 41-60
-**Authored:** 2026-05-11 by acer-claude · last sync **cycle-66** (Asolaria scout half-wire batch)
-**Source:** `kernel/core/src/syscall/mod.rs` v0.1.14 — **6 full + 8 half + 1 doc-only + 1 diverging stub = 16 surface-reserved**
+**Authored:** 2026-05-11 by acer-claude · last sync **2026-05-13** (Phase-3 syscall wiring COMPLETE — 16/16 FULL, 168/168 lib tests green)
+**Source:** `kernel/core/src/syscall/mod.rs` v0.3.2 — **15 full + 0 half + 0 doc-only + 1 diverging stub = 16 surface-reserved**
+
+## Phase-3 syscall wiring COMPLETE
+
+All 16 canonical syscalls are FULL-wired (or DIVERGING STUB for `sys_exit`). No syscall body returns `Err(Unimplemented)` for valid inputs anymore.
+
+- **cycle-67 v0.2.1**: `sys_envelope_send` → FULL (envelope::dispatch_enqueue_bytes)
+- **cycle-67 v0.2.2**: `sys_envelope_recv` → FULL (envelope::dispatch_dequeue_bytes)
+- **cycle-67 v0.2.3**: `sys_cosign_append` → FULL (cosign_chain::append, returns Ok(seq))
+- **cycle-67 v0.2.4**: `sys_fork` → FULL (agent_runtime::spawn_child_agent)
+- **2026-05-13 v0.3.0**: `sys_exec` → FULL (envelope::dispatch_enqueue_bytes + `EXEC_HANDLE_NEXT` monotonic counter starting at 1; QueueFull→Exhausted, PayloadOversize→Invalid)
+- **2026-05-13 v0.3.1**: `sys_mmap` → FULL (`frame_alloc::alloc_pages`, virtual-range scaffold `[0x1000, 0x1000+64MB)`, page-aligned, PoolExhausted→Exhausted, others→Invalid)
+- **2026-05-13 v0.3.1**: `sys_munmap` → FULL (`frame_alloc::free_pages`, validates ptr in range + page-aligned, v0.1 release is no-op until bitmap free-list lands v0.4)
+- **2026-05-13 v0.3.2**: `sys_read` → FULL (`vfs::vfs_read`, routing-by-fd: STDIN→Ok(0)/EOF, STDOUT/STDERR→Invalid, others→Invalid)
+- **2026-05-13 v0.3.2**: `sys_write` → FULL (`vfs::vfs_write`, routing-by-fd: STDOUT/STDERR→Ok(buf.len()), STDIN→Invalid, others→Invalid)
+
+**Final state:** 15 FULL (sys_read, sys_write, sys_exec, sys_fork, sys_mmap, sys_munmap, sys_time, sys_pid_current, sys_envelope_send, sys_envelope_recv, sys_hookwall_pre, sys_hookwall_post, sys_cosign_append, sys_tier_query, sys_gnn_infer) + 1 DIVERGING STUB (`sys_exit` — acceptable per v0.1; real impl never returns).
+
+**New modules added 2026-05-13:**
+- `kernel/core/src/frame_alloc/mod.rs` — virtual-address tracking allocator (64 MB synthetic pool, atomics CAS, forbid(unsafe_code) compliant). Backs `sys_mmap`/`sys_munmap`. v0.2 will register UEFI memory-map regions from boot info.
+- `kernel/core/src/vfs/mod.rs` — routing-by-fd FD primitive (3 reserved FDs: STDIN/STDOUT/STDERR). Backs `sys_read`/`sys_write`. v0.2 will add 256-slot FD table + real I/O backing via host-callback.
+
+**Next infrastructure waves (Phase-4 → onward):**
+- **frame_alloc v0.2:** register_frame_region callback + UEFI memory-map plumbing from boot crate
+- **vfs v0.2:** 256-slot FD table with atomic state per slot; sys_open/sys_close as new syscall surface additions (require tier-2 cosign per REPO_LAW Inv. 9); real I/O backing via boot-registered host-callback
+- **Phase-4 (GNN Inference Lane, steps 61-80):** wire `gnn::predict_route` to a real ONNX-loaded model (currently deterministic-fallback v0.1)
+- **Phase-5+ (Bus Fabric, Agent Runtime):** see PHASE_8_CROSS_DEVICE_FEDERATION.md and PHASE_10_SHIP_CHECKLIST.md for downstream context.
+
+The detailed matrix below pre-dates these updates; cross-check against `kernel/core/src/syscall/mod.rs` docstrings for source-of-truth.
+
+---
+
 
 ---
 
