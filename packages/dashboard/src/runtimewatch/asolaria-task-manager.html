@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asolaria Task Manager</title>
+  <style>
+    :root {
+      --bg: #081015;
+      --bg2: #0e1b22;
+      --panel: rgba(12, 26, 34, 0.9);
+      --panel-2: rgba(10, 19, 26, 0.86);
+      --line: rgba(106, 196, 184, 0.24);
+      --text: #edf7f4;
+      --muted: #90aba5;
+      --hot: #8ef0b7;
+      --warn: #ffcc74;
+      --cold: #7dc6ff;
+      --danger: #ff8f8f;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
+      --radius: 18px;
+      --font-ui: "Bahnschrift", "IBM Plex Sans", "Segoe UI", sans-serif;
+      --font-mono: "Cascadia Code", "Consolas", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: var(--font-ui);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(142, 240, 183, 0.14), transparent 24rem),
+        radial-gradient(circle at top right, rgba(125, 198, 255, 0.12), transparent 28rem),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+
+    .shell {
+      width: min(1480px, calc(100vw - 32px));
+      margin: 24px auto 48px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .card, .hero-card {
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card {
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -4rem -4rem auto;
+      width: 12rem;
+      height: 12rem;
+      background: radial-gradient(circle, rgba(142, 240, 183, 0.16), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--cold);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      max-width: 14ch;
+      margin-bottom: 12px;
+    }
+
+    .lede {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 64ch;
+    }
+
+    .authority {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .metric-grid, .panel-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .metric-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-bottom: 18px;
+    }
+
+    .metric {
+      padding: 16px 18px;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .metric-value {
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing: -0.04em;
+    }
+
+    .metric-sub {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .panel-grid {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: start;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      padding: 18px;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .card-head h2 {
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtle {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .list, .matrix {
+      display: grid;
+      gap: 10px;
+    }
+
+    .row {
+      display: grid;
+      gap: 6px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .row-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+    }
+
+    .row-id {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .row-meta {
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .status-hot { color: var(--hot); }
+    .status-warn { color: var(--warn); }
+    .status-danger { color: var(--danger); }
+    .status-cold { color: var(--cold); }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .toolbar input {
+      width: min(100%, 340px);
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(2, 8, 12, 0.68);
+      color: var(--text);
+      font-family: var(--font-ui);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 10px 8px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    td code, .mono {
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .raw-table {
+      max-height: 640px;
+      overflow: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .empty {
+      padding: 22px;
+      border: 1px dashed rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 1080px) {
+      .hero, .panel-grid, .metric-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <article class="hero-card">
+        <div class="eyebrow">Read-Only Absorption Surface</div>
+        <h1>Asolaria Task Manager</h1>
+        <p class="lede">
+          OS process table, PID coverage, room stubs, and host8 migration order in one surface.
+          This page does not start producers or mutate runtime state.
+        </p>
+        <div class="authority" id="authority-line">
+          <span class="pill">Authority: loading</span>
+        </div>
+      </article>
+      <article class="hero-card">
+        <div class="eyebrow">Freshness</div>
+        <div class="list" id="freshness-grid">
+          <div class="row"><div class="row-id">Awaiting feed refresh</div></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="metric-grid" id="metric-grid"></section>
+
+    <section class="panel-grid">
+      <div class="stack">
+        <article class="card">
+          <div class="card-head">
+            <h2>Host8 Priority</h2>
+            <div class="subtle">Spine-first visibility, swap later</div>
+          </div>
+          <div class="list" id="host8-priority"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>Dark Processes</h2>
+            <div class="subtle">Interesting rows without catalog binding</div>
+          </div>
+          <div class="list" id="dark-processes"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>Raw OS Table</h2>
+            <div class="subtle" id="raw-table-status">Loading</div>
+          </div>
+          <div class="toolbar">
+            <div class="subtle">Filter by name, class, or redacted command</div>
+            <input id="task-filter" type="search" placeholder="Filter process rows">
+          </div>
+          <div class="raw-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>PID</th>
+                  <th>Name</th>
+                  <th>Class</th>
+                  <th>Memory</th>
+                  <th>Command</th>
+                </tr>
+              </thead>
+              <tbody id="task-table-body"></tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+
+      <div class="stack">
+        <article class="card">
+          <div class="card-head">
+            <h2>Host8 Candidates</h2>
+            <div class="subtle">Observed lanes behind priority tier</div>
+          </div>
+          <div class="list" id="host8-candidates"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>Room Stubs</h2>
+            <div class="subtle">Instant rooms for the migration surface</div>
+          </div>
+          <div class="list" id="rooms-list"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>Bridge Lines</h2>
+            <div class="subtle">Bridge-later processes already observed</div>
+          </div>
+          <div class="list" id="bridges-list"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const routes = {
+      snapshot: '__RUNTIMEWATCH_SNAPSHOT_API__',
+      taskManager: '__RUNTIMEWATCH_TASK_MANAGER_API__',
+      pidCoverage: '__RUNTIMEWATCH_PID_COVERAGE_API__',
+      taskTable: '__RUNTIMEWATCH_TASK_TABLE_API__'
+    };
+
+    const state = {
+      taskRows: [],
+      filteredRows: []
+    };
+
+    async function fetchJson(url) {
+      const res = await fetch(url, { cache: 'no-store' });
+      return res.json();
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    }
+
+    function metric(label, value, sub) {
+      return `
+        <article class="card metric">
+          <div class="metric-label">${escapeHtml(label)}</div>
+          <div class="metric-value">${escapeHtml(value)}</div>
+          <div class="metric-sub">${escapeHtml(sub)}</div>
+        </article>
+      `;
+    }
+
+    function renderRows(targetId, rows, kind) {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      if (!Array.isArray(rows) || rows.length === 0) {
+        el.innerHTML = '<div class="empty">No rows on this surface yet.</div>';
+        return;
+      }
+      el.innerHTML = rows.map((row) => {
+        const meta = [];
+        if (row.os_pid) meta.push(`pid ${row.os_pid}`);
+        if (row.ports_tcp_listen?.length) meta.push(`ports ${row.ports_tcp_listen.join(', ')}`);
+        if (row.target_runtime) meta.push(row.target_runtime);
+        if (row.room_stub) meta.push(row.room_stub);
+        if (row.command_class) meta.push(row.command_class);
+        if (row.memory_mb) meta.push(`${row.memory_mb} MB`);
+        const badge = kind === 'dark' ? 'status-warn' : 'status-hot';
+        return `
+          <div class="row">
+            <div class="row-top">
+              <div class="row-id">${escapeHtml(row.id || row.name || row.room_stub || 'unknown')}</div>
+              <div class="${badge}">${escapeHtml(row.binding_state || row.state || row.kind || '')}</div>
+            </div>
+            <div class="row-meta">${meta.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderAuthority(snapshot, taskManager) {
+      const authority = {
+        ...(snapshot?.authority || {}),
+        ...(taskManager?.authority || {})
+      };
+      const line = document.getElementById('authority-line');
+      if (!line) return;
+      line.innerHTML = [
+        `read_only=${authority.read_only === true}`,
+        `control_enabled=${authority.control_enabled === true}`,
+        `starts_processes=${authority.starts_processes === true}`,
+        `target_state=${taskManager?.authority?.target_state || 'n/a'}`
+      ].map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join('');
+    }
+
+    function renderFreshness(snapshot, taskManager, pidCoverage, taskTable) {
+      const items = [
+        ['snapshot', snapshot],
+        ['task-manager', taskManager],
+        ['pid-coverage', pidCoverage],
+        ['task-table', taskTable]
+      ];
+      const grid = document.getElementById('freshness-grid');
+      if (!grid) return;
+      grid.innerHTML = items.map(([name, feed]) => {
+        const ok = feed?.ok === true;
+        const tone = ok ? 'status-hot' : 'status-danger';
+        const stamp = feed?.generated_at || 'missing';
+        const reason = feed?.reason || 'ok';
+        return `
+          <div class="row">
+            <div class="row-top">
+              <div class="row-id">${escapeHtml(name)}</div>
+              <div class="${tone}">${ok ? 'LIVE' : 'DEGRADED'}</div>
+            </div>
+            <div class="row-meta">
+              <span>${escapeHtml(stamp)}</span>
+              <span>${escapeHtml(reason)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderMetrics(taskManager, taskTable, pidCoverage) {
+      const summary = taskManager?.summary || {};
+      const taskSummary = taskTable?.summary || {};
+      const coverageSummary = pidCoverage?.summary || {};
+      const grid = document.getElementById('metric-grid');
+      if (!grid) return;
+      grid.innerHTML = [
+        metric('Total Processes', summary.total_processes || taskSummary.total_processes || 0, 'Observed from OS table'),
+        metric('Binding Gaps', summary.binding_gaps || 0, 'Observed without fabric OS-PID binding'),
+        metric('Host8 Priority', summary.host8_priority_live || 0, 'Live rows in first swap tier'),
+        metric('Dark Processes', summary.dark_processes || coverageSummary.unmatched_relevant || 0, 'Interesting rows outside catalog')
+      ].join('');
+    }
+
+    function renderTaskTable(rows) {
+      const body = document.getElementById('task-table-body');
+      const status = document.getElementById('raw-table-status');
+      if (!body || !status) return;
+      if (!rows.length) {
+        body.innerHTML = '<tr><td colspan="5" class="subtle">No task rows available.</td></tr>';
+        status.textContent = 'No rows';
+        return;
+      }
+      status.textContent = `${rows.length} rows`;
+      body.innerHTML = rows.slice(0, 180).map((row) => `
+        <tr>
+          <td class="mono">${escapeHtml(row.pid)}</td>
+          <td>${escapeHtml(row.name)}</td>
+          <td>${escapeHtml(row.command_class)}</td>
+          <td>${escapeHtml(row.memory_mb)} MB</td>
+          <td><code>${escapeHtml(row.command_redacted)}</code></td>
+        </tr>
+      `).join('');
+    }
+
+    function applyFilter() {
+      const input = document.getElementById('task-filter');
+      const query = String(input?.value || '').trim().toLowerCase();
+      state.filteredRows = !query
+        ? state.taskRows.slice()
+        : state.taskRows.filter((row) => `${row.name} ${row.command_class} ${row.command_redacted}`.toLowerCase().includes(query));
+      renderTaskTable(state.filteredRows);
+    }
+
+    async function refresh() {
+      let snapshot;
+      let taskManager;
+      let pidCoverage;
+      let taskTable;
+      try {
+        [snapshot, taskManager, pidCoverage, taskTable] = await Promise.all([
+          fetchJson(routes.snapshot),
+          fetchJson(routes.taskManager),
+          fetchJson(routes.pidCoverage),
+          fetchJson(routes.taskTable)
+        ]);
+      } catch (error) {
+        document.getElementById('freshness-grid').innerHTML = `<div class="empty">Route fetch failed: ${escapeHtml(error?.message || error)}</div>`;
+        return;
+      }
+
+      renderAuthority(snapshot, taskManager);
+      renderFreshness(snapshot, taskManager, pidCoverage, taskTable);
+      renderMetrics(taskManager, taskTable, pidCoverage);
+      renderRows('host8-priority', taskManager?.panels?.host8_priority || [], 'host8');
+      renderRows('host8-candidates', taskManager?.panels?.host8_candidate || [], 'candidate');
+      renderRows('bridges-list', taskManager?.panels?.bridges || [], 'bridge');
+      renderRows('dark-processes', taskManager?.panels?.dark_processes || [], 'dark');
+      renderRows('rooms-list', taskManager?.panels?.rooms || [], 'room');
+      state.taskRows = Array.isArray(taskTable?.rows) ? taskTable.rows.slice() : [];
+      applyFilter();
+    }
+
+    document.getElementById('task-filter')?.addEventListener('input', applyFilter);
+    refresh();
+    setInterval(refresh, 5000);
+  </script>
+</body>
+</html>

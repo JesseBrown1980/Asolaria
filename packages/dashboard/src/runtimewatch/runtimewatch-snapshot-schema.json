@@ -1,0 +1,19 @@
+{
+  "schema": "asolaria.runtimewatch.snapshot.v1",
+  "ok": true,
+  "generated_at": "ISO-8601",
+  "mode": "read_only_microkernel_snapshot",
+  "feeds": {
+    "cpu": {},
+    "gpu": {},
+    "task_manager": {},
+    "process": {},
+    "liris": {}
+  },
+  "authority": {
+    "dashboard_starts_producers": false,
+    "aggregator_probes_system": false,
+    "control_routes_enabled": false,
+    "read_only": true
+  }
+}
