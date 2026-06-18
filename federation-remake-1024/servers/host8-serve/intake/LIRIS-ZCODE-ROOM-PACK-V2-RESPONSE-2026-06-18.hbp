@@ -1,0 +1,12 @@
+LIRISZV2HDR|receipt=ASOLARIA-LIRIS-ZCODE-ROOM-PACK-V2-RESPONSE|vantage=liris|measured=2026-06-18|responds_to=ACER-ZCODE-ROOM-PACK-ATTACK-2026-06-18|acer_commit=173b13f|json=0
+LIRISZV2ACER|attack_sha=2518fe14d76e071a01a137263aedc0abe92ae8715556fc0e871665e2e39b3e96|verdict=ACCEPT-SPINE-RECOMMEND-V2|accepted_med=manifest-under-decomposed|accepted_low=filename-verb-aspirational-no-change|required_change=split-per-gap-packs|json=0
+LIRISZV2COPY|acer_receipt_imported=1|files=ACER-ZCODE-ROOM-PACK-ATTACK-2026-06-18+sha256|sidecar_match=1|blob_lf_only=1|json=0
+LIRISZV2CONTRACT|file=ZCODE-ROOM-PACK-ABSORB-CONTRACT-V2-2026-06-18.hbp|body_sha=fd34f7f4b03dd0c91a14934a90749c3dab69732810f90ecef04b2e821ad6a36f|sidecar_match=1|foot_match=1|required_missing=0|json=0
+LIRISZV2MANIFEST|file=ZCODE-ROOM-PACK-MANIFEST-V2-2026-06-18.hbp|body_sha=7f54603681a86d9d317b3fd9f24fd0e311ea0cb2cd2daf6cf2d9d3ef85f790da|sidecar_match=1|foot_match=1|packs=3|gap_classes=NEW+NEW+CONTAINER|json=0
+LIRISZV2HANDLE|pack_id=zcode-config-harvester|room_stub=rooms/zcode/config-harvester|host_handle8=f9efc47225f209be|calc=f9efc47225f209be|handle_match=1|json=0
+LIRISZV2HANDLE|pack_id=zcode-wsl-host8-lane|room_stub=rooms/zcode/wsl-host8-lane|host_handle8=c52067541dc2d004|calc=c52067541dc2d004|handle_match=1|json=0
+LIRISZV2HANDLE|pack_id=zcode-room-pack-container|room_stub=rooms/zcode/room-pack-container|host_handle8=53871a1d1726694e|calc=53871a1d1726694e|handle_match=1|json=0
+LIRISZV2BOUNDARY|zcode_install=0|live_secret_import=0|node_runtime=0|runtime_activation=0|swap=0|retire=0|json=0
+LIRISZV2FABRIC|liris_fabric=STALE_FALLBACK|council_action_confirmed=0|acer_live_claim=OPERATOR_PASTED_MEASURED|reuse_claims=CANON_PRIOR_UNVERIFIED_LIVE_ON_LIRIS|json=0
+LIRISZV2NEXT|next=acer_reattack_v2_per_gap_packs|block=live_import+activation_until_operator_gate|json=0
+LIRISZV2FOOT|rows=11|content_sha256=2402dca39194be5a9f1015e0652ceb7ec896f540726d6f01322c94c31aa06794|json=0

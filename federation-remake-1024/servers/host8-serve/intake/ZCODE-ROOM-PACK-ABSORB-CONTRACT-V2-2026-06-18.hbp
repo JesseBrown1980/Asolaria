@@ -1,0 +1,12 @@
+ZCODEPACKV2HDR|contract=ASOLARIA-ZCODE-ROOM-PACK-ABSORB-V2|vantage=liris|measured=2026-06-18|target=host8-room-pack-v2|responds_to_acer=ACER-ZCODE-ROOM-PACK-ATTACK-2026-06-18|json=0
+ZCODEPACKV2SOURCE|source=acer-bilateral-attack+operator-cross-hydration+prior-zcode-research|acer_attack_sha=2518fe14d76e071a01a137263aedc0abe92ae8715556fc0e871665e2e39b3e96|v1_contract_sha=f08912b2ed357b38c8d95567f2bfbb4218f23a4fa926478468c0aed5c269fd17|json=0
+ZCODEPACKV2FINDING|accepted=manifest-under-decomposed|severity=MED|effect=owned-vs-gap-blur+lost-addressability|json=0
+ZCODEPACKV2ROW|name=ZROOMPACKV2|required_fields=pack_id+source_tool+room_stub+host_handle8+components+source_sha256+target_runtime+activation_state+secret_scope+operator_gate+gap_class|gap_class_enum=NEW+OWNED+CONTAINER|handle_algo=host8-serve-fnv1a64-canonicalized|preimage=pack_id-pipe-room_stub|json=0
+ZCODEPACKV2SPLIT|v1_pack=zcode-control-plane-patterns|v1_handle=10a09924b1ae3c68|v2_packs=zcode-config-harvester+zcode-wsl-host8-lane+zcode-room-pack-container|strip_owned=remote-control+explore-scout|json=0
+ZCODEPACKV2GAP|pack_id=zcode-config-harvester|gap_class=NEW|priority=recommended-first|components=plugin-bundle+MCP-skill-importer+config-scan+skill-import+MCP-import|json=0
+ZCODEPACKV2GAP|pack_id=zcode-wsl-host8-lane|gap_class=NEW|priority=second|components=WSL-workspace+linux-build-lane+host8-rust-build-receipts|json=0
+ZCODEPACKV2GAP|pack_id=zcode-room-pack-container|gap_class=CONTAINER|priority=third|components=room-pack-contract+manifest-loader-descriptor+per-gap-addressability|json=0
+ZCODEPACKV2OWNED|owned_items=remote-control+explore-scout|action=do-not-pack-as-new-gaps|reason=already-owned-or-prior-canon-not-live-this-round|live_status=UNVERIFIED_LIVE|json=0
+ZCODEPACKV2GUARD|no_zcode_install=1|no_live_secret_import=1|no_node_runtime=1|runtime_activation=0|swap=0|retire=0|json=0
+ZCODEPACKV2OUTPUT|artifact=ZCODE-ROOM-PACK-MANIFEST-V2-2026-06-18.hbp|next_consumer=acer_reattack|mechanism=keep-unchanged|json=0
+ZCODEPACKV2FOOT|rows=11|content_sha256=fd34f7f4b03dd0c91a14934a90749c3dab69732810f90ecef04b2e821ad6a36f|json=0
