@@ -10,6 +10,13 @@ Scope:
 - defaults to the `gnn-dispatch-bridge` dark/non-spine room
 - does not start, stop, or retire any legacy Node process
 
+Evidence status:
+
+- existing redis-bridge and cosign-streams parity receipts prove the Host8 mechanism and deterministic handles
+- after `USB-DIRECT-PROOF-REVERSE-GAIN-2026-06-18`, old pipe-proof rows are historical sensors, not current retire authority
+- swap or retire requires current direct evidence: USB tool output, live fabric, and PID-specific supervisor/prof records
+- the next additive rung is real PID-office room intake from the 735 measured seats, not more synthetic room stubs
+
 Run once:
 
 ```powershell
