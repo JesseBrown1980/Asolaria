@@ -1,0 +1,11 @@
+ZCODEPACKHDR|contract=ASOLARIA-ZCODE-ROOM-PACK-ABSORB|vantage=liris|measured=2026-06-18|target=host8-room-pack|json=0
+ZCODEPACKSOURCE|source=operator+prior-zcode-research+fabric-health|zcode_role=ADE-control-plane-not-runtime|absorb=patterns-not-live-install|json=0
+ZCODEPACKMAP|zcode=plugin-bundle|asolaria=room-pack|fields=skill+command+subagent+MCP+hook+receipt|runtime=8byte-rust-host|json=0
+ZCODEPACKMAP|zcode=MCP-skill-importers|asolaria=config-harvester|input=ClaudeCode+Codex+OpenCode+agents+zcode|output=hbp-cube-seat-receipts|json=0
+ZCODEPACKMAP|zcode=remote-control|asolaria=operator-remote-host-runtime|existing=omni-control+omniscrcpy+remote-control-claude-supervisor|reuse=1|json=0
+ZCODEPACKMAP|zcode=explore-subagent|asolaria=read-only-scout-discipline|existing=explore+fabric-orchestration|no_generic_subagents_during_upgrade=1|json=0
+ZCODEPACKMAP|zcode=WSL-workspace|asolaria=Host8-linux-build-lane|existing=rust-kernel+host8-serve|json=0
+ZCODEPACKROW|name=ZROOMPACK|required_fields=pack_id+source_tool+room_stub+host_handle8+components+source_sha256+target_runtime+activation_state+secret_scope+operator_gate|handle_algo=host8-serve-fnv1a64-canonicalized|preimage=pack_id-pipe-room_stub|json=0
+ZCODEPACKGUARD|no_zcode_install=1|no_live_secret_import=1|no_node_runtime=1|json_hot=0|hbp_hot=1|swap=0|retire=0|runtime_activation=0|json=0
+ZCODEPACKOUTPUT|artifact=ZCODE-ROOM-PACK-MANIFEST-2026-06-18.hbp|next_consumer=host8_manifest_loader|first_pack=zcode-control-plane-patterns|attack_by=acer|json=0
+ZCODEPACKFOOT|rows=10|content_sha256=f08912b2ed357b38c8d95567f2bfbb4218f23a4fa926478468c0aed5c269fd17|json=0
