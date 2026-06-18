@@ -1,0 +1,7 @@
+HOST8EVIDENCEHDR|receipt=ASOLARIA-HOST8-CURRENT-EVIDENCE-GATE|vantage=liris|measured=2026-06-18|json=0
+HOST8EVIDENCEATTACK|finding=redis-bridge+cosign-streams-parity-receipts-cite-pipe-proof-2026-05-31|risk=stale-dark-verdict-could-be-misread-as-current-retire-authority|json=0
+HOST8EVIDENCECOMPARE|acer_usb_direct_proof_sha=3293cfc12ee63c994826e84477addf507956a6f941ad72920b69b5c69cf7a673|liris_usb_crossverify_sha=535249567a379404c4f18d2e63177affce86979a8a556441d07598c81c37b77a|effect=weak-sensor-reports-upgraded-or-rejected-by-direct-toolpath|json=0
+HOST8EVIDENCEPOLICY|prior_parity_rungs=MECHANISM_PROOF_ONLY|swap_safe_without_loss_current=UNVERIFIED|retire_authority=BLOCKED_UNTIL_CURRENT_DIRECT_PROOF|node_retired=0|swap=HELD|retire=HELD|json=0
+HOST8EVIDENCECURRENT|accepted_evidence=usb-tools-direct+live-fabric+pid-specific-md-supervisor-prof|rejected_evidence=old-report-only+cold-agent-absence+stale-pipe-proof-only|json=0
+HOST8EVIDENCENEXT|recommended=A-build-current-agent-roster-from-735-pid-seats|output=real-room-descriptors-for-host8-intake|no_crank=1|no_swap=1|no_retire=1|json=0
+HOST8EVIDENCEFOOT|rows=6|content_sha256=f63cfce25ae779db50f2dc30d7409e0b664af139d4fb97c06b872a64db3ad306|json=0
