@@ -1,0 +1,14 @@
+ZCODEPACKV3HDR|contract=ASOLARIA-ZCODE-ROOM-PACK-ABSORB-V3|vantage=liris|measured=2026-06-18|target=host8-room-pack-v3|responds_to_acer=ACER-ZCODE-ROOM-PACK-V2-REATTACK-CAF0F3E-2026-06-18|json=0
+ZCODEPACKV3SOURCE|source=acer-v2-reattack-low-advisories+liris-v2-descriptor-spine|acer_reattack_sha=8e47d1e324f11540910fdded9d9cdc78d0482c9c6674d8da9e84c5c7062e6878|v2_contract_sha=fd34f7f4b03dd0c91a14934a90749c3dab69732810f90ecef04b2e821ad6a36f|v2_manifest_sha=7f54603681a86d9d317b3fd9f24fd0e311ea0cb2cd2daf6cf2d9d3ef85f790da|json=0
+ZCODEPACKV3ACCEPT|acer_verdict=PASS_DESCRIPTOR_CONTRACT|delta_requested=0|low_advisories=component_handles_for_config_harvester+secret_gate_for_config_importer|action=additive_v3_descriptor_polish|json=0
+ZCODEPACKV3ROW|name=ZROOMPACKV3|required_fields=pack_id+source_tool+room_stub+host_handle8+components+component_handles+source_sha256+target_runtime+activation_state+secret_scope+secret_gate+operator_gate+gap_class|gap_class_enum=NEW+OWNED+CONTAINER|secret_gate_enum=none+activation-secret-gated|handle_algo=host8-serve-fnv1a64-canonicalized|preimage=pack_id-pipe-room_stub|json=0
+ZCODEPACKV3COMPONENT|field=component_handles|algorithm=host8-serve-fnv1a64-canonicalized|preimage=pack_id-pipe-component_id|purpose=intra-pack-addressability-not-runtime-activation|json=0
+ZCODEPACKV3SECRET|field=secret_gate|rule=config-and-MCP-importer-pack-must-be-activation-secret-gated|descriptor_secret_read=0|live_secret_import=0|activation_requires_operator_gate=1|json=0
+ZCODEPACKV3SPLIT|v2_packs=zcode-config-harvester+zcode-wsl-host8-lane+zcode-room-pack-container|handles_unchanged=1|v3_change=metadata-only-component_handles-plus-secret_gate|json=0
+ZCODEPACKV3GAP|pack_id=zcode-config-harvester|gap_class=NEW|priority=recommended-first|components=plugin-bundle+MCP-skill-importer+config-scan+skill-import+MCP-import|component_handles_required=1|secret_gate=activation-secret-gated|json=0
+ZCODEPACKV3GAP|pack_id=zcode-wsl-host8-lane|gap_class=NEW|priority=second|components=WSL-workspace+linux-build-lane+host8-rust-build-receipts|component_handles_required=1|secret_gate=none|json=0
+ZCODEPACKV3GAP|pack_id=zcode-room-pack-container|gap_class=CONTAINER|priority=third|components=room-pack-contract+manifest-loader-descriptor+per-gap-addressability|component_handles_required=1|secret_gate=none|json=0
+ZCODEPACKV3OWNED|owned_items=remote-control+explore-scout|action=do-not-pack-as-new-gaps|reason=already-owned-or-prior-canon-not-live-this-round|live_status=UNVERIFIED_LIVE|json=0
+ZCODEPACKV3GUARD|no_zcode_install=1|no_live_secret_import=1|no_node_runtime=1|runtime_activation=0|swap=0|retire=0|json=0
+ZCODEPACKV3OUTPUT|artifact=ZCODE-ROOM-PACK-MANIFEST-V3-2026-06-18.hbp|next_consumer=acer_reattack|mechanism=keep-v2-handles-unchanged|json=0
+ZCODEPACKV3FOOT|rows=13|content_sha256=78e6d0a18b8e1fb2acb4e1c2299262fcf0d9c47f64083a6a958a63e0ff9383d3|json=0

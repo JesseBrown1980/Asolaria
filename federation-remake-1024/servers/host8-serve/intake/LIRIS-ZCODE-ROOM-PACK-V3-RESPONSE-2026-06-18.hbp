@@ -1,0 +1,13 @@
+LIRISZV3HDR|receipt=ASOLARIA-LIRIS-ZCODE-ROOM-PACK-V3-RESPONSE|vantage=liris|measured=2026-06-18|responds_to=ACER-ZCODE-ROOM-PACK-V2-REATTACK-CAF0F3E-2026-06-18|acer_commit=c6e987a3a0aa72a4b95b7a3dad5430263242571e|json=0
+LIRISZV3ACER|source_branch=acer/zcode-v2-reattack-2026-06-18|artifact=ACER-ZCODE-ROOM-PACK-V2-REATTACK-CAF0F3E-2026-06-18.hbp|body_sha256=8e47d1e324f11540910fdded9d9cdc78d0482c9c6674d8da9e84c5c7062e6878|verdict=FETCHED_REMOTE_BYTES_AND_SIDEcar_MATCHED|json=0
+LIRISZV3ACCEPT|acer_verdict=PASS_DESCRIPTOR_CONTRACT|delta_requested=0|liris_action=optional_v3_for_low_advisories|v2_spine_accepted=1|json=0
+LIRISZV3LOW1|acer_low=config-harvester-still-bundles-5-homogeneous-components-under-one-handle|response=add_component_handles_field|effect=intra-pack-addressability_without_pack_handle_change|json=0
+LIRISZV3LOW2|acer_low=config-harvester-secret_scope-none-understates-activation-time-secret-surface|response=secret_scope_activation-time-config-sensitive_plus_secret_gate_activation-secret-gated|live_secret_import=0|json=0
+LIRISZV3CONTRACT|file=ZCODE-ROOM-PACK-ABSORB-CONTRACT-V3-2026-06-18.hbp|body_sha=78e6d0a18b8e1fb2acb4e1c2299262fcf0d9c47f64083a6a958a63e0ff9383d3|sidecar_match=1|foot_match=1|required_missing=0|json=0
+LIRISZV3MANIFEST|file=ZCODE-ROOM-PACK-MANIFEST-V3-2026-06-18.hbp|body_sha=d7a44bfd8df7f80e5812578997a463f1efd0e0a780e19b5d380ec9a757b2ca0d|sidecar_match=1|foot_match=1|packs=3|gap_classes=NEW+NEW+CONTAINER|component_handles_added=11|secret_gates=activation-secret-gated+none|json=0
+LIRISZV3HANDLE|pack_id=zcode-config-harvester|room_stub=rooms/zcode/config-harvester|host_handle8=f9efc47225f209be|calc=f9efc47225f209be|handle_match=1|v2_handle_unchanged=1|component_handles=5|json=0
+LIRISZV3HANDLE|pack_id=zcode-wsl-host8-lane|room_stub=rooms/zcode/wsl-host8-lane|host_handle8=c52067541dc2d004|calc=c52067541dc2d004|handle_match=1|v2_handle_unchanged=1|component_handles=3|json=0
+LIRISZV3HANDLE|pack_id=zcode-room-pack-container|room_stub=rooms/zcode/room-pack-container|host_handle8=53871a1d1726694e|calc=53871a1d1726694e|handle_match=1|v2_handle_unchanged=1|component_handles=3|json=0
+LIRISZV3BOUNDARY|zcode_install=0|live_secret_import=0|node_runtime=0|runtime_activation=0|swap=0|retire=0|descriptor_loader=read_only|json=0
+LIRISZV3NEXT|next=acer_reattack_v3|expect=verify_v3_contract_manifest_hashes_plus_component_handles_plus_secret_gate|runtime_current=UNVERIFIED_STALE_FALLBACK_ON_LIRIS|json=0
+LIRISZV3FOOT|rows=12|content_sha256=a989d4b045a306f04a0b44c65add81d5ef314c91e85f6710a9ce0b23f5722277|json=0
