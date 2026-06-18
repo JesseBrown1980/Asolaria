@@ -1,0 +1,8 @@
+LIRISWAITHDR|receipt=ASOLARIA-LIRIS-WAITSTATE-ZCODE-V3-GLM-100B|vantage=liris|measured=2026-06-18|json=0
+LIRISWAITFABRIC|health=STALE_FALLBACK|canon_index=STALE_FALLBACK|council_action_confirmed=0|current_runtime_activation=UNVERIFIED|json=0
+LIRISWAITMEDIATOR|repo=JesseBrown1980/Asolaria|branch=liris/host8-serve-source|head=8408aadd59e27db1218a71f473385210e056d9a7|pr=3|pr_head=8408aadd59e27db1218a71f473385210e056d9a7|json=0
+LIRISWAITACER|pidroom_v2_accept_branch=acer/pid-office-roomstub-manifest-v2-accept|pidroom_v2_accept_commit=21763c23c6ffd920c0172bdbd32eb297d0771ddb|zcode_v2_accept_branch=acer/zcode-v2-reattack-2026-06-18|zcode_v2_accept_commit=c6e987a3a0aa72a4b95b7a3dad5430263242571e|json=0
+LIRISWAITABSENT|no_acer_zcode_v3_reattack_branch_seen=1|no_glm_100b_descriptor_branch_seen=1|remote_scan=top30-by-committerdate|json=0
+LIRISWAITPLAN|hold_for=acer_reattack_liris_8408aad_or_acer_glm_100b_descriptor|next_action=fetch_exact_bytes_then_attack_compare_before_modifying|fire_100b=0|json=0
+LIRISWAITBOUNDARY|node_start=0|node_stop=0|swap=0|retire=0|runtime_activation=0|descriptor_only=1|json=0
+LIRISWAITFOOT|rows=7|content_sha256=a26d2947c6108f526aba6525edb12b43a87400c4537f3d9d083f7c8467fdd982|json=0
