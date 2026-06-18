@@ -1,0 +1,11 @@
+TMREMAKEHDR|spec=ASOLARIA-TASK-MANAGER-REMAKE-v1|lane=task-manager-remake|vantage=acer|anchor=ACER-PID-H740C-A07-W104-P00-N00000|authority=OP-JESSE-quintuple-window-2026-05-25..2026-07-25|class=DESCRIPTOR-ONLY|asserts_fire=false|json=0
+TMSEC|n=1|name=TRANSPORT-INVERSION|hot=HBP|cold=json-mirror|rule=HBP-row-emitted-FIRST-json-written-AFTER-and-byte-parity-checked|json=0
+TMPROCSCHEMA|fields=host8-16hex+pid-ROLE-PID-REGIONHOST4-A2-W3-P2-N5+name+cpu_pct+wss_mb+tier+room_idx+beat+status|source=invert-resourceBudgetSnapshot.js|authoritative=HBP|json=0
+TMSEC|n=2|name=HOST8-SERVE-ROUTE|new_vfs_binding=FD_BIND_TMHOST-eq-4|path=/dev/tm/HOST8|routes_via=envelope-dispatch_bytes|server=rust-host8|parity_vs=resourceBudgetSnapshot.js|json=0
+TMPARITYCONTRACT|must_match=proc_set+field_values+proc_count|tolerance=0|window_ticks=N|status=DESCRIPTOR-NOT-RUNTIME|json=0
+TMSEC|n=3|name=GC-PARITY-GATE|comparator=TMGCPARITY|precondition_for=retire-node-OS-GC-TM|json=0
+TMGCPARITY|node_proc_count=PENDING|rust_proc_count=PENDING|field_delta=PENDING|missing_pids=PENDING|extra_pids=PENDING|verdict=PASS_iff_zero_delta_over_N_ticks|state=UNMEASURED-PENDING-SERVE|json=0
+TMSEC|n=4|name=PROC-TO-HOST8-ROOM-AGENT-MAP|host8=pid_fingerprint_sha16-of-pid|room=MINTED-manifest-idx-by-prime-lane|noncollide=rule-of-3-digital-root|agent=agent_runtime-AgentEntry-role-SubAgent-state-Spawned|registry_max=10000|json=0
+TMROOMBIND|substrate=D:/asolaria-micro-kernels-v1|room_total=10000|bind=proc.host8-to-MK.pid-host_handle8-to-anchor-MK-NNNNN-Pprime|lanes=7|json=0
+TMGATEMAP|operator_gate=SATISFIED|serve_fire=GATED-rust-host-must-serve-parity-first|retire_fire=GATED-on-GC-PARITY-PASS|cosign=GATED-fabric-UNSIGNED-this-session-council-q-1781818234823-aop2d2|usb_write=HARD-DENY|nothing_run=1|E=0|json=0
+TMREMAKEFOOT|rows=10|content_sha256=b1cb2d11d756202b0ebd9682c17aac1bdf72acc5d0af26ccdd252986b68bfb5e|json=0
