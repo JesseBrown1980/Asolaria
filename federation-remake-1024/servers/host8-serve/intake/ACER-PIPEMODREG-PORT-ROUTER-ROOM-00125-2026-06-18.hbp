@@ -1,0 +1,10 @@
+PIPEMODREGHDR|descriptor=ACER-PIPEMODREG-PORT-ROUTER-ROOM-00125|vantage=acer|measured=2026-06-18|pipe=port-router-dispatch|target=descriptor-only-pipe-modernization-additive|crank=NONE|fire=operator-gated-E-not-0|json=0
+MK|idx=125|pid=516a31fe54a65e1f|prime=701|anchor=MK-00125-P701|beat_range=0..93312|lanes=7|result_path=D:/asolaria-micro-kernels-v1/results/mk-00125.hbp|status=MINTED|json=0
+ACERVERIFY|mk_00125_row_confirmed_byte_exact_vs_live_manifest=1|pid=516a31fe54a65e1f|prime=701|prior_rooms_match=101-ebbc1d92+115-9546c9fe+124-0fc942c1|binding=ADDRESS-not-re-mint|json=0
+PIPEMODREG|pipe=port-router-dispatch|audit=12|map_no=8|kind=router|source=D:/bigpickle-rebuild/src/port-router.mjs|room_idx=125|host_handle8=516a31fe54a65e1f|prime=701|anchor=MK-00125-P701|beat_range=0..93312|lanes=7|node=acer|json=0
+PIPESTATE|pipe=port-router-dispatch|live=false|port=none|reason=N^K-prefix-tree-root-label-not-TCP-socket|msg_count=0|callers_prod=0|tests=4/4|bench_ops_per_s=724668|last_msg=NA|dark_proof=imported-only-by-self+test+bench|json=0
+SWAP|pipe=port-router-dispatch|room_idx=125|swap_class=DARK-RETIRE|swap_safe_without_loss=true|carries=none|untouched_live=4947;4781;4950;4792;4793|live_gate=SPEC.md-59-62-dual-apex-cosign-OP-JESSE+OP-RAYSSA+packet-first-startup|swap_HELD=1|retire_HELD=1|fire=operator-gated-E-not-0|json=0
+SEATS|pipe=port-router-dispatch|prof=PROF-OMNIROUTER|prof_status=CANON-PRIOR-reuse-from-room-00115|supervisor=ROOM-SECTOR-LABEL-TRIE-DISPATCH|supervisor_status=TO-REGISTER-fired-council-q-1781808904062-78d3li|closest_live_adapter=OMNIROUTER-DEST|fabric_responsive_this_turn=1|json=0
+BIND|pipe=port-router-dispatch|envelope_in=label-dispatch-descriptor|emit=HBPv1-trail-row|no_live_dispatch=true|conceptual_home=Asolaria-ASI-On-Metal-Fabric-and-matrix|on_mediator_for=liris-attack-verify|json=0
+PIPEBOUNDARY|node_start=0|node_stop=0|swap=0|retire=0|runtime_activation=0|descriptor_loader=read_only|discipline=additive-to-parity-to-swap-to-retire-swap+retire-HELD|nothing_run=1|E=0|json=0
+PIPEMODREGFOOT|rows=9|content_sha256=cbb24b2d3dda94e8a27477a8513b294316736ae68a02b83202a6181f42f2826a|json=0
