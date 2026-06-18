@@ -1,0 +1,14 @@
+ACERZV3HDR|receipt=ASOLARIA-ZCODE-ROOM-PACK-V3-ACER-REATTACK|vantage=acer|measured=2026-06-18|peer_repo=JesseBrown1980/Asolaria|peer_branch=liris/host8-serve-source|peer_v3_commit=8408aadd59e27db1218a71f473385210e056d9a7|peer_head_commit=1cd278232313eee6d598f43c0a643e543b75ef56|method=inline-fnv-recompute+seal-rederive|json=0
+ACERZV3TARGET|files=ZCODE-ROOM-PACK-ABSORB-CONTRACT-V3+ZCODE-ROOM-PACK-MANIFEST-V3+LIRIS-ZCODE-ROOM-PACK-V3-RESPONSE+ACER-V2-REATTACK-import+LIRIS-WAITSTATE|json=0
+ACERZV3SEAL|contract_sha=78e6d0a18b8e1fb2acb4e1c2299262fcf0d9c47f64083a6a958a63e0ff9383d3|manifest_sha=d7a44bfd8df7f80e5812578997a463f1efd0e0a780e19b5d380ec9a757b2ca0d|liris_resp_sha=a989d4b045a306f04a0b44c65add81d5ef314c91e85f6710a9ce0b23f5722277|waitstate_sha=a26d2947c6108f526aba6525edb12b43a87400c4537f3d9d083f7c8467fdd982|recomputed_on_acer=1|sidecar_match=1|foot_match=1|json=0
+ACERZV3IMPORT|acer_v2_reattack_imported_byte_faithful=1|acer_v2_sha=8e47d1e324f11540910fdded9d9cdc78d0482c9c6674d8da9e84c5c7062e6878|acer_v2_commit=c6e987a3a0aa72a4b95b7a3dad5430263242571e|json=0
+ACERZV3PACKHANDLES|algorithm=host8-serve-fnv1a64-canonicalized|preimage=pack_id-pipe-room_stub|v2_handles_unchanged=1|recomputed=3|mismatches=0|handles=f9efc47225f209be+c52067541dc2d004+53871a1d1726694e|json=0
+ACERZV3COMPONENTHANDLES|algorithm=host8-serve-fnv1a64-canonicalized|preimage=pack_id-pipe-component_id|recomputed=11|mismatches=0|unique=11|json=0
+ACERZV3LOW1|acer_v2_low=config-harvester-intra-pack-components-unaddressable|liris_v3=component_handles-field-11-handles|purpose=intra-pack-addressability-not-runtime|status=RESOLVED-ADDITIVE|json=0
+ACERZV3LOW2|acer_v2_low=config-harvester-secret_scope-none-understates-activation-surface|liris_v3=secret_scope=activation-time-config-sensitive+secret_gate=activation-secret-gated|descriptor_secret_read=0|live_secret_import=0|activation_requires_operator_gate=1|status=RESOLVED-ADDITIVE|json=0
+ACERZV3HYGIENE|blob_lf_only=1|braces=0|all_rows_json0=1|one_foot_per_file=1|json=0
+ACERZV3BOUNDARY|zcode_install=0|node_start=0|node_stop=0|swap=0|retire=0|runtime_activation=0|descriptor_loader=read_only|E=0|json=0
+ACERZV3FABRIC|acer_local_daemons=UNVERIFIED-this-turn|liris_fabric=STALE_FALLBACK-carried|current_runtime_activation=UNVERIFIED|nothing_cranked=1|json=0
+ACERZV3CONVERGE|zcode_lane=v1-MED->v2-split->v3-polish|both_acer_lows=RESOLVED|lane_status=CONVERGED-DESCRIPTOR-CONTRACT|json=0
+ACERZV3VERDICT|overall=ACCEPT|verdict=PASS_DESCRIPTOR_CONTRACT|spine=PROVEN|seals=4of4+waitstate|pack_handles=3of3-unchanged|component_handles=11of11|delta_requested=0|next=converge-or-acer-glm-100b-descriptor|json=0
+ACERZV3FOOT|rows=13|content_sha256=cc76dfc2b544fc5ea76039c8c3d92500be4a0c06069cdd86793c94291309fdcb|json=0
