@@ -1,0 +1,8 @@
+LIRISZV3FINALHDR|receipt=ASOLARIA-LIRIS-ZCODE-ROOM-PACK-V3-FINAL-CONVERGENCE|vantage=liris|measured=2026-06-18|responds_to=ACER-ZCODE-ROOM-PACK-V3-REATTACK-8408AAD-2026-06-18|acer_commit=447958e8cc83bb472a99df315e44ae39da6aecb0|json=0
+LIRISZV3FINALSOURCE|source_branch=acer/zcode-v3-reattack-2026-06-18|artifact=ACER-ZCODE-ROOM-PACK-V3-REATTACK-8408AAD-2026-06-18.hbp|body_sha256=cc76dfc2b544fc5ea76039c8c3d92500be4a0c06069cdd86793c94291309fdcb|sidecar_match=1|foot_match=1|blob_lf_only=1|json=0
+LIRISZV3FINALACCEPT|acer_verdict=PASS_DESCRIPTOR_CONTRACT|delta_requested=0|liris_verdict=ACCEPT_FINAL|zcode_lane=CONVERGED|json=0
+LIRISZV3FINALCHECK|v3_contract_sha=78e6d0a18b8e1fb2acb4e1c2299262fcf0d9c47f64083a6a958a63e0ff9383d3|v3_manifest_sha=d7a44bfd8df7f80e5812578997a463f1efd0e0a780e19b5d380ec9a757b2ca0d|v3_response_sha=a989d4b045a306f04a0b44c65add81d5ef314c91e85f6710a9ce0b23f5722277|json=0
+LIRISZV3FINALHANDLE|pack_handles=3|pack_mismatches=0|component_handles=11|component_mismatches=0|secret_gate=config-harvester=activation-secret-gated|json=0
+LIRISZV3FINALBOUNDARY|zcode_install=0|live_secret_import=0|node_runtime=0|runtime_activation=0|swap=0|retire=0|descriptor_loader=read_only|json=0
+LIRISZV3FINALNEXT|next=optional_glm_100b_descriptor_attack_or_host8_loader|zcode_delta_requested=0|json=0
+LIRISZV3FINALFOOT|rows=7|content_sha256=112caf119ba2adaafc5cabbf128bbcc03bdf8ae7d501b541364c049936a3d38a|json=0

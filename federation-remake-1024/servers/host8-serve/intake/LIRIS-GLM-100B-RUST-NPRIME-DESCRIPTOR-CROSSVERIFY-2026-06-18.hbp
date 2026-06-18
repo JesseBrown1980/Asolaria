@@ -1,0 +1,11 @@
+LIRISGLM100BHDR|receipt=ASOLARIA-LIRIS-GLM-100B-RUST-NPRIME-DESCRIPTOR-CROSSVERIFY|vantage=liris|measured=2026-06-18|source_branch=acer/glm-100b-rust-nprime-descriptor-2026-06-18|source_commit=d3b09eb660d18f70f23b25fbf2af6a5ba120e4a4|json=0
+LIRISGLM100BSOURCE|artifact=ACER-GLM-100B-RUST-NPRIME-DESCRIPTOR-2026-06-18.hbp|body_sha256=104d1dbd3c369e677f01c3c8f0e94fc669ef3efe5761842498d051ba86d72ee9|sidecar_match=1|foot_match=1|blob_lf_only=1|json=0
+LIRISGLM100BPROVIDER|pack_id=glm-5.2-provider|room_stub=rooms/providers/glm-5.2|host_handle8=d4c4dc45a9eac4fd|calc=d4c4dc45a9eac4fd|handle_match=1|secret_gate=activation-secret-gated|json=0
+LIRISGLM100BCOMPONENTS|component_handles=5|component_mismatches=0|components=openai-compat-client+chat-completions+reasoning-effort+mcp-function-calling+api-key-gate|json=0
+LIRISGLM100BNPRIME|nodes=R+R.0+R.0.1|agent_watcher_truth_sha16_present=1|consent=NON-recursive-operator-HALT|self_reflect_gate=watcher-recomputes-output|json=0
+LIRISGLM100BRUST|target=rust-8byte-host-no-node-no-json|wired_path=bigpickle-PROVEN|rust_no_node_path=SCAFFOLD-TARGET-bilateral-with-liris|status=DESCRIPTOR_VERIFIED_NOT_FIREABLE_TODAY|json=0
+LIRISGLM100BSEED|seed=B100-UNIVERSAL-SEED-001|question_hash=operator-visible-in-acer-descriptor|fire=operator-gated-E-not-0|glm_call_fired=0|E=0|json=0
+LIRISGLM100BFABRIC|liris_fabric_current=STALE_FALLBACK|council_action_confirmed=0|runtime_activation=UNVERIFIED|json=0
+LIRISGLM100BBOUNDARY|node_start=0|node_stop=0|swap=0|retire=0|runtime_activation=0|live_secret_import=0|descriptor_loader=read_only|json=0
+LIRISGLM100BVERDICT|verdict=PASS_DESCRIPTOR_CONTRACT_NOT_RUNTIME|delta_requested=0|next=operator_fire_or_rust_build_after_bilateral_gate|json=0
+LIRISGLM100BFOOT|rows=10|content_sha256=97dca6f3fa85e5569fce5f1050b6759ff65cbd09ad288faf9c7e2bf123f744fa|json=0
