@@ -1,0 +1,5 @@
+HOST8CROSSVERIFYHDR|receipt=ASOLARIA-HOST8-PARITY-CROSSVERIFY|vantage=liris|source_branches=acer/host8-parity-redis-bridge+acer/host8-parity-cosign-streams|verified=2026-06-18|json=0
+HOST8CROSSVERIFYROW|pipe=redis-bridge|acer_ref=a241f4b|artifact_scope=3-files|body_sha256=640be429fe6dbb5b6696e32cd63976b9ff5605b6ce296041095930eb65e8c685|host_handle8=28137bd8188082ae|handle_recomputed=1|parity_proven=1|node_retired=0|status=VERIFIED|json=0
+HOST8CROSSVERIFYROW|pipe=cosign-streams|acer_ref=f33502b|artifact_scope=3-files|body_sha256=ad88ef09c730013a67330cdd6ffd27738c01f58b6580223ee6a0ff141d8276e7|host_handle8=ec2162b7ff98d586|handle_recomputed=1|parity_proven=1|node_retired=0|live_cosign_4953_carveout=1|status=VERIFIED|json=0
+HOST8CROSSVERIFYRULE|hash_scope=body_rows_excluding_foot|reason=foot-self-describes-body-seal|json=0
+HOST8CROSSVERIFYFOOT|rows=4|content_sha256=5f904a512c12aa6260f829d1a2c15370700d497a9b95c3085f0411a299ce3c97|json=0

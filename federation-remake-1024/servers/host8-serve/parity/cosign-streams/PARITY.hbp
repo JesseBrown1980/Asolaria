@@ -1,0 +1,8 @@
+HOST8PARITYHDR|receipt=ASOLARIA-HOST8-PARITY|pipe=cosign-streams|vantage=acer|substrate=wsl-ubuntu-x86_64-linux|measured=2026-06-18|json=0
+HOST8PARITYOLD|pipe=cosign-streams|kind=redis|live=false|port=6379|port_state=ECONNREFUSED|broker_installed=0|msg_count_ever=0|stream_key=asolaria-cosign-chain|stream_exists=0|d11=DARK|node_path=D:/bigpickle-rebuild/src/cosign-streams.mjs|source=pipe-proof-14-AUDIT-cosign-streams-2026-05-31|json=0
+HOST8PARITYLIVECARVE|live_cosign_chain_is_SEPARATE=4953-http-cosign-bridge|seq=3559|this_dark_pipe=redis-stream-variant-only|cosign_4953_untouched=1|json=0
+HOST8PARITYNEW|host=asolaria-host8-serve|runtime=rust-std|kernel=0.2.0-phase3-scaffold|server_libs=5|host_handle8=ec2162b7ff98d586|room_stub=rooms/pipes/cosign-streams|lane=dark-retire|routes=/health.hbp+/room.hbp+/feed.hbp|handle_algo=fnv1a64-canonicalized-deterministic-cross-vantage|json=0
+HOST8PARITYVERDICT|swap_safe_without_loss=TRUE|parity_proven=1|reason=dark-redis-stream-carried-0-ever-AND-live-cosign-is-separate-4953-http-NOT-this-pipe|json=0
+HOST8PARITYGATE|node_retired=0|spine_touched=0|dashboard_touched=0|cosign_touched=0|swap=HELD|retire=HELD|gate=operator-dual-apex-cosign|white_glove=additive-then-parity-then-swap-then-retire|json=0
+HOST8PARITYNEXT|step=operator-gates-swap-then-retire|bilateral=acer+liris-same-host8-serve-source-d86a181|note=liris-rerun-stub-must-get-host_handle8=ec2162b7ff98d586|json=0
+HOST8PARITYFOOT|rows=7|content_sha256=ad88ef09c730013a67330cdd6ffd27738c01f58b6580223ee6a0ff141d8276e7|json=0

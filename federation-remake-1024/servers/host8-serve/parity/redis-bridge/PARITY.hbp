@@ -1,0 +1,7 @@
+HOST8PARITYHDR|receipt=ASOLARIA-HOST8-PARITY|pipe=redis-bridge|vantage=acer|substrate=wsl-ubuntu-x86_64-linux|measured=2026-06-17|json=0
+HOST8PARITYOLD|pipe=redis-bridge|kind=redis|live=false|port=6379|port_state=ECONNREFUSED|broker_installed=0|msg_count_ever=0|d11=DARK|node_path=D:/bigpickle-rebuild/src/redis-bridge.mjs|source=pipe-proof-11-AUDIT-redis-bridge-2026-05-31|json=0
+HOST8PARITYNEW|host=asolaria-host8-serve|runtime=rust-std|kernel=0.2.0-phase3-scaffold|server_libs=5|host_handle8=28137bd8188082ae|room_stub=rooms/pipes/redis-bridge|lane=dark-retire|routes=/health.hbp+/room.hbp+/feed.hbp|handle_algo=fnv1a64-canonicalized-deterministic-cross-vantage|json=0
+HOST8PARITYVERDICT|swap_safe_without_loss=TRUE|parity_proven=1|reason=old-pipe-carried-0-messages-ever-DARK-rust-host-serves-room-descriptor-strict-superset|json=0
+HOST8PARITYGATE|node_retired=0|spine_touched=0|dashboard_touched=0|cosign_touched=0|swap=HELD|retire=HELD|gate=operator-dual-apex-cosign|white_glove=additive-then-parity-then-swap-then-retire|json=0
+HOST8PARITYNEXT|step=operator-gates-swap-then-retire-for-redis-bridge|bilateral=acer+liris-same-host8-serve-source-d86a181|note=liris-can-rerun-same-stub-and-must-get-host_handle8=28137bd8188082ae|json=0
+HOST8PARITYFOOT|rows=6|content_sha256=640be429fe6dbb5b6696e32cd63976b9ff5605b6ce296041095930eb65e8c685|json=0

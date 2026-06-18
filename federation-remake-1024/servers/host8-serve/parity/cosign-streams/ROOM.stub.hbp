@@ -1,0 +1,2 @@
+ROOMSTUB|id=cosign-streams|room_stub=rooms/pipes/cosign-streams|target_runtime=8byte-rust-host|legacy_runtime=node|legacy_path=D:/bigpickle-rebuild/src/cosign-streams.mjs|lane=dark-retire|swap_gate=parity-before-retire|json=0
+ROOMSTUBDARK|live=false|port=6379|port_state=ECONNREFUSED|broker_installed=0|msg_count_ever=0|stream_key=asolaria-cosign-chain|stream_exists=0|d11=DARK|live_cosign_is_SEPARATE=4953-http-cosign-bridge-seq-3559-NOT-this-pipe|source=pipe-proof-14-AUDIT-cosign-streams-2026-05-31|json=0

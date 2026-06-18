@@ -1,0 +1,2 @@
+ROOMSTUB|id=redis-bridge|room_stub=rooms/pipes/redis-bridge|target_runtime=8byte-rust-host|legacy_runtime=node|legacy_path=D:/bigpickle-rebuild/src/redis-bridge.mjs|lane=dark-retire|swap_gate=parity-before-retire|json=0
+ROOMSTUBDARK|live=false|port=6379|port_state=ECONNREFUSED|broker_installed=0|msg_count_ever=0|d11=DARK|source=pipe-proof-11-AUDIT-redis-bridge-2026-05-31|json=0
