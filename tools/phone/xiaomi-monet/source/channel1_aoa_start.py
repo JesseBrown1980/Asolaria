@@ -1,0 +1,30 @@
+"""CHANNEL 1: Register HID + START_ACCESSORY"""
+import usb.core, usb.util, sys
+
+dev = usb.core.find(idVendor=0x2717, idProduct=0xff40)
+if not dev:
+    print("NO_DEVICE"); sys.exit(1)
+
+for cfg in dev:
+    for intf in cfg:
+        try:
+            if dev.is_kernel_driver_active(intf.bInterfaceNumber):
+                dev.detach_kernel_driver(intf.bInterfaceNumber)
+        except: pass
+dev.set_configuration()
+
+ver = dev.ctrl_transfer(0xC0, 51, 0, 0, 2)
+print(f"AOA_V{ver[0]}")
+
+HID = bytes([0x05,0x01,0x09,0x06,0xA1,0x01,0x05,0x07,0x19,0xE0,0x29,0xE7,0x15,0x00,0x25,0x01,0x75,0x01,0x95,0x08,0x81,0x02,0x95,0x01,0x75,0x08,0x81,0x01,0x95,0x06,0x75,0x08,0x15,0x00,0x25,0x65,0x05,0x07,0x19,0x00,0x29,0x65,0x81,0x00,0xC0])
+
+dev.ctrl_transfer(0x40, 54, 1, len(HID))
+dev.ctrl_transfer(0x40, 56, 1, 0, HID)
+print("HID_REGISTERED")
+
+for i, s in enumerate(["Asolaria","Liris","KB","1.0","",""]):
+    dev.ctrl_transfer(0x40, 52, 0, i, s.encode()+b'\x00')
+
+dev.ctrl_transfer(0x40, 53, 0, 0)
+print("ACCESSORY_STARTED")
+
