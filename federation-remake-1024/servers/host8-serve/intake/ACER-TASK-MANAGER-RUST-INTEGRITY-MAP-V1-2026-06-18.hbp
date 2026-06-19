@@ -1,0 +1,11 @@
+TMRUSTMAPHDR|artifact=ACER-TASK-MANAGER-RUST-INTEGRITY-MAP-V1|vantage=acer-helper|measured=2026-06-18|base_data_integrity_accept=5e32f54c31679bfd3cd7ef8a92a3a9bb8759b6f7|scope=task-manager-remake-map-before-runtime|json=0
+TMRUSTMAPRULE|priority=consistency+data-integrity-before-runtime|target=rust-8byte-host-pid-everything|hot_path=hbp+hbi+binary+hash+hex+sha256+glyph|json_cold_path=allowed_only_as_legacy_mirror|json=0
+TMRUSTMAPCURRENT|capture_done=1|pid_tracking_mapped=1|rust_serving_tm_route=0|gc_parity=0|node_tm_retired=0|status=MAP_DONE_REMAKE_OPEN|json=0
+TMRUSTMAPSURFACES|inputs=pid_office+os_process_table+executor_supervisors+vault_supervisors+mcp_registry+cosign_chain+usb_sovlinux+github_receipts|outputs=tm_hbp_feed+tm_hbi_index+rust_host_stub_rooms+parity_receipts|json=0
+TMRUSTMAPHOST|host_model=8byte-rust-host|identity=host_handle8+pid+room_stub|room_stub_pattern=rooms/task-manager/tm-host8/*|process_is_address_not_fork=true|json=0
+TMRUSTMAPDATA|must_preserve=pid_to_room+process_to_host8+executor_to_supervisor+vault_to_supervisor+cosign_gate+usb_paths+old_windows_node_paths|old_E_sovereignty_task=stale_pipe_not_loss|json=0
+TMRUSTMAPPARITY|required_before_swap=rust_tm_route_serves_same_pid_rows+same_host_handles+same_freeze_gate+same_cosign_boundary+same_gc_visibility|tm_gc_parity_required=1|json=0
+TMRUSTMAPGATES|can_build_descriptor=1|can_build_rust_stub=descriptor_only|can_read_verify=1|needs_cosign=serve_promote+swap+retire+live_mcp_mint|hard_deny=manual_cosign_write+vault_plaintext+usb_raw_write|json=0
+TMRUSTMAPBOUNDARY|E=0|node_start=0|node_stop=0|swap=0|retire=0|runtime_activation=0|executor_fire=0|provider_call=0|json=0
+TMRUSTMAPNEXT|next=liris-attack-task-manager-rust-integrity-map-v1|after_accept=build-rust-tm-stub-descriptor-or-parity-test-plan|json=0
+TMRUSTMAPFOOT|rows=10|content_sha256=49113bf1f112f12d1eb348e6d5c3c2a9fbc82e770ed95aa6eb1d28da33fc704e|json=0
