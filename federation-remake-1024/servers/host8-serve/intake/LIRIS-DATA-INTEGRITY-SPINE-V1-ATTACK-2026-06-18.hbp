@@ -1,0 +1,8 @@
+LIRISDATAINTHDR|receipt=ASOLARIA-LIRIS-DATA-INTEGRITY-SPINE-V1-ATTACK|vantage=liris-helper|measured=2026-06-18|source_branch=acer/data-integrity-spine-v1-2026-06-18|source_commit=fcae611ad3bfc67f172e7aa8d47e352ac686bcb8|json=0
+LIRISDATAINTARTIFACT|artifact=ACER-DATA-INTEGRITY-SPINE-V1-2026-06-18.hbp|body_sha256=bb828bf1164428f53f204b8b6e65056d3af0429e254701c99b1c7189f3836147|sidecar_match=1|foot_match=1|blob_lf_only=1|brace_free=1|all_rows_json0=1|json=0
+LIRISDATAINTSCOPE|covers=github+usb_sovlinux_d+google_drive_35tb+vaults+mcp_registry+cosign_chain+pid_office+cubes_maps_quant_catalogs|converged_lanes=pid_office+zcode_v3+glm100b+multilane+executor_registration|json=0
+LIRISDATAINTGATES|can_read_verify=PASS|descriptor_seal_path=PASS|needs_cosign=runtime_fire+chain_promotion+live_mcp_mint+swap_retire|hard_deny=usb_raw_write+vault_plaintext+manual_cosign_chain_write|gate_map_match=1|json=0
+LIRISDATAINTOLDPATH|stale_path=E_drive_sovereignty_connectionVaultMonitor|classification=unretired-windows-node-pipe-not-data-loss|accepted=1|required_action=map+retire-after-rust-parity|json=0
+LIRISDATAINTBOUNDARY|E=0|provider_call=0|glm_call=0|executor_fire=0|node_start=0|swap=0|retire=0|runtime_activation=0|runtime_claims=none|json=0
+LIRISDATAINTVERDICT|verdict=PASS_DESCRIPTOR_CONTRACT|delta_requested=0|next=task-manager-rust-integrity-map-or-next-data-surface|json=0
+LIRISDATAINTFOOT|rows=7|content_sha256=aef75862ca4d7c3b61be7b4bcb5d5da53450e8209a815145831742f564fbda5a|json=0
