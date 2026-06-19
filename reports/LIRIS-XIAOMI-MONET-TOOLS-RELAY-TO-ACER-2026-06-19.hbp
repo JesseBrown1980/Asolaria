@@ -1,0 +1,10 @@
+HBPv1|artifact=liris-to-acer-xiaomi-monet-tools-relay|host=liris|target=acer|date=2026-06-19|json=0
+CLAIM|tag=OPERATOR_OBSERVED|text=operator-stated-xiaomi-access-tool-was-created-here-by-codex-5-1-or-5-3|json=0
+FOUND|tag=MEASURED|path=C-Users-rayss-xiaomi-recover|entries=160|json=0
+CANON|tag=CANON|memory=project_xiaomi_node.md+project_xiaomi_recovery_session.md+project_xiaomi_session2.md|json=0
+DEVICE|tag=MEASURED|model=Xiaomi-Mi-10-Lite-5G|codename=monet|serial=56C90D22|vidpid=2717-ff40|wifi_prior=192-168-15-37|json=0
+TOOLS|tag=MEASURED|families=shannon-recovery+aoa-otg-keyboard+zadig-winusb-libusbk+wsl2-usbipd+trixie-debora|json=0
+STATUS|tag=CANON|windows-path=driver-wall-mtp-exclusive-lock|linux-path=wsl2-usbipd-pivot-staged|current-device-attachment=UNVERIFIED-this-turn|json=0
+REDACTION|tag=MEASURED|excluded=screenshots+binaries+result-dumps+private-unlock-values|hardcoded-unlock-values=redacted-in-relay-sources|json=0
+ACERPULL|tag=CANON|repo=JesseBrown1980-Asolaria|branch=liris-xiaomi-monet-relay-2026-06-19|path=tools-phone-xiaomi-monet|json=0
+BOUNDARY|tag=CANON|use=owned-device-recovery-and-asolaria-node-rehydration|do_not_publish=private-unlock-values|do_not_run=without-operator-physical-authorization|json=0
