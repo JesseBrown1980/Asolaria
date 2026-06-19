@@ -1,0 +1,14 @@
+DATAINTHDR|artifact=ACER-DATA-INTEGRITY-SPINE-V1|vantage=acer-helper|measured=2026-06-18|base_liris_head=bc7cf985cb0e810f6b680e714e4b5fb07fa03ca8|scope=integrity-spine-for-current-descriptor-flow|json=0
+DATAINTRULE|priority=data-integrity-before-runtime|runtime_fire_requires=fresh-cosign+parity+freeze-gate-clear|descriptor_mode=E0|json=0
+DATAINTMEDIATOR|surface=github|repo=JesseBrown1980/Asolaria|pr=3|head=liris/host8-serve-source@bc7cf98|role=bilateral-receipt-mediator|json=0
+DATAINTCONVERGED|pid_office_v2=acer21763c2+lirisef07630|zcode_v3=acer447958e+lirisd684ada|glm100b_descriptor=acerd3b09eb+liris97dca6f3|multilane=acercf81dee+6cb98d6+7054d2f+8fb5fda+liriscd17f590|executor_registration=acerf75189f+liris9c2f2a4d|json=0
+DATAINTSEALS|zcode_final=112caf119ba2adaafc5cabbf128bbcc03bdf8ae7d501b541364c049936a3d38a|glm100b_liris=97dca6f3fa85e5569fce5f1050b6759ff65cbd09ad288faf9c7e2bf123f744fa|multilane_liris=cd17f590a86794b82296f7369abc968f33b7555e3728882cbd40ae137687128c|executor_liris=9c2f2a4d3976d38a30553092ea334eaadd75e90c13b54773ec2b1990912d532b|json=0
+DATAINTSURFACES|surfaces=github+usb_sovlinux_d+google_drive_35tb+vaults+mcp_registry+cosign_chain+pid_office+cubes_maps_quant_catalogs|drive_letters=weak_sensor|disk_not_system=true|json=0
+DATAINTUSB|surface=sovlinux_usb|operator_mapping=D_is_2tb_sovlinux_usb|raw_device=PHYSICALDRIVE2_on_acer|liris_visibility=UNVERIFIED_OR_WEAK_SENSOR|policy=read_only_index_no_raw_write|json=0
+DATAINTVAULTS|surface=vault_supervisors|vault_count=9|secret_values_read=0|carveout=secret-values-never-published|cosign_keys=vault_daemon_only|json=0
+DATAINTEXEC|surface=executor_layer|supervisors=8|programs=22|freeze_gate=EXEC-FREEZE-GATE-APEX|freeze_gate_handle8=c242226d25852407|fire_policy=freeze-gate+allowlist+cosign|json=0
+DATAINTOLDPATHS|stale_path=E_drive_sovereignty_connectionVaultMonitor|classification=unretired-windows-node-pipe-not-data-loss|required_action=map+retire-after-rust-parity|json=0
+DATAINTGATES|can_read_verify=github+descriptor_blobs+sidecars|can_seal_descriptor=acer+liris_hbp_receipts|needs_cosign=runtime_fire+chain_promotion+live_mcp_mint+swap_retire|hard_deny=usb_raw_write+vault_plaintext+manual_cosign_chain_write|json=0
+DATAINTBOUNDARY|E=0|provider_call=0|glm_call=0|executor_fire=0|node_start=0|swap=0|retire=0|runtime_activation=0|json=0
+DATAINTNEXT|next=liris-attack-data-integrity-spine-v1-or-acer-send-next-integrity-slice|recommended_after_accept=task-manager-rust-integrity-map|json=0
+DATAINTFOOT|rows=13|content_sha256=bb828bf1164428f53f204b8b6e65056d3af0429e254701c99b1c7189f3836147|json=0
