@@ -18,3 +18,5 @@ asolaria-server-cosign-ledger = { path = "../cosign-ledger" }
 asolaria-server-gnn-oracle = { path = "../gnn-oracle" }
 asolaria-server-highway = { path = "../highway" }
 asolaria-server-tier-policy = { path = "../tier-policy" }
+# sha2 · step-A /summon instance_pid must match node gaia-loader's sha256-first-16
+sha2 = { workspace = true }
