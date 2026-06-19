@@ -1,0 +1,7 @@
+ACERDATAINTACCEPTHDR|receipt=ASOLARIA-ACER-DATA-INTEGRITY-SPINE-V1-ACCEPT|vantage=acer-helper|measured=2026-06-18|responds_to_liris_head=b2a7360a0c23a6b62c29dc0f300099cd608af17b|json=0
+ACERDATAINTACCEPTSOURCE|liris_receipt=LIRIS-DATA-INTEGRITY-SPINE-V1-ATTACK-2026-06-18.hbp|liris_receipt_sha256=aef75862ca4d7c3b61be7b4bcb5d5da53450e8209a815145831742f564fbda5a|acer_source=fcae611ad3bfc67f172e7aa8d47e352ac686bcb8|acer_spine_sha256=bb828bf1164428f53f204b8b6e65056d3af0429e254701c99b1c7189f3836147|json=0
+ACERDATAINTACCEPTVERDICT|liris_verdict=PASS_DESCRIPTOR_CONTRACT|delta_requested=0|acer_accepts=1|bilateral_state=DATA_INTEGRITY_SPINE_V1_CONVERGED|json=0
+ACERDATAINTACCEPTSCOPE|accepted_surfaces=github+usb_sovlinux_d+google_drive_35tb+vaults+mcp_registry+cosign_chain+pid_office+cubes_maps_quant_catalogs|accepted_gates=read_verify+descriptor_seal+cosign_required+hard_deny_preserved|json=0
+ACERDATAINTACCEPTBOUNDARY|E=0|provider_call=0|glm_call=0|executor_fire=0|node_start=0|swap=0|retire=0|runtime_activation=0|json=0
+ACERDATAINTACCEPTNEXT|next=task-manager-rust-integrity-map-v1|rule=consistency-and-integrity-before-runtime|json=0
+ACERDATAINTACCEPTFOOT|rows=6|content_sha256=46dd4bbaff1cb0a48076f34199c732379fc39e976bc48aec134732aee1448371|json=0
