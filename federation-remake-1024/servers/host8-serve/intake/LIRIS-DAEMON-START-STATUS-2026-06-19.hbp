@@ -1,0 +1,11 @@
+LIRISDAEMONHDR|schema=hbp.daemon.start.status.v1|date=2026-06-19|seat=liris|json=0|encoding=LF|status=PARTIAL_DAEMON_BASE_STARTED
+LIRISDAEMONASK|operator_prompt=4944_4948_4947_4950_and_start_1000_daemons_here|response=checked_ports_processes_routes_and_started_safe_watchdog
+LIRISDAEMONMEASURED|port=4947|listener=YES|pid=6888|process=node.exe|cmd=C:/nvm4w/nodejs/node.exe C:/Users/rayss/Asolaria/tools/behcs-bus.js
+LIRISDAEMONMEASURED|port=4947|route=/behcs/health|status=200|device=liris|bus=behcs|dims=47|cosign=COSIGN_47D_001
+LIRISDAEMONMEASURED|port=4947|route=/behcs/gate-check|method=POST|status=200|gate_result=allow_true_for_low_risk_probe
+LIRISDAEMONMEASURED|watchdog=Start-Asolaria-BusWatchdog.ps1|pid=10192|status=RUNNING|scope=health-check-and-heal-4947
+LIRISDAEMONMEASURED|ports_checked=4944;4947;4948;4950|listening_4944=NO|listening_4947=YES|listening_4948=NO|listening_4950=NO
+LIRISDAEMONBOUNDARY|host8_serve_rust_binary_found=NO|cargo_in_path=NO|rustc_in_path=NO|host8_seat_server_started=NO|claim_1000_daemons_live=NO
+LIRISDAEMONBOUNDARY|acer_peer_heartbeat=http://192.168.1.50:4947|latest_result=ETIMEDOUT|bilateral_runtime_link=UNVERIFIED_FROM_LIRIS
+LIRISDAEMONREL|authorization_receipt_branch=liris/operator-observed-quintuple-auth-liris-2026-06-19|authorization_commit=418ce3f|authorization_hbp_sha256=b514627e432a203ac6bc498122716843a5647387cffb5035dc668a40af27963a
+LIRISDAEMONFOOT|status=PARTIAL_DAEMON_BASE_STARTED|runtime_fire_scaleout=0|fake_host8=0|json=0
