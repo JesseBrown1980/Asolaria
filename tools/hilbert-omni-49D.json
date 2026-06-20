@@ -12,8 +12,8 @@
   "expansion_cosign": "COSIGN_49D_001 via cosign-chain seq3572 row_hash b66fe4cd4866de8d, quintet-ratified 2026-06-20",
   "supersedes": "hilbert-omni-47D-v1 — 47D preserved as pre-expansion canonical; 49D is additive (2 new dimensions D48-D49, all existing D1-D47 byte-identical from 47D canonical)",
   "overlay_on": "hilbert-omni-47D.json",
-  "description": "49-Dimension Brown-Hilbert proposal overlay on the live 47D spec. Adds D48 HYPERGLYPH_ATLAS and D49 EXECUTION_PROOF_SUPERGRAPH for all-language hyperglyph control and runnable claim sealing.",
-  "runtime_policy": "47 catalogs remain live; D48-D49 travel as overlay fields, indexes, and proof packets",
+  "description": "49-Dimension Brown-Hilbert SIGNED-CANON catalog via COSIGN_49D_001 (cosign-chain seq3572 row_hash b66fe4cd4866de8d, quintet-ratified 2026-06-20); 47D is the cosigned base it additively extends. Adds D48 HYPERGLYPH_ATLAS and D49 EXECUTION_PROOF_SUPERGRAPH for all-language hyperglyph control and runnable claim sealing.",
+  "runtime_policy": "49 catalogs live (signed); 47D remains the cosigned base 49D extends (D1-D47 unchanged + D48 HYPERGLYPH-ATLAS + D49 EXECUTION-PROOF-SUPERGRAPH)",
   "dimensions": [
     {
       "D": 1,
@@ -972,7 +972,7 @@
     "total_cubes_per_level_47D": 95764443,
     "new_cubes_D48_D49": "11089567+11697083 = 22786650",
     "total_cubes_per_level_49D": 118551093,
-    "full_address_space": "product of all live primes cubed, with D48-D49 carried as proposal overlays until formal expansion"
+    "full_address_space": "product of all live primes cubed, with D48-D49 formally expanded + signed via COSIGN_49D_001 (cosign seq3572)"
   },
   "wh_chain": {
     "WHO": [
@@ -1090,10 +1090,10 @@
   },
   "hyperlanguage_value_additions": {
     "D35": [
-      "49D_proposal",
+      "49D_signed",
       "hyperglyph256_atlas_v1"
     ]
   },
-  "growth_law": "Each new prime cubed = new dimension. D50 = prime(229) = cube(12008989). 49D is the current proposal ceiling, not the final one.",
+  "growth_law": "Each new prime cubed = new dimension. D50 = prime(229) = cube(12008989). 49D is the current SIGNED catalog; constitutional ceiling 60D (D50-D60 constitutional-only).",
   "status": "SIGNED — COSIGN_49D_001 via cosign-chain seq3572 row_hash b66fe4cd4866de8d, quintet-ratified 2026-06-20; extends the live 47D spec without overwriting it (D1-D47 unchanged, D48/D49 added)."
 }
