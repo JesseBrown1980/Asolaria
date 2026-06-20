@@ -18,7 +18,7 @@ const SOURCE_PATHS = Object.freeze({
   energyBudget: rel(`data/behcs/orchestration/${SOURCE_RUN}/energy-budget.v1.json`),
   collisionReport: rel(`data/behcs/orchestration/${SOURCE_RUN}/collision-report.v1.json`),
   supervisorWorkerReady: rel(`data/behcs/orchestration/${SOURCE_RUN}/supervisor-worker-ready-latest.ndjson`),
-  hilbert47d: rel('tools/hilbert-omni-47D.json')
+  hilbert47d: rel('tools/hilbert-omni-49D.json')
 });
 
 const PATHS = Object.freeze({

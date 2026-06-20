@@ -423,7 +423,7 @@ router.get("/engine/full-cycle", (_req, res) => {
 // ── 47D spec ──
 router.get("/47d", (_req, res) => {
   try {
-    const spec = JSON.parse(fs.readFileSync(path.join(ROOT, "tools/hilbert-omni-47D.json"), "utf8"));
+    const spec = JSON.parse(fs.readFileSync(path.join(ROOT, "tools/hilbert-omni-49D.json"), "utf8"));
     res.json({ ok: true, ...spec });
   } catch (e) {
     res.status(500).json({ ok: false, error: e.message });

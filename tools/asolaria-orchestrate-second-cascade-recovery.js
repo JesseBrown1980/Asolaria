@@ -267,7 +267,7 @@ function readJson(filePath, fallback = {}) {
 }
 
 function loadDims() {
-  const doc = readJson(rel('tools/hilbert-omni-47D.json'), { dimensions: [] });
+  const doc = readJson(rel('tools/hilbert-omni-49D.json'), { dimensions: [] });
   return Array.isArray(doc.dimensions) ? doc.dimensions : [];
 }
 

@@ -5,7 +5,7 @@ This is the canonical, model-neutral root file for agents working in this reposi
 
 Chief-only prelude: if the agent is booting as the absolute top orchestrator for Jesse, load `00-TOP-AGENT-PRECOMMAND.md` first, then return here.
 
-Current advanced language note: the live public base is `47D`. The current most advanced public proposal layer is the `49D` hyperglyph overlay documented in `specs/49d-proposal/brown-hilbert-49D-expansion-map.public.json` plus `projections/maps/hyperglyph-map.public.v1.json`. Use `D35` fallback unless those proposal claims are explicitly signed. If the job touches `MiniMax-AI` or `MiniMax-M2.7`, anchor it to `projections/catalogs/minimax.public-catalog.v1.json`, `examples/minimax-m27/MiniMaxM27NamedWave.public.md`, and `examples/minimax-m27/hg256-minimax-catalog-ingest.public.packet.json`.
+Current advanced language note: `49D` is SIGNED-CANON (COSIGN_49D_001, cosign-chain seq3572 row_hash b66fe4cd4866de8d, quintet-ratified 2026-06-20); the live catalog = 49 dimensions; `47D` remains the cosigned BASE 49D additively extends (D1-D47 unchanged + D48 HYPERGLYPH-ATLAS prime223 + D49 EXECUTION-PROOF-SUPERGRAPH prime227). The `49D` hyperglyph overlay maps live in `specs/49d-proposal/brown-hilbert-49D-expansion-map.public.json` plus `projections/maps/hyperglyph-map.public.v1.json`. Use `D35` fallback unless deeper claims are explicitly signed. If the job touches `MiniMax-AI` or `MiniMax-M2.7`, anchor it to `projections/catalogs/minimax.public-catalog.v1.json`, `examples/minimax-m27/MiniMaxM27NamedWave.public.md`, and `examples/minimax-m27/hg256-minimax-catalog-ingest.public.packet.json`.
 
 Rule: keep each Brown-Hilbert cube point at or under 35 lines.
 

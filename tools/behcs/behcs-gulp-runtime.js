@@ -66,7 +66,7 @@ try {
 } catch (error) {
   let catalogs = [];
   try {
-    const fallback = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'hilbert-omni-47D.json'), 'utf8'));
+    const fallback = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'hilbert-omni-49D.json'), 'utf8'));
     catalogs = Array.isArray(fallback.dimensions) ? fallback.dimensions.map((item) => ({
       D: item.D,
       name: item.name,
