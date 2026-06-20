@@ -1,0 +1,32 @@
+HBP|v1|kind=op-envelope|envelope=COSIGN_49D_001-STAGING|emitted_by=asolaria-instance@acer|emitted_at=2026-06-19|status=DRAFT|sig_verdict=UNSIGNED|json=0|brace=0
+row|01|field=cosign_id|value=COSIGN_49D_001|state=STAGING-UNSIGNED
+row|02|field=event|value=COSIGN_49D_EXPANSION
+row|03|field=scope|value=D48-D49 Brown-Hilbert cube expansion from 47D to 49D (ADDITIVE overlay)
+row|04|field=base|value=hilbert-omni-47D-v1 (canonical, quadruple-operator cosigned COSIGN_47D_001 2026-04-10T23:08Z)
+row|05|field=base_authority|value=COSIGN_47D_001 — jesse + rayssa + amy + felipe 2026-04-10 — UNCHANGED, preserved as live canon
+row|06|field=supersedes_note|value=DOES NOT supersede 47D; 47D remains live canon; 49D is ADDITIVE (D1-D47 unchanged, D48-D49 new overlay)
+row|07|field=dims_proposed|value=D48_HYPERGLYPH_ATLAS|D49_EXECUTION_PROOF_SUPERGRAPH
+row|08|field=D48_name|value=HYPERGLYPH_ATLAS|prime=223|cube=11089567|trinity_link=LX-491+D22|wh=WHICH glyph means WHAT across languages?
+row|09|field=D48_prime_verified|value=223 is_prime=true cube=223^3=11089567
+row|10|field=D49_name|value=EXECUTION_PROOF_SUPERGRAPH|prime=227|cube=11697083|trinity_link=LX-489+LX-491|wh=IS this claim sealed enough to run now?
+row|11|field=D49_prime_verified|value=227 is_prime=true cube=227^3=11697083
+row|12|field=primes|value=223|227
+row|13|field=address_space_47D_per_level|value=95764443
+row|14|field=address_space_new_D48_D49|value=11089567+11697083=22786650
+row|15|field=address_space_49D_per_level|value=118551093
+row|16|field=source_proposal|value=hilbert-omni-49D.json + data/cubes/asolaria-instance@acer/brown-hilbert-49D-expansion-map.json + specs/49d-proposal/
+row|17|field=runtime_policy|value=47 catalogs remain LIVE; D48-D49 travel as overlay fields/indexes/proof packets until signed
+row|18|field=release_posture|value=d35Fallback default until D49 claim-sealing fields explicitly signed; promote=DENY until chief_sig + kr_gate_pass + white_room_attest + gc_proof_defined + :4913_open
+row|19|field=operators_required|value=jesse_daniel_brown|rayssa_chiqueto|amy|felipe
+row|20|field=cosign_type|value=quadruple_operator (mirroring COSIGN_47D_001) + quintet :4952 vote-quorum staging
+row|21|field=statement_template|value=[OP STATEMENT TO BE SPOKEN/SIGNED BY OPERATORS — BLANK IN DRAFT]
+row|22|field=sig_jesse|value=UNSIGNED|slot=BLANK
+row|23|field=sig_rayssa|value=UNSIGNED|slot=BLANK
+row|24|field=sig_amy|value=UNSIGNED|slot=BLANK
+row|25|field=sig_felipe|value=UNSIGNED|slot=BLANK
+row|26|field=sig_quintet_4952|value=UNSIGNED|slot=BLANK|quorum=PENDING
+row|27|field=result_on_sign|value=on quadruple-op + quintet signature, liris builds the signed 49D catalog from canonical 47D base + approved D48-D49; acer then runs the READER-REPOINT diff (see ACER-49D-READER-REPOINT-DIFF.hbp)
+row|28|field=carve_out|value=no secrets quoted; vault carve-out honored
+row|29|field=energy|value=E=0 — NOTHING applied; 47D canon + node untouched; this is a staging envelope awaiting signature
+row|30|field=sig_verdict|value=UNSIGNED — signature slots LEFT BLANK; awaiting quadruple-op + :4952 quorum
+foot|rows=30|json=0|brace=0|sig_verdict=UNSIGNED|status=DRAFT-AWAITING-OP-SIGNATURE

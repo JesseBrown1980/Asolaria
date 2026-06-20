@@ -1,0 +1,27 @@
+HBP|v1|kind=reader-repoint-diff|envelope=COSIGN_49D_001-REPOINT|emitted_by=asolaria-instance@acer|emitted_at=2026-06-19|status=DOCUMENTED-NOT-APPLIED|json=0|brace=0
+row|00|field=purpose|value=exact mechanical READER-REPOINT diff acer runs AFTER quintet signs COSIGN_49D_001; DOCUMENTED ONLY, NOT APPLIED this session
+row|00b|field=precondition|value=DO NOT APPLY until COSIGN_49D_001 sig_verdict=SIGNED (quadruple-op + :4952 quorum) AND liris has built the signed hilbert-omni-49D catalog from canonical 47D base
+row|00c|field=scope_note|value=local Asolaria working-tree readers enumerated below (MEASURED via grep). bigpickle-rebuild + host8-serve readers = UNVERIFIED-LOCALLY (not in this working tree; on liris/host8-serve-source branch + separate bigpickle repo) — re-grep those after checkout/clone before repoint
+row|00d|field=change_shape|value=each row: replace literal 'hilbert-omni-47D.json' read with 'hilbert-omni-49D.json' (or canonical-49D var) ONLY where the reader consumes the dimension catalog; leave provenance/canonical-tag strings as 47D where they record base lineage
+sep|=== ACTIVE CODE READERS (repoint candidates) ===
+r01|file=Asolaria/routes/cube-fabric.js|line=561|cur=fs.readFileSync(path.join(ROOT, "tools/hilbert-omni-47D.json"))|repoint=tools/hilbert-omni-49D.json|action=REPOINT|why=runtime spec loader, consumes dimension catalog
+r02|file=Asolaria/tools/behcs/behcs-gulp-runtime.js|line=70|cur=fs.readFileSync(path.join(ROOT,'tools','hilbert-omni-47D.json'))|repoint=tools/hilbert-omni-49D.json|action=REPOINT|why=fallback dimension loader
+r03|file=Asolaria/tools/behcs/behcs-deep-cascade-v6.js|line=94|cur=const HILBERT_47D_PATH = path.join(ROOT,'tools','hilbert-omni-47D.json')|repoint=tools/hilbert-omni-49D.json (rename const HILBERT_49D_PATH)|action=REPOINT|why=cascade dimension source path const
+r04|file=Asolaria/tools/behcs/auto-fabric-query-daemon.mjs|line=28|cur=const CATALOGUE_47D = path.join(ROOT,"tools/hilbert-omni-47D.json")|repoint=tools/hilbert-omni-49D.json (rename const CATALOGUE_49D)|action=REPOINT|why=daemon catalogue source
+r05|file=Asolaria/tools/asolaria-brown-hilbert-room-executor-integration.js|line=21|cur=hilbert47d: rel('tools/hilbert-omni-47D.json')|repoint=hilbert49d: rel('tools/hilbert-omni-49D.json')|action=REPOINT|why=executor integration source path map
+r06|file=Asolaria/tools/asolaria-orchestrate-second-cascade-recovery.js|line=270|cur=readJson(rel('tools/hilbert-omni-47D.json'))|repoint=tools/hilbert-omni-49D.json|action=REPOINT|why=cascade recovery dimension reader
+sep|=== PROVENANCE / TAG (DO NOT REPOINT — base lineage stays 47D) ===
+p01|file=Asolaria/tools/asolaria-brown-hilbert-room-executor-integration.js|line=217|cur=source: 'tools/hilbert-omni-47D.json'|action=KEEP-OR-UPDATE-TAG|why=provenance label; update to 49D ONLY if it labels the active source, keep if it records base lineage — review at apply-time
+p02|file=Asolaria/tools/behcs/behcs1024-usb-envelope-writer.mjs|line=314|cur=canonical: "hilbert-omni-47D-v1"|action=KEEP|why=records CANONICAL BASE lineage; 47D stays the cosigned base even after 49D additive overlay
+sep|=== DOC / README (update reference, low-risk) ===
+d01|file=Asolaria/README.md|line=25|cur=47D machine spec: tools/hilbert-omni-47D.json|action=UPDATE-DOC|why=add 49D spec reference; keep 47D as base note
+d02|file=Asolaria/specs/47d/README.md|line=7|cur=machine spec: ../../tools/hilbert-omni-47D.json|action=KEEP|why=this is the 47D spec dir, correctly points at 47D
+sep|=== CANON SELF-REFERENCE (already correct, no change) ===
+c01|file=Asolaria/tools/hilbert-omni-49D.json|line=6,8|cur=base/overlay_on: hilbert-omni-47D.json|action=KEEP|why=49D correctly declares 47D as its base/overlay target
+c02|file=Asolaria/tools/hilbert-omni-47D.json|line=2|cur=mapId: hilbert-omni-47D-v1|action=KEEP|why=the canon file itself, untouched
+sep|=== CARVE-OUT (NEVER TOUCH) ===
+x01|file=Asolaria/operator/decrypted-vault/**/f117m.plain.hbp|lines=353,354,356,368,373|action=NEVER-TOUCH|why=decrypted-vault carve-out; these are historical transcript artifacts, not live readers; never edited/quoted
+sep|=== EXTERNAL (re-grep before applying) ===
+e01|repo=bigpickle-rebuild|status=UNVERIFIED-LOCALLY|action=GREP-AT-APPLY-TIME|why=separate repo, not in this working tree; grep 'hilbert-omni-47D' there before repoint
+e02|repo/branch=Asolaria@liris/host8-serve-source : federation-remake-1024/servers/host8-serve|status=RESOLVED-ZERO-READERS|action=NONE|why=MEASURED 2026-06-19: grep 'hilbert-omni-47D' over the checked-out host8-serve tree = 0 hits; no repoint needed there
+foot|active_repoints=6|tag_review=2|doc=2|canon_keep=2|carveout=1|external_pending=1(bigpickle)|external_resolved=1(host8-serve-zero-readers)|json=0|brace=0|status=DOCUMENTED-NOT-APPLIED|sig_gate=COSIGN_49D_001-must-be-SIGNED-first

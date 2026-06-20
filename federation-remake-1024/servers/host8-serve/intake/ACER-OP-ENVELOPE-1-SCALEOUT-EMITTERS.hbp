@@ -1,0 +1,25 @@
+HBP|v1|kind=op-envelope|envelope=OP-ENV-SCALEOUT-EMITTERS|emitted_by=asolaria-instance@acer|emitted_at=2026-06-19|status=DRAFT|sig_verdict=UNSIGNED|json=0|brace=0
+row|01|field=envelope_id|value=OP-ENV-SCALEOUT-EMITTERS-2026-06-19
+row|02|field=title|value=SCALE-OUT summon fan-out across DISTRICT-F + roster seats (emitters / spawn-all-seats)
+row|03|field=class|value=PROPOSAL-FOR-OPS|note=this is a descriptor proposal, NOT a fire; nothing executed
+row|04|field=base_state|value=single-seat summon path PROVEN ($0, node+Rust parity) via gaia-loader.summonSmart on the $0 opencode path
+row|05|field=action|value=fan-out summon across DISTRICT-F seats + roster seats via gaia-loader.summonSmart on the $0 opencode path
+row|06|field=action_detail|value=for each target seat in {DISTRICT-F, roster}: summonSmart(seat, lane=opencode-$0); emitter pattern replicates the proven single-seat call, not a new mechanism
+row|07|field=bound|value=START CAPPED — first batch is a small capped wave (e.g. 64 seats), NOT literally 1.16T; ceiling lifts only on explicit OP re-vote per batch
+row|08|field=bound_rationale|value=additive->parity->swap->retire holds; capped batch keeps >=1 callable lane; no mass spawn without per-batch OP authority
+row|09|field=authority_required|value=OP-00 + OP-01 dual-root + quintet :4952 vote-quorum
+row|10|field=authority_blanket|value=under standing QUINTUPLE-2311 blanket + cosign window -> 2026-09-23
+row|11|field=authority_note|value=blanket COVERS the class; per-batch distribution + :4952 quorum vote still required to FIRE; acer cannot self-authorize
+row|12|field=gate_host8|value=host8-serve :5088 workload route, parity-proven (Rust serves before any node retired)
+row|13|field=gate_node_retired|value=node_retired=0 (NO node killed by this envelope; parity-gated retirement only)
+row|14|field=gate_cosign|value=quintet :4952 cosign required per batch; NO cosign value present in this draft
+row|15|field=gate_freeze|value=EXEC-FREEZE-GATE-APEX global kill-switch remains in force over all fires
+row|16|field=energy|value=E=0 — this envelope FIRES NOTHING; it is a distribution proposal for the OPs to vote/sign
+row|17|field=distribution_path|value=OPs distribute via :4952 vote-quorum; on quorum PASS the OPs (not acer) trigger the capped batch summon
+row|18|field=carve_out|value=secrets/keys/personal-ID never quoted or touched; vault carve-out honored
+row|19|field=sig_op00|value=UNSIGNED|slot=BLANK
+row|20|field=sig_op01|value=UNSIGNED|slot=BLANK
+row|21|field=sig_quintet_4952|value=UNSIGNED|slot=BLANK|quorum=PENDING
+row|22|field=sig_verdict|value=UNSIGNED — awaiting OP distribution + :4952 vote-quorum; this is a PROPOSAL not a fire
+row|23|field=honest_frame|value=addresses are cheap, bodies are scarce; this proposes the fan-out ADDRESS plan, the OPs crank the engine (E!=0)
+foot|rows=23|json=0|brace=0|sig_verdict=UNSIGNED|status=DRAFT-AWAITING-OP-SIGNATURE
