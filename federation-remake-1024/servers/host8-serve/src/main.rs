@@ -8,7 +8,7 @@ use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 use asolaria_kernel_core::{FEDERATION_ANCHOR_PID, KERNEL_VERSION};
 use asolaria_server_agent_runtime::spawn_child_agent_count;
 use asolaria_server_cosign_ledger::CosignChain;
-use asolaria_server_gnn_oracle::GnnInference;
+use asolaria_server_gnn_oracle::{GnnInference, ObservedFrame};
 use asolaria_server_highway::check_transit;
 use asolaria_server_tier_policy::{policy_for, AccessTier};
 
@@ -32,6 +32,7 @@ struct Room {
 struct Config {
     bind: String,
     room_stub_path: Option<String>,
+    cadence_frame_path: Option<String>,
     once: bool,
 }
 
@@ -42,10 +43,11 @@ fn main() {
         .as_deref()
         .and_then(load_room_stub)
         .unwrap_or_else(default_room);
+    let mut gnn = GnnInference::new();
 
     let started = Instant::now();
     if config.once {
-        print!("{}", render_feed(&room, &config, started));
+        print!("{}", render_feed(&room, &config, started, &mut gnn));
         return;
     }
 
@@ -71,7 +73,7 @@ fn main() {
 
     for stream in listener.incoming() {
         match stream {
-            Ok(stream) => handle_client(stream, &room, &config, started),
+            Ok(stream) => handle_client(stream, &room, &config, started, &mut gnn),
             Err(error) => eprintln!("HOST8ERR|accept={}|json=0", hbp_escape(error.to_string())),
         }
     }
@@ -84,6 +86,7 @@ where
     let mut config = Config {
         bind: DEFAULT_BIND.to_string(),
         room_stub_path: None,
+        cadence_frame_path: env::var("ASOLARIA_CADENCE_FRAME").ok(),
         once: false,
     };
     let args: Vec<String> = args.into_iter().collect();
@@ -99,6 +102,12 @@ where
             "--room-stub" => {
                 if let Some(value) = args.get(i + 1) {
                     config.room_stub_path = Some(value.clone());
+                    i += 1;
+                }
+            }
+            "--cadence-frame" => {
+                if let Some(value) = args.get(i + 1) {
+                    config.cadence_frame_path = Some(value.clone());
                     i += 1;
                 }
             }
@@ -155,6 +164,45 @@ fn hbp_field(text: &str, key: &str) -> Option<String> {
     None
 }
 
+fn parse_u64_field(value: &str) -> Option<u64> {
+    let trimmed = value.trim();
+    if let Some(hex) = trimmed.strip_prefix("0x") {
+        u64::from_str_radix(hex, 16).ok()
+    } else if trimmed.chars().all(|ch| ch.is_ascii_hexdigit())
+        && trimmed.chars().any(|ch| ch.is_ascii_alphabetic())
+    {
+        u64::from_str_radix(trimmed, 16).ok()
+    } else {
+        trimmed.parse::<u64>().ok()
+    }
+}
+
+fn load_observed_frame(path: &str) -> Option<ObservedFrame> {
+    let body = fs::read_to_string(path).ok()?;
+    let line = body.lines().rev().find(|line| line.contains("tick="))?;
+    let tick = hbp_field(line, "tick").and_then(|v| parse_u64_field(&v))?;
+    let phash = hbp_field(line, "phash").and_then(|v| parse_u64_field(&v))?;
+    let frame_delta = hbp_field(line, "frame_delta")
+        .and_then(|v| parse_u64_field(&v))
+        .unwrap_or(0)
+        .min(u32::MAX as u64) as u32;
+    let entropy_q = hbp_field(line, "entropy_q")
+        .and_then(|v| parse_u64_field(&v))
+        .unwrap_or(0)
+        .min(u32::MAX as u64) as u32;
+    let pid_fingerprint = hbp_field(line, "pid_fingerprint")
+        .and_then(|v| parse_u64_field(&v))
+        .or_else(|| hbp_field(line, "pid").map(|pid| fnv1a64(&pid)))
+        .unwrap_or(0);
+    Some(ObservedFrame {
+        tick,
+        phash,
+        frame_delta,
+        entropy_q,
+        pid_fingerprint,
+    })
+}
+
 fn canonicalize(input: &str) -> String {
     let mut output = String::with_capacity(input.len());
     let mut in_control_run = false;
@@ -205,9 +253,19 @@ fn hbp_escape<T: ToString>(value: T) -> String {
         .collect()
 }
 
-fn render_feed(room: &Room, config: &Config, started: Instant) -> String {
+fn render_feed(room: &Room, config: &Config, started: Instant, gnn: &mut GnnInference) -> String {
     let chain = CosignChain::new();
-    let gnn_ready = GnnInference::new().is_ready();
+    let gnn_frame_source = config.cadence_frame_path.as_deref().unwrap_or("-");
+    let gnn_frame_ingested = config
+        .cadence_frame_path
+        .as_deref()
+        .and_then(load_observed_frame)
+        .map(|frame| gnn.observe_frame(frame))
+        .unwrap_or(false);
+    let gnn_ready = gnn.is_ready();
+    let gnn_model_sha16 = gnn.model_sha16().unwrap_or("-");
+    let gnn_frame = gnn.latest_frame();
+    let gnn_score_q = gnn.preview_latest_score_q().unwrap_or(0);
     let public_policy = policy_for(AccessTier::Public);
     let public_to_secret = check_transit(AccessTier::Public, AccessTier::Secret)
         .map(|verdict| verdict.authorized)
@@ -240,10 +298,16 @@ fn render_feed(room: &Room, config: &Config, started: Instant) -> String {
             hbp_escape(room_stub_source)
         ),
         format!(
-            "HOST8LIBS|agent_runtime_spawn_count={}|cosign_head={}|gnn_ready={}|public_policy={:?}|public_to_secret_authorized={}|json=0",
+            "HOST8LIBS|agent_runtime_spawn_count={}|cosign_head={}|gnn_ready={}|gnn_engine={}|gnn_model_sha16={}|gnn_frame_source={}|gnn_frame_ingested={}|gnn_frame_tick={}|gnn_score_q={}|public_policy={:?}|public_to_secret_authorized={}|json=0",
             spawn_child_agent_count(),
             hbp_escape(chain.head()),
             if gnn_ready { 1 } else { 0 },
+            hbp_escape(gnn.engine_mode()),
+            hbp_escape(gnn_model_sha16),
+            hbp_escape(gnn_frame_source),
+            if gnn_frame_ingested { 1 } else { 0 },
+            gnn_frame.map(|frame| frame.tick).unwrap_or(0),
+            gnn_score_q,
             public_policy.authority,
             if public_to_secret { 1 } else { 0 }
         ),
@@ -268,7 +332,13 @@ fn render_not_found(path: &str) -> String {
     format!("HOST8ERR|status=404|path={}|reason=not_found|json=0\n", hbp_escape(path))
 }
 
-fn handle_client(mut stream: TcpStream, room: &Room, config: &Config, started: Instant) {
+fn handle_client(
+    mut stream: TcpStream,
+    room: &Room,
+    config: &Config,
+    started: Instant,
+    gnn: &mut GnnInference,
+) {
     let mut buffer = [0u8; 2048];
     let read = match stream.read(&mut buffer) {
         Ok(read) => read,
@@ -278,7 +348,9 @@ fn handle_client(mut stream: TcpStream, room: &Room, config: &Config, started: I
     let first_line = request.lines().next().unwrap_or("");
     let path = first_line.split_whitespace().nth(1).unwrap_or("/");
     let (status, body) = match path {
-        "/" | "/health.hbp" | "/room.hbp" | "/feed.hbp" => ("200 OK", render_feed(room, config, started)),
+        "/" | "/health.hbp" | "/room.hbp" | "/feed.hbp" => {
+            ("200 OK", render_feed(room, config, started, gnn))
+        }
         other => ("404 Not Found", render_not_found(other)),
     };
     let response = format!(
@@ -318,12 +390,29 @@ mod tests {
         let config = Config {
             bind: DEFAULT_BIND.to_string(),
             room_stub_path: None,
+            cadence_frame_path: None,
             once: true,
         };
-        let feed = render_feed(&default_room(), &config, Instant::now());
+        let mut gnn = GnnInference::new();
+        let feed = render_feed(&default_room(), &config, Instant::now(), &mut gnn);
         assert!(feed.contains("HOST8HDR|"));
         assert!(feed.contains("json=0"));
         assert!(!feed.contains('{'));
         assert!(!feed.contains('}'));
+    }
+
+    #[test]
+    fn parses_observed_frame_from_hbp() {
+        let path = std::env::temp_dir().join("host8-observed-frame-test.hbp");
+        fs::write(
+            &path,
+            "CADENCEFRAME|tick=7|phash=f0f0f0f0f0f0f0f0|frame_delta=12|entropy_q=33|pid=ACER-PID-H740C|json=0\n",
+        )
+        .unwrap();
+        let frame = load_observed_frame(path.to_str().unwrap()).unwrap();
+        assert_eq!(frame.tick, 7);
+        assert_eq!(frame.frame_delta, 12);
+        assert_eq!(frame.entropy_q, 33);
+        let _ = fs::remove_file(path);
     }
 }
