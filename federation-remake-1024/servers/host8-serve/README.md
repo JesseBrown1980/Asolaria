@@ -6,9 +6,11 @@ Scope:
 
 - serves HBP over loopback HTTP
 - exposes `/health.hbp`, `/room.hbp`, and `/feed.hbp`
+- exposes M2 E=0 read-only watcher probes: `/watch.health.hbp`, `/watch.liveness.hbp`, and `/watch.verdict.hbp`
 - depends on `asolaria-kernel-core` plus the five server libraries
 - defaults to the `gnn-dispatch-bridge` dark/non-spine room
 - does not start, stop, or retire any legacy Node process
+- watcher probes report `auto_fire_allowed=0`, `process_launch=0`, and `restart=0`; they observe/hold only
 
 Evidence status:
 

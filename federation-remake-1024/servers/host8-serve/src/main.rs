@@ -142,11 +142,13 @@ fn load_room_stub(path: &str) -> Option<Room> {
     Some(Room {
         id,
         room_stub,
-        target_runtime: hbp_field(&body, "target_runtime").unwrap_or_else(|| "8byte-rust-host".to_string()),
+        target_runtime: hbp_field(&body, "target_runtime")
+            .unwrap_or_else(|| "8byte-rust-host".to_string()),
         legacy_runtime: hbp_field(&body, "legacy_runtime").unwrap_or_else(|| "node".to_string()),
         legacy_path: hbp_field(&body, "legacy_path").unwrap_or_default(),
         lane: hbp_field(&body, "lane").unwrap_or_else(|| "retire-or-host8".to_string()),
-        swap_gate: hbp_field(&body, "swap_gate").unwrap_or_else(|| "parity-before-retire".to_string()),
+        swap_gate: hbp_field(&body, "swap_gate")
+            .unwrap_or_else(|| "parity-before-retire".to_string()),
         host_handle8,
     })
 }
@@ -270,7 +272,10 @@ fn render_feed(room: &Room, config: &Config, started: Instant, gnn: &mut GnnInfe
     let public_to_secret = check_transit(AccessTier::Public, AccessTier::Secret)
         .map(|verdict| verdict.authorized)
         .unwrap_or(false);
-    let room_stub_source = config.room_stub_path.as_deref().unwrap_or("default-embedded");
+    let room_stub_source = config
+        .room_stub_path
+        .as_deref()
+        .unwrap_or("default-embedded");
 
     [
         format!(
@@ -323,13 +328,62 @@ fn render_feed(room: &Room, config: &Config, started: Instant, gnn: &mut GnnInfe
         "HOST8ROUTE|path=/health.hbp|method=GET|format=HBP|json=0".to_string(),
         "HOST8ROUTE|path=/room.hbp|method=GET|format=HBP|json=0".to_string(),
         "HOST8ROUTE|path=/feed.hbp|method=GET|format=HBP|json=0".to_string(),
+        "HOST8ROUTE|path=/watch.health.hbp|method=GET|format=HBP|mode=read_only|json=0".to_string(),
+        "HOST8ROUTE|path=/watch.liveness.hbp|method=GET|format=HBP|mode=read_only|json=0".to_string(),
+        "HOST8ROUTE|path=/watch.verdict.hbp|method=GET|format=HBP|mode=read_only|json=0".to_string(),
     ]
     .join("\n")
         + "\n"
 }
 
+fn render_watch_health(
+    room: &Room,
+    config: &Config,
+    started: Instant,
+    gnn: &mut GnnInference,
+) -> String {
+    let mut body = render_feed(room, config, started, gnn);
+    body.push_str(&format!(
+        "WATCHHEALTH|surface=host8-serve|mode=read_only|watcher=outer-watcher-m2-e0|host_process=0|auto_fire_allowed=0|process_launch=0|restart=0|map_node_semantics=visual_coordinate|room_id={}|host_handle8={}|json=0\n",
+        hbp_escape(&room.id),
+        hbp_escape(&room.host_handle8)
+    ));
+    body
+}
+
+fn render_watch_liveness(
+    room: &Room,
+    config: &Config,
+    started: Instant,
+    gnn: &mut GnnInference,
+) -> String {
+    let mut body = render_feed(room, config, started, gnn);
+    body.push_str(&format!(
+        "WATCHLIVENESS|surface=host8-serve|mode=read_only|verdict=unknown_not_dead|timeout_semantics=unknown_not_dead|held_safe_vs_dead=1|last_seen_source=process_uptime|uptime_s={}|room_id={}|auto_fire_allowed=0|process_launch=0|restart=0|json=0\n",
+        started.elapsed().as_secs(),
+        hbp_escape(&room.id)
+    ));
+    body
+}
+
+fn render_watch_verdict(
+    room: &Room,
+    config: &Config,
+    started: Instant,
+    gnn: &mut GnnInference,
+) -> String {
+    let mut body = render_feed(room, config, started, gnn);
+    body.push_str(&format!(
+        "WATCHVERDICT|surface=host8-serve|mode=read_only|verdict=hold_describe_only|reason=E0_no_operator_T0|op00_can_observe=1|op00_can_restart=0|sentinel_restart_class=hold|rook_timeout_dead=0|room_id={}|auto_fire_allowed=0|process_launch=0|restart=0|json=0\n",
+        hbp_escape(&room.id)
+    ));
+    body
+}
 fn render_not_found(path: &str) -> String {
-    format!("HOST8ERR|status=404|path={}|reason=not_found|json=0\n", hbp_escape(path))
+    format!(
+        "HOST8ERR|status=404|path={}|reason=not_found|json=0\n",
+        hbp_escape(path)
+    )
 }
 
 fn handle_client(
@@ -351,6 +405,9 @@ fn handle_client(
         "/" | "/health.hbp" | "/room.hbp" | "/feed.hbp" => {
             ("200 OK", render_feed(room, config, started, gnn))
         }
+        "/watch.health.hbp" => ("200 OK", render_watch_health(room, config, started, gnn)),
+        "/watch.liveness.hbp" => ("200 OK", render_watch_liveness(room, config, started, gnn)),
+        "/watch.verdict.hbp" => ("200 OK", render_watch_verdict(room, config, started, gnn)),
         other => ("404 Not Found", render_not_found(other)),
     };
     let response = format!(
@@ -373,7 +430,8 @@ mod tests {
 
     #[test]
     fn host_handle8_is_eight_bytes_hex() {
-        let handle = host_handle8("gnn-dispatch-bridge|rooms/task-manager/bridge/gnn-dispatch-bridge");
+        let handle =
+            host_handle8("gnn-dispatch-bridge|rooms/task-manager/bridge/gnn-dispatch-bridge");
         assert_eq!(handle.len(), 16);
         assert!(handle.chars().all(|ch| ch.is_ascii_hexdigit()));
     }
@@ -401,6 +459,34 @@ mod tests {
         assert!(!feed.contains('}'));
     }
 
+    #[test]
+    fn watch_routes_are_read_only_hbp() {
+        let config = Config {
+            bind: DEFAULT_BIND.to_string(),
+            room_stub_path: None,
+            cadence_frame_path: None,
+            once: true,
+        };
+        let mut gnn = GnnInference::new();
+        let health = render_watch_health(&default_room(), &config, Instant::now(), &mut gnn);
+        let liveness = render_watch_liveness(&default_room(), &config, Instant::now(), &mut gnn);
+        let verdict = render_watch_verdict(&default_room(), &config, Instant::now(), &mut gnn);
+
+        for body in [&health, &liveness, &verdict] {
+            assert!(body.contains("mode=read_only"));
+            assert!(body.contains("json=0"));
+            assert!(body.contains("auto_fire_allowed=0"));
+            assert!(body.contains("process_launch=0"));
+            assert!(body.contains("restart=0"));
+            assert!(!body.contains('{'));
+            assert!(!body.contains('}'));
+        }
+        assert!(health.contains("WATCHHEALTH|"));
+        assert!(liveness.contains("WATCHLIVENESS|"));
+        assert!(liveness.contains("unknown_not_dead"));
+        assert!(verdict.contains("WATCHVERDICT|"));
+        assert!(verdict.contains("op00_can_restart=0"));
+    }
     #[test]
     fn parses_observed_frame_from_hbp() {
         let path = std::env::temp_dir().join("host8-observed-frame-test.hbp");

@@ -1,0 +1,7 @@
+M2WATCHW1HDR|receipt=ASOLARIA-M2-OUTER-WATCHER-W1|vantage=liris|date=2026-07-01|branch=liris/m2-outer-watcher-e0-2026-07-01|base=8284a5e|E=0|json=0
+M2WATCHW1SCOPE|surface=host8-serve|routes=/watch.health.hbp,/watch.liveness.hbp,/watch.verdict.hbp|format=HBP|mode=read_only|auto_fire_allowed=0|process_launch=0|restart=0|kill=0|json=0
+M2WATCHW1FABRIC|class=LIRIS_MEASURED|health_ok=1|service=super-asolaria-os-dashboard-liris-mirror|port=4944|apex=COL-ASOLARIA|bus_health=fallback_unavailable|council_query=fallback_unavailable|json=0
+M2WATCHW1VERIFY|class=LIRIS_LOCAL_WSL|toolchain=rustc_1.96.1_cargo_1.96.1|cargo_test_host8=PASS_6_6|cargo_run_once=PASS_routes_rendered|cargo_fmt_check=PASS|json=0
+M2WATCHW1BOUNDARY|class=LIRIS_LOCAL_WINDOWS|cargo_test=BLOCKED|reason=missing_msvc_link_exe|exact_rust_1_81_ci=UNVERIFIED|owning_ci=not_run|json=0
+M2WATCHW1RULE|map_node_semantics=visual_coordinate|host_process=0|timeout_semantics=unknown_not_dead|op00_can_restart=0|sentinel_restart_class=hold|json=0
+M2WATCHW1FOOT|rows=6|content_sha256=117002bc000c7cc524ed1d67729d87cd81fb4d4d5e03363c5155257c7640d13b|json=0
