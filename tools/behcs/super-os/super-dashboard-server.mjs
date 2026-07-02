@@ -21,6 +21,9 @@ const RUNTIMEWATCH_DATA_ROOT = process.env.ASOLARIA_RUNTIMEWATCH_ROOT || path.re
 const ACER_PEER_HOST = process.env.ACER_PEER_HOST || "192.168.1.50";
 const ACER_DASHBOARD_PORT = process.env.ACER_DASHBOARD_PORT || "4949";
 const ACER_FEDERATION_PORT = process.env.ACER_FEDERATION_PORT || "9996";
+const LIRIS_KEYBOARD_PORT = Number(process.env.LIRIS_KEYBOARD_PORT || "4820");
+const ACER_KEYBOARD_HOST = process.env.ACER_KEYBOARD_HOST || ACER_PEER_HOST;
+const ACER_KEYBOARD_PORT = Number(process.env.ACER_KEYBOARD_PORT || "4913");
 
 function isLoopbackRequest(req) {
   const remote = String(req?.socket?.remoteAddress || "").trim();
@@ -318,6 +321,46 @@ async function probeTextEndpoint(url, timeoutMs = 1800) {
   } catch (e) {
     return { ok: false, status: "ERR", bytes: 0, sha16: "unreachable", err: String(e?.message || e).slice(0, 96) };
   }
+}
+
+async function probeTcpEndpoint(host, port, timeoutMs = 1500) {
+  const net = await import("node:net");
+  const createConnection = net.createConnection || net.default?.createConnection;
+  const started = Date.now();
+  return new Promise((resolve) => {
+    let sock = null;
+    let done = false;
+    const finish = (listening, err) => {
+      if (done) return;
+      done = true;
+      clearTimeout(guard);
+      try { sock?.destroy(); } catch {}
+      resolve({
+        host,
+        port,
+        listening,
+        ok: listening,
+        latency_ms: Date.now() - started,
+        last_probe_ts: new Date().toISOString(),
+        err: err || null
+      });
+    };
+    const guard = setTimeout(() => finish(false, "timeout"), timeoutMs + 250);
+    if (guard.unref) guard.unref();
+    try {
+      sock = createConnection({ host, port });
+      if (sock.setTimeout) sock.setTimeout(timeoutMs);
+      sock.once("connect", () => finish(true, null));
+      sock.once("timeout", () => finish(false, "timeout"));
+      sock.once("error", (e) => finish(false, e.code || e.message));
+    } catch (e) {
+      finish(false, e.code || e.message || String(e));
+    }
+  });
+}
+
+function settledValue(result, fallback) {
+  return result && result.status === "fulfilled" ? result.value : fallback;
 }
 
 async function buildEventRiskEzProtectHbp() {
@@ -4142,20 +4185,14 @@ setInterval(refresh, 5000);
     return res.end(JSON.stringify(out));
   }
   if (p === "/api/route/keyboard") {
-    const net = await import("node:net");
-    const LIRIS_KB = { host: "127.0.0.1", port: 4820 };
-    const ACER_KB = { host: "192.168.1.50", port: 4913 };
-    function probe(target) {
-      return new Promise((resolve) => {
-        const sock = net.default.createConnection({ host: target.host, port: target.port, timeout: 1500 });
-        let done = false;
-        const finish = (listening, err) => { if (done) return; done = true; try { sock.destroy(); } catch {} resolve({ port: target.port, host: target.host, listening, last_probe_ts: new Date().toISOString(), err: err || null }); };
-        sock.once("connect", () => finish(true, null));
-        sock.once("timeout", () => finish(false, "timeout"));
-        sock.once("error", (e) => finish(false, e.code || e.message));
-      });
-    }
-    const [liris_executor, acer_executor] = await Promise.all([probe(LIRIS_KB), probe(ACER_KB)]);
+    const LIRIS_KB = { host: "127.0.0.1", port: LIRIS_KEYBOARD_PORT };
+    const ACER_KB = { host: ACER_KEYBOARD_HOST, port: ACER_KEYBOARD_PORT };
+    const [lirisProbe, acerProbe] = await Promise.allSettled([
+      probeTcpEndpoint(LIRIS_KB.host, LIRIS_KB.port, 1500),
+      probeTcpEndpoint(ACER_KB.host, ACER_KB.port, 1500)
+    ]);
+    const liris_executor = settledValue(lirisProbe, { ...LIRIS_KB, listening: false, ok: false, err: "probe_rejected" });
+    const acer_executor = settledValue(acerProbe, { ...ACER_KB, listening: false, ok: false, err: "probe_rejected" });
     const alive_count = [liris_executor.listening, acer_executor.listening].filter(Boolean).length;
     const status = alive_count === 2 ? "all_alive" : alive_count === 1 ? "partial" : "down";
     res.setHeader("Content-Type", "application/json");
@@ -4208,20 +4245,18 @@ Write-Output $json;`;
         if (r2 && r2.ok) { checks.bus_reachable.ok = true; checks.bus_reachable.latency_ms = Date.now() - t0; checks.bus_reachable.probe = "inbox_fallback"; }
       }
     } catch (e) { checks.bus_reachable.err = e.message; }
-    const net = await import("node:net");
-    function quickProbe(host, port) {
-      return new Promise((resolve) => {
-        const sock = net.default.createConnection({ host, port, timeout: 1500 });
-        let done = false;
-        const finish = (ok, err) => { if (done) return; done = true; try { sock.destroy(); } catch {} resolve({ ok, err: err || null }); };
-        sock.once("connect", () => finish(true, null));
-        sock.once("timeout", () => finish(false, "timeout"));
-        sock.once("error", (e) => finish(false, e.code || e.message));
-      });
+    async function quickProbe(host, port) {
+      const probe = await probeTcpEndpoint(host, port, 1500);
+      return { ok: probe.listening, err: probe.err, latency_ms: probe.latency_ms };
     }
-    const [lk, ak] = await Promise.all([quickProbe("127.0.0.1", 4820), quickProbe("192.168.1.50", 4913)]);
-    checks.agent_keyboard_liris = { ok: lk.ok, port: 4820, err: lk.err };
-    checks.agent_keyboard_acer = { ok: ak.ok, port: 4913, err: ak.err };
+    const [lkResult, akResult] = await Promise.allSettled([
+      quickProbe("127.0.0.1", LIRIS_KEYBOARD_PORT),
+      quickProbe(ACER_KEYBOARD_HOST, ACER_KEYBOARD_PORT)
+    ]);
+    const lk = settledValue(lkResult, { ok: false, err: "probe_rejected" });
+    const ak = settledValue(akResult, { ok: false, err: "probe_rejected" });
+    checks.agent_keyboard_liris = { ok: lk.ok, port: LIRIS_KEYBOARD_PORT, err: lk.err, latency_ms: lk.latency_ms };
+    checks.agent_keyboard_acer = { ok: ak.ok, port: ACER_KEYBOARD_PORT, host: ACER_KEYBOARD_HOST, err: ak.err, latency_ms: ak.latency_ms };
     try {
       const sd = await quickProbe("127.0.0.1", 4794);
       checks.supervisor_daemon = { ok: sd.ok, port: 4794, note: "fabric-completion-server liris-side", err: sd.err };
