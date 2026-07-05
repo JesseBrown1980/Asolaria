@@ -2,3 +2,7 @@
 docs/receipts/*.hbp text eol=lf
 docs/receipts/*.md text eol=lf
 docs/receipts/*.sha256 text eol=lf
+# Free model possibility receipts: byte identity matters.
+reports/free-model-possibility-ladder-20260705/* text eol=lf
+# Asolaria sealed receipt artifacts: byte identity matters.
+reports/chain-language-grid-origin-20260705/* text eol=lf
