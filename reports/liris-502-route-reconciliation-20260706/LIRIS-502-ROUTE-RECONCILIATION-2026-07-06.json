@@ -1,0 +1,92 @@
+{
+  "schema": "asolaria.liris_502_route_reconciliation.v1",
+  "generated_at": "2026-07-06T15:41:37.584Z",
+  "classification": "MEASURED_ACER_ROUTE_RECONCILIATION",
+  "claim": "Acer :4949 no longer reports Liris sister-organ or stale liris-mirror routes as dead :4944-only 502 surfaces.",
+  "changed_files": [
+    "packages/dashboard/src/super-os-viz/super-dashboard-server.mjs"
+  ],
+  "local_untracked_label_files_touched": [
+    "packages/dashboard/src/super-os-viz/dashboard-introspect.mjs",
+    "packages/dashboard/src/super-os-viz/dashboard-improvements-2026-05-11/fabric-mirror-audit.mjs"
+  ],
+  "route_probes": [
+    {
+      "url": "http://127.0.0.1:4949/health",
+      "statusCode": 200,
+      "bytes": 214,
+      "xSisterOrganSource": null,
+      "xLirisMirrorSource": null,
+      "xAsolariaRouteBoundary": null,
+      "bodySha256": "dcacdf0aea25a101a4e7597cdbcc8014a99114b4396a5ac718c8343241234a61",
+      "bodyPreview": "{\"ok\":true,\"service\":\"super-asolaria-os-dashboard\",\"port\":4949,\"apex\":\"COL-ASOLARIA\",\"operator_pair\":[\"OP-JESSE-PID\",\"OP-RAYSSA-PID\"],\"uptime_s\":124,\"cohort_anchor\":\"ACER-PID-H740C\",\"ts\":\"2026-07-06T15:41:30.730Z\"}"
+    },
+    {
+      "url": "http://127.0.0.1:4949/api/sister-organ",
+      "statusCode": 200,
+      "bytes": 90,
+      "xSisterOrganSource": [
+        "http://192.168.15.16:4948/health"
+      ],
+      "xLirisMirrorSource": null,
+      "xAsolariaRouteBoundary": null,
+      "bodySha256": "f4480c97d155dfcc91da2492ad0116de008ca4da6e93046cbd207a23a542a39b",
+      "bodyPreview": "{\"ok\":true,\"service\":\"liris-fabric-dashboard\",\"port\":4948,\"ts\":\"2026-07-06T15:41:37.508Z\"}"
+    },
+    {
+      "url": "http://127.0.0.1:4949/api/devices/liris-mirror",
+      "statusCode": 200,
+      "bytes": 4431,
+      "xSisterOrganSource": null,
+      "xLirisMirrorSource": [
+        "compatibility-fallback"
+      ],
+      "xAsolariaRouteBoundary": [
+        "liris-4948-health-green-legacy-mirror-absent"
+      ],
+      "bodySha256": "10d48429a8327e4a1941d24191fb2f9d222fbf6f15b47e6868e955f1da85b14e",
+      "bodyPreview": "{\n  \"ok\": true,\n  \"degraded\": true,\n  \"route\": \"/api/devices/liris-mirror\",\n  \"mirror_payload\": false,\n  \"status\": \"liris_live_legacy_mirror_absent\",\n  \"measured_live_surfaces\": [\n    \"liris fabric dashboard :4948\",\n    \"liris bus :4947\"\n  ],\n  \"boundary\": \"Liris is reachable on the measured 2026-07-06 fabric/bus lanes, but the old 4944 acer-mirror payload endpoint is not available on this surface.\",\n  \"mirror_attempts\": [\n    {\n      \"url\": \"http://192.168.15.16:4948/api/devices/acer-mirror\",\n      \"reachable\": true,\n      \"ok\": false,\n      \"status\": 404,\n      \"err\": null\n    },\n    {\n      \"url\": \"http://192.168.15.16:4944/api/devices/acer-mirror\",\n      \"reachable\": false,\n      \"ok\": false,\n      \"status\": 0,\n      \"err\": \"The operation was aborted due to timeout\"\n    },\n    {\n      \"url\": \"http://192.168.1.4:4944/api/devices/acer-mirror\",\n      \"reachable\": false,\n      \"ok\": fals"
+    },
+    {
+      "url": "http://127.0.0.1:4949/api/connectors/liris-mirror",
+      "statusCode": 200,
+      "bytes": 4446,
+      "xSisterOrganSource": null,
+      "xLirisMirrorSource": [
+        "compatibility-fallback"
+      ],
+      "xAsolariaRouteBoundary": [
+        "liris-4948-health-green-legacy-mirror-absent"
+      ],
+      "bodySha256": "e2d58906138b7454a7cf3588673fb3f2f6573fcc87341fb2f8453b9200e2ddd5",
+      "bodyPreview": "{\n  \"ok\": true,\n  \"degraded\": true,\n  \"route\": \"/api/connectors/liris-mirror\",\n  \"mirror_payload\": false,\n  \"status\": \"liris_live_legacy_mirror_absent\",\n  \"measured_live_surfaces\": [\n    \"liris fabric dashboard :4948\",\n    \"liris bus :4947\"\n  ],\n  \"boundary\": \"Liris is reachable on the measured 2026-07-06 fabric/bus lanes, but the old 4944 acer-mirror payload endpoint is not available on this surface.\",\n  \"mirror_attempts\": [\n    {\n      \"url\": \"http://192.168.15.16:4948/api/connectors/acer-mirror\",\n      \"reachable\": true,\n      \"ok\": false,\n      \"status\": 404,\n      \"err\": null\n    },\n    {\n      \"url\": \"http://192.168.15.16:4944/api/connectors/acer-mirror\",\n      \"reachable\": false,\n      \"ok\": false,\n      \"status\": 0,\n      \"err\": \"The operation was aborted due to timeout\"\n    },\n    {\n      \"url\": \"http://192.168.1.4:4944/api/connectors/acer-mirror\",\n      \"reachable\": false,\n    "
+    },
+    {
+      "url": "http://127.0.0.1:4949/api/everything",
+      "statusCode": 200,
+      "bytes": 2982,
+      "xSisterOrganSource": null,
+      "xLirisMirrorSource": null,
+      "xAsolariaRouteBoundary": null,
+      "bodySha256": "7d0915398c0f38a01d9c7fda631dd42deabd862e83031edeb21f9e7b435749bd",
+      "bodyPreview": "{\n  \"bus\": \"http://127.0.0.1:4947 (LAW-001 immutable)\",\n  \"cosign_chain\": \"super-os-viz/cosign-chain.json (acer mirror) + liris COSIGN_CHAIN.ndjson\",\n  \"memory_canon\": \"/api/manifest\",\n  \"cohort_artifacts\": {\n    \"A\": 14,\n    \"B\": 18,\n    \"C\": 24,\n    \"D\": 16,\n    \"E\": 6,\n    \"F\": 1,\n    \"G\": 2,\n    \"H\": 5,\n    \"J\": 4,\n    \"total\": 90\n  },\n  \"glyph_table\": \"/api/behcs-glyph-table\",\n  \"substrates_5_anchors\": \"/api/substrates\",\n  \"supervisors_profs_office_fed_705\": \"/api/supervisors\",\n  \"free_agents_pi_shannon\": \"/api/free-agents-pi-shannon\",\n  \"hookwall_audit\": \"/api/hookwall/events + F5 finding (1 live hook Ãƒâ€šÃ‚Â· 23+ deferred)\",\n  \"council_query\": \"POST /api/council/query {topic, keywords}\",\n  \"council_verdicts\": \"/api/council/verdicts\",\n  \"operator_endpoint\": \"/api/operator/jesse\",\n  \"loop_closure\": \"/api/loop/{tick,pending,veto}\",\n  \"gnn_inference\": \"/api/gnn/topN\",\n  \"remote_input"
+    }
+  ],
+  "process": {
+    "ProcessId": 28464,
+    "CommandLine": "\"C:\\nvm4w\\nodejs\\node.exe\" --experimental-vm-modules C:\\asolaria-acer\\packages\\dashboard\\src\\super-os-viz\\super-dashboard-server.mjs"
+  },
+  "checks": {
+    "git_diff_check_super_dashboard": "PASS",
+    "node_check_fabric_mirror_audit": "PASS",
+    "node_check_super_dashboard": "PASS",
+    "node_check_dashboard_introspect": "PASS"
+  },
+  "boundary": [
+    "Liris fabric dashboard :4948 is live and selected by /api/sister-organ.",
+    "Liris bus :4947 is reachable from Acer.",
+    "Legacy :4944 mirror payload endpoints are absent/unreachable; compatibility routes return degraded:true with mirror_payload:false instead of HTTP 502.",
+    "Liris /api/daemons on :4948 is reachable but reports ok:false and missing daemon inventory; that is not claimed green by this receipt.",
+    "/api/fabric-mirror-audit was observed as heavy/self-auditing and is not sealed as green in this receipt."
+  ]
+}

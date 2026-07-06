@@ -1,0 +1,166 @@
+diff --git a/packages/dashboard/src/super-os-viz/super-dashboard-server.mjs b/packages/dashboard/src/super-os-viz/super-dashboard-server.mjs
+index 7be8c622..3568ea56 100644
+--- a/packages/dashboard/src/super-os-viz/super-dashboard-server.mjs
++++ b/packages/dashboard/src/super-os-viz/super-dashboard-server.mjs
+@@ -72,9 +72,13 @@ const __hbpGlyphsCache = { body: null, ts: 0 };
+ const __HBP_GLYPHS_TTL_MS = 30000;
+ const HOST = process.env.ACER_DASHBOARD_HOST || "0.0.0.0";
+ const BUS_URL = "http://127.0.0.1:4947";
++const LIRIS_HOST_DEFAULT = process.env.LIRIS_HOST || "192.168.15.16";
++const LIRIS_DASHBOARD_PORT_DEFAULT = process.env.LIRIS_DASHBOARD_PORT || "4948";
++const LIRIS_BUS_PORT_DEFAULT = process.env.LIRIS_BUS_PORT || "4947";
++const LIRIS_LEGACY_DASHBOARD_PORT_DEFAULT = process.env.LIRIS_LEGACY_DASHBOARD_PORT || "4944";
+ // ─── W113 Tool-Advisor: acer-perspective verb taxonomy (R3 spec, asymmetric to liris) ──
+-const W113_LIRIS_HOST = process.env.LIRIS_HOST || "192.168.1.17";
+-const W113_LIRIS_DASHBOARD_PORT = process.env.LIRIS_DASHBOARD_PORT || "4944";
++const W113_LIRIS_HOST = LIRIS_HOST_DEFAULT;
++const W113_LIRIS_DASHBOARD_PORT = LIRIS_DASHBOARD_PORT_DEFAULT;
+ const VERB_MATRIX = {
+   // Classifier verbs — liris is the canonical classifier per LIRIS-PERSPECTIVE R3
+   'classify':          { bucket: 'REDIRECT-TO-LIRIS', reason: 'liris is canonical classifier per W113 R3' },
+@@ -581,6 +585,74 @@ async function firstReachable(urls, timeoutMs = 1200) {
+   return { reachable: !!reachable, selected: reachable || probes[0] || null, probes };
+ }
+
++function uniqueUrls(urls) {
++  return [...new Set(urls.filter(Boolean))];
++}
++
++function lirisEndpointConfig() {
++  return {
++    host: LIRIS_HOST_DEFAULT,
++    dashboardPort: LIRIS_DASHBOARD_PORT_DEFAULT,
++    busPort: LIRIS_BUS_PORT_DEFAULT,
++    legacyDashboardPort: LIRIS_LEGACY_DASHBOARD_PORT_DEFAULT,
++  };
++}
++
++async function buildLirisMirrorCompatibility(kind) {
++  const cfg = lirisEndpointConfig();
++  const mirrorPath = kind === "devices" ? "/api/devices/acer-mirror" : "/api/connectors/acer-mirror";
++  const mirrorCandidates = uniqueUrls([
++    `http://${cfg.host}:${cfg.dashboardPort}${mirrorPath}`,
++    `http://192.168.15.16:4948${mirrorPath}`,
++    `http://${cfg.host}:${cfg.legacyDashboardPort}${mirrorPath}`,
++    `http://192.168.1.4:4944${mirrorPath}`,
++    `http://192.168.100.2:4944${mirrorPath}`,
++  ]);
++  const mirrorProbes = await Promise.all(mirrorCandidates.map(url => probeHttp(url, 1600)));
++  const liveMirror = mirrorProbes.find(p => p.reachable && p.ok);
++  if (liveMirror) {
++    return {
++      httpStatus: liveMirror.status || 200,
++      headers: { "content-type": "application/json", "x-liris-mirror-source": liveMirror.url },
++      body: liveMirror.json || { ok: true, source: liveMirror.url, text: liveMirror.text || "" },
++    };
++  }
++
++  const health = await firstReachable(uniqueUrls([
++    `http://${cfg.host}:${cfg.dashboardPort}/health`,
++    "http://192.168.15.16:4948/health",
++    `http://${cfg.host}:${cfg.busPort}/behcs/health`,
++    "http://192.168.15.16:4947/behcs/health",
++    `http://${cfg.host}:${cfg.legacyDashboardPort}/health`,
++    "http://192.168.1.4:4944/health",
++    "http://192.168.100.2:4944/health",
++  ]), 1600);
++  const daemons = await firstReachable(uniqueUrls([
++    `http://${cfg.host}:${cfg.dashboardPort}/api/daemons`,
++    "http://192.168.15.16:4948/api/daemons",
++  ]), 1600);
++
++  return {
++    httpStatus: 200,
++    headers: {
++      "content-type": "application/json",
++      "x-liris-mirror-source": "compatibility-fallback",
++      "x-asolaria-route-boundary": "liris-4948-health-green-legacy-mirror-absent",
++    },
++    body: {
++      ok: true,
++      degraded: true,
++      route: `/api/${kind}/liris-mirror`,
++      mirror_payload: false,
++      status: "liris_live_legacy_mirror_absent",
++      measured_live_surfaces: ["liris fabric dashboard :4948", "liris bus :4947"],
++      boundary: "Liris is reachable on the measured 2026-07-06 fabric/bus lanes, but the old 4944 acer-mirror payload endpoint is not available on this surface.",
++      mirror_attempts: mirrorProbes.map(p => ({ url: p.url, reachable: p.reachable, ok: p.ok, status: p.status || 0, err: p.err || null })),
++      health_selected: health.selected,
++      daemon_selected: daemons.selected,
++    },
++  };
++}
+ function deviceVisualFromVisualField(visual, deviceId) {
+   const rows = visual?.leworldmodel_predict_correct?.rows || [];
+   const row = rows.find(r => r.device_id === deviceId) || null;
+@@ -4382,20 +4454,14 @@ const server = createServer(async (req, res) => {
+     } catch (e) { res.writeHead(502, { "content-type": "application/json" }); return res.end(JSON.stringify({ ok: false, err: e.message })); }
+   }
+   if (p === "/api/devices/liris-mirror") {
+-    try {
+-      const lirisHost = process.env.LIRIS_HOST || "192.168.1.17";
+-      const r = await fetch(`http://${lirisHost}:4944/api/devices/acer-mirror`, { signal: AbortSignal.timeout(2000) });
+-      const body = await r.text();
+-      res.writeHead(r.status, { "content-type": "application/json" }); return res.end(body);
+-    } catch (e) { res.writeHead(502, { "content-type": "application/json" }); return res.end(JSON.stringify({ ok: false, err: e.message, hint: "liris :4944 unreachable from acer Ãƒâ€šÃ‚Â· bilateral-merge envelope d3f47d4b confirms parity exists" })); }
++    const r = await buildLirisMirrorCompatibility("devices");
++    res.writeHead(r.httpStatus, r.headers);
++    return res.end(JSON.stringify(r.body, null, 2));
+   }
+   if (p === "/api/connectors/liris-mirror") {
+-    try {
+-      const lirisHost = process.env.LIRIS_HOST || "192.168.1.17";
+-      const r = await fetch(`http://${lirisHost}:4944/api/connectors/acer-mirror`, { signal: AbortSignal.timeout(2000) });
+-      const body = await r.text();
+-      res.writeHead(r.status, { "content-type": "application/json" }); return res.end(body);
+-    } catch (e) { res.writeHead(502, { "content-type": "application/json" }); return res.end(JSON.stringify({ ok: false, err: e.message, hint: "liris :4944 unreachable Ãƒâ€šÃ‚Â· bilateral-merge envelope confirms 70/30/wired-truth-table mirrored" })); }
++    const r = await buildLirisMirrorCompatibility("connectors");
++    res.writeHead(r.httpStatus, r.headers);
++    return res.end(JSON.stringify(r.body, null, 2));
+   }
+   if (p === "/api/fabric/highways") {
+     res.writeHead(200, { "content-type": "application/json" });
+@@ -4611,7 +4677,7 @@ const server = createServer(async (req, res) => {
+       omniscrcpy: "/api/omniscrcpy/{status,heartbeat,frontend-heartbeat,desktop-look,falcon-look,tick,kick,history,halt,resume,verdict,feed,mesh,sample,remote-request,fabric-trigger,orchestrate,jri-rotate,visual-field,remote-ingest,bus-fallback-frame,gc} + /api/visual-gc",
+       pi_terminal: "/api/pi/terminal/{spawn,exec,output,sessions,frontend-draft,frontend-drafts,frontend-draft/mark}",
+       agent_terminal_fabric: "/api/agent-terminal/{status,spawn,exec,output,sessions,rotate,kill} + /api/hyperbehcs/{hermes-agent.hbp,hermes-agent.hbi,fabric-orchestration.hbp,fabric-orchestration.hbi}",
+-      sister_organ: "/api/sister-organ (liris :4944)",
++      sister_organ: "/api/sister-organ (liris fabric :4948; bus :4947; legacy :4944 fallback)",
+       federation: "/json (proxies :9996)",
+       test_results: "/api/test-results (J-cohort node:test results.json)",
+       archaeology: {
+@@ -4622,11 +4688,11 @@ const server = createServer(async (req, res) => {
+         birthday: "/api/archaeology/birthday (2026-02-22)",
+         cosign_integrity: "/api/archaeology/cosign-integrity"
+       },
+-      live_dashboards: ["http://127.0.0.1:4949 (acer Ãƒâ€šÃ‚Â· this)", "http://192.168.1.4:4944 (liris sister LAN; 192.168.100.2 fallback direct-wire)"]
++      live_dashboards: ["http://127.0.0.1:4949 (acer - this)", "http://192.168.15.16:4948 (liris fabric dashboard)", "http://192.168.15.16:4947/behcs/health (liris bus)", "legacy :4944 fallback only"]
+     }, null, 2));
+   }
+
+-  // ===== W113 Phase 5 — Tool Advisor routes (bilateral mirror with liris :4944) =====
++  // ===== W113 Phase 5 - Tool Advisor routes (bilateral mirror with measured liris :4948/:4947; legacy :4944 fallback) =====
+   if (p === "/api/tool-advisor") {
+     res.setHeader("Content-Type", "application/json");
+     if (req.method !== "POST") { res.writeHead(405); return res.end(JSON.stringify({ verdict: "FORBIDDEN", forbid_origin: "acer", reason: "POST-only per W113 spec" })); }
+@@ -4774,9 +4840,17 @@ const server = createServer(async (req, res) => {
+   }
+
+   if (p === "/api/sister-organ") {
+-    // 2026-05-21: liris current LAN IP is 192.168.1.17 (was .4 in older canon); env override LIRIS_HOST.
+-    const lirisHost = process.env.LIRIS_HOST || "192.168.1.17";
+-    const candidates = [`http://${lirisHost}:4944/health`, "http://192.168.1.4:4944/health", "http://192.168.100.2:4944/health"];
++    // 2026-07-06: Acer active subnet moved to 192.168.15.x; Liris dashboard measured on :4948, bus on :4947.
++    const lirisHost = process.env.LIRIS_HOST || "192.168.15.16";
++    const lirisDashboardPort = process.env.LIRIS_DASHBOARD_PORT || "4948";
++    const candidates = [
++      `http://${lirisHost}:${lirisDashboardPort}/health`,
++      "http://192.168.15.16:4948/health",
++      "http://192.168.15.16:4947/behcs/health",
++      `http://${lirisHost}:4944/health`,
++      "http://192.168.1.4:4944/health",
++      "http://192.168.100.2:4944/health"
++    ];
+     for (const url of candidates) {
+       try {
+         const r = await fetch(url, { signal: AbortSignal.timeout(3000) });

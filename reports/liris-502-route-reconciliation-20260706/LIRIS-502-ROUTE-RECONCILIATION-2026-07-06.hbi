@@ -1,0 +1,7 @@
+HBI|schema=asolaria.liris_502_route_reconciliation.index.v1
+artifact|name=LIRIS-502-ROUTE-RECONCILIATION-2026-07-06.hbp|sha256=c0a1d64e994af9fa50d3d70984f9acd25b8b9c6b12db50bacc41d3f9375e7cc7
+artifact|name=LIRIS-502-ROUTE-RECONCILIATION-2026-07-06.json|sha256=908127f0e6001650a40e68cdfcc80f9d89f8eb939ba45f32059f626d94ff9e74
+artifact|name=LIRIS-502-ROUTE-RECONCILIATION-2026-07-06.md|sha256=c6bfb4d8884f6dc3cdd4f54ad541ba39a1cd9b398adc9054a3800d7db933403d
+artifact|name=LIRIS-502-ROUTE-RECONCILIATION-2026-07-06.diff|sha256=296dbf6e72e31ff12e14c81d2f091abb77a87d35ec9ad46d7bee25028724c2d2
+route|acer=:4949|liris_fabric=:4948|liris_bus=:4947|legacy=:4944
+boundary|false_502_removed=1|full_legacy_mirror_payload_recovered=0

@@ -1,0 +1,6 @@
+HBP|schema=asolaria.liris_502_route_reconciliation.v1|ts=2026-07-06T15:41:37.602Z|json=0
+CLAIM|text=Acer :4949 Liris 502 route state reconciled to measured :4948/:4947 lanes|json=0
+EVIDENCE|class=MEASURED_ACER|route=/api/sister-organ|status=200|source=http://192.168.15.16:4948/health|json=0
+EVIDENCE|class=MEASURED_ACER|route=/api/devices/liris-mirror|status=200|degraded=true|mirror_payload=false|json=0
+EVIDENCE|class=MEASURED_ACER|route=/api/connectors/liris-mirror|status=200|degraded=true|mirror_payload=false|json=0
+BOUNDARY|legacy_4944_mirror_payload_absent=1|liris_4948_health_green=1|liris_4947_bus_reachable=1|liris_daemon_inventory_not_green=1|json=0
