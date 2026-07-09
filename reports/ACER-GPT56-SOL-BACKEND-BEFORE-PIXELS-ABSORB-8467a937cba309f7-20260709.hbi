@@ -1,0 +1,14 @@
+ACERGPT56IDX|schema=ACER-GPT56-SOL-BACKEND-BEFORE-PIXELS-ABSORB-HBI-V1|seat=ACER-CLAUDE-FABLE5|device=ACER|pid=8467a937cba309f7|glyph=BH1024:SEAT-FABLE5|hilbert=1720|sector=SEC-FABLE5-1720|target=ACER-GPT56-SOL-BACKEND-BEFORE-PIXELS-ABSORB-8467a937cba309f7-20260709.hbp|index_kind=backend_semantic_binary_index|json=0
+ACERGPT56IDXROW|row=0|tag=ACERGPT56HDR|role=device_pid_glyph_identity|device_specific=1|pid_specific=1|timestamp_specific=1|json=0
+ACERGPT56IDXROW|row=1|tag=ACERGPT56OFFICIAL|role=official_openai_source_binding|source_count=3|json=0
+ACERGPT56IDXROW|row=2|tag=ACERGPT56MODELS|role=model_router_sol_terra_luna|primary=gpt-5.6-sol|alias=gpt-5.6|json=0
+ACERGPT56IDXROW|row=3|tag=ACERGPT56CLIAPI|role=responses_api_and_cli_surface|local_install_claim=0|json=0
+ACERGPT56IDXROW|row=4|tag=ACERGPT56CUBES|role=fable5_cube_binding|self_prism_cubes=46|middleware_lanes=24|json=0
+ACERGPT56IDXROW|row=5|tag=ACERGPT56GAC|role=gac_hookwall_agentterms_guardrails|danger_verb_watch=1|json=0
+ACERGPT56IDXROW|row=6|tag=ACERGPT56OMNI|role=omnishannon_omnihermes_omnignn_reverse_gain_gc_whiteroom_maps|json=0
+ACERGPT56IDXROW|row=7|tag=ACERGPT56HARNESS|role=asolaria_next_reset_harness_requirement|hbp_hbi_before_pixels=1|json=0
+ACERGPT56IDXROW|row=8|tag=ACERGPT56QPRISM|role=qprism_harness_binding|claim_gate=proof_requirement_not_external_proof|json=0
+ACERGPT56IDXROW|row=9|tag=ACERGPT56SECURITY|role=secret_and_exfiltration_boundary|secrets=0|json=0
+ACERGPT56IDXROW|row=10|tag=ACERGPT56EXEC|role=no_process_or_physical_mutation_boundary|execute=0|json=0
+ACERGPT56IDXROW|row=11|tag=ACERGPT56NEXT|role=next_required_measurements|backend_hash_required=1|dry_run_required=1|json=0
+ACERGPT56IDXBND|class=HELD|detail=github_backend_contract_created;local_ACER_install_and_API_call_not_performed_by_this_session;final_release_requires_backend_sha256_sidecars_HBI_offsets_keyless_secret_check_and_dry_run_ACK|json=0
