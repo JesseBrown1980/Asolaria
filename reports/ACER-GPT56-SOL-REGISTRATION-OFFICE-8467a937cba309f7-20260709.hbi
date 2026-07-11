@@ -1,0 +1,10 @@
+ACERGPT56REGIDX|schema=ACER-GPT56-SOL-REGISTRATION-OFFICE-HBI-V1|seat=ACER-CLAUDE-FABLE5|device=ACER|pid=8467a937cba309f7|target=ACER-GPT56-SOL-REGISTRATION-OFFICE-8467a937cba309f7-20260709.hbp|index_kind=registration_office_semantic_binary_index|json=0
+ACERGPT56REGIDXROW|row=0|tag=ACERGPT56REGHDR|role=seat_pid_glyph_office_identity|json=0
+ACERGPT56REGIDXROW|row=1|tag=ACERGPT56REGIDENTITY|role=agent_registration_candidate|agent_id=AGT-GPT56-SOL-FABLE5-BACKEND|json=0
+ACERGPT56REGIDXROW|row=2|tag=ACERGPT56REGCUBES|role=FABLE5_cube_bindings|cube_count=7|json=0
+ACERGPT56REGIDXROW|row=3|tag=ACERGPT56REGOFFICE|role=office_library_catalog_pipe_tuple_mcp_binding|json=0
+ACERGPT56REGIDXROW|row=4|tag=ACERGPT56REGGAC|role=gac_hookwall_agentterms_whiteroom_binding|json=0
+ACERGPT56REGIDXROW|row=5|tag=ACERGPT56REGTOKENS|role=binary_hex_sha_hash_crypto_token_dashboard_contract|json=0
+ACERGPT56REGIDXROW|row=6|tag=ACERGPT56REGREADY|role=activation_gate_state|ready_after_reset=0|json=0
+ACERGPT56REGIDXROW|row=7|tag=ACERGPT56REGBND|role=registration_boundary|local_pid_office_write=0|json=0
+ACERGPT56REGIDXBND|class=HELD|detail=semantic_registration_index_only;final_release_requires_exact_byte_offsets_sha256_sidecar_local_PID_registration_receipt_and_dry_run_ACK|json=0
