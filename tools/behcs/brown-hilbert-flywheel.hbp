@@ -1,0 +1,8 @@
+BHFLYWHEELHDR|host=liris|tool=tools/behcs/brown-hilbert-flywheel.js|purpose=backend-flywheel-scale-test-pid-rotation|mode=backend_rotation_no_frontend_serve|json=0
+BHFLYWHEELLAW|law=LAW-1M-1E200|doctrine=backend-shelless-rotation+per-message-temporal-identity|state=REVERTED_TO_PROVEN_LOGIC|json=0
+BHFLYWHEELREVERSION|date=2026-07-12|edits_undone=5|undone=NOW_cache_decl+feedInbox_at_NOW+feedGNN_at_NOW+batch_NOW_refresh+cli_single_tier_arg|restored=per_message_new_Date_toISOString+fixed_tier_ladder|ordered_by=operator|json=0
+BHFLYWHEELPROVENRUN|status=MEASURED|tier10k=241ms_41494ps|tier100k=2248ms_44484ps|tier1m=23960ms_41736ps|gulps_1m=555|frontend_serves=0|oom=0|json=0
+BHFLYWHEELINCIDENT|date=2026-07-12|variant=NOW_cache_post_edit|run=14931ms_66975ps_COMPLETED|bus_heartbeat_acer_4947=EHOSTUNREACH_113212Z_then_ECONNREFUSED|cause=UNVERIFIED|temporal_regression=2000_msgs_per_timestamp_CONFIRMED|json=0
+BHFLYWHEELVERIFY|syntax=node_check_PASS|remnant_NOW=0|remnant_argTier=0|logic_equiv_5_edit_inverse=VERIFIED|byte_equiv_pre_edit=UNVERIFIED_no_pre_edit_sha_captured|executed=0|mutates=0|launches=0|json=0
+BHFLYWHEELSHA|js_sha256=74F3FA770C883507B419E43DBE2414E5180DD7EDCB6AC8D61AC823ADE41680A0|js_bytes=11352|json=0
+BHFLYWHEELEND|state=REGISTERED_LIRIS_BYTE_EXACT_BASELINE|json=0
