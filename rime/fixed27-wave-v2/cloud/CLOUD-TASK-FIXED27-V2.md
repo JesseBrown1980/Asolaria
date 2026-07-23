@@ -29,18 +29,21 @@ stage briefly review the output before proceeding:
 3. Run `rustup run 1.81 cargo run --quiet -- seal cloud`.
 4. Verify:
 
-   - 10/10 Rust tests pass.
+   - All Rust tests pass across all targets.
    - The second cascade is exactly 93,312 routes and its nearest third is
      31,104.
    - `receipts/rime-wave-structural-v2.hbp` has SHA-256
      `d265e5025c356e091e665e5f8e7fa92962663372fd0aa046300f80557cee829e`.
    - Local, SGRAM, and cloud-manifest `fixed27-values-v2.rime3` are exactly 27
      bytes, accept only `-,.,+`, and are byte-identical.
-   - The cloud measurement receipt calculates nearest thirds from the actual
-     cloud timings rather than copying Acer timing numbers.
+   - The cloud measurement receipt begins with
+     `RIME-WAVE-MEASURE|seat=CLOUD|clock=monotonic-nanoseconds`.
+   - Its nearest thirds are calculated from the actual cloud timings rather
+     than copying Acer timing numbers.
+   - An empty, uppercase, underscore-containing, path-like, or Unicode seat is
+     rejected before any receipt or storage path is written.
 
 Do not run the CUDA script: this cloud gate has no verified GPU. Do not claim
 physical gravity or trained model weights. Make no source changes unless a gate
 fails. If all gates pass, return the task ID, commit SHA, exact command results,
 structural SHA, cloud timing receipt, storage SHA, and remaining boundaries.
-

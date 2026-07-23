@@ -88,16 +88,26 @@ pub fn structural_receipt(report: &RuntimeReport) -> String {
     )
 }
 
-pub fn measurement_receipt(report: &RuntimeReport) -> String {
+pub fn measurement_receipt(report: &RuntimeReport, seat: &str) -> Result<String, String> {
+    if seat.is_empty()
+        || !seat
+            .bytes()
+            .all(|byte| byte.is_ascii_lowercase() || byte == b'-')
+    {
+        return Err(
+            "seat must be nonempty and contain lowercase ASCII letters and hyphens only".into(),
+        );
+    }
+
     let calculation = report.wave.metrics.calculation_ns;
     let play = report.wave.metrics.play_ns;
     let bits = report.wave.metrics.physical_bits;
     let storage = report.wave.metrics.storage_bytes;
     let gradient_changes = report.constellation.changed_by_organ.iter().sum::<usize>() as u64;
     let gradient = NearestThird::of(gradient_changes);
-    format!(
+    Ok(format!(
         concat!(
-            "RIME-WAVE-MEASURE|seat=ACER|clock=monotonic-nanoseconds\n",
+            "RIME-WAVE-MEASURE|seat={}|clock=monotonic-nanoseconds\n",
             "METRIC|name=calculation_time_ns|actual={}|nearest_third={}|retained={}\n",
             "METRIC|name=play_time_ns|actual={}|nearest_third={}|retained={}\n",
             "METRIC|name=physical_bits|actual={}|nearest_third={}|retained={}\n",
@@ -109,6 +119,7 @@ pub fn measurement_receipt(report: &RuntimeReport) -> String {
             "METRIC|name=gradient_change_events|actual={}|nearest_third={}|retained={}\n",
             "METRIC|name=route_events|actual=93312|nearest_third=31104|retained=62208\n"
         ),
+        seat.to_ascii_uppercase(),
         calculation.actual,
         calculation.one_third,
         calculation.retained_two_thirds,
@@ -124,7 +135,7 @@ pub fn measurement_receipt(report: &RuntimeReport) -> String {
         gradient.actual,
         gradient.one_third,
         gradient.retained_two_thirds,
-    )
+    ))
 }
 
 #[cfg(test)]
@@ -160,6 +171,10 @@ mod tests {
     #[test]
     fn deterministic_receipt_names_every_exact_level_and_boundary() {
         let receipt = structural_receipt(&verify().unwrap());
+        assert_eq!(
+            receipt.as_bytes(),
+            include_bytes!("../receipts/rime-wave-structural-v2.hbp")
+        );
         assert!(receipt.contains("levels=6,6,6,6,6,12|routes=93312"));
         assert!(receipt.contains("organs=omnishannon,gnn,reverse-gain-gnn,fnn,gslm"));
         assert!(
@@ -171,5 +186,28 @@ mod tests {
         assert!(receipt.contains("trained_weights=UNVERIFIED"));
         assert!(!receipt.contains("distinct_values=256"));
         assert!(!receipt.contains("distinct_values=1024"));
+    }
+
+    #[test]
+    fn measurement_receipt_uses_validated_seat_and_current_report_metrics() {
+        let mut report = verify().unwrap();
+        report.wave.metrics.calculation_ns = NearestThird::of(101);
+        report.wave.metrics.play_ns = NearestThird::of(202);
+        report.wave.metrics.physical_bits = NearestThird::of(217);
+        report.wave.metrics.storage_bytes = NearestThird::of(28);
+
+        let cloud = measurement_receipt(&report, "cloud").unwrap();
+        let acer = measurement_receipt(&report, "acer").unwrap();
+        assert!(cloud.starts_with("RIME-WAVE-MEASURE|seat=CLOUD|"));
+        assert!(acer.starts_with("RIME-WAVE-MEASURE|seat=ACER|"));
+        assert_ne!(cloud.lines().next(), acer.lines().next());
+        assert!(cloud.contains("name=calculation_time_ns|actual=101|nearest_third=34|retained=67"));
+        assert!(cloud.contains("name=play_time_ns|actual=202|nearest_third=67|retained=135"));
+        assert!(cloud.contains("name=physical_bits|actual=217|nearest_third=72|retained=145"));
+        assert!(cloud.contains("name=storage_bytes|actual=28|nearest_third=9|retained=19"));
+
+        for invalid in ["", "Cloud", "cloud_1", "cloud/../acer", "clöud"] {
+            assert!(measurement_receipt(&report, invalid).is_err());
+        }
     }
 }

@@ -65,16 +65,43 @@ UNVERIFIED:
   projection until a Codex Cloud task produces independent execution evidence.
 - Liris mid-push completion and bilateral clearance.
 
-## Cloud readiness
+## Cloud execution and review gate
 
 MEASURED:
 
-- Acer Codex CLI is logged in with ChatGPT and exposes CloudTasks.
-- Acer currently has zero cloud tasks and no configured cloud environment.
-- The fixed-27 source is not present on the current GitHub branch.
-- The current `C:\asolaria-acer` worktree is too dirty to publish safely.
+- Acer Codex Cloud environment
+  `6a62580d8ae48191a7d233dc917dc0b3` is configured for
+  `JesseBrown1980/Asolaria` with Rust `1.81`, post-setup caching on, and agent
+  internet off.
+- The isolated branch `acer/rime-fixed27-cloud-v2-20260723` published only the
+  scoped `rime/fixed27-wave-v2` bundle.
+- Cloud task `task_e_6a625963602c832680ff303eb0a4b48e` independently ran the
+  Rust gates and produced fresh calculation/play timings distinct from the
+  Acer receipt.
+- Stage review rejected the first cloud receipt because its filename said
+  `cloud` while a hard-coded header said `seat=ACER`.
+- The corrected receipt API now validates a nonempty lowercase seat, renders
+  it canonically in uppercase, and rejects invalid seats before any path is
+  written. Local Rust `1.81` format, check, Clippy, 11 library tests, and 2 CLI
+  integration tests pass.
+- The structural receipt remains byte-identical at SHA-256
+  `d265e5025c356e091e665e5f8e7fa92962663372fd0aa046300f80557cee829e`.
 
-HOLD:
+CANON:
 
-- Do not launch a cloud task until a clean, scoped source branch is visible to
-  a configured Codex Cloud environment and Liris confirms its push is complete.
+- Bilateral council request `council-q-1784830039540-r1gghq` produced verdict
+  envelope `73081431c948b083f3d49628f0bca29e`.
+- `CONVERGE: 38/251`; dominant domains:
+  `daemons(34), federation(29), sovereignty(13)`.
+- Signature `VERIFIED`; schema action `allow`.
+
+NEXT GATE:
+
+- Push the strengthened seat-validation commit and rerun the independent cloud
+  task. Accept it only if all tests pass, the receipt begins with
+  `seat=CLOUD`, its timings differ from the Acer receipt, and structural and
+  storage hashes remain unchanged.
+- The `cloud-manifest` backend is still a local projection; actual external
+  storage transport remains UNVERIFIED.
+- Liris local push completion remains UNVERIFIED; the Acer branch is separate
+  and follows the operator direction that both lanes may be used.

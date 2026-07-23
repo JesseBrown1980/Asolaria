@@ -13,7 +13,14 @@ fn main() {
     });
     match command.as_str() {
         "receipt" => print!("{}", structural_receipt(&report)),
-        "measure" => print!("{}", measurement_receipt(&report)),
+        "measure" => {
+            let seat = seat_argument(&mut arguments);
+            let receipt = measurement_receipt(&report, &seat).unwrap_or_else(|error| {
+                eprintln!("{error}");
+                std::process::exit(2);
+            });
+            print!("{receipt}");
+        }
         "photo" => print!(
             "{}",
             String::from_utf8(report.constellation.output.photo().to_vec())
@@ -29,14 +36,11 @@ fn main() {
             }
         }
         "seal" => {
-            let seat = arguments.next().unwrap_or_else(|| "acer".to_string());
-            if !seat
-                .bytes()
-                .all(|byte| byte.is_ascii_lowercase() || byte == b'-')
-            {
-                eprintln!("seat must contain lowercase ASCII letters and hyphens only");
+            let seat = seat_argument(&mut arguments);
+            let measurement = measurement_receipt(&report, &seat).unwrap_or_else(|error| {
+                eprintln!("{error}");
                 std::process::exit(2);
-            }
+            });
 
             fs::create_dir_all("receipts").expect("create receipts directory");
             fs::create_dir_all("sgram/runtime").expect("create SGRAM runtime directory");
@@ -47,7 +51,7 @@ fn main() {
             .expect("write structural receipt");
             fs::write(
                 format!("receipts/rime-wave-measure-{seat}-v2.hbp"),
-                measurement_receipt(&report),
+                measurement,
             )
             .expect("write measurement receipt");
 
@@ -70,4 +74,13 @@ fn main() {
             std::process::exit(2);
         }
     }
+}
+
+fn seat_argument(arguments: &mut impl Iterator<Item = String>) -> String {
+    let seat = arguments.next().unwrap_or_else(|| "acer".to_string());
+    if arguments.next().is_some() {
+        eprintln!("measure and seal accept at most one seat argument");
+        std::process::exit(2);
+    }
+    seat
 }
