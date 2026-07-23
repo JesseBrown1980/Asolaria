@@ -13,7 +13,10 @@ fn main() {
     });
     match command.as_str() {
         "receipt" => print!("{}", structural_receipt(&report)),
-        "measure" => print!("{}", measurement_receipt(&report)),
+        "measure" => {
+            let seat = validated_seat(arguments.next().unwrap_or_else(|| "acer".to_string()));
+            print!("{}", measurement_receipt(&report, &seat));
+        }
         "photo" => print!(
             "{}",
             String::from_utf8(report.constellation.output.photo().to_vec())
@@ -29,14 +32,7 @@ fn main() {
             }
         }
         "seal" => {
-            let seat = arguments.next().unwrap_or_else(|| "acer".to_string());
-            if !seat
-                .bytes()
-                .all(|byte| byte.is_ascii_lowercase() || byte == b'-')
-            {
-                eprintln!("seat must contain lowercase ASCII letters and hyphens only");
-                std::process::exit(2);
-            }
+            let seat = validated_seat(arguments.next().unwrap_or_else(|| "acer".to_string()));
 
             fs::create_dir_all("receipts").expect("create receipts directory");
             fs::create_dir_all("sgram/runtime").expect("create SGRAM runtime directory");
@@ -47,7 +43,7 @@ fn main() {
             .expect("write structural receipt");
             fs::write(
                 format!("receipts/rime-wave-measure-{seat}-v2.hbp"),
-                measurement_receipt(&report),
+                measurement_receipt(&report, &seat),
             )
             .expect("write measurement receipt");
 
@@ -70,4 +66,15 @@ fn main() {
             std::process::exit(2);
         }
     }
+}
+
+fn validated_seat(seat: String) -> String {
+    if !seat
+        .bytes()
+        .all(|byte| byte.is_ascii_lowercase() || byte == b'-')
+    {
+        eprintln!("seat must contain lowercase ASCII letters and hyphens only");
+        std::process::exit(2);
+    }
+    seat
 }
