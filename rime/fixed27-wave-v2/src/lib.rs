@@ -88,7 +88,7 @@ pub fn structural_receipt(report: &RuntimeReport) -> String {
     )
 }
 
-pub fn measurement_receipt(report: &RuntimeReport) -> String {
+pub fn measurement_receipt(report: &RuntimeReport, seat: &str) -> String {
     let calculation = report.wave.metrics.calculation_ns;
     let play = report.wave.metrics.play_ns;
     let bits = report.wave.metrics.physical_bits;
@@ -97,7 +97,7 @@ pub fn measurement_receipt(report: &RuntimeReport) -> String {
     let gradient = NearestThird::of(gradient_changes);
     format!(
         concat!(
-            "RIME-WAVE-MEASURE|seat=ACER|clock=monotonic-nanoseconds\n",
+            "RIME-WAVE-MEASURE|seat={}|clock=monotonic-nanoseconds\n",
             "METRIC|name=calculation_time_ns|actual={}|nearest_third={}|retained={}\n",
             "METRIC|name=play_time_ns|actual={}|nearest_third={}|retained={}\n",
             "METRIC|name=physical_bits|actual={}|nearest_third={}|retained={}\n",
@@ -109,6 +109,7 @@ pub fn measurement_receipt(report: &RuntimeReport) -> String {
             "METRIC|name=gradient_change_events|actual={}|nearest_third={}|retained={}\n",
             "METRIC|name=route_events|actual=93312|nearest_third=31104|retained=62208\n"
         ),
+        seat.to_ascii_uppercase(),
         calculation.actual,
         calculation.one_third,
         calculation.retained_two_thirds,
@@ -171,5 +172,27 @@ mod tests {
         assert!(receipt.contains("trained_weights=UNVERIFIED"));
         assert!(!receipt.contains("distinct_values=256"));
         assert!(!receipt.contains("distinct_values=1024"));
+    }
+
+    #[test]
+    fn measurement_receipts_render_validated_seats_and_current_report_metrics() {
+        let report = verify().unwrap();
+        let cloud = measurement_receipt(&report, "cloud");
+        let acer = measurement_receipt(&report, "acer");
+
+        assert!(cloud.starts_with("RIME-WAVE-MEASURE|seat=CLOUD|"));
+        assert!(acer.starts_with("RIME-WAVE-MEASURE|seat=ACER|"));
+        assert_ne!(cloud.lines().next(), acer.lines().next());
+
+        let calculation = report.wave.metrics.calculation_ns;
+        let play = report.wave.metrics.play_ns;
+        assert!(cloud.contains(&format!(
+            "name=calculation_time_ns|actual={}|nearest_third={}|retained={}",
+            calculation.actual, calculation.one_third, calculation.retained_two_thirds
+        )));
+        assert!(cloud.contains(&format!(
+            "name=play_time_ns|actual={}|nearest_third={}|retained={}",
+            play.actual, play.one_third, play.retained_two_thirds
+        )));
     }
 }
