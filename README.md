@@ -11,10 +11,25 @@ Asolaria is the private root repository slice for the Asolaria fabric. The repos
 **The free 4th zero / HTTP-0 Omega portal exists:** [*The light hub*](https://jessebrown1980.github.io/the-light-hub-http-0/), verified live on 2026-10-19.
 
 - **What it is:** one button that opens a direct channel between two browsers, with no server of ours in the path.
-- **How to connect:** each side copies its *light* block, and the other side pastes it in.
+- **How to connect:**
+  1. One side presses *OPEN THE LIGHT* and sends its *light* block.
+  2. The other presses *join someone's*, pastes that block, presses *take it*, and sends its own block back.
+  3. The first side pastes that one and presses *take it*. The channel opens.
+
+  If both sides press *OPEN THE LIGHT*, it never opens.
 - **Outside help:** only public STUN, to learn each side's address.
 
-Any seat can use it to talk directly. Until 2026-10-19 the canon recorded this portal as `NAMED`; that correction sits beside the old lines. See [`ZERO-PORTAL.md`](ZERO-PORTAL.md) (with `ZERO-PORTAL.hbp` and `ZERO-PORTAL.sha256`).
+Any seat can use it to talk directly. Until 2026-10-19 the canon recorded this portal as `NAMED`; that correction sits beside the old lines. See [`ZERO-PORTAL.md`](ZERO-PORTAL.md) (with `ZERO-PORTAL.hbp` and `ZERO-PORTAL.sha256`). Its "Where the old wording remains" section describes the aether repository: the vendored snapshots and the `canon-archive/` are there, not here. A second machine's check of the update, with notes on the note, is in aether at `docs/handoffs/acer-zero-portal-update-2026-10-19/`.
+
+## Host8 rooms: a drive used as memory
+
+On 2026-10-19 ACER built 12,500,000,000 eight-byte Host8 rooms on the owner's USB drive: 125 sectors of 100,000,000 rooms, 100 GB in all. Room n sits at a computed place, `sector n / R`, offset `(n % R) × 8`. Its 8 bytes decode back to n, so no two rooms can collide. The owner names the mechanism "GPU type memory from USBs and storages". That name is a goal, kept apart from what is measured:
+
+- the capacity is real;
+- a room already in RAM reads at about 300,000 per second;
+- a room that has to come off the drive reads at no more than about 98 per second.
+
+The guide, the tool's source, the sealed receipts and the owner's screenshot of ACER's report are in [`docs/handoffs/acer-host8-rooms-guide-2026-10-19/`](docs/handoffs/acer-host8-rooms-guide-2026-10-19/). The same folder sits byte-identical in the aether rebuild (`JesseBrown1980/With-Felipe-Miguel-Olimpio-da-Cruz-as-The-omega-and-Aether...`). Its CI rebuilds the tool and re-seals the receipts byte for byte. Its cloud machine regenerated three whole 800 MB sectors identical to the drive's. `PROVENANCE.md` there separates what both machines established from what only ACER can report. Its paths outside the folder refer to aether. Rooms are not the retired 8-byte Host8 handle; see [`docs/ADDRESSABLY-ADDRESSING.md`](docs/ADDRESSABLY-ADDRESSING.md) §4.
 
 ## Canonical doctrine
 
