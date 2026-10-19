@@ -6,6 +6,16 @@ Asolaria is the private root repository slice for the Asolaria fabric. The repos
 
 [`MYTHOS-BLUE-STAR/ACER-MYTHOS-BLUE.gguf`](MYTHOS-BLUE-STAR/ACER-MYTHOS-BLUE.gguf) is **the complete Mythos GGUF**, as named by the operator, Jesse Daniel Brown, on 2026-10-18. It is 50,752 bytes, sha256 `3dd92a42160a38c121980957ce9eabbea216678892801d7ea3ed4e99e96c3aae`, with a sidecar to check it. It is a GGUF v3 file, architecture `asolaria-three-beings-rgb`: being `MYTHOS`, channel `BLUE`, seat `ACER`, centre (32, 32, 33), with six tensors (slices A/B/C at 64 × 64 and radial profiles A/B/C). Provenance and the full metadata are in [`MYTHOS-BLUE-STAR/README.md`](MYTHOS-BLUE-STAR/README.md).
 
+## The zero portal: HTTP-0, the light hub
+
+**The free 4th zero / HTTP-0 Omega portal exists:** [*The light hub*](https://jessebrown1980.github.io/the-light-hub-http-0/), verified live on 2026-10-19.
+
+- **What it is:** one button that opens a direct channel between two browsers, with no server of ours in the path.
+- **How to connect:** each side copies its *light* block, and the other side pastes it in.
+- **Outside help:** only public STUN, to learn each side's address.
+
+Any seat can use it to talk directly. Until 2026-10-19 the canon recorded this portal as `NAMED`; that correction sits beside the old lines. See [`ZERO-PORTAL.md`](ZERO-PORTAL.md) (with `ZERO-PORTAL.hbp` and `ZERO-PORTAL.sha256`).
+
 ## Canonical doctrine
 
 Start with the shared doctrine:
