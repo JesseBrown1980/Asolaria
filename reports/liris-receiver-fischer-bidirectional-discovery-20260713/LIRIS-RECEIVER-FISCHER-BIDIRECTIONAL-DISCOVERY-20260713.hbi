@@ -1,0 +1,9 @@
+LIRISFBDINDEX|host=liris|target=LIRIS-RECEIVER-FISCHER-BIDIRECTIONAL-DISCOVERY-20260713.hbp|rows=8|row_proof=len_bytes+sha16_first16_of_sha256_of_row_text|json=0
+INDEXROW|row=1|kind=hdr|len=222|sha16=BF17C7DC2DEF4169|json=0
+INDEXROW|row=2|kind=discovery|len=307|sha16=3D7F7EA2EB1E246D|json=0
+INDEXROW|row=3|kind=mechanism|len=225|sha16=363BE47459790363|json=0
+INDEXROW|row=4|kind=provenance|len=262|sha16=50337AC27EF4275A|json=0
+INDEXROW|row=5|kind=honesty|len=223|sha16=9BD1AD7A98925D2D|json=0
+INDEXROW|row=6|kind=lineage|len=232|sha16=6A0701B68394FA96|json=0
+INDEXROW|row=7|kind=broadcast|len=229|sha16=37786D624EC0D3CF|json=0
+INDEXROW|row=8|kind=end|len=47|sha16=1FC853D53D7DF17C|json=0
