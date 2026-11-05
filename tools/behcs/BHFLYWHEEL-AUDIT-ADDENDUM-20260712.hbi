@@ -1,0 +1,13 @@
+BHFLYADDINDEX|host=liris|target=BHFLYWHEEL-AUDIT-ADDENDUM-20260712.hbp|rows=12|row_proof=len_bytes+sha16_first16_of_sha256_of_row_text|json=0
+INDEXROW|row=1|kind=hdr|len=158|sha16=EAE053570D1A4157|json=0
+INDEXROW|row=2|kind=law|len=195|sha16=970B77F27587593A|json=0
+INDEXROW|row=3|kind=targetsha|len=285|sha16=7B11660BEC2C8DAB|json=0
+INDEXROW|row=4|kind=finding_scope|len=284|sha16=A6493ACABF219228|json=0
+INDEXROW|row=5|kind=finding_gulps|len=270|sha16=16002A554A54F3AB|json=0
+INDEXROW|row=6|kind=finding_ports|len=137|sha16=F3AAF616FFD2A2A0|json=0
+INDEXROW|row=7|kind=finding_mutates|len=284|sha16=B4186C7206814F7B|json=0
+INDEXROW|row=8|kind=finding_hbi|len=191|sha16=D0B2BAAE4E102AC3|json=0
+INDEXROW|row=9|kind=finding_reversion|len=211|sha16=0631EFE57A79DB53|json=0
+INDEXROW|row=10|kind=provenance|len=318|sha16=895E4DA9ECA3BF1B|json=0
+INDEXROW|row=11|kind=boundary|len=166|sha16=F8F10B73FF9B4D3E|json=0
+INDEXROW|row=12|kind=end|len=59|sha16=9D439DD8FFB7113C|json=0

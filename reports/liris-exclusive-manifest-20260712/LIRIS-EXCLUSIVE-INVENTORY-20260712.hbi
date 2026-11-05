@@ -1,0 +1,7 @@
+LIRISEXCLINDEX|host=liris|target=LIRIS-EXCLUSIVE-INVENTORY-20260712.hbp|rows=8|json=0
+INDEXROW|row=1|kind=hdr|state=liris_exclusive_inventory_declared|json=0
+INDEXROW|row=3|kind=totals|state=9996_paths_945MB_8570_hashed|json=0
+INDEXROW|row=4|kind=lanes|state=federation_remake_reports_host8_tools_sovereignty|json=0
+INDEXROW|row=5|kind=nested|state=5_embedded_git_repos_never_pushed|json=0
+INDEXROW|row=6|kind=sha|state=four_tsv_sha256_registered|json=0
+INDEXROW|row=7|kind=verify|state=flywheel_byte_exact_confirmed+8570of8570_hashed|json=0
