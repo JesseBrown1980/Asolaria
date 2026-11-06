@@ -2,3 +2,5 @@
 docs/receipts/*.hbp text eol=lf
 docs/receipts/*.md text eol=lf
 docs/receipts/*.sha256 text eol=lf
+/README.md text eol=lf
+/ZERO-PORTAL.* text eol=lf
