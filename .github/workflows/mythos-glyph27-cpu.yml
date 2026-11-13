@@ -62,6 +62,31 @@ jobs:
           assert r['binary_models']['all_empty']['test'][0]['recall']==0
           print('MYTHOS_GLYPH27_METRICS_AUDIT|status=PASS|no_test_train_overlap=YES|json=0')
           PY
+      - name: Train region-specific weight generator and compare against fixed weights
+        run: |
+          set -euo pipefail
+          python -B MYTHOS-BLUE-STAR/glyph27/weight_space_adapter.py \
+            --source MYTHOS-BLUE-STAR/ACER-MYTHOS-BLUE.gguf \
+            --out build/mythos-glyph27 | tee build/mythos-glyph27/HYPERNET-EXECUTION.hbp
+          grep -Fq 'MYTHOS_HYPER_RESULT|comparison=' build/mythos-glyph27/HYPERNET-EXECUTION.hbp
+          grep -Fq '|conditioned_output_matrix_varies=PASS|perturbed_weight_control=PASS|cpu=PASS|' build/mythos-glyph27/HYPERNET-EXECUTION.hbp
+          (cd build/mythos-glyph27 && sha256sum -c HYPERNET-SHA256SUMS)
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          base=json.loads(Path('build/mythos-glyph27/REPORT.json').read_text())
+          a=json.loads(Path('build/mythos-glyph27/HYPERNET-RESULT.json').read_text())
+          assert a['training_device']=='CPU_NUMPY_ONLY'
+          assert a['source_sha256']==base['archive_sha256']
+          assert a['split_sha256']==base['split_sha256']
+          assert a['parameters']['conditional_hypernetwork']<200
+          assert a['parameters']['static_lowrank']<a['parameters']['conditional_hypernetwork']
+          assert a['generated_matrix_shape']==[12,3] and a['rank']==4
+          assert a['matrix_varies_across_positions'] and a['tamper_prediction_detection']
+          assert list(a['binary_models']['neighbor_density']['test'])==list(base['binary_models']['neighbor']['test'])
+          print('MYTHOS_HYPER_AUDIT|split_same_as_original=YES|'
+                'rank4_parameters_lt200=YES|heldout_test_integrity=PASS|json=0')
+          PY
       - name: Independent source-byte mutation and glyph checksum sabotage
         run: |
           set -euo pipefail
