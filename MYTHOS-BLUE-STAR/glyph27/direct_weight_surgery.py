@@ -183,7 +183,7 @@ def main():
         ]
     }
     Path("weight_surgery_result.json").write_text(json.dumps(result,sort_keys=True,indent=2)+"\n",encoding="utf-8")
-    print("WEIGHT_SURGERY|status=PASS|source=VERIFIED|base=SHA_MATCH|"
+    print("WEIGHT_SURGERY|status=PASS|source=VERIFIED|base=NUMERIC_AUDIT_MATCH|"
           "training=BASE_CNN_ONLY|edit=NO_GRADIENTS|edited_parameters=3|"
           "controls=64_RANDOM_PLUS_NEIGHBOR_PLUS_OPPOSITE|"
           "test_data_not_used_for_edit=PASS|cpu=PASS|"
