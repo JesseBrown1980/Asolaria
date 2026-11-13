@@ -80,3 +80,9 @@ The [pre-run freeze](FROZEN-GLYPH27-HELDOUT-20261112.hbp), [source-authenticated
 This is a CPU-only **demonstration** of compact glyph encoding, small learned pattern detection, next-symbol prediction and conditional low-rank weight generation. It does **not** imply 27 learned quantum states or qubits, that the Mythos label authenticates the Anthropic model, that the code runs the original proprietary model, or that a physical neural network follows from a metadata coordinate. Distinct mini-networks and their memory/compute advantages should be demonstrated on multiple **independent** sources and tasks.
 
 A useful next falsifier is to freeze the generated weight matrices and compare repeated cross-source test cases, matched parameter budgets, randomized location descriptors, and CPU memory/time against sparse neighbor-based rules. The user-proposed nested star/sphere/cube network architecture remains a hypothesis until those comparisons are passed.
+
+## November 12, 2026 — GPT-6 direct weight surgery (separate experiment)
+
+An independent CPU test **inspected the actual trained CNN weights before editing** and froze an analytic three-bias correction based on the class-weighted training objective. Only 3 of the CNN's 919 stored parameters changed, with no post-edit gradient training. Held-out test log loss fell **0.473760 → 0.151977**, while macro F1 changed only **0.288584 → 0.295491**; average precision was unchanged. A simple train-calibrated neighbor rule still won (**0.140798 log loss, 0.473185 macro F1**). This reuses the previously published test tiles and establishes neither independent-source generalization nor a weight-only-from-tensors editing ability.
+
+[Full direct weight-space surgery method and results](WEIGHT-SPACE-SURGERY-20261112.md) · [Frozen prediction and controls](WEIGHT-SURGERY-FREEZE.hbp) · [GitHub CPU evaluation](https://github.com/JesseBrown1980/Asolaria/actions/runs/43344383974).

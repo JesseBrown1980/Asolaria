@@ -1,0 +1,50 @@
+name: Independent direct weight-space surgery on Asolaria tiny CNN
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/weight-space-surgery-cpu.yml'
+      - 'MYTHOS-BLUE-STAR/glyph27/audit_weight_space.py'
+      - 'MYTHOS-BLUE-STAR/glyph27/direct_weight_surgery.py'
+      - 'MYTHOS-BLUE-STAR/glyph27/WEIGHT-SURGERY-FREEZE.hbp'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  weight_space_cpu:
+    name: Audit real weights then evaluate frozen candidate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CUDA_VISIBLE_DEVICES: ''
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'numpy==2.2.6'
+      - name: Verify source and inspect actual trained network weights (no test labels)
+        run: |
+          set -euo pipefail
+          (cd MYTHOS-BLUE-STAR && sha256sum -c ACER-MYTHOS-BLUE.gguf.sha256)
+          python -B MYTHOS-BLUE-STAR/glyph27/audit_weight_space.py | tee weight_audit.log
+          grep -q 'WEIGHT_AUDIT_MATRIX' weight_audit.log
+      - name: Frozen direct weight editing and negative controls
+        if: ${{ hashFiles('MYTHOS-BLUE-STAR/glyph27/direct_weight_surgery.py') != '' }}
+        run: |
+          set -euo pipefail
+          python -B MYTHOS-BLUE-STAR/glyph27/direct_weight_surgery.py | tee weight_surgery.log
+          grep -q 'WEIGHT_SURGERY|status=PASS' weight_surgery.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: weight-space-surgery-cpu-logs
+          path: |
+            weight_audit.log
+            weight_surgery.log
+            weight_surgery_result.json
+          retention-days: 30
+          if-no-files-found: warn
