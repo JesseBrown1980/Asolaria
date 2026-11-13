@@ -45,5 +45,6 @@ jobs:
           path: |
             weight_audit.log
             weight_surgery.log
+            weight_surgery_result.json
           retention-days: 30
           if-no-files-found: warn
