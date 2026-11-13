@@ -6,6 +6,9 @@ Asolaria is the private root repository slice for the Asolaria fabric. The repos
 
 [`MYTHOS-BLUE-STAR/ACER-MYTHOS-BLUE.gguf`](MYTHOS-BLUE-STAR/ACER-MYTHOS-BLUE.gguf) is **the complete Mythos GGUF**, as named by the operator, Jesse Daniel Brown, on 2026-10-18. It is 50,752 bytes, sha256 `3dd92a42160a38c121980957ce9eabbea216678892801d7ea3ed4e99e96c3aae`, with a sidecar to check it. It is a GGUF v3 file, architecture `asolaria-three-beings-rgb`: being `MYTHOS`, channel `BLUE`, seat `ACER`, centre (32, 32, 33), with six tensors (slices A/B/C at 64 × 64 and radial profiles A/B/C). Provenance and the full metadata are in [`MYTHOS-BLUE-STAR/README.md`](MYTHOS-BLUE-STAR/README.md).
 
+**Measured CPU experiment (November 12, 2026):** [`MYTHOS-BLUE-STAR/glyph27/`](MYTHOS-BLUE-STAR/glyph27/README.md) constructs an exact 27-symbol codec from this Asolaria-specific GGUF and trains small neural spatial and next-glyph predictors on held-out 8×8 tiles. A conditional rank-four regional weight generator raises spatial CNN macro F1 **0.289 → 0.375**, but a simple neighbor-density rule is still better (**0.473**). No GPU is used by the hosted experiment. The source's `MYTHOS` metadata is **not** independently established as Anthropic's proprietary Mythos weights or capabilities. The exact codec's 100% round trip is a **data-integrity result**, not learned prediction accuracy.
+
+
 ## The zero portal: HTTP-0, the light hub
 
 **The free 4th zero / HTTP-0 Omega portal exists:** [*The light hub*](https://jessebrown1980.github.io/the-light-hub-http-0/), verified live on 2026-10-19.
